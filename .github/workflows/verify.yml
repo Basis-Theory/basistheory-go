@@ -1,0 +1,45 @@
+name: Verify
+on:
+  workflow_dispatch:
+    inputs:
+      source:
+        type: string
+        description: Which repo triggered this workflow run
+        required: true
+  pull_request:
+    branches: [ master, pre-release ]
+
+jobs:
+  acceptance-test:
+    name: Acceptance test triggered by ${{ github.event.inputs.source || github.event_name }}
+    strategy:
+      matrix:
+        go-version: [ '1.16', '1.17', '1.18' ]
+    runs-on: ubuntu-latest
+    env:
+      CI: 1
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v2
+
+      - name: Login to Github Docker
+        uses: docker/login-action@v1
+        with:
+          registry: ghcr.io
+          username: ${{ github.repository_owner }}
+          password: ${{ secrets.PRIVATE_PACKAGE_TOKEN }}
+
+      - name: Setup go
+        uses: actions/setup-go@v2
+        with:
+          go-version: ${{ matrix.go-version }}
+
+      - name: Setup SSH Key
+        uses: webfactory/ssh-agent@v0.5.4
+        with:
+          ssh-private-key: ${{ secrets.VAULT_SSH_PRIVATE_KEY }}
+
+      - name: Run acceptance tests
+        run: make verify
+        env:
+          IS_PR_WORKFLOW: true
