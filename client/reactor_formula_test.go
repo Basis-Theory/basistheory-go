@@ -1,6 +1,7 @@
 package client
 
 import (
+	"encoding/json"
 	"fmt"
 	"github.com/jarcoal/httpmock"
 	"github.com/jaswdr/faker"
@@ -20,16 +21,21 @@ func setupBtClient(baseUrl string, apiKey string) *BasisTheoryClient {
 
 var _ = Describe("ReactorFormula client", func() {
 	var (
-		fakerInst faker.Faker
-		baseUrl   string
-		apiKey    string
-		btClient  *BasisTheoryClient
+		fakerInst                faker.Faker
+		baseUrl                  string
+		apiKey                   string
+		expectedReactorFormulaId string
+		expectedReactorFormula   ReactorFormula
+		btClient                 *BasisTheoryClient
 	)
 
 	BeforeSuite(func() {
 		fakerInst = faker.New()
 		baseUrl = fmt.Sprintf("http://%s", fakerInst.Lorem().Word())
 		apiKey = fakerInst.Lorem().Word()
+		expectedReactorFormulaId = fakerInst.UUID().V4()
+		expectedReactorFormula = ReactorFormula{}
+		fakerInst.Struct().Fill(&expectedReactorFormula)
 
 		btClient = setupBtClient(baseUrl, apiKey)
 
@@ -45,22 +51,43 @@ var _ = Describe("ReactorFormula client", func() {
 	})
 
 	Context("GetReactorFormula", func() {
-		It("returns a ReactorFormula", func() {
-			expectedReactorFormulaId := fakerInst.UUID().V4()
+		Context("request to /reactor-formulas is successful", func() {
+			It("returns a ReactorFormula", func() {
+				responder, _ := httpmock.NewJsonResponder(200, expectedReactorFormula)
+				path := fmt.Sprintf("%s/reactor-formulas/%s", baseUrl, expectedReactorFormulaId)
+				httpmock.RegisterResponder("GET", path, responder)
 
-			expectedReactorFormula := ReactorFormula{}
-			fakerInst.Struct().Fill(&expectedReactorFormula)
+				actualReactorFormula, err := btClient.GetReactorFormula(expectedReactorFormulaId)
 
-			responder, _ := httpmock.NewJsonResponder(200, expectedReactorFormula)
-			httpmock.RegisterResponder("GET", fmt.Sprintf("%s/reactor-formulas/%s", baseUrl, expectedReactorFormulaId), responder)
+				if err != nil {
+					Fail(fmt.Sprintf("GetReactorFormula failed: %v", err))
+				}
 
-			actualReactorFormula, err := btClient.GetReactorFormula(fmt.Sprintf("%v", expectedReactorFormulaId))
+				Expect(*actualReactorFormula).To(Equal(expectedReactorFormula))
+			})
+		})
 
-			if err != nil {
-				Fail(fmt.Sprintf("GetReactorFormula failed: %v", err))
-			}
+		Context("request to /reactor-formulas is not successful", func() {
+			It("returns an error containing details of the failed request", func() {
+				path := fmt.Sprintf("%s/reactor-formulas/%s", baseUrl, expectedReactorFormulaId)
+				expectedStatus := fakerInst.IntBetween(400, 500)
+				expectedErrorPayload := map[string]string{
+					fakerInst.Lorem().Word(): fakerInst.Lorem().Word(),
+				}
+				responder, _ := httpmock.NewJsonResponder(expectedStatus, expectedErrorPayload)
+				httpmock.RegisterResponder("GET", path, responder)
 
-			Expect(*actualReactorFormula).To(Equal(expectedReactorFormula))
+				_, err := btClient.GetReactorFormula(expectedReactorFormulaId)
+
+				marshalledExpectedError, _ := json.Marshal(expectedErrorPayload)
+
+				Expect(*err.(*ApiError)).To(Equal(ApiError{
+					Code: expectedStatus,
+					Message: fmt.Sprintf(
+						"Sending GET request to %s: %d. Response body: %v",
+						path, expectedStatus, string(marshalledExpectedError)),
+				}))
+			})
 		})
 	})
 })
