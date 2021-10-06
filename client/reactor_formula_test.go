@@ -60,7 +60,7 @@ var _ = Describe("ReactorFormula client", func() {
 				Fail(fmt.Sprintf("GetReactorFormula failed: %v", err))
 			}
 
-			Expect(actualReactorFormula).To(Equal(&expectedReactorFormula))
+			Expect(*actualReactorFormula).To(Equal(expectedReactorFormula))
 		})
 	})
 })
