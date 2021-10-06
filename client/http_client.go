@@ -8,8 +8,8 @@ import (
 )
 
 type BasisTheoryClient struct {
-	baseUrl           string
-	httpClient        *resty.Client
+	baseUrl    string
+	httpClient *resty.Client
 }
 
 func NewBasisTheoryClient(baseUrl string, apiKey string, userAgent string, additionalHeaders map[string]string, clientTimeout int) (*BasisTheoryClient, error) {
@@ -18,8 +18,8 @@ func NewBasisTheoryClient(baseUrl string, apiKey string, userAgent string, addit
 	setupClientMiddleWareAndHeaders(client, apiKey, userAgent, additionalHeaders, clientTimeout)
 
 	basisTheoryClient := BasisTheoryClient{
-		baseUrl:           baseUrl,
-		httpClient:        client,
+		baseUrl:    baseUrl,
+		httpClient: client,
 	}
 
 	return &basisTheoryClient, nil
@@ -28,7 +28,7 @@ func NewBasisTheoryClient(baseUrl string, apiKey string, userAgent string, addit
 func setupClientMiddleWareAndHeaders(httpClient *resty.Client, apiKey string, userAgent string, additionalHeaders map[string]string, clientTimeout int) {
 	headers := map[string]string{
 		"X-API-KEY": apiKey,
-		"Accept": "application/json",
+		"Accept":    "application/json",
 	}
 	for additonalHeaderName, additionalHeaderValue := range additionalHeaders {
 		headers[additonalHeaderName] = additionalHeaderValue
