@@ -3,21 +3,12 @@ package client
 import (
 	"encoding/json"
 	"fmt"
+	"github.com/Basis-Theory/basistheory-go/internal/test_utils"
 	"github.com/jarcoal/httpmock"
 	"github.com/jaswdr/faker"
 	. "github.com/onsi/ginkgo"
 	. "github.com/onsi/gomega"
 )
-
-func setupBtClient(baseUrl string, apiKey string) *BasisTheoryClient {
-	btClient, err := NewBasisTheoryClient(baseUrl, apiKey, "reactor_formula_testing", nil, 10)
-
-	if err != nil {
-		Fail(fmt.Sprintf("Could not create BasisTheory client %v", err))
-	}
-
-	return btClient
-}
 
 var _ = Describe("ReactorFormula client", func() {
 	var (
@@ -37,7 +28,7 @@ var _ = Describe("ReactorFormula client", func() {
 		expectedReactorFormula = ReactorFormula{}
 		fakerInst.Struct().Fill(&expectedReactorFormula)
 
-		btClient = setupBtClient(baseUrl, apiKey)
+		btClient, _ = NewBasisTheoryClient(baseUrl, apiKey, "reactor_formula_testing", nil, 0)
 
 		httpmock.ActivateNonDefault(btClient.httpClient.GetClient())
 	})
@@ -70,12 +61,7 @@ var _ = Describe("ReactorFormula client", func() {
 		Context("request to /reactor-formulas is not successful", func() {
 			It("returns an error containing details of the failed request", func() {
 				path := fmt.Sprintf("%s/reactor-formulas/%s", baseUrl, expectedReactorFormulaId)
-				expectedStatus := fakerInst.IntBetween(400, 500)
-				expectedErrorPayload := map[string]string{
-					fakerInst.Lorem().Word(): fakerInst.Lorem().Word(),
-				}
-				responder, _ := httpmock.NewJsonResponder(expectedStatus, expectedErrorPayload)
-				httpmock.RegisterResponder("GET", path, responder)
+				expectedErrorPayload, expectedStatus := test_utils.SetupErrorPath("GET", path)
 
 				_, err := btClient.GetReactorFormula(expectedReactorFormulaId)
 
