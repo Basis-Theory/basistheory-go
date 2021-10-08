@@ -88,6 +88,7 @@ func (client *BasisTheoryClient) GetReactorFormulas(reactorFormulaQuery ReactorF
 	if err != nil {
 		return nil, err
 	}
+
 	return result, nil
 }
 
