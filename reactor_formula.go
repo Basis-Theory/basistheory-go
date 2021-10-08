@@ -83,7 +83,7 @@ func (client *BasisTheoryClient) GetReactorFormulas(reactorFormulaQuery ReactorF
 	params["page"] = reactorFormulaQuery.Page
 	params["size"] = reactorFormulaQuery.Size
 
-	err := client.get(result, fmt.Sprintf("/reactor-formulas"), params)
+	err := client.get(result, "/reactor-formulas", params)
 
 	if err != nil {
 		return nil, err

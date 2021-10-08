@@ -7,7 +7,8 @@ import (
 
 func SetupErrorPath(httpMethod string, path string) (interface{}, int) {
 	fakerInst := faker.New()
-	status := fakerInst.IntBetween(400, 500)
+	const lowestHttpStatusError, highestHttpStatusError = 400, 500
+	status := fakerInst.IntBetween(lowestHttpStatusError, highestHttpStatusError)
 	errorPayload := map[string]string{
 		fakerInst.Lorem().Word(): fakerInst.Lorem().Word(),
 	}
