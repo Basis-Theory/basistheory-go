@@ -1,4 +1,4 @@
 MAKEFLAGS += --silent
 
 verify:
-	go test ./...
+	./scripts/verify.sh

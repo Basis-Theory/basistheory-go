@@ -1,4 +1,4 @@
-package client
+package basistheory_go
 
 import (
 	. "github.com/onsi/ginkgo"
@@ -8,5 +8,5 @@ import (
 
 func TestClient(t *testing.T) {
 	RegisterFailHandler(Fail)
-	RunSpecs(t, "Client Suite")
+	RunSpecs(t, "BasistheoryGo Suite")
 }

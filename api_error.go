@@ -1,4 +1,4 @@
-package client
+package basistheory_go
 
 type ApiError struct {
 	Code    int

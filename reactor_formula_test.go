@@ -1,4 +1,4 @@
-package client
+package basistheory_go
 
 import (
 	"encoding/json"
@@ -28,7 +28,7 @@ var _ = Describe("ReactorFormula client", func() {
 		expectedReactorFormula = ReactorFormula{}
 		fakerInst.Struct().Fill(&expectedReactorFormula)
 
-		btClient, _ = NewBasisTheoryClient(baseUrl, apiKey, "reactor_formula_testing", nil, 0)
+		btClient, _ = NewBasisTheoryClient(baseUrl, apiKey)
 
 		httpmock.ActivateNonDefault(btClient.httpClient.GetClient())
 	})

@@ -1,4 +1,4 @@
-package client
+package basistheory_go
 
 import (
 	"fmt"
@@ -12,10 +12,18 @@ type BasisTheoryClient struct {
 	httpClient *resty.Client
 }
 
-func NewBasisTheoryClient(baseUrl string, apiKey string, userAgent string, additionalHeaders map[string]string, clientTimeout int) (*BasisTheoryClient, error) {
+func NewBasisTheoryClient(baseUrl string, apiKey string) (*BasisTheoryClient, error) {
+	return NewBasisTheoryClientWithAddtnlHeadersAndTimeout(baseUrl, apiKey, nil, 10)
+}
+
+func NewBasisTheoryClientWithAddtnlHeaders(baseUrl string, apiKey string, additionalHeaders map[string]string) (*BasisTheoryClient, error) {
+	return NewBasisTheoryClientWithAddtnlHeadersAndTimeout(baseUrl, apiKey, additionalHeaders, 10)
+}
+
+func NewBasisTheoryClientWithAddtnlHeadersAndTimeout(baseUrl string, apiKey string, additionalHeaders map[string]string, clientTimeout int) (*BasisTheoryClient, error) {
 	client := resty.New()
 
-	setupClientMiddleWareAndHeaders(client, apiKey, userAgent, additionalHeaders, clientTimeout)
+	setupClientMiddleWareAndHeaders(client, apiKey, additionalHeaders, clientTimeout)
 
 	basisTheoryClient := BasisTheoryClient{
 		baseUrl:    baseUrl,
@@ -25,7 +33,7 @@ func NewBasisTheoryClient(baseUrl string, apiKey string, userAgent string, addit
 	return &basisTheoryClient, nil
 }
 
-func setupClientMiddleWareAndHeaders(httpClient *resty.Client, apiKey string, userAgent string, additionalHeaders map[string]string, clientTimeout int) {
+func setupClientMiddleWareAndHeaders(httpClient *resty.Client, apiKey string, additionalHeaders map[string]string, clientTimeout int) {
 	headers := map[string]string{
 		"X-API-KEY": apiKey,
 		"Accept":    "application/json",
@@ -35,10 +43,6 @@ func setupClientMiddleWareAndHeaders(httpClient *resty.Client, apiKey string, us
 	}
 
 	httpClient.SetHeaders(headers)
-
-	if userAgent != "" {
-		httpClient.SetHeader("User-Agent", userAgent)
-	}
 
 	httpClient.SetTimeout(time.Second * time.Duration(clientTimeout))
 
