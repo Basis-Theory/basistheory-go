@@ -78,6 +78,12 @@ var _ = Describe("ReactorFormula client", func() {
 	})
 
 	Context("GetReactorFormulas", func() {
+		Context("request to /reactor-formulas is successful", func() {
 
+		})
+
+		Context("request to /reactor-formulas is not successful", func() {
+
+		})
 	})
 })
