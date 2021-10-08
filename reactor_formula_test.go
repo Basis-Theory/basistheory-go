@@ -42,7 +42,7 @@ var _ = Describe("ReactorFormula client", func() {
 	})
 
 	Context("GetReactorFormula", func() {
-		Context("request to /reactor-formulas is successful", func() {
+		Context("request to /reactor-formulas/id is successful", func() {
 			It("returns a ReactorFormula", func() {
 				responder, _ := httpmock.NewJsonResponder(200, expectedReactorFormula)
 				path := fmt.Sprintf("%s/reactor-formulas/%s", baseUrl, expectedReactorFormulaId)
@@ -58,7 +58,7 @@ var _ = Describe("ReactorFormula client", func() {
 			})
 		})
 
-		Context("request to /reactor-formulas is not successful", func() {
+		Context("request to /reactor-formulas/id is not successful", func() {
 			It("returns an error containing details of the failed request", func() {
 				path := fmt.Sprintf("%s/reactor-formulas/%s", baseUrl, expectedReactorFormulaId)
 				expectedErrorPayload, expectedStatus := test_utils.SetupErrorPath("GET", path)
@@ -75,5 +75,9 @@ var _ = Describe("ReactorFormula client", func() {
 				}))
 			})
 		})
+	})
+
+	Context("GetReactorFormulas", func() {
+
 	})
 })
