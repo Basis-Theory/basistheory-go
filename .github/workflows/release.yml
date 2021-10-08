@@ -2,7 +2,7 @@ name: Release
 
 on:
   push:
-    branches: [master, pre-release]
+    branches: [ master, pre-release ]
 
 jobs:
   release:
@@ -25,4 +25,4 @@ jobs:
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           pre_release_branches: pre-release
-          append_to_pre_release_tag: rc
+          append_to_pre_release_tag: 'rc-${{ github.run_id }}'
