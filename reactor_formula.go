@@ -74,14 +74,25 @@ func (client *BasisTheoryClient) GetReactorFormula(id string) (*ReactorFormula, 
 	return result, nil
 }
 
-func (client *BasisTheoryClient) GetReactorFormulas(reactorFormulaQuery ReactorFormulaQuery) (*PaginatedReactorFormulas, error) {
+func (client *BasisTheoryClient) GetReactorFormulas() (*PaginatedReactorFormulas, error) {
+	return client.GetReactorFormulasWithQuery(ReactorFormulaQuery{})
+}
+
+func (client *BasisTheoryClient) GetReactorFormulasWithQuery(reactorFormulaQuery ReactorFormulaQuery) (*PaginatedReactorFormulas, error) {
 	result := &PaginatedReactorFormulas{}
 
-	params := make(map[string]string)
-	params["name"] = reactorFormulaQuery.Name
-	params["source_token_type"] = reactorFormulaQuery.SourceTokenType
-	params["page"] = reactorFormulaQuery.Page
-	params["size"] = reactorFormulaQuery.Size
+	params := map[string]string {
+		"name": reactorFormulaQuery.Name,
+		"source_token_type": reactorFormulaQuery.SourceTokenType,
+		"page": reactorFormulaQuery.Page,
+		"size": reactorFormulaQuery.Size,
+	}
+
+	for key, value := range params {
+		if value == "" {
+			delete(params, key)
+		}
+	}
 
 	err := client.get(result, "/reactor-formulas", params)
 
