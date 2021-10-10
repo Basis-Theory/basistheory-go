@@ -30,6 +30,17 @@ type ReactorFormula struct {
 	ModifiedAt        string                           `json:"modified_at"`
 }
 
+type MutableReactorFormula struct {
+	Name              string
+	Description       string
+	Type              string
+	SourceTokenType   string
+	Code              string
+	Icon              string
+	Configuration     []ReactorFormulaConfiguration
+	RequestParameters []ReactorFormulaRequestParameter
+}
+
 type ReactorFormulaQuery struct {
 	Page            string
 	Size            string
@@ -50,10 +61,10 @@ type ReactorFormulaRequestParameter struct {
 	Optional    bool   `json:"optional"`
 }
 
-func (client *BasisTheoryClient) CreateReactorFormula(reactorFormula ReactorFormula) (*ReactorFormula, error) {
+func (client *BasisTheoryClient) CreateReactorFormula(mutatedReactorFormula MutableReactorFormula) (*ReactorFormula, error) {
 	result := &ReactorFormula{}
 
-	err := client.post(result, "/reactor-formulas", reactorFormula)
+	err := client.post(result, "/reactor-formulas", mutatedReactorFormula)
 
 	if err != nil {
 		return nil, err
@@ -74,16 +85,27 @@ func (client *BasisTheoryClient) GetReactorFormula(id string) (*ReactorFormula, 
 	return result, nil
 }
 
-func (client *BasisTheoryClient) GetReactorFormulas(reactorFormulaQuery ReactorFormulaQuery) (*PaginatedReactorFormulas, error) {
+func (client *BasisTheoryClient) GetReactorFormulas() (*PaginatedReactorFormulas, error) {
+	return client.GetReactorFormulasWithQuery(ReactorFormulaQuery{})
+}
+
+func (client *BasisTheoryClient) GetReactorFormulasWithQuery(reactorFormulaQuery ReactorFormulaQuery) (*PaginatedReactorFormulas, error) {
 	result := &PaginatedReactorFormulas{}
 
-	params := make(map[string]string)
-	params["name"] = reactorFormulaQuery.Name
-	params["source_token_type"] = reactorFormulaQuery.SourceTokenType
-	params["page"] = reactorFormulaQuery.Page
-	params["size"] = reactorFormulaQuery.Size
+	params := map[string]string{
+		"name":              reactorFormulaQuery.Name,
+		"source_token_type": reactorFormulaQuery.SourceTokenType,
+		"page":              reactorFormulaQuery.Page,
+		"size":              reactorFormulaQuery.Size,
+	}
 
-	err := client.get(result, fmt.Sprintf("/reactor-formulas"), params)
+	for key, value := range params {
+		if value == "" {
+			delete(params, key)
+		}
+	}
+
+	err := client.get(result, "/reactor-formulas", params)
 
 	if err != nil {
 		return nil, err
@@ -96,10 +118,10 @@ func (client *BasisTheoryClient) DeleteReactorFormula(id string) error {
 	return client.delete(fmt.Sprintf("/reactor-formulas/%s", id))
 }
 
-func (client *BasisTheoryClient) UpdateReactorFormula(id string, reactorFormula ReactorFormula) (*ReactorFormula, error) {
+func (client *BasisTheoryClient) UpdateReactorFormula(id string, mutatedReactorFormula MutableReactorFormula) (*ReactorFormula, error) {
 	result := &ReactorFormula{}
 
-	err := client.put(result, fmt.Sprintf("/reactor-formulas/%s", id), reactorFormula)
+	err := client.put(result, fmt.Sprintf("/reactor-formulas/%s", id), mutatedReactorFormula)
 
 	if err != nil {
 		return nil, err

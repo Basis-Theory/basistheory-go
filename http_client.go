@@ -12,12 +12,14 @@ type BasisTheoryClient struct {
 	httpClient *resty.Client
 }
 
+const defaultMaxTimeout = 10
+
 func NewBasisTheoryClient(baseUrl string, apiKey string) (*BasisTheoryClient, error) {
-	return NewBasisTheoryClientWithAddtnlHeadersAndTimeout(baseUrl, apiKey, nil, 10)
+	return NewBasisTheoryClientWithAddtnlHeadersAndTimeout(baseUrl, apiKey, nil, defaultMaxTimeout)
 }
 
 func NewBasisTheoryClientWithAddtnlHeaders(baseUrl string, apiKey string, additionalHeaders map[string]string) (*BasisTheoryClient, error) {
-	return NewBasisTheoryClientWithAddtnlHeadersAndTimeout(baseUrl, apiKey, additionalHeaders, 10)
+	return NewBasisTheoryClientWithAddtnlHeadersAndTimeout(baseUrl, apiKey, additionalHeaders, defaultMaxTimeout)
 }
 
 func NewBasisTheoryClientWithAddtnlHeadersAndTimeout(baseUrl string, apiKey string, additionalHeaders map[string]string, clientTimeout int) (*BasisTheoryClient, error) {
@@ -57,7 +59,8 @@ func setupClientMiddleWareAndHeaders(httpClient *resty.Client, apiKey string, ad
 	})
 
 	httpClient.OnAfterResponse(func(_ *resty.Client, resp *resty.Response) error {
-		if resp.StatusCode() >= 400 {
+		const lowestHttpStatusError = 400
+		if resp.StatusCode() >= lowestHttpStatusError {
 			errorMessage := fmt.Sprintf("Sending %s request to %s: %d.", resp.Request.Method, resp.Request.URL, resp.StatusCode())
 
 			if len(resp.Body()) != 0 {
