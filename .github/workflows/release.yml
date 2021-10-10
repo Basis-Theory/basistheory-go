@@ -24,6 +24,5 @@ jobs:
         uses: mathieudutour/github-tag-action@v5.6
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          default_bump: false
           pre_release_branches: pre-release
           append_to_pre_release_tag: 'rc-${{ github.run_id }}'
