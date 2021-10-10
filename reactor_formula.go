@@ -30,6 +30,17 @@ type ReactorFormula struct {
 	ModifiedAt        string                           `json:"modified_at"`
 }
 
+type MutableReactorFormula struct {
+	Name              string
+	Description       string
+	Type              string
+	SourceTokenType   string
+	Code              string
+	Icon              string
+	Configuration     []ReactorFormulaConfiguration
+	RequestParameters []ReactorFormulaRequestParameter
+}
+
 type ReactorFormulaQuery struct {
 	Page            string
 	Size            string
@@ -50,10 +61,10 @@ type ReactorFormulaRequestParameter struct {
 	Optional    bool   `json:"optional"`
 }
 
-func (client *BasisTheoryClient) CreateReactorFormula(reactorFormula ReactorFormula) (*ReactorFormula, error) {
+func (client *BasisTheoryClient) CreateReactorFormula(mutatedReactorFormula MutableReactorFormula) (*ReactorFormula, error) {
 	result := &ReactorFormula{}
 
-	err := client.post(result, "/reactor-formulas", reactorFormula)
+	err := client.post(result, "/reactor-formulas", mutatedReactorFormula)
 
 	if err != nil {
 		return nil, err
@@ -81,11 +92,11 @@ func (client *BasisTheoryClient) GetReactorFormulas() (*PaginatedReactorFormulas
 func (client *BasisTheoryClient) GetReactorFormulasWithQuery(reactorFormulaQuery ReactorFormulaQuery) (*PaginatedReactorFormulas, error) {
 	result := &PaginatedReactorFormulas{}
 
-	params := map[string]string {
-		"name": reactorFormulaQuery.Name,
+	params := map[string]string{
+		"name":              reactorFormulaQuery.Name,
 		"source_token_type": reactorFormulaQuery.SourceTokenType,
-		"page": reactorFormulaQuery.Page,
-		"size": reactorFormulaQuery.Size,
+		"page":              reactorFormulaQuery.Page,
+		"size":              reactorFormulaQuery.Size,
 	}
 
 	for key, value := range params {
@@ -107,10 +118,10 @@ func (client *BasisTheoryClient) DeleteReactorFormula(id string) error {
 	return client.delete(fmt.Sprintf("/reactor-formulas/%s", id))
 }
 
-func (client *BasisTheoryClient) UpdateReactorFormula(id string, reactorFormula ReactorFormula) (*ReactorFormula, error) {
+func (client *BasisTheoryClient) UpdateReactorFormula(id string, mutatedReactorFormula MutableReactorFormula) (*ReactorFormula, error) {
 	result := &ReactorFormula{}
 
-	err := client.put(result, fmt.Sprintf("/reactor-formulas/%s", id), reactorFormula)
+	err := client.put(result, fmt.Sprintf("/reactor-formulas/%s", id), mutatedReactorFormula)
 
 	if err != nil {
 		return nil, err
