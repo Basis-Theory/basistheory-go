@@ -13,6 +13,8 @@ jobs:
     steps:
       - name: Checkout repo
         uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
 
       - name: Setup go
         uses: actions/setup-go@v2
@@ -24,5 +26,6 @@ jobs:
         uses: mathieudutour/github-tag-action@v5.6
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
+          default_bump: false
           pre_release_branches: pre-release
           append_to_pre_release_tag: 'rc-${{ github.run_id }}'
