@@ -32,7 +32,8 @@ jobs:
         id: get-new-tag
         run: |
           CURRENT_GIT_TAG=$(svu current)
-          NEXT_GIT_TAG=$(semver $CURRENT_GIT_TAG -i prerelease --preid rc)
+          SVU_NEXT_TAG=$(svu next)
+          NEXT_GIT_TAG=$([[ $SVU_NEXT_TAG != $CURRENT_GIT_TAG ]] && semver $CURRENT_GIT_TAG -i prerelease --preid rc)
           echo "::set-output name=nextTag::$NEXT_GIT_TAG"
 
       - name: Tag
