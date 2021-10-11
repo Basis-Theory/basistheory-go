@@ -6,7 +6,7 @@ on:
 
 jobs:
   release:
-    name: Release
+    name: Pre-Release
     runs-on: ubuntu-latest
     env:
       CI: 1
@@ -32,7 +32,8 @@ jobs:
         id: get-new-tag
         run: |
           CURRENT_GIT_TAG=$(svu current)
-          NEXT_GIT_TAG=$(semver $CURRENT_GIT_TAG -i prerelease --preid rc)
+          NEXT_SVU_GIT_TAG=$(svu)
+          NEXT_GIT_TAG=$([[ $NEXT_SVU_GIT_TAG != $CURRENT_GIT_TAG ]] && semver $CURRENT_GIT_TAG -i prerelease --preid rc)
           echo "::set-output name=nextTag::v$NEXT_GIT_TAG"
 
       - name: Tag
