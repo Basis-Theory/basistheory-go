@@ -22,7 +22,8 @@ jobs:
 
       - name: Install semver
         run: |
-          apk add --update nodejs npm
+          sudo apt install nodejs
+          sudo apt install npm
           npm install -g semver
 
       - name: Get new tag
