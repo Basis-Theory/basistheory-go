@@ -20,20 +20,19 @@ jobs:
         run: |
           echo 'deb [trusted=yes] https://apt.fury.io/caarlos0/ /' | sudo tee /etc/apt/sources.list.d/caarlos0.list
           sudo apt update
-          sudo apt install svu
+          sudo apt install -qq svu
 
       - name: Install semver
         run: |
-          sudo apt install nodejs
-          sudo apt install npm
+          sudo apt install -qq nodejs
+          sudo apt install -qq npm
           npm install --no-progress -g semver
 
       - name: Get new tag
         id: get-new-tag
         run: |
           CURRENT_GIT_TAG=$(svu current)
-          SVU_NEXT_TAG=$(svu next)
-          NEXT_GIT_TAG=$([[ $SVU_NEXT_TAG != $CURRENT_GIT_TAG ]] && semver $CURRENT_GIT_TAG -i prerelease --preid rc)
+          NEXT_GIT_TAG=$(semver $CURRENT_GIT_TAG -i prerelease --preid rc)
           echo "::set-output name=nextTag::$NEXT_GIT_TAG"
 
       - name: Tag
