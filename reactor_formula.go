@@ -31,14 +31,14 @@ type ReactorFormula struct {
 }
 
 type MutableReactorFormula struct {
-	Name              string
-	Description       string
-	Type              string
-	SourceTokenType   string
-	Code              string
-	Icon              string
-	Configuration     []ReactorFormulaConfiguration
-	RequestParameters []ReactorFormulaRequestParameter
+	Name              string                           `json:"name"`
+	Description       string                           `json:"description"`
+	Type              string                           `json:"type"`
+	SourceTokenType   string                           `json:"source_token_type"`
+	Code              string                           `json:"code"`
+	Icon              string                           `json:"icon"`
+	Configuration     []ReactorFormulaConfiguration    `json:"configuration"`
+	RequestParameters []ReactorFormulaRequestParameter `json:"request_parameters"`
 }
 
 type ReactorFormulaQuery struct {

@@ -6,7 +6,7 @@ on:
 
 jobs:
   release:
-    name: Release
+    name: Pre-Release
     runs-on: ubuntu-latest
     env:
       CI: 1
@@ -33,7 +33,7 @@ jobs:
         run: |
           CURRENT_GIT_TAG=$(svu current)
           NEXT_GIT_TAG=$(semver $CURRENT_GIT_TAG -i prerelease --preid rc)
-          echo "::set-output name=nextTag::$NEXT_GIT_TAG"
+          echo "::set-output name=nextTag::v$NEXT_GIT_TAG"
 
       - name: Tag
         uses: hole19/git-tag-action@master
