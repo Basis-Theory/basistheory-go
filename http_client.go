@@ -37,7 +37,7 @@ func NewBasisTheoryClientWithAddtnlHeadersAndTimeout(baseUrl string, apiKey stri
 
 func setupClientMiddleWareAndHeaders(httpClient *resty.Client, apiKey string, additionalHeaders map[string]string, clientTimeout int) {
 	headers := map[string]string{
-		"X-API-KEY": apiKey,
+		"BT-API-KEY": apiKey,
 		"Accept":    "application/json",
 	}
 	for additonalHeaderName, additionalHeaderValue := range additionalHeaders {
