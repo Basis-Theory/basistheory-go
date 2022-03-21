@@ -89,12 +89,11 @@ func TestGetReactorFormulasWithQueryReturnsPaginatedReactorFormulasWhenItGetsA20
 	responder, _ := httpmock.NewJsonResponder(200, expectedPaginatedReactorFormulas)
 	params := map[string]string{
 		"name":              expectedReactorFormulaQuery.Name,
-		"source_token_type": expectedReactorFormulaQuery.SourceTokenType,
 		"page":              expectedReactorFormulaQuery.Page,
 		"size":              expectedReactorFormulaQuery.Size,
 	}
-	path := fmt.Sprintf("%s/reactor-formulas?name=%s&page=%s&size=%s&source_token_type=%s",
-		baseUrl, params["name"], params["page"], params["size"], params["source_token_type"])
+	path := fmt.Sprintf("%s/reactor-formulas?name=%s&page=%s&size=%s",
+		baseUrl, params["name"], params["page"], params["size"])
 	httpmock.RegisterResponder("GET", path, responder)
 
 	actualPaginatedReactorFormulas, err := btClient.GetReactorFormulasWithQuery(expectedReactorFormulaQuery)
@@ -121,12 +120,11 @@ func TestGetReactorFormulasWithQueryReturnsDetailsInErrorWhenItGetsAnErrorHttpSt
 	btClient, baseUrl := getBtClientAndBaseUrl()
 	params := map[string]string{
 		"name":              expectedReactorFormulaQuery.Name,
-		"source_token_type": expectedReactorFormulaQuery.SourceTokenType,
 		"page":              expectedReactorFormulaQuery.Page,
 		"size":              expectedReactorFormulaQuery.Size,
 	}
-	path := fmt.Sprintf("%s/reactor-formulas?name=%s&page=%s&size=%s&source_token_type=%s",
-		baseUrl, params["name"], params["page"], params["size"], params["source_token_type"])
+	path := fmt.Sprintf("%s/reactor-formulas?name=%s&page=%s&size=%s",
+		baseUrl, params["name"], params["page"], params["size"])
 
 	expectedErrorPayload, expectedStatus := test_utils.SetupErrorPath("GET", path)
 

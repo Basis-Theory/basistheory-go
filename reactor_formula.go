@@ -21,7 +21,6 @@ type ReactorFormula struct {
 	Name              string                           `json:"name"`
 	Description       string                           `json:"description"`
 	Type              string                           `json:"type"`
-	SourceTokenType   string                           `json:"source_token_type"`
 	Code              string                           `json:"code"`
 	Icon              string                           `json:"icon"`
 	Configuration     []ReactorFormulaConfiguration    `json:"configuration"`
@@ -34,7 +33,6 @@ type MutableReactorFormula struct {
 	Name              string                           `json:"name"`
 	Description       string                           `json:"description"`
 	Type              string                           `json:"type"`
-	SourceTokenType   string                           `json:"source_token_type"`
 	Code              string                           `json:"code"`
 	Icon              string                           `json:"icon"`
 	Configuration     []ReactorFormulaConfiguration    `json:"configuration"`
@@ -45,7 +43,6 @@ type ReactorFormulaQuery struct {
 	Page            string
 	Size            string
 	Name            string
-	SourceTokenType string
 }
 
 type ReactorFormulaConfiguration struct {
@@ -94,7 +91,6 @@ func (client *BasisTheoryClient) GetReactorFormulasWithQuery(reactorFormulaQuery
 
 	params := map[string]string{
 		"name":              reactorFormulaQuery.Name,
-		"source_token_type": reactorFormulaQuery.SourceTokenType,
 		"page":              reactorFormulaQuery.Page,
 		"size":              reactorFormulaQuery.Size,
 	}
