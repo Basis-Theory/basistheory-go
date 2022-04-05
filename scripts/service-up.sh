@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 RED="\033[1;31m"
 GREEN="\033[1;32m"
@@ -14,10 +14,10 @@ do
 
     if [ $status == "200" ]
     then
-        echo "${GREEN}✓${NOCOLOR} API is ready"
+        echo -e "${GREEN}✓${NOCOLOR} API is ready"
         exit 0
     else
-        echo "❌ API is not ready"
+        echo -e "❌ API is not ready"
 
         sleep 3
 	    i=$(( i+3000 ))	 # increments $n
