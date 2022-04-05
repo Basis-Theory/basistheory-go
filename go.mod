@@ -1,13 +1,16 @@
 module github.com/Basis-Theory/basistheory-go
 
-go 1.17
+go 1.18
 
 require (
-	github.com/go-resty/resty/v2 v2.6.0
-	github.com/google/go-cmp v0.5.5
-	github.com/jarcoal/httpmock v1.0.8
-	github.com/jaswdr/faker v1.4.2
-	github.com/rs/zerolog v1.25.0
+	github.com/davecgh/go-spew v1.1.0
+	github.com/google/go-cmp v0.5.1
+	golang.org/x/oauth2 v0.0.0-20210323180902-22b0adad7558
 )
 
-require golang.org/x/net v0.0.0-20210428140749-89ef3d95e781 // indirect
+require (
+	github.com/golang/protobuf v1.4.2 // indirect
+	golang.org/x/net v0.0.0-20200822124328-c89045814202 // indirect
+	google.golang.org/appengine v1.6.6 // indirect
+	google.golang.org/protobuf v1.25.0 // indirect
+)

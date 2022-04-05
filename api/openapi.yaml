@@ -1,0 +1,1650 @@
+openapi: 3.0.1
+info:
+  title: BasisTheory Vault API
+  version: v1
+servers:
+- description: Production server
+  url: https://api.basistheory.com
+security:
+- ApiKey: []
+paths:
+  /applications:
+    get:
+      operationId: ApplicationsGet
+      parameters:
+      - explode: true
+        in: query
+        name: id
+        required: false
+        schema:
+          items:
+            format: uuid
+            type: string
+          type: array
+        style: form
+      - explode: true
+        in: query
+        name: page
+        required: false
+        schema:
+          format: int32
+          type: integer
+        style: form
+      - explode: true
+        in: query
+        name: size
+        required: false
+        schema:
+          format: int32
+          type: integer
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApplicationModelPaginatedList'
+          description: Success
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Unauthorized
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Forbidden
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Not Found
+      tags:
+      - Applications
+    post:
+      operationId: ApplicationCreate
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateApplicationModel'
+      responses:
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApplicationModel'
+          description: Created
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationProblemDetails'
+          description: Bad Request
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Unauthorized
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Forbidden
+      tags:
+      - Applications
+  /applications/{id}:
+    delete:
+      operationId: ApplicationDelete
+      parameters:
+      - explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          format: uuid
+          type: string
+        style: simple
+      responses:
+        "204":
+          description: No Content
+        "401":
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Unauthorized
+        "403":
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Forbidden
+        "404":
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Not Found
+      tags:
+      - Applications
+    get:
+      operationId: ApplicationGetById
+      parameters:
+      - explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          format: uuid
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApplicationModel'
+          description: Success
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Unauthorized
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Forbidden
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Not Found
+      tags:
+      - Applications
+    put:
+      operationId: ApplicationUpdate
+      parameters:
+      - explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          format: uuid
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateApplicationModel'
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApplicationModel'
+          description: Success
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationProblemDetails'
+          description: Bad Request
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Unauthorized
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Forbidden
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Not Found
+      tags:
+      - Applications
+  /applications/key:
+    get:
+      operationId: ApplicationKey
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApplicationModel'
+          description: Success
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Unauthorized
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Not Found
+      tags:
+      - Applications
+  /applications/{id}/regenerate:
+    post:
+      operationId: ApplicationRegenerate
+      parameters:
+      - explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          format: uuid
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApplicationModel'
+          description: Success
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Unauthorized
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Forbidden
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Not Found
+      tags:
+      - Applications
+  /reactor-formulas:
+    get:
+      operationId: ReactorFormulasGet
+      parameters:
+      - explode: true
+        in: query
+        name: name
+        required: false
+        schema:
+          type: string
+        style: form
+      - explode: true
+        in: query
+        name: page
+        required: false
+        schema:
+          format: int32
+          type: integer
+        style: form
+      - explode: true
+        in: query
+        name: size
+        required: false
+        schema:
+          format: int32
+          type: integer
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ReactorFormulaModelPaginatedList'
+          description: Success
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Bad Request
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Unauthorized
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Forbidden
+      tags:
+      - ReactorFormulas
+    post:
+      operationId: ReactorFormulaCreate
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateReactorFormulaModel'
+      responses:
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ReactorFormulaModel'
+          description: Created
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationProblemDetails'
+          description: Bad Request
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Unauthorized
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Forbidden
+      tags:
+      - ReactorFormulas
+  /reactor-formulas/{id}:
+    delete:
+      operationId: ReactorFormulaDelete
+      parameters:
+      - explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          format: uuid
+          type: string
+        style: simple
+      responses:
+        "204":
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ReactorFormulaModel'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ReactorFormulaModel'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ReactorFormulaModel'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ReactorFormulaModel'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/ReactorFormulaModel'
+          description: No Content
+        "401":
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Unauthorized
+        "403":
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Forbidden
+        "404":
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Not Found
+      tags:
+      - ReactorFormulas
+    get:
+      operationId: ReactorFormulaGetById
+      parameters:
+      - explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          format: uuid
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ReactorFormulaModel'
+          description: Success
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Unauthorized
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Forbidden
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Not Found
+      tags:
+      - ReactorFormulas
+    put:
+      operationId: ReactorFormulaUpdate
+      parameters:
+      - explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          format: uuid
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateReactorFormulaModel'
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ReactorFormulaModel'
+          description: Success
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationProblemDetails'
+          description: Bad Request
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Unauthorized
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Forbidden
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Not Found
+      tags:
+      - ReactorFormulas
+  /reactors:
+    get:
+      operationId: ReactorsGet
+      parameters:
+      - explode: true
+        in: query
+        name: id
+        required: false
+        schema:
+          items:
+            format: uuid
+            type: string
+          type: array
+        style: form
+      - explode: true
+        in: query
+        name: name
+        required: false
+        schema:
+          type: string
+        style: form
+      - explode: true
+        in: query
+        name: page
+        required: false
+        schema:
+          format: int32
+          type: integer
+        style: form
+      - explode: true
+        in: query
+        name: size
+        required: false
+        schema:
+          format: int32
+          type: integer
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ReactorModelPaginatedList'
+          description: Success
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Unauthorized
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Forbidden
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Not Found
+      tags:
+      - Reactors
+    post:
+      operationId: ReactorCreate
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateReactorModel'
+      responses:
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ReactorModel'
+          description: Created
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationProblemDetails'
+          description: Bad Request
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Unauthorized
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Forbidden
+      tags:
+      - Reactors
+  /reactors/{id}:
+    delete:
+      operationId: ReactorDelete
+      parameters:
+      - explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          format: uuid
+          type: string
+        style: simple
+      responses:
+        "204":
+          description: No Content
+        "401":
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Unauthorized
+        "403":
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Forbidden
+        "404":
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Not Found
+      tags:
+      - Reactors
+    get:
+      operationId: ReactorGetById
+      parameters:
+      - explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          format: uuid
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ReactorModel'
+          description: Success
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Unauthorized
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Forbidden
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Not Found
+      tags:
+      - Reactors
+    put:
+      operationId: ReactorUpdate
+      parameters:
+      - explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          format: uuid
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateReactorModel'
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ReactorModel'
+          description: Success
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationProblemDetails'
+          description: Bad Request
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Unauthorized
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Forbidden
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Not Found
+      tags:
+      - Reactors
+  /reactors/{id}/react:
+    post:
+      operationId: ReactorReact
+      parameters:
+      - explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          format: uuid
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ReactRequest'
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ReactResponse'
+          description: Success
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationProblemDetails'
+          description: Bad Request
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Unauthorized
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Forbidden
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Not Found
+        "422":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Client Error
+      tags:
+      - Reactors
+components:
+  schemas:
+    ApplicationModel:
+      additionalProperties: false
+      example:
+        tenant_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        permissions:
+        - permissions
+        - permissions
+        name: name
+        modified_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        created_at: 2000-01-23T04:56:07.000+00:00
+        id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        type: type
+        modified_at: 2000-01-23T04:56:07.000+00:00
+        created_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        key: key
+      properties:
+        id:
+          format: uuid
+          type: string
+        tenant_id:
+          format: uuid
+          type: string
+        name:
+          nullable: true
+          type: string
+        key:
+          nullable: true
+          type: string
+        type:
+          nullable: true
+          type: string
+        created_by:
+          format: uuid
+          nullable: true
+          type: string
+        created_at:
+          format: date-time
+          nullable: true
+          type: string
+        modified_by:
+          format: uuid
+          nullable: true
+          type: string
+        modified_at:
+          format: date-time
+          nullable: true
+          type: string
+        permissions:
+          items:
+            type: string
+          nullable: true
+          type: array
+      type: object
+    ApplicationModelPaginatedList:
+      additionalProperties: false
+      example:
+        pagination:
+          page_number: 6
+          total_pages: 5
+          total_items: 0
+          page_size: 1
+        data:
+        - tenant_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          permissions:
+          - permissions
+          - permissions
+          name: name
+          modified_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          created_at: 2000-01-23T04:56:07.000+00:00
+          id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          type: type
+          modified_at: 2000-01-23T04:56:07.000+00:00
+          created_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          key: key
+        - tenant_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          permissions:
+          - permissions
+          - permissions
+          name: name
+          modified_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          created_at: 2000-01-23T04:56:07.000+00:00
+          id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          type: type
+          modified_at: 2000-01-23T04:56:07.000+00:00
+          created_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          key: key
+      properties:
+        pagination:
+          $ref: '#/components/schemas/Pagination'
+        data:
+          items:
+            $ref: '#/components/schemas/ApplicationModel'
+          nullable: true
+          type: array
+      type: object
+    CreateApplicationModel:
+      additionalProperties: false
+      example:
+        permissions:
+        - permissions
+        - permissions
+        name: name
+        type: type
+      properties:
+        name:
+          nullable: true
+          type: string
+        type:
+          nullable: true
+          type: string
+        permissions:
+          items:
+            type: string
+          nullable: true
+          type: array
+      type: object
+    CreateReactorFormulaModel:
+      additionalProperties: false
+      example:
+        code: code
+        configuration:
+        - name: name
+          description: description
+          type: type
+        - name: name
+          description: description
+          type: type
+        name: name
+        icon: icon
+        description: description
+        id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        type: type
+        request_parameters:
+        - name: name
+          description: description
+          optional: true
+          type: type
+        - name: name
+          description: description
+          optional: true
+          type: type
+      properties:
+        id:
+          format: uuid
+          nullable: true
+          type: string
+        type:
+          nullable: true
+          type: string
+        name:
+          nullable: true
+          type: string
+        description:
+          nullable: true
+          type: string
+        icon:
+          nullable: true
+          type: string
+        code:
+          nullable: true
+          type: string
+        configuration:
+          items:
+            $ref: '#/components/schemas/ReactorFormulaConfigurationModel'
+          nullable: true
+          type: array
+        request_parameters:
+          items:
+            $ref: '#/components/schemas/ReactorFormulaRequestParameterModel'
+          nullable: true
+          type: array
+      type: object
+    CreateReactorModel:
+      additionalProperties: false
+      example:
+        configuration:
+          key: configuration
+        name: name
+        formula:
+          code: code
+          configuration:
+          - name: name
+            description: description
+            type: type
+          - name: name
+            description: description
+            type: type
+          icon: icon
+          description: description
+          created_at: 2000-01-23T04:56:07.000+00:00
+          type: type
+          created_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          request_parameters:
+          - name: name
+            description: description
+            optional: true
+            type: type
+          - name: name
+            description: description
+            optional: true
+            type: type
+          name: name
+          modified_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          modified_at: 2000-01-23T04:56:07.000+00:00
+          status: status
+      properties:
+        name:
+          nullable: true
+          type: string
+        formula:
+          $ref: '#/components/schemas/ReactorFormulaModel'
+        configuration:
+          additionalProperties:
+            nullable: true
+            type: string
+          nullable: true
+          type: object
+      type: object
+    Pagination:
+      additionalProperties: false
+      example:
+        page_number: 6
+        total_pages: 5
+        total_items: 0
+        page_size: 1
+      properties:
+        total_items:
+          format: int32
+          type: integer
+        page_number:
+          format: int32
+          type: integer
+        page_size:
+          format: int32
+          type: integer
+        total_pages:
+          format: int32
+          type: integer
+      type: object
+    ProblemDetails:
+      additionalProperties: {}
+      properties:
+        type:
+          nullable: true
+          type: string
+        title:
+          nullable: true
+          type: string
+        status:
+          format: int32
+          nullable: true
+          type: integer
+        detail:
+          nullable: true
+          type: string
+        instance:
+          nullable: true
+          type: string
+      type: object
+    ReactRequest:
+      additionalProperties: false
+      example:
+        args: ""
+      properties:
+        args:
+          nullable: true
+      type: object
+    ReactResponse:
+      additionalProperties: false
+      example:
+        raw: ""
+        tokens: ""
+      properties:
+        tokens:
+          nullable: true
+        raw:
+          nullable: true
+      type: object
+    ReactorFormulaConfigurationModel:
+      additionalProperties: false
+      example:
+        name: name
+        description: description
+        type: type
+      properties:
+        name:
+          nullable: true
+          type: string
+        description:
+          nullable: true
+          type: string
+        type:
+          nullable: true
+          type: string
+      type: object
+    ReactorFormulaModel:
+      additionalProperties: false
+      example:
+        code: code
+        configuration:
+        - name: name
+          description: description
+          type: type
+        - name: name
+          description: description
+          type: type
+        icon: icon
+        description: description
+        created_at: 2000-01-23T04:56:07.000+00:00
+        type: type
+        created_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        request_parameters:
+        - name: name
+          description: description
+          optional: true
+          type: type
+        - name: name
+          description: description
+          optional: true
+          type: type
+        name: name
+        modified_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        modified_at: 2000-01-23T04:56:07.000+00:00
+        status: status
+      properties:
+        id:
+          format: uuid
+          type: string
+        type:
+          nullable: true
+          type: string
+        status:
+          nullable: true
+          type: string
+        name:
+          nullable: true
+          type: string
+        description:
+          nullable: true
+          type: string
+        icon:
+          nullable: true
+          type: string
+        code:
+          nullable: true
+          type: string
+        created_by:
+          format: uuid
+          nullable: true
+          type: string
+        created_at:
+          format: date-time
+          nullable: true
+          type: string
+        modified_by:
+          format: uuid
+          nullable: true
+          type: string
+        modified_at:
+          format: date-time
+          nullable: true
+          type: string
+        configuration:
+          items:
+            $ref: '#/components/schemas/ReactorFormulaConfigurationModel'
+          nullable: true
+          type: array
+        request_parameters:
+          items:
+            $ref: '#/components/schemas/ReactorFormulaRequestParameterModel'
+          nullable: true
+          type: array
+      type: object
+    ReactorFormulaModelPaginatedList:
+      additionalProperties: false
+      example:
+        pagination:
+          page_number: 6
+          total_pages: 5
+          total_items: 0
+          page_size: 1
+        data:
+        - code: code
+          configuration:
+          - name: name
+            description: description
+            type: type
+          - name: name
+            description: description
+            type: type
+          icon: icon
+          description: description
+          created_at: 2000-01-23T04:56:07.000+00:00
+          type: type
+          created_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          request_parameters:
+          - name: name
+            description: description
+            optional: true
+            type: type
+          - name: name
+            description: description
+            optional: true
+            type: type
+          name: name
+          modified_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          modified_at: 2000-01-23T04:56:07.000+00:00
+          status: status
+        - code: code
+          configuration:
+          - name: name
+            description: description
+            type: type
+          - name: name
+            description: description
+            type: type
+          icon: icon
+          description: description
+          created_at: 2000-01-23T04:56:07.000+00:00
+          type: type
+          created_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          request_parameters:
+          - name: name
+            description: description
+            optional: true
+            type: type
+          - name: name
+            description: description
+            optional: true
+            type: type
+          name: name
+          modified_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          modified_at: 2000-01-23T04:56:07.000+00:00
+          status: status
+      properties:
+        pagination:
+          $ref: '#/components/schemas/Pagination'
+        data:
+          items:
+            $ref: '#/components/schemas/ReactorFormulaModel'
+          nullable: true
+          type: array
+      type: object
+    ReactorFormulaRequestParameterModel:
+      additionalProperties: false
+      example:
+        name: name
+        description: description
+        optional: true
+        type: type
+      properties:
+        name:
+          nullable: true
+          type: string
+        description:
+          nullable: true
+          type: string
+        type:
+          nullable: true
+          type: string
+        optional:
+          type: boolean
+      type: object
+    ReactorModel:
+      additionalProperties: false
+      example:
+        tenant_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        configuration:
+          key: configuration
+        name: name
+        modified_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        formula:
+          code: code
+          configuration:
+          - name: name
+            description: description
+            type: type
+          - name: name
+            description: description
+            type: type
+          icon: icon
+          description: description
+          created_at: 2000-01-23T04:56:07.000+00:00
+          type: type
+          created_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          request_parameters:
+          - name: name
+            description: description
+            optional: true
+            type: type
+          - name: name
+            description: description
+            optional: true
+            type: type
+          name: name
+          modified_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          modified_at: 2000-01-23T04:56:07.000+00:00
+          status: status
+        created_at: 2000-01-23T04:56:07.000+00:00
+        id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        modified_at: 2000-01-23T04:56:07.000+00:00
+        created_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+      properties:
+        id:
+          format: uuid
+          type: string
+        tenant_id:
+          format: uuid
+          type: string
+        name:
+          nullable: true
+          type: string
+        formula:
+          $ref: '#/components/schemas/ReactorFormulaModel'
+        created_by:
+          format: uuid
+          nullable: true
+          type: string
+        created_at:
+          format: date-time
+          nullable: true
+          type: string
+        modified_by:
+          format: uuid
+          nullable: true
+          type: string
+        modified_at:
+          format: date-time
+          nullable: true
+          type: string
+        configuration:
+          additionalProperties:
+            nullable: true
+            type: string
+          nullable: true
+          type: object
+      type: object
+    ReactorModelPaginatedList:
+      additionalProperties: false
+      example:
+        pagination:
+          page_number: 6
+          total_pages: 5
+          total_items: 0
+          page_size: 1
+        data:
+        - tenant_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          configuration:
+            key: configuration
+          name: name
+          modified_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          formula:
+            code: code
+            configuration:
+            - name: name
+              description: description
+              type: type
+            - name: name
+              description: description
+              type: type
+            icon: icon
+            description: description
+            created_at: 2000-01-23T04:56:07.000+00:00
+            type: type
+            created_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+            request_parameters:
+            - name: name
+              description: description
+              optional: true
+              type: type
+            - name: name
+              description: description
+              optional: true
+              type: type
+            name: name
+            modified_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+            id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+            modified_at: 2000-01-23T04:56:07.000+00:00
+            status: status
+          created_at: 2000-01-23T04:56:07.000+00:00
+          id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          modified_at: 2000-01-23T04:56:07.000+00:00
+          created_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        - tenant_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          configuration:
+            key: configuration
+          name: name
+          modified_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          formula:
+            code: code
+            configuration:
+            - name: name
+              description: description
+              type: type
+            - name: name
+              description: description
+              type: type
+            icon: icon
+            description: description
+            created_at: 2000-01-23T04:56:07.000+00:00
+            type: type
+            created_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+            request_parameters:
+            - name: name
+              description: description
+              optional: true
+              type: type
+            - name: name
+              description: description
+              optional: true
+              type: type
+            name: name
+            modified_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+            id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+            modified_at: 2000-01-23T04:56:07.000+00:00
+            status: status
+          created_at: 2000-01-23T04:56:07.000+00:00
+          id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          modified_at: 2000-01-23T04:56:07.000+00:00
+          created_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+      properties:
+        pagination:
+          $ref: '#/components/schemas/Pagination'
+        data:
+          items:
+            $ref: '#/components/schemas/ReactorModel'
+          nullable: true
+          type: array
+      type: object
+    UpdateApplicationModel:
+      additionalProperties: false
+      example:
+        permissions:
+        - permissions
+        - permissions
+        name: name
+      properties:
+        name:
+          nullable: true
+          type: string
+        permissions:
+          items:
+            type: string
+          nullable: true
+          type: array
+      type: object
+    UpdateReactorFormulaModel:
+      additionalProperties: false
+      example:
+        code: code
+        configuration:
+        - name: name
+          description: description
+          type: type
+        - name: name
+          description: description
+          type: type
+        name: name
+        icon: icon
+        description: description
+        type: type
+        request_parameters:
+        - name: name
+          description: description
+          optional: true
+          type: type
+        - name: name
+          description: description
+          optional: true
+          type: type
+      properties:
+        type:
+          nullable: true
+          type: string
+        name:
+          nullable: true
+          type: string
+        description:
+          nullable: true
+          type: string
+        icon:
+          nullable: true
+          type: string
+        code:
+          nullable: true
+          type: string
+        configuration:
+          items:
+            $ref: '#/components/schemas/ReactorFormulaConfigurationModel'
+          nullable: true
+          type: array
+        request_parameters:
+          items:
+            $ref: '#/components/schemas/ReactorFormulaRequestParameterModel'
+          nullable: true
+          type: array
+      type: object
+    UpdateReactorModel:
+      additionalProperties: false
+      example:
+        configuration:
+          key: configuration
+        name: name
+      properties:
+        name:
+          nullable: true
+          type: string
+        configuration:
+          additionalProperties:
+            nullable: true
+            type: string
+          nullable: true
+          type: object
+      type: object
+    ValidationProblemDetails:
+      additionalProperties: {}
+      properties:
+        errors:
+          additionalProperties:
+            items:
+              type: string
+            type: array
+          nullable: true
+          type: object
+        type:
+          nullable: true
+          type: string
+        title:
+          nullable: true
+          type: string
+        status:
+          format: int32
+          nullable: true
+          type: integer
+        detail:
+          nullable: true
+          type: string
+        instance:
+          nullable: true
+          type: string
+      type: object
+  securitySchemes:
+    ApiKey:
+      description: Authorization by API Key inside request's BT-API-KEY header
+      in: header
+      name: BT-API-KEY
+      type: apiKey
