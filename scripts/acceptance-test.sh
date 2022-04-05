@@ -7,6 +7,6 @@ cd ../
 
 go vet
 go clean -testcache
-go test ./...
+go test ./tests
 
 cd "$current_directory"
