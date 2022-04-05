@@ -8,6 +8,9 @@ import (
 	"testing"
 )
 
+const _applicationName = "Go Test App"
+const _applicationType = "server_to_server"
+
 func createLocalAPIAndContext() (*APIClient, context.Context) {
 	configuration := NewConfiguration()
 	configuration.Scheme = "http"
@@ -34,9 +37,15 @@ func assertPropertiesMatch(actualProperty interface{}, expectedProperty interfac
 	}
 }
 
-func assertPropertiesMatchGeneric[T any](actualProperty interface{}, expectedProperty interface{}, comparedType T, t *testing.T) {
-	if !cmp.Equal(actualProperty, expectedProperty, cmp.AllowUnexported(comparedType)) {
+func assertPropertiesMatchGeneric(actualProperty interface{}, expectedProperty interface{}, t *testing.T, comparedType ...interface{}) {
+	if !cmp.Equal(actualProperty, expectedProperty, cmp.AllowUnexported(comparedType...)) {
 		t.Errorf("does not match expected: got: %+v, want: %+v", spew.Sdump(actualProperty), spew.Sdump(expectedProperty))
+	}
+}
+
+func assertPropertiesDoNotMatchGeneric(actualProperty interface{}, expectedProperty interface{}, t *testing.T, comparedType ...interface{}) {
+	if cmp.Equal(actualProperty, expectedProperty, cmp.AllowUnexported(comparedType...)) {
+		t.Errorf("matches expected: got: %+v, want: %+v", spew.Sdump(actualProperty), spew.Sdump(expectedProperty))
 	}
 }
 
@@ -49,8 +58,8 @@ func assertDeletion[T any](actualDeletedResource T, expectedDeletedResource T, m
 func TestApplicationCRUD(t *testing.T) {
 	apiClient, contextWithAPIKey := createLocalAPIAndContext()
 
-	applicationName := "Go Test App"
-	applicationType := "server_to_server"
+	applicationName := _applicationName
+	applicationType := _applicationType
 	applicationPermissions := []string{"token:pci:create"}
 	createApplicationModel := *NewCreateApplicationModel()
 	createApplicationModel.SetName(applicationName)
@@ -66,14 +75,14 @@ func TestApplicationCRUD(t *testing.T) {
 
 	assertMethodDidNotError(err, response, "ApplicationGetById", t)
 
-	assertPropertiesMatchGeneric[NullableString](application.Name, NullableString{
+	assertPropertiesMatchGeneric(application.Name, NullableString{
 		value: &applicationName,
 		isSet: true,
-	}, NullableString{}, t)
-	assertPropertiesMatchGeneric[NullableString](application.Type, NullableString{
+	}, t, NullableString{})
+	assertPropertiesMatchGeneric(application.Type, NullableString{
 		value: &applicationType,
 		isSet: true,
-	}, NullableString{}, t)
+	}, t, NullableString{})
 	assertPropertiesMatch(application.Permissions, applicationPermissions, t)
 
 	var applications *ApplicationModelPaginatedList
@@ -81,14 +90,14 @@ func TestApplicationCRUD(t *testing.T) {
 
 	assertMethodDidNotError(err, response, "ApplicationsGet", t)
 
-	assertPropertiesMatchGeneric[NullableString](applications.Data[0].Name, NullableString{
+	assertPropertiesMatchGeneric(applications.Data[0].Name, NullableString{
 		value: &applicationName,
 		isSet: true,
-	}, NullableString{}, t)
-	assertPropertiesMatchGeneric[NullableString](applications.Data[0].Type, NullableString{
+	}, t, NullableString{})
+	assertPropertiesMatchGeneric(applications.Data[0].Type, NullableString{
 		value: &applicationType,
 		isSet: true,
-	}, NullableString{}, t)
+	}, t, NullableString{})
 	assertPropertiesMatch(applications.Data[0].Permissions, applicationPermissions, t)
 
 	updatedApplicationName := "Updated Name"
@@ -103,14 +112,65 @@ func TestApplicationCRUD(t *testing.T) {
 	}).Execute()
 
 	assertMethodDidNotError(err, response, "ApplicationUpdate", t)
-	assertPropertiesMatchGeneric[NullableString](updatedApplication.Name, NullableString{
+	assertPropertiesMatchGeneric(updatedApplication.Name, NullableString{
 		value: &updatedApplicationName,
 		isSet: true,
-	}, NullableString{}, t)
+	}, t, NullableString{})
 	assertPropertiesMatch(updatedApplication.Permissions, updatedApplicationPermissions, t)
 	response, err = apiClient.ApplicationsApi.ApplicationDelete(contextWithAPIKey, createdApplication.GetId()).Execute()
 	assertMethodDidNotError(err, response, "ApplicationDelete", t)
 	var deletedApplication *ApplicationModel
 	deletedApplication, _, _ = apiClient.ApplicationsApi.ApplicationGetById(contextWithAPIKey, createdApplication.GetId()).Execute()
 	assertDeletion[*ApplicationModel](deletedApplication, nil, "ApplicationDelete", t)
+}
+
+func TestApplicationRegenerate(t *testing.T) {
+	apiClient, contextWithAPIKey := createLocalAPIAndContext()
+
+	applicationName := _applicationName
+	applicationType := _applicationType
+	applicationPermissions := []string{"token:pci:create"}
+	createApplicationModel := *NewCreateApplicationModel()
+	createApplicationModel.SetName(applicationName)
+	createApplicationModel.SetType(applicationType)
+	createApplicationModel.SetPermissions(applicationPermissions)
+
+	createdApplication, response, err := apiClient.ApplicationsApi.ApplicationCreate(contextWithAPIKey).CreateApplicationModel(createApplicationModel).Execute()
+
+	assertMethodDidNotError(err, response, "ApplicationCreate", t)
+
+	var regeneratedApplication *ApplicationModel
+	regeneratedApplication, response, err = apiClient.ApplicationsApi.ApplicationRegenerate(contextWithAPIKey, createdApplication.GetId()).Execute()
+
+	assertMethodDidNotError(err, response, "ApplicationRegenerate", t)
+
+	assertPropertiesDoNotMatchGeneric(regeneratedApplication.Key, createdApplication.Key, t, NullableString{})
+}
+
+func TestApplicationKey(t *testing.T) {
+	apiClient, contextWithAPIKey := createLocalAPIAndContext()
+
+	applicationName := _applicationName
+	applicationType := _applicationType
+	applicationPermissions := []string{"token:pci:create"}
+	createApplicationModel := *NewCreateApplicationModel()
+	createApplicationModel.SetName(applicationName)
+	createApplicationModel.SetType(applicationType)
+	createApplicationModel.SetPermissions(applicationPermissions)
+
+	createdApplication, response, err := apiClient.ApplicationsApi.ApplicationCreate(contextWithAPIKey).CreateApplicationModel(createApplicationModel).Execute()
+
+	assertMethodDidNotError(err, response, "ApplicationCreate", t)
+
+	contextWithCreatedAppAPIKey := context.WithValue(context.Background(), ContextAPIKeys, map[string]APIKey{
+		"ApiKey": {Key: *createdApplication.Key.value},
+	})
+
+	var applicationFromApplicationKey *ApplicationModel
+	applicationFromApplicationKey, response, err = apiClient.ApplicationsApi.ApplicationKey(contextWithCreatedAppAPIKey).Execute()
+
+	assertMethodDidNotError(err, response, "ApplicationKey", t)
+
+	applicationFromApplicationKey.SetKey(*createdApplication.Key.value)
+	assertPropertiesMatchGeneric(applicationFromApplicationKey, createdApplication, t, NullableString{}, NullableTime{})
 }
