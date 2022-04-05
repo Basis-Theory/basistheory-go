@@ -3,23 +3,11 @@ on:
   pull_request:
     branches: [ master, pre-release ]
 jobs:
-  lint:
-    name: Lint
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout repo
-        uses: actions/checkout@v2
-
-      - name: Run linter
-        uses: golangci/golangci-lint-action@v2
-        with:
-          version: v1.42
-
   test:
     name: Unit test
     strategy:
       matrix:
-        go-version: [ '1.16', '1.17' ]
+        go-version: [ '1.16', '1.17', '1.18' ]
     runs-on: ubuntu-latest
     env:
       CI: 1
@@ -34,5 +22,3 @@ jobs:
 
       - name: Run unit tests
         run: make verify
-        env:
-          SKIP_LINT: 1 # linting run in different job
