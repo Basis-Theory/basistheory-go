@@ -27,5 +27,5 @@ jobs:
         with:
           go-version: ${{ matrix.go-version }}
 
-      - name: Run unit tests
+      - name: Run acceptance tests
         run: make verify
