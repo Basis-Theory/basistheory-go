@@ -14,21 +14,27 @@ func AssertMethodDidNotError(err error, response *http.Response, methodName stri
 	}
 }
 
-func AssertPropertiesMatch(actualProperty interface{}, expectedProperty interface{}, t *testing.T) {
-	if !cmp.Equal(actualProperty, expectedProperty) {
-		t.Errorf("does not match expected: got: %+v, want: %+v", spew.Sdump(actualProperty), spew.Sdump(expectedProperty))
+func AssertPropertiesMatch(actualProperty interface{}, expectedProperty interface{}, t *testing.T, comparedType ...interface{}) {
+	if comparedType != nil {
+		if !cmp.Equal(actualProperty, expectedProperty, cmp.AllowUnexported(comparedType...)) {
+			t.Errorf("does not match expected: got: %+v, want: %+v", spew.Sdump(actualProperty), spew.Sdump(expectedProperty))
+		}
+	} else {
+		if !cmp.Equal(actualProperty, expectedProperty) {
+			t.Errorf("does not match expected: got: %+v, want: %+v", spew.Sdump(actualProperty), spew.Sdump(expectedProperty))
+		}
 	}
 }
 
-func AssertPropertiesMatchGeneric(actualProperty interface{}, expectedProperty interface{}, t *testing.T, comparedType ...interface{}) {
-	if !cmp.Equal(actualProperty, expectedProperty, cmp.AllowUnexported(comparedType...)) {
-		t.Errorf("does not match expected: got: %+v, want: %+v", spew.Sdump(actualProperty), spew.Sdump(expectedProperty))
-	}
-}
-
-func AssertPropertiesDoNotMatchGeneric(actualProperty interface{}, expectedProperty interface{}, t *testing.T, comparedType ...interface{}) {
-	if cmp.Equal(actualProperty, expectedProperty, cmp.AllowUnexported(comparedType...)) {
-		t.Errorf("matches expected: got: %+v, want: %+v", spew.Sdump(actualProperty), spew.Sdump(expectedProperty))
+func AssertPropertiesDoNotMatch(actualProperty interface{}, expectedProperty interface{}, t *testing.T, comparedType ...interface{}) {
+	if comparedType != nil {
+		if cmp.Equal(actualProperty, expectedProperty, cmp.AllowUnexported(comparedType...)) {
+			t.Errorf("does not match expected: got: %+v, want: %+v", spew.Sdump(actualProperty), spew.Sdump(expectedProperty))
+		}
+	} else {
+		if cmp.Equal(actualProperty, expectedProperty) {
+			t.Errorf("does not match expected: got: %+v, want: %+v", spew.Sdump(actualProperty), spew.Sdump(expectedProperty))
+		}
 	}
 }
 

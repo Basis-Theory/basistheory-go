@@ -5,6 +5,7 @@ stop-docker:
 
 start-docker:
 	./scripts/start-docker.sh
+	$(MAKE) service-up
 
 service-up:
 	./scripts/service-up.sh
