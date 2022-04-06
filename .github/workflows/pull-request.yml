@@ -11,7 +11,7 @@ on:
 
 jobs:
   acceptance-test:
-    name: Acceptance test
+    name: Acceptance test triggered by ${{ github.event.inputs.source || github.event_name }}
     strategy:
       matrix:
         go-version: [ '1.16', '1.17', '1.18' ]
@@ -34,5 +34,5 @@ jobs:
         with:
           go-version: ${{ matrix.go-version }}
 
-      - name: Acceptance tests triggered by ${{ github.event.inputs.source || github.event_name }}
+      - name: Run acceptance tests
         run: make verify
