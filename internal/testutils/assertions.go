@@ -3,6 +3,7 @@ package testutils
 import (
 	"github.com/davecgh/go-spew/spew"
 	"github.com/google/go-cmp/cmp"
+	"github.com/stretchr/testify/assert"
 	"net/http"
 	"testing"
 )
@@ -38,8 +39,6 @@ func AssertPropertiesDoNotMatch(actualProperty interface{}, expectedProperty int
 	}
 }
 
-func AssertDeletion[T any](actualDeletedResource T, expectedDeletedResource T, methodName string, t *testing.T) {
-	if !cmp.Equal(actualDeletedResource, expectedDeletedResource) {
-		t.Fatalf("%s failed to delete", methodName)
-	}
+func AssertNotFound(err error, t *testing.T) {
+	assert.EqualErrorf(t, err, "404 Not Found", "error should be: %v, got: %v", "404 Not Found", err)
 }

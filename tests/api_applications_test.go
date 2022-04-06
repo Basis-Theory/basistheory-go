@@ -12,8 +12,10 @@ func getApplicationNameAndType() (string, string) {
 }
 
 func TestApplicationCRUD(t *testing.T) {
-	// CREATE
+	// SETUP
 	apiClient, contextWithAPIKey := testutils.CreateLocalAPIAndContext()
+
+	// CREATE
 	applicationName, applicationType := getApplicationNameAndType()
 
 	applicationPermissions := []string{"token:pci:create"}
@@ -69,9 +71,8 @@ func TestApplicationCRUD(t *testing.T) {
 	response, err = apiClient.ApplicationsApi.ApplicationDelete(contextWithAPIKey, createdApplication.GetId()).Execute()
 	testutils.AssertMethodDidNotError(err, response, "ApplicationDelete", t)
 
-	var deletedApplication *basistheory.ApplicationModel
-	deletedApplication, _, _ = apiClient.ApplicationsApi.ApplicationGetById(contextWithAPIKey, createdApplication.GetId()).Execute()
-	testutils.AssertDeletion[*basistheory.ApplicationModel](deletedApplication, nil, "ApplicationDelete", t)
+	_, _, err = apiClient.ApplicationsApi.ApplicationGetById(contextWithAPIKey, createdApplication.GetId()).Execute()
+	testutils.AssertNotFound(err, t)
 }
 
 func TestApplicationRegenerate(t *testing.T) {

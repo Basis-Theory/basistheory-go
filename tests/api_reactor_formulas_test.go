@@ -7,8 +7,10 @@ import (
 )
 
 func TestReactorFormulaCRUD(t *testing.T) {
-	// CREATE
+	// SETUP
 	apiClient, contextWithAPIKey := testutils.CreateLocalAPIAndContext()
+
+	// CREATE
 	reactorFormulaName := "Go Test Reactor Formula"
 	reactorFormulaCode := "module.exports = function (req) {return {raw: \"Goodbye World\"}}"
 
@@ -63,9 +65,9 @@ func TestReactorFormulaCRUD(t *testing.T) {
 	testutils.AssertPropertiesMatch(updatedReactorFormula.Code, expectedUpdatedReactorFormulaCode, t, basistheory.NullableString{})
 
 	// DELETE
-	var deletedReactorFormula *basistheory.ReactorFormulaModel
-	deletedReactorFormula, response, err = apiClient.ReactorFormulasApi.ReactorFormulaDelete(contextWithAPIKey, createdReactorFormula.GetId()).Execute()
+	_, response, err = apiClient.ReactorFormulasApi.ReactorFormulaDelete(contextWithAPIKey, createdReactorFormula.GetId()).Execute()
 	testutils.AssertMethodDidNotError(err, response, "ReactorFormulaDelete", t)
 
-	testutils.AssertDeletion[*basistheory.ReactorFormulaModel](deletedReactorFormula, nil, "ReactorFormulaDelete", t)
+	_, _, err = apiClient.ReactorFormulasApi.ReactorFormulaGetById(contextWithAPIKey, createdReactorFormula.GetId()).Execute()
+	testutils.AssertNotFound(err, t)
 }
