@@ -1,7 +1,14 @@
 name: Pull Request
 on:
+  workflow_dispatch:
+    inputs:
+      source:
+        type: string
+        description: Which repo triggered this workflow run
+        required: true
   pull_request:
     branches: [ master, pre-release ]
+
 jobs:
   acceptance-test:
     name: Acceptance test
@@ -27,5 +34,5 @@ jobs:
         with:
           go-version: ${{ matrix.go-version }}
 
-      - name: Run acceptance tests
+      - name: Acceptance tests triggered by ${{ github.event.inputs.source || github.event_name }}
         run: make verify
