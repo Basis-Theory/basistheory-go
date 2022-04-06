@@ -74,5 +74,37 @@ func TestReactorCRUD(t *testing.T) {
 }
 
 func TestReactorReact(t *testing.T) {
-	t.Fatal("Implement test")
+	apiClient, contextWithAPIKey := testutils.CreateLocalAPIAndContext()
+	reactorFormulaName := "Go Test Reactor Formula"
+	reactorFormulaCode := "module.exports = function (req) {return {raw: \"Goodbye World\"}}"
+
+	createReactorFormulaModel := basistheory.CreateReactorFormulaModel{}
+	createReactorFormulaModel.SetName(reactorFormulaName)
+	createReactorFormulaModel.SetCode(reactorFormulaCode)
+
+	createdReactorFormula, response, err := apiClient.ReactorFormulasApi.ReactorFormulaCreate(contextWithAPIKey).CreateReactorFormulaModel(createReactorFormulaModel).Execute()
+	testutils.AssertMethodDidNotError(err, response, "ReactorFormulaCreate", t)
+
+	reactorName := "Go Test Reactor"
+
+	createReactorModel := basistheory.CreateReactorModel{}
+	createReactorModel.SetName(reactorName)
+	createReactorModel.SetFormula(*createdReactorFormula)
+	var createdReactor *basistheory.ReactorModel
+	createdReactor, response, err = apiClient.ReactorsApi.ReactorCreate(contextWithAPIKey).CreateReactorModel(createReactorModel).Execute()
+	testutils.AssertMethodDidNotError(err, response, "ReactorCreate", t)
+
+	type ReactArgs struct {
+		Args map[string]interface{} `json:"args"`
+	}
+	reactRequest := basistheory.ReactRequest{}
+	reactRequest.SetArgs(ReactArgs{
+		Args: map[string]interface{}{
+			"property": "value",
+		},
+	})
+	var reactResponse *basistheory.ReactResponse
+	reactResponse, response, err = apiClient.ReactorsApi.ReactorReact(contextWithAPIKey, createdReactor.GetId()).ReactRequest(reactRequest).Execute()
+	testutils.AssertMethodDidNotError(err, response, "ReactorReact", t)
+	testutils.AssertPropertiesMatch(reactResponse.Raw, "Hello Moon!", t)
 }

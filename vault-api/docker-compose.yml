@@ -99,6 +99,7 @@ services:
       - 9091:443
     volumes:
       - $PWD/local-certs:/https
+      - $PWD/wiremock:/app/__admin
     environment:
       - ASPNETCORE_Kestrel__Certificates__Default__Path=/https/vault-wiremock.pfx
     command: [ "dotnet", "wiremock-net.dll", "--Urls", "http://*:80", "https://*:443", "--ReadStaticMappings", "true", "--WireMockLogger", "WireMockConsoleLogger", "--X509CertificateFilePath", "/https/vault-wiremock.pfx", "--X509CertificatePassword", "foo", "--AllowBodyForAllHttpMethods", "true" ]
