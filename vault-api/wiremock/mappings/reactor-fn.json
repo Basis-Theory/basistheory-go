@@ -1,0 +1,22 @@
+{
+  "Request": {
+    "Path": {
+      "Matchers": [
+        {
+          "Name": "WildcardMatcher",
+          "Pattern": "/ReactorFnJs"
+        }
+      ]
+    },
+    "Methods": [
+      "post"
+    ]
+  },
+  "Response": {
+    "StatusCode": 200,
+    "BodyAsJson": { "raw": "Hello Moon!" },
+    "Headers": {
+      "Content-Type": "application/json"
+    }
+  }
+}

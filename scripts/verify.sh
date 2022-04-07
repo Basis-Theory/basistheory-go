@@ -1,10 +1,15 @@
-#!/bin/sh
+#!/bin/bash
+set -e
 
-if [ "$SKIP_LINT" = true ] || [ "$SKIP_LINT" = 1 ]
-then
-  echo SKIP_LINT is set, skipping golangci-lint run...
-else
-  golangci-lint run --fix
-fi
+current_directory="$PWD"
 
-go test ./...
+cd $(dirname $0)
+
+time {
+    ./stop-docker.sh
+    ./start-docker.sh
+    ./service-up.sh
+    ./acceptance-test.sh
+}
+
+cd "$current_directory"

@@ -1,0 +1,112 @@
+version: '3.9'
+
+services:
+  vault-api:
+    container_name: go-vault-api
+    image: ghcr.io/basis-theory/vault-api:latest
+    ports:
+      - 6123:5090
+    depends_on:
+      - db
+      - keys-db
+      - bt-auth-server
+      - idp-auth-server
+      - mongo-db
+      - wiremock
+    entrypoint: sh -c "cp -r /https/. /usr/local/share/ca-certificates/. && update-ca-certificates && exec dotnet BasisTheory.Vault.API.dll"
+    volumes:
+      - $PWD/local-certs/:/https
+    environment:
+      - ASPNETCORE_URLS=http://+:5090
+      - ASPNETCORE_ENVIRONMENT=Acceptance
+      - ApplicationInsights__ConnectionString=InstrumentationKey=00000000-0000-0000-0000-000000000000;IngestionEndpoint=http://wiremock:80/;LiveEndpoint=http://wiremock:80/;ProfilerEndpoint=http://wiremock:80/;SnapshotEndpoint=http://wiremock:80/;
+      - AppSettings__StripeApiBase=http://wiremock:80
+      - AppSettings__SlackMetricsWebhookUrl=http://wiremock:80/services/foobar/bazz/lkasdfjlkajsd
+      - Authentication__BasisTheoryIssuer=http://bt-auth-server:5093/
+      - Authentication__IdentityProvider__Issuer=http://idp-auth-server:5094/
+      - Authentication__Management__ApiUri=http://wiremock:80/
+      - AzureAd__LogAnalyticsBaseUrl=http://wiremock:80/loganalytics/
+      - ConnectionStrings__Mongo=mongodb://username:password@mongo-db:27017
+      - ConnectionStrings__Vault=Server=db;Database=Vault;User Id=sa;Password=password123!;
+      - ConnectionStrings__Keys=Server=keys-db;Database=Keys;User Id=sa;Password=password123!;
+      - Encryption__ProviderUri=https://token-proxy-keyvault-emulator:5092/
+      - Mailgun__ApiUri=http://wiremock:80
+      - TokenReactor__JsFunctionUrl=http://wiremock:80/
+
+  db:
+    container_name: go-vault-db
+    build:
+      context: db
+    environment:
+      ACCEPT_EULA: Y
+      MSSQL_SA_PASSWORD: password123!
+      MSSQL_DB: Vault
+    ports:
+      - 6124:1433
+
+  keys-db:
+    container_name: go-vault-keys-db
+    build:
+      context: db
+    environment:
+      ACCEPT_EULA: Y
+      MSSQL_SA_PASSWORD: password123!
+      MSSQL_DB: Keys
+    ports:
+      - 6125:1433
+
+  token-proxy-keyvault-emulator:
+    container_name: go-vault-token-proxy-keyvault-emulator
+    image: basistheory/azure-keyvault-emulator:latest
+    ports:
+      - 6126:5092
+    volumes:
+      - $PWD/local-certs:/https
+    environment:
+      - ASPNETCORE_URLS=https://+:5092
+      - ASPNETCORE_Kestrel__Certificates__Default__Path=/https/vault-keyvault-emulator.pfx
+      - KeyVault__Name=token-proxy-keyvault-emulator
+
+  bt-auth-server:
+    container_name: go-vault-bt-auth-server
+    image: ghcr.io/basis-theory/fake-auth-server:latest
+    ports:
+      - 6127:5093
+    environment:
+      - PORT=5093
+      - ISSUER_DOMAIN=bt-auth-server
+
+  idp-auth-server:
+    container_name: go-vault-idp-auth-server
+    image: ghcr.io/basis-theory/fake-auth-server:latest
+    ports:
+      - 6128:5094
+    environment:
+      - PORT=5094
+      - ISSUER_DOMAIN=idp-auth-server
+
+  mongo-db:
+    container_name: go-vault-mongo-db
+    image: mongo:4.4.6
+    restart: always
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: username
+      MONGO_INITDB_ROOT_PASSWORD: password
+      MONGO_INITDB_DATABASE: cache_db
+    ports:
+      - 6129:27017
+    volumes:
+      - ./db/mongo-init.js:/docker-entrypoint-initdb.d/mongo-init.js:ro
+
+  wiremock:
+    container_name: go-vault-wiremock
+    image: ghcr.io/basis-theory/wiremock.net
+    ports:
+      - 6130:80
+      - 6131:443
+    volumes:
+      - $PWD/local-certs:/https
+      - $PWD/wiremock:/app/__admin
+    environment:
+      - ASPNETCORE_Kestrel__Certificates__Default__Path=/https/vault-wiremock.pfx
+    command: [ "dotnet", "wiremock-net.dll", "--Urls", "http://*:80", "https://*:443", "--ReadStaticMappings", "true", "--WireMockLogger", "WireMockConsoleLogger", "--X509CertificateFilePath", "/https/vault-wiremock.pfx", "--X509CertificatePassword", "foo", "--AllowBodyForAllHttpMethods", "true" ]
