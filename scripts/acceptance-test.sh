@@ -9,4 +9,8 @@ go vet
 go clean -testcache
 go test ./tests
 
+result=$?
+
 cd "$current_directory"
+
+exit $result

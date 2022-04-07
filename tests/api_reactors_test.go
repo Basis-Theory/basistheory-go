@@ -94,14 +94,9 @@ func TestReactorReact(t *testing.T) {
 	createdReactor, response, err = apiClient.ReactorsApi.ReactorCreate(contextWithAPIKey).CreateReactorModel(createReactorModel).Execute()
 	testutils.AssertMethodDidNotError(err, response, "ReactorCreate", t)
 
-	type ReactArgs struct {
-		Args map[string]interface{} `json:"args"`
-	}
 	reactRequest := basistheory.ReactRequest{}
-	reactRequest.SetArgs(ReactArgs{
-		Args: map[string]interface{}{
-			"property": "value",
-		},
+	reactRequest.SetArgs(map[string]interface{}{
+		"property": "value",
 	})
 	var reactResponse *basistheory.ReactResponse
 	reactResponse, response, err = apiClient.ReactorsApi.ReactorReact(contextWithAPIKey, createdReactor.GetId()).ReactRequest(reactRequest).Execute()
