@@ -25,7 +25,7 @@ then
   sed -i '' '/args:/d' docker-compose.yml
   sed -i '' '/- GIT_SHA/d' docker-compose.yml
   sed -i '' '/- GITHUB_TOKEN/d' docker-compose.yml
-  sed -i '' '/9091/ { n; n; s/$/\n      - $PWD\/wiremock:\/app\/__admin/; }' docker-compose.yml
+  sed -i '' '/9091:443/ { n; n; s/$/\n      - $PWD\/wiremock:\/app\/__admin/; }' docker-compose.yml
 else
   echo "Vault docker-compose.yml found"
 fi
