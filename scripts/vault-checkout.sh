@@ -19,12 +19,14 @@ then
   then
     git --git-dir=.gitvault remote add -f vault git@github.com:Basis-Theory/basistheory-vault-api.git
     git --git-dir=.gitvault pull vault master
+    git --git-dir=.gitvault remote rm vault
+    yes | rm -r .gitvault
   else
     git --git-dir=.gitvault remote add -f vault git@github.com:Basis-Theory/basistheory-vault-api.git >/dev/null 2>&1
     git --git-dir=.gitvault pull vault master >/dev/null 2>&1
+    git --git-dir=.gitvault remote rm vault
+    yes | rm -r .gitvault >/dev/null 2>&1
   fi
-  git --git-dir=.gitvault remote rm vault
-  yes | rm -r .gitvault
   awk 'NR > 1 && !(/context: \./ && p ~ /build/) { print p } { p = $0 } END { print }' docker-compose.yml > tmp && mv tmp docker-compose.yml
   if [ "$(uname)" == "Darwin" ]; then
     sed -i '' 's|vault-api:latest|ghcr.io/basis-theory/vault-api:latest|g' docker-compose.yml
