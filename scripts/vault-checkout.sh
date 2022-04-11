@@ -19,13 +19,22 @@ then
   git --git-dir=.gitvault pull vault master
   git --git-dir=.gitvault remote rm vault
   yes | rm -r .gitvault
-  sed -i '' 's|vault-api:latest|ghcr.io/basis-theory/vault-api:latest|g' docker-compose.yml
   awk 'NR > 1 && !(/context: \./ && p ~ /build/) { print p } { p = $0 } END { print }' docker-compose.yml > tmp && mv tmp docker-compose.yml
-  sed -i '' '/context: \./d' docker-compose.yml
-  sed -i '' '/args:/d' docker-compose.yml
-  sed -i '' '/- GIT_SHA/d' docker-compose.yml
-  sed -i '' '/- GITHUB_TOKEN/d' docker-compose.yml
-  sed -i '' '/9091:443/ { n; n; s/$/\n      - $PWD\/wiremock:\/app\/__admin/; }' docker-compose.yml
+  if [ "$(uname)" == "Darwin" ]; then
+    sed -i '' 's|vault-api:latest|ghcr.io/basis-theory/vault-api:latest|g' docker-compose.yml
+    sed -i '' '/context: \./d' docker-compose.yml
+    sed -i '' '/args:/d' docker-compose.yml
+    sed -i '' '/- GIT_SHA/d' docker-compose.yml
+    sed -i '' '/- GITHUB_TOKEN/d' docker-compose.yml
+    sed -i '' '/9091:443/ { n; n; s/$/\n      - $PWD\/wiremock:\/app\/__admin/; }' docker-compose.yml
+  else
+    sed -i 's|vault-api:latest|ghcr.io/basis-theory/vault-api:latest|g' docker-compose.yml
+    sed -i '/context: \./d' docker-compose.yml
+    sed -i '/args:/d' docker-compose.yml
+    sed -i '/- GIT_SHA/d' docker-compose.yml
+    sed -i '/- GITHUB_TOKEN/d' docker-compose.yml
+    sed -i '/9091:443/ { n; n; s/$/\n      - $PWD\/wiremock:\/app\/__admin/; }' docker-compose.yml
+  fi
 else
   echo "Vault docker-compose.yml found"
 fi
