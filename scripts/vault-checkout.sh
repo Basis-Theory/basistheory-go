@@ -25,7 +25,7 @@ then
     git --git-dir=.gitvault remote add -f vault git@github.com:Basis-Theory/basistheory-vault-api.git >/dev/null 2>&1
     git --git-dir=.gitvault pull vault master >/dev/null 2>&1
     git --git-dir=.gitvault remote rm vault
-    yes | rm -r .gitvault >/dev/null 2>&1
+    yes >/dev/null 2>&1 | rm -r .gitvault >/dev/null 2>&1
   fi
   awk 'NR > 1 && !(/context: \./ && p ~ /build/) { print p } { p = $0 } END { print }' docker-compose.yml > tmp && mv tmp docker-compose.yml
   if [ "$(uname)" == "Darwin" ]; then
