@@ -41,3 +41,5 @@ jobs:
 
       - name: Run acceptance tests
         run: make verify
+        env:
+          IS_PR_WORKFLOW: true

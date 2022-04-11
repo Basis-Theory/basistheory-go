@@ -6,7 +6,12 @@ current_directory="$PWD"
 cd $(dirname $0)/..
 cd vault-api
 
-docker-compose down -v
+if [ "$IS_PR_WORKFLOW" != true ]
+then
+  docker-compose down -v
+else
+  docker-compose down -v >/dev/null 2>&1
+fi
 
 result=$?
 

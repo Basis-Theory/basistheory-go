@@ -15,8 +15,14 @@ then
   git --git-dir=.gitvault config --global init.defaultBranch master
   git --git-dir=.gitvault sparse-checkout init
   git --git-dir=.gitvault sparse-checkout set "db/" "local-certs/" "docker-compose.yml"
-  git --git-dir=.gitvault remote add -f vault git@github.com:Basis-Theory/basistheory-vault-api.git
-  git --git-dir=.gitvault pull vault master
+  if [ "$IS_PR_WORKFLOW" != true ]
+  then
+    git --git-dir=.gitvault remote add -f vault git@github.com:Basis-Theory/basistheory-vault-api.git
+    git --git-dir=.gitvault pull vault master
+  else
+    git --git-dir=.gitvault remote add -f vault git@github.com:Basis-Theory/basistheory-vault-api.git >/dev/null 2>&1
+    git --git-dir=.gitvault pull vault master >/dev/null 2>&1
+  fi
   git --git-dir=.gitvault remote rm vault
   yes | rm -r .gitvault
   awk 'NR > 1 && !(/context: \./ && p ~ /build/) { print p } { p = $0 } END { print }' docker-compose.yml > tmp && mv tmp docker-compose.yml
