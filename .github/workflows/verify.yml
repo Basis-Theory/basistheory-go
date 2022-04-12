@@ -34,5 +34,12 @@ jobs:
         with:
           go-version: ${{ matrix.go-version }}
 
+      - name: Setup SSH Key
+        uses: webfactory/ssh-agent@v0.5.4
+        with:
+          ssh-private-key: ${{ secrets.VAULT_SSH_PRIVATE_KEY }}
+
       - name: Run acceptance tests
         run: make verify
+        env:
+          IS_PR_WORKFLOW: true

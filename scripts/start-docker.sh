@@ -8,13 +8,14 @@ cd vault-api
 
 export GIT_SHA=$(git rev-parse HEAD)
 
-docker-compose pull
-
-if [ "$IS_PR_WORKFLOW" != true ] ; then
-  docker-compose up -d --build
+if [ "$IS_PR_WORKFLOW" != true ]
+then
+  docker-compose pull
+  docker-compose up -d
+else
+  docker-compose pull >/dev/null 2>&1
+  docker-compose up -d >/dev/null 2>&1
 fi
-
-docker-compose up -d
 
 result=$?
 

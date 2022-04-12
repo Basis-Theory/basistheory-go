@@ -6,6 +6,7 @@ current_directory="$PWD"
 cd $(dirname $0)
 
 time {
+    ./vault-checkout.sh
     ./stop-docker.sh
     ./start-docker.sh
     ./service-up.sh
