@@ -25,31 +25,26 @@ func TestApplicationCRUD(t *testing.T) {
 	createApplicationModel.SetPermissions(applicationPermissions)
 
 	createdApplication, response, err := apiClient.ApplicationsApi.ApplicationCreate(contextWithAPIKey).CreateApplicationModel(createApplicationModel).Execute()
+
 	testutils.AssertMethodDidNotError(err, response, "ApplicationCreate", t)
 
 	// GET BY ID
 	var application *basistheory.ApplicationModel
 	application, response, err = apiClient.ApplicationsApi.ApplicationGetById(contextWithAPIKey, createdApplication.GetId()).Execute()
+
 	testutils.AssertMethodDidNotError(err, response, "ApplicationGetById", t)
-
-	expectedApplicationName := basistheory.NullableString{}
-	expectedApplicationName.Set(&applicationName)
-	testutils.AssertPropertiesMatch(application.Name, expectedApplicationName, t, basistheory.NullableString{})
-
-	expectedApplicationType := basistheory.NullableString{}
-	expectedApplicationType.Set(&applicationType)
-	testutils.AssertPropertiesMatch(application.Type, expectedApplicationType, t, basistheory.NullableString{})
-
+	testutils.AssertPropertiesMatch(application.GetName(), applicationName, t)
+	testutils.AssertPropertiesMatch(application.GetType(), applicationType, t)
 	testutils.AssertPropertiesMatch(application.Permissions, applicationPermissions, t)
 
 	// GET LIST
 	var applications *basistheory.ApplicationModelPaginatedList
 	applications, response, err = apiClient.ApplicationsApi.ApplicationsGet(contextWithAPIKey).Execute()
-	testutils.AssertMethodDidNotError(err, response, "ApplicationsGet", t)
 
-	testutils.AssertPropertiesMatch(applications.Data[0].Name, expectedApplicationName, t, basistheory.NullableString{})
-	testutils.AssertPropertiesMatch(applications.Data[0].Type, expectedApplicationType, t, basistheory.NullableString{})
-	testutils.AssertPropertiesMatch(applications.Data[0].Permissions, applicationPermissions, t)
+	testutils.AssertMethodDidNotError(err, response, "ApplicationsGet", t)
+	testutils.AssertPropertiesMatch(applications.Data[0].GetName(), applicationName, t)
+	testutils.AssertPropertiesMatch(applications.Data[0].GetType(), applicationType, t)
+	testutils.AssertPropertiesMatch(applications.Data[0].GetPermissions(), applicationPermissions, t)
 
 	// UPDATE
 	updatedApplicationName := "Updated Name"
@@ -60,18 +55,18 @@ func TestApplicationCRUD(t *testing.T) {
 
 	var updatedApplication *basistheory.ApplicationModel
 	updatedApplication, response, err = apiClient.ApplicationsApi.ApplicationUpdate(contextWithAPIKey, createdApplication.GetId()).UpdateApplicationModel(updateApplicationModel).Execute()
-	testutils.AssertMethodDidNotError(err, response, "ApplicationUpdate", t)
 
-	updatedApplicationNameNullableString := basistheory.NullableString{}
-	updatedApplicationNameNullableString.Set(&updatedApplicationName)
-	testutils.AssertPropertiesMatch(updatedApplication.Name, updatedApplicationNameNullableString, t, basistheory.NullableString{})
-	testutils.AssertPropertiesMatch(updatedApplication.Permissions, updatedApplicationPermissions, t)
+	testutils.AssertMethodDidNotError(err, response, "ApplicationUpdate", t)
+	testutils.AssertPropertiesMatch(updatedApplication.GetName(), updatedApplicationName, t)
+	testutils.AssertPropertiesMatch(updatedApplication.GetPermissions(), updatedApplicationPermissions, t)
 
 	// DELETE
 	response, err = apiClient.ApplicationsApi.ApplicationDelete(contextWithAPIKey, createdApplication.GetId()).Execute()
+
 	testutils.AssertMethodDidNotError(err, response, "ApplicationDelete", t)
 
 	_, _, err = apiClient.ApplicationsApi.ApplicationGetById(contextWithAPIKey, createdApplication.GetId()).Execute()
+
 	testutils.AssertNotFound(err, t)
 }
 
@@ -93,8 +88,7 @@ func TestApplicationRegenerate(t *testing.T) {
 	regeneratedApplication, response, err = apiClient.ApplicationsApi.ApplicationRegenerate(contextWithAPIKey, createdApplication.GetId()).Execute()
 
 	testutils.AssertMethodDidNotError(err, response, "ApplicationRegenerate", t)
-
-	testutils.AssertPropertiesDoNotMatch(regeneratedApplication.Key, createdApplication.Key, t, basistheory.NullableString{})
+	testutils.AssertPropertiesDoNotMatch(regeneratedApplication.GetKey(), createdApplication.GetKey(), t)
 }
 
 func TestApplicationKey(t *testing.T) {
@@ -121,5 +115,6 @@ func TestApplicationKey(t *testing.T) {
 	testutils.AssertMethodDidNotError(err, response, "ApplicationKey", t)
 
 	applicationFromApplicationKey.SetKey(*createdApplication.Key.Get())
+
 	testutils.AssertPropertiesMatch(applicationFromApplicationKey, createdApplication, t, basistheory.NullableString{}, basistheory.NullableTime{})
 }
