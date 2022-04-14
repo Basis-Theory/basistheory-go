@@ -3,3 +3,4 @@
 vault-api/db
 vault-api/local-certs
 vault-api/docker-compose.yml
+node_modules
