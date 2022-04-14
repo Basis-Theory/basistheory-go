@@ -7,7 +7,7 @@
   "license": "MIT",
   "private": true,
   "scripts": {
-    "generate-changelog": "semantic-release"
+    "release": "semantic-release"
   },
   "devDependencies": {
     "@semantic-release/changelog": "^5.0.1",
