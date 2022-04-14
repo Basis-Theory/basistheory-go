@@ -39,6 +39,8 @@ jobs:
         if: ${{ steps.get-new-tag.outputs.nextTag != steps.get-new-tag.outputs.currentTag }}
         run: |
           echo "You should not see this!"
+          echo "NEXT_TAG: ${{ steps.get-new-tag.outputs.nextTag }}"
+          echo "CURRENT TAG: ${{ steps.get-new-tag.outputs.currentTag }}"
 
   acceptance-test:
     name: Acceptance test triggered by ${{ github.event.inputs.source || github.event_name }}
