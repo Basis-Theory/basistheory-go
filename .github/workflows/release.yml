@@ -16,6 +16,12 @@ jobs:
         with:
           fetch-depth: 0
 
+      - name: Setup Node
+        uses: actions/setup-node@v2
+        with:
+          node-version: '14'
+          cache: 'yarn'
+
       - name: Install svu
         run: |
           echo 'deb [trusted=yes] https://apt.fury.io/caarlos0/ /' | sudo tee /etc/apt/sources.list.d/caarlos0.list
@@ -36,3 +42,9 @@ jobs:
         env:
           TAG: ${{ steps.get-new-tag.outputs.nextTag }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Update changelog
+        if: ${{ steps.get-new-tag.outputs.nextTag != steps.get-new-tag.outputs.currentTag }}
+        run: |
+          yarn install --frozen-lockfile
+          yarn generate-changelog
