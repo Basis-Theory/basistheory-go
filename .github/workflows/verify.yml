@@ -10,38 +10,6 @@ on:
     branches: [ master, pre-release ]
 
 jobs:
-  testing-tagging:
-    name: Testing tagging
-    runs-on: ubuntu-latest
-    env:
-      CI: 1
-    steps:
-      - name: Checkout repo
-        uses: actions/checkout@v2
-        with:
-          fetch-depth: 0
-
-      - name: Install svu
-        run: |
-          echo 'deb [trusted=yes] https://apt.fury.io/caarlos0/ /' | sudo tee /etc/apt/sources.list.d/caarlos0.list
-          sudo apt update -qq
-          sudo apt install -qq svu
-
-      - name: Get new tag
-        id: get-new-tag
-        run: |
-          CURRENT_GIT_TAG=$(svu current)
-          NEXT_GIT_TAG=$(svu)
-          echo "::set-output name=nextTag::$NEXT_GIT_TAG"
-          echo "::set-output name=currentTag::$CURRENT_GIT_TAG"
-
-      - name: Tag
-        if: ${{ steps.get-new-tag.outputs.nextTag != steps.get-new-tag.outputs.currentTag }}
-        run: |
-          echo "You should not see this!"
-          echo "NEXT_TAG: ${{ steps.get-new-tag.outputs.nextTag }}"
-          echo "CURRENT TAG: ${{ steps.get-new-tag.outputs.currentTag }}"
-
   acceptance-test:
     name: Acceptance test triggered by ${{ github.event.inputs.source || github.event_name }}
     strategy:
