@@ -7,10 +7,10 @@ For additional support or to discuss issues/features, please reach out to us on 
 -
 
 ## Steps to Reproduce the Problem
-1.
-1.
-1.
+  1.
+  1.
+  1.
 
 ## Specifications
-- SDK Version:
-- Go version:
+  - SDK Version:
+  - Go Version:
