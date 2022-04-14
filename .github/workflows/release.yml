@@ -24,7 +24,6 @@ jobs:
           cache: 'yarn'
 
       - name: Update changelog
-        if: ${{ steps.get-new-tag.outputs.nextTag != steps.get-new-tag.outputs.currentTag }}
         env:
           GITHUB_TOKEN: ${{ secrets.SEMANTIC_RELEASE_PAT }}
         run: |
