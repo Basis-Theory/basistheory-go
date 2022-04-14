@@ -33,7 +33,7 @@ jobs:
           CURRENT_GIT_TAG=$(svu current)
           NEXT_GIT_TAG=$(svu)
           echo "::set-output name=nextTag::$NEXT_GIT_TAG"
-          echo "::set-output name=currentTag::v$CURRENT_GIT_TAG"
+          echo "::set-output name=currentTag::$CURRENT_GIT_TAG"
 
       - name: Tag
         if: ${{ steps.get-new-tag.outputs.nextTag != steps.get-new-tag.outputs.currentTag }}
