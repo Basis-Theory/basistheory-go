@@ -55,7 +55,7 @@ func TestReactorFormulaCRUD(t *testing.T) {
 	testutils.AssertPropertiesMatch(updatedReactorFormula.GetCode(), updatedReactorFormulaCode, t)
 
 	// DELETE
-	_, response, err = apiClient.ReactorFormulasApi.ReactorFormulaDelete(contextWithAPIKey, createdReactorFormula.GetId()).Execute()
+	response, err = apiClient.ReactorFormulasApi.ReactorFormulaDelete(contextWithAPIKey, createdReactorFormula.GetId()).Execute()
 
 	testutils.AssertMethodDidNotError(err, response, "ReactorFormulaDelete", t)
 

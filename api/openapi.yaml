@@ -422,22 +422,6 @@ paths:
         style: simple
       responses:
         "204":
-          content:
-            text/plain:
-              schema:
-                $ref: '#/components/schemas/ReactorFormulaModel'
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ReactorFormulaModel'
-            text/json:
-              schema:
-                $ref: '#/components/schemas/ReactorFormulaModel'
-            application/xml:
-              schema:
-                $ref: '#/components/schemas/ReactorFormulaModel'
-            text/xml:
-              schema:
-                $ref: '#/components/schemas/ReactorFormulaModel'
           description: No Content
         "401":
           content:
