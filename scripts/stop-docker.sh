@@ -10,6 +10,7 @@ if [ "$IS_PR_WORKFLOW" != true ]
 then
   docker-compose down -v
 else
+  echo "stopping docker"
   docker-compose down -v >/dev/null 2>&1
 fi
 

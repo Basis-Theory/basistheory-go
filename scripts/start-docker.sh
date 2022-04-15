@@ -13,6 +13,7 @@ then
   docker-compose pull
   docker-compose up -d
 else
+  echo "starting docker"
   docker-compose pull >/dev/null 2>&1
   docker-compose up -d >/dev/null 2>&1
 fi
