@@ -22,9 +22,7 @@ then
     git --git-dir=.gitvault remote rm vault
     yes | rm -r .gitvault
   else
-    echo "checking out repo"
     git --git-dir=.gitvault remote add -f vault git@github.com:Basis-Theory/basistheory-vault-api.git >/dev/null 2>&1
-    echo "pulling vault"
     git --git-dir=.gitvault pull vault master >/dev/null 2>&1
     git --git-dir=.gitvault remote rm vault
     yes 2>/dev/null | rm -r .gitvault
@@ -44,7 +42,6 @@ then
     sed -i '/- GIT_SHA/d' docker-compose.yml
     sed -i '/- GITHUB_TOKEN/d' docker-compose.yml
     sed -i '/9091:443/ { n; n; s/$/\n      - $PWD\/wiremock:\/app\/__admin/; }' docker-compose.yml
-    echo "docker-compose modified"
   fi
 else
   echo "Vault docker-compose.yml found"

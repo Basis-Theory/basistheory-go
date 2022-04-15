@@ -13,10 +13,13 @@ then
   docker-compose pull
   docker-compose up -d
 else
-  echo "starting docker"
+  echo "pulling docker"
   docker-compose pull >/dev/null 2>&1
+  echo "starting docker"
   docker-compose up -d >/dev/null 2>&1
 fi
+
+echo "result: $result"
 
 result=$?
 
