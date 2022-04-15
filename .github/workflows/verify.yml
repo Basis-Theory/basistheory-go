@@ -22,12 +22,12 @@ jobs:
       - name: Checkout repo
         uses: actions/checkout@v2
 
-      - name: Login to Github Docker
-        uses: docker/login-action@v1
-        with:
-          registry: ghcr.io
-          username: ${{ github.repository_owner }}
-          password: ${{ secrets.PRIVATE_PACKAGE_TOKEN }}
+#      - name: Login to Github Docker
+#        uses: docker/login-action@v1
+#        with:
+#          registry: ghcr.io
+#          username: ${{ github.repository_owner }}
+#          password: ${{ secrets.PRIVATE_PACKAGE_TOKEN }}
 
       - name: Setup go
         uses: actions/setup-go@v2
