@@ -1,0 +1,7 @@
+version: "3.9"
+services:
+  mockServer:
+    image: mockserver/mockserver:5.13.2
+#    command: -logLevel DEBUG -serverPort 1090 -proxyRemotePort 80 -proxyRemoteHost www.mock-server.com
+    ports:
+      - "1080:1080"

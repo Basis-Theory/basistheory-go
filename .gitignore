@@ -1,5 +1,6 @@
 .DS_Store
 .idea
+!vault-api/docker-compose.yml
 vault-api/db
 vault-api/local-certs
 vault-api/docker-compose.yml
