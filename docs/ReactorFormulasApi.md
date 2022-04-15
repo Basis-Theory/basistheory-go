@@ -78,7 +78,7 @@ Name | Type | Description  | Notes
 
 ## ReactorFormulaDelete
 
-> ReactorFormulaModel ReactorFormulaDelete(ctx, id).Execute()
+> ReactorFormulaDelete(ctx, id).Execute()
 
 
 
@@ -104,8 +104,6 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `ReactorFormulasApi.ReactorFormulaDelete``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `ReactorFormulaDelete`: ReactorFormulaModel
-    fmt.Fprintf(os.Stdout, "Response from `ReactorFormulasApi.ReactorFormulaDelete`: %v\n", resp)
 }
 ```
 
@@ -128,7 +126,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ReactorFormulaModel**](ReactorFormulaModel.md)
+ (empty response body)
 
 ### Authorization
 
