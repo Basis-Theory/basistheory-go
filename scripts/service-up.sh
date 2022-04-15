@@ -10,7 +10,7 @@ timeout=60000
 # continue until $n equals 5
 while [ $i -le $timeout ]
 do
-	status=$(curl -s -o /dev/null -i -w "%{http_code}" http://localhost:5090/healthz)
+	status=$(curl -s -X PUT -o /dev/null -i -w "%{http_code}" http://localhost:1080/mockserver/status)
 
     if [ $status == "200" ]
     then
@@ -24,7 +24,8 @@ do
     fi
 done
 
+curl -X PUT http://localhost:/1080/mockserver/openapi -d '{ "specUrlOrPayload": "https://api-dev.basistheory.com/swagger/v1/swagger.json" }'
 echo 'Health check did not pass within timeout'
 docker ps -a
-docker logs vault-api
+#docker logs vault-api
 exit 1
