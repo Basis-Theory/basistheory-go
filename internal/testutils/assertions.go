@@ -1,9 +1,13 @@
 package testutils
 
 import (
+	"bytes"
+	"encoding/json"
+	"fmt"
 	"github.com/davecgh/go-spew/spew"
 	"github.com/google/go-cmp/cmp"
 	"github.com/stretchr/testify/assert"
+	"log"
 	"net/http"
 	"testing"
 )
@@ -41,4 +45,37 @@ func AssertPropertiesDoNotMatch(actualProperty interface{}, expectedProperty int
 
 func AssertNotFound(err error, t *testing.T) {
 	assert.EqualErrorf(t, err, "404 Not Found", "error should be: %v, got: %v", "404 Not Found", err)
+}
+
+func AssertRequestWasMade(httpMethod string, path string, pathParameters []interface{}) []interface{} {
+	client := &http.Client{}
+
+	body := make(map[string]interface{})
+
+	body["method"] = httpMethod
+	body["path"] = path
+
+	if pathParameters != nil {
+		body["pathParameters"] = pathParameters
+	}
+
+	jsonBytes, err := json.Marshal(body)
+
+	req, _ := http.NewRequest("PUT", "http://localhost:1080/mockserver/retrieve", bytes.NewReader(jsonBytes))
+
+	resp, err := client.Do(req)
+
+	if err != nil {
+		log.Fatalf("error retrieving requests")
+	}
+
+	var matchingRequests []interface{}
+	d := json.NewDecoder(resp.Body)
+	if err := d.Decode(&matchingRequests); err != nil {
+		log.Fatalf("error deserializing response")
+	}
+
+	fmt.Printf("matching request count: %v", len(matchingRequests))
+
+	return matchingRequests
 }

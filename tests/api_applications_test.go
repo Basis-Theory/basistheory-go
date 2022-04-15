@@ -26,6 +26,8 @@ func TestApplicationCRUD(t *testing.T) {
 
 	createdApplication, response, err := apiClient.ApplicationsApi.ApplicationCreate(contextWithAPIKey).CreateApplicationModel(createApplicationModel).Execute()
 
+	testutils.AssertRequestWasMade("POST", "/applications", nil)
+
 	testutils.AssertMethodDidNotError(err, response, "ApplicationCreate", t)
 
 	// GET BY ID

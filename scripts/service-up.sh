@@ -15,6 +15,8 @@ do
     if [ $status == "200" ]
     then
         echo -e "${GREEN}✓${NOCOLOR} API is ready"
+
+        curl -X PUT http://localhost:1080/mockserver/openapi -d '{ "specUrlOrPayload": "https://api-dev.basistheory.com/swagger/v1/swagger.json" }'
         exit 0
     else
         echo -e "❌ API is not ready"
@@ -24,7 +26,6 @@ do
     fi
 done
 
-curl -X PUT http://localhost:/1080/mockserver/openapi -d '{ "specUrlOrPayload": "https://api-dev.basistheory.com/swagger/v1/swagger.json" }'
 echo 'Health check did not pass within timeout'
 docker ps -a
 #docker logs vault-api
