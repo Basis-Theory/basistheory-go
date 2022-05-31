@@ -1,16 +1,19 @@
 openapi: 3.0.1
 info:
-  title: BasisTheory Vault API
+  description: "## Getting Started\n* Sign-in to [Basis Theory](https://basistheory.com)\
+    \ and go to [Applications](https://portal.basistheory.com/applications)\n* Create\
+    \ a Basis Theory Server to Server Application\n* All permissions should be selected\n\
+    * Paste the API Key into the `BT-API-KEY` variable"
+  title: Basis Theory API
   version: v1
 servers:
-- description: Production server
-  url: https://api.basistheory.com
+- url: https://api.basistheory.com
 security:
 - ApiKey: []
 paths:
   /applications:
     get:
-      operationId: ApplicationsGet
+      operationId: Applications.Get
       parameters:
       - explode: true
         in: query
@@ -43,7 +46,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ApplicationModelPaginatedList'
+                $ref: '#/components/schemas/ApplicationPaginatedList'
           description: Success
         "401":
           content:
@@ -66,18 +69,18 @@ paths:
       tags:
       - Applications
     post:
-      operationId: ApplicationCreate
+      operationId: Applications.Create
       requestBody:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/CreateApplicationModel'
+              $ref: '#/components/schemas/CreateApplicationRequest'
       responses:
         "201":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ApplicationModel'
+                $ref: '#/components/schemas/Application'
           description: Created
         "400":
           content:
@@ -101,7 +104,7 @@ paths:
       - Applications
   /applications/{id}:
     delete:
-      operationId: ApplicationDelete
+      operationId: Applications.Delete
       parameters:
       - explode: false
         in: path
@@ -116,62 +119,26 @@ paths:
           description: No Content
         "401":
           content:
-            text/plain:
-              schema:
-                $ref: '#/components/schemas/ProblemDetails'
             application/json:
-              schema:
-                $ref: '#/components/schemas/ProblemDetails'
-            text/json:
-              schema:
-                $ref: '#/components/schemas/ProblemDetails'
-            application/xml:
-              schema:
-                $ref: '#/components/schemas/ProblemDetails'
-            text/xml:
               schema:
                 $ref: '#/components/schemas/ProblemDetails'
           description: Unauthorized
         "403":
           content:
-            text/plain:
-              schema:
-                $ref: '#/components/schemas/ProblemDetails'
             application/json:
-              schema:
-                $ref: '#/components/schemas/ProblemDetails'
-            text/json:
-              schema:
-                $ref: '#/components/schemas/ProblemDetails'
-            application/xml:
-              schema:
-                $ref: '#/components/schemas/ProblemDetails'
-            text/xml:
               schema:
                 $ref: '#/components/schemas/ProblemDetails'
           description: Forbidden
         "404":
           content:
-            text/plain:
-              schema:
-                $ref: '#/components/schemas/ProblemDetails'
             application/json:
-              schema:
-                $ref: '#/components/schemas/ProblemDetails'
-            text/json:
-              schema:
-                $ref: '#/components/schemas/ProblemDetails'
-            application/xml:
-              schema:
-                $ref: '#/components/schemas/ProblemDetails'
-            text/xml:
               schema:
                 $ref: '#/components/schemas/ProblemDetails'
           description: Not Found
       tags:
       - Applications
     get:
-      operationId: ApplicationGetById
+      operationId: Applications.GetById
       parameters:
       - explode: false
         in: path
@@ -186,7 +153,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ApplicationModel'
+                $ref: '#/components/schemas/Application'
           description: Success
         "401":
           content:
@@ -209,7 +176,7 @@ paths:
       tags:
       - Applications
     put:
-      operationId: ApplicationUpdate
+      operationId: Applications.Update
       parameters:
       - explode: false
         in: path
@@ -223,13 +190,13 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/UpdateApplicationModel'
+              $ref: '#/components/schemas/UpdateApplicationRequest'
       responses:
         "200":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ApplicationModel'
+                $ref: '#/components/schemas/Application'
           description: Success
         "400":
           content:
@@ -259,13 +226,13 @@ paths:
       - Applications
   /applications/key:
     get:
-      operationId: ApplicationKey
+      operationId: Applications.GetByKey
       responses:
         "200":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ApplicationModel'
+                $ref: '#/components/schemas/Application'
           description: Success
         "401":
           content:
@@ -283,7 +250,7 @@ paths:
       - Applications
   /applications/{id}/regenerate:
     post:
-      operationId: ApplicationRegenerate
+      operationId: Applications.RegenerateKey
       parameters:
       - explode: false
         in: path
@@ -298,7 +265,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ApplicationModel'
+                $ref: '#/components/schemas/Application'
           description: Success
         "401":
           content:
@@ -320,9 +287,233 @@ paths:
           description: Not Found
       tags:
       - Applications
+  /inbound-proxies:
+    get:
+      operationId: InboundProxies.Get
+      parameters:
+      - explode: true
+        in: query
+        name: id
+        required: false
+        schema:
+          items:
+            format: uuid
+            type: string
+          type: array
+        style: form
+      - explode: true
+        in: query
+        name: name
+        required: false
+        schema:
+          maxLength: 200
+          nullable: true
+          type: string
+        style: form
+      - explode: true
+        in: query
+        name: page
+        required: false
+        schema:
+          format: int32
+          nullable: true
+          type: integer
+        style: form
+      - explode: true
+        in: query
+        name: size
+        required: false
+        schema:
+          format: int32
+          nullable: true
+          type: integer
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InboundProxyPaginatedList'
+          description: Success
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Unauthorized
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Forbidden
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Not Found
+      tags:
+      - InboundProxies
+    post:
+      operationId: InboundProxies.Create
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateInboundProxyRequest'
+      responses:
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InboundProxy'
+          description: Created
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationProblemDetails'
+          description: Bad Request
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Unauthorized
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Forbidden
+      tags:
+      - InboundProxies
+  /inbound-proxies/{id}:
+    delete:
+      operationId: InboundProxies.Delete
+      parameters:
+      - explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          format: uuid
+          type: string
+        style: simple
+      responses:
+        "204":
+          description: No Content
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Unauthorized
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Forbidden
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Not Found
+      tags:
+      - InboundProxies
+    get:
+      operationId: InboundProxies.GetById
+      parameters:
+      - explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          format: uuid
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InboundProxy'
+          description: Success
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Unauthorized
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Forbidden
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Not Found
+      tags:
+      - InboundProxies
+    put:
+      operationId: InboundProxies.Update
+      parameters:
+      - explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          format: uuid
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateInboundProxyRequest'
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InboundProxy'
+          description: Success
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationProblemDetails'
+          description: Bad Request
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Unauthorized
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Forbidden
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Not Found
+      tags:
+      - InboundProxies
   /reactor-formulas:
     get:
-      operationId: ReactorFormulasGet
+      operationId: ReactorFormulas.Get
       parameters:
       - explode: true
         in: query
@@ -352,7 +543,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ReactorFormulaModelPaginatedList'
+                $ref: '#/components/schemas/ReactorFormulaPaginatedList'
           description: Success
         "400":
           content:
@@ -375,18 +566,18 @@ paths:
       tags:
       - ReactorFormulas
     post:
-      operationId: ReactorFormulaCreate
+      operationId: ReactorFormulas.Create
       requestBody:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/CreateReactorFormulaModel'
+              $ref: '#/components/schemas/CreateReactorFormulaRequest'
       responses:
         "201":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ReactorFormulaModel'
+                $ref: '#/components/schemas/ReactorFormula'
           description: Created
         "400":
           content:
@@ -410,7 +601,7 @@ paths:
       - ReactorFormulas
   /reactor-formulas/{id}:
     delete:
-      operationId: ReactorFormulaDelete
+      operationId: ReactorFormulas.Delete
       parameters:
       - explode: false
         in: path
@@ -425,62 +616,26 @@ paths:
           description: No Content
         "401":
           content:
-            text/plain:
-              schema:
-                $ref: '#/components/schemas/ProblemDetails'
             application/json:
-              schema:
-                $ref: '#/components/schemas/ProblemDetails'
-            text/json:
-              schema:
-                $ref: '#/components/schemas/ProblemDetails'
-            application/xml:
-              schema:
-                $ref: '#/components/schemas/ProblemDetails'
-            text/xml:
               schema:
                 $ref: '#/components/schemas/ProblemDetails'
           description: Unauthorized
         "403":
           content:
-            text/plain:
-              schema:
-                $ref: '#/components/schemas/ProblemDetails'
             application/json:
-              schema:
-                $ref: '#/components/schemas/ProblemDetails'
-            text/json:
-              schema:
-                $ref: '#/components/schemas/ProblemDetails'
-            application/xml:
-              schema:
-                $ref: '#/components/schemas/ProblemDetails'
-            text/xml:
               schema:
                 $ref: '#/components/schemas/ProblemDetails'
           description: Forbidden
         "404":
           content:
-            text/plain:
-              schema:
-                $ref: '#/components/schemas/ProblemDetails'
             application/json:
-              schema:
-                $ref: '#/components/schemas/ProblemDetails'
-            text/json:
-              schema:
-                $ref: '#/components/schemas/ProblemDetails'
-            application/xml:
-              schema:
-                $ref: '#/components/schemas/ProblemDetails'
-            text/xml:
               schema:
                 $ref: '#/components/schemas/ProblemDetails'
           description: Not Found
       tags:
       - ReactorFormulas
     get:
-      operationId: ReactorFormulaGetById
+      operationId: ReactorFormulas.GetById
       parameters:
       - explode: false
         in: path
@@ -495,7 +650,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ReactorFormulaModel'
+                $ref: '#/components/schemas/ReactorFormula'
           description: Success
         "401":
           content:
@@ -518,7 +673,7 @@ paths:
       tags:
       - ReactorFormulas
     put:
-      operationId: ReactorFormulaUpdate
+      operationId: ReactorFormulas.Update
       parameters:
       - explode: false
         in: path
@@ -532,13 +687,13 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/UpdateReactorFormulaModel'
+              $ref: '#/components/schemas/UpdateReactorFormulaRequest'
       responses:
         "200":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ReactorFormulaModel'
+                $ref: '#/components/schemas/ReactorFormula'
           description: Success
         "400":
           content:
@@ -568,7 +723,7 @@ paths:
       - ReactorFormulas
   /reactors:
     get:
-      operationId: ReactorsGet
+      operationId: Reactors.Get
       parameters:
       - explode: true
         in: query
@@ -608,7 +763,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ReactorModelPaginatedList'
+                $ref: '#/components/schemas/ReactorPaginatedList'
           description: Success
         "401":
           content:
@@ -631,18 +786,18 @@ paths:
       tags:
       - Reactors
     post:
-      operationId: ReactorCreate
+      operationId: Reactors.Create
       requestBody:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/CreateReactorModel'
+              $ref: '#/components/schemas/CreateReactorRequest'
       responses:
         "201":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ReactorModel'
+                $ref: '#/components/schemas/Reactor'
           description: Created
         "400":
           content:
@@ -666,7 +821,7 @@ paths:
       - Reactors
   /reactors/{id}:
     delete:
-      operationId: ReactorDelete
+      operationId: Reactors.Delete
       parameters:
       - explode: false
         in: path
@@ -681,62 +836,26 @@ paths:
           description: No Content
         "401":
           content:
-            text/plain:
-              schema:
-                $ref: '#/components/schemas/ProblemDetails'
             application/json:
-              schema:
-                $ref: '#/components/schemas/ProblemDetails'
-            text/json:
-              schema:
-                $ref: '#/components/schemas/ProblemDetails'
-            application/xml:
-              schema:
-                $ref: '#/components/schemas/ProblemDetails'
-            text/xml:
               schema:
                 $ref: '#/components/schemas/ProblemDetails'
           description: Unauthorized
         "403":
           content:
-            text/plain:
-              schema:
-                $ref: '#/components/schemas/ProblemDetails'
             application/json:
-              schema:
-                $ref: '#/components/schemas/ProblemDetails'
-            text/json:
-              schema:
-                $ref: '#/components/schemas/ProblemDetails'
-            application/xml:
-              schema:
-                $ref: '#/components/schemas/ProblemDetails'
-            text/xml:
               schema:
                 $ref: '#/components/schemas/ProblemDetails'
           description: Forbidden
         "404":
           content:
-            text/plain:
-              schema:
-                $ref: '#/components/schemas/ProblemDetails'
             application/json:
-              schema:
-                $ref: '#/components/schemas/ProblemDetails'
-            text/json:
-              schema:
-                $ref: '#/components/schemas/ProblemDetails'
-            application/xml:
-              schema:
-                $ref: '#/components/schemas/ProblemDetails'
-            text/xml:
               schema:
                 $ref: '#/components/schemas/ProblemDetails'
           description: Not Found
       tags:
       - Reactors
     get:
-      operationId: ReactorGetById
+      operationId: Reactors.GetById
       parameters:
       - explode: false
         in: path
@@ -751,7 +870,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ReactorModel'
+                $ref: '#/components/schemas/Reactor'
           description: Success
         "401":
           content:
@@ -774,7 +893,7 @@ paths:
       tags:
       - Reactors
     put:
-      operationId: ReactorUpdate
+      operationId: Reactors.Update
       parameters:
       - explode: false
         in: path
@@ -788,13 +907,13 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/UpdateReactorModel'
+              $ref: '#/components/schemas/UpdateReactorRequest'
       responses:
         "200":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ReactorModel'
+                $ref: '#/components/schemas/Reactor'
           description: Success
         "400":
           content:
@@ -824,7 +943,7 @@ paths:
       - Reactors
   /reactors/{id}/react:
     post:
-      operationId: ReactorReact
+      operationId: Reactors.React
       parameters:
       - explode: false
         in: path
@@ -880,7 +999,7 @@ paths:
       - Reactors
 components:
   schemas:
-    ApplicationModel:
+    Application:
       additionalProperties: false
       example:
         tenant_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
@@ -933,7 +1052,7 @@ components:
           nullable: true
           type: array
       type: object
-    ApplicationModelPaginatedList:
+    ApplicationPaginatedList:
       additionalProperties: false
       example:
         pagination:
@@ -971,11 +1090,11 @@ components:
           $ref: '#/components/schemas/Pagination'
         data:
           items:
-            $ref: '#/components/schemas/ApplicationModel'
+            $ref: '#/components/schemas/Application'
           nullable: true
           type: array
       type: object
-    CreateApplicationModel:
+    CreateApplicationRequest:
       additionalProperties: false
       example:
         permissions:
@@ -985,18 +1104,45 @@ components:
         type: type
       properties:
         name:
-          nullable: true
+          maxLength: 200
+          minLength: 1
           type: string
         type:
-          nullable: true
+          minLength: 1
           type: string
         permissions:
           items:
             type: string
           nullable: true
           type: array
+      required:
+      - name
+      - type
       type: object
-    CreateReactorFormulaModel:
+    CreateInboundProxyRequest:
+      additionalProperties: false
+      example:
+        name: name
+        destination_url: destination_url
+        request_reactor_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+      properties:
+        name:
+          maxLength: 200
+          minLength: 1
+          type: string
+        destination_url:
+          maxLength: 400
+          minLength: 1
+          type: string
+        request_reactor_id:
+          format: uuid
+          type: string
+      required:
+      - destination_url
+      - name
+      - request_reactor_id
+      type: object
+    CreateReactorFormulaRequest:
       additionalProperties: false
       example:
         code: code
@@ -1027,10 +1173,11 @@ components:
           nullable: true
           type: string
         type:
-          nullable: true
+          minLength: 1
           type: string
         name:
-          nullable: true
+          maxLength: 200
+          minLength: 1
           type: string
         description:
           nullable: true
@@ -1043,18 +1190,34 @@ components:
           type: string
         configuration:
           items:
-            $ref: '#/components/schemas/ReactorFormulaConfigurationModel'
+            $ref: '#/components/schemas/ReactorFormulaConfiguration'
           nullable: true
           type: array
         request_parameters:
           items:
-            $ref: '#/components/schemas/ReactorFormulaRequestParameterModel'
+            $ref: '#/components/schemas/ReactorFormulaRequestParameter'
           nullable: true
           type: array
+      required:
+      - name
+      - type
       type: object
-    CreateReactorModel:
+    CreateReactorRequest:
       additionalProperties: false
       example:
+        application:
+          tenant_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          permissions:
+          - permissions
+          - permissions
+          name: name
+          modified_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          created_at: 2000-01-23T04:56:07.000+00:00
+          id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          type: type
+          modified_at: 2000-01-23T04:56:07.000+00:00
+          created_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          key: key
         configuration:
           key: configuration
         name: name
@@ -1088,16 +1251,131 @@ components:
           status: status
       properties:
         name:
-          nullable: true
+          maxLength: 200
+          minLength: 1
           type: string
         formula:
-          $ref: '#/components/schemas/ReactorFormulaModel'
+          $ref: '#/components/schemas/ReactorFormula'
+        application:
+          $ref: '#/components/schemas/Application'
         configuration:
           additionalProperties:
             nullable: true
             type: string
           nullable: true
           type: object
+      required:
+      - name
+      type: object
+    GetInboundProxies:
+      additionalProperties: false
+      properties:
+        ids:
+          items:
+            format: uuid
+            type: string
+          nullable: true
+          type: array
+        name:
+          maxLength: 200
+          nullable: true
+          type: string
+        page:
+          format: int32
+          nullable: true
+          type: integer
+        size:
+          format: int32
+          nullable: true
+          type: integer
+      type: object
+    InboundProxy:
+      additionalProperties: false
+      example:
+        tenant_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        name: name
+        destination_url: destination_url
+        modified_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        created_at: 2000-01-23T04:56:07.000+00:00
+        request_reactor_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        modified_at: 2000-01-23T04:56:07.000+00:00
+        created_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        key: key
+      properties:
+        id:
+          format: uuid
+          type: string
+        key:
+          nullable: true
+          readOnly: true
+          type: string
+        tenant_id:
+          format: uuid
+          type: string
+        name:
+          nullable: true
+          type: string
+        destination_url:
+          nullable: true
+          type: string
+        request_reactor_id:
+          format: uuid
+          type: string
+        created_by:
+          format: uuid
+          nullable: true
+          type: string
+        created_at:
+          format: date-time
+          nullable: true
+          type: string
+        modified_by:
+          format: uuid
+          nullable: true
+          type: string
+        modified_at:
+          format: date-time
+          nullable: true
+          type: string
+      type: object
+    InboundProxyPaginatedList:
+      additionalProperties: false
+      example:
+        pagination:
+          page_number: 6
+          total_pages: 5
+          total_items: 0
+          page_size: 1
+        data:
+        - tenant_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          name: name
+          destination_url: destination_url
+          modified_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          created_at: 2000-01-23T04:56:07.000+00:00
+          request_reactor_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          modified_at: 2000-01-23T04:56:07.000+00:00
+          created_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          key: key
+        - tenant_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          name: name
+          destination_url: destination_url
+          modified_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          created_at: 2000-01-23T04:56:07.000+00:00
+          request_reactor_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          modified_at: 2000-01-23T04:56:07.000+00:00
+          created_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          key: key
+      properties:
+        pagination:
+          $ref: '#/components/schemas/Pagination'
+        data:
+          items:
+            $ref: '#/components/schemas/InboundProxy'
+          nullable: true
+          type: array
       type: object
     Pagination:
       additionalProperties: false
@@ -1159,24 +1437,97 @@ components:
         raw:
           nullable: true
       type: object
-    ReactorFormulaConfigurationModel:
+    Reactor:
       additionalProperties: false
       example:
+        tenant_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        application:
+          tenant_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          permissions:
+          - permissions
+          - permissions
+          name: name
+          modified_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          created_at: 2000-01-23T04:56:07.000+00:00
+          id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          type: type
+          modified_at: 2000-01-23T04:56:07.000+00:00
+          created_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          key: key
+        configuration:
+          key: configuration
         name: name
-        description: description
-        type: type
+        modified_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        formula:
+          code: code
+          configuration:
+          - name: name
+            description: description
+            type: type
+          - name: name
+            description: description
+            type: type
+          icon: icon
+          description: description
+          created_at: 2000-01-23T04:56:07.000+00:00
+          type: type
+          created_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          request_parameters:
+          - name: name
+            description: description
+            optional: true
+            type: type
+          - name: name
+            description: description
+            optional: true
+            type: type
+          name: name
+          modified_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          modified_at: 2000-01-23T04:56:07.000+00:00
+          status: status
+        created_at: 2000-01-23T04:56:07.000+00:00
+        id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        modified_at: 2000-01-23T04:56:07.000+00:00
+        created_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
       properties:
+        id:
+          format: uuid
+          type: string
+        tenant_id:
+          format: uuid
+          type: string
         name:
           nullable: true
           type: string
-        description:
+        formula:
+          $ref: '#/components/schemas/ReactorFormula'
+        application:
+          $ref: '#/components/schemas/Application'
+        created_by:
+          format: uuid
           nullable: true
           type: string
-        type:
+        created_at:
+          format: date-time
           nullable: true
           type: string
+        modified_by:
+          format: uuid
+          nullable: true
+          type: string
+        modified_at:
+          format: date-time
+          nullable: true
+          type: string
+        configuration:
+          additionalProperties:
+            nullable: true
+            type: string
+          nullable: true
+          type: object
       type: object
-    ReactorFormulaModel:
+    ReactorFormula:
       additionalProperties: false
       example:
         code: code
@@ -1246,16 +1597,38 @@ components:
           type: string
         configuration:
           items:
-            $ref: '#/components/schemas/ReactorFormulaConfigurationModel'
+            $ref: '#/components/schemas/ReactorFormulaConfiguration'
           nullable: true
           type: array
         request_parameters:
           items:
-            $ref: '#/components/schemas/ReactorFormulaRequestParameterModel'
+            $ref: '#/components/schemas/ReactorFormulaRequestParameter'
           nullable: true
           type: array
       type: object
-    ReactorFormulaModelPaginatedList:
+    ReactorFormulaConfiguration:
+      additionalProperties: false
+      example:
+        name: name
+        description: description
+        type: type
+      properties:
+        name:
+          maxLength: 200
+          minLength: 1
+          pattern: "^[\\w-]+$"
+          type: string
+        description:
+          nullable: true
+          type: string
+        type:
+          minLength: 1
+          type: string
+      required:
+      - name
+      - type
+      type: object
+    ReactorFormulaPaginatedList:
       additionalProperties: false
       example:
         pagination:
@@ -1323,11 +1696,11 @@ components:
           $ref: '#/components/schemas/Pagination'
         data:
           items:
-            $ref: '#/components/schemas/ReactorFormulaModel'
+            $ref: '#/components/schemas/ReactorFormula'
           nullable: true
           type: array
       type: object
-    ReactorFormulaRequestParameterModel:
+    ReactorFormulaRequestParameter:
       additionalProperties: false
       example:
         name: name
@@ -1336,93 +1709,23 @@ components:
         type: type
       properties:
         name:
-          nullable: true
+          maxLength: 200
+          minLength: 1
+          pattern: "^[\\w-.]+$"
           type: string
         description:
           nullable: true
           type: string
         type:
-          nullable: true
+          minLength: 1
           type: string
         optional:
           type: boolean
+      required:
+      - name
+      - type
       type: object
-    ReactorModel:
-      additionalProperties: false
-      example:
-        tenant_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-        configuration:
-          key: configuration
-        name: name
-        modified_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-        formula:
-          code: code
-          configuration:
-          - name: name
-            description: description
-            type: type
-          - name: name
-            description: description
-            type: type
-          icon: icon
-          description: description
-          created_at: 2000-01-23T04:56:07.000+00:00
-          type: type
-          created_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-          request_parameters:
-          - name: name
-            description: description
-            optional: true
-            type: type
-          - name: name
-            description: description
-            optional: true
-            type: type
-          name: name
-          modified_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-          id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-          modified_at: 2000-01-23T04:56:07.000+00:00
-          status: status
-        created_at: 2000-01-23T04:56:07.000+00:00
-        id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-        modified_at: 2000-01-23T04:56:07.000+00:00
-        created_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-      properties:
-        id:
-          format: uuid
-          type: string
-        tenant_id:
-          format: uuid
-          type: string
-        name:
-          nullable: true
-          type: string
-        formula:
-          $ref: '#/components/schemas/ReactorFormulaModel'
-        created_by:
-          format: uuid
-          nullable: true
-          type: string
-        created_at:
-          format: date-time
-          nullable: true
-          type: string
-        modified_by:
-          format: uuid
-          nullable: true
-          type: string
-        modified_at:
-          format: date-time
-          nullable: true
-          type: string
-        configuration:
-          additionalProperties:
-            nullable: true
-            type: string
-          nullable: true
-          type: object
-      type: object
-    ReactorModelPaginatedList:
+    ReactorPaginatedList:
       additionalProperties: false
       example:
         pagination:
@@ -1432,6 +1735,19 @@ components:
           page_size: 1
         data:
         - tenant_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          application:
+            tenant_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+            permissions:
+            - permissions
+            - permissions
+            name: name
+            modified_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+            created_at: 2000-01-23T04:56:07.000+00:00
+            id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+            type: type
+            modified_at: 2000-01-23T04:56:07.000+00:00
+            created_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+            key: key
           configuration:
             key: configuration
           name: name
@@ -1469,6 +1785,19 @@ components:
           modified_at: 2000-01-23T04:56:07.000+00:00
           created_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
         - tenant_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          application:
+            tenant_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+            permissions:
+            - permissions
+            - permissions
+            name: name
+            modified_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+            created_at: 2000-01-23T04:56:07.000+00:00
+            id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+            type: type
+            modified_at: 2000-01-23T04:56:07.000+00:00
+            created_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+            key: key
           configuration:
             key: configuration
           name: name
@@ -1510,11 +1839,11 @@ components:
           $ref: '#/components/schemas/Pagination'
         data:
           items:
-            $ref: '#/components/schemas/ReactorModel'
+            $ref: '#/components/schemas/Reactor'
           nullable: true
           type: array
       type: object
-    UpdateApplicationModel:
+    UpdateApplicationRequest:
       additionalProperties: false
       example:
         permissions:
@@ -1523,15 +1852,41 @@ components:
         name: name
       properties:
         name:
-          nullable: true
+          maxLength: 200
+          minLength: 1
           type: string
         permissions:
           items:
             type: string
           nullable: true
           type: array
+      required:
+      - name
       type: object
-    UpdateReactorFormulaModel:
+    UpdateInboundProxyRequest:
+      additionalProperties: false
+      example:
+        name: name
+        destination_url: destination_url
+        request_reactor_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+      properties:
+        name:
+          maxLength: 200
+          minLength: 1
+          type: string
+        destination_url:
+          maxLength: 400
+          minLength: 1
+          type: string
+        request_reactor_id:
+          format: uuid
+          type: string
+      required:
+      - destination_url
+      - name
+      - request_reactor_id
+      type: object
+    UpdateReactorFormulaRequest:
       additionalProperties: false
       example:
         code: code
@@ -1557,10 +1912,11 @@ components:
           type: type
       properties:
         type:
-          nullable: true
+          minLength: 1
           type: string
         name:
-          nullable: true
+          maxLength: 200
+          minLength: 1
           type: string
         description:
           nullable: true
@@ -1573,31 +1929,52 @@ components:
           type: string
         configuration:
           items:
-            $ref: '#/components/schemas/ReactorFormulaConfigurationModel'
+            $ref: '#/components/schemas/ReactorFormulaConfiguration'
           nullable: true
           type: array
         request_parameters:
           items:
-            $ref: '#/components/schemas/ReactorFormulaRequestParameterModel'
+            $ref: '#/components/schemas/ReactorFormulaRequestParameter'
           nullable: true
           type: array
+      required:
+      - name
+      - type
       type: object
-    UpdateReactorModel:
+    UpdateReactorRequest:
       additionalProperties: false
       example:
+        application:
+          tenant_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          permissions:
+          - permissions
+          - permissions
+          name: name
+          modified_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          created_at: 2000-01-23T04:56:07.000+00:00
+          id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          type: type
+          modified_at: 2000-01-23T04:56:07.000+00:00
+          created_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          key: key
         configuration:
           key: configuration
         name: name
       properties:
         name:
-          nullable: true
+          maxLength: 200
+          minLength: 1
           type: string
+        application:
+          $ref: '#/components/schemas/Application'
         configuration:
           additionalProperties:
             nullable: true
             type: string
           nullable: true
           type: object
+      required:
+      - name
       type: object
     ValidationProblemDetails:
       additionalProperties: {}

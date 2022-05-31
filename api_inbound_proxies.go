@@ -21,53 +21,53 @@ import (
 )
 
 
-// ReactorsApiService ReactorsApi service
-type ReactorsApiService service
+// InboundProxiesApiService InboundProxiesApi service
+type InboundProxiesApiService service
 
-type ApiReactorsCreateRequest struct {
+type ApiInboundProxiesCreateRequest struct {
 	ctx context.Context
-	ApiService *ReactorsApiService
-	createReactorRequest *CreateReactorRequest
+	ApiService *InboundProxiesApiService
+	createInboundProxyRequest *CreateInboundProxyRequest
 }
 
-func (r ApiReactorsCreateRequest) CreateReactorRequest(createReactorRequest CreateReactorRequest) ApiReactorsCreateRequest {
-	r.createReactorRequest = &createReactorRequest
+func (r ApiInboundProxiesCreateRequest) CreateInboundProxyRequest(createInboundProxyRequest CreateInboundProxyRequest) ApiInboundProxiesCreateRequest {
+	r.createInboundProxyRequest = &createInboundProxyRequest
 	return r
 }
 
-func (r ApiReactorsCreateRequest) Execute() (*Reactor, *http.Response, error) {
-	return r.ApiService.ReactorsCreateExecute(r)
+func (r ApiInboundProxiesCreateRequest) Execute() (*InboundProxy, *http.Response, error) {
+	return r.ApiService.InboundProxiesCreateExecute(r)
 }
 
 /*
-ReactorsCreate Method for ReactorsCreate
+InboundProxiesCreate Method for InboundProxiesCreate
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiReactorsCreateRequest
+ @return ApiInboundProxiesCreateRequest
 */
-func (a *ReactorsApiService) ReactorsCreate(ctx context.Context) ApiReactorsCreateRequest {
-	return ApiReactorsCreateRequest{
+func (a *InboundProxiesApiService) InboundProxiesCreate(ctx context.Context) ApiInboundProxiesCreateRequest {
+	return ApiInboundProxiesCreateRequest{
 		ApiService: a,
 		ctx: ctx,
 	}
 }
 
 // Execute executes the request
-//  @return Reactor
-func (a *ReactorsApiService) ReactorsCreateExecute(r ApiReactorsCreateRequest) (*Reactor, *http.Response, error) {
+//  @return InboundProxy
+func (a *InboundProxiesApiService) InboundProxiesCreateExecute(r ApiInboundProxiesCreateRequest) (*InboundProxy, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *Reactor
+		localVarReturnValue  *InboundProxy
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ReactorsApiService.ReactorsCreate")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "InboundProxiesApiService.InboundProxiesCreate")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/reactors"
+	localVarPath := localBasePath + "/inbound-proxies"
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -91,7 +91,7 @@ func (a *ReactorsApiService) ReactorsCreateExecute(r ApiReactorsCreateRequest) (
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.createReactorRequest
+	localVarPostBody = r.createInboundProxyRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -172,25 +172,25 @@ func (a *ReactorsApiService) ReactorsCreateExecute(r ApiReactorsCreateRequest) (
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiReactorsDeleteRequest struct {
+type ApiInboundProxiesDeleteRequest struct {
 	ctx context.Context
-	ApiService *ReactorsApiService
+	ApiService *InboundProxiesApiService
 	id string
 }
 
-func (r ApiReactorsDeleteRequest) Execute() (*http.Response, error) {
-	return r.ApiService.ReactorsDeleteExecute(r)
+func (r ApiInboundProxiesDeleteRequest) Execute() (*http.Response, error) {
+	return r.ApiService.InboundProxiesDeleteExecute(r)
 }
 
 /*
-ReactorsDelete Method for ReactorsDelete
+InboundProxiesDelete Method for InboundProxiesDelete
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param id
- @return ApiReactorsDeleteRequest
+ @return ApiInboundProxiesDeleteRequest
 */
-func (a *ReactorsApiService) ReactorsDelete(ctx context.Context, id string) ApiReactorsDeleteRequest {
-	return ApiReactorsDeleteRequest{
+func (a *InboundProxiesApiService) InboundProxiesDelete(ctx context.Context, id string) ApiInboundProxiesDeleteRequest {
+	return ApiInboundProxiesDeleteRequest{
 		ApiService: a,
 		ctx: ctx,
 		id: id,
@@ -198,19 +198,19 @@ func (a *ReactorsApiService) ReactorsDelete(ctx context.Context, id string) ApiR
 }
 
 // Execute executes the request
-func (a *ReactorsApiService) ReactorsDeleteExecute(r ApiReactorsDeleteRequest) (*http.Response, error) {
+func (a *InboundProxiesApiService) InboundProxiesDeleteExecute(r ApiInboundProxiesDeleteRequest) (*http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodDelete
 		localVarPostBody     interface{}
 		formFiles            []formFile
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ReactorsApiService.ReactorsDelete")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "InboundProxiesApiService.InboundProxiesDelete")
 	if err != nil {
 		return nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/reactors/{id}"
+	localVarPath := localBasePath + "/inbound-proxies/{id}"
 	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterToString(r.id, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
@@ -305,68 +305,68 @@ func (a *ReactorsApiService) ReactorsDeleteExecute(r ApiReactorsDeleteRequest) (
 	return localVarHTTPResponse, nil
 }
 
-type ApiReactorsGetRequest struct {
+type ApiInboundProxiesGetRequest struct {
 	ctx context.Context
-	ApiService *ReactorsApiService
+	ApiService *InboundProxiesApiService
 	id *[]string
 	name *string
 	page *int32
 	size *int32
 }
 
-func (r ApiReactorsGetRequest) Id(id []string) ApiReactorsGetRequest {
+func (r ApiInboundProxiesGetRequest) Id(id []string) ApiInboundProxiesGetRequest {
 	r.id = &id
 	return r
 }
 
-func (r ApiReactorsGetRequest) Name(name string) ApiReactorsGetRequest {
+func (r ApiInboundProxiesGetRequest) Name(name string) ApiInboundProxiesGetRequest {
 	r.name = &name
 	return r
 }
 
-func (r ApiReactorsGetRequest) Page(page int32) ApiReactorsGetRequest {
+func (r ApiInboundProxiesGetRequest) Page(page int32) ApiInboundProxiesGetRequest {
 	r.page = &page
 	return r
 }
 
-func (r ApiReactorsGetRequest) Size(size int32) ApiReactorsGetRequest {
+func (r ApiInboundProxiesGetRequest) Size(size int32) ApiInboundProxiesGetRequest {
 	r.size = &size
 	return r
 }
 
-func (r ApiReactorsGetRequest) Execute() (*ReactorPaginatedList, *http.Response, error) {
-	return r.ApiService.ReactorsGetExecute(r)
+func (r ApiInboundProxiesGetRequest) Execute() (*InboundProxyPaginatedList, *http.Response, error) {
+	return r.ApiService.InboundProxiesGetExecute(r)
 }
 
 /*
-ReactorsGet Method for ReactorsGet
+InboundProxiesGet Method for InboundProxiesGet
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiReactorsGetRequest
+ @return ApiInboundProxiesGetRequest
 */
-func (a *ReactorsApiService) ReactorsGet(ctx context.Context) ApiReactorsGetRequest {
-	return ApiReactorsGetRequest{
+func (a *InboundProxiesApiService) InboundProxiesGet(ctx context.Context) ApiInboundProxiesGetRequest {
+	return ApiInboundProxiesGetRequest{
 		ApiService: a,
 		ctx: ctx,
 	}
 }
 
 // Execute executes the request
-//  @return ReactorPaginatedList
-func (a *ReactorsApiService) ReactorsGetExecute(r ApiReactorsGetRequest) (*ReactorPaginatedList, *http.Response, error) {
+//  @return InboundProxyPaginatedList
+func (a *InboundProxiesApiService) InboundProxiesGetExecute(r ApiInboundProxiesGetRequest) (*InboundProxyPaginatedList, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *ReactorPaginatedList
+		localVarReturnValue  *InboundProxyPaginatedList
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ReactorsApiService.ReactorsGet")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "InboundProxiesApiService.InboundProxiesGet")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/reactors"
+	localVarPath := localBasePath + "/inbound-proxies"
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -489,25 +489,25 @@ func (a *ReactorsApiService) ReactorsGetExecute(r ApiReactorsGetRequest) (*React
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiReactorsGetByIdRequest struct {
+type ApiInboundProxiesGetByIdRequest struct {
 	ctx context.Context
-	ApiService *ReactorsApiService
+	ApiService *InboundProxiesApiService
 	id string
 }
 
-func (r ApiReactorsGetByIdRequest) Execute() (*Reactor, *http.Response, error) {
-	return r.ApiService.ReactorsGetByIdExecute(r)
+func (r ApiInboundProxiesGetByIdRequest) Execute() (*InboundProxy, *http.Response, error) {
+	return r.ApiService.InboundProxiesGetByIdExecute(r)
 }
 
 /*
-ReactorsGetById Method for ReactorsGetById
+InboundProxiesGetById Method for InboundProxiesGetById
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param id
- @return ApiReactorsGetByIdRequest
+ @return ApiInboundProxiesGetByIdRequest
 */
-func (a *ReactorsApiService) ReactorsGetById(ctx context.Context, id string) ApiReactorsGetByIdRequest {
-	return ApiReactorsGetByIdRequest{
+func (a *InboundProxiesApiService) InboundProxiesGetById(ctx context.Context, id string) ApiInboundProxiesGetByIdRequest {
+	return ApiInboundProxiesGetByIdRequest{
 		ApiService: a,
 		ctx: ctx,
 		id: id,
@@ -515,21 +515,21 @@ func (a *ReactorsApiService) ReactorsGetById(ctx context.Context, id string) Api
 }
 
 // Execute executes the request
-//  @return Reactor
-func (a *ReactorsApiService) ReactorsGetByIdExecute(r ApiReactorsGetByIdRequest) (*Reactor, *http.Response, error) {
+//  @return InboundProxy
+func (a *InboundProxiesApiService) InboundProxiesGetByIdExecute(r ApiInboundProxiesGetByIdRequest) (*InboundProxy, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *Reactor
+		localVarReturnValue  *InboundProxy
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ReactorsApiService.ReactorsGetById")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "InboundProxiesApiService.InboundProxiesGetById")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/reactors/{id}"
+	localVarPath := localBasePath + "/inbound-proxies/{id}"
 	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterToString(r.id, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
@@ -633,31 +633,31 @@ func (a *ReactorsApiService) ReactorsGetByIdExecute(r ApiReactorsGetByIdRequest)
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiReactorsReactRequest struct {
+type ApiInboundProxiesUpdateRequest struct {
 	ctx context.Context
-	ApiService *ReactorsApiService
+	ApiService *InboundProxiesApiService
 	id string
-	reactRequest *ReactRequest
+	updateInboundProxyRequest *UpdateInboundProxyRequest
 }
 
-func (r ApiReactorsReactRequest) ReactRequest(reactRequest ReactRequest) ApiReactorsReactRequest {
-	r.reactRequest = &reactRequest
+func (r ApiInboundProxiesUpdateRequest) UpdateInboundProxyRequest(updateInboundProxyRequest UpdateInboundProxyRequest) ApiInboundProxiesUpdateRequest {
+	r.updateInboundProxyRequest = &updateInboundProxyRequest
 	return r
 }
 
-func (r ApiReactorsReactRequest) Execute() (*ReactResponse, *http.Response, error) {
-	return r.ApiService.ReactorsReactExecute(r)
+func (r ApiInboundProxiesUpdateRequest) Execute() (*InboundProxy, *http.Response, error) {
+	return r.ApiService.InboundProxiesUpdateExecute(r)
 }
 
 /*
-ReactorsReact Method for ReactorsReact
+InboundProxiesUpdate Method for InboundProxiesUpdate
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param id
- @return ApiReactorsReactRequest
+ @return ApiInboundProxiesUpdateRequest
 */
-func (a *ReactorsApiService) ReactorsReact(ctx context.Context, id string) ApiReactorsReactRequest {
-	return ApiReactorsReactRequest{
+func (a *InboundProxiesApiService) InboundProxiesUpdate(ctx context.Context, id string) ApiInboundProxiesUpdateRequest {
+	return ApiInboundProxiesUpdateRequest{
 		ApiService: a,
 		ctx: ctx,
 		id: id,
@@ -665,193 +665,21 @@ func (a *ReactorsApiService) ReactorsReact(ctx context.Context, id string) ApiRe
 }
 
 // Execute executes the request
-//  @return ReactResponse
-func (a *ReactorsApiService) ReactorsReactExecute(r ApiReactorsReactRequest) (*ReactResponse, *http.Response, error) {
-	var (
-		localVarHTTPMethod   = http.MethodPost
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *ReactResponse
-	)
-
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ReactorsApiService.ReactorsReact")
-	if err != nil {
-		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
-	}
-
-	localVarPath := localBasePath + "/reactors/{id}/react"
-	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterToString(r.id, "")), -1)
-
-	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := url.Values{}
-	localVarFormParams := url.Values{}
-
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{"application/json"}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
-
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
-	// body params
-	localVarPostBody = r.reactRequest
-	if r.ctx != nil {
-		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
-			if apiKey, ok := auth["ApiKey"]; ok {
-				var key string
-				if apiKey.Prefix != "" {
-					key = apiKey.Prefix + " " + apiKey.Key
-				} else {
-					key = apiKey.Key
-				}
-				localVarHeaderParams["BT-API-KEY"] = key
-			}
-		}
-	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
-	if err != nil {
-		return localVarReturnValue, nil, err
-	}
-
-	localVarHTTPResponse, err := a.client.callAPI(req)
-	if err != nil || localVarHTTPResponse == nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
-	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
-	if err != nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := &GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
-		}
-		if localVarHTTPResponse.StatusCode == 400 {
-			var v ValidationProblemDetails
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 401 {
-			var v ProblemDetails
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 403 {
-			var v ProblemDetails
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 404 {
-			var v ProblemDetails
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 422 {
-			var v ProblemDetails
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-	if err != nil {
-		newErr := &GenericOpenAPIError{
-			body:  localVarBody,
-			error: err.Error(),
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	return localVarReturnValue, localVarHTTPResponse, nil
-}
-
-type ApiReactorsUpdateRequest struct {
-	ctx context.Context
-	ApiService *ReactorsApiService
-	id string
-	updateReactorRequest *UpdateReactorRequest
-}
-
-func (r ApiReactorsUpdateRequest) UpdateReactorRequest(updateReactorRequest UpdateReactorRequest) ApiReactorsUpdateRequest {
-	r.updateReactorRequest = &updateReactorRequest
-	return r
-}
-
-func (r ApiReactorsUpdateRequest) Execute() (*Reactor, *http.Response, error) {
-	return r.ApiService.ReactorsUpdateExecute(r)
-}
-
-/*
-ReactorsUpdate Method for ReactorsUpdate
-
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param id
- @return ApiReactorsUpdateRequest
-*/
-func (a *ReactorsApiService) ReactorsUpdate(ctx context.Context, id string) ApiReactorsUpdateRequest {
-	return ApiReactorsUpdateRequest{
-		ApiService: a,
-		ctx: ctx,
-		id: id,
-	}
-}
-
-// Execute executes the request
-//  @return Reactor
-func (a *ReactorsApiService) ReactorsUpdateExecute(r ApiReactorsUpdateRequest) (*Reactor, *http.Response, error) {
+//  @return InboundProxy
+func (a *InboundProxiesApiService) InboundProxiesUpdateExecute(r ApiInboundProxiesUpdateRequest) (*InboundProxy, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPut
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *Reactor
+		localVarReturnValue  *InboundProxy
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ReactorsApiService.ReactorsUpdate")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "InboundProxiesApiService.InboundProxiesUpdate")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/reactors/{id}"
+	localVarPath := localBasePath + "/inbound-proxies/{id}"
 	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterToString(r.id, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
@@ -876,7 +704,7 @@ func (a *ReactorsApiService) ReactorsUpdateExecute(r ApiReactorsUpdateRequest) (
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.updateReactorRequest
+	localVarPostBody = r.updateInboundProxyRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {

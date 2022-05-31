@@ -1,20 +1,20 @@
-# \ReactorFormulasApi
+# \InboundProxiesApi
 
 All URIs are relative to *https://api.basistheory.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**ReactorFormulasCreate**](ReactorFormulasApi.md#ReactorFormulasCreate) | **Post** /reactor-formulas | 
-[**ReactorFormulasDelete**](ReactorFormulasApi.md#ReactorFormulasDelete) | **Delete** /reactor-formulas/{id} | 
-[**ReactorFormulasGet**](ReactorFormulasApi.md#ReactorFormulasGet) | **Get** /reactor-formulas | 
-[**ReactorFormulasGetById**](ReactorFormulasApi.md#ReactorFormulasGetById) | **Get** /reactor-formulas/{id} | 
-[**ReactorFormulasUpdate**](ReactorFormulasApi.md#ReactorFormulasUpdate) | **Put** /reactor-formulas/{id} | 
+[**InboundProxiesCreate**](InboundProxiesApi.md#InboundProxiesCreate) | **Post** /inbound-proxies | 
+[**InboundProxiesDelete**](InboundProxiesApi.md#InboundProxiesDelete) | **Delete** /inbound-proxies/{id} | 
+[**InboundProxiesGet**](InboundProxiesApi.md#InboundProxiesGet) | **Get** /inbound-proxies | 
+[**InboundProxiesGetById**](InboundProxiesApi.md#InboundProxiesGetById) | **Get** /inbound-proxies/{id} | 
+[**InboundProxiesUpdate**](InboundProxiesApi.md#InboundProxiesUpdate) | **Put** /inbound-proxies/{id} | 
 
 
 
-## ReactorFormulasCreate
+## InboundProxiesCreate
 
-> ReactorFormula ReactorFormulasCreate(ctx).CreateReactorFormulaRequest(createReactorFormulaRequest).Execute()
+> InboundProxy InboundProxiesCreate(ctx).CreateInboundProxyRequest(createInboundProxyRequest).Execute()
 
 
 
@@ -31,17 +31,17 @@ import (
 )
 
 func main() {
-    createReactorFormulaRequest := *openapiclient.NewCreateReactorFormulaRequest("Type_example", "Name_example") // CreateReactorFormulaRequest |  (optional)
+    createInboundProxyRequest := *openapiclient.NewCreateInboundProxyRequest("Name_example", "DestinationUrl_example", "RequestReactorId_example") // CreateInboundProxyRequest |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ReactorFormulasApi.ReactorFormulasCreate(context.Background()).CreateReactorFormulaRequest(createReactorFormulaRequest).Execute()
+    resp, r, err := apiClient.InboundProxiesApi.InboundProxiesCreate(context.Background()).CreateInboundProxyRequest(createInboundProxyRequest).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `ReactorFormulasApi.ReactorFormulasCreate``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `InboundProxiesApi.InboundProxiesCreate``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `ReactorFormulasCreate`: ReactorFormula
-    fmt.Fprintf(os.Stdout, "Response from `ReactorFormulasApi.ReactorFormulasCreate`: %v\n", resp)
+    // response from `InboundProxiesCreate`: InboundProxy
+    fmt.Fprintf(os.Stdout, "Response from `InboundProxiesApi.InboundProxiesCreate`: %v\n", resp)
 }
 ```
 
@@ -51,16 +51,16 @@ func main() {
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiReactorFormulasCreateRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiInboundProxiesCreateRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **createReactorFormulaRequest** | [**CreateReactorFormulaRequest**](CreateReactorFormulaRequest.md) |  | 
+ **createInboundProxyRequest** | [**CreateInboundProxyRequest**](CreateInboundProxyRequest.md) |  | 
 
 ### Return type
 
-[**ReactorFormula**](ReactorFormula.md)
+[**InboundProxy**](InboundProxy.md)
 
 ### Authorization
 
@@ -76,9 +76,9 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
-## ReactorFormulasDelete
+## InboundProxiesDelete
 
-> ReactorFormulasDelete(ctx, id).Execute()
+> InboundProxiesDelete(ctx, id).Execute()
 
 
 
@@ -99,9 +99,9 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ReactorFormulasApi.ReactorFormulasDelete(context.Background(), id).Execute()
+    resp, r, err := apiClient.InboundProxiesApi.InboundProxiesDelete(context.Background(), id).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `ReactorFormulasApi.ReactorFormulasDelete``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `InboundProxiesApi.InboundProxiesDelete``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
 }
@@ -117,7 +117,7 @@ Name | Type | Description  | Notes
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiReactorFormulasDeleteRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiInboundProxiesDeleteRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
@@ -142,9 +142,9 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
-## ReactorFormulasGet
+## InboundProxiesGet
 
-> ReactorFormulaPaginatedList ReactorFormulasGet(ctx).Name(name).Page(page).Size(size).Execute()
+> InboundProxyPaginatedList InboundProxiesGet(ctx).Id(id).Name(name).Page(page).Size(size).Execute()
 
 
 
@@ -161,19 +161,20 @@ import (
 )
 
 func main() {
+    id := []string{"Inner_example"} // []string |  (optional)
     name := "name_example" // string |  (optional)
     page := int32(56) // int32 |  (optional)
     size := int32(56) // int32 |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ReactorFormulasApi.ReactorFormulasGet(context.Background()).Name(name).Page(page).Size(size).Execute()
+    resp, r, err := apiClient.InboundProxiesApi.InboundProxiesGet(context.Background()).Id(id).Name(name).Page(page).Size(size).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `ReactorFormulasApi.ReactorFormulasGet``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `InboundProxiesApi.InboundProxiesGet``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `ReactorFormulasGet`: ReactorFormulaPaginatedList
-    fmt.Fprintf(os.Stdout, "Response from `ReactorFormulasApi.ReactorFormulasGet`: %v\n", resp)
+    // response from `InboundProxiesGet`: InboundProxyPaginatedList
+    fmt.Fprintf(os.Stdout, "Response from `InboundProxiesApi.InboundProxiesGet`: %v\n", resp)
 }
 ```
 
@@ -183,18 +184,19 @@ func main() {
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiReactorFormulasGetRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiInboundProxiesGetRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **id** | **[]string** |  | 
  **name** | **string** |  | 
  **page** | **int32** |  | 
  **size** | **int32** |  | 
 
 ### Return type
 
-[**ReactorFormulaPaginatedList**](ReactorFormulaPaginatedList.md)
+[**InboundProxyPaginatedList**](InboundProxyPaginatedList.md)
 
 ### Authorization
 
@@ -210,9 +212,9 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
-## ReactorFormulasGetById
+## InboundProxiesGetById
 
-> ReactorFormula ReactorFormulasGetById(ctx, id).Execute()
+> InboundProxy InboundProxiesGetById(ctx, id).Execute()
 
 
 
@@ -233,13 +235,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ReactorFormulasApi.ReactorFormulasGetById(context.Background(), id).Execute()
+    resp, r, err := apiClient.InboundProxiesApi.InboundProxiesGetById(context.Background(), id).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `ReactorFormulasApi.ReactorFormulasGetById``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `InboundProxiesApi.InboundProxiesGetById``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `ReactorFormulasGetById`: ReactorFormula
-    fmt.Fprintf(os.Stdout, "Response from `ReactorFormulasApi.ReactorFormulasGetById`: %v\n", resp)
+    // response from `InboundProxiesGetById`: InboundProxy
+    fmt.Fprintf(os.Stdout, "Response from `InboundProxiesApi.InboundProxiesGetById`: %v\n", resp)
 }
 ```
 
@@ -253,7 +255,7 @@ Name | Type | Description  | Notes
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiReactorFormulasGetByIdRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiInboundProxiesGetByIdRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
@@ -262,7 +264,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ReactorFormula**](ReactorFormula.md)
+[**InboundProxy**](InboundProxy.md)
 
 ### Authorization
 
@@ -278,9 +280,9 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
-## ReactorFormulasUpdate
+## InboundProxiesUpdate
 
-> ReactorFormula ReactorFormulasUpdate(ctx, id).UpdateReactorFormulaRequest(updateReactorFormulaRequest).Execute()
+> InboundProxy InboundProxiesUpdate(ctx, id).UpdateInboundProxyRequest(updateInboundProxyRequest).Execute()
 
 
 
@@ -298,17 +300,17 @@ import (
 
 func main() {
     id := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | 
-    updateReactorFormulaRequest := *openapiclient.NewUpdateReactorFormulaRequest("Type_example", "Name_example") // UpdateReactorFormulaRequest |  (optional)
+    updateInboundProxyRequest := *openapiclient.NewUpdateInboundProxyRequest("Name_example", "DestinationUrl_example", "RequestReactorId_example") // UpdateInboundProxyRequest |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ReactorFormulasApi.ReactorFormulasUpdate(context.Background(), id).UpdateReactorFormulaRequest(updateReactorFormulaRequest).Execute()
+    resp, r, err := apiClient.InboundProxiesApi.InboundProxiesUpdate(context.Background(), id).UpdateInboundProxyRequest(updateInboundProxyRequest).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `ReactorFormulasApi.ReactorFormulasUpdate``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `InboundProxiesApi.InboundProxiesUpdate``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `ReactorFormulasUpdate`: ReactorFormula
-    fmt.Fprintf(os.Stdout, "Response from `ReactorFormulasApi.ReactorFormulasUpdate`: %v\n", resp)
+    // response from `InboundProxiesUpdate`: InboundProxy
+    fmt.Fprintf(os.Stdout, "Response from `InboundProxiesApi.InboundProxiesUpdate`: %v\n", resp)
 }
 ```
 
@@ -322,17 +324,17 @@ Name | Type | Description  | Notes
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiReactorFormulasUpdateRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiInboundProxiesUpdateRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **updateReactorFormulaRequest** | [**UpdateReactorFormulaRequest**](UpdateReactorFormulaRequest.md) |  | 
+ **updateInboundProxyRequest** | [**UpdateInboundProxyRequest**](UpdateInboundProxyRequest.md) |  | 
 
 ### Return type
 
-[**ReactorFormula**](ReactorFormula.md)
+[**InboundProxy**](InboundProxy.md)
 
 ### Authorization
 
