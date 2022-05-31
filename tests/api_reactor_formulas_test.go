@@ -14,10 +14,10 @@ func TestReactorFormulaCRUD(t *testing.T) {
 	reactorFormulaName := "Go Test Reactor Formula"
 	reactorFormulaCode := "module.exports = function (req) {return {raw: \"Goodbye World\"}}"
 
-	createReactorFormulaModel := *basistheory.NewCreateReactorFormulaRequest("private", reactorFormulaName)
-	createReactorFormulaModel.SetCode(reactorFormulaCode)
+	createReactorFormulaRequest := *basistheory.NewCreateReactorFormulaRequest("private", reactorFormulaName)
+	createReactorFormulaRequest.SetCode(reactorFormulaCode)
 
-	createdReactorFormula, response, err := apiClient.ReactorFormulasApi.ReactorFormulasCreate(contextWithAPIKey).CreateReactorFormulaRequest(createReactorFormulaModel).Execute()
+	createdReactorFormula, response, err := apiClient.ReactorFormulasApi.ReactorFormulasCreate(contextWithAPIKey).CreateReactorFormulaRequest(createReactorFormulaRequest).Execute()
 
 	testutils.AssertMethodDidNotError(err, response, "ReactorFormulaCreate", t)
 	testutils.AssertPropertiesMatch(createdReactorFormula.GetName(), reactorFormulaName, t)
@@ -42,11 +42,11 @@ func TestReactorFormulaCRUD(t *testing.T) {
 	// UPDATE
 	updatedReactorFormulaName := "Go Test Reactor Formula Update"
 	updatedReactorFormulaCode := "module.exports = function (req) {return {raw: \"Hello World\"}}"
-	updateReactorFormulaModel := *basistheory.NewUpdateReactorFormulaRequest("private", updatedReactorFormulaName)
-	updateReactorFormulaModel.SetCode(updatedReactorFormulaCode)
+	updateReactorFormulaRequest := *basistheory.NewUpdateReactorFormulaRequest("private", updatedReactorFormulaName)
+	updateReactorFormulaRequest.SetCode(updatedReactorFormulaCode)
 
 	var updatedReactorFormula *basistheory.ReactorFormula
-	updatedReactorFormula, response, err = apiClient.ReactorFormulasApi.ReactorFormulasUpdate(contextWithAPIKey, createdReactorFormula.GetId()).UpdateReactorFormulaRequest(updateReactorFormulaModel).Execute()
+	updatedReactorFormula, response, err = apiClient.ReactorFormulasApi.ReactorFormulasUpdate(contextWithAPIKey, createdReactorFormula.GetId()).UpdateReactorFormulaRequest(updateReactorFormulaRequest).Execute()
 
 	testutils.AssertMethodDidNotError(err, response, "ReactorFormulaUpdate", t)
 	testutils.AssertPropertiesMatch(updatedReactorFormula.GetName(), updatedReactorFormulaName, t)

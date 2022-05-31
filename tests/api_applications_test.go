@@ -19,10 +19,10 @@ func TestApplicationCRUD(t *testing.T) {
 	applicationName, applicationType := getApplicationNameAndType()
 
 	applicationPermissions := []string{"token:pci:create"}
-	createApplicationModel := *basistheory.NewCreateApplicationRequest(applicationName, applicationType)
-	createApplicationModel.SetPermissions(applicationPermissions)
+	createApplicationRequest := *basistheory.NewCreateApplicationRequest(applicationName, applicationType)
+	createApplicationRequest.SetPermissions(applicationPermissions)
 
-	createdApplication, response, err := apiClient.ApplicationsApi.ApplicationsCreate(contextWithAPIKey).CreateApplicationRequest(createApplicationModel).Execute()
+	createdApplication, response, err := apiClient.ApplicationsApi.ApplicationsCreate(contextWithAPIKey).CreateApplicationRequest(createApplicationRequest).Execute()
 
 	testutils.AssertMethodDidNotError(err, response, "ApplicationCreate", t)
 
@@ -47,12 +47,12 @@ func TestApplicationCRUD(t *testing.T) {
 	// UPDATE
 	updatedApplicationName := "Updated Name"
 	updatedApplicationPermissions := []string{"token:general:read:low"}
-	updateApplicationModel := basistheory.UpdateApplicationRequest{}
-	updateApplicationModel.SetName(updatedApplicationName)
-	updateApplicationModel.SetPermissions(updatedApplicationPermissions)
+	updateApplicationRequest := basistheory.UpdateApplicationRequest{}
+	updateApplicationRequest.SetName(updatedApplicationName)
+	updateApplicationRequest.SetPermissions(updatedApplicationPermissions)
 
 	var updatedApplication *basistheory.Application
-	updatedApplication, response, err = apiClient.ApplicationsApi.ApplicationsUpdate(contextWithAPIKey, createdApplication.GetId()).UpdateApplicationRequest(updateApplicationModel).Execute()
+	updatedApplication, response, err = apiClient.ApplicationsApi.ApplicationsUpdate(contextWithAPIKey, createdApplication.GetId()).UpdateApplicationRequest(updateApplicationRequest).Execute()
 
 	testutils.AssertMethodDidNotError(err, response, "ApplicationUpdate", t)
 	testutils.AssertPropertiesMatch(updatedApplication.GetName(), updatedApplicationName, t)
@@ -73,10 +73,10 @@ func TestApplicationRegenerate(t *testing.T) {
 	applicationName, applicationType := getApplicationNameAndType()
 
 	applicationPermissions := []string{"token:pci:create"}
-	createApplicationModel := *basistheory.NewCreateApplicationRequest(applicationName, applicationType)
-	createApplicationModel.SetPermissions(applicationPermissions)
+	createApplicationRequest := *basistheory.NewCreateApplicationRequest(applicationName, applicationType)
+	createApplicationRequest.SetPermissions(applicationPermissions)
 
-	createdApplication, response, err := apiClient.ApplicationsApi.ApplicationsCreate(contextWithAPIKey).CreateApplicationRequest(createApplicationModel).Execute()
+	createdApplication, response, err := apiClient.ApplicationsApi.ApplicationsCreate(contextWithAPIKey).CreateApplicationRequest(createApplicationRequest).Execute()
 
 	testutils.AssertMethodDidNotError(err, response, "ApplicationCreate", t)
 
@@ -94,10 +94,10 @@ func TestApplicationKey(t *testing.T) {
 	applicationName, applicationType := getApplicationNameAndType()
 
 	applicationPermissions := []string{"token:pci:create"}
-	createApplicationModel := *basistheory.NewCreateApplicationRequest(applicationName, applicationType)
-	createApplicationModel.SetPermissions(applicationPermissions)
+	createApplicationRequest := *basistheory.NewCreateApplicationRequest(applicationName, applicationType)
+	createApplicationRequest.SetPermissions(applicationPermissions)
 
-	createdApplication, response, err := apiClient.ApplicationsApi.ApplicationsCreate(contextWithAPIKey).CreateApplicationRequest(createApplicationModel).Execute()
+	createdApplication, response, err := apiClient.ApplicationsApi.ApplicationsCreate(contextWithAPIKey).CreateApplicationRequest(createApplicationRequest).Execute()
 
 	testutils.AssertMethodDidNotError(err, response, "ApplicationCreate", t)
 
