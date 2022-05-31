@@ -1,13 +1,13 @@
 {
   "openapi": "3.0.1",
   "info": {
-    "title": "BasisTheory Vault API",
+    "title": "Basis Theory API",
+    "description": "## Getting Started\n* Sign-in to [Basis Theory](https://basistheory.com) and go to [Applications](https://portal.basistheory.com/applications)\n* Create a Basis Theory Server to Server Application\n* All permissions should be selected\n* Paste the API Key into the `BT-API-KEY` variable",
     "version": "v1"
   },
   "servers": [
     {
-      "url": "https://api.basistheory.com",
-      "description": "Production server"
+      "url": "https://api.basistheory.com"
     }
   ],
   "paths": {
@@ -16,6 +16,7 @@
         "tags": [
           "Applications"
         ],
+        "operationId": "Applications.Get",
         "parameters": [
           {
             "name": "id",
@@ -51,7 +52,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/ApplicationModelPaginatedList"
+                  "$ref": "#/components/schemas/ApplicationPaginatedList"
                 }
               }
             }
@@ -86,18 +87,18 @@
               }
             }
           }
-        },
-        "operationId": "ApplicationsGet"
+        }
       },
       "post": {
         "tags": [
           "Applications"
         ],
+        "operationId": "Applications.Create",
         "requestBody": {
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/CreateApplicationModel"
+                "$ref": "#/components/schemas/CreateApplicationRequest"
               }
             }
           }
@@ -108,7 +109,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/ApplicationModel"
+                  "$ref": "#/components/schemas/Application"
                 }
               }
             }
@@ -143,8 +144,7 @@
               }
             }
           }
-        },
-        "operationId": "ApplicationCreate"
+        }
       }
     },
     "/applications/{id}": {
@@ -152,6 +152,7 @@
         "tags": [
           "Applications"
         ],
+        "operationId": "Applications.GetById",
         "parameters": [
           {
             "name": "id",
@@ -169,7 +170,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/ApplicationModel"
+                  "$ref": "#/components/schemas/Application"
                 }
               }
             }
@@ -204,13 +205,13 @@
               }
             }
           }
-        },
-        "operationId": "ApplicationGetById"
+        }
       },
       "put": {
         "tags": [
           "Applications"
         ],
+        "operationId": "Applications.Update",
         "parameters": [
           {
             "name": "id",
@@ -226,7 +227,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/UpdateApplicationModel"
+                "$ref": "#/components/schemas/UpdateApplicationRequest"
               }
             }
           }
@@ -237,7 +238,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/ApplicationModel"
+                  "$ref": "#/components/schemas/Application"
                 }
               }
             }
@@ -282,13 +283,13 @@
               }
             }
           }
-        },
-        "operationId": "ApplicationUpdate"
+        }
       },
       "delete": {
         "tags": [
           "Applications"
         ],
+        "operationId": "Applications.Delete",
         "parameters": [
           {
             "name": "id",
@@ -307,27 +308,7 @@
           "401": {
             "description": "Unauthorized",
             "content": {
-              "text/plain": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetails"
-                }
-              },
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetails"
-                }
-              },
-              "text/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetails"
-                }
-              },
-              "application/xml": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetails"
-                }
-              },
-              "text/xml": {
                 "schema": {
                   "$ref": "#/components/schemas/ProblemDetails"
                 }
@@ -337,27 +318,7 @@
           "403": {
             "description": "Forbidden",
             "content": {
-              "text/plain": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetails"
-                }
-              },
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetails"
-                }
-              },
-              "text/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetails"
-                }
-              },
-              "application/xml": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetails"
-                }
-              },
-              "text/xml": {
                 "schema": {
                   "$ref": "#/components/schemas/ProblemDetails"
                 }
@@ -367,35 +328,14 @@
           "404": {
             "description": "Not Found",
             "content": {
-              "text/plain": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetails"
-                }
-              },
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetails"
-                }
-              },
-              "text/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetails"
-                }
-              },
-              "application/xml": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetails"
-                }
-              },
-              "text/xml": {
                 "schema": {
                   "$ref": "#/components/schemas/ProblemDetails"
                 }
               }
             }
           }
-        },
-        "operationId": "ApplicationDelete"
+        }
       }
     },
     "/applications/key": {
@@ -403,13 +343,14 @@
         "tags": [
           "Applications"
         ],
+        "operationId": "Applications.GetByKey",
         "responses": {
           "200": {
             "description": "Success",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/ApplicationModel"
+                  "$ref": "#/components/schemas/Application"
                 }
               }
             }
@@ -434,8 +375,7 @@
               }
             }
           }
-        },
-        "operationId": "ApplicationKey"
+        }
       }
     },
     "/applications/{id}/regenerate": {
@@ -443,6 +383,7 @@
         "tags": [
           "Applications"
         ],
+        "operationId": "Applications.RegenerateKey",
         "parameters": [
           {
             "name": "id",
@@ -460,7 +401,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/ApplicationModel"
+                  "$ref": "#/components/schemas/Application"
                 }
               }
             }
@@ -495,8 +436,345 @@
               }
             }
           }
+        }
+      }
+    },
+    "/inbound-proxies": {
+      "get": {
+        "tags": [
+          "InboundProxies"
+        ],
+        "operationId": "InboundProxies.Get",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "query",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "format": "uuid"
+              }
+            }
+          },
+          {
+            "name": "name",
+            "in": "query",
+            "schema": {
+              "maxLength": 200,
+              "type": "string",
+              "nullable": true
+            }
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "nullable": true
+            }
+          },
+          {
+            "name": "size",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "nullable": true
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/InboundProxyPaginatedList"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "InboundProxies"
+        ],
+        "operationId": "InboundProxies.Create",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateInboundProxyRequest"
+              }
+            }
+          }
         },
-        "operationId": "ApplicationRegenerate"
+        "responses": {
+          "201": {
+            "description": "Created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/InboundProxy"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ValidationProblemDetails"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/inbound-proxies/{id}": {
+      "get": {
+        "tags": [
+          "InboundProxies"
+        ],
+        "operationId": "InboundProxies.GetById",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/InboundProxy"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "InboundProxies"
+        ],
+        "operationId": "InboundProxies.Update",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateInboundProxyRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/InboundProxy"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ValidationProblemDetails"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "InboundProxies"
+        ],
+        "operationId": "InboundProxies.Delete",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content"
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
       }
     },
     "/reactor-formulas": {
@@ -504,6 +782,7 @@
         "tags": [
           "ReactorFormulas"
         ],
+        "operationId": "ReactorFormulas.Get",
         "parameters": [
           {
             "name": "name",
@@ -535,7 +814,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/ReactorFormulaModelPaginatedList"
+                  "$ref": "#/components/schemas/ReactorFormulaPaginatedList"
                 }
               }
             }
@@ -570,18 +849,18 @@
               }
             }
           }
-        },
-        "operationId": "ReactorFormulasGet"
+        }
       },
       "post": {
         "tags": [
           "ReactorFormulas"
         ],
+        "operationId": "ReactorFormulas.Create",
         "requestBody": {
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/CreateReactorFormulaModel"
+                "$ref": "#/components/schemas/CreateReactorFormulaRequest"
               }
             }
           }
@@ -592,7 +871,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/ReactorFormulaModel"
+                  "$ref": "#/components/schemas/ReactorFormula"
                 }
               }
             }
@@ -627,8 +906,7 @@
               }
             }
           }
-        },
-        "operationId": "ReactorFormulaCreate"
+        }
       }
     },
     "/reactor-formulas/{id}": {
@@ -636,6 +914,7 @@
         "tags": [
           "ReactorFormulas"
         ],
+        "operationId": "ReactorFormulas.GetById",
         "parameters": [
           {
             "name": "id",
@@ -653,7 +932,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/ReactorFormulaModel"
+                  "$ref": "#/components/schemas/ReactorFormula"
                 }
               }
             }
@@ -688,13 +967,13 @@
               }
             }
           }
-        },
-        "operationId": "ReactorFormulaGetById"
+        }
       },
       "put": {
         "tags": [
           "ReactorFormulas"
         ],
+        "operationId": "ReactorFormulas.Update",
         "parameters": [
           {
             "name": "id",
@@ -710,7 +989,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/UpdateReactorFormulaModel"
+                "$ref": "#/components/schemas/UpdateReactorFormulaRequest"
               }
             }
           }
@@ -721,7 +1000,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/ReactorFormulaModel"
+                  "$ref": "#/components/schemas/ReactorFormula"
                 }
               }
             }
@@ -766,13 +1045,13 @@
               }
             }
           }
-        },
-        "operationId": "ReactorFormulaUpdate"
+        }
       },
       "delete": {
         "tags": [
           "ReactorFormulas"
         ],
+        "operationId": "ReactorFormulas.Delete",
         "parameters": [
           {
             "name": "id",
@@ -786,59 +1065,12 @@
         ],
         "responses": {
           "204": {
-            "description": "No Content",
-            "content": {
-              "text/plain": {
-                "schema": {
-                  "$ref": "#/components/schemas/ReactorFormulaModel"
-                }
-              },
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ReactorFormulaModel"
-                }
-              },
-              "text/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ReactorFormulaModel"
-                }
-              },
-              "application/xml": {
-                "schema": {
-                  "$ref": "#/components/schemas/ReactorFormulaModel"
-                }
-              },
-              "text/xml": {
-                "schema": {
-                  "$ref": "#/components/schemas/ReactorFormulaModel"
-                }
-              }
-            }
+            "description": "No Content"
           },
           "401": {
             "description": "Unauthorized",
             "content": {
-              "text/plain": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetails"
-                }
-              },
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetails"
-                }
-              },
-              "text/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetails"
-                }
-              },
-              "application/xml": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetails"
-                }
-              },
-              "text/xml": {
                 "schema": {
                   "$ref": "#/components/schemas/ProblemDetails"
                 }
@@ -848,27 +1080,7 @@
           "403": {
             "description": "Forbidden",
             "content": {
-              "text/plain": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetails"
-                }
-              },
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetails"
-                }
-              },
-              "text/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetails"
-                }
-              },
-              "application/xml": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetails"
-                }
-              },
-              "text/xml": {
                 "schema": {
                   "$ref": "#/components/schemas/ProblemDetails"
                 }
@@ -878,35 +1090,14 @@
           "404": {
             "description": "Not Found",
             "content": {
-              "text/plain": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetails"
-                }
-              },
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetails"
-                }
-              },
-              "text/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetails"
-                }
-              },
-              "application/xml": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetails"
-                }
-              },
-              "text/xml": {
                 "schema": {
                   "$ref": "#/components/schemas/ProblemDetails"
                 }
               }
             }
           }
-        },
-        "operationId": "ReactorFormulaDelete"
+        }
       }
     },
     "/reactors": {
@@ -914,6 +1105,7 @@
         "tags": [
           "Reactors"
         ],
+        "operationId": "Reactors.Get",
         "parameters": [
           {
             "name": "id",
@@ -956,7 +1148,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/ReactorModelPaginatedList"
+                  "$ref": "#/components/schemas/ReactorPaginatedList"
                 }
               }
             }
@@ -991,18 +1183,18 @@
               }
             }
           }
-        },
-        "operationId": "ReactorsGet"
+        }
       },
       "post": {
         "tags": [
           "Reactors"
         ],
+        "operationId": "Reactors.Create",
         "requestBody": {
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/CreateReactorModel"
+                "$ref": "#/components/schemas/CreateReactorRequest"
               }
             }
           }
@@ -1013,7 +1205,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/ReactorModel"
+                  "$ref": "#/components/schemas/Reactor"
                 }
               }
             }
@@ -1048,8 +1240,7 @@
               }
             }
           }
-        },
-        "operationId": "ReactorCreate"
+        }
       }
     },
     "/reactors/{id}": {
@@ -1057,6 +1248,7 @@
         "tags": [
           "Reactors"
         ],
+        "operationId": "Reactors.GetById",
         "parameters": [
           {
             "name": "id",
@@ -1074,7 +1266,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/ReactorModel"
+                  "$ref": "#/components/schemas/Reactor"
                 }
               }
             }
@@ -1109,13 +1301,13 @@
               }
             }
           }
-        },
-        "operationId": "ReactorGetById"
+        }
       },
       "put": {
         "tags": [
           "Reactors"
         ],
+        "operationId": "Reactors.Update",
         "parameters": [
           {
             "name": "id",
@@ -1131,7 +1323,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/UpdateReactorModel"
+                "$ref": "#/components/schemas/UpdateReactorRequest"
               }
             }
           }
@@ -1142,7 +1334,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/ReactorModel"
+                  "$ref": "#/components/schemas/Reactor"
                 }
               }
             }
@@ -1187,13 +1379,13 @@
               }
             }
           }
-        },
-        "operationId": "ReactorUpdate"
+        }
       },
       "delete": {
         "tags": [
           "Reactors"
         ],
+        "operationId": "Reactors.Delete",
         "parameters": [
           {
             "name": "id",
@@ -1212,27 +1404,7 @@
           "401": {
             "description": "Unauthorized",
             "content": {
-              "text/plain": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetails"
-                }
-              },
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetails"
-                }
-              },
-              "text/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetails"
-                }
-              },
-              "application/xml": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetails"
-                }
-              },
-              "text/xml": {
                 "schema": {
                   "$ref": "#/components/schemas/ProblemDetails"
                 }
@@ -1242,27 +1414,7 @@
           "403": {
             "description": "Forbidden",
             "content": {
-              "text/plain": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetails"
-                }
-              },
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetails"
-                }
-              },
-              "text/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetails"
-                }
-              },
-              "application/xml": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetails"
-                }
-              },
-              "text/xml": {
                 "schema": {
                   "$ref": "#/components/schemas/ProblemDetails"
                 }
@@ -1272,35 +1424,14 @@
           "404": {
             "description": "Not Found",
             "content": {
-              "text/plain": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetails"
-                }
-              },
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetails"
-                }
-              },
-              "text/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetails"
-                }
-              },
-              "application/xml": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetails"
-                }
-              },
-              "text/xml": {
                 "schema": {
                   "$ref": "#/components/schemas/ProblemDetails"
                 }
               }
             }
           }
-        },
-        "operationId": "ReactorDelete"
+        }
       }
     },
     "/reactors/{id}/react": {
@@ -1308,6 +1439,7 @@
         "tags": [
           "Reactors"
         ],
+        "operationId": "Reactors.React",
         "parameters": [
           {
             "name": "id",
@@ -1389,14 +1521,13 @@
               }
             }
           }
-        },
-        "operationId": "ReactorReact"
+        }
       }
     }
   },
   "components": {
     "schemas": {
-      "ApplicationModel": {
+      "Application": {
         "type": "object",
         "properties": {
           "id": {
@@ -1449,7 +1580,7 @@
         },
         "additionalProperties": false
       },
-      "ApplicationModelPaginatedList": {
+      "ApplicationPaginatedList": {
         "type": "object",
         "properties": {
           "pagination": {
@@ -1458,23 +1589,28 @@
           "data": {
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/ApplicationModel"
+              "$ref": "#/components/schemas/Application"
             },
             "nullable": true
           }
         },
         "additionalProperties": false
       },
-      "CreateApplicationModel": {
+      "CreateApplicationRequest": {
+        "required": [
+          "name",
+          "type"
+        ],
         "type": "object",
         "properties": {
           "name": {
-            "type": "string",
-            "nullable": true
+            "maxLength": 200,
+            "minLength": 1,
+            "type": "string"
           },
           "type": {
-            "type": "string",
-            "nullable": true
+            "minLength": 1,
+            "type": "string"
           },
           "permissions": {
             "type": "array",
@@ -1486,7 +1622,36 @@
         },
         "additionalProperties": false
       },
-      "CreateReactorFormulaModel": {
+      "CreateInboundProxyRequest": {
+        "required": [
+          "destination_url",
+          "name",
+          "request_reactor_id"
+        ],
+        "type": "object",
+        "properties": {
+          "name": {
+            "maxLength": 200,
+            "minLength": 1,
+            "type": "string"
+          },
+          "destination_url": {
+            "maxLength": 400,
+            "minLength": 1,
+            "type": "string"
+          },
+          "request_reactor_id": {
+            "type": "string",
+            "format": "uuid"
+          }
+        },
+        "additionalProperties": false
+      },
+      "CreateReactorFormulaRequest": {
+        "required": [
+          "name",
+          "type"
+        ],
         "type": "object",
         "properties": {
           "id": {
@@ -1495,12 +1660,13 @@
             "nullable": true
           },
           "type": {
-            "type": "string",
-            "nullable": true
+            "minLength": 1,
+            "type": "string"
           },
           "name": {
-            "type": "string",
-            "nullable": true
+            "maxLength": 200,
+            "minLength": 1,
+            "type": "string"
           },
           "description": {
             "type": "string",
@@ -1517,35 +1683,138 @@
           "configuration": {
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/ReactorFormulaConfigurationModel"
+              "$ref": "#/components/schemas/ReactorFormulaConfiguration"
             },
             "nullable": true
           },
           "request_parameters": {
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/ReactorFormulaRequestParameterModel"
+              "$ref": "#/components/schemas/ReactorFormulaRequestParameter"
             },
             "nullable": true
           }
         },
         "additionalProperties": false
       },
-      "CreateReactorModel": {
+      "CreateReactorRequest": {
+        "required": [
+          "name"
+        ],
         "type": "object",
         "properties": {
           "name": {
-            "type": "string",
-            "nullable": true
+            "maxLength": 200,
+            "minLength": 1,
+            "type": "string"
           },
           "formula": {
-            "$ref": "#/components/schemas/ReactorFormulaModel"
+            "$ref": "#/components/schemas/ReactorFormula"
+          },
+          "application": {
+            "$ref": "#/components/schemas/Application"
           },
           "configuration": {
             "type": "object",
             "additionalProperties": {
               "type": "string",
               "nullable": true
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "GetInboundProxies": {
+        "type": "object",
+        "properties": {
+          "ids": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "format": "uuid"
+            },
+            "nullable": true
+          },
+          "name": {
+            "maxLength": 200,
+            "type": "string",
+            "nullable": true
+          },
+          "page": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "size": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "InboundProxy": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "key": {
+            "type": "string",
+            "nullable": true,
+            "readOnly": true
+          },
+          "tenant_id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "name": {
+            "type": "string",
+            "nullable": true
+          },
+          "destination_url": {
+            "type": "string",
+            "nullable": true
+          },
+          "request_reactor_id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "created_by": {
+            "type": "string",
+            "format": "uuid",
+            "nullable": true
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "modified_by": {
+            "type": "string",
+            "format": "uuid",
+            "nullable": true
+          },
+          "modified_at": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "InboundProxyPaginatedList": {
+        "type": "object",
+        "properties": {
+          "pagination": {
+            "$ref": "#/components/schemas/Pagination"
+          },
+          "data": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/InboundProxy"
             },
             "nullable": true
           }
@@ -1622,25 +1891,59 @@
         },
         "additionalProperties": false
       },
-      "ReactorFormulaConfigurationModel": {
+      "Reactor": {
         "type": "object",
         "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "tenant_id": {
+            "type": "string",
+            "format": "uuid"
+          },
           "name": {
             "type": "string",
             "nullable": true
           },
-          "description": {
+          "formula": {
+            "$ref": "#/components/schemas/ReactorFormula"
+          },
+          "application": {
+            "$ref": "#/components/schemas/Application"
+          },
+          "created_by": {
             "type": "string",
+            "format": "uuid",
             "nullable": true
           },
-          "type": {
+          "created_at": {
             "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "modified_by": {
+            "type": "string",
+            "format": "uuid",
+            "nullable": true
+          },
+          "modified_at": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "configuration": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "string",
+              "nullable": true
+            },
             "nullable": true
           }
         },
         "additionalProperties": false
       },
-      "ReactorFormulaModel": {
+      "ReactorFormula": {
         "type": "object",
         "properties": {
           "id": {
@@ -1694,21 +1997,45 @@
           "configuration": {
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/ReactorFormulaConfigurationModel"
+              "$ref": "#/components/schemas/ReactorFormulaConfiguration"
             },
             "nullable": true
           },
           "request_parameters": {
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/ReactorFormulaRequestParameterModel"
+              "$ref": "#/components/schemas/ReactorFormulaRequestParameter"
             },
             "nullable": true
           }
         },
         "additionalProperties": false
       },
-      "ReactorFormulaModelPaginatedList": {
+      "ReactorFormulaConfiguration": {
+        "required": [
+          "name",
+          "type"
+        ],
+        "type": "object",
+        "properties": {
+          "name": {
+            "maxLength": 200,
+            "minLength": 1,
+            "pattern": "^[\\w-]+$",
+            "type": "string"
+          },
+          "description": {
+            "type": "string",
+            "nullable": true
+          },
+          "type": {
+            "minLength": 1,
+            "type": "string"
+          }
+        },
+        "additionalProperties": false
+      },
+      "ReactorFormulaPaginatedList": {
         "type": "object",
         "properties": {
           "pagination": {
@@ -1717,27 +2044,33 @@
           "data": {
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/ReactorFormulaModel"
+              "$ref": "#/components/schemas/ReactorFormula"
             },
             "nullable": true
           }
         },
         "additionalProperties": false
       },
-      "ReactorFormulaRequestParameterModel": {
+      "ReactorFormulaRequestParameter": {
+        "required": [
+          "name",
+          "type"
+        ],
         "type": "object",
         "properties": {
           "name": {
-            "type": "string",
-            "nullable": true
+            "maxLength": 200,
+            "minLength": 1,
+            "pattern": "^[\\w-.]+$",
+            "type": "string"
           },
           "description": {
             "type": "string",
             "nullable": true
           },
           "type": {
-            "type": "string",
-            "nullable": true
+            "minLength": 1,
+            "type": "string"
           },
           "optional": {
             "type": "boolean"
@@ -1745,56 +2078,7 @@
         },
         "additionalProperties": false
       },
-      "ReactorModel": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "string",
-            "format": "uuid"
-          },
-          "tenant_id": {
-            "type": "string",
-            "format": "uuid"
-          },
-          "name": {
-            "type": "string",
-            "nullable": true
-          },
-          "formula": {
-            "$ref": "#/components/schemas/ReactorFormulaModel"
-          },
-          "created_by": {
-            "type": "string",
-            "format": "uuid",
-            "nullable": true
-          },
-          "created_at": {
-            "type": "string",
-            "format": "date-time",
-            "nullable": true
-          },
-          "modified_by": {
-            "type": "string",
-            "format": "uuid",
-            "nullable": true
-          },
-          "modified_at": {
-            "type": "string",
-            "format": "date-time",
-            "nullable": true
-          },
-          "configuration": {
-            "type": "object",
-            "additionalProperties": {
-              "type": "string",
-              "nullable": true
-            },
-            "nullable": true
-          }
-        },
-        "additionalProperties": false
-      },
-      "ReactorModelPaginatedList": {
+      "ReactorPaginatedList": {
         "type": "object",
         "properties": {
           "pagination": {
@@ -1803,19 +2087,23 @@
           "data": {
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/ReactorModel"
+              "$ref": "#/components/schemas/Reactor"
             },
             "nullable": true
           }
         },
         "additionalProperties": false
       },
-      "UpdateApplicationModel": {
+      "UpdateApplicationRequest": {
+        "required": [
+          "name"
+        ],
         "type": "object",
         "properties": {
           "name": {
-            "type": "string",
-            "nullable": true
+            "maxLength": 200,
+            "minLength": 1,
+            "type": "string"
           },
           "permissions": {
             "type": "array",
@@ -1827,16 +2115,46 @@
         },
         "additionalProperties": false
       },
-      "UpdateReactorFormulaModel": {
+      "UpdateInboundProxyRequest": {
+        "required": [
+          "destination_url",
+          "name",
+          "request_reactor_id"
+        ],
+        "type": "object",
+        "properties": {
+          "name": {
+            "maxLength": 200,
+            "minLength": 1,
+            "type": "string"
+          },
+          "destination_url": {
+            "maxLength": 400,
+            "minLength": 1,
+            "type": "string"
+          },
+          "request_reactor_id": {
+            "type": "string",
+            "format": "uuid"
+          }
+        },
+        "additionalProperties": false
+      },
+      "UpdateReactorFormulaRequest": {
+        "required": [
+          "name",
+          "type"
+        ],
         "type": "object",
         "properties": {
           "type": {
-            "type": "string",
-            "nullable": true
+            "minLength": 1,
+            "type": "string"
           },
           "name": {
-            "type": "string",
-            "nullable": true
+            "maxLength": 200,
+            "minLength": 1,
+            "type": "string"
           },
           "description": {
             "type": "string",
@@ -1853,26 +2171,33 @@
           "configuration": {
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/ReactorFormulaConfigurationModel"
+              "$ref": "#/components/schemas/ReactorFormulaConfiguration"
             },
             "nullable": true
           },
           "request_parameters": {
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/ReactorFormulaRequestParameterModel"
+              "$ref": "#/components/schemas/ReactorFormulaRequestParameter"
             },
             "nullable": true
           }
         },
         "additionalProperties": false
       },
-      "UpdateReactorModel": {
+      "UpdateReactorRequest": {
+        "required": [
+          "name"
+        ],
         "type": "object",
         "properties": {
           "name": {
-            "type": "string",
-            "nullable": true
+            "maxLength": 200,
+            "minLength": 1,
+            "type": "string"
+          },
+          "application": {
+            "$ref": "#/components/schemas/Application"
           },
           "configuration": {
             "type": "object",

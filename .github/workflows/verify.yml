@@ -21,6 +21,9 @@ jobs:
         with:
           go-version: ${{ matrix.go-version }}
 
-      - name: Go build
-        run: |
-          go build .
+      - name: Run acceptance tests
+        run: make verify
+        env:
+          BASISTHEORY_API_URL: "https://api-dev.basistheory.com"
+          BASISTHEORY_MGMT_API_KEY: ${{ secrets.BASISTHEORY_MGMT_API_KEY }}
+          BASISTHEORY_SRVR_API_KEY: ${{ secrets.BASISTHEORY_SRVR_API_KEY }}
