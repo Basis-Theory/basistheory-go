@@ -14,31 +14,31 @@ import (
 	"encoding/json"
 )
 
-// InboundProxyPaginatedList struct for InboundProxyPaginatedList
-type InboundProxyPaginatedList struct {
+// ProxyPaginatedList struct for ProxyPaginatedList
+type ProxyPaginatedList struct {
 	Pagination *Pagination `json:"pagination,omitempty"`
-	Data []InboundProxy `json:"data,omitempty"`
+	Data []Proxy `json:"data,omitempty"`
 }
 
-// NewInboundProxyPaginatedList instantiates a new InboundProxyPaginatedList object
+// NewProxyPaginatedList instantiates a new ProxyPaginatedList object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewInboundProxyPaginatedList() *InboundProxyPaginatedList {
-	this := InboundProxyPaginatedList{}
+func NewProxyPaginatedList() *ProxyPaginatedList {
+	this := ProxyPaginatedList{}
 	return &this
 }
 
-// NewInboundProxyPaginatedListWithDefaults instantiates a new InboundProxyPaginatedList object
+// NewProxyPaginatedListWithDefaults instantiates a new ProxyPaginatedList object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
-func NewInboundProxyPaginatedListWithDefaults() *InboundProxyPaginatedList {
-	this := InboundProxyPaginatedList{}
+func NewProxyPaginatedListWithDefaults() *ProxyPaginatedList {
+	this := ProxyPaginatedList{}
 	return &this
 }
 
 // GetPagination returns the Pagination field value if set, zero value otherwise.
-func (o *InboundProxyPaginatedList) GetPagination() Pagination {
+func (o *ProxyPaginatedList) GetPagination() Pagination {
 	if o == nil || o.Pagination == nil {
 		var ret Pagination
 		return ret
@@ -48,7 +48,7 @@ func (o *InboundProxyPaginatedList) GetPagination() Pagination {
 
 // GetPaginationOk returns a tuple with the Pagination field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *InboundProxyPaginatedList) GetPaginationOk() (*Pagination, bool) {
+func (o *ProxyPaginatedList) GetPaginationOk() (*Pagination, bool) {
 	if o == nil || o.Pagination == nil {
 		return nil, false
 	}
@@ -56,7 +56,7 @@ func (o *InboundProxyPaginatedList) GetPaginationOk() (*Pagination, bool) {
 }
 
 // HasPagination returns a boolean if a field has been set.
-func (o *InboundProxyPaginatedList) HasPagination() bool {
+func (o *ProxyPaginatedList) HasPagination() bool {
 	if o != nil && o.Pagination != nil {
 		return true
 	}
@@ -65,14 +65,14 @@ func (o *InboundProxyPaginatedList) HasPagination() bool {
 }
 
 // SetPagination gets a reference to the given Pagination and assigns it to the Pagination field.
-func (o *InboundProxyPaginatedList) SetPagination(v Pagination) {
+func (o *ProxyPaginatedList) SetPagination(v Pagination) {
 	o.Pagination = &v
 }
 
 // GetData returns the Data field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *InboundProxyPaginatedList) GetData() []InboundProxy {
+func (o *ProxyPaginatedList) GetData() []Proxy {
 	if o == nil {
-		var ret []InboundProxy
+		var ret []Proxy
 		return ret
 	}
 	return o.Data
@@ -81,7 +81,7 @@ func (o *InboundProxyPaginatedList) GetData() []InboundProxy {
 // GetDataOk returns a tuple with the Data field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *InboundProxyPaginatedList) GetDataOk() ([]InboundProxy, bool) {
+func (o *ProxyPaginatedList) GetDataOk() ([]Proxy, bool) {
 	if o == nil || o.Data == nil {
 		return nil, false
 	}
@@ -89,7 +89,7 @@ func (o *InboundProxyPaginatedList) GetDataOk() ([]InboundProxy, bool) {
 }
 
 // HasData returns a boolean if a field has been set.
-func (o *InboundProxyPaginatedList) HasData() bool {
+func (o *ProxyPaginatedList) HasData() bool {
 	if o != nil && o.Data != nil {
 		return true
 	}
@@ -97,12 +97,12 @@ func (o *InboundProxyPaginatedList) HasData() bool {
 	return false
 }
 
-// SetData gets a reference to the given []InboundProxy and assigns it to the Data field.
-func (o *InboundProxyPaginatedList) SetData(v []InboundProxy) {
+// SetData gets a reference to the given []Proxy and assigns it to the Data field.
+func (o *ProxyPaginatedList) SetData(v []Proxy) {
 	o.Data = v
 }
 
-func (o InboundProxyPaginatedList) MarshalJSON() ([]byte, error) {
+func (o ProxyPaginatedList) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.Pagination != nil {
 		toSerialize["pagination"] = o.Pagination
@@ -113,38 +113,38 @@ func (o InboundProxyPaginatedList) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
-type NullableInboundProxyPaginatedList struct {
-	value *InboundProxyPaginatedList
+type NullableProxyPaginatedList struct {
+	value *ProxyPaginatedList
 	isSet bool
 }
 
-func (v NullableInboundProxyPaginatedList) Get() *InboundProxyPaginatedList {
+func (v NullableProxyPaginatedList) Get() *ProxyPaginatedList {
 	return v.value
 }
 
-func (v *NullableInboundProxyPaginatedList) Set(val *InboundProxyPaginatedList) {
+func (v *NullableProxyPaginatedList) Set(val *ProxyPaginatedList) {
 	v.value = val
 	v.isSet = true
 }
 
-func (v NullableInboundProxyPaginatedList) IsSet() bool {
+func (v NullableProxyPaginatedList) IsSet() bool {
 	return v.isSet
 }
 
-func (v *NullableInboundProxyPaginatedList) Unset() {
+func (v *NullableProxyPaginatedList) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
-func NewNullableInboundProxyPaginatedList(val *InboundProxyPaginatedList) *NullableInboundProxyPaginatedList {
-	return &NullableInboundProxyPaginatedList{value: val, isSet: true}
+func NewNullableProxyPaginatedList(val *ProxyPaginatedList) *NullableProxyPaginatedList {
+	return &NullableProxyPaginatedList{value: val, isSet: true}
 }
 
-func (v NullableInboundProxyPaginatedList) MarshalJSON() ([]byte, error) {
+func (v NullableProxyPaginatedList) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
-func (v *NullableInboundProxyPaginatedList) UnmarshalJSON(src []byte) error {
+func (v *NullableProxyPaginatedList) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }

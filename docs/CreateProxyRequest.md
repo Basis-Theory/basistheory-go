@@ -1,4 +1,4 @@
-# UpdateInboundProxyRequest
+# CreateProxyRequest
 
 ## Properties
 
@@ -10,79 +10,79 @@ Name | Type | Description | Notes
 
 ## Methods
 
-### NewUpdateInboundProxyRequest
+### NewCreateProxyRequest
 
-`func NewUpdateInboundProxyRequest(name string, destinationUrl string, requestReactorId string, ) *UpdateInboundProxyRequest`
+`func NewCreateProxyRequest(name string, destinationUrl string, requestReactorId string, ) *CreateProxyRequest`
 
-NewUpdateInboundProxyRequest instantiates a new UpdateInboundProxyRequest object
+NewCreateProxyRequest instantiates a new CreateProxyRequest object
 This constructor will assign default values to properties that have it defined,
 and makes sure properties required by API are set, but the set of arguments
 will change when the set of required properties is changed
 
-### NewUpdateInboundProxyRequestWithDefaults
+### NewCreateProxyRequestWithDefaults
 
-`func NewUpdateInboundProxyRequestWithDefaults() *UpdateInboundProxyRequest`
+`func NewCreateProxyRequestWithDefaults() *CreateProxyRequest`
 
-NewUpdateInboundProxyRequestWithDefaults instantiates a new UpdateInboundProxyRequest object
+NewCreateProxyRequestWithDefaults instantiates a new CreateProxyRequest object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
 ### GetName
 
-`func (o *UpdateInboundProxyRequest) GetName() string`
+`func (o *CreateProxyRequest) GetName() string`
 
 GetName returns the Name field if non-nil, zero value otherwise.
 
 ### GetNameOk
 
-`func (o *UpdateInboundProxyRequest) GetNameOk() (*string, bool)`
+`func (o *CreateProxyRequest) GetNameOk() (*string, bool)`
 
 GetNameOk returns a tuple with the Name field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetName
 
-`func (o *UpdateInboundProxyRequest) SetName(v string)`
+`func (o *CreateProxyRequest) SetName(v string)`
 
 SetName sets Name field to given value.
 
 
 ### GetDestinationUrl
 
-`func (o *UpdateInboundProxyRequest) GetDestinationUrl() string`
+`func (o *CreateProxyRequest) GetDestinationUrl() string`
 
 GetDestinationUrl returns the DestinationUrl field if non-nil, zero value otherwise.
 
 ### GetDestinationUrlOk
 
-`func (o *UpdateInboundProxyRequest) GetDestinationUrlOk() (*string, bool)`
+`func (o *CreateProxyRequest) GetDestinationUrlOk() (*string, bool)`
 
 GetDestinationUrlOk returns a tuple with the DestinationUrl field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetDestinationUrl
 
-`func (o *UpdateInboundProxyRequest) SetDestinationUrl(v string)`
+`func (o *CreateProxyRequest) SetDestinationUrl(v string)`
 
 SetDestinationUrl sets DestinationUrl field to given value.
 
 
 ### GetRequestReactorId
 
-`func (o *UpdateInboundProxyRequest) GetRequestReactorId() string`
+`func (o *CreateProxyRequest) GetRequestReactorId() string`
 
 GetRequestReactorId returns the RequestReactorId field if non-nil, zero value otherwise.
 
 ### GetRequestReactorIdOk
 
-`func (o *UpdateInboundProxyRequest) GetRequestReactorIdOk() (*string, bool)`
+`func (o *CreateProxyRequest) GetRequestReactorIdOk() (*string, bool)`
 
 GetRequestReactorIdOk returns a tuple with the RequestReactorId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetRequestReactorId
 
-`func (o *UpdateInboundProxyRequest) SetRequestReactorId(v string)`
+`func (o *CreateProxyRequest) SetRequestReactorId(v string)`
 
 SetRequestReactorId sets RequestReactorId field to given value.
 

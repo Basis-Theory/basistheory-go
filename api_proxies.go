@@ -21,53 +21,53 @@ import (
 )
 
 
-// InboundProxiesApiService InboundProxiesApi service
-type InboundProxiesApiService service
+// ProxiesApiService ProxiesApi service
+type ProxiesApiService service
 
-type ApiInboundProxiesCreateRequest struct {
+type ApiProxiesCreateRequest struct {
 	ctx context.Context
-	ApiService *InboundProxiesApiService
-	createInboundProxyRequest *CreateInboundProxyRequest
+	ApiService *ProxiesApiService
+	createProxyRequest *CreateProxyRequest
 }
 
-func (r ApiInboundProxiesCreateRequest) CreateInboundProxyRequest(createInboundProxyRequest CreateInboundProxyRequest) ApiInboundProxiesCreateRequest {
-	r.createInboundProxyRequest = &createInboundProxyRequest
+func (r ApiProxiesCreateRequest) CreateProxyRequest(createProxyRequest CreateProxyRequest) ApiProxiesCreateRequest {
+	r.createProxyRequest = &createProxyRequest
 	return r
 }
 
-func (r ApiInboundProxiesCreateRequest) Execute() (*InboundProxy, *http.Response, error) {
-	return r.ApiService.InboundProxiesCreateExecute(r)
+func (r ApiProxiesCreateRequest) Execute() (*Proxy, *http.Response, error) {
+	return r.ApiService.ProxiesCreateExecute(r)
 }
 
 /*
-InboundProxiesCreate Method for InboundProxiesCreate
+ProxiesCreate Method for ProxiesCreate
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiInboundProxiesCreateRequest
+ @return ApiProxiesCreateRequest
 */
-func (a *InboundProxiesApiService) InboundProxiesCreate(ctx context.Context) ApiInboundProxiesCreateRequest {
-	return ApiInboundProxiesCreateRequest{
+func (a *ProxiesApiService) ProxiesCreate(ctx context.Context) ApiProxiesCreateRequest {
+	return ApiProxiesCreateRequest{
 		ApiService: a,
 		ctx: ctx,
 	}
 }
 
 // Execute executes the request
-//  @return InboundProxy
-func (a *InboundProxiesApiService) InboundProxiesCreateExecute(r ApiInboundProxiesCreateRequest) (*InboundProxy, *http.Response, error) {
+//  @return Proxy
+func (a *ProxiesApiService) ProxiesCreateExecute(r ApiProxiesCreateRequest) (*Proxy, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *InboundProxy
+		localVarReturnValue  *Proxy
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "InboundProxiesApiService.InboundProxiesCreate")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ProxiesApiService.ProxiesCreate")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/inbound-proxies"
+	localVarPath := localBasePath + "/proxies"
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -91,7 +91,7 @@ func (a *InboundProxiesApiService) InboundProxiesCreateExecute(r ApiInboundProxi
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.createInboundProxyRequest
+	localVarPostBody = r.createProxyRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -172,25 +172,25 @@ func (a *InboundProxiesApiService) InboundProxiesCreateExecute(r ApiInboundProxi
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiInboundProxiesDeleteRequest struct {
+type ApiProxiesDeleteRequest struct {
 	ctx context.Context
-	ApiService *InboundProxiesApiService
+	ApiService *ProxiesApiService
 	id string
 }
 
-func (r ApiInboundProxiesDeleteRequest) Execute() (*http.Response, error) {
-	return r.ApiService.InboundProxiesDeleteExecute(r)
+func (r ApiProxiesDeleteRequest) Execute() (*http.Response, error) {
+	return r.ApiService.ProxiesDeleteExecute(r)
 }
 
 /*
-InboundProxiesDelete Method for InboundProxiesDelete
+ProxiesDelete Method for ProxiesDelete
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param id
- @return ApiInboundProxiesDeleteRequest
+ @return ApiProxiesDeleteRequest
 */
-func (a *InboundProxiesApiService) InboundProxiesDelete(ctx context.Context, id string) ApiInboundProxiesDeleteRequest {
-	return ApiInboundProxiesDeleteRequest{
+func (a *ProxiesApiService) ProxiesDelete(ctx context.Context, id string) ApiProxiesDeleteRequest {
+	return ApiProxiesDeleteRequest{
 		ApiService: a,
 		ctx: ctx,
 		id: id,
@@ -198,19 +198,19 @@ func (a *InboundProxiesApiService) InboundProxiesDelete(ctx context.Context, id 
 }
 
 // Execute executes the request
-func (a *InboundProxiesApiService) InboundProxiesDeleteExecute(r ApiInboundProxiesDeleteRequest) (*http.Response, error) {
+func (a *ProxiesApiService) ProxiesDeleteExecute(r ApiProxiesDeleteRequest) (*http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodDelete
 		localVarPostBody     interface{}
 		formFiles            []formFile
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "InboundProxiesApiService.InboundProxiesDelete")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ProxiesApiService.ProxiesDelete")
 	if err != nil {
 		return nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/inbound-proxies/{id}"
+	localVarPath := localBasePath + "/proxies/{id}"
 	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterToString(r.id, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
@@ -305,68 +305,68 @@ func (a *InboundProxiesApiService) InboundProxiesDeleteExecute(r ApiInboundProxi
 	return localVarHTTPResponse, nil
 }
 
-type ApiInboundProxiesGetRequest struct {
+type ApiProxiesGetRequest struct {
 	ctx context.Context
-	ApiService *InboundProxiesApiService
+	ApiService *ProxiesApiService
 	id *[]string
 	name *string
 	page *int32
 	size *int32
 }
 
-func (r ApiInboundProxiesGetRequest) Id(id []string) ApiInboundProxiesGetRequest {
+func (r ApiProxiesGetRequest) Id(id []string) ApiProxiesGetRequest {
 	r.id = &id
 	return r
 }
 
-func (r ApiInboundProxiesGetRequest) Name(name string) ApiInboundProxiesGetRequest {
+func (r ApiProxiesGetRequest) Name(name string) ApiProxiesGetRequest {
 	r.name = &name
 	return r
 }
 
-func (r ApiInboundProxiesGetRequest) Page(page int32) ApiInboundProxiesGetRequest {
+func (r ApiProxiesGetRequest) Page(page int32) ApiProxiesGetRequest {
 	r.page = &page
 	return r
 }
 
-func (r ApiInboundProxiesGetRequest) Size(size int32) ApiInboundProxiesGetRequest {
+func (r ApiProxiesGetRequest) Size(size int32) ApiProxiesGetRequest {
 	r.size = &size
 	return r
 }
 
-func (r ApiInboundProxiesGetRequest) Execute() (*InboundProxyPaginatedList, *http.Response, error) {
-	return r.ApiService.InboundProxiesGetExecute(r)
+func (r ApiProxiesGetRequest) Execute() (*ProxyPaginatedList, *http.Response, error) {
+	return r.ApiService.ProxiesGetExecute(r)
 }
 
 /*
-InboundProxiesGet Method for InboundProxiesGet
+ProxiesGet Method for ProxiesGet
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiInboundProxiesGetRequest
+ @return ApiProxiesGetRequest
 */
-func (a *InboundProxiesApiService) InboundProxiesGet(ctx context.Context) ApiInboundProxiesGetRequest {
-	return ApiInboundProxiesGetRequest{
+func (a *ProxiesApiService) ProxiesGet(ctx context.Context) ApiProxiesGetRequest {
+	return ApiProxiesGetRequest{
 		ApiService: a,
 		ctx: ctx,
 	}
 }
 
 // Execute executes the request
-//  @return InboundProxyPaginatedList
-func (a *InboundProxiesApiService) InboundProxiesGetExecute(r ApiInboundProxiesGetRequest) (*InboundProxyPaginatedList, *http.Response, error) {
+//  @return ProxyPaginatedList
+func (a *ProxiesApiService) ProxiesGetExecute(r ApiProxiesGetRequest) (*ProxyPaginatedList, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *InboundProxyPaginatedList
+		localVarReturnValue  *ProxyPaginatedList
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "InboundProxiesApiService.InboundProxiesGet")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ProxiesApiService.ProxiesGet")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/inbound-proxies"
+	localVarPath := localBasePath + "/proxies"
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -489,25 +489,25 @@ func (a *InboundProxiesApiService) InboundProxiesGetExecute(r ApiInboundProxiesG
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiInboundProxiesGetByIdRequest struct {
+type ApiProxiesGetByIdRequest struct {
 	ctx context.Context
-	ApiService *InboundProxiesApiService
+	ApiService *ProxiesApiService
 	id string
 }
 
-func (r ApiInboundProxiesGetByIdRequest) Execute() (*InboundProxy, *http.Response, error) {
-	return r.ApiService.InboundProxiesGetByIdExecute(r)
+func (r ApiProxiesGetByIdRequest) Execute() (*Proxy, *http.Response, error) {
+	return r.ApiService.ProxiesGetByIdExecute(r)
 }
 
 /*
-InboundProxiesGetById Method for InboundProxiesGetById
+ProxiesGetById Method for ProxiesGetById
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param id
- @return ApiInboundProxiesGetByIdRequest
+ @return ApiProxiesGetByIdRequest
 */
-func (a *InboundProxiesApiService) InboundProxiesGetById(ctx context.Context, id string) ApiInboundProxiesGetByIdRequest {
-	return ApiInboundProxiesGetByIdRequest{
+func (a *ProxiesApiService) ProxiesGetById(ctx context.Context, id string) ApiProxiesGetByIdRequest {
+	return ApiProxiesGetByIdRequest{
 		ApiService: a,
 		ctx: ctx,
 		id: id,
@@ -515,21 +515,21 @@ func (a *InboundProxiesApiService) InboundProxiesGetById(ctx context.Context, id
 }
 
 // Execute executes the request
-//  @return InboundProxy
-func (a *InboundProxiesApiService) InboundProxiesGetByIdExecute(r ApiInboundProxiesGetByIdRequest) (*InboundProxy, *http.Response, error) {
+//  @return Proxy
+func (a *ProxiesApiService) ProxiesGetByIdExecute(r ApiProxiesGetByIdRequest) (*Proxy, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *InboundProxy
+		localVarReturnValue  *Proxy
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "InboundProxiesApiService.InboundProxiesGetById")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ProxiesApiService.ProxiesGetById")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/inbound-proxies/{id}"
+	localVarPath := localBasePath + "/proxies/{id}"
 	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterToString(r.id, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
@@ -633,31 +633,31 @@ func (a *InboundProxiesApiService) InboundProxiesGetByIdExecute(r ApiInboundProx
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiInboundProxiesUpdateRequest struct {
+type ApiProxiesUpdateRequest struct {
 	ctx context.Context
-	ApiService *InboundProxiesApiService
+	ApiService *ProxiesApiService
 	id string
-	updateInboundProxyRequest *UpdateInboundProxyRequest
+	updateProxyRequest *UpdateProxyRequest
 }
 
-func (r ApiInboundProxiesUpdateRequest) UpdateInboundProxyRequest(updateInboundProxyRequest UpdateInboundProxyRequest) ApiInboundProxiesUpdateRequest {
-	r.updateInboundProxyRequest = &updateInboundProxyRequest
+func (r ApiProxiesUpdateRequest) UpdateProxyRequest(updateProxyRequest UpdateProxyRequest) ApiProxiesUpdateRequest {
+	r.updateProxyRequest = &updateProxyRequest
 	return r
 }
 
-func (r ApiInboundProxiesUpdateRequest) Execute() (*InboundProxy, *http.Response, error) {
-	return r.ApiService.InboundProxiesUpdateExecute(r)
+func (r ApiProxiesUpdateRequest) Execute() (*Proxy, *http.Response, error) {
+	return r.ApiService.ProxiesUpdateExecute(r)
 }
 
 /*
-InboundProxiesUpdate Method for InboundProxiesUpdate
+ProxiesUpdate Method for ProxiesUpdate
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param id
- @return ApiInboundProxiesUpdateRequest
+ @return ApiProxiesUpdateRequest
 */
-func (a *InboundProxiesApiService) InboundProxiesUpdate(ctx context.Context, id string) ApiInboundProxiesUpdateRequest {
-	return ApiInboundProxiesUpdateRequest{
+func (a *ProxiesApiService) ProxiesUpdate(ctx context.Context, id string) ApiProxiesUpdateRequest {
+	return ApiProxiesUpdateRequest{
 		ApiService: a,
 		ctx: ctx,
 		id: id,
@@ -665,21 +665,21 @@ func (a *InboundProxiesApiService) InboundProxiesUpdate(ctx context.Context, id 
 }
 
 // Execute executes the request
-//  @return InboundProxy
-func (a *InboundProxiesApiService) InboundProxiesUpdateExecute(r ApiInboundProxiesUpdateRequest) (*InboundProxy, *http.Response, error) {
+//  @return Proxy
+func (a *ProxiesApiService) ProxiesUpdateExecute(r ApiProxiesUpdateRequest) (*Proxy, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPut
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *InboundProxy
+		localVarReturnValue  *Proxy
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "InboundProxiesApiService.InboundProxiesUpdate")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ProxiesApiService.ProxiesUpdate")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/inbound-proxies/{id}"
+	localVarPath := localBasePath + "/proxies/{id}"
 	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterToString(r.id, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
@@ -704,7 +704,7 @@ func (a *InboundProxiesApiService) InboundProxiesUpdateExecute(r ApiInboundProxi
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.updateInboundProxyRequest
+	localVarPostBody = r.updateProxyRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {

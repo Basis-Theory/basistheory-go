@@ -1,20 +1,20 @@
-# \InboundProxiesApi
+# \ProxiesApi
 
 All URIs are relative to *https://api.basistheory.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**InboundProxiesCreate**](InboundProxiesApi.md#InboundProxiesCreate) | **Post** /inbound-proxies | 
-[**InboundProxiesDelete**](InboundProxiesApi.md#InboundProxiesDelete) | **Delete** /inbound-proxies/{id} | 
-[**InboundProxiesGet**](InboundProxiesApi.md#InboundProxiesGet) | **Get** /inbound-proxies | 
-[**InboundProxiesGetById**](InboundProxiesApi.md#InboundProxiesGetById) | **Get** /inbound-proxies/{id} | 
-[**InboundProxiesUpdate**](InboundProxiesApi.md#InboundProxiesUpdate) | **Put** /inbound-proxies/{id} | 
+[**ProxiesCreate**](ProxiesApi.md#ProxiesCreate) | **Post** /proxies | 
+[**ProxiesDelete**](ProxiesApi.md#ProxiesDelete) | **Delete** /proxies/{id} | 
+[**ProxiesGet**](ProxiesApi.md#ProxiesGet) | **Get** /proxies | 
+[**ProxiesGetById**](ProxiesApi.md#ProxiesGetById) | **Get** /proxies/{id} | 
+[**ProxiesUpdate**](ProxiesApi.md#ProxiesUpdate) | **Put** /proxies/{id} | 
 
 
 
-## InboundProxiesCreate
+## ProxiesCreate
 
-> InboundProxy InboundProxiesCreate(ctx).CreateInboundProxyRequest(createInboundProxyRequest).Execute()
+> Proxy ProxiesCreate(ctx).CreateProxyRequest(createProxyRequest).Execute()
 
 
 
@@ -31,17 +31,17 @@ import (
 )
 
 func main() {
-    createInboundProxyRequest := *openapiclient.NewCreateInboundProxyRequest("Name_example", "DestinationUrl_example", "RequestReactorId_example") // CreateInboundProxyRequest |  (optional)
+    createProxyRequest := *openapiclient.NewCreateProxyRequest("Name_example", "DestinationUrl_example", "RequestReactorId_example") // CreateProxyRequest |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.InboundProxiesApi.InboundProxiesCreate(context.Background()).CreateInboundProxyRequest(createInboundProxyRequest).Execute()
+    resp, r, err := apiClient.ProxiesApi.ProxiesCreate(context.Background()).CreateProxyRequest(createProxyRequest).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `InboundProxiesApi.InboundProxiesCreate``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `ProxiesApi.ProxiesCreate``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `InboundProxiesCreate`: InboundProxy
-    fmt.Fprintf(os.Stdout, "Response from `InboundProxiesApi.InboundProxiesCreate`: %v\n", resp)
+    // response from `ProxiesCreate`: Proxy
+    fmt.Fprintf(os.Stdout, "Response from `ProxiesApi.ProxiesCreate`: %v\n", resp)
 }
 ```
 
@@ -51,16 +51,16 @@ func main() {
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiInboundProxiesCreateRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiProxiesCreateRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **createInboundProxyRequest** | [**CreateInboundProxyRequest**](CreateInboundProxyRequest.md) |  | 
+ **createProxyRequest** | [**CreateProxyRequest**](CreateProxyRequest.md) |  | 
 
 ### Return type
 
-[**InboundProxy**](InboundProxy.md)
+[**Proxy**](Proxy.md)
 
 ### Authorization
 
@@ -76,9 +76,9 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
-## InboundProxiesDelete
+## ProxiesDelete
 
-> InboundProxiesDelete(ctx, id).Execute()
+> ProxiesDelete(ctx, id).Execute()
 
 
 
@@ -99,9 +99,9 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.InboundProxiesApi.InboundProxiesDelete(context.Background(), id).Execute()
+    resp, r, err := apiClient.ProxiesApi.ProxiesDelete(context.Background(), id).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `InboundProxiesApi.InboundProxiesDelete``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `ProxiesApi.ProxiesDelete``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
 }
@@ -117,7 +117,7 @@ Name | Type | Description  | Notes
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiInboundProxiesDeleteRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiProxiesDeleteRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
@@ -142,9 +142,9 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
-## InboundProxiesGet
+## ProxiesGet
 
-> InboundProxyPaginatedList InboundProxiesGet(ctx).Id(id).Name(name).Page(page).Size(size).Execute()
+> ProxyPaginatedList ProxiesGet(ctx).Id(id).Name(name).Page(page).Size(size).Execute()
 
 
 
@@ -168,13 +168,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.InboundProxiesApi.InboundProxiesGet(context.Background()).Id(id).Name(name).Page(page).Size(size).Execute()
+    resp, r, err := apiClient.ProxiesApi.ProxiesGet(context.Background()).Id(id).Name(name).Page(page).Size(size).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `InboundProxiesApi.InboundProxiesGet``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `ProxiesApi.ProxiesGet``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `InboundProxiesGet`: InboundProxyPaginatedList
-    fmt.Fprintf(os.Stdout, "Response from `InboundProxiesApi.InboundProxiesGet`: %v\n", resp)
+    // response from `ProxiesGet`: ProxyPaginatedList
+    fmt.Fprintf(os.Stdout, "Response from `ProxiesApi.ProxiesGet`: %v\n", resp)
 }
 ```
 
@@ -184,7 +184,7 @@ func main() {
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiInboundProxiesGetRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiProxiesGetRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
@@ -196,7 +196,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InboundProxyPaginatedList**](InboundProxyPaginatedList.md)
+[**ProxyPaginatedList**](ProxyPaginatedList.md)
 
 ### Authorization
 
@@ -212,9 +212,9 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
-## InboundProxiesGetById
+## ProxiesGetById
 
-> InboundProxy InboundProxiesGetById(ctx, id).Execute()
+> Proxy ProxiesGetById(ctx, id).Execute()
 
 
 
@@ -235,13 +235,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.InboundProxiesApi.InboundProxiesGetById(context.Background(), id).Execute()
+    resp, r, err := apiClient.ProxiesApi.ProxiesGetById(context.Background(), id).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `InboundProxiesApi.InboundProxiesGetById``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `ProxiesApi.ProxiesGetById``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `InboundProxiesGetById`: InboundProxy
-    fmt.Fprintf(os.Stdout, "Response from `InboundProxiesApi.InboundProxiesGetById`: %v\n", resp)
+    // response from `ProxiesGetById`: Proxy
+    fmt.Fprintf(os.Stdout, "Response from `ProxiesApi.ProxiesGetById`: %v\n", resp)
 }
 ```
 
@@ -255,7 +255,7 @@ Name | Type | Description  | Notes
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiInboundProxiesGetByIdRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiProxiesGetByIdRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
@@ -264,7 +264,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InboundProxy**](InboundProxy.md)
+[**Proxy**](Proxy.md)
 
 ### Authorization
 
@@ -280,9 +280,9 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
-## InboundProxiesUpdate
+## ProxiesUpdate
 
-> InboundProxy InboundProxiesUpdate(ctx, id).UpdateInboundProxyRequest(updateInboundProxyRequest).Execute()
+> Proxy ProxiesUpdate(ctx, id).UpdateProxyRequest(updateProxyRequest).Execute()
 
 
 
@@ -300,17 +300,17 @@ import (
 
 func main() {
     id := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | 
-    updateInboundProxyRequest := *openapiclient.NewUpdateInboundProxyRequest("Name_example", "DestinationUrl_example", "RequestReactorId_example") // UpdateInboundProxyRequest |  (optional)
+    updateProxyRequest := *openapiclient.NewUpdateProxyRequest("Name_example", "DestinationUrl_example", "RequestReactorId_example") // UpdateProxyRequest |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.InboundProxiesApi.InboundProxiesUpdate(context.Background(), id).UpdateInboundProxyRequest(updateInboundProxyRequest).Execute()
+    resp, r, err := apiClient.ProxiesApi.ProxiesUpdate(context.Background(), id).UpdateProxyRequest(updateProxyRequest).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `InboundProxiesApi.InboundProxiesUpdate``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `ProxiesApi.ProxiesUpdate``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `InboundProxiesUpdate`: InboundProxy
-    fmt.Fprintf(os.Stdout, "Response from `InboundProxiesApi.InboundProxiesUpdate`: %v\n", resp)
+    // response from `ProxiesUpdate`: Proxy
+    fmt.Fprintf(os.Stdout, "Response from `ProxiesApi.ProxiesUpdate`: %v\n", resp)
 }
 ```
 
@@ -324,17 +324,17 @@ Name | Type | Description  | Notes
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiInboundProxiesUpdateRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiProxiesUpdateRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **updateInboundProxyRequest** | [**UpdateInboundProxyRequest**](UpdateInboundProxyRequest.md) |  | 
+ **updateProxyRequest** | [**UpdateProxyRequest**](UpdateProxyRequest.md) |  | 
 
 ### Return type
 
-[**InboundProxy**](InboundProxy.md)
+[**Proxy**](Proxy.md)
 
 ### Authorization
 

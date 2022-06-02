@@ -14,35 +14,35 @@ import (
 	"encoding/json"
 )
 
-// UpdateInboundProxyRequest struct for UpdateInboundProxyRequest
-type UpdateInboundProxyRequest struct {
+// CreateProxyRequest struct for CreateProxyRequest
+type CreateProxyRequest struct {
 	Name string `json:"name"`
 	DestinationUrl string `json:"destination_url"`
 	RequestReactorId string `json:"request_reactor_id"`
 }
 
-// NewUpdateInboundProxyRequest instantiates a new UpdateInboundProxyRequest object
+// NewCreateProxyRequest instantiates a new CreateProxyRequest object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewUpdateInboundProxyRequest(name string, destinationUrl string, requestReactorId string) *UpdateInboundProxyRequest {
-	this := UpdateInboundProxyRequest{}
+func NewCreateProxyRequest(name string, destinationUrl string, requestReactorId string) *CreateProxyRequest {
+	this := CreateProxyRequest{}
 	this.Name = name
 	this.DestinationUrl = destinationUrl
 	this.RequestReactorId = requestReactorId
 	return &this
 }
 
-// NewUpdateInboundProxyRequestWithDefaults instantiates a new UpdateInboundProxyRequest object
+// NewCreateProxyRequestWithDefaults instantiates a new CreateProxyRequest object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
-func NewUpdateInboundProxyRequestWithDefaults() *UpdateInboundProxyRequest {
-	this := UpdateInboundProxyRequest{}
+func NewCreateProxyRequestWithDefaults() *CreateProxyRequest {
+	this := CreateProxyRequest{}
 	return &this
 }
 
 // GetName returns the Name field value
-func (o *UpdateInboundProxyRequest) GetName() string {
+func (o *CreateProxyRequest) GetName() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -53,7 +53,7 @@ func (o *UpdateInboundProxyRequest) GetName() string {
 
 // GetNameOk returns a tuple with the Name field value
 // and a boolean to check if the value has been set.
-func (o *UpdateInboundProxyRequest) GetNameOk() (*string, bool) {
+func (o *CreateProxyRequest) GetNameOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -61,12 +61,12 @@ func (o *UpdateInboundProxyRequest) GetNameOk() (*string, bool) {
 }
 
 // SetName sets field value
-func (o *UpdateInboundProxyRequest) SetName(v string) {
+func (o *CreateProxyRequest) SetName(v string) {
 	o.Name = v
 }
 
 // GetDestinationUrl returns the DestinationUrl field value
-func (o *UpdateInboundProxyRequest) GetDestinationUrl() string {
+func (o *CreateProxyRequest) GetDestinationUrl() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -77,7 +77,7 @@ func (o *UpdateInboundProxyRequest) GetDestinationUrl() string {
 
 // GetDestinationUrlOk returns a tuple with the DestinationUrl field value
 // and a boolean to check if the value has been set.
-func (o *UpdateInboundProxyRequest) GetDestinationUrlOk() (*string, bool) {
+func (o *CreateProxyRequest) GetDestinationUrlOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -85,12 +85,12 @@ func (o *UpdateInboundProxyRequest) GetDestinationUrlOk() (*string, bool) {
 }
 
 // SetDestinationUrl sets field value
-func (o *UpdateInboundProxyRequest) SetDestinationUrl(v string) {
+func (o *CreateProxyRequest) SetDestinationUrl(v string) {
 	o.DestinationUrl = v
 }
 
 // GetRequestReactorId returns the RequestReactorId field value
-func (o *UpdateInboundProxyRequest) GetRequestReactorId() string {
+func (o *CreateProxyRequest) GetRequestReactorId() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -101,7 +101,7 @@ func (o *UpdateInboundProxyRequest) GetRequestReactorId() string {
 
 // GetRequestReactorIdOk returns a tuple with the RequestReactorId field value
 // and a boolean to check if the value has been set.
-func (o *UpdateInboundProxyRequest) GetRequestReactorIdOk() (*string, bool) {
+func (o *CreateProxyRequest) GetRequestReactorIdOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -109,11 +109,11 @@ func (o *UpdateInboundProxyRequest) GetRequestReactorIdOk() (*string, bool) {
 }
 
 // SetRequestReactorId sets field value
-func (o *UpdateInboundProxyRequest) SetRequestReactorId(v string) {
+func (o *CreateProxyRequest) SetRequestReactorId(v string) {
 	o.RequestReactorId = v
 }
 
-func (o UpdateInboundProxyRequest) MarshalJSON() ([]byte, error) {
+func (o CreateProxyRequest) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if true {
 		toSerialize["name"] = o.Name
@@ -127,38 +127,38 @@ func (o UpdateInboundProxyRequest) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
-type NullableUpdateInboundProxyRequest struct {
-	value *UpdateInboundProxyRequest
+type NullableCreateProxyRequest struct {
+	value *CreateProxyRequest
 	isSet bool
 }
 
-func (v NullableUpdateInboundProxyRequest) Get() *UpdateInboundProxyRequest {
+func (v NullableCreateProxyRequest) Get() *CreateProxyRequest {
 	return v.value
 }
 
-func (v *NullableUpdateInboundProxyRequest) Set(val *UpdateInboundProxyRequest) {
+func (v *NullableCreateProxyRequest) Set(val *CreateProxyRequest) {
 	v.value = val
 	v.isSet = true
 }
 
-func (v NullableUpdateInboundProxyRequest) IsSet() bool {
+func (v NullableCreateProxyRequest) IsSet() bool {
 	return v.isSet
 }
 
-func (v *NullableUpdateInboundProxyRequest) Unset() {
+func (v *NullableCreateProxyRequest) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
-func NewNullableUpdateInboundProxyRequest(val *UpdateInboundProxyRequest) *NullableUpdateInboundProxyRequest {
-	return &NullableUpdateInboundProxyRequest{value: val, isSet: true}
+func NewNullableCreateProxyRequest(val *CreateProxyRequest) *NullableCreateProxyRequest {
+	return &NullableCreateProxyRequest{value: val, isSet: true}
 }
 
-func (v NullableUpdateInboundProxyRequest) MarshalJSON() ([]byte, error) {
+func (v NullableCreateProxyRequest) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
-func (v *NullableUpdateInboundProxyRequest) UnmarshalJSON(src []byte) error {
+func (v *NullableCreateProxyRequest) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }

@@ -1,89 +1,89 @@
-# InboundProxyPaginatedList
+# ProxyPaginatedList
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Pagination** | Pointer to [**Pagination**](Pagination.md) |  | [optional] 
-**Data** | Pointer to [**[]InboundProxy**](InboundProxy.md) |  | [optional] 
+**Data** | Pointer to [**[]Proxy**](Proxy.md) |  | [optional] 
 
 ## Methods
 
-### NewInboundProxyPaginatedList
+### NewProxyPaginatedList
 
-`func NewInboundProxyPaginatedList() *InboundProxyPaginatedList`
+`func NewProxyPaginatedList() *ProxyPaginatedList`
 
-NewInboundProxyPaginatedList instantiates a new InboundProxyPaginatedList object
+NewProxyPaginatedList instantiates a new ProxyPaginatedList object
 This constructor will assign default values to properties that have it defined,
 and makes sure properties required by API are set, but the set of arguments
 will change when the set of required properties is changed
 
-### NewInboundProxyPaginatedListWithDefaults
+### NewProxyPaginatedListWithDefaults
 
-`func NewInboundProxyPaginatedListWithDefaults() *InboundProxyPaginatedList`
+`func NewProxyPaginatedListWithDefaults() *ProxyPaginatedList`
 
-NewInboundProxyPaginatedListWithDefaults instantiates a new InboundProxyPaginatedList object
+NewProxyPaginatedListWithDefaults instantiates a new ProxyPaginatedList object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
 ### GetPagination
 
-`func (o *InboundProxyPaginatedList) GetPagination() Pagination`
+`func (o *ProxyPaginatedList) GetPagination() Pagination`
 
 GetPagination returns the Pagination field if non-nil, zero value otherwise.
 
 ### GetPaginationOk
 
-`func (o *InboundProxyPaginatedList) GetPaginationOk() (*Pagination, bool)`
+`func (o *ProxyPaginatedList) GetPaginationOk() (*Pagination, bool)`
 
 GetPaginationOk returns a tuple with the Pagination field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetPagination
 
-`func (o *InboundProxyPaginatedList) SetPagination(v Pagination)`
+`func (o *ProxyPaginatedList) SetPagination(v Pagination)`
 
 SetPagination sets Pagination field to given value.
 
 ### HasPagination
 
-`func (o *InboundProxyPaginatedList) HasPagination() bool`
+`func (o *ProxyPaginatedList) HasPagination() bool`
 
 HasPagination returns a boolean if a field has been set.
 
 ### GetData
 
-`func (o *InboundProxyPaginatedList) GetData() []InboundProxy`
+`func (o *ProxyPaginatedList) GetData() []Proxy`
 
 GetData returns the Data field if non-nil, zero value otherwise.
 
 ### GetDataOk
 
-`func (o *InboundProxyPaginatedList) GetDataOk() (*[]InboundProxy, bool)`
+`func (o *ProxyPaginatedList) GetDataOk() (*[]Proxy, bool)`
 
 GetDataOk returns a tuple with the Data field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetData
 
-`func (o *InboundProxyPaginatedList) SetData(v []InboundProxy)`
+`func (o *ProxyPaginatedList) SetData(v []Proxy)`
 
 SetData sets Data field to given value.
 
 ### HasData
 
-`func (o *InboundProxyPaginatedList) HasData() bool`
+`func (o *ProxyPaginatedList) HasData() bool`
 
 HasData returns a boolean if a field has been set.
 
 ### SetDataNil
 
-`func (o *InboundProxyPaginatedList) SetDataNil(b bool)`
+`func (o *ProxyPaginatedList) SetDataNil(b bool)`
 
  SetDataNil sets the value for Data to be an explicit nil
 
 ### UnsetData
-`func (o *InboundProxyPaginatedList) UnsetData()`
+`func (o *ProxyPaginatedList) UnsetData()`
 
 UnsetData ensures that no value is present for Data, not even an explicit nil
 

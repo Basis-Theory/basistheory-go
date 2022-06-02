@@ -287,9 +287,9 @@ paths:
           description: Not Found
       tags:
       - Applications
-  /inbound-proxies:
+  /proxies:
     get:
-      operationId: InboundProxies.Get
+      operationId: Proxies.Get
       parameters:
       - explode: true
         in: query
@@ -333,7 +333,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/InboundProxyPaginatedList'
+                $ref: '#/components/schemas/ProxyPaginatedList'
           description: Success
         "401":
           content:
@@ -354,20 +354,20 @@ paths:
                 $ref: '#/components/schemas/ProblemDetails'
           description: Not Found
       tags:
-      - InboundProxies
+      - Proxies
     post:
-      operationId: InboundProxies.Create
+      operationId: Proxies.Create
       requestBody:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/CreateInboundProxyRequest'
+              $ref: '#/components/schemas/CreateProxyRequest'
       responses:
         "201":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/InboundProxy'
+                $ref: '#/components/schemas/Proxy'
           description: Created
         "400":
           content:
@@ -388,10 +388,10 @@ paths:
                 $ref: '#/components/schemas/ProblemDetails'
           description: Forbidden
       tags:
-      - InboundProxies
-  /inbound-proxies/{id}:
+      - Proxies
+  /proxies/{id}:
     delete:
-      operationId: InboundProxies.Delete
+      operationId: Proxies.Delete
       parameters:
       - explode: false
         in: path
@@ -423,9 +423,9 @@ paths:
                 $ref: '#/components/schemas/ProblemDetails'
           description: Not Found
       tags:
-      - InboundProxies
+      - Proxies
     get:
-      operationId: InboundProxies.GetById
+      operationId: Proxies.GetById
       parameters:
       - explode: false
         in: path
@@ -440,7 +440,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/InboundProxy'
+                $ref: '#/components/schemas/Proxy'
           description: Success
         "401":
           content:
@@ -461,9 +461,9 @@ paths:
                 $ref: '#/components/schemas/ProblemDetails'
           description: Not Found
       tags:
-      - InboundProxies
+      - Proxies
     put:
-      operationId: InboundProxies.Update
+      operationId: Proxies.Update
       parameters:
       - explode: false
         in: path
@@ -477,13 +477,13 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/UpdateInboundProxyRequest'
+              $ref: '#/components/schemas/UpdateProxyRequest'
       responses:
         "200":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/InboundProxy'
+                $ref: '#/components/schemas/Proxy'
           description: Success
         "400":
           content:
@@ -510,7 +510,7 @@ paths:
                 $ref: '#/components/schemas/ProblemDetails'
           description: Not Found
       tags:
-      - InboundProxies
+      - Proxies
   /reactor-formulas:
     get:
       operationId: ReactorFormulas.Get
@@ -1119,7 +1119,7 @@ components:
       - name
       - type
       type: object
-    CreateInboundProxyRequest:
+    CreateProxyRequest:
       additionalProperties: false
       example:
         name: name
@@ -1267,7 +1267,7 @@ components:
       required:
       - name
       type: object
-    GetInboundProxies:
+    GetProxies:
       additionalProperties: false
       properties:
         ids:
@@ -1289,7 +1289,7 @@ components:
           nullable: true
           type: integer
       type: object
-    InboundProxy:
+    Proxy:
       additionalProperties: false
       example:
         tenant_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
@@ -1339,7 +1339,7 @@ components:
           nullable: true
           type: string
       type: object
-    InboundProxyPaginatedList:
+    ProxyPaginatedList:
       additionalProperties: false
       example:
         pagination:
@@ -1373,7 +1373,7 @@ components:
           $ref: '#/components/schemas/Pagination'
         data:
           items:
-            $ref: '#/components/schemas/InboundProxy'
+            $ref: '#/components/schemas/Proxy'
           nullable: true
           type: array
       type: object
@@ -1863,7 +1863,7 @@ components:
       required:
       - name
       type: object
-    UpdateInboundProxyRequest:
+    UpdateProxyRequest:
       additionalProperties: false
       example:
         name: name

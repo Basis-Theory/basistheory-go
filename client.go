@@ -51,7 +51,7 @@ type APIClient struct {
 
 	ApplicationsApi *ApplicationsApiService
 
-	InboundProxiesApi *InboundProxiesApiService
+	ProxiesApi *ProxiesApiService
 
 	ReactorFormulasApi *ReactorFormulasApiService
 
@@ -75,7 +75,7 @@ func NewAPIClient(cfg *Configuration) *APIClient {
 
 	// API Services
 	c.ApplicationsApi = (*ApplicationsApiService)(&c.common)
-	c.InboundProxiesApi = (*InboundProxiesApiService)(&c.common)
+	c.ProxiesApi = (*ProxiesApiService)(&c.common)
 	c.ReactorFormulasApi = (*ReactorFormulasApiService)(&c.common)
 	c.ReactorsApi = (*ReactorsApiService)(&c.common)
 

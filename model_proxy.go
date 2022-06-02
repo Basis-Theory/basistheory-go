@@ -15,8 +15,8 @@ import (
 	"time"
 )
 
-// InboundProxy struct for InboundProxy
-type InboundProxy struct {
+// Proxy struct for Proxy
+type Proxy struct {
 	Id *string `json:"id,omitempty"`
 	Key NullableString `json:"key,omitempty"`
 	TenantId *string `json:"tenant_id,omitempty"`
@@ -29,25 +29,25 @@ type InboundProxy struct {
 	ModifiedAt NullableTime `json:"modified_at,omitempty"`
 }
 
-// NewInboundProxy instantiates a new InboundProxy object
+// NewProxy instantiates a new Proxy object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewInboundProxy() *InboundProxy {
-	this := InboundProxy{}
+func NewProxy() *Proxy {
+	this := Proxy{}
 	return &this
 }
 
-// NewInboundProxyWithDefaults instantiates a new InboundProxy object
+// NewProxyWithDefaults instantiates a new Proxy object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
-func NewInboundProxyWithDefaults() *InboundProxy {
-	this := InboundProxy{}
+func NewProxyWithDefaults() *Proxy {
+	this := Proxy{}
 	return &this
 }
 
 // GetId returns the Id field value if set, zero value otherwise.
-func (o *InboundProxy) GetId() string {
+func (o *Proxy) GetId() string {
 	if o == nil || o.Id == nil {
 		var ret string
 		return ret
@@ -57,7 +57,7 @@ func (o *InboundProxy) GetId() string {
 
 // GetIdOk returns a tuple with the Id field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *InboundProxy) GetIdOk() (*string, bool) {
+func (o *Proxy) GetIdOk() (*string, bool) {
 	if o == nil || o.Id == nil {
 		return nil, false
 	}
@@ -65,7 +65,7 @@ func (o *InboundProxy) GetIdOk() (*string, bool) {
 }
 
 // HasId returns a boolean if a field has been set.
-func (o *InboundProxy) HasId() bool {
+func (o *Proxy) HasId() bool {
 	if o != nil && o.Id != nil {
 		return true
 	}
@@ -74,12 +74,12 @@ func (o *InboundProxy) HasId() bool {
 }
 
 // SetId gets a reference to the given string and assigns it to the Id field.
-func (o *InboundProxy) SetId(v string) {
+func (o *Proxy) SetId(v string) {
 	o.Id = &v
 }
 
 // GetKey returns the Key field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *InboundProxy) GetKey() string {
+func (o *Proxy) GetKey() string {
 	if o == nil || o.Key.Get() == nil {
 		var ret string
 		return ret
@@ -90,7 +90,7 @@ func (o *InboundProxy) GetKey() string {
 // GetKeyOk returns a tuple with the Key field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *InboundProxy) GetKeyOk() (*string, bool) {
+func (o *Proxy) GetKeyOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -98,7 +98,7 @@ func (o *InboundProxy) GetKeyOk() (*string, bool) {
 }
 
 // HasKey returns a boolean if a field has been set.
-func (o *InboundProxy) HasKey() bool {
+func (o *Proxy) HasKey() bool {
 	if o != nil && o.Key.IsSet() {
 		return true
 	}
@@ -107,21 +107,21 @@ func (o *InboundProxy) HasKey() bool {
 }
 
 // SetKey gets a reference to the given NullableString and assigns it to the Key field.
-func (o *InboundProxy) SetKey(v string) {
+func (o *Proxy) SetKey(v string) {
 	o.Key.Set(&v)
 }
 // SetKeyNil sets the value for Key to be an explicit nil
-func (o *InboundProxy) SetKeyNil() {
+func (o *Proxy) SetKeyNil() {
 	o.Key.Set(nil)
 }
 
 // UnsetKey ensures that no value is present for Key, not even an explicit nil
-func (o *InboundProxy) UnsetKey() {
+func (o *Proxy) UnsetKey() {
 	o.Key.Unset()
 }
 
 // GetTenantId returns the TenantId field value if set, zero value otherwise.
-func (o *InboundProxy) GetTenantId() string {
+func (o *Proxy) GetTenantId() string {
 	if o == nil || o.TenantId == nil {
 		var ret string
 		return ret
@@ -131,7 +131,7 @@ func (o *InboundProxy) GetTenantId() string {
 
 // GetTenantIdOk returns a tuple with the TenantId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *InboundProxy) GetTenantIdOk() (*string, bool) {
+func (o *Proxy) GetTenantIdOk() (*string, bool) {
 	if o == nil || o.TenantId == nil {
 		return nil, false
 	}
@@ -139,7 +139,7 @@ func (o *InboundProxy) GetTenantIdOk() (*string, bool) {
 }
 
 // HasTenantId returns a boolean if a field has been set.
-func (o *InboundProxy) HasTenantId() bool {
+func (o *Proxy) HasTenantId() bool {
 	if o != nil && o.TenantId != nil {
 		return true
 	}
@@ -148,12 +148,12 @@ func (o *InboundProxy) HasTenantId() bool {
 }
 
 // SetTenantId gets a reference to the given string and assigns it to the TenantId field.
-func (o *InboundProxy) SetTenantId(v string) {
+func (o *Proxy) SetTenantId(v string) {
 	o.TenantId = &v
 }
 
 // GetName returns the Name field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *InboundProxy) GetName() string {
+func (o *Proxy) GetName() string {
 	if o == nil || o.Name.Get() == nil {
 		var ret string
 		return ret
@@ -164,7 +164,7 @@ func (o *InboundProxy) GetName() string {
 // GetNameOk returns a tuple with the Name field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *InboundProxy) GetNameOk() (*string, bool) {
+func (o *Proxy) GetNameOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -172,7 +172,7 @@ func (o *InboundProxy) GetNameOk() (*string, bool) {
 }
 
 // HasName returns a boolean if a field has been set.
-func (o *InboundProxy) HasName() bool {
+func (o *Proxy) HasName() bool {
 	if o != nil && o.Name.IsSet() {
 		return true
 	}
@@ -181,21 +181,21 @@ func (o *InboundProxy) HasName() bool {
 }
 
 // SetName gets a reference to the given NullableString and assigns it to the Name field.
-func (o *InboundProxy) SetName(v string) {
+func (o *Proxy) SetName(v string) {
 	o.Name.Set(&v)
 }
 // SetNameNil sets the value for Name to be an explicit nil
-func (o *InboundProxy) SetNameNil() {
+func (o *Proxy) SetNameNil() {
 	o.Name.Set(nil)
 }
 
 // UnsetName ensures that no value is present for Name, not even an explicit nil
-func (o *InboundProxy) UnsetName() {
+func (o *Proxy) UnsetName() {
 	o.Name.Unset()
 }
 
 // GetDestinationUrl returns the DestinationUrl field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *InboundProxy) GetDestinationUrl() string {
+func (o *Proxy) GetDestinationUrl() string {
 	if o == nil || o.DestinationUrl.Get() == nil {
 		var ret string
 		return ret
@@ -206,7 +206,7 @@ func (o *InboundProxy) GetDestinationUrl() string {
 // GetDestinationUrlOk returns a tuple with the DestinationUrl field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *InboundProxy) GetDestinationUrlOk() (*string, bool) {
+func (o *Proxy) GetDestinationUrlOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -214,7 +214,7 @@ func (o *InboundProxy) GetDestinationUrlOk() (*string, bool) {
 }
 
 // HasDestinationUrl returns a boolean if a field has been set.
-func (o *InboundProxy) HasDestinationUrl() bool {
+func (o *Proxy) HasDestinationUrl() bool {
 	if o != nil && o.DestinationUrl.IsSet() {
 		return true
 	}
@@ -223,21 +223,21 @@ func (o *InboundProxy) HasDestinationUrl() bool {
 }
 
 // SetDestinationUrl gets a reference to the given NullableString and assigns it to the DestinationUrl field.
-func (o *InboundProxy) SetDestinationUrl(v string) {
+func (o *Proxy) SetDestinationUrl(v string) {
 	o.DestinationUrl.Set(&v)
 }
 // SetDestinationUrlNil sets the value for DestinationUrl to be an explicit nil
-func (o *InboundProxy) SetDestinationUrlNil() {
+func (o *Proxy) SetDestinationUrlNil() {
 	o.DestinationUrl.Set(nil)
 }
 
 // UnsetDestinationUrl ensures that no value is present for DestinationUrl, not even an explicit nil
-func (o *InboundProxy) UnsetDestinationUrl() {
+func (o *Proxy) UnsetDestinationUrl() {
 	o.DestinationUrl.Unset()
 }
 
 // GetRequestReactorId returns the RequestReactorId field value if set, zero value otherwise.
-func (o *InboundProxy) GetRequestReactorId() string {
+func (o *Proxy) GetRequestReactorId() string {
 	if o == nil || o.RequestReactorId == nil {
 		var ret string
 		return ret
@@ -247,7 +247,7 @@ func (o *InboundProxy) GetRequestReactorId() string {
 
 // GetRequestReactorIdOk returns a tuple with the RequestReactorId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *InboundProxy) GetRequestReactorIdOk() (*string, bool) {
+func (o *Proxy) GetRequestReactorIdOk() (*string, bool) {
 	if o == nil || o.RequestReactorId == nil {
 		return nil, false
 	}
@@ -255,7 +255,7 @@ func (o *InboundProxy) GetRequestReactorIdOk() (*string, bool) {
 }
 
 // HasRequestReactorId returns a boolean if a field has been set.
-func (o *InboundProxy) HasRequestReactorId() bool {
+func (o *Proxy) HasRequestReactorId() bool {
 	if o != nil && o.RequestReactorId != nil {
 		return true
 	}
@@ -264,12 +264,12 @@ func (o *InboundProxy) HasRequestReactorId() bool {
 }
 
 // SetRequestReactorId gets a reference to the given string and assigns it to the RequestReactorId field.
-func (o *InboundProxy) SetRequestReactorId(v string) {
+func (o *Proxy) SetRequestReactorId(v string) {
 	o.RequestReactorId = &v
 }
 
 // GetCreatedBy returns the CreatedBy field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *InboundProxy) GetCreatedBy() string {
+func (o *Proxy) GetCreatedBy() string {
 	if o == nil || o.CreatedBy.Get() == nil {
 		var ret string
 		return ret
@@ -280,7 +280,7 @@ func (o *InboundProxy) GetCreatedBy() string {
 // GetCreatedByOk returns a tuple with the CreatedBy field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *InboundProxy) GetCreatedByOk() (*string, bool) {
+func (o *Proxy) GetCreatedByOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -288,7 +288,7 @@ func (o *InboundProxy) GetCreatedByOk() (*string, bool) {
 }
 
 // HasCreatedBy returns a boolean if a field has been set.
-func (o *InboundProxy) HasCreatedBy() bool {
+func (o *Proxy) HasCreatedBy() bool {
 	if o != nil && o.CreatedBy.IsSet() {
 		return true
 	}
@@ -297,21 +297,21 @@ func (o *InboundProxy) HasCreatedBy() bool {
 }
 
 // SetCreatedBy gets a reference to the given NullableString and assigns it to the CreatedBy field.
-func (o *InboundProxy) SetCreatedBy(v string) {
+func (o *Proxy) SetCreatedBy(v string) {
 	o.CreatedBy.Set(&v)
 }
 // SetCreatedByNil sets the value for CreatedBy to be an explicit nil
-func (o *InboundProxy) SetCreatedByNil() {
+func (o *Proxy) SetCreatedByNil() {
 	o.CreatedBy.Set(nil)
 }
 
 // UnsetCreatedBy ensures that no value is present for CreatedBy, not even an explicit nil
-func (o *InboundProxy) UnsetCreatedBy() {
+func (o *Proxy) UnsetCreatedBy() {
 	o.CreatedBy.Unset()
 }
 
 // GetCreatedAt returns the CreatedAt field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *InboundProxy) GetCreatedAt() time.Time {
+func (o *Proxy) GetCreatedAt() time.Time {
 	if o == nil || o.CreatedAt.Get() == nil {
 		var ret time.Time
 		return ret
@@ -322,7 +322,7 @@ func (o *InboundProxy) GetCreatedAt() time.Time {
 // GetCreatedAtOk returns a tuple with the CreatedAt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *InboundProxy) GetCreatedAtOk() (*time.Time, bool) {
+func (o *Proxy) GetCreatedAtOk() (*time.Time, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -330,7 +330,7 @@ func (o *InboundProxy) GetCreatedAtOk() (*time.Time, bool) {
 }
 
 // HasCreatedAt returns a boolean if a field has been set.
-func (o *InboundProxy) HasCreatedAt() bool {
+func (o *Proxy) HasCreatedAt() bool {
 	if o != nil && o.CreatedAt.IsSet() {
 		return true
 	}
@@ -339,21 +339,21 @@ func (o *InboundProxy) HasCreatedAt() bool {
 }
 
 // SetCreatedAt gets a reference to the given NullableTime and assigns it to the CreatedAt field.
-func (o *InboundProxy) SetCreatedAt(v time.Time) {
+func (o *Proxy) SetCreatedAt(v time.Time) {
 	o.CreatedAt.Set(&v)
 }
 // SetCreatedAtNil sets the value for CreatedAt to be an explicit nil
-func (o *InboundProxy) SetCreatedAtNil() {
+func (o *Proxy) SetCreatedAtNil() {
 	o.CreatedAt.Set(nil)
 }
 
 // UnsetCreatedAt ensures that no value is present for CreatedAt, not even an explicit nil
-func (o *InboundProxy) UnsetCreatedAt() {
+func (o *Proxy) UnsetCreatedAt() {
 	o.CreatedAt.Unset()
 }
 
 // GetModifiedBy returns the ModifiedBy field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *InboundProxy) GetModifiedBy() string {
+func (o *Proxy) GetModifiedBy() string {
 	if o == nil || o.ModifiedBy.Get() == nil {
 		var ret string
 		return ret
@@ -364,7 +364,7 @@ func (o *InboundProxy) GetModifiedBy() string {
 // GetModifiedByOk returns a tuple with the ModifiedBy field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *InboundProxy) GetModifiedByOk() (*string, bool) {
+func (o *Proxy) GetModifiedByOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -372,7 +372,7 @@ func (o *InboundProxy) GetModifiedByOk() (*string, bool) {
 }
 
 // HasModifiedBy returns a boolean if a field has been set.
-func (o *InboundProxy) HasModifiedBy() bool {
+func (o *Proxy) HasModifiedBy() bool {
 	if o != nil && o.ModifiedBy.IsSet() {
 		return true
 	}
@@ -381,21 +381,21 @@ func (o *InboundProxy) HasModifiedBy() bool {
 }
 
 // SetModifiedBy gets a reference to the given NullableString and assigns it to the ModifiedBy field.
-func (o *InboundProxy) SetModifiedBy(v string) {
+func (o *Proxy) SetModifiedBy(v string) {
 	o.ModifiedBy.Set(&v)
 }
 // SetModifiedByNil sets the value for ModifiedBy to be an explicit nil
-func (o *InboundProxy) SetModifiedByNil() {
+func (o *Proxy) SetModifiedByNil() {
 	o.ModifiedBy.Set(nil)
 }
 
 // UnsetModifiedBy ensures that no value is present for ModifiedBy, not even an explicit nil
-func (o *InboundProxy) UnsetModifiedBy() {
+func (o *Proxy) UnsetModifiedBy() {
 	o.ModifiedBy.Unset()
 }
 
 // GetModifiedAt returns the ModifiedAt field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *InboundProxy) GetModifiedAt() time.Time {
+func (o *Proxy) GetModifiedAt() time.Time {
 	if o == nil || o.ModifiedAt.Get() == nil {
 		var ret time.Time
 		return ret
@@ -406,7 +406,7 @@ func (o *InboundProxy) GetModifiedAt() time.Time {
 // GetModifiedAtOk returns a tuple with the ModifiedAt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *InboundProxy) GetModifiedAtOk() (*time.Time, bool) {
+func (o *Proxy) GetModifiedAtOk() (*time.Time, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -414,7 +414,7 @@ func (o *InboundProxy) GetModifiedAtOk() (*time.Time, bool) {
 }
 
 // HasModifiedAt returns a boolean if a field has been set.
-func (o *InboundProxy) HasModifiedAt() bool {
+func (o *Proxy) HasModifiedAt() bool {
 	if o != nil && o.ModifiedAt.IsSet() {
 		return true
 	}
@@ -423,20 +423,20 @@ func (o *InboundProxy) HasModifiedAt() bool {
 }
 
 // SetModifiedAt gets a reference to the given NullableTime and assigns it to the ModifiedAt field.
-func (o *InboundProxy) SetModifiedAt(v time.Time) {
+func (o *Proxy) SetModifiedAt(v time.Time) {
 	o.ModifiedAt.Set(&v)
 }
 // SetModifiedAtNil sets the value for ModifiedAt to be an explicit nil
-func (o *InboundProxy) SetModifiedAtNil() {
+func (o *Proxy) SetModifiedAtNil() {
 	o.ModifiedAt.Set(nil)
 }
 
 // UnsetModifiedAt ensures that no value is present for ModifiedAt, not even an explicit nil
-func (o *InboundProxy) UnsetModifiedAt() {
+func (o *Proxy) UnsetModifiedAt() {
 	o.ModifiedAt.Unset()
 }
 
-func (o InboundProxy) MarshalJSON() ([]byte, error) {
+func (o Proxy) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.Id != nil {
 		toSerialize["id"] = o.Id
@@ -471,38 +471,38 @@ func (o InboundProxy) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
-type NullableInboundProxy struct {
-	value *InboundProxy
+type NullableProxy struct {
+	value *Proxy
 	isSet bool
 }
 
-func (v NullableInboundProxy) Get() *InboundProxy {
+func (v NullableProxy) Get() *Proxy {
 	return v.value
 }
 
-func (v *NullableInboundProxy) Set(val *InboundProxy) {
+func (v *NullableProxy) Set(val *Proxy) {
 	v.value = val
 	v.isSet = true
 }
 
-func (v NullableInboundProxy) IsSet() bool {
+func (v NullableProxy) IsSet() bool {
 	return v.isSet
 }
 
-func (v *NullableInboundProxy) Unset() {
+func (v *NullableProxy) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
-func NewNullableInboundProxy(val *InboundProxy) *NullableInboundProxy {
-	return &NullableInboundProxy{value: val, isSet: true}
+func NewNullableProxy(val *Proxy) *NullableProxy {
+	return &NullableProxy{value: val, isSet: true}
 }
 
-func (v NullableInboundProxy) MarshalJSON() ([]byte, error) {
+func (v NullableProxy) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
-func (v *NullableInboundProxy) UnmarshalJSON(src []byte) error {
+func (v *NullableProxy) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }

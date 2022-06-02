@@ -91,11 +91,11 @@ Class | Method | HTTP request | Description
 *ApplicationsApi* | [**ApplicationsGetByKey**](docs/ApplicationsApi.md#applicationsgetbykey) | **Get** /applications/key | 
 *ApplicationsApi* | [**ApplicationsRegenerateKey**](docs/ApplicationsApi.md#applicationsregeneratekey) | **Post** /applications/{id}/regenerate | 
 *ApplicationsApi* | [**ApplicationsUpdate**](docs/ApplicationsApi.md#applicationsupdate) | **Put** /applications/{id} | 
-*InboundProxiesApi* | [**InboundProxiesCreate**](docs/InboundProxiesApi.md#inboundproxiescreate) | **Post** /inbound-proxies | 
-*InboundProxiesApi* | [**InboundProxiesDelete**](docs/InboundProxiesApi.md#inboundproxiesdelete) | **Delete** /inbound-proxies/{id} | 
-*InboundProxiesApi* | [**InboundProxiesGet**](docs/InboundProxiesApi.md#inboundproxiesget) | **Get** /inbound-proxies | 
-*InboundProxiesApi* | [**InboundProxiesGetById**](docs/InboundProxiesApi.md#inboundproxiesgetbyid) | **Get** /inbound-proxies/{id} | 
-*InboundProxiesApi* | [**InboundProxiesUpdate**](docs/InboundProxiesApi.md#inboundproxiesupdate) | **Put** /inbound-proxies/{id} | 
+*ProxiesApi* | [**ProxiesCreate**](docs/ProxiesApi.md#proxiescreate) | **Post** /proxies | 
+*ProxiesApi* | [**ProxiesDelete**](docs/ProxiesApi.md#proxiesdelete) | **Delete** /proxies/{id} | 
+*ProxiesApi* | [**ProxiesGet**](docs/ProxiesApi.md#proxiesget) | **Get** /proxies | 
+*ProxiesApi* | [**ProxiesGetById**](docs/ProxiesApi.md#proxiesgetbyid) | **Get** /proxies/{id} | 
+*ProxiesApi* | [**ProxiesUpdate**](docs/ProxiesApi.md#proxiesupdate) | **Put** /proxies/{id} | 
 *ReactorFormulasApi* | [**ReactorFormulasCreate**](docs/ReactorFormulasApi.md#reactorformulascreate) | **Post** /reactor-formulas | 
 *ReactorFormulasApi* | [**ReactorFormulasDelete**](docs/ReactorFormulasApi.md#reactorformulasdelete) | **Delete** /reactor-formulas/{id} | 
 *ReactorFormulasApi* | [**ReactorFormulasGet**](docs/ReactorFormulasApi.md#reactorformulasget) | **Get** /reactor-formulas | 
@@ -114,14 +114,14 @@ Class | Method | HTTP request | Description
  - [Application](docs/Application.md)
  - [ApplicationPaginatedList](docs/ApplicationPaginatedList.md)
  - [CreateApplicationRequest](docs/CreateApplicationRequest.md)
- - [CreateInboundProxyRequest](docs/CreateInboundProxyRequest.md)
+ - [CreateProxyRequest](docs/CreateProxyRequest.md)
  - [CreateReactorFormulaRequest](docs/CreateReactorFormulaRequest.md)
  - [CreateReactorRequest](docs/CreateReactorRequest.md)
- - [GetInboundProxies](docs/GetInboundProxies.md)
- - [InboundProxy](docs/InboundProxy.md)
- - [InboundProxyPaginatedList](docs/InboundProxyPaginatedList.md)
+ - [GetProxies](docs/GetProxies.md)
  - [Pagination](docs/Pagination.md)
  - [ProblemDetails](docs/ProblemDetails.md)
+ - [Proxy](docs/Proxy.md)
+ - [ProxyPaginatedList](docs/ProxyPaginatedList.md)
  - [ReactRequest](docs/ReactRequest.md)
  - [ReactResponse](docs/ReactResponse.md)
  - [Reactor](docs/Reactor.md)
@@ -131,7 +131,7 @@ Class | Method | HTTP request | Description
  - [ReactorFormulaRequestParameter](docs/ReactorFormulaRequestParameter.md)
  - [ReactorPaginatedList](docs/ReactorPaginatedList.md)
  - [UpdateApplicationRequest](docs/UpdateApplicationRequest.md)
- - [UpdateInboundProxyRequest](docs/UpdateInboundProxyRequest.md)
+ - [UpdateProxyRequest](docs/UpdateProxyRequest.md)
  - [UpdateReactorFormulaRequest](docs/UpdateReactorFormulaRequest.md)
  - [UpdateReactorRequest](docs/UpdateReactorRequest.md)
  - [ValidationProblemDetails](docs/ValidationProblemDetails.md)

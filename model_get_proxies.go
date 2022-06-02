@@ -14,33 +14,33 @@ import (
 	"encoding/json"
 )
 
-// GetInboundProxies struct for GetInboundProxies
-type GetInboundProxies struct {
+// GetProxies struct for GetProxies
+type GetProxies struct {
 	Ids []string `json:"ids,omitempty"`
 	Name NullableString `json:"name,omitempty"`
 	Page NullableInt32 `json:"page,omitempty"`
 	Size NullableInt32 `json:"size,omitempty"`
 }
 
-// NewGetInboundProxies instantiates a new GetInboundProxies object
+// NewGetProxies instantiates a new GetProxies object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewGetInboundProxies() *GetInboundProxies {
-	this := GetInboundProxies{}
+func NewGetProxies() *GetProxies {
+	this := GetProxies{}
 	return &this
 }
 
-// NewGetInboundProxiesWithDefaults instantiates a new GetInboundProxies object
+// NewGetProxiesWithDefaults instantiates a new GetProxies object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
-func NewGetInboundProxiesWithDefaults() *GetInboundProxies {
-	this := GetInboundProxies{}
+func NewGetProxiesWithDefaults() *GetProxies {
+	this := GetProxies{}
 	return &this
 }
 
 // GetIds returns the Ids field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *GetInboundProxies) GetIds() []string {
+func (o *GetProxies) GetIds() []string {
 	if o == nil {
 		var ret []string
 		return ret
@@ -51,7 +51,7 @@ func (o *GetInboundProxies) GetIds() []string {
 // GetIdsOk returns a tuple with the Ids field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *GetInboundProxies) GetIdsOk() ([]string, bool) {
+func (o *GetProxies) GetIdsOk() ([]string, bool) {
 	if o == nil || o.Ids == nil {
 		return nil, false
 	}
@@ -59,7 +59,7 @@ func (o *GetInboundProxies) GetIdsOk() ([]string, bool) {
 }
 
 // HasIds returns a boolean if a field has been set.
-func (o *GetInboundProxies) HasIds() bool {
+func (o *GetProxies) HasIds() bool {
 	if o != nil && o.Ids != nil {
 		return true
 	}
@@ -68,12 +68,12 @@ func (o *GetInboundProxies) HasIds() bool {
 }
 
 // SetIds gets a reference to the given []string and assigns it to the Ids field.
-func (o *GetInboundProxies) SetIds(v []string) {
+func (o *GetProxies) SetIds(v []string) {
 	o.Ids = v
 }
 
 // GetName returns the Name field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *GetInboundProxies) GetName() string {
+func (o *GetProxies) GetName() string {
 	if o == nil || o.Name.Get() == nil {
 		var ret string
 		return ret
@@ -84,7 +84,7 @@ func (o *GetInboundProxies) GetName() string {
 // GetNameOk returns a tuple with the Name field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *GetInboundProxies) GetNameOk() (*string, bool) {
+func (o *GetProxies) GetNameOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -92,7 +92,7 @@ func (o *GetInboundProxies) GetNameOk() (*string, bool) {
 }
 
 // HasName returns a boolean if a field has been set.
-func (o *GetInboundProxies) HasName() bool {
+func (o *GetProxies) HasName() bool {
 	if o != nil && o.Name.IsSet() {
 		return true
 	}
@@ -101,21 +101,21 @@ func (o *GetInboundProxies) HasName() bool {
 }
 
 // SetName gets a reference to the given NullableString and assigns it to the Name field.
-func (o *GetInboundProxies) SetName(v string) {
+func (o *GetProxies) SetName(v string) {
 	o.Name.Set(&v)
 }
 // SetNameNil sets the value for Name to be an explicit nil
-func (o *GetInboundProxies) SetNameNil() {
+func (o *GetProxies) SetNameNil() {
 	o.Name.Set(nil)
 }
 
 // UnsetName ensures that no value is present for Name, not even an explicit nil
-func (o *GetInboundProxies) UnsetName() {
+func (o *GetProxies) UnsetName() {
 	o.Name.Unset()
 }
 
 // GetPage returns the Page field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *GetInboundProxies) GetPage() int32 {
+func (o *GetProxies) GetPage() int32 {
 	if o == nil || o.Page.Get() == nil {
 		var ret int32
 		return ret
@@ -126,7 +126,7 @@ func (o *GetInboundProxies) GetPage() int32 {
 // GetPageOk returns a tuple with the Page field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *GetInboundProxies) GetPageOk() (*int32, bool) {
+func (o *GetProxies) GetPageOk() (*int32, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -134,7 +134,7 @@ func (o *GetInboundProxies) GetPageOk() (*int32, bool) {
 }
 
 // HasPage returns a boolean if a field has been set.
-func (o *GetInboundProxies) HasPage() bool {
+func (o *GetProxies) HasPage() bool {
 	if o != nil && o.Page.IsSet() {
 		return true
 	}
@@ -143,21 +143,21 @@ func (o *GetInboundProxies) HasPage() bool {
 }
 
 // SetPage gets a reference to the given NullableInt32 and assigns it to the Page field.
-func (o *GetInboundProxies) SetPage(v int32) {
+func (o *GetProxies) SetPage(v int32) {
 	o.Page.Set(&v)
 }
 // SetPageNil sets the value for Page to be an explicit nil
-func (o *GetInboundProxies) SetPageNil() {
+func (o *GetProxies) SetPageNil() {
 	o.Page.Set(nil)
 }
 
 // UnsetPage ensures that no value is present for Page, not even an explicit nil
-func (o *GetInboundProxies) UnsetPage() {
+func (o *GetProxies) UnsetPage() {
 	o.Page.Unset()
 }
 
 // GetSize returns the Size field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *GetInboundProxies) GetSize() int32 {
+func (o *GetProxies) GetSize() int32 {
 	if o == nil || o.Size.Get() == nil {
 		var ret int32
 		return ret
@@ -168,7 +168,7 @@ func (o *GetInboundProxies) GetSize() int32 {
 // GetSizeOk returns a tuple with the Size field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *GetInboundProxies) GetSizeOk() (*int32, bool) {
+func (o *GetProxies) GetSizeOk() (*int32, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -176,7 +176,7 @@ func (o *GetInboundProxies) GetSizeOk() (*int32, bool) {
 }
 
 // HasSize returns a boolean if a field has been set.
-func (o *GetInboundProxies) HasSize() bool {
+func (o *GetProxies) HasSize() bool {
 	if o != nil && o.Size.IsSet() {
 		return true
 	}
@@ -185,20 +185,20 @@ func (o *GetInboundProxies) HasSize() bool {
 }
 
 // SetSize gets a reference to the given NullableInt32 and assigns it to the Size field.
-func (o *GetInboundProxies) SetSize(v int32) {
+func (o *GetProxies) SetSize(v int32) {
 	o.Size.Set(&v)
 }
 // SetSizeNil sets the value for Size to be an explicit nil
-func (o *GetInboundProxies) SetSizeNil() {
+func (o *GetProxies) SetSizeNil() {
 	o.Size.Set(nil)
 }
 
 // UnsetSize ensures that no value is present for Size, not even an explicit nil
-func (o *GetInboundProxies) UnsetSize() {
+func (o *GetProxies) UnsetSize() {
 	o.Size.Unset()
 }
 
-func (o GetInboundProxies) MarshalJSON() ([]byte, error) {
+func (o GetProxies) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.Ids != nil {
 		toSerialize["ids"] = o.Ids
@@ -215,38 +215,38 @@ func (o GetInboundProxies) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
-type NullableGetInboundProxies struct {
-	value *GetInboundProxies
+type NullableGetProxies struct {
+	value *GetProxies
 	isSet bool
 }
 
-func (v NullableGetInboundProxies) Get() *GetInboundProxies {
+func (v NullableGetProxies) Get() *GetProxies {
 	return v.value
 }
 
-func (v *NullableGetInboundProxies) Set(val *GetInboundProxies) {
+func (v *NullableGetProxies) Set(val *GetProxies) {
 	v.value = val
 	v.isSet = true
 }
 
-func (v NullableGetInboundProxies) IsSet() bool {
+func (v NullableGetProxies) IsSet() bool {
 	return v.isSet
 }
 
-func (v *NullableGetInboundProxies) Unset() {
+func (v *NullableGetProxies) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
-func NewNullableGetInboundProxies(val *GetInboundProxies) *NullableGetInboundProxies {
-	return &NullableGetInboundProxies{value: val, isSet: true}
+func NewNullableGetProxies(val *GetProxies) *NullableGetProxies {
+	return &NullableGetProxies{value: val, isSet: true}
 }
 
-func (v NullableGetInboundProxies) MarshalJSON() ([]byte, error) {
+func (v NullableGetProxies) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
-func (v *NullableGetInboundProxies) UnmarshalJSON(src []byte) error {
+func (v *NullableGetProxies) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }

@@ -1,4 +1,4 @@
-# InboundProxy
+# Proxy
 
 ## Properties
 
@@ -17,341 +17,341 @@ Name | Type | Description | Notes
 
 ## Methods
 
-### NewInboundProxy
+### NewProxy
 
-`func NewInboundProxy() *InboundProxy`
+`func NewProxy() *Proxy`
 
-NewInboundProxy instantiates a new InboundProxy object
+NewProxy instantiates a new Proxy object
 This constructor will assign default values to properties that have it defined,
 and makes sure properties required by API are set, but the set of arguments
 will change when the set of required properties is changed
 
-### NewInboundProxyWithDefaults
+### NewProxyWithDefaults
 
-`func NewInboundProxyWithDefaults() *InboundProxy`
+`func NewProxyWithDefaults() *Proxy`
 
-NewInboundProxyWithDefaults instantiates a new InboundProxy object
+NewProxyWithDefaults instantiates a new Proxy object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
 ### GetId
 
-`func (o *InboundProxy) GetId() string`
+`func (o *Proxy) GetId() string`
 
 GetId returns the Id field if non-nil, zero value otherwise.
 
 ### GetIdOk
 
-`func (o *InboundProxy) GetIdOk() (*string, bool)`
+`func (o *Proxy) GetIdOk() (*string, bool)`
 
 GetIdOk returns a tuple with the Id field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetId
 
-`func (o *InboundProxy) SetId(v string)`
+`func (o *Proxy) SetId(v string)`
 
 SetId sets Id field to given value.
 
 ### HasId
 
-`func (o *InboundProxy) HasId() bool`
+`func (o *Proxy) HasId() bool`
 
 HasId returns a boolean if a field has been set.
 
 ### GetKey
 
-`func (o *InboundProxy) GetKey() string`
+`func (o *Proxy) GetKey() string`
 
 GetKey returns the Key field if non-nil, zero value otherwise.
 
 ### GetKeyOk
 
-`func (o *InboundProxy) GetKeyOk() (*string, bool)`
+`func (o *Proxy) GetKeyOk() (*string, bool)`
 
 GetKeyOk returns a tuple with the Key field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetKey
 
-`func (o *InboundProxy) SetKey(v string)`
+`func (o *Proxy) SetKey(v string)`
 
 SetKey sets Key field to given value.
 
 ### HasKey
 
-`func (o *InboundProxy) HasKey() bool`
+`func (o *Proxy) HasKey() bool`
 
 HasKey returns a boolean if a field has been set.
 
 ### SetKeyNil
 
-`func (o *InboundProxy) SetKeyNil(b bool)`
+`func (o *Proxy) SetKeyNil(b bool)`
 
  SetKeyNil sets the value for Key to be an explicit nil
 
 ### UnsetKey
-`func (o *InboundProxy) UnsetKey()`
+`func (o *Proxy) UnsetKey()`
 
 UnsetKey ensures that no value is present for Key, not even an explicit nil
 ### GetTenantId
 
-`func (o *InboundProxy) GetTenantId() string`
+`func (o *Proxy) GetTenantId() string`
 
 GetTenantId returns the TenantId field if non-nil, zero value otherwise.
 
 ### GetTenantIdOk
 
-`func (o *InboundProxy) GetTenantIdOk() (*string, bool)`
+`func (o *Proxy) GetTenantIdOk() (*string, bool)`
 
 GetTenantIdOk returns a tuple with the TenantId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetTenantId
 
-`func (o *InboundProxy) SetTenantId(v string)`
+`func (o *Proxy) SetTenantId(v string)`
 
 SetTenantId sets TenantId field to given value.
 
 ### HasTenantId
 
-`func (o *InboundProxy) HasTenantId() bool`
+`func (o *Proxy) HasTenantId() bool`
 
 HasTenantId returns a boolean if a field has been set.
 
 ### GetName
 
-`func (o *InboundProxy) GetName() string`
+`func (o *Proxy) GetName() string`
 
 GetName returns the Name field if non-nil, zero value otherwise.
 
 ### GetNameOk
 
-`func (o *InboundProxy) GetNameOk() (*string, bool)`
+`func (o *Proxy) GetNameOk() (*string, bool)`
 
 GetNameOk returns a tuple with the Name field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetName
 
-`func (o *InboundProxy) SetName(v string)`
+`func (o *Proxy) SetName(v string)`
 
 SetName sets Name field to given value.
 
 ### HasName
 
-`func (o *InboundProxy) HasName() bool`
+`func (o *Proxy) HasName() bool`
 
 HasName returns a boolean if a field has been set.
 
 ### SetNameNil
 
-`func (o *InboundProxy) SetNameNil(b bool)`
+`func (o *Proxy) SetNameNil(b bool)`
 
  SetNameNil sets the value for Name to be an explicit nil
 
 ### UnsetName
-`func (o *InboundProxy) UnsetName()`
+`func (o *Proxy) UnsetName()`
 
 UnsetName ensures that no value is present for Name, not even an explicit nil
 ### GetDestinationUrl
 
-`func (o *InboundProxy) GetDestinationUrl() string`
+`func (o *Proxy) GetDestinationUrl() string`
 
 GetDestinationUrl returns the DestinationUrl field if non-nil, zero value otherwise.
 
 ### GetDestinationUrlOk
 
-`func (o *InboundProxy) GetDestinationUrlOk() (*string, bool)`
+`func (o *Proxy) GetDestinationUrlOk() (*string, bool)`
 
 GetDestinationUrlOk returns a tuple with the DestinationUrl field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetDestinationUrl
 
-`func (o *InboundProxy) SetDestinationUrl(v string)`
+`func (o *Proxy) SetDestinationUrl(v string)`
 
 SetDestinationUrl sets DestinationUrl field to given value.
 
 ### HasDestinationUrl
 
-`func (o *InboundProxy) HasDestinationUrl() bool`
+`func (o *Proxy) HasDestinationUrl() bool`
 
 HasDestinationUrl returns a boolean if a field has been set.
 
 ### SetDestinationUrlNil
 
-`func (o *InboundProxy) SetDestinationUrlNil(b bool)`
+`func (o *Proxy) SetDestinationUrlNil(b bool)`
 
  SetDestinationUrlNil sets the value for DestinationUrl to be an explicit nil
 
 ### UnsetDestinationUrl
-`func (o *InboundProxy) UnsetDestinationUrl()`
+`func (o *Proxy) UnsetDestinationUrl()`
 
 UnsetDestinationUrl ensures that no value is present for DestinationUrl, not even an explicit nil
 ### GetRequestReactorId
 
-`func (o *InboundProxy) GetRequestReactorId() string`
+`func (o *Proxy) GetRequestReactorId() string`
 
 GetRequestReactorId returns the RequestReactorId field if non-nil, zero value otherwise.
 
 ### GetRequestReactorIdOk
 
-`func (o *InboundProxy) GetRequestReactorIdOk() (*string, bool)`
+`func (o *Proxy) GetRequestReactorIdOk() (*string, bool)`
 
 GetRequestReactorIdOk returns a tuple with the RequestReactorId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetRequestReactorId
 
-`func (o *InboundProxy) SetRequestReactorId(v string)`
+`func (o *Proxy) SetRequestReactorId(v string)`
 
 SetRequestReactorId sets RequestReactorId field to given value.
 
 ### HasRequestReactorId
 
-`func (o *InboundProxy) HasRequestReactorId() bool`
+`func (o *Proxy) HasRequestReactorId() bool`
 
 HasRequestReactorId returns a boolean if a field has been set.
 
 ### GetCreatedBy
 
-`func (o *InboundProxy) GetCreatedBy() string`
+`func (o *Proxy) GetCreatedBy() string`
 
 GetCreatedBy returns the CreatedBy field if non-nil, zero value otherwise.
 
 ### GetCreatedByOk
 
-`func (o *InboundProxy) GetCreatedByOk() (*string, bool)`
+`func (o *Proxy) GetCreatedByOk() (*string, bool)`
 
 GetCreatedByOk returns a tuple with the CreatedBy field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetCreatedBy
 
-`func (o *InboundProxy) SetCreatedBy(v string)`
+`func (o *Proxy) SetCreatedBy(v string)`
 
 SetCreatedBy sets CreatedBy field to given value.
 
 ### HasCreatedBy
 
-`func (o *InboundProxy) HasCreatedBy() bool`
+`func (o *Proxy) HasCreatedBy() bool`
 
 HasCreatedBy returns a boolean if a field has been set.
 
 ### SetCreatedByNil
 
-`func (o *InboundProxy) SetCreatedByNil(b bool)`
+`func (o *Proxy) SetCreatedByNil(b bool)`
 
  SetCreatedByNil sets the value for CreatedBy to be an explicit nil
 
 ### UnsetCreatedBy
-`func (o *InboundProxy) UnsetCreatedBy()`
+`func (o *Proxy) UnsetCreatedBy()`
 
 UnsetCreatedBy ensures that no value is present for CreatedBy, not even an explicit nil
 ### GetCreatedAt
 
-`func (o *InboundProxy) GetCreatedAt() time.Time`
+`func (o *Proxy) GetCreatedAt() time.Time`
 
 GetCreatedAt returns the CreatedAt field if non-nil, zero value otherwise.
 
 ### GetCreatedAtOk
 
-`func (o *InboundProxy) GetCreatedAtOk() (*time.Time, bool)`
+`func (o *Proxy) GetCreatedAtOk() (*time.Time, bool)`
 
 GetCreatedAtOk returns a tuple with the CreatedAt field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetCreatedAt
 
-`func (o *InboundProxy) SetCreatedAt(v time.Time)`
+`func (o *Proxy) SetCreatedAt(v time.Time)`
 
 SetCreatedAt sets CreatedAt field to given value.
 
 ### HasCreatedAt
 
-`func (o *InboundProxy) HasCreatedAt() bool`
+`func (o *Proxy) HasCreatedAt() bool`
 
 HasCreatedAt returns a boolean if a field has been set.
 
 ### SetCreatedAtNil
 
-`func (o *InboundProxy) SetCreatedAtNil(b bool)`
+`func (o *Proxy) SetCreatedAtNil(b bool)`
 
  SetCreatedAtNil sets the value for CreatedAt to be an explicit nil
 
 ### UnsetCreatedAt
-`func (o *InboundProxy) UnsetCreatedAt()`
+`func (o *Proxy) UnsetCreatedAt()`
 
 UnsetCreatedAt ensures that no value is present for CreatedAt, not even an explicit nil
 ### GetModifiedBy
 
-`func (o *InboundProxy) GetModifiedBy() string`
+`func (o *Proxy) GetModifiedBy() string`
 
 GetModifiedBy returns the ModifiedBy field if non-nil, zero value otherwise.
 
 ### GetModifiedByOk
 
-`func (o *InboundProxy) GetModifiedByOk() (*string, bool)`
+`func (o *Proxy) GetModifiedByOk() (*string, bool)`
 
 GetModifiedByOk returns a tuple with the ModifiedBy field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetModifiedBy
 
-`func (o *InboundProxy) SetModifiedBy(v string)`
+`func (o *Proxy) SetModifiedBy(v string)`
 
 SetModifiedBy sets ModifiedBy field to given value.
 
 ### HasModifiedBy
 
-`func (o *InboundProxy) HasModifiedBy() bool`
+`func (o *Proxy) HasModifiedBy() bool`
 
 HasModifiedBy returns a boolean if a field has been set.
 
 ### SetModifiedByNil
 
-`func (o *InboundProxy) SetModifiedByNil(b bool)`
+`func (o *Proxy) SetModifiedByNil(b bool)`
 
  SetModifiedByNil sets the value for ModifiedBy to be an explicit nil
 
 ### UnsetModifiedBy
-`func (o *InboundProxy) UnsetModifiedBy()`
+`func (o *Proxy) UnsetModifiedBy()`
 
 UnsetModifiedBy ensures that no value is present for ModifiedBy, not even an explicit nil
 ### GetModifiedAt
 
-`func (o *InboundProxy) GetModifiedAt() time.Time`
+`func (o *Proxy) GetModifiedAt() time.Time`
 
 GetModifiedAt returns the ModifiedAt field if non-nil, zero value otherwise.
 
 ### GetModifiedAtOk
 
-`func (o *InboundProxy) GetModifiedAtOk() (*time.Time, bool)`
+`func (o *Proxy) GetModifiedAtOk() (*time.Time, bool)`
 
 GetModifiedAtOk returns a tuple with the ModifiedAt field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetModifiedAt
 
-`func (o *InboundProxy) SetModifiedAt(v time.Time)`
+`func (o *Proxy) SetModifiedAt(v time.Time)`
 
 SetModifiedAt sets ModifiedAt field to given value.
 
 ### HasModifiedAt
 
-`func (o *InboundProxy) HasModifiedAt() bool`
+`func (o *Proxy) HasModifiedAt() bool`
 
 HasModifiedAt returns a boolean if a field has been set.
 
 ### SetModifiedAtNil
 
-`func (o *InboundProxy) SetModifiedAtNil(b bool)`
+`func (o *Proxy) SetModifiedAtNil(b bool)`
 
  SetModifiedAtNil sets the value for ModifiedAt to be an explicit nil
 
 ### UnsetModifiedAt
-`func (o *InboundProxy) UnsetModifiedAt()`
+`func (o *Proxy) UnsetModifiedAt()`
 
 UnsetModifiedAt ensures that no value is present for ModifiedAt, not even an explicit nil
 
