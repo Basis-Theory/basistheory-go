@@ -2,7 +2,7 @@ package testutils
 
 import (
 	"context"
-	"github.com/Basis-Theory/basistheory-go"
+	"github.com/Basis-Theory/basistheory-go/v2"
 	"github.com/joho/godotenv"
 	"os"
 	"strings"

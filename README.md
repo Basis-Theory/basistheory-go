@@ -22,7 +22,7 @@ go get golang.org/x/net/context
 Put the package under your project folder and add the following in import:
 
 ```golang
-import basistheory "github.com/Basis-Theory/basistheory-go"
+import basistheory "github.com/Basis-Theory/basistheory-go/v2"
 ```
 
 To use a proxy, set the environment variable `HTTP_PROXY`:
