@@ -33,7 +33,7 @@ import (
 )
 
 func main() {
-    createApplicationRequest := *openapiclient.NewCreateApplicationRequest("Name_example", "Type_example") // CreateApplicationRequest |  (optional)
+    createApplicationRequest := *openapiclient.NewCreateApplicationRequest("Name_example", "Type_example") // CreateApplicationRequest | 
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
@@ -427,7 +427,7 @@ import (
 
 func main() {
     id := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | 
-    updateApplicationRequest := *openapiclient.NewUpdateApplicationRequest("Name_example") // UpdateApplicationRequest |  (optional)
+    updateApplicationRequest := *openapiclient.NewUpdateApplicationRequest("Name_example") // UpdateApplicationRequest | 
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)

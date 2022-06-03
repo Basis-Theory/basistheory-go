@@ -23,6 +23,7 @@ type Proxy struct {
 	Name NullableString `json:"name,omitempty"`
 	DestinationUrl NullableString `json:"destination_url,omitempty"`
 	RequestReactorId *string `json:"request_reactor_id,omitempty"`
+	RequireAuth *bool `json:"require_auth,omitempty"`
 	CreatedBy NullableString `json:"created_by,omitempty"`
 	CreatedAt NullableTime `json:"created_at,omitempty"`
 	ModifiedBy NullableString `json:"modified_by,omitempty"`
@@ -268,6 +269,38 @@ func (o *Proxy) SetRequestReactorId(v string) {
 	o.RequestReactorId = &v
 }
 
+// GetRequireAuth returns the RequireAuth field value if set, zero value otherwise.
+func (o *Proxy) GetRequireAuth() bool {
+	if o == nil || o.RequireAuth == nil {
+		var ret bool
+		return ret
+	}
+	return *o.RequireAuth
+}
+
+// GetRequireAuthOk returns a tuple with the RequireAuth field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Proxy) GetRequireAuthOk() (*bool, bool) {
+	if o == nil || o.RequireAuth == nil {
+		return nil, false
+	}
+	return o.RequireAuth, true
+}
+
+// HasRequireAuth returns a boolean if a field has been set.
+func (o *Proxy) HasRequireAuth() bool {
+	if o != nil && o.RequireAuth != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetRequireAuth gets a reference to the given bool and assigns it to the RequireAuth field.
+func (o *Proxy) SetRequireAuth(v bool) {
+	o.RequireAuth = &v
+}
+
 // GetCreatedBy returns the CreatedBy field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *Proxy) GetCreatedBy() string {
 	if o == nil || o.CreatedBy.Get() == nil {
@@ -455,6 +488,9 @@ func (o Proxy) MarshalJSON() ([]byte, error) {
 	}
 	if o.RequestReactorId != nil {
 		toSerialize["request_reactor_id"] = o.RequestReactorId
+	}
+	if o.RequireAuth != nil {
+		toSerialize["require_auth"] = o.RequireAuth
 	}
 	if o.CreatedBy.IsSet() {
 		toSerialize["created_by"] = o.CreatedBy.Get()

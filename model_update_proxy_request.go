@@ -19,6 +19,7 @@ type UpdateProxyRequest struct {
 	Name string `json:"name"`
 	DestinationUrl string `json:"destination_url"`
 	RequestReactorId string `json:"request_reactor_id"`
+	RequireAuth NullableBool `json:"require_auth,omitempty"`
 }
 
 // NewUpdateProxyRequest instantiates a new UpdateProxyRequest object
@@ -113,6 +114,48 @@ func (o *UpdateProxyRequest) SetRequestReactorId(v string) {
 	o.RequestReactorId = v
 }
 
+// GetRequireAuth returns the RequireAuth field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *UpdateProxyRequest) GetRequireAuth() bool {
+	if o == nil || o.RequireAuth.Get() == nil {
+		var ret bool
+		return ret
+	}
+	return *o.RequireAuth.Get()
+}
+
+// GetRequireAuthOk returns a tuple with the RequireAuth field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *UpdateProxyRequest) GetRequireAuthOk() (*bool, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.RequireAuth.Get(), o.RequireAuth.IsSet()
+}
+
+// HasRequireAuth returns a boolean if a field has been set.
+func (o *UpdateProxyRequest) HasRequireAuth() bool {
+	if o != nil && o.RequireAuth.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetRequireAuth gets a reference to the given NullableBool and assigns it to the RequireAuth field.
+func (o *UpdateProxyRequest) SetRequireAuth(v bool) {
+	o.RequireAuth.Set(&v)
+}
+// SetRequireAuthNil sets the value for RequireAuth to be an explicit nil
+func (o *UpdateProxyRequest) SetRequireAuthNil() {
+	o.RequireAuth.Set(nil)
+}
+
+// UnsetRequireAuth ensures that no value is present for RequireAuth, not even an explicit nil
+func (o *UpdateProxyRequest) UnsetRequireAuth() {
+	o.RequireAuth.Unset()
+}
+
 func (o UpdateProxyRequest) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if true {
@@ -123,6 +166,9 @@ func (o UpdateProxyRequest) MarshalJSON() ([]byte, error) {
 	}
 	if true {
 		toSerialize["request_reactor_id"] = o.RequestReactorId
+	}
+	if o.RequireAuth.IsSet() {
+		toSerialize["require_auth"] = o.RequireAuth.Get()
 	}
 	return json.Marshal(toSerialize)
 }

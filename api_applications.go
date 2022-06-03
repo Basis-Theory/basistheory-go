@@ -72,6 +72,9 @@ func (a *ApplicationsApiService) ApplicationsCreateExecute(r ApiApplicationsCrea
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
+	if r.createApplicationRequest == nil {
+		return localVarReturnValue, nil, reportError("createApplicationRequest is required and must be specified")
+	}
 
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{"application/json"}
@@ -950,6 +953,9 @@ func (a *ApplicationsApiService) ApplicationsUpdateExecute(r ApiApplicationsUpda
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
+	if r.updateApplicationRequest == nil {
+		return localVarReturnValue, nil, reportError("updateApplicationRequest is required and must be specified")
+	}
 
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{"application/json"}

@@ -10,6 +10,7 @@ Name | Type | Description | Notes
 **Name** | Pointer to **NullableString** |  | [optional] 
 **DestinationUrl** | Pointer to **NullableString** |  | [optional] 
 **RequestReactorId** | Pointer to **string** |  | [optional] 
+**RequireAuth** | Pointer to **bool** |  | [optional] 
 **CreatedBy** | Pointer to **NullableString** |  | [optional] 
 **CreatedAt** | Pointer to **NullableTime** |  | [optional] 
 **ModifiedBy** | Pointer to **NullableString** |  | [optional] 
@@ -213,6 +214,31 @@ SetRequestReactorId sets RequestReactorId field to given value.
 `func (o *Proxy) HasRequestReactorId() bool`
 
 HasRequestReactorId returns a boolean if a field has been set.
+
+### GetRequireAuth
+
+`func (o *Proxy) GetRequireAuth() bool`
+
+GetRequireAuth returns the RequireAuth field if non-nil, zero value otherwise.
+
+### GetRequireAuthOk
+
+`func (o *Proxy) GetRequireAuthOk() (*bool, bool)`
+
+GetRequireAuthOk returns a tuple with the RequireAuth field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetRequireAuth
+
+`func (o *Proxy) SetRequireAuth(v bool)`
+
+SetRequireAuth sets RequireAuth field to given value.
+
+### HasRequireAuth
+
+`func (o *Proxy) HasRequireAuth() bool`
+
+HasRequireAuth returns a boolean if a field has been set.
 
 ### GetCreatedBy
 

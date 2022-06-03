@@ -13,7 +13,7 @@ security:
 paths:
   /applications:
     get:
-      operationId: Applications.Get
+      operationId: Applications_Get
       parameters:
       - explode: true
         in: query
@@ -69,12 +69,13 @@ paths:
       tags:
       - Applications
     post:
-      operationId: Applications.Create
+      operationId: Applications_Create
       requestBody:
         content:
           application/json:
             schema:
               $ref: '#/components/schemas/CreateApplicationRequest'
+        required: true
       responses:
         "201":
           content:
@@ -104,7 +105,7 @@ paths:
       - Applications
   /applications/{id}:
     delete:
-      operationId: Applications.Delete
+      operationId: Applications_Delete
       parameters:
       - explode: false
         in: path
@@ -138,7 +139,7 @@ paths:
       tags:
       - Applications
     get:
-      operationId: Applications.GetById
+      operationId: Applications_GetById
       parameters:
       - explode: false
         in: path
@@ -176,7 +177,7 @@ paths:
       tags:
       - Applications
     put:
-      operationId: Applications.Update
+      operationId: Applications_Update
       parameters:
       - explode: false
         in: path
@@ -191,6 +192,7 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/UpdateApplicationRequest'
+        required: true
       responses:
         "200":
           content:
@@ -226,7 +228,7 @@ paths:
       - Applications
   /applications/key:
     get:
-      operationId: Applications.GetByKey
+      operationId: Applications_GetByKey
       responses:
         "200":
           content:
@@ -250,7 +252,7 @@ paths:
       - Applications
   /applications/{id}/regenerate:
     post:
-      operationId: Applications.RegenerateKey
+      operationId: Applications_RegenerateKey
       parameters:
       - explode: false
         in: path
@@ -289,7 +291,7 @@ paths:
       - Applications
   /proxies:
     get:
-      operationId: Proxies.Get
+      operationId: Proxies_Get
       parameters:
       - explode: true
         in: query
@@ -356,7 +358,7 @@ paths:
       tags:
       - Proxies
     post:
-      operationId: Proxies.Create
+      operationId: Proxies_Create
       requestBody:
         content:
           application/json:
@@ -391,7 +393,7 @@ paths:
       - Proxies
   /proxies/{id}:
     delete:
-      operationId: Proxies.Delete
+      operationId: Proxies_Delete
       parameters:
       - explode: false
         in: path
@@ -425,7 +427,7 @@ paths:
       tags:
       - Proxies
     get:
-      operationId: Proxies.GetById
+      operationId: Proxies_GetById
       parameters:
       - explode: false
         in: path
@@ -463,7 +465,7 @@ paths:
       tags:
       - Proxies
     put:
-      operationId: Proxies.Update
+      operationId: Proxies_Update
       parameters:
       - explode: false
         in: path
@@ -513,7 +515,7 @@ paths:
       - Proxies
   /reactor-formulas:
     get:
-      operationId: ReactorFormulas.Get
+      operationId: ReactorFormulas_Get
       parameters:
       - explode: true
         in: query
@@ -566,7 +568,7 @@ paths:
       tags:
       - ReactorFormulas
     post:
-      operationId: ReactorFormulas.Create
+      operationId: ReactorFormulas_Create
       requestBody:
         content:
           application/json:
@@ -601,7 +603,7 @@ paths:
       - ReactorFormulas
   /reactor-formulas/{id}:
     delete:
-      operationId: ReactorFormulas.Delete
+      operationId: ReactorFormulas_Delete
       parameters:
       - explode: false
         in: path
@@ -635,7 +637,7 @@ paths:
       tags:
       - ReactorFormulas
     get:
-      operationId: ReactorFormulas.GetById
+      operationId: ReactorFormulas_GetById
       parameters:
       - explode: false
         in: path
@@ -673,7 +675,7 @@ paths:
       tags:
       - ReactorFormulas
     put:
-      operationId: ReactorFormulas.Update
+      operationId: ReactorFormulas_Update
       parameters:
       - explode: false
         in: path
@@ -723,7 +725,7 @@ paths:
       - ReactorFormulas
   /reactors:
     get:
-      operationId: Reactors.Get
+      operationId: Reactors_Get
       parameters:
       - explode: true
         in: query
@@ -786,7 +788,7 @@ paths:
       tags:
       - Reactors
     post:
-      operationId: Reactors.Create
+      operationId: Reactors_Create
       requestBody:
         content:
           application/json:
@@ -821,7 +823,7 @@ paths:
       - Reactors
   /reactors/{id}:
     delete:
-      operationId: Reactors.Delete
+      operationId: Reactors_Delete
       parameters:
       - explode: false
         in: path
@@ -855,7 +857,7 @@ paths:
       tags:
       - Reactors
     get:
-      operationId: Reactors.GetById
+      operationId: Reactors_GetById
       parameters:
       - explode: false
         in: path
@@ -893,7 +895,7 @@ paths:
       tags:
       - Reactors
     put:
-      operationId: Reactors.Update
+      operationId: Reactors_Update
       parameters:
       - explode: false
         in: path
@@ -943,7 +945,7 @@ paths:
       - Reactors
   /reactors/{id}/react:
     post:
-      operationId: Reactors.React
+      operationId: Reactors_React
       parameters:
       - explode: false
         in: path
@@ -1124,6 +1126,7 @@ components:
       example:
         name: name
         destination_url: destination_url
+        require_auth: true
         request_reactor_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
       properties:
         name:
@@ -1137,6 +1140,9 @@ components:
         request_reactor_id:
           format: uuid
           type: string
+        require_auth:
+          nullable: true
+          type: boolean
       required:
       - destination_url
       - name
@@ -1289,94 +1295,6 @@ components:
           nullable: true
           type: integer
       type: object
-    Proxy:
-      additionalProperties: false
-      example:
-        tenant_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-        name: name
-        destination_url: destination_url
-        modified_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-        created_at: 2000-01-23T04:56:07.000+00:00
-        request_reactor_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-        id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-        modified_at: 2000-01-23T04:56:07.000+00:00
-        created_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-        key: key
-      properties:
-        id:
-          format: uuid
-          type: string
-        key:
-          nullable: true
-          readOnly: true
-          type: string
-        tenant_id:
-          format: uuid
-          type: string
-        name:
-          nullable: true
-          type: string
-        destination_url:
-          nullable: true
-          type: string
-        request_reactor_id:
-          format: uuid
-          type: string
-        created_by:
-          format: uuid
-          nullable: true
-          type: string
-        created_at:
-          format: date-time
-          nullable: true
-          type: string
-        modified_by:
-          format: uuid
-          nullable: true
-          type: string
-        modified_at:
-          format: date-time
-          nullable: true
-          type: string
-      type: object
-    ProxyPaginatedList:
-      additionalProperties: false
-      example:
-        pagination:
-          page_number: 6
-          total_pages: 5
-          total_items: 0
-          page_size: 1
-        data:
-        - tenant_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-          name: name
-          destination_url: destination_url
-          modified_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-          created_at: 2000-01-23T04:56:07.000+00:00
-          request_reactor_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-          id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-          modified_at: 2000-01-23T04:56:07.000+00:00
-          created_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-          key: key
-        - tenant_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-          name: name
-          destination_url: destination_url
-          modified_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-          created_at: 2000-01-23T04:56:07.000+00:00
-          request_reactor_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-          id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-          modified_at: 2000-01-23T04:56:07.000+00:00
-          created_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-          key: key
-      properties:
-        pagination:
-          $ref: '#/components/schemas/Pagination'
-        data:
-          items:
-            $ref: '#/components/schemas/Proxy'
-          nullable: true
-          type: array
-      type: object
     Pagination:
       additionalProperties: false
       example:
@@ -1417,6 +1335,99 @@ components:
         instance:
           nullable: true
           type: string
+      type: object
+    Proxy:
+      additionalProperties: false
+      example:
+        tenant_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        name: name
+        destination_url: destination_url
+        modified_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        require_auth: true
+        created_at: 2000-01-23T04:56:07.000+00:00
+        request_reactor_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        modified_at: 2000-01-23T04:56:07.000+00:00
+        created_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        key: key
+      properties:
+        id:
+          format: uuid
+          type: string
+        key:
+          nullable: true
+          readOnly: true
+          type: string
+        tenant_id:
+          format: uuid
+          type: string
+        name:
+          nullable: true
+          type: string
+        destination_url:
+          nullable: true
+          type: string
+        request_reactor_id:
+          format: uuid
+          type: string
+        require_auth:
+          type: boolean
+        created_by:
+          format: uuid
+          nullable: true
+          type: string
+        created_at:
+          format: date-time
+          nullable: true
+          type: string
+        modified_by:
+          format: uuid
+          nullable: true
+          type: string
+        modified_at:
+          format: date-time
+          nullable: true
+          type: string
+      type: object
+    ProxyPaginatedList:
+      additionalProperties: false
+      example:
+        pagination:
+          page_number: 6
+          total_pages: 5
+          total_items: 0
+          page_size: 1
+        data:
+        - tenant_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          name: name
+          destination_url: destination_url
+          modified_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          require_auth: true
+          created_at: 2000-01-23T04:56:07.000+00:00
+          request_reactor_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          modified_at: 2000-01-23T04:56:07.000+00:00
+          created_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          key: key
+        - tenant_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          name: name
+          destination_url: destination_url
+          modified_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          require_auth: true
+          created_at: 2000-01-23T04:56:07.000+00:00
+          request_reactor_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          modified_at: 2000-01-23T04:56:07.000+00:00
+          created_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          key: key
+      properties:
+        pagination:
+          $ref: '#/components/schemas/Pagination'
+        data:
+          items:
+            $ref: '#/components/schemas/Proxy'
+          nullable: true
+          type: array
       type: object
     ReactRequest:
       additionalProperties: false
@@ -1711,7 +1722,6 @@ components:
         name:
           maxLength: 200
           minLength: 1
-          pattern: "^[\\w-.]+$"
           type: string
         description:
           nullable: true
@@ -1868,6 +1878,7 @@ components:
       example:
         name: name
         destination_url: destination_url
+        require_auth: true
         request_reactor_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
       properties:
         name:
@@ -1881,6 +1892,9 @@ components:
         request_reactor_id:
           format: uuid
           type: string
+        require_auth:
+          nullable: true
+          type: boolean
       required:
       - destination_url
       - name

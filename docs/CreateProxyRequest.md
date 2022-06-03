@@ -7,6 +7,7 @@ Name | Type | Description | Notes
 **Name** | **string** |  | 
 **DestinationUrl** | **string** |  | 
 **RequestReactorId** | **string** |  | 
+**RequireAuth** | Pointer to **NullableBool** |  | [optional] 
 
 ## Methods
 
@@ -87,6 +88,41 @@ and a boolean to check if the value has been set.
 SetRequestReactorId sets RequestReactorId field to given value.
 
 
+### GetRequireAuth
+
+`func (o *CreateProxyRequest) GetRequireAuth() bool`
+
+GetRequireAuth returns the RequireAuth field if non-nil, zero value otherwise.
+
+### GetRequireAuthOk
+
+`func (o *CreateProxyRequest) GetRequireAuthOk() (*bool, bool)`
+
+GetRequireAuthOk returns a tuple with the RequireAuth field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetRequireAuth
+
+`func (o *CreateProxyRequest) SetRequireAuth(v bool)`
+
+SetRequireAuth sets RequireAuth field to given value.
+
+### HasRequireAuth
+
+`func (o *CreateProxyRequest) HasRequireAuth() bool`
+
+HasRequireAuth returns a boolean if a field has been set.
+
+### SetRequireAuthNil
+
+`func (o *CreateProxyRequest) SetRequireAuthNil(b bool)`
+
+ SetRequireAuthNil sets the value for RequireAuth to be an explicit nil
+
+### UnsetRequireAuth
+`func (o *CreateProxyRequest) UnsetRequireAuth()`
+
+UnsetRequireAuth ensures that no value is present for RequireAuth, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

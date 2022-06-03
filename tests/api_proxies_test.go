@@ -40,6 +40,7 @@ func TestProxiesCRUD(t *testing.T) {
 	proxyDestinationUrl := "http://httpbin.org/post"
 
 	createProxyRequest := *basistheory.NewCreateProxyRequest(proxyName, proxyDestinationUrl, createdReactor.GetId())
+	createProxyRequest.SetRequireAuth(true)
 
 	createdProxy, response, err := apiClient.ProxiesApi.ProxiesCreate(contextWithAPIKey).CreateProxyRequest(createProxyRequest).Execute()
 
@@ -47,6 +48,7 @@ func TestProxiesCRUD(t *testing.T) {
 	testutils.AssertPropertiesMatch(createdProxy.GetName(), proxyName, t)
 	testutils.AssertPropertiesMatch(createdProxy.GetDestinationUrl(), proxyDestinationUrl, t)
 	testutils.AssertPropertiesMatch(createdProxy.GetRequestReactorId(), createdReactor.GetId(), t)
+	testutils.AssertPropertiesMatch(createdProxy.GetRequireAuth(), true, t)
 
 	// GET BY ID
 	var proxy *basistheory.Proxy
@@ -56,6 +58,7 @@ func TestProxiesCRUD(t *testing.T) {
 	testutils.AssertPropertiesMatch(proxy.GetName(), proxyName, t)
 	testutils.AssertPropertiesMatch(proxy.GetDestinationUrl(), proxyDestinationUrl, t)
 	testutils.AssertPropertiesMatch(proxy.GetRequestReactorId(), createdReactor.GetId(), t)
+	testutils.AssertPropertiesMatch(proxy.GetRequireAuth(), true, t)
 
 	// GET LIST
 	var proxies *basistheory.ProxyPaginatedList
@@ -65,11 +68,13 @@ func TestProxiesCRUD(t *testing.T) {
 	testutils.AssertPropertiesMatch(proxies.Data[0].GetName(), proxyName, t)
 	testutils.AssertPropertiesMatch(proxies.Data[0].GetDestinationUrl(), proxyDestinationUrl, t)
 	testutils.AssertPropertiesMatch(proxies.Data[0].GetRequestReactorId(), createdReactor.GetId(), t)
+	testutils.AssertPropertiesMatch(proxies.Data[0].GetRequireAuth(), true, t)
 
 	// UPDATE
 	updatedProxyName := "Go Test  Proxy Update"
 	updatedProxyDestinationUrl := "https://httpbin.org/post"
 	updateProxyRequest := *basistheory.NewUpdateProxyRequest(updatedProxyName, updatedProxyDestinationUrl, createdReactor.GetId())
+	updateProxyRequest.SetRequireAuth(false)
 
 	var updatedProxy *basistheory.Proxy
 	updatedProxy, response, err = apiClient.ProxiesApi.ProxiesUpdate(contextWithAPIKey, createdProxy.GetId()).UpdateProxyRequest(updateProxyRequest).Execute()
@@ -78,6 +83,7 @@ func TestProxiesCRUD(t *testing.T) {
 	testutils.AssertPropertiesMatch(updatedProxy.GetName(), updatedProxyName, t)
 	testutils.AssertPropertiesMatch(updatedProxy.GetDestinationUrl(), updatedProxyDestinationUrl, t)
 	testutils.AssertPropertiesMatch(updatedProxy.GetRequestReactorId(), createdReactor.GetId(), t)
+	testutils.AssertPropertiesMatch(updatedProxy.GetRequireAuth(), false, t)
 
 	// DELETE
 	_, err = apiClient.ProxiesApi.ProxiesDelete(contextWithAPIKey, createdProxy.GetId()).Execute()
