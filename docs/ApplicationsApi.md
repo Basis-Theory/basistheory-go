@@ -4,19 +4,19 @@ All URIs are relative to *https://api.basistheory.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**ApplicationCreate**](ApplicationsApi.md#ApplicationCreate) | **Post** /applications | 
-[**ApplicationDelete**](ApplicationsApi.md#ApplicationDelete) | **Delete** /applications/{id} | 
-[**ApplicationGetById**](ApplicationsApi.md#ApplicationGetById) | **Get** /applications/{id} | 
-[**ApplicationKey**](ApplicationsApi.md#ApplicationKey) | **Get** /applications/key | 
-[**ApplicationRegenerate**](ApplicationsApi.md#ApplicationRegenerate) | **Post** /applications/{id}/regenerate | 
-[**ApplicationUpdate**](ApplicationsApi.md#ApplicationUpdate) | **Put** /applications/{id} | 
+[**ApplicationsCreate**](ApplicationsApi.md#ApplicationsCreate) | **Post** /applications | 
+[**ApplicationsDelete**](ApplicationsApi.md#ApplicationsDelete) | **Delete** /applications/{id} | 
 [**ApplicationsGet**](ApplicationsApi.md#ApplicationsGet) | **Get** /applications | 
+[**ApplicationsGetById**](ApplicationsApi.md#ApplicationsGetById) | **Get** /applications/{id} | 
+[**ApplicationsGetByKey**](ApplicationsApi.md#ApplicationsGetByKey) | **Get** /applications/key | 
+[**ApplicationsRegenerateKey**](ApplicationsApi.md#ApplicationsRegenerateKey) | **Post** /applications/{id}/regenerate | 
+[**ApplicationsUpdate**](ApplicationsApi.md#ApplicationsUpdate) | **Put** /applications/{id} | 
 
 
 
-## ApplicationCreate
+## ApplicationsCreate
 
-> ApplicationModel ApplicationCreate(ctx).CreateApplicationModel(createApplicationModel).Execute()
+> Application ApplicationsCreate(ctx).CreateApplicationRequest(createApplicationRequest).Execute()
 
 
 
@@ -33,17 +33,17 @@ import (
 )
 
 func main() {
-    createApplicationModel := *openapiclient.NewCreateApplicationModel() // CreateApplicationModel |  (optional)
+    createApplicationRequest := *openapiclient.NewCreateApplicationRequest("Name_example", "Type_example") // CreateApplicationRequest | 
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ApplicationsApi.ApplicationCreate(context.Background()).CreateApplicationModel(createApplicationModel).Execute()
+    resp, r, err := apiClient.ApplicationsApi.ApplicationsCreate(context.Background()).CreateApplicationRequest(createApplicationRequest).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `ApplicationsApi.ApplicationCreate``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `ApplicationsApi.ApplicationsCreate``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `ApplicationCreate`: ApplicationModel
-    fmt.Fprintf(os.Stdout, "Response from `ApplicationsApi.ApplicationCreate`: %v\n", resp)
+    // response from `ApplicationsCreate`: Application
+    fmt.Fprintf(os.Stdout, "Response from `ApplicationsApi.ApplicationsCreate`: %v\n", resp)
 }
 ```
 
@@ -53,16 +53,16 @@ func main() {
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiApplicationCreateRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiApplicationsCreateRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **createApplicationModel** | [**CreateApplicationModel**](CreateApplicationModel.md) |  | 
+ **createApplicationRequest** | [**CreateApplicationRequest**](CreateApplicationRequest.md) |  | 
 
 ### Return type
 
-[**ApplicationModel**](ApplicationModel.md)
+[**Application**](Application.md)
 
 ### Authorization
 
@@ -78,9 +78,9 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
-## ApplicationDelete
+## ApplicationsDelete
 
-> ApplicationDelete(ctx, id).Execute()
+> ApplicationsDelete(ctx, id).Execute()
 
 
 
@@ -101,9 +101,9 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ApplicationsApi.ApplicationDelete(context.Background(), id).Execute()
+    resp, r, err := apiClient.ApplicationsApi.ApplicationsDelete(context.Background(), id).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `ApplicationsApi.ApplicationDelete``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `ApplicationsApi.ApplicationsDelete``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
 }
@@ -119,7 +119,7 @@ Name | Type | Description  | Notes
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiApplicationDeleteRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiApplicationsDeleteRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
@@ -137,271 +137,6 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: text/plain, application/json, text/json, application/xml, text/xml
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
-
-
-## ApplicationGetById
-
-> ApplicationModel ApplicationGetById(ctx, id).Execute()
-
-
-
-### Example
-
-```go
-package main
-
-import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "./openapi"
-)
-
-func main() {
-    id := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | 
-
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ApplicationsApi.ApplicationGetById(context.Background(), id).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `ApplicationsApi.ApplicationGetById``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `ApplicationGetById`: ApplicationModel
-    fmt.Fprintf(os.Stdout, "Response from `ApplicationsApi.ApplicationGetById`: %v\n", resp)
-}
-```
-
-### Path Parameters
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**id** | **string** |  | 
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiApplicationGetByIdRequest struct via the builder pattern
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-
-
-### Return type
-
-[**ApplicationModel**](ApplicationModel.md)
-
-### Authorization
-
-[ApiKey](../README.md#ApiKey)
-
-### HTTP request headers
-
-- **Content-Type**: Not defined
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
-
-
-## ApplicationKey
-
-> ApplicationModel ApplicationKey(ctx).Execute()
-
-
-
-### Example
-
-```go
-package main
-
-import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "./openapi"
-)
-
-func main() {
-
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ApplicationsApi.ApplicationKey(context.Background()).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `ApplicationsApi.ApplicationKey``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `ApplicationKey`: ApplicationModel
-    fmt.Fprintf(os.Stdout, "Response from `ApplicationsApi.ApplicationKey`: %v\n", resp)
-}
-```
-
-### Path Parameters
-
-This endpoint does not need any parameter.
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiApplicationKeyRequest struct via the builder pattern
-
-
-### Return type
-
-[**ApplicationModel**](ApplicationModel.md)
-
-### Authorization
-
-[ApiKey](../README.md#ApiKey)
-
-### HTTP request headers
-
-- **Content-Type**: Not defined
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
-
-
-## ApplicationRegenerate
-
-> ApplicationModel ApplicationRegenerate(ctx, id).Execute()
-
-
-
-### Example
-
-```go
-package main
-
-import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "./openapi"
-)
-
-func main() {
-    id := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | 
-
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ApplicationsApi.ApplicationRegenerate(context.Background(), id).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `ApplicationsApi.ApplicationRegenerate``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `ApplicationRegenerate`: ApplicationModel
-    fmt.Fprintf(os.Stdout, "Response from `ApplicationsApi.ApplicationRegenerate`: %v\n", resp)
-}
-```
-
-### Path Parameters
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**id** | **string** |  | 
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiApplicationRegenerateRequest struct via the builder pattern
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-
-
-### Return type
-
-[**ApplicationModel**](ApplicationModel.md)
-
-### Authorization
-
-[ApiKey](../README.md#ApiKey)
-
-### HTTP request headers
-
-- **Content-Type**: Not defined
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
-
-
-## ApplicationUpdate
-
-> ApplicationModel ApplicationUpdate(ctx, id).UpdateApplicationModel(updateApplicationModel).Execute()
-
-
-
-### Example
-
-```go
-package main
-
-import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "./openapi"
-)
-
-func main() {
-    id := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | 
-    updateApplicationModel := *openapiclient.NewUpdateApplicationModel() // UpdateApplicationModel |  (optional)
-
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ApplicationsApi.ApplicationUpdate(context.Background(), id).UpdateApplicationModel(updateApplicationModel).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `ApplicationsApi.ApplicationUpdate``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `ApplicationUpdate`: ApplicationModel
-    fmt.Fprintf(os.Stdout, "Response from `ApplicationsApi.ApplicationUpdate`: %v\n", resp)
-}
-```
-
-### Path Parameters
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**id** | **string** |  | 
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiApplicationUpdateRequest struct via the builder pattern
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-
- **updateApplicationModel** | [**UpdateApplicationModel**](UpdateApplicationModel.md) |  | 
-
-### Return type
-
-[**ApplicationModel**](ApplicationModel.md)
-
-### Authorization
-
-[ApiKey](../README.md#ApiKey)
-
-### HTTP request headers
-
-- **Content-Type**: application/json
 - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
@@ -411,7 +146,7 @@ Name | Type | Description  | Notes
 
 ## ApplicationsGet
 
-> ApplicationModelPaginatedList ApplicationsGet(ctx).Id(id).Page(page).Size(size).Execute()
+> ApplicationPaginatedList ApplicationsGet(ctx).Id(id).Page(page).Size(size).Execute()
 
 
 
@@ -439,7 +174,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `ApplicationsApi.ApplicationsGet``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `ApplicationsGet`: ApplicationModelPaginatedList
+    // response from `ApplicationsGet`: ApplicationPaginatedList
     fmt.Fprintf(os.Stdout, "Response from `ApplicationsApi.ApplicationsGet`: %v\n", resp)
 }
 ```
@@ -461,7 +196,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ApplicationModelPaginatedList**](ApplicationModelPaginatedList.md)
+[**ApplicationPaginatedList**](ApplicationPaginatedList.md)
 
 ### Authorization
 
@@ -470,6 +205,271 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## ApplicationsGetById
+
+> Application ApplicationsGetById(ctx, id).Execute()
+
+
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    id := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | 
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.ApplicationsApi.ApplicationsGetById(context.Background(), id).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `ApplicationsApi.ApplicationsGetById``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `ApplicationsGetById`: Application
+    fmt.Fprintf(os.Stdout, "Response from `ApplicationsApi.ApplicationsGetById`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**id** | **string** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiApplicationsGetByIdRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+### Return type
+
+[**Application**](Application.md)
+
+### Authorization
+
+[ApiKey](../README.md#ApiKey)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## ApplicationsGetByKey
+
+> Application ApplicationsGetByKey(ctx).Execute()
+
+
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.ApplicationsApi.ApplicationsGetByKey(context.Background()).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `ApplicationsApi.ApplicationsGetByKey``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `ApplicationsGetByKey`: Application
+    fmt.Fprintf(os.Stdout, "Response from `ApplicationsApi.ApplicationsGetByKey`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+This endpoint does not need any parameter.
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiApplicationsGetByKeyRequest struct via the builder pattern
+
+
+### Return type
+
+[**Application**](Application.md)
+
+### Authorization
+
+[ApiKey](../README.md#ApiKey)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## ApplicationsRegenerateKey
+
+> Application ApplicationsRegenerateKey(ctx, id).Execute()
+
+
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    id := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | 
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.ApplicationsApi.ApplicationsRegenerateKey(context.Background(), id).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `ApplicationsApi.ApplicationsRegenerateKey``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `ApplicationsRegenerateKey`: Application
+    fmt.Fprintf(os.Stdout, "Response from `ApplicationsApi.ApplicationsRegenerateKey`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**id** | **string** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiApplicationsRegenerateKeyRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+### Return type
+
+[**Application**](Application.md)
+
+### Authorization
+
+[ApiKey](../README.md#ApiKey)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## ApplicationsUpdate
+
+> Application ApplicationsUpdate(ctx, id).UpdateApplicationRequest(updateApplicationRequest).Execute()
+
+
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    id := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | 
+    updateApplicationRequest := *openapiclient.NewUpdateApplicationRequest("Name_example") // UpdateApplicationRequest | 
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.ApplicationsApi.ApplicationsUpdate(context.Background(), id).UpdateApplicationRequest(updateApplicationRequest).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `ApplicationsApi.ApplicationsUpdate``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `ApplicationsUpdate`: Application
+    fmt.Fprintf(os.Stdout, "Response from `ApplicationsApi.ApplicationsUpdate`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**id** | **string** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiApplicationsUpdateRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **updateApplicationRequest** | [**UpdateApplicationRequest**](UpdateApplicationRequest.md) |  | 
+
+### Return type
+
+[**Application**](Application.md)
+
+### Authorization
+
+[ApiKey](../README.md#ApiKey)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
 - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)

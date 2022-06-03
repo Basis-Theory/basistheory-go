@@ -4,17 +4,17 @@ All URIs are relative to *https://api.basistheory.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**ReactorFormulaCreate**](ReactorFormulasApi.md#ReactorFormulaCreate) | **Post** /reactor-formulas | 
-[**ReactorFormulaDelete**](ReactorFormulasApi.md#ReactorFormulaDelete) | **Delete** /reactor-formulas/{id} | 
-[**ReactorFormulaGetById**](ReactorFormulasApi.md#ReactorFormulaGetById) | **Get** /reactor-formulas/{id} | 
-[**ReactorFormulaUpdate**](ReactorFormulasApi.md#ReactorFormulaUpdate) | **Put** /reactor-formulas/{id} | 
+[**ReactorFormulasCreate**](ReactorFormulasApi.md#ReactorFormulasCreate) | **Post** /reactor-formulas | 
+[**ReactorFormulasDelete**](ReactorFormulasApi.md#ReactorFormulasDelete) | **Delete** /reactor-formulas/{id} | 
 [**ReactorFormulasGet**](ReactorFormulasApi.md#ReactorFormulasGet) | **Get** /reactor-formulas | 
+[**ReactorFormulasGetById**](ReactorFormulasApi.md#ReactorFormulasGetById) | **Get** /reactor-formulas/{id} | 
+[**ReactorFormulasUpdate**](ReactorFormulasApi.md#ReactorFormulasUpdate) | **Put** /reactor-formulas/{id} | 
 
 
 
-## ReactorFormulaCreate
+## ReactorFormulasCreate
 
-> ReactorFormulaModel ReactorFormulaCreate(ctx).CreateReactorFormulaModel(createReactorFormulaModel).Execute()
+> ReactorFormula ReactorFormulasCreate(ctx).CreateReactorFormulaRequest(createReactorFormulaRequest).Execute()
 
 
 
@@ -31,17 +31,17 @@ import (
 )
 
 func main() {
-    createReactorFormulaModel := *openapiclient.NewCreateReactorFormulaModel() // CreateReactorFormulaModel |  (optional)
+    createReactorFormulaRequest := *openapiclient.NewCreateReactorFormulaRequest("Type_example", "Name_example") // CreateReactorFormulaRequest |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ReactorFormulasApi.ReactorFormulaCreate(context.Background()).CreateReactorFormulaModel(createReactorFormulaModel).Execute()
+    resp, r, err := apiClient.ReactorFormulasApi.ReactorFormulasCreate(context.Background()).CreateReactorFormulaRequest(createReactorFormulaRequest).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `ReactorFormulasApi.ReactorFormulaCreate``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `ReactorFormulasApi.ReactorFormulasCreate``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `ReactorFormulaCreate`: ReactorFormulaModel
-    fmt.Fprintf(os.Stdout, "Response from `ReactorFormulasApi.ReactorFormulaCreate`: %v\n", resp)
+    // response from `ReactorFormulasCreate`: ReactorFormula
+    fmt.Fprintf(os.Stdout, "Response from `ReactorFormulasApi.ReactorFormulasCreate`: %v\n", resp)
 }
 ```
 
@@ -51,16 +51,16 @@ func main() {
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiReactorFormulaCreateRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiReactorFormulasCreateRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **createReactorFormulaModel** | [**CreateReactorFormulaModel**](CreateReactorFormulaModel.md) |  | 
+ **createReactorFormulaRequest** | [**CreateReactorFormulaRequest**](CreateReactorFormulaRequest.md) |  | 
 
 ### Return type
 
-[**ReactorFormulaModel**](ReactorFormulaModel.md)
+[**ReactorFormula**](ReactorFormula.md)
 
 ### Authorization
 
@@ -76,9 +76,9 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
-## ReactorFormulaDelete
+## ReactorFormulasDelete
 
-> ReactorFormulaDelete(ctx, id).Execute()
+> ReactorFormulasDelete(ctx, id).Execute()
 
 
 
@@ -99,9 +99,9 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ReactorFormulasApi.ReactorFormulaDelete(context.Background(), id).Execute()
+    resp, r, err := apiClient.ReactorFormulasApi.ReactorFormulasDelete(context.Background(), id).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `ReactorFormulasApi.ReactorFormulaDelete``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `ReactorFormulasApi.ReactorFormulasDelete``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
 }
@@ -117,7 +117,7 @@ Name | Type | Description  | Notes
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiReactorFormulaDeleteRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiReactorFormulasDeleteRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
@@ -135,144 +135,6 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: text/plain, application/json, text/json, application/xml, text/xml
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
-
-
-## ReactorFormulaGetById
-
-> ReactorFormulaModel ReactorFormulaGetById(ctx, id).Execute()
-
-
-
-### Example
-
-```go
-package main
-
-import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "./openapi"
-)
-
-func main() {
-    id := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | 
-
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ReactorFormulasApi.ReactorFormulaGetById(context.Background(), id).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `ReactorFormulasApi.ReactorFormulaGetById``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `ReactorFormulaGetById`: ReactorFormulaModel
-    fmt.Fprintf(os.Stdout, "Response from `ReactorFormulasApi.ReactorFormulaGetById`: %v\n", resp)
-}
-```
-
-### Path Parameters
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**id** | **string** |  | 
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiReactorFormulaGetByIdRequest struct via the builder pattern
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-
-
-### Return type
-
-[**ReactorFormulaModel**](ReactorFormulaModel.md)
-
-### Authorization
-
-[ApiKey](../README.md#ApiKey)
-
-### HTTP request headers
-
-- **Content-Type**: Not defined
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
-
-
-## ReactorFormulaUpdate
-
-> ReactorFormulaModel ReactorFormulaUpdate(ctx, id).UpdateReactorFormulaModel(updateReactorFormulaModel).Execute()
-
-
-
-### Example
-
-```go
-package main
-
-import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "./openapi"
-)
-
-func main() {
-    id := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | 
-    updateReactorFormulaModel := *openapiclient.NewUpdateReactorFormulaModel() // UpdateReactorFormulaModel |  (optional)
-
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ReactorFormulasApi.ReactorFormulaUpdate(context.Background(), id).UpdateReactorFormulaModel(updateReactorFormulaModel).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `ReactorFormulasApi.ReactorFormulaUpdate``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `ReactorFormulaUpdate`: ReactorFormulaModel
-    fmt.Fprintf(os.Stdout, "Response from `ReactorFormulasApi.ReactorFormulaUpdate`: %v\n", resp)
-}
-```
-
-### Path Parameters
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**id** | **string** |  | 
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiReactorFormulaUpdateRequest struct via the builder pattern
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-
- **updateReactorFormulaModel** | [**UpdateReactorFormulaModel**](UpdateReactorFormulaModel.md) |  | 
-
-### Return type
-
-[**ReactorFormulaModel**](ReactorFormulaModel.md)
-
-### Authorization
-
-[ApiKey](../README.md#ApiKey)
-
-### HTTP request headers
-
-- **Content-Type**: application/json
 - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
@@ -282,7 +144,7 @@ Name | Type | Description  | Notes
 
 ## ReactorFormulasGet
 
-> ReactorFormulaModelPaginatedList ReactorFormulasGet(ctx).Name(name).Page(page).Size(size).Execute()
+> ReactorFormulaPaginatedList ReactorFormulasGet(ctx).Name(name).Page(page).Size(size).Execute()
 
 
 
@@ -310,7 +172,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `ReactorFormulasApi.ReactorFormulasGet``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `ReactorFormulasGet`: ReactorFormulaModelPaginatedList
+    // response from `ReactorFormulasGet`: ReactorFormulaPaginatedList
     fmt.Fprintf(os.Stdout, "Response from `ReactorFormulasApi.ReactorFormulasGet`: %v\n", resp)
 }
 ```
@@ -332,7 +194,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ReactorFormulaModelPaginatedList**](ReactorFormulaModelPaginatedList.md)
+[**ReactorFormulaPaginatedList**](ReactorFormulaPaginatedList.md)
 
 ### Authorization
 
@@ -341,6 +203,144 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## ReactorFormulasGetById
+
+> ReactorFormula ReactorFormulasGetById(ctx, id).Execute()
+
+
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    id := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | 
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.ReactorFormulasApi.ReactorFormulasGetById(context.Background(), id).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `ReactorFormulasApi.ReactorFormulasGetById``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `ReactorFormulasGetById`: ReactorFormula
+    fmt.Fprintf(os.Stdout, "Response from `ReactorFormulasApi.ReactorFormulasGetById`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**id** | **string** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiReactorFormulasGetByIdRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+### Return type
+
+[**ReactorFormula**](ReactorFormula.md)
+
+### Authorization
+
+[ApiKey](../README.md#ApiKey)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## ReactorFormulasUpdate
+
+> ReactorFormula ReactorFormulasUpdate(ctx, id).UpdateReactorFormulaRequest(updateReactorFormulaRequest).Execute()
+
+
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    id := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | 
+    updateReactorFormulaRequest := *openapiclient.NewUpdateReactorFormulaRequest("Type_example", "Name_example") // UpdateReactorFormulaRequest |  (optional)
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.ReactorFormulasApi.ReactorFormulasUpdate(context.Background(), id).UpdateReactorFormulaRequest(updateReactorFormulaRequest).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `ReactorFormulasApi.ReactorFormulasUpdate``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `ReactorFormulasUpdate`: ReactorFormula
+    fmt.Fprintf(os.Stdout, "Response from `ReactorFormulasApi.ReactorFormulasUpdate`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**id** | **string** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiReactorFormulasUpdateRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **updateReactorFormulaRequest** | [**UpdateReactorFormulaRequest**](UpdateReactorFormulaRequest.md) |  | 
+
+### Return type
+
+[**ReactorFormula**](ReactorFormula.md)
+
+### Authorization
+
+[ApiKey](../README.md#ApiKey)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
 - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)

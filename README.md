@@ -31,6 +31,12 @@ To use a proxy, set the environment variable `HTTP_PROXY`:
 os.Setenv("HTTP_PROXY", "http://proxy_name:proxy_port")
 ```
 
+## Running tests locally
+
+To run tests locally, you'll need to create a server and management BT Application and add those `key` to a `.env.local`.
+You'll want to follow the same format as outlined on `.env.example`. Then you can run `make verify` from the root to run
+all tests.
+
 ## Configuration of Server URL
 
 Default configuration comes with `Servers` field that contains server objects as defined in the OpenAPI specification.
@@ -78,47 +84,57 @@ All URIs are relative to *https://api.basistheory.com*
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
-*ApplicationsApi* | [**ApplicationCreate**](docs/ApplicationsApi.md#applicationcreate) | **Post** /applications |
-*ApplicationsApi* | [**ApplicationDelete**](docs/ApplicationsApi.md#applicationdelete) | **Delete** /applications/{id} |
-*ApplicationsApi* | [**ApplicationGetById**](docs/ApplicationsApi.md#applicationgetbyid) | **Get** /applications/{id} |
-*ApplicationsApi* | [**ApplicationKey**](docs/ApplicationsApi.md#applicationkey) | **Get** /applications/key |
-*ApplicationsApi* | [**ApplicationRegenerate**](docs/ApplicationsApi.md#applicationregenerate) | **Post** /applications/{id}/regenerate |
-*ApplicationsApi* | [**ApplicationUpdate**](docs/ApplicationsApi.md#applicationupdate) | **Put** /applications/{id} |
-*ApplicationsApi* | [**ApplicationsGet**](docs/ApplicationsApi.md#applicationsget) | **Get** /applications |
-*ReactorFormulasApi* | [**ReactorFormulaCreate**](docs/ReactorFormulasApi.md#reactorformulacreate) | **Post** /reactor-formulas |
-*ReactorFormulasApi* | [**ReactorFormulaDelete**](docs/ReactorFormulasApi.md#reactorformuladelete) | **Delete** /reactor-formulas/{id} |
-*ReactorFormulasApi* | [**ReactorFormulaGetById**](docs/ReactorFormulasApi.md#reactorformulagetbyid) | **Get** /reactor-formulas/{id} |
-*ReactorFormulasApi* | [**ReactorFormulaUpdate**](docs/ReactorFormulasApi.md#reactorformulaupdate) | **Put** /reactor-formulas/{id} |
-*ReactorFormulasApi* | [**ReactorFormulasGet**](docs/ReactorFormulasApi.md#reactorformulasget) | **Get** /reactor-formulas |
-*ReactorsApi* | [**ReactorCreate**](docs/ReactorsApi.md#reactorcreate) | **Post** /reactors |
-*ReactorsApi* | [**ReactorDelete**](docs/ReactorsApi.md#reactordelete) | **Delete** /reactors/{id} |
-*ReactorsApi* | [**ReactorGetById**](docs/ReactorsApi.md#reactorgetbyid) | **Get** /reactors/{id} |
-*ReactorsApi* | [**ReactorReact**](docs/ReactorsApi.md#reactorreact) | **Post** /reactors/{id}/react |
-*ReactorsApi* | [**ReactorUpdate**](docs/ReactorsApi.md#reactorupdate) | **Put** /reactors/{id} |
-*ReactorsApi* | [**ReactorsGet**](docs/ReactorsApi.md#reactorsget) | **Get** /reactors |
+*ApplicationsApi* | [**ApplicationsCreate**](docs/ApplicationsApi.md#applicationscreate) | **Post** /applications | 
+*ApplicationsApi* | [**ApplicationsDelete**](docs/ApplicationsApi.md#applicationsdelete) | **Delete** /applications/{id} | 
+*ApplicationsApi* | [**ApplicationsGet**](docs/ApplicationsApi.md#applicationsget) | **Get** /applications | 
+*ApplicationsApi* | [**ApplicationsGetById**](docs/ApplicationsApi.md#applicationsgetbyid) | **Get** /applications/{id} | 
+*ApplicationsApi* | [**ApplicationsGetByKey**](docs/ApplicationsApi.md#applicationsgetbykey) | **Get** /applications/key | 
+*ApplicationsApi* | [**ApplicationsRegenerateKey**](docs/ApplicationsApi.md#applicationsregeneratekey) | **Post** /applications/{id}/regenerate | 
+*ApplicationsApi* | [**ApplicationsUpdate**](docs/ApplicationsApi.md#applicationsupdate) | **Put** /applications/{id} | 
+*ProxiesApi* | [**ProxiesCreate**](docs/ProxiesApi.md#proxiescreate) | **Post** /proxies | 
+*ProxiesApi* | [**ProxiesDelete**](docs/ProxiesApi.md#proxiesdelete) | **Delete** /proxies/{id} | 
+*ProxiesApi* | [**ProxiesGet**](docs/ProxiesApi.md#proxiesget) | **Get** /proxies | 
+*ProxiesApi* | [**ProxiesGetById**](docs/ProxiesApi.md#proxiesgetbyid) | **Get** /proxies/{id} | 
+*ProxiesApi* | [**ProxiesUpdate**](docs/ProxiesApi.md#proxiesupdate) | **Put** /proxies/{id} | 
+*ReactorFormulasApi* | [**ReactorFormulasCreate**](docs/ReactorFormulasApi.md#reactorformulascreate) | **Post** /reactor-formulas | 
+*ReactorFormulasApi* | [**ReactorFormulasDelete**](docs/ReactorFormulasApi.md#reactorformulasdelete) | **Delete** /reactor-formulas/{id} | 
+*ReactorFormulasApi* | [**ReactorFormulasGet**](docs/ReactorFormulasApi.md#reactorformulasget) | **Get** /reactor-formulas | 
+*ReactorFormulasApi* | [**ReactorFormulasGetById**](docs/ReactorFormulasApi.md#reactorformulasgetbyid) | **Get** /reactor-formulas/{id} | 
+*ReactorFormulasApi* | [**ReactorFormulasUpdate**](docs/ReactorFormulasApi.md#reactorformulasupdate) | **Put** /reactor-formulas/{id} | 
+*ReactorsApi* | [**ReactorsCreate**](docs/ReactorsApi.md#reactorscreate) | **Post** /reactors | 
+*ReactorsApi* | [**ReactorsDelete**](docs/ReactorsApi.md#reactorsdelete) | **Delete** /reactors/{id} | 
+*ReactorsApi* | [**ReactorsGet**](docs/ReactorsApi.md#reactorsget) | **Get** /reactors | 
+*ReactorsApi* | [**ReactorsGetById**](docs/ReactorsApi.md#reactorsgetbyid) | **Get** /reactors/{id} | 
+*ReactorsApi* | [**ReactorsReact**](docs/ReactorsApi.md#reactorsreact) | **Post** /reactors/{id}/react | 
+*ReactorsApi* | [**ReactorsUpdate**](docs/ReactorsApi.md#reactorsupdate) | **Put** /reactors/{id} | 
 
 
 ## Documentation For Models
 
-- [ApplicationModel](docs/ApplicationModel.md)
-- [ApplicationModelPaginatedList](docs/ApplicationModelPaginatedList.md)
-- [CreateApplicationModel](docs/CreateApplicationModel.md)
-- [CreateReactorFormulaModel](docs/CreateReactorFormulaModel.md)
-- [CreateReactorModel](docs/CreateReactorModel.md)
-- [Pagination](docs/Pagination.md)
-- [ProblemDetails](docs/ProblemDetails.md)
-- [ReactRequest](docs/ReactRequest.md)
-- [ReactResponse](docs/ReactResponse.md)
-- [ReactorFormulaConfigurationModel](docs/ReactorFormulaConfigurationModel.md)
-- [ReactorFormulaModel](docs/ReactorFormulaModel.md)
-- [ReactorFormulaModelPaginatedList](docs/ReactorFormulaModelPaginatedList.md)
-- [ReactorFormulaRequestParameterModel](docs/ReactorFormulaRequestParameterModel.md)
-- [ReactorModel](docs/ReactorModel.md)
-- [ReactorModelPaginatedList](docs/ReactorModelPaginatedList.md)
-- [UpdateApplicationModel](docs/UpdateApplicationModel.md)
-- [UpdateReactorFormulaModel](docs/UpdateReactorFormulaModel.md)
-- [UpdateReactorModel](docs/UpdateReactorModel.md)
-- [ValidationProblemDetails](docs/ValidationProblemDetails.md)
+ - [Application](docs/Application.md)
+ - [ApplicationPaginatedList](docs/ApplicationPaginatedList.md)
+ - [CreateApplicationRequest](docs/CreateApplicationRequest.md)
+ - [CreateProxyRequest](docs/CreateProxyRequest.md)
+ - [CreateReactorFormulaRequest](docs/CreateReactorFormulaRequest.md)
+ - [CreateReactorRequest](docs/CreateReactorRequest.md)
+ - [GetProxies](docs/GetProxies.md)
+ - [Pagination](docs/Pagination.md)
+ - [ProblemDetails](docs/ProblemDetails.md)
+ - [Proxy](docs/Proxy.md)
+ - [ProxyPaginatedList](docs/ProxyPaginatedList.md)
+ - [ReactRequest](docs/ReactRequest.md)
+ - [ReactResponse](docs/ReactResponse.md)
+ - [Reactor](docs/Reactor.md)
+ - [ReactorFormula](docs/ReactorFormula.md)
+ - [ReactorFormulaConfiguration](docs/ReactorFormulaConfiguration.md)
+ - [ReactorFormulaPaginatedList](docs/ReactorFormulaPaginatedList.md)
+ - [ReactorFormulaRequestParameter](docs/ReactorFormulaRequestParameter.md)
+ - [ReactorPaginatedList](docs/ReactorPaginatedList.md)
+ - [UpdateApplicationRequest](docs/UpdateApplicationRequest.md)
+ - [UpdateProxyRequest](docs/UpdateProxyRequest.md)
+ - [UpdateReactorFormulaRequest](docs/UpdateReactorFormulaRequest.md)
+ - [UpdateReactorRequest](docs/UpdateReactorRequest.md)
+ - [ValidationProblemDetails](docs/ValidationProblemDetails.md)
 
 
 ## Documentation For Authorization
