@@ -1,3 +1,10 @@
+## [2.0.1](https://github.com/Basis-Theory/basistheory-go/compare/v2.0.0...v2.0.1) (2022-06-03)
+
+
+### Bug Fixes
+
+* fixes go.mod module for v2 ([#36](https://github.com/Basis-Theory/basistheory-go/issues/36)) ([b0d5721](https://github.com/Basis-Theory/basistheory-go/commit/b0d5721af398d189ffd026b4f1c25a426869b45a))
+
 # [2.0.0](https://github.com/Basis-Theory/basistheory-go/compare/v1.1.0...v2.0.0) (2022-06-03)
 
 
