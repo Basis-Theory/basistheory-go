@@ -4,23 +4,23 @@ All URIs are relative to *https://api.basistheory.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**TenantInvitationsCreateInvitation**](TenantsApi.md#TenantInvitationsCreateInvitation) | **Post** /tenants/self/invitations | 
-[**TenantInvitationsDeleteInvitation**](TenantsApi.md#TenantInvitationsDeleteInvitation) | **Delete** /tenants/self/invitations/{invitationId} | 
-[**TenantInvitationsGetInvitations**](TenantsApi.md#TenantInvitationsGetInvitations) | **Get** /tenants/self/invitations | 
-[**TenantInvitationsResendInvitation**](TenantsApi.md#TenantInvitationsResendInvitation) | **Post** /tenants/self/invitations/{invitationId}/resend | 
-[**TenantMembersDeleteMember**](TenantsApi.md#TenantMembersDeleteMember) | **Delete** /tenants/self/members/{memberId} | 
-[**TenantMembersGetMembers**](TenantsApi.md#TenantMembersGetMembers) | **Get** /tenants/self/members | 
-[**TenantReportsGetTenantOperationReport**](TenantsApi.md#TenantReportsGetTenantOperationReport) | **Get** /tenants/self/reports/operations | 
-[**TenantReportsGetTenantUsageReport**](TenantsApi.md#TenantReportsGetTenantUsageReport) | **Get** /tenants/self/reports/usage | 
-[**TenantsDelete**](TenantsApi.md#TenantsDelete) | **Delete** /tenants/self | 
-[**TenantsGet**](TenantsApi.md#TenantsGet) | **Get** /tenants/self | 
-[**TenantsUpdate**](TenantsApi.md#TenantsUpdate) | **Put** /tenants/self | 
+[**CreateInvitation**](TenantsApi.md#CreateInvitation) | **Post** /tenants/self/invitations | 
+[**Delete**](TenantsApi.md#Delete) | **Delete** /tenants/self | 
+[**DeleteInvitation**](TenantsApi.md#DeleteInvitation) | **Delete** /tenants/self/invitations/{invitationId} | 
+[**DeleteMember**](TenantsApi.md#DeleteMember) | **Delete** /tenants/self/members/{memberId} | 
+[**Get**](TenantsApi.md#Get) | **Get** /tenants/self | 
+[**GetInvitations**](TenantsApi.md#GetInvitations) | **Get** /tenants/self/invitations | 
+[**GetMembers**](TenantsApi.md#GetMembers) | **Get** /tenants/self/members | 
+[**GetTenantOperationReport**](TenantsApi.md#GetTenantOperationReport) | **Get** /tenants/self/reports/operations | 
+[**GetTenantUsageReport**](TenantsApi.md#GetTenantUsageReport) | **Get** /tenants/self/reports/usage | 
+[**ResendInvitation**](TenantsApi.md#ResendInvitation) | **Post** /tenants/self/invitations/{invitationId}/resend | 
+[**Update**](TenantsApi.md#Update) | **Put** /tenants/self | 
 
 
 
-## TenantInvitationsCreateInvitation
+## CreateInvitation
 
-> TenantInvitationResponse TenantInvitationsCreateInvitation(ctx).CreateTenantInvitationRequest(createTenantInvitationRequest).Execute()
+> TenantInvitationResponse CreateInvitation(ctx).CreateTenantInvitationRequest(createTenantInvitationRequest).Execute()
 
 
 
@@ -41,13 +41,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.TenantsApi.TenantInvitationsCreateInvitation(context.Background()).CreateTenantInvitationRequest(createTenantInvitationRequest).Execute()
+    resp, r, err := apiClient.TenantsApi.CreateInvitation(context.Background()).CreateTenantInvitationRequest(createTenantInvitationRequest).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `TenantsApi.TenantInvitationsCreateInvitation``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `TenantsApi.CreateInvitation``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `TenantInvitationsCreateInvitation`: TenantInvitationResponse
-    fmt.Fprintf(os.Stdout, "Response from `TenantsApi.TenantInvitationsCreateInvitation`: %v\n", resp)
+    // response from `CreateInvitation`: TenantInvitationResponse
+    fmt.Fprintf(os.Stdout, "Response from `TenantsApi.CreateInvitation`: %v\n", resp)
 }
 ```
 
@@ -57,7 +57,7 @@ func main() {
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiTenantInvitationsCreateInvitationRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiCreateInvitationRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
@@ -82,9 +82,66 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
-## TenantInvitationsDeleteInvitation
+## Delete
 
-> TenantInvitationsDeleteInvitation(ctx, invitationId).Execute()
+> Delete(ctx).Execute()
+
+
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.TenantsApi.Delete(context.Background()).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `TenantsApi.Delete``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+}
+```
+
+### Path Parameters
+
+This endpoint does not need any parameter.
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiDeleteRequest struct via the builder pattern
+
+
+### Return type
+
+ (empty response body)
+
+### Authorization
+
+[ApiKey](../README.md#ApiKey)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## DeleteInvitation
+
+> DeleteInvitation(ctx, invitationId).Execute()
 
 
 
@@ -105,9 +162,9 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.TenantsApi.TenantInvitationsDeleteInvitation(context.Background(), invitationId).Execute()
+    resp, r, err := apiClient.TenantsApi.DeleteInvitation(context.Background(), invitationId).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `TenantsApi.TenantInvitationsDeleteInvitation``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `TenantsApi.DeleteInvitation``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
 }
@@ -123,7 +180,7 @@ Name | Type | Description  | Notes
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiTenantInvitationsDeleteInvitationRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiDeleteInvitationRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
@@ -148,9 +205,134 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
-## TenantInvitationsGetInvitations
+## DeleteMember
 
-> TenantInvitationResponsePaginatedList TenantInvitationsGetInvitations(ctx).Status(status).Page(page).Size(size).Execute()
+> DeleteMember(ctx, memberId).Execute()
+
+
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    memberId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | 
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.TenantsApi.DeleteMember(context.Background(), memberId).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `TenantsApi.DeleteMember``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**memberId** | **string** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiDeleteMemberRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+### Return type
+
+ (empty response body)
+
+### Authorization
+
+[ApiKey](../README.md#ApiKey)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## Get
+
+> Tenant Get(ctx).Execute()
+
+
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.TenantsApi.Get(context.Background()).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `TenantsApi.Get``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `Get`: Tenant
+    fmt.Fprintf(os.Stdout, "Response from `TenantsApi.Get`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+This endpoint does not need any parameter.
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiGetRequest struct via the builder pattern
+
+
+### Return type
+
+[**Tenant**](Tenant.md)
+
+### Authorization
+
+[ApiKey](../README.md#ApiKey)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## GetInvitations
+
+> TenantInvitationResponsePaginatedList GetInvitations(ctx).Status(status).Page(page).Size(size).Execute()
 
 
 
@@ -173,13 +355,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.TenantsApi.TenantInvitationsGetInvitations(context.Background()).Status(status).Page(page).Size(size).Execute()
+    resp, r, err := apiClient.TenantsApi.GetInvitations(context.Background()).Status(status).Page(page).Size(size).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `TenantsApi.TenantInvitationsGetInvitations``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `TenantsApi.GetInvitations``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `TenantInvitationsGetInvitations`: TenantInvitationResponsePaginatedList
-    fmt.Fprintf(os.Stdout, "Response from `TenantsApi.TenantInvitationsGetInvitations`: %v\n", resp)
+    // response from `GetInvitations`: TenantInvitationResponsePaginatedList
+    fmt.Fprintf(os.Stdout, "Response from `TenantsApi.GetInvitations`: %v\n", resp)
 }
 ```
 
@@ -189,7 +371,7 @@ func main() {
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiTenantInvitationsGetInvitationsRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiGetInvitationsRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
@@ -216,143 +398,9 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
-## TenantInvitationsResendInvitation
+## GetMembers
 
-> TenantInvitationResponse TenantInvitationsResendInvitation(ctx, invitationId).Execute()
-
-
-
-### Example
-
-```go
-package main
-
-import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "./openapi"
-)
-
-func main() {
-    invitationId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | 
-
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.TenantsApi.TenantInvitationsResendInvitation(context.Background(), invitationId).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `TenantsApi.TenantInvitationsResendInvitation``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `TenantInvitationsResendInvitation`: TenantInvitationResponse
-    fmt.Fprintf(os.Stdout, "Response from `TenantsApi.TenantInvitationsResendInvitation`: %v\n", resp)
-}
-```
-
-### Path Parameters
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**invitationId** | **string** |  | 
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiTenantInvitationsResendInvitationRequest struct via the builder pattern
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-
-
-### Return type
-
-[**TenantInvitationResponse**](TenantInvitationResponse.md)
-
-### Authorization
-
-[ApiKey](../README.md#ApiKey)
-
-### HTTP request headers
-
-- **Content-Type**: Not defined
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
-
-
-## TenantMembersDeleteMember
-
-> TenantMembersDeleteMember(ctx, memberId).Execute()
-
-
-
-### Example
-
-```go
-package main
-
-import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "./openapi"
-)
-
-func main() {
-    memberId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | 
-
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.TenantsApi.TenantMembersDeleteMember(context.Background(), memberId).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `TenantsApi.TenantMembersDeleteMember``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-}
-```
-
-### Path Parameters
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**memberId** | **string** |  | 
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiTenantMembersDeleteMemberRequest struct via the builder pattern
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-
-
-### Return type
-
- (empty response body)
-
-### Authorization
-
-[ApiKey](../README.md#ApiKey)
-
-### HTTP request headers
-
-- **Content-Type**: Not defined
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
-
-
-## TenantMembersGetMembers
-
-> TenantMemberResponsePaginatedList TenantMembersGetMembers(ctx).UserId(userId).Page(page).Size(size).Execute()
+> TenantMemberResponsePaginatedList GetMembers(ctx).UserId(userId).Page(page).Size(size).Execute()
 
 
 
@@ -375,13 +423,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.TenantsApi.TenantMembersGetMembers(context.Background()).UserId(userId).Page(page).Size(size).Execute()
+    resp, r, err := apiClient.TenantsApi.GetMembers(context.Background()).UserId(userId).Page(page).Size(size).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `TenantsApi.TenantMembersGetMembers``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `TenantsApi.GetMembers``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `TenantMembersGetMembers`: TenantMemberResponsePaginatedList
-    fmt.Fprintf(os.Stdout, "Response from `TenantsApi.TenantMembersGetMembers`: %v\n", resp)
+    // response from `GetMembers`: TenantMemberResponsePaginatedList
+    fmt.Fprintf(os.Stdout, "Response from `TenantsApi.GetMembers`: %v\n", resp)
 }
 ```
 
@@ -391,7 +439,7 @@ func main() {
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiTenantMembersGetMembersRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiGetMembersRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
@@ -418,9 +466,9 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
-## TenantReportsGetTenantOperationReport
+## GetTenantOperationReport
 
-> TenantUsageReport TenantReportsGetTenantOperationReport(ctx).Execute()
+> TenantUsageReport GetTenantOperationReport(ctx).Execute()
 
 
 
@@ -440,13 +488,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.TenantsApi.TenantReportsGetTenantOperationReport(context.Background()).Execute()
+    resp, r, err := apiClient.TenantsApi.GetTenantOperationReport(context.Background()).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `TenantsApi.TenantReportsGetTenantOperationReport``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `TenantsApi.GetTenantOperationReport``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `TenantReportsGetTenantOperationReport`: TenantUsageReport
-    fmt.Fprintf(os.Stdout, "Response from `TenantsApi.TenantReportsGetTenantOperationReport`: %v\n", resp)
+    // response from `GetTenantOperationReport`: TenantUsageReport
+    fmt.Fprintf(os.Stdout, "Response from `TenantsApi.GetTenantOperationReport`: %v\n", resp)
 }
 ```
 
@@ -456,7 +504,7 @@ This endpoint does not need any parameter.
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiTenantReportsGetTenantOperationReportRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiGetTenantOperationReportRequest struct via the builder pattern
 
 
 ### Return type
@@ -477,9 +525,9 @@ Other parameters are passed through a pointer to a apiTenantReportsGetTenantOper
 [[Back to README]](../README.md)
 
 
-## TenantReportsGetTenantUsageReport
+## GetTenantUsageReport
 
-> TenantUsageReport TenantReportsGetTenantUsageReport(ctx).Execute()
+> TenantUsageReport GetTenantUsageReport(ctx).Execute()
 
 
 
@@ -499,13 +547,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.TenantsApi.TenantReportsGetTenantUsageReport(context.Background()).Execute()
+    resp, r, err := apiClient.TenantsApi.GetTenantUsageReport(context.Background()).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `TenantsApi.TenantReportsGetTenantUsageReport``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `TenantsApi.GetTenantUsageReport``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `TenantReportsGetTenantUsageReport`: TenantUsageReport
-    fmt.Fprintf(os.Stdout, "Response from `TenantsApi.TenantReportsGetTenantUsageReport`: %v\n", resp)
+    // response from `GetTenantUsageReport`: TenantUsageReport
+    fmt.Fprintf(os.Stdout, "Response from `TenantsApi.GetTenantUsageReport`: %v\n", resp)
 }
 ```
 
@@ -515,7 +563,7 @@ This endpoint does not need any parameter.
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiTenantReportsGetTenantUsageReportRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiGetTenantUsageReportRequest struct via the builder pattern
 
 
 ### Return type
@@ -536,66 +584,9 @@ Other parameters are passed through a pointer to a apiTenantReportsGetTenantUsag
 [[Back to README]](../README.md)
 
 
-## TenantsDelete
+## ResendInvitation
 
-> TenantsDelete(ctx).Execute()
-
-
-
-### Example
-
-```go
-package main
-
-import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "./openapi"
-)
-
-func main() {
-
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.TenantsApi.TenantsDelete(context.Background()).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `TenantsApi.TenantsDelete``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-}
-```
-
-### Path Parameters
-
-This endpoint does not need any parameter.
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiTenantsDeleteRequest struct via the builder pattern
-
-
-### Return type
-
- (empty response body)
-
-### Authorization
-
-[ApiKey](../README.md#ApiKey)
-
-### HTTP request headers
-
-- **Content-Type**: Not defined
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
-
-
-## TenantsGet
-
-> Tenant TenantsGet(ctx).Execute()
+> TenantInvitationResponse ResendInvitation(ctx, invitationId).Execute()
 
 
 
@@ -612,31 +603,40 @@ import (
 )
 
 func main() {
+    invitationId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | 
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.TenantsApi.TenantsGet(context.Background()).Execute()
+    resp, r, err := apiClient.TenantsApi.ResendInvitation(context.Background(), invitationId).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `TenantsApi.TenantsGet``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `TenantsApi.ResendInvitation``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `TenantsGet`: Tenant
-    fmt.Fprintf(os.Stdout, "Response from `TenantsApi.TenantsGet`: %v\n", resp)
+    // response from `ResendInvitation`: TenantInvitationResponse
+    fmt.Fprintf(os.Stdout, "Response from `TenantsApi.ResendInvitation`: %v\n", resp)
 }
 ```
 
 ### Path Parameters
 
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**invitationId** | **string** |  | 
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiTenantsGetRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiResendInvitationRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
 
 
 ### Return type
 
-[**Tenant**](Tenant.md)
+[**TenantInvitationResponse**](TenantInvitationResponse.md)
 
 ### Authorization
 
@@ -652,9 +652,9 @@ Other parameters are passed through a pointer to a apiTenantsGetRequest struct v
 [[Back to README]](../README.md)
 
 
-## TenantsUpdate
+## Update
 
-> Tenant TenantsUpdate(ctx).UpdateTenantRequest(updateTenantRequest).Execute()
+> Tenant Update(ctx).UpdateTenantRequest(updateTenantRequest).Execute()
 
 
 
@@ -675,13 +675,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.TenantsApi.TenantsUpdate(context.Background()).UpdateTenantRequest(updateTenantRequest).Execute()
+    resp, r, err := apiClient.TenantsApi.Update(context.Background()).UpdateTenantRequest(updateTenantRequest).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `TenantsApi.TenantsUpdate``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `TenantsApi.Update``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `TenantsUpdate`: Tenant
-    fmt.Fprintf(os.Stdout, "Response from `TenantsApi.TenantsUpdate`: %v\n", resp)
+    // response from `Update`: Tenant
+    fmt.Fprintf(os.Stdout, "Response from `TenantsApi.Update`: %v\n", resp)
 }
 ```
 
@@ -691,7 +691,7 @@ func main() {
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiTenantsUpdateRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiUpdateRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes

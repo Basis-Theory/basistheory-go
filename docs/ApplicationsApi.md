@@ -4,19 +4,19 @@ All URIs are relative to *https://api.basistheory.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**ApplicationsCreate**](ApplicationsApi.md#ApplicationsCreate) | **Post** /applications | 
-[**ApplicationsDelete**](ApplicationsApi.md#ApplicationsDelete) | **Delete** /applications/{id} | 
-[**ApplicationsGet**](ApplicationsApi.md#ApplicationsGet) | **Get** /applications | 
-[**ApplicationsGetById**](ApplicationsApi.md#ApplicationsGetById) | **Get** /applications/{id} | 
-[**ApplicationsGetByKey**](ApplicationsApi.md#ApplicationsGetByKey) | **Get** /applications/key | 
-[**ApplicationsRegenerateKey**](ApplicationsApi.md#ApplicationsRegenerateKey) | **Post** /applications/{id}/regenerate | 
-[**ApplicationsUpdate**](ApplicationsApi.md#ApplicationsUpdate) | **Put** /applications/{id} | 
+[**Create**](ApplicationsApi.md#Create) | **Post** /applications | 
+[**Delete**](ApplicationsApi.md#Delete) | **Delete** /applications/{id} | 
+[**Get**](ApplicationsApi.md#Get) | **Get** /applications | 
+[**GetById**](ApplicationsApi.md#GetById) | **Get** /applications/{id} | 
+[**GetByKey**](ApplicationsApi.md#GetByKey) | **Get** /applications/key | 
+[**RegenerateKey**](ApplicationsApi.md#RegenerateKey) | **Post** /applications/{id}/regenerate | 
+[**Update**](ApplicationsApi.md#Update) | **Put** /applications/{id} | 
 
 
 
-## ApplicationsCreate
+## Create
 
-> Application ApplicationsCreate(ctx).CreateApplicationRequest(createApplicationRequest).Execute()
+> Application Create(ctx).CreateApplicationRequest(createApplicationRequest).Execute()
 
 
 
@@ -37,13 +37,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ApplicationsApi.ApplicationsCreate(context.Background()).CreateApplicationRequest(createApplicationRequest).Execute()
+    resp, r, err := apiClient.ApplicationsApi.Create(context.Background()).CreateApplicationRequest(createApplicationRequest).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `ApplicationsApi.ApplicationsCreate``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `ApplicationsApi.Create``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `ApplicationsCreate`: Application
-    fmt.Fprintf(os.Stdout, "Response from `ApplicationsApi.ApplicationsCreate`: %v\n", resp)
+    // response from `Create`: Application
+    fmt.Fprintf(os.Stdout, "Response from `ApplicationsApi.Create`: %v\n", resp)
 }
 ```
 
@@ -53,7 +53,7 @@ func main() {
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiApplicationsCreateRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiCreateRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
@@ -78,9 +78,9 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
-## ApplicationsDelete
+## Delete
 
-> ApplicationsDelete(ctx, id).Execute()
+> Delete(ctx, id).Execute()
 
 
 
@@ -101,9 +101,9 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ApplicationsApi.ApplicationsDelete(context.Background(), id).Execute()
+    resp, r, err := apiClient.ApplicationsApi.Delete(context.Background(), id).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `ApplicationsApi.ApplicationsDelete``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `ApplicationsApi.Delete``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
 }
@@ -119,7 +119,7 @@ Name | Type | Description  | Notes
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiApplicationsDeleteRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiDeleteRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
@@ -144,9 +144,9 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
-## ApplicationsGet
+## Get
 
-> ApplicationPaginatedList ApplicationsGet(ctx).Id(id).Page(page).Size(size).Execute()
+> ApplicationPaginatedList Get(ctx).Id(id).Page(page).Size(size).Execute()
 
 
 
@@ -169,13 +169,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ApplicationsApi.ApplicationsGet(context.Background()).Id(id).Page(page).Size(size).Execute()
+    resp, r, err := apiClient.ApplicationsApi.Get(context.Background()).Id(id).Page(page).Size(size).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `ApplicationsApi.ApplicationsGet``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `ApplicationsApi.Get``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `ApplicationsGet`: ApplicationPaginatedList
-    fmt.Fprintf(os.Stdout, "Response from `ApplicationsApi.ApplicationsGet`: %v\n", resp)
+    // response from `Get`: ApplicationPaginatedList
+    fmt.Fprintf(os.Stdout, "Response from `ApplicationsApi.Get`: %v\n", resp)
 }
 ```
 
@@ -185,7 +185,7 @@ func main() {
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiApplicationsGetRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiGetRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
@@ -212,9 +212,9 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
-## ApplicationsGetById
+## GetById
 
-> Application ApplicationsGetById(ctx, id).Execute()
+> Application GetById(ctx, id).Execute()
 
 
 
@@ -235,13 +235,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ApplicationsApi.ApplicationsGetById(context.Background(), id).Execute()
+    resp, r, err := apiClient.ApplicationsApi.GetById(context.Background(), id).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `ApplicationsApi.ApplicationsGetById``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `ApplicationsApi.GetById``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `ApplicationsGetById`: Application
-    fmt.Fprintf(os.Stdout, "Response from `ApplicationsApi.ApplicationsGetById`: %v\n", resp)
+    // response from `GetById`: Application
+    fmt.Fprintf(os.Stdout, "Response from `ApplicationsApi.GetById`: %v\n", resp)
 }
 ```
 
@@ -255,7 +255,7 @@ Name | Type | Description  | Notes
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiApplicationsGetByIdRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiGetByIdRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
@@ -280,9 +280,9 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
-## ApplicationsGetByKey
+## GetByKey
 
-> Application ApplicationsGetByKey(ctx).Execute()
+> Application GetByKey(ctx).Execute()
 
 
 
@@ -302,13 +302,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ApplicationsApi.ApplicationsGetByKey(context.Background()).Execute()
+    resp, r, err := apiClient.ApplicationsApi.GetByKey(context.Background()).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `ApplicationsApi.ApplicationsGetByKey``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `ApplicationsApi.GetByKey``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `ApplicationsGetByKey`: Application
-    fmt.Fprintf(os.Stdout, "Response from `ApplicationsApi.ApplicationsGetByKey`: %v\n", resp)
+    // response from `GetByKey`: Application
+    fmt.Fprintf(os.Stdout, "Response from `ApplicationsApi.GetByKey`: %v\n", resp)
 }
 ```
 
@@ -318,7 +318,7 @@ This endpoint does not need any parameter.
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiApplicationsGetByKeyRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiGetByKeyRequest struct via the builder pattern
 
 
 ### Return type
@@ -339,9 +339,9 @@ Other parameters are passed through a pointer to a apiApplicationsGetByKeyReques
 [[Back to README]](../README.md)
 
 
-## ApplicationsRegenerateKey
+## RegenerateKey
 
-> Application ApplicationsRegenerateKey(ctx, id).Execute()
+> Application RegenerateKey(ctx, id).Execute()
 
 
 
@@ -362,13 +362,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ApplicationsApi.ApplicationsRegenerateKey(context.Background(), id).Execute()
+    resp, r, err := apiClient.ApplicationsApi.RegenerateKey(context.Background(), id).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `ApplicationsApi.ApplicationsRegenerateKey``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `ApplicationsApi.RegenerateKey``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `ApplicationsRegenerateKey`: Application
-    fmt.Fprintf(os.Stdout, "Response from `ApplicationsApi.ApplicationsRegenerateKey`: %v\n", resp)
+    // response from `RegenerateKey`: Application
+    fmt.Fprintf(os.Stdout, "Response from `ApplicationsApi.RegenerateKey`: %v\n", resp)
 }
 ```
 
@@ -382,7 +382,7 @@ Name | Type | Description  | Notes
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiApplicationsRegenerateKeyRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiRegenerateKeyRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
@@ -407,9 +407,9 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
-## ApplicationsUpdate
+## Update
 
-> Application ApplicationsUpdate(ctx, id).UpdateApplicationRequest(updateApplicationRequest).Execute()
+> Application Update(ctx, id).UpdateApplicationRequest(updateApplicationRequest).Execute()
 
 
 
@@ -431,13 +431,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ApplicationsApi.ApplicationsUpdate(context.Background(), id).UpdateApplicationRequest(updateApplicationRequest).Execute()
+    resp, r, err := apiClient.ApplicationsApi.Update(context.Background(), id).UpdateApplicationRequest(updateApplicationRequest).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `ApplicationsApi.ApplicationsUpdate``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `ApplicationsApi.Update``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `ApplicationsUpdate`: Application
-    fmt.Fprintf(os.Stdout, "Response from `ApplicationsApi.ApplicationsUpdate`: %v\n", resp)
+    // response from `Update`: Application
+    fmt.Fprintf(os.Stdout, "Response from `ApplicationsApi.Update`: %v\n", resp)
 }
 ```
 
@@ -451,7 +451,7 @@ Name | Type | Description  | Notes
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiApplicationsUpdateRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiUpdateRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes

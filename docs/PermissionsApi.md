@@ -4,13 +4,13 @@ All URIs are relative to *https://api.basistheory.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**PermissionsGet**](PermissionsApi.md#PermissionsGet) | **Get** /permissions | 
+[**Get**](PermissionsApi.md#Get) | **Get** /permissions | 
 
 
 
-## PermissionsGet
+## Get
 
-> []Permission PermissionsGet(ctx).ApplicationType(applicationType).Execute()
+> []Permission Get(ctx).ApplicationType(applicationType).Execute()
 
 
 
@@ -31,13 +31,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.PermissionsApi.PermissionsGet(context.Background()).ApplicationType(applicationType).Execute()
+    resp, r, err := apiClient.PermissionsApi.Get(context.Background()).ApplicationType(applicationType).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `PermissionsApi.PermissionsGet``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `PermissionsApi.Get``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `PermissionsGet`: []Permission
-    fmt.Fprintf(os.Stdout, "Response from `PermissionsApi.PermissionsGet`: %v\n", resp)
+    // response from `Get`: []Permission
+    fmt.Fprintf(os.Stdout, "Response from `PermissionsApi.Get`: %v\n", resp)
 }
 ```
 
@@ -47,7 +47,7 @@ func main() {
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiPermissionsGetRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiGetRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes

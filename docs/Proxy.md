@@ -9,7 +9,8 @@ Name | Type | Description | Notes
 **TenantId** | Pointer to **string** |  | [optional] 
 **Name** | Pointer to **NullableString** |  | [optional] 
 **DestinationUrl** | Pointer to **NullableString** |  | [optional] 
-**RequestReactorId** | Pointer to **string** |  | [optional] 
+**RequestReactorId** | Pointer to **NullableString** |  | [optional] 
+**ResponseReactorId** | Pointer to **NullableString** |  | [optional] 
 **RequireAuth** | Pointer to **bool** |  | [optional] 
 **CreatedBy** | Pointer to **NullableString** |  | [optional] 
 **CreatedAt** | Pointer to **NullableTime** |  | [optional] 
@@ -215,6 +216,51 @@ SetRequestReactorId sets RequestReactorId field to given value.
 
 HasRequestReactorId returns a boolean if a field has been set.
 
+### SetRequestReactorIdNil
+
+`func (o *Proxy) SetRequestReactorIdNil(b bool)`
+
+ SetRequestReactorIdNil sets the value for RequestReactorId to be an explicit nil
+
+### UnsetRequestReactorId
+`func (o *Proxy) UnsetRequestReactorId()`
+
+UnsetRequestReactorId ensures that no value is present for RequestReactorId, not even an explicit nil
+### GetResponseReactorId
+
+`func (o *Proxy) GetResponseReactorId() string`
+
+GetResponseReactorId returns the ResponseReactorId field if non-nil, zero value otherwise.
+
+### GetResponseReactorIdOk
+
+`func (o *Proxy) GetResponseReactorIdOk() (*string, bool)`
+
+GetResponseReactorIdOk returns a tuple with the ResponseReactorId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetResponseReactorId
+
+`func (o *Proxy) SetResponseReactorId(v string)`
+
+SetResponseReactorId sets ResponseReactorId field to given value.
+
+### HasResponseReactorId
+
+`func (o *Proxy) HasResponseReactorId() bool`
+
+HasResponseReactorId returns a boolean if a field has been set.
+
+### SetResponseReactorIdNil
+
+`func (o *Proxy) SetResponseReactorIdNil(b bool)`
+
+ SetResponseReactorIdNil sets the value for ResponseReactorId to be an explicit nil
+
+### UnsetResponseReactorId
+`func (o *Proxy) UnsetResponseReactorId()`
+
+UnsetResponseReactorId ensures that no value is present for ResponseReactorId, not even an explicit nil
 ### GetRequireAuth
 
 `func (o *Proxy) GetRequireAuth() bool`

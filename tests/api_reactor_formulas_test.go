@@ -17,7 +17,7 @@ func TestReactorFormulaCRUD(t *testing.T) {
 	createReactorFormulaRequest := *basistheory.NewCreateReactorFormulaRequest("private", reactorFormulaName)
 	createReactorFormulaRequest.SetCode(reactorFormulaCode)
 
-	createdReactorFormula, response, err := apiClient.ReactorFormulasApi.ReactorFormulasCreate(contextWithAPIKey).CreateReactorFormulaRequest(createReactorFormulaRequest).Execute()
+	createdReactorFormula, response, err := apiClient.ReactorFormulasApi.Create(contextWithAPIKey).CreateReactorFormulaRequest(createReactorFormulaRequest).Execute()
 
 	testutils.AssertMethodDidNotError(err, response, "ReactorFormulaCreate", t)
 	testutils.AssertPropertiesMatch(createdReactorFormula.GetName(), reactorFormulaName, t)
@@ -25,7 +25,7 @@ func TestReactorFormulaCRUD(t *testing.T) {
 
 	// GET BY ID
 	var reactorFormula *basistheory.ReactorFormula
-	reactorFormula, response, err = apiClient.ReactorFormulasApi.ReactorFormulasGetById(contextWithAPIKey, createdReactorFormula.GetId()).Execute()
+	reactorFormula, response, err = apiClient.ReactorFormulasApi.GetById(contextWithAPIKey, createdReactorFormula.GetId()).Execute()
 
 	testutils.AssertMethodDidNotError(err, response, "ReactorFormulaGetById", t)
 	testutils.AssertPropertiesMatch(reactorFormula.GetName(), reactorFormulaName, t)
@@ -33,7 +33,7 @@ func TestReactorFormulaCRUD(t *testing.T) {
 
 	// GET LIST
 	var reactorFormulas *basistheory.ReactorFormulaPaginatedList
-	reactorFormulas, response, err = apiClient.ReactorFormulasApi.ReactorFormulasGet(contextWithAPIKey).Execute()
+	reactorFormulas, response, err = apiClient.ReactorFormulasApi.Get(contextWithAPIKey).Execute()
 
 	testutils.AssertMethodDidNotError(err, response, "ReactorFormulasGet", t)
 	testutils.AssertPropertiesMatch(reactorFormulas.Data[0].GetName(), reactorFormulaName, t)
@@ -46,18 +46,18 @@ func TestReactorFormulaCRUD(t *testing.T) {
 	updateReactorFormulaRequest.SetCode(updatedReactorFormulaCode)
 
 	var updatedReactorFormula *basistheory.ReactorFormula
-	updatedReactorFormula, response, err = apiClient.ReactorFormulasApi.ReactorFormulasUpdate(contextWithAPIKey, createdReactorFormula.GetId()).UpdateReactorFormulaRequest(updateReactorFormulaRequest).Execute()
+	updatedReactorFormula, response, err = apiClient.ReactorFormulasApi.Update(contextWithAPIKey, createdReactorFormula.GetId()).UpdateReactorFormulaRequest(updateReactorFormulaRequest).Execute()
 
 	testutils.AssertMethodDidNotError(err, response, "ReactorFormulaUpdate", t)
 	testutils.AssertPropertiesMatch(updatedReactorFormula.GetName(), updatedReactorFormulaName, t)
 	testutils.AssertPropertiesMatch(updatedReactorFormula.GetCode(), updatedReactorFormulaCode, t)
 
 	// DELETE
-	_, err = apiClient.ReactorFormulasApi.ReactorFormulasDelete(contextWithAPIKey, createdReactorFormula.GetId()).Execute()
+	_, err = apiClient.ReactorFormulasApi.Delete(contextWithAPIKey, createdReactorFormula.GetId()).Execute()
 
 	testutils.AssertMethodDidNotError(err, response, "ReactorFormulaDelete", t)
 
-	_, _, err = apiClient.ReactorFormulasApi.ReactorFormulasGetById(contextWithAPIKey, createdReactorFormula.GetId()).Execute()
+	_, _, err = apiClient.ReactorFormulasApi.GetById(contextWithAPIKey, createdReactorFormula.GetId()).Execute()
 
 	testutils.AssertNotFound(err, t)
 }

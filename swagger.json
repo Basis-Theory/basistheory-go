@@ -3176,6 +3176,17 @@
             }
           },
           {
+            "name": "metadata",
+            "in": "query",
+            "style": "deepObject",
+            "schema": {
+              "type": "object",
+              "additionalProperties": {
+                "type": "string"
+              }
+            }
+          },
+          {
             "name": "page",
             "in": "query",
             "schema": {
@@ -3560,6 +3571,17 @@
               "items": {
                 "type": "string",
                 "format": "uuid"
+              }
+            }
+          },
+          {
+            "name": "metadata",
+            "in": "query",
+            "style": "deepObject",
+            "schema": {
+              "type": "object",
+              "additionalProperties": {
+                "type": "string"
               }
             }
           },
@@ -4202,8 +4224,7 @@
       "CreateProxyRequest": {
         "required": [
           "destination_url",
-          "name",
-          "request_reactor_id"
+          "name"
         ],
         "type": "object",
         "properties": {
@@ -4219,7 +4240,13 @@
           },
           "request_reactor_id": {
             "type": "string",
-            "format": "uuid"
+            "format": "uuid",
+            "nullable": true
+          },
+          "response_reactor_id": {
+            "type": "string",
+            "format": "uuid",
+            "nullable": true
           },
           "require_auth": {
             "type": "boolean",
@@ -4754,7 +4781,13 @@
           },
           "request_reactor_id": {
             "type": "string",
-            "format": "uuid"
+            "format": "uuid",
+            "nullable": true
+          },
+          "response_reactor_id": {
+            "type": "string",
+            "format": "uuid",
+            "nullable": true
           },
           "require_auth": {
             "type": "boolean"
@@ -5402,8 +5435,7 @@
       "UpdateProxyRequest": {
         "required": [
           "destination_url",
-          "name",
-          "request_reactor_id"
+          "name"
         ],
         "type": "object",
         "properties": {
@@ -5419,7 +5451,13 @@
           },
           "request_reactor_id": {
             "type": "string",
-            "format": "uuid"
+            "format": "uuid",
+            "nullable": true
+          },
+          "response_reactor_id": {
+            "type": "string",
+            "format": "uuid",
+            "nullable": true
           },
           "require_auth": {
             "type": "boolean",
@@ -5508,6 +5546,14 @@
             "maxLength": 200,
             "minLength": 1,
             "type": "string"
+          },
+          "settings": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "string",
+              "nullable": true
+            },
+            "nullable": true
           }
         },
         "additionalProperties": false

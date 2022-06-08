@@ -4,18 +4,18 @@ All URIs are relative to *https://api.basistheory.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**AtomicCardsCreate**](CardsApi.md#AtomicCardsCreate) | **Post** /atomic/cards | 
-[**AtomicCardsDelete**](CardsApi.md#AtomicCardsDelete) | **Delete** /atomic/cards/{id} | 
-[**AtomicCardsGet**](CardsApi.md#AtomicCardsGet) | **Get** /atomic/cards | 
-[**AtomicCardsGetById**](CardsApi.md#AtomicCardsGetById) | **Get** /atomic/cards/{id} | 
-[**AtomicCardsReact**](CardsApi.md#AtomicCardsReact) | **Post** /atomic/cards/{cardId}/react | 
-[**AtomicCardsUpdate**](CardsApi.md#AtomicCardsUpdate) | **Patch** /atomic/cards/{id} | 
+[**Create**](CardsApi.md#Create) | **Post** /atomic/cards | 
+[**Delete**](CardsApi.md#Delete) | **Delete** /atomic/cards/{id} | 
+[**Get**](CardsApi.md#Get) | **Get** /atomic/cards | 
+[**GetById**](CardsApi.md#GetById) | **Get** /atomic/cards/{id} | 
+[**React**](CardsApi.md#React) | **Post** /atomic/cards/{cardId}/react | 
+[**Update**](CardsApi.md#Update) | **Patch** /atomic/cards/{id} | 
 
 
 
-## AtomicCardsCreate
+## Create
 
-> AtomicCard AtomicCardsCreate(ctx).CreateAtomicCardRequest(createAtomicCardRequest).Execute()
+> AtomicCard Create(ctx).CreateAtomicCardRequest(createAtomicCardRequest).Execute()
 
 
 
@@ -36,13 +36,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.CardsApi.AtomicCardsCreate(context.Background()).CreateAtomicCardRequest(createAtomicCardRequest).Execute()
+    resp, r, err := apiClient.CardsApi.Create(context.Background()).CreateAtomicCardRequest(createAtomicCardRequest).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `CardsApi.AtomicCardsCreate``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `CardsApi.Create``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `AtomicCardsCreate`: AtomicCard
-    fmt.Fprintf(os.Stdout, "Response from `CardsApi.AtomicCardsCreate`: %v\n", resp)
+    // response from `Create`: AtomicCard
+    fmt.Fprintf(os.Stdout, "Response from `CardsApi.Create`: %v\n", resp)
 }
 ```
 
@@ -52,7 +52,7 @@ func main() {
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiAtomicCardsCreateRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiCreateRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
@@ -77,9 +77,9 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
-## AtomicCardsDelete
+## Delete
 
-> AtomicCardsDelete(ctx, id).Execute()
+> Delete(ctx, id).Execute()
 
 
 
@@ -100,9 +100,9 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.CardsApi.AtomicCardsDelete(context.Background(), id).Execute()
+    resp, r, err := apiClient.CardsApi.Delete(context.Background(), id).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `CardsApi.AtomicCardsDelete``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `CardsApi.Delete``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
 }
@@ -118,7 +118,7 @@ Name | Type | Description  | Notes
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiAtomicCardsDeleteRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiDeleteRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
@@ -143,9 +143,9 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
-## AtomicCardsGet
+## Get
 
-> AtomicCardPaginatedList AtomicCardsGet(ctx).Page(page).Size(size).Execute()
+> AtomicCardPaginatedList Get(ctx).Page(page).Size(size).Execute()
 
 
 
@@ -167,13 +167,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.CardsApi.AtomicCardsGet(context.Background()).Page(page).Size(size).Execute()
+    resp, r, err := apiClient.CardsApi.Get(context.Background()).Page(page).Size(size).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `CardsApi.AtomicCardsGet``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `CardsApi.Get``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `AtomicCardsGet`: AtomicCardPaginatedList
-    fmt.Fprintf(os.Stdout, "Response from `CardsApi.AtomicCardsGet`: %v\n", resp)
+    // response from `Get`: AtomicCardPaginatedList
+    fmt.Fprintf(os.Stdout, "Response from `CardsApi.Get`: %v\n", resp)
 }
 ```
 
@@ -183,7 +183,7 @@ func main() {
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiAtomicCardsGetRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiGetRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
@@ -209,9 +209,9 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
-## AtomicCardsGetById
+## GetById
 
-> AtomicCard AtomicCardsGetById(ctx, id).Execute()
+> AtomicCard GetById(ctx, id).Execute()
 
 
 
@@ -232,13 +232,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.CardsApi.AtomicCardsGetById(context.Background(), id).Execute()
+    resp, r, err := apiClient.CardsApi.GetById(context.Background(), id).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `CardsApi.AtomicCardsGetById``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `CardsApi.GetById``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `AtomicCardsGetById`: AtomicCard
-    fmt.Fprintf(os.Stdout, "Response from `CardsApi.AtomicCardsGetById`: %v\n", resp)
+    // response from `GetById`: AtomicCard
+    fmt.Fprintf(os.Stdout, "Response from `CardsApi.GetById`: %v\n", resp)
 }
 ```
 
@@ -252,7 +252,7 @@ Name | Type | Description  | Notes
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiAtomicCardsGetByIdRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiGetByIdRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
@@ -277,9 +277,9 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
-## AtomicCardsReact
+## React
 
-> ReactResponse AtomicCardsReact(ctx, cardId).AtomicReactRequest(atomicReactRequest).Execute()
+> ReactResponse React(ctx, cardId).AtomicReactRequest(atomicReactRequest).Execute()
 
 
 
@@ -301,13 +301,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.CardsApi.AtomicCardsReact(context.Background(), cardId).AtomicReactRequest(atomicReactRequest).Execute()
+    resp, r, err := apiClient.CardsApi.React(context.Background(), cardId).AtomicReactRequest(atomicReactRequest).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `CardsApi.AtomicCardsReact``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `CardsApi.React``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `AtomicCardsReact`: ReactResponse
-    fmt.Fprintf(os.Stdout, "Response from `CardsApi.AtomicCardsReact`: %v\n", resp)
+    // response from `React`: ReactResponse
+    fmt.Fprintf(os.Stdout, "Response from `CardsApi.React`: %v\n", resp)
 }
 ```
 
@@ -321,7 +321,7 @@ Name | Type | Description  | Notes
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiAtomicCardsReactRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiReactRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
@@ -347,9 +347,9 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
-## AtomicCardsUpdate
+## Update
 
-> AtomicCard AtomicCardsUpdate(ctx, id).UpdateAtomicCardRequest(updateAtomicCardRequest).Execute()
+> AtomicCard Update(ctx, id).UpdateAtomicCardRequest(updateAtomicCardRequest).Execute()
 
 
 
@@ -371,13 +371,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.CardsApi.AtomicCardsUpdate(context.Background(), id).UpdateAtomicCardRequest(updateAtomicCardRequest).Execute()
+    resp, r, err := apiClient.CardsApi.Update(context.Background(), id).UpdateAtomicCardRequest(updateAtomicCardRequest).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `CardsApi.AtomicCardsUpdate``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `CardsApi.Update``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `AtomicCardsUpdate`: AtomicCard
-    fmt.Fprintf(os.Stdout, "Response from `CardsApi.AtomicCardsUpdate`: %v\n", resp)
+    // response from `Update`: AtomicCard
+    fmt.Fprintf(os.Stdout, "Response from `CardsApi.Update`: %v\n", resp)
 }
 ```
 
@@ -391,7 +391,7 @@ Name | Type | Description  | Notes
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiAtomicCardsUpdateRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiUpdateRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes

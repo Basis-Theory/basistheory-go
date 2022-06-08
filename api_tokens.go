@@ -24,29 +24,29 @@ import (
 // TokensApiService TokensApi service
 type TokensApiService service
 
-type ApiTokensCreateRequest struct {
+type TokensApiCreateRequest struct {
 	ctx context.Context
 	ApiService *TokensApiService
 	createTokenRequest *CreateTokenRequest
 }
 
-func (r ApiTokensCreateRequest) CreateTokenRequest(createTokenRequest CreateTokenRequest) ApiTokensCreateRequest {
+func (r TokensApiCreateRequest) CreateTokenRequest(createTokenRequest CreateTokenRequest) TokensApiCreateRequest {
 	r.createTokenRequest = &createTokenRequest
 	return r
 }
 
-func (r ApiTokensCreateRequest) Execute() (*CreateTokenResponse, *http.Response, error) {
-	return r.ApiService.TokensCreateExecute(r)
+func (r TokensApiCreateRequest) Execute() (*CreateTokenResponse, *http.Response, error) {
+	return r.ApiService.CreateExecute(r)
 }
 
 /*
-TokensCreate Method for TokensCreate
+Create Method for Create
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiTokensCreateRequest
+ @return TokensApiCreateRequest
 */
-func (a *TokensApiService) TokensCreate(ctx context.Context) ApiTokensCreateRequest {
-	return ApiTokensCreateRequest{
+func (a *TokensApiService) Create(ctx context.Context) TokensApiCreateRequest {
+	return TokensApiCreateRequest{
 		ApiService: a,
 		ctx: ctx,
 	}
@@ -54,7 +54,7 @@ func (a *TokensApiService) TokensCreate(ctx context.Context) ApiTokensCreateRequ
 
 // Execute executes the request
 //  @return CreateTokenResponse
-func (a *TokensApiService) TokensCreateExecute(r ApiTokensCreateRequest) (*CreateTokenResponse, *http.Response, error) {
+func (a *TokensApiService) CreateExecute(r TokensApiCreateRequest) (*CreateTokenResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
@@ -62,7 +62,7 @@ func (a *TokensApiService) TokensCreateExecute(r ApiTokensCreateRequest) (*Creat
 		localVarReturnValue  *CreateTokenResponse
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "TokensApiService.TokensCreate")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "TokensApiService.Create")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -172,27 +172,27 @@ func (a *TokensApiService) TokensCreateExecute(r ApiTokensCreateRequest) (*Creat
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiTokensCreateAssociationRequest struct {
+type TokensApiCreateAssociationRequest struct {
 	ctx context.Context
 	ApiService *TokensApiService
 	parentId string
 	childId string
 }
 
-func (r ApiTokensCreateAssociationRequest) Execute() (*http.Response, error) {
-	return r.ApiService.TokensCreateAssociationExecute(r)
+func (r TokensApiCreateAssociationRequest) Execute() (*http.Response, error) {
+	return r.ApiService.CreateAssociationExecute(r)
 }
 
 /*
-TokensCreateAssociation Method for TokensCreateAssociation
+CreateAssociation Method for CreateAssociation
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param parentId
  @param childId
- @return ApiTokensCreateAssociationRequest
+ @return TokensApiCreateAssociationRequest
 */
-func (a *TokensApiService) TokensCreateAssociation(ctx context.Context, parentId string, childId string) ApiTokensCreateAssociationRequest {
-	return ApiTokensCreateAssociationRequest{
+func (a *TokensApiService) CreateAssociation(ctx context.Context, parentId string, childId string) TokensApiCreateAssociationRequest {
+	return TokensApiCreateAssociationRequest{
 		ApiService: a,
 		ctx: ctx,
 		parentId: parentId,
@@ -201,14 +201,14 @@ func (a *TokensApiService) TokensCreateAssociation(ctx context.Context, parentId
 }
 
 // Execute executes the request
-func (a *TokensApiService) TokensCreateAssociationExecute(r ApiTokensCreateAssociationRequest) (*http.Response, error) {
+func (a *TokensApiService) CreateAssociationExecute(r TokensApiCreateAssociationRequest) (*http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "TokensApiService.TokensCreateAssociation")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "TokensApiService.CreateAssociation")
 	if err != nil {
 		return nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -329,31 +329,31 @@ func (a *TokensApiService) TokensCreateAssociationExecute(r ApiTokensCreateAssoc
 	return localVarHTTPResponse, nil
 }
 
-type ApiTokensCreateChildRequest struct {
+type TokensApiCreateChildRequest struct {
 	ctx context.Context
 	ApiService *TokensApiService
 	parentId string
 	createTokenRequest *CreateTokenRequest
 }
 
-func (r ApiTokensCreateChildRequest) CreateTokenRequest(createTokenRequest CreateTokenRequest) ApiTokensCreateChildRequest {
+func (r TokensApiCreateChildRequest) CreateTokenRequest(createTokenRequest CreateTokenRequest) TokensApiCreateChildRequest {
 	r.createTokenRequest = &createTokenRequest
 	return r
 }
 
-func (r ApiTokensCreateChildRequest) Execute() (*CreateTokenResponse, *http.Response, error) {
-	return r.ApiService.TokensCreateChildExecute(r)
+func (r TokensApiCreateChildRequest) Execute() (*CreateTokenResponse, *http.Response, error) {
+	return r.ApiService.CreateChildExecute(r)
 }
 
 /*
-TokensCreateChild Method for TokensCreateChild
+CreateChild Method for CreateChild
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param parentId
- @return ApiTokensCreateChildRequest
+ @return TokensApiCreateChildRequest
 */
-func (a *TokensApiService) TokensCreateChild(ctx context.Context, parentId string) ApiTokensCreateChildRequest {
-	return ApiTokensCreateChildRequest{
+func (a *TokensApiService) CreateChild(ctx context.Context, parentId string) TokensApiCreateChildRequest {
+	return TokensApiCreateChildRequest{
 		ApiService: a,
 		ctx: ctx,
 		parentId: parentId,
@@ -362,7 +362,7 @@ func (a *TokensApiService) TokensCreateChild(ctx context.Context, parentId strin
 
 // Execute executes the request
 //  @return CreateTokenResponse
-func (a *TokensApiService) TokensCreateChildExecute(r ApiTokensCreateChildRequest) (*CreateTokenResponse, *http.Response, error) {
+func (a *TokensApiService) CreateChildExecute(r TokensApiCreateChildRequest) (*CreateTokenResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
@@ -370,7 +370,7 @@ func (a *TokensApiService) TokensCreateChildExecute(r ApiTokensCreateChildReques
 		localVarReturnValue  *CreateTokenResponse
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "TokensApiService.TokensCreateChild")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "TokensApiService.CreateChild")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -491,25 +491,25 @@ func (a *TokensApiService) TokensCreateChildExecute(r ApiTokensCreateChildReques
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiTokensDeleteRequest struct {
+type TokensApiDeleteRequest struct {
 	ctx context.Context
 	ApiService *TokensApiService
 	id string
 }
 
-func (r ApiTokensDeleteRequest) Execute() (*http.Response, error) {
-	return r.ApiService.TokensDeleteExecute(r)
+func (r TokensApiDeleteRequest) Execute() (*http.Response, error) {
+	return r.ApiService.DeleteExecute(r)
 }
 
 /*
-TokensDelete Method for TokensDelete
+Delete Method for Delete
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param id
- @return ApiTokensDeleteRequest
+ @return TokensApiDeleteRequest
 */
-func (a *TokensApiService) TokensDelete(ctx context.Context, id string) ApiTokensDeleteRequest {
-	return ApiTokensDeleteRequest{
+func (a *TokensApiService) Delete(ctx context.Context, id string) TokensApiDeleteRequest {
+	return TokensApiDeleteRequest{
 		ApiService: a,
 		ctx: ctx,
 		id: id,
@@ -517,14 +517,14 @@ func (a *TokensApiService) TokensDelete(ctx context.Context, id string) ApiToken
 }
 
 // Execute executes the request
-func (a *TokensApiService) TokensDeleteExecute(r ApiTokensDeleteRequest) (*http.Response, error) {
+func (a *TokensApiService) DeleteExecute(r TokensApiDeleteRequest) (*http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodDelete
 		localVarPostBody     interface{}
 		formFiles            []formFile
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "TokensApiService.TokensDelete")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "TokensApiService.Delete")
 	if err != nil {
 		return nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -634,27 +634,27 @@ func (a *TokensApiService) TokensDeleteExecute(r ApiTokensDeleteRequest) (*http.
 	return localVarHTTPResponse, nil
 }
 
-type ApiTokensDeleteAssociationRequest struct {
+type TokensApiDeleteAssociationRequest struct {
 	ctx context.Context
 	ApiService *TokensApiService
 	parentId string
 	childId string
 }
 
-func (r ApiTokensDeleteAssociationRequest) Execute() (*http.Response, error) {
-	return r.ApiService.TokensDeleteAssociationExecute(r)
+func (r TokensApiDeleteAssociationRequest) Execute() (*http.Response, error) {
+	return r.ApiService.DeleteAssociationExecute(r)
 }
 
 /*
-TokensDeleteAssociation Method for TokensDeleteAssociation
+DeleteAssociation Method for DeleteAssociation
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param parentId
  @param childId
- @return ApiTokensDeleteAssociationRequest
+ @return TokensApiDeleteAssociationRequest
 */
-func (a *TokensApiService) TokensDeleteAssociation(ctx context.Context, parentId string, childId string) ApiTokensDeleteAssociationRequest {
-	return ApiTokensDeleteAssociationRequest{
+func (a *TokensApiService) DeleteAssociation(ctx context.Context, parentId string, childId string) TokensApiDeleteAssociationRequest {
+	return TokensApiDeleteAssociationRequest{
 		ApiService: a,
 		ctx: ctx,
 		parentId: parentId,
@@ -663,14 +663,14 @@ func (a *TokensApiService) TokensDeleteAssociation(ctx context.Context, parentId
 }
 
 // Execute executes the request
-func (a *TokensApiService) TokensDeleteAssociationExecute(r ApiTokensDeleteAssociationRequest) (*http.Response, error) {
+func (a *TokensApiService) DeleteAssociationExecute(r TokensApiDeleteAssociationRequest) (*http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodDelete
 		localVarPostBody     interface{}
 		formFiles            []formFile
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "TokensApiService.TokensDeleteAssociation")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "TokensApiService.DeleteAssociation")
 	if err != nil {
 		return nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -781,47 +781,53 @@ func (a *TokensApiService) TokensDeleteAssociationExecute(r ApiTokensDeleteAssoc
 	return localVarHTTPResponse, nil
 }
 
-type ApiTokensGetRequest struct {
+type TokensApiGetRequest struct {
 	ctx context.Context
 	ApiService *TokensApiService
 	type_ *[]string
 	id *[]string
+	metadata *map[string]string
 	page *int32
 	size *int32
 }
 
-func (r ApiTokensGetRequest) Type_(type_ []string) ApiTokensGetRequest {
+func (r TokensApiGetRequest) Type_(type_ []string) TokensApiGetRequest {
 	r.type_ = &type_
 	return r
 }
 
-func (r ApiTokensGetRequest) Id(id []string) ApiTokensGetRequest {
+func (r TokensApiGetRequest) Id(id []string) TokensApiGetRequest {
 	r.id = &id
 	return r
 }
 
-func (r ApiTokensGetRequest) Page(page int32) ApiTokensGetRequest {
+func (r TokensApiGetRequest) Metadata(metadata map[string]string) TokensApiGetRequest {
+	r.metadata = &metadata
+	return r
+}
+
+func (r TokensApiGetRequest) Page(page int32) TokensApiGetRequest {
 	r.page = &page
 	return r
 }
 
-func (r ApiTokensGetRequest) Size(size int32) ApiTokensGetRequest {
+func (r TokensApiGetRequest) Size(size int32) TokensApiGetRequest {
 	r.size = &size
 	return r
 }
 
-func (r ApiTokensGetRequest) Execute() (*TokenPaginatedList, *http.Response, error) {
-	return r.ApiService.TokensGetExecute(r)
+func (r TokensApiGetRequest) Execute() (*TokenPaginatedList, *http.Response, error) {
+	return r.ApiService.GetExecute(r)
 }
 
 /*
-TokensGet Method for TokensGet
+Get Method for Get
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiTokensGetRequest
+ @return TokensApiGetRequest
 */
-func (a *TokensApiService) TokensGet(ctx context.Context) ApiTokensGetRequest {
-	return ApiTokensGetRequest{
+func (a *TokensApiService) Get(ctx context.Context) TokensApiGetRequest {
+	return TokensApiGetRequest{
 		ApiService: a,
 		ctx: ctx,
 	}
@@ -829,7 +835,7 @@ func (a *TokensApiService) TokensGet(ctx context.Context) ApiTokensGetRequest {
 
 // Execute executes the request
 //  @return TokenPaginatedList
-func (a *TokensApiService) TokensGetExecute(r ApiTokensGetRequest) (*TokenPaginatedList, *http.Response, error) {
+func (a *TokensApiService) GetExecute(r TokensApiGetRequest) (*TokenPaginatedList, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -837,7 +843,7 @@ func (a *TokensApiService) TokensGetExecute(r ApiTokensGetRequest) (*TokenPagina
 		localVarReturnValue  *TokenPaginatedList
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "TokensApiService.TokensGet")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "TokensApiService.Get")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -869,6 +875,9 @@ func (a *TokensApiService) TokensGetExecute(r ApiTokensGetRequest) (*TokenPagina
 		} else {
 			localVarQueryParams.Add("id", parameterToString(t, "multi"))
 		}
+	}
+	if r.metadata != nil {
+		localVarQueryParams.Add("metadata", parameterToString(*r.metadata, ""))
 	}
 	if r.page != nil {
 		localVarQueryParams.Add("page", parameterToString(*r.page, ""))
@@ -963,25 +972,25 @@ func (a *TokensApiService) TokensGetExecute(r ApiTokensGetRequest) (*TokenPagina
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiTokensGetByIdRequest struct {
+type TokensApiGetByIdRequest struct {
 	ctx context.Context
 	ApiService *TokensApiService
 	id string
 }
 
-func (r ApiTokensGetByIdRequest) Execute() (*Token, *http.Response, error) {
-	return r.ApiService.TokensGetByIdExecute(r)
+func (r TokensApiGetByIdRequest) Execute() (*Token, *http.Response, error) {
+	return r.ApiService.GetByIdExecute(r)
 }
 
 /*
-TokensGetById Method for TokensGetById
+GetById Method for GetById
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param id
- @return ApiTokensGetByIdRequest
+ @return TokensApiGetByIdRequest
 */
-func (a *TokensApiService) TokensGetById(ctx context.Context, id string) ApiTokensGetByIdRequest {
-	return ApiTokensGetByIdRequest{
+func (a *TokensApiService) GetById(ctx context.Context, id string) TokensApiGetByIdRequest {
+	return TokensApiGetByIdRequest{
 		ApiService: a,
 		ctx: ctx,
 		id: id,
@@ -990,7 +999,7 @@ func (a *TokensApiService) TokensGetById(ctx context.Context, id string) ApiToke
 
 // Execute executes the request
 //  @return Token
-func (a *TokensApiService) TokensGetByIdExecute(r ApiTokensGetByIdRequest) (*Token, *http.Response, error) {
+func (a *TokensApiService) GetByIdExecute(r TokensApiGetByIdRequest) (*Token, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -998,7 +1007,7 @@ func (a *TokensApiService) TokensGetByIdExecute(r ApiTokensGetByIdRequest) (*Tok
 		localVarReturnValue  *Token
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "TokensApiService.TokensGetById")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "TokensApiService.GetById")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -1107,49 +1116,55 @@ func (a *TokensApiService) TokensGetByIdExecute(r ApiTokensGetByIdRequest) (*Tok
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiTokensGetChildrenRequest struct {
+type TokensApiGetChildrenRequest struct {
 	ctx context.Context
 	ApiService *TokensApiService
 	parentId string
 	type_ *[]string
 	id *[]string
+	metadata *map[string]string
 	page *int32
 	size *int32
 }
 
-func (r ApiTokensGetChildrenRequest) Type_(type_ []string) ApiTokensGetChildrenRequest {
+func (r TokensApiGetChildrenRequest) Type_(type_ []string) TokensApiGetChildrenRequest {
 	r.type_ = &type_
 	return r
 }
 
-func (r ApiTokensGetChildrenRequest) Id(id []string) ApiTokensGetChildrenRequest {
+func (r TokensApiGetChildrenRequest) Id(id []string) TokensApiGetChildrenRequest {
 	r.id = &id
 	return r
 }
 
-func (r ApiTokensGetChildrenRequest) Page(page int32) ApiTokensGetChildrenRequest {
+func (r TokensApiGetChildrenRequest) Metadata(metadata map[string]string) TokensApiGetChildrenRequest {
+	r.metadata = &metadata
+	return r
+}
+
+func (r TokensApiGetChildrenRequest) Page(page int32) TokensApiGetChildrenRequest {
 	r.page = &page
 	return r
 }
 
-func (r ApiTokensGetChildrenRequest) Size(size int32) ApiTokensGetChildrenRequest {
+func (r TokensApiGetChildrenRequest) Size(size int32) TokensApiGetChildrenRequest {
 	r.size = &size
 	return r
 }
 
-func (r ApiTokensGetChildrenRequest) Execute() (*TokenPaginatedList, *http.Response, error) {
-	return r.ApiService.TokensGetChildrenExecute(r)
+func (r TokensApiGetChildrenRequest) Execute() (*TokenPaginatedList, *http.Response, error) {
+	return r.ApiService.GetChildrenExecute(r)
 }
 
 /*
-TokensGetChildren Method for TokensGetChildren
+GetChildren Method for GetChildren
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param parentId
- @return ApiTokensGetChildrenRequest
+ @return TokensApiGetChildrenRequest
 */
-func (a *TokensApiService) TokensGetChildren(ctx context.Context, parentId string) ApiTokensGetChildrenRequest {
-	return ApiTokensGetChildrenRequest{
+func (a *TokensApiService) GetChildren(ctx context.Context, parentId string) TokensApiGetChildrenRequest {
+	return TokensApiGetChildrenRequest{
 		ApiService: a,
 		ctx: ctx,
 		parentId: parentId,
@@ -1158,7 +1173,7 @@ func (a *TokensApiService) TokensGetChildren(ctx context.Context, parentId strin
 
 // Execute executes the request
 //  @return TokenPaginatedList
-func (a *TokensApiService) TokensGetChildrenExecute(r ApiTokensGetChildrenRequest) (*TokenPaginatedList, *http.Response, error) {
+func (a *TokensApiService) GetChildrenExecute(r TokensApiGetChildrenRequest) (*TokenPaginatedList, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -1166,7 +1181,7 @@ func (a *TokensApiService) TokensGetChildrenExecute(r ApiTokensGetChildrenReques
 		localVarReturnValue  *TokenPaginatedList
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "TokensApiService.TokensGetChildren")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "TokensApiService.GetChildren")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -1199,6 +1214,9 @@ func (a *TokensApiService) TokensGetChildrenExecute(r ApiTokensGetChildrenReques
 		} else {
 			localVarQueryParams.Add("id", parameterToString(t, "multi"))
 		}
+	}
+	if r.metadata != nil {
+		localVarQueryParams.Add("metadata", parameterToString(*r.metadata, ""))
 	}
 	if r.page != nil {
 		localVarQueryParams.Add("page", parameterToString(*r.page, ""))
@@ -1313,29 +1331,29 @@ func (a *TokensApiService) TokensGetChildrenExecute(r ApiTokensGetChildrenReques
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiTokensSearchRequest struct {
+type TokensApiSearchRequest struct {
 	ctx context.Context
 	ApiService *TokensApiService
 	searchTokensRequest *SearchTokensRequest
 }
 
-func (r ApiTokensSearchRequest) SearchTokensRequest(searchTokensRequest SearchTokensRequest) ApiTokensSearchRequest {
+func (r TokensApiSearchRequest) SearchTokensRequest(searchTokensRequest SearchTokensRequest) TokensApiSearchRequest {
 	r.searchTokensRequest = &searchTokensRequest
 	return r
 }
 
-func (r ApiTokensSearchRequest) Execute() (*TokenPaginatedList, *http.Response, error) {
-	return r.ApiService.TokensSearchExecute(r)
+func (r TokensApiSearchRequest) Execute() (*TokenPaginatedList, *http.Response, error) {
+	return r.ApiService.SearchExecute(r)
 }
 
 /*
-TokensSearch Method for TokensSearch
+Search Method for Search
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiTokensSearchRequest
+ @return TokensApiSearchRequest
 */
-func (a *TokensApiService) TokensSearch(ctx context.Context) ApiTokensSearchRequest {
-	return ApiTokensSearchRequest{
+func (a *TokensApiService) Search(ctx context.Context) TokensApiSearchRequest {
+	return TokensApiSearchRequest{
 		ApiService: a,
 		ctx: ctx,
 	}
@@ -1343,7 +1361,7 @@ func (a *TokensApiService) TokensSearch(ctx context.Context) ApiTokensSearchRequ
 
 // Execute executes the request
 //  @return TokenPaginatedList
-func (a *TokensApiService) TokensSearchExecute(r ApiTokensSearchRequest) (*TokenPaginatedList, *http.Response, error) {
+func (a *TokensApiService) SearchExecute(r TokensApiSearchRequest) (*TokenPaginatedList, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
@@ -1351,7 +1369,7 @@ func (a *TokensApiService) TokensSearchExecute(r ApiTokensSearchRequest) (*Token
 		localVarReturnValue  *TokenPaginatedList
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "TokensApiService.TokensSearch")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "TokensApiService.Search")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}

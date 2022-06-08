@@ -4,21 +4,21 @@ All URIs are relative to *https://api.basistheory.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**TokensCreate**](TokensApi.md#TokensCreate) | **Post** /tokens | 
-[**TokensCreateAssociation**](TokensApi.md#TokensCreateAssociation) | **Post** /tokens/{parentId}/children/{childId} | 
-[**TokensCreateChild**](TokensApi.md#TokensCreateChild) | **Post** /tokens/{parentId}/children | 
-[**TokensDelete**](TokensApi.md#TokensDelete) | **Delete** /tokens/{id} | 
-[**TokensDeleteAssociation**](TokensApi.md#TokensDeleteAssociation) | **Delete** /tokens/{parentId}/children/{childId} | 
-[**TokensGet**](TokensApi.md#TokensGet) | **Get** /tokens | 
-[**TokensGetById**](TokensApi.md#TokensGetById) | **Get** /tokens/{id} | 
-[**TokensGetChildren**](TokensApi.md#TokensGetChildren) | **Get** /tokens/{parentId}/children | 
-[**TokensSearch**](TokensApi.md#TokensSearch) | **Post** /tokens/search | 
+[**Create**](TokensApi.md#Create) | **Post** /tokens | 
+[**CreateAssociation**](TokensApi.md#CreateAssociation) | **Post** /tokens/{parentId}/children/{childId} | 
+[**CreateChild**](TokensApi.md#CreateChild) | **Post** /tokens/{parentId}/children | 
+[**Delete**](TokensApi.md#Delete) | **Delete** /tokens/{id} | 
+[**DeleteAssociation**](TokensApi.md#DeleteAssociation) | **Delete** /tokens/{parentId}/children/{childId} | 
+[**Get**](TokensApi.md#Get) | **Get** /tokens | 
+[**GetById**](TokensApi.md#GetById) | **Get** /tokens/{id} | 
+[**GetChildren**](TokensApi.md#GetChildren) | **Get** /tokens/{parentId}/children | 
+[**Search**](TokensApi.md#Search) | **Post** /tokens/search | 
 
 
 
-## TokensCreate
+## Create
 
-> CreateTokenResponse TokensCreate(ctx).CreateTokenRequest(createTokenRequest).Execute()
+> CreateTokenResponse Create(ctx).CreateTokenRequest(createTokenRequest).Execute()
 
 
 
@@ -39,13 +39,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.TokensApi.TokensCreate(context.Background()).CreateTokenRequest(createTokenRequest).Execute()
+    resp, r, err := apiClient.TokensApi.Create(context.Background()).CreateTokenRequest(createTokenRequest).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `TokensApi.TokensCreate``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `TokensApi.Create``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `TokensCreate`: CreateTokenResponse
-    fmt.Fprintf(os.Stdout, "Response from `TokensApi.TokensCreate`: %v\n", resp)
+    // response from `Create`: CreateTokenResponse
+    fmt.Fprintf(os.Stdout, "Response from `TokensApi.Create`: %v\n", resp)
 }
 ```
 
@@ -55,7 +55,7 @@ func main() {
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiTokensCreateRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiCreateRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
@@ -80,9 +80,9 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
-## TokensCreateAssociation
+## CreateAssociation
 
-> TokensCreateAssociation(ctx, parentId, childId).Execute()
+> CreateAssociation(ctx, parentId, childId).Execute()
 
 
 
@@ -104,9 +104,9 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.TokensApi.TokensCreateAssociation(context.Background(), parentId, childId).Execute()
+    resp, r, err := apiClient.TokensApi.CreateAssociation(context.Background(), parentId, childId).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `TokensApi.TokensCreateAssociation``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `TokensApi.CreateAssociation``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
 }
@@ -123,7 +123,7 @@ Name | Type | Description  | Notes
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiTokensCreateAssociationRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiCreateAssociationRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
@@ -149,9 +149,9 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
-## TokensCreateChild
+## CreateChild
 
-> CreateTokenResponse TokensCreateChild(ctx, parentId).CreateTokenRequest(createTokenRequest).Execute()
+> CreateTokenResponse CreateChild(ctx, parentId).CreateTokenRequest(createTokenRequest).Execute()
 
 
 
@@ -173,13 +173,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.TokensApi.TokensCreateChild(context.Background(), parentId).CreateTokenRequest(createTokenRequest).Execute()
+    resp, r, err := apiClient.TokensApi.CreateChild(context.Background(), parentId).CreateTokenRequest(createTokenRequest).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `TokensApi.TokensCreateChild``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `TokensApi.CreateChild``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `TokensCreateChild`: CreateTokenResponse
-    fmt.Fprintf(os.Stdout, "Response from `TokensApi.TokensCreateChild`: %v\n", resp)
+    // response from `CreateChild`: CreateTokenResponse
+    fmt.Fprintf(os.Stdout, "Response from `TokensApi.CreateChild`: %v\n", resp)
 }
 ```
 
@@ -193,7 +193,7 @@ Name | Type | Description  | Notes
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiTokensCreateChildRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiCreateChildRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
@@ -219,9 +219,9 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
-## TokensDelete
+## Delete
 
-> TokensDelete(ctx, id).Execute()
+> Delete(ctx, id).Execute()
 
 
 
@@ -242,9 +242,9 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.TokensApi.TokensDelete(context.Background(), id).Execute()
+    resp, r, err := apiClient.TokensApi.Delete(context.Background(), id).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `TokensApi.TokensDelete``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `TokensApi.Delete``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
 }
@@ -260,7 +260,7 @@ Name | Type | Description  | Notes
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiTokensDeleteRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiDeleteRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
@@ -285,9 +285,9 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
-## TokensDeleteAssociation
+## DeleteAssociation
 
-> TokensDeleteAssociation(ctx, parentId, childId).Execute()
+> DeleteAssociation(ctx, parentId, childId).Execute()
 
 
 
@@ -309,9 +309,9 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.TokensApi.TokensDeleteAssociation(context.Background(), parentId, childId).Execute()
+    resp, r, err := apiClient.TokensApi.DeleteAssociation(context.Background(), parentId, childId).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `TokensApi.TokensDeleteAssociation``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `TokensApi.DeleteAssociation``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
 }
@@ -328,7 +328,7 @@ Name | Type | Description  | Notes
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiTokensDeleteAssociationRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiDeleteAssociationRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
@@ -354,9 +354,9 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
-## TokensGet
+## Get
 
-> TokenPaginatedList TokensGet(ctx).Type_(type_).Id(id).Page(page).Size(size).Execute()
+> TokenPaginatedList Get(ctx).Type_(type_).Id(id).Metadata(metadata).Page(page).Size(size).Execute()
 
 
 
@@ -375,18 +375,19 @@ import (
 func main() {
     type_ := []string{"Inner_example"} // []string |  (optional)
     id := []string{"Inner_example"} // []string |  (optional)
+    metadata := map[string]string{"key": map[string]string{"key": "Inner_example"}} // map[string]string |  (optional)
     page := int32(56) // int32 |  (optional)
     size := int32(56) // int32 |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.TokensApi.TokensGet(context.Background()).Type_(type_).Id(id).Page(page).Size(size).Execute()
+    resp, r, err := apiClient.TokensApi.Get(context.Background()).Type_(type_).Id(id).Metadata(metadata).Page(page).Size(size).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `TokensApi.TokensGet``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `TokensApi.Get``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `TokensGet`: TokenPaginatedList
-    fmt.Fprintf(os.Stdout, "Response from `TokensApi.TokensGet`: %v\n", resp)
+    // response from `Get`: TokenPaginatedList
+    fmt.Fprintf(os.Stdout, "Response from `TokensApi.Get`: %v\n", resp)
 }
 ```
 
@@ -396,13 +397,14 @@ func main() {
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiTokensGetRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiGetRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **type_** | **[]string** |  | 
  **id** | **[]string** |  | 
+ **metadata** | **map[string]map[string]string** |  | 
  **page** | **int32** |  | 
  **size** | **int32** |  | 
 
@@ -424,9 +426,9 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
-## TokensGetById
+## GetById
 
-> Token TokensGetById(ctx, id).Execute()
+> Token GetById(ctx, id).Execute()
 
 
 
@@ -447,13 +449,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.TokensApi.TokensGetById(context.Background(), id).Execute()
+    resp, r, err := apiClient.TokensApi.GetById(context.Background(), id).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `TokensApi.TokensGetById``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `TokensApi.GetById``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `TokensGetById`: Token
-    fmt.Fprintf(os.Stdout, "Response from `TokensApi.TokensGetById`: %v\n", resp)
+    // response from `GetById`: Token
+    fmt.Fprintf(os.Stdout, "Response from `TokensApi.GetById`: %v\n", resp)
 }
 ```
 
@@ -467,7 +469,7 @@ Name | Type | Description  | Notes
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiTokensGetByIdRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiGetByIdRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
@@ -492,9 +494,9 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
-## TokensGetChildren
+## GetChildren
 
-> TokenPaginatedList TokensGetChildren(ctx, parentId).Type_(type_).Id(id).Page(page).Size(size).Execute()
+> TokenPaginatedList GetChildren(ctx, parentId).Type_(type_).Id(id).Metadata(metadata).Page(page).Size(size).Execute()
 
 
 
@@ -514,18 +516,19 @@ func main() {
     parentId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | 
     type_ := []string{"Inner_example"} // []string |  (optional)
     id := []string{"Inner_example"} // []string |  (optional)
+    metadata := map[string]string{"key": map[string]string{"key": "Inner_example"}} // map[string]string |  (optional)
     page := int32(56) // int32 |  (optional)
     size := int32(56) // int32 |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.TokensApi.TokensGetChildren(context.Background(), parentId).Type_(type_).Id(id).Page(page).Size(size).Execute()
+    resp, r, err := apiClient.TokensApi.GetChildren(context.Background(), parentId).Type_(type_).Id(id).Metadata(metadata).Page(page).Size(size).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `TokensApi.TokensGetChildren``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `TokensApi.GetChildren``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `TokensGetChildren`: TokenPaginatedList
-    fmt.Fprintf(os.Stdout, "Response from `TokensApi.TokensGetChildren`: %v\n", resp)
+    // response from `GetChildren`: TokenPaginatedList
+    fmt.Fprintf(os.Stdout, "Response from `TokensApi.GetChildren`: %v\n", resp)
 }
 ```
 
@@ -539,7 +542,7 @@ Name | Type | Description  | Notes
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiTokensGetChildrenRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiGetChildrenRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
@@ -547,6 +550,7 @@ Name | Type | Description  | Notes
 
  **type_** | **[]string** |  | 
  **id** | **[]string** |  | 
+ **metadata** | **map[string]map[string]string** |  | 
  **page** | **int32** |  | 
  **size** | **int32** |  | 
 
@@ -568,9 +572,9 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
-## TokensSearch
+## Search
 
-> TokenPaginatedList TokensSearch(ctx).SearchTokensRequest(searchTokensRequest).Execute()
+> TokenPaginatedList Search(ctx).SearchTokensRequest(searchTokensRequest).Execute()
 
 
 
@@ -591,13 +595,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.TokensApi.TokensSearch(context.Background()).SearchTokensRequest(searchTokensRequest).Execute()
+    resp, r, err := apiClient.TokensApi.Search(context.Background()).SearchTokensRequest(searchTokensRequest).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `TokensApi.TokensSearch``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `TokensApi.Search``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `TokensSearch`: TokenPaginatedList
-    fmt.Fprintf(os.Stdout, "Response from `TokensApi.TokensSearch`: %v\n", resp)
+    // response from `Search`: TokenPaginatedList
+    fmt.Fprintf(os.Stdout, "Response from `TokensApi.Search`: %v\n", resp)
 }
 ```
 
@@ -607,7 +611,7 @@ func main() {
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiTokensSearchRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiSearchRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes

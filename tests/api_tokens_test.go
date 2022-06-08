@@ -20,7 +20,7 @@ func TestTokenCRUD(t *testing.T) {
 	createTokenRequest.SetType(tokenType)
 	createTokenRequest.SetSearchIndexes(tokenSearchIndexes)
 
-	createdToken, response, err := apiClient.TokensApi.TokensCreate(contextWithAPIKey).CreateTokenRequest(createTokenRequest).Execute()
+	createdToken, response, err := apiClient.TokensApi.Create(contextWithAPIKey).CreateTokenRequest(createTokenRequest).Execute()
 
 	testutils.AssertMethodDidNotError(err, response, "TokensCreate", t)
 	testutils.AssertPropertiesMatch(createdToken.GetData(), nil, t)
@@ -29,7 +29,7 @@ func TestTokenCRUD(t *testing.T) {
 
 	// GET BY ID
 	var token *basistheory.Token
-	token, response, err = apiClient.TokensApi.TokensGetById(contextWithAPIKey, createdToken.GetId()).Execute()
+	token, response, err = apiClient.TokensApi.GetById(contextWithAPIKey, createdToken.GetId()).Execute()
 
 	testutils.AssertMethodDidNotError(err, response, "TokensGetById", t)
 	testutils.AssertPropertiesMatch(token.GetData(), tokenData, t)
@@ -38,7 +38,7 @@ func TestTokenCRUD(t *testing.T) {
 
 	// GET LIST
 	var tokens *basistheory.TokenPaginatedList
-	tokens, response, err = apiClient.TokensApi.TokensGet(contextWithAPIKey).Execute()
+	tokens, response, err = apiClient.TokensApi.Get(contextWithAPIKey).Execute()
 
 	testutils.AssertMethodDidNotError(err, response, "TokensGet", t)
 	testutils.AssertPropertiesMatch(tokens.Data[0].GetData(), tokenData, t)
@@ -46,11 +46,11 @@ func TestTokenCRUD(t *testing.T) {
 	testutils.AssertPropertiesMatch(tokens.Data[0].GetSearchIndexes(), tokenSearchIndexes, t)
 
 	// DELETE
-	response, err = apiClient.TokensApi.TokensDelete(contextWithAPIKey, createdToken.GetId()).Execute()
+	response, err = apiClient.TokensApi.Delete(contextWithAPIKey, createdToken.GetId()).Execute()
 
 	testutils.AssertMethodDidNotError(err, response, "TokensDelete", t)
 
-	_, _, err = apiClient.TokensApi.TokensGetById(contextWithAPIKey, createdToken.GetId()).Execute()
+	_, _, err = apiClient.TokensApi.GetById(contextWithAPIKey, createdToken.GetId()).Execute()
 
 	testutils.AssertNotFound(err, t)
 }

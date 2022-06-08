@@ -22,29 +22,29 @@ import (
 // PermissionsApiService PermissionsApi service
 type PermissionsApiService service
 
-type ApiPermissionsGetRequest struct {
+type PermissionsApiGetRequest struct {
 	ctx context.Context
 	ApiService *PermissionsApiService
 	applicationType *string
 }
 
-func (r ApiPermissionsGetRequest) ApplicationType(applicationType string) ApiPermissionsGetRequest {
+func (r PermissionsApiGetRequest) ApplicationType(applicationType string) PermissionsApiGetRequest {
 	r.applicationType = &applicationType
 	return r
 }
 
-func (r ApiPermissionsGetRequest) Execute() ([]Permission, *http.Response, error) {
-	return r.ApiService.PermissionsGetExecute(r)
+func (r PermissionsApiGetRequest) Execute() ([]Permission, *http.Response, error) {
+	return r.ApiService.GetExecute(r)
 }
 
 /*
-PermissionsGet Method for PermissionsGet
+Get Method for Get
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiPermissionsGetRequest
+ @return PermissionsApiGetRequest
 */
-func (a *PermissionsApiService) PermissionsGet(ctx context.Context) ApiPermissionsGetRequest {
-	return ApiPermissionsGetRequest{
+func (a *PermissionsApiService) Get(ctx context.Context) PermissionsApiGetRequest {
+	return PermissionsApiGetRequest{
 		ApiService: a,
 		ctx: ctx,
 	}
@@ -52,7 +52,7 @@ func (a *PermissionsApiService) PermissionsGet(ctx context.Context) ApiPermissio
 
 // Execute executes the request
 //  @return []Permission
-func (a *PermissionsApiService) PermissionsGetExecute(r ApiPermissionsGetRequest) ([]Permission, *http.Response, error) {
+func (a *PermissionsApiService) GetExecute(r PermissionsApiGetRequest) ([]Permission, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -60,7 +60,7 @@ func (a *PermissionsApiService) PermissionsGetExecute(r ApiPermissionsGetRequest
 		localVarReturnValue  []Permission
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "PermissionsApiService.PermissionsGet")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "PermissionsApiService.Get")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}

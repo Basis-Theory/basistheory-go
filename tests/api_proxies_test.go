@@ -16,13 +16,13 @@ func TestProxiesCRUD(t *testing.T) {
 	createReactorFormulaRequest := *basistheory.NewCreateReactorFormulaRequest("private", reactorFormulaName)
 	createReactorFormulaRequest.SetCode(reactorFormulaCode)
 
-	createdReactorFormula, response, err := apiClient.ReactorFormulasApi.ReactorFormulasCreate(contextWithAPIKey).CreateReactorFormulaRequest(createReactorFormulaRequest).Execute()
+	createdReactorFormula, response, err := apiClient.ReactorFormulasApi.Create(contextWithAPIKey).CreateReactorFormulaRequest(createReactorFormulaRequest).Execute()
 
 	testutils.AssertMethodDidNotError(err, response, "ReactorFormulaCreate", t)
 
 	createApplicationRequest := *basistheory.NewCreateApplicationRequest("Go Test App", "server_to_server")
 
-	createdApplication, response, err := apiClient.ApplicationsApi.ApplicationsCreate(contextWithAPIKey).CreateApplicationRequest(createApplicationRequest).Execute()
+	createdApplication, response, err := apiClient.ApplicationsApi.Create(contextWithAPIKey).CreateApplicationRequest(createApplicationRequest).Execute()
 
 	testutils.AssertMethodDidNotError(err, response, "ApplicationCreate", t)
 
@@ -31,7 +31,7 @@ func TestProxiesCRUD(t *testing.T) {
 	createReactorRequest.SetFormula(*createdReactorFormula)
 	createReactorRequest.SetApplication(*createdApplication)
 	var createdReactor *basistheory.Reactor
-	createdReactor, response, err = apiClient.ReactorsApi.ReactorsCreate(contextWithAPIKey).CreateReactorRequest(createReactorRequest).Execute()
+	createdReactor, response, err = apiClient.ReactorsApi.Create(contextWithAPIKey).CreateReactorRequest(createReactorRequest).Execute()
 
 	testutils.AssertMethodDidNotError(err, response, "ReactorCreate", t)
 
@@ -39,10 +39,11 @@ func TestProxiesCRUD(t *testing.T) {
 	proxyName := "Go Test  Proxy"
 	proxyDestinationUrl := "http://httpbin.org/post"
 
-	createProxyRequest := *basistheory.NewCreateProxyRequest(proxyName, proxyDestinationUrl, createdReactor.GetId())
+	createProxyRequest := *basistheory.NewCreateProxyRequest(proxyName, proxyDestinationUrl)
+	createProxyRequest.SetRequestReactorId(createdReactor.GetId())
 	createProxyRequest.SetRequireAuth(true)
 
-	createdProxy, response, err := apiClient.ProxiesApi.ProxiesCreate(contextWithAPIKey).CreateProxyRequest(createProxyRequest).Execute()
+	createdProxy, response, err := apiClient.ProxiesApi.Create(contextWithAPIKey).CreateProxyRequest(createProxyRequest).Execute()
 
 	testutils.AssertMethodDidNotError(err, response, "ProxiesCreate", t)
 	testutils.AssertPropertiesMatch(createdProxy.GetName(), proxyName, t)
@@ -52,7 +53,7 @@ func TestProxiesCRUD(t *testing.T) {
 
 	// GET BY ID
 	var proxy *basistheory.Proxy
-	proxy, response, err = apiClient.ProxiesApi.ProxiesGetById(contextWithAPIKey, createdProxy.GetId()).Execute()
+	proxy, response, err = apiClient.ProxiesApi.GetById(contextWithAPIKey, createdProxy.GetId()).Execute()
 
 	testutils.AssertMethodDidNotError(err, response, "ProxiesGetById", t)
 	testutils.AssertPropertiesMatch(proxy.GetName(), proxyName, t)
@@ -62,7 +63,7 @@ func TestProxiesCRUD(t *testing.T) {
 
 	// GET LIST
 	var proxies *basistheory.ProxyPaginatedList
-	proxies, response, err = apiClient.ProxiesApi.ProxiesGet(contextWithAPIKey).Execute()
+	proxies, response, err = apiClient.ProxiesApi.Get(contextWithAPIKey).Execute()
 
 	testutils.AssertMethodDidNotError(err, response, "ProxiesGet", t)
 	testutils.AssertPropertiesMatch(proxies.Data[0].GetName(), proxyName, t)
@@ -73,11 +74,12 @@ func TestProxiesCRUD(t *testing.T) {
 	// UPDATE
 	updatedProxyName := "Go Test  Proxy Update"
 	updatedProxyDestinationUrl := "https://httpbin.org/post"
-	updateProxyRequest := *basistheory.NewUpdateProxyRequest(updatedProxyName, updatedProxyDestinationUrl, createdReactor.GetId())
+	updateProxyRequest := *basistheory.NewUpdateProxyRequest(updatedProxyName, updatedProxyDestinationUrl)
+	updateProxyRequest.SetRequestReactorId(createdReactor.GetId())
 	updateProxyRequest.SetRequireAuth(false)
 
 	var updatedProxy *basistheory.Proxy
-	updatedProxy, response, err = apiClient.ProxiesApi.ProxiesUpdate(contextWithAPIKey, createdProxy.GetId()).UpdateProxyRequest(updateProxyRequest).Execute()
+	updatedProxy, response, err = apiClient.ProxiesApi.Update(contextWithAPIKey, createdProxy.GetId()).UpdateProxyRequest(updateProxyRequest).Execute()
 
 	testutils.AssertMethodDidNotError(err, response, "ProxiesUpdate", t)
 	testutils.AssertPropertiesMatch(updatedProxy.GetName(), updatedProxyName, t)
@@ -86,15 +88,15 @@ func TestProxiesCRUD(t *testing.T) {
 	testutils.AssertPropertiesMatch(updatedProxy.GetRequireAuth(), false, t)
 
 	// DELETE
-	_, err = apiClient.ProxiesApi.ProxiesDelete(contextWithAPIKey, createdProxy.GetId()).Execute()
+	_, err = apiClient.ProxiesApi.Delete(contextWithAPIKey, createdProxy.GetId()).Execute()
 
 	testutils.AssertMethodDidNotError(err, response, "ProxiesDelete", t)
 
-	_, _, err = apiClient.ProxiesApi.ProxiesGetById(contextWithAPIKey, createdProxy.GetId()).Execute()
+	_, _, err = apiClient.ProxiesApi.GetById(contextWithAPIKey, createdProxy.GetId()).Execute()
 
 	testutils.AssertNotFound(err, t)
 
-	_, _ = apiClient.ReactorsApi.ReactorsDelete(contextWithAPIKey, createdReactor.GetId()).Execute()
-	_, _ = apiClient.ReactorFormulasApi.ReactorFormulasDelete(contextWithAPIKey, createdReactorFormula.GetId()).Execute()
-	_, _ = apiClient.ApplicationsApi.ApplicationsDelete(contextWithAPIKey, createdApplication.GetId()).Execute()
+	_, _ = apiClient.ReactorsApi.Delete(contextWithAPIKey, createdReactor.GetId()).Execute()
+	_, _ = apiClient.ReactorFormulasApi.Delete(contextWithAPIKey, createdReactorFormula.GetId()).Execute()
+	_, _ = apiClient.ApplicationsApi.Delete(contextWithAPIKey, createdApplication.GetId()).Execute()
 }

@@ -2083,6 +2083,15 @@ paths:
             type: string
           type: array
         style: form
+      - explode: false
+        in: query
+        name: metadata
+        required: false
+        schema:
+          additionalProperties:
+            type: string
+          type: object
+        style: deepObject
       - explode: true
         in: query
         name: page
@@ -2342,6 +2351,15 @@ paths:
             type: string
           type: array
         style: form
+      - explode: false
+        in: query
+        name: metadata
+        required: false
+        schema:
+          additionalProperties:
+            type: string
+          type: object
+        style: deepObject
       - explode: true
         in: query
         name: page
@@ -2961,6 +2979,7 @@ components:
     CreateProxyRequest:
       additionalProperties: false
       example:
+        response_reactor_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
         name: name
         destination_url: destination_url
         require_auth: true
@@ -2976,6 +2995,11 @@ components:
           type: string
         request_reactor_id:
           format: uuid
+          nullable: true
+          type: string
+        response_reactor_id:
+          format: uuid
+          nullable: true
           type: string
         require_auth:
           nullable: true
@@ -2983,7 +3007,6 @@ components:
       required:
       - destination_url
       - name
-      - request_reactor_id
       type: object
     CreateReactorFormulaRequest:
       additionalProperties: false
@@ -3530,6 +3553,7 @@ components:
       additionalProperties: false
       example:
         tenant_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        response_reactor_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
         name: name
         destination_url: destination_url
         modified_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
@@ -3559,6 +3583,11 @@ components:
           type: string
         request_reactor_id:
           format: uuid
+          nullable: true
+          type: string
+        response_reactor_id:
+          format: uuid
+          nullable: true
           type: string
         require_auth:
           type: boolean
@@ -3589,6 +3618,7 @@ components:
           page_size: 1
         data:
         - tenant_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          response_reactor_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           name: name
           destination_url: destination_url
           modified_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
@@ -3600,6 +3630,7 @@ components:
           created_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           key: key
         - tenant_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          response_reactor_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           name: name
           destination_url: destination_url
           modified_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
@@ -4541,6 +4572,7 @@ components:
     UpdateProxyRequest:
       additionalProperties: false
       example:
+        response_reactor_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
         name: name
         destination_url: destination_url
         require_auth: true
@@ -4556,6 +4588,11 @@ components:
           type: string
         request_reactor_id:
           format: uuid
+          nullable: true
+          type: string
+        response_reactor_id:
+          format: uuid
+          nullable: true
           type: string
         require_auth:
           nullable: true
@@ -4563,7 +4600,6 @@ components:
       required:
       - destination_url
       - name
-      - request_reactor_id
       type: object
     UpdateReactorFormulaRequest:
       additionalProperties: false
@@ -4658,12 +4694,20 @@ components:
     UpdateTenantRequest:
       additionalProperties: false
       example:
+        settings:
+          key: settings
         name: name
       properties:
         name:
           maxLength: 200
           minLength: 1
           type: string
+        settings:
+          additionalProperties:
+            nullable: true
+            type: string
+          nullable: true
+          type: object
       required:
       - name
       type: object

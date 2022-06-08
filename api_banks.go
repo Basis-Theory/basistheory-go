@@ -23,31 +23,31 @@ import (
 // BanksApiService BanksApi service
 type BanksApiService service
 
-type ApiAtomicBanksCreateRequest struct {
+type BanksApiCreateRequest struct {
 	ctx context.Context
 	ApiService *BanksApiService
 	createAtomicBankRequest *CreateAtomicBankRequest
 }
 
-func (r ApiAtomicBanksCreateRequest) CreateAtomicBankRequest(createAtomicBankRequest CreateAtomicBankRequest) ApiAtomicBanksCreateRequest {
+func (r BanksApiCreateRequest) CreateAtomicBankRequest(createAtomicBankRequest CreateAtomicBankRequest) BanksApiCreateRequest {
 	r.createAtomicBankRequest = &createAtomicBankRequest
 	return r
 }
 
-func (r ApiAtomicBanksCreateRequest) Execute() (*AtomicBank, *http.Response, error) {
-	return r.ApiService.AtomicBanksCreateExecute(r)
+func (r BanksApiCreateRequest) Execute() (*AtomicBank, *http.Response, error) {
+	return r.ApiService.CreateExecute(r)
 }
 
 /*
-AtomicBanksCreate Method for AtomicBanksCreate
+Create Method for Create
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiAtomicBanksCreateRequest
+ @return BanksApiCreateRequest
 
 Deprecated
 */
-func (a *BanksApiService) AtomicBanksCreate(ctx context.Context) ApiAtomicBanksCreateRequest {
-	return ApiAtomicBanksCreateRequest{
+func (a *BanksApiService) Create(ctx context.Context) BanksApiCreateRequest {
+	return BanksApiCreateRequest{
 		ApiService: a,
 		ctx: ctx,
 	}
@@ -56,7 +56,7 @@ func (a *BanksApiService) AtomicBanksCreate(ctx context.Context) ApiAtomicBanksC
 // Execute executes the request
 //  @return AtomicBank
 // Deprecated
-func (a *BanksApiService) AtomicBanksCreateExecute(r ApiAtomicBanksCreateRequest) (*AtomicBank, *http.Response, error) {
+func (a *BanksApiService) CreateExecute(r BanksApiCreateRequest) (*AtomicBank, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
@@ -64,7 +64,7 @@ func (a *BanksApiService) AtomicBanksCreateExecute(r ApiAtomicBanksCreateRequest
 		localVarReturnValue  *AtomicBank
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "BanksApiService.AtomicBanksCreate")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "BanksApiService.Create")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -174,27 +174,27 @@ func (a *BanksApiService) AtomicBanksCreateExecute(r ApiAtomicBanksCreateRequest
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiAtomicBanksDeleteRequest struct {
+type BanksApiDeleteRequest struct {
 	ctx context.Context
 	ApiService *BanksApiService
 	id string
 }
 
-func (r ApiAtomicBanksDeleteRequest) Execute() (*http.Response, error) {
-	return r.ApiService.AtomicBanksDeleteExecute(r)
+func (r BanksApiDeleteRequest) Execute() (*http.Response, error) {
+	return r.ApiService.DeleteExecute(r)
 }
 
 /*
-AtomicBanksDelete Method for AtomicBanksDelete
+Delete Method for Delete
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param id
- @return ApiAtomicBanksDeleteRequest
+ @return BanksApiDeleteRequest
 
 Deprecated
 */
-func (a *BanksApiService) AtomicBanksDelete(ctx context.Context, id string) ApiAtomicBanksDeleteRequest {
-	return ApiAtomicBanksDeleteRequest{
+func (a *BanksApiService) Delete(ctx context.Context, id string) BanksApiDeleteRequest {
+	return BanksApiDeleteRequest{
 		ApiService: a,
 		ctx: ctx,
 		id: id,
@@ -203,14 +203,14 @@ func (a *BanksApiService) AtomicBanksDelete(ctx context.Context, id string) ApiA
 
 // Execute executes the request
 // Deprecated
-func (a *BanksApiService) AtomicBanksDeleteExecute(r ApiAtomicBanksDeleteRequest) (*http.Response, error) {
+func (a *BanksApiService) DeleteExecute(r BanksApiDeleteRequest) (*http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodDelete
 		localVarPostBody     interface{}
 		formFiles            []formFile
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "BanksApiService.AtomicBanksDelete")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "BanksApiService.Delete")
 	if err != nil {
 		return nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -310,37 +310,37 @@ func (a *BanksApiService) AtomicBanksDeleteExecute(r ApiAtomicBanksDeleteRequest
 	return localVarHTTPResponse, nil
 }
 
-type ApiAtomicBanksGetRequest struct {
+type BanksApiGetRequest struct {
 	ctx context.Context
 	ApiService *BanksApiService
 	page *int32
 	size *int32
 }
 
-func (r ApiAtomicBanksGetRequest) Page(page int32) ApiAtomicBanksGetRequest {
+func (r BanksApiGetRequest) Page(page int32) BanksApiGetRequest {
 	r.page = &page
 	return r
 }
 
-func (r ApiAtomicBanksGetRequest) Size(size int32) ApiAtomicBanksGetRequest {
+func (r BanksApiGetRequest) Size(size int32) BanksApiGetRequest {
 	r.size = &size
 	return r
 }
 
-func (r ApiAtomicBanksGetRequest) Execute() (*AtomicBankPaginatedList, *http.Response, error) {
-	return r.ApiService.AtomicBanksGetExecute(r)
+func (r BanksApiGetRequest) Execute() (*AtomicBankPaginatedList, *http.Response, error) {
+	return r.ApiService.GetExecute(r)
 }
 
 /*
-AtomicBanksGet Method for AtomicBanksGet
+Get Method for Get
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiAtomicBanksGetRequest
+ @return BanksApiGetRequest
 
 Deprecated
 */
-func (a *BanksApiService) AtomicBanksGet(ctx context.Context) ApiAtomicBanksGetRequest {
-	return ApiAtomicBanksGetRequest{
+func (a *BanksApiService) Get(ctx context.Context) BanksApiGetRequest {
+	return BanksApiGetRequest{
 		ApiService: a,
 		ctx: ctx,
 	}
@@ -349,7 +349,7 @@ func (a *BanksApiService) AtomicBanksGet(ctx context.Context) ApiAtomicBanksGetR
 // Execute executes the request
 //  @return AtomicBankPaginatedList
 // Deprecated
-func (a *BanksApiService) AtomicBanksGetExecute(r ApiAtomicBanksGetRequest) (*AtomicBankPaginatedList, *http.Response, error) {
+func (a *BanksApiService) GetExecute(r BanksApiGetRequest) (*AtomicBankPaginatedList, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -357,7 +357,7 @@ func (a *BanksApiService) AtomicBanksGetExecute(r ApiAtomicBanksGetRequest) (*At
 		localVarReturnValue  *AtomicBankPaginatedList
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "BanksApiService.AtomicBanksGet")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "BanksApiService.Get")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -461,27 +461,27 @@ func (a *BanksApiService) AtomicBanksGetExecute(r ApiAtomicBanksGetRequest) (*At
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiAtomicBanksGetByIdRequest struct {
+type BanksApiGetByIdRequest struct {
 	ctx context.Context
 	ApiService *BanksApiService
 	id string
 }
 
-func (r ApiAtomicBanksGetByIdRequest) Execute() (*AtomicBank, *http.Response, error) {
-	return r.ApiService.AtomicBanksGetByIdExecute(r)
+func (r BanksApiGetByIdRequest) Execute() (*AtomicBank, *http.Response, error) {
+	return r.ApiService.GetByIdExecute(r)
 }
 
 /*
-AtomicBanksGetById Method for AtomicBanksGetById
+GetById Method for GetById
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param id
- @return ApiAtomicBanksGetByIdRequest
+ @return BanksApiGetByIdRequest
 
 Deprecated
 */
-func (a *BanksApiService) AtomicBanksGetById(ctx context.Context, id string) ApiAtomicBanksGetByIdRequest {
-	return ApiAtomicBanksGetByIdRequest{
+func (a *BanksApiService) GetById(ctx context.Context, id string) BanksApiGetByIdRequest {
+	return BanksApiGetByIdRequest{
 		ApiService: a,
 		ctx: ctx,
 		id: id,
@@ -491,7 +491,7 @@ func (a *BanksApiService) AtomicBanksGetById(ctx context.Context, id string) Api
 // Execute executes the request
 //  @return AtomicBank
 // Deprecated
-func (a *BanksApiService) AtomicBanksGetByIdExecute(r ApiAtomicBanksGetByIdRequest) (*AtomicBank, *http.Response, error) {
+func (a *BanksApiService) GetByIdExecute(r BanksApiGetByIdRequest) (*AtomicBank, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -499,7 +499,7 @@ func (a *BanksApiService) AtomicBanksGetByIdExecute(r ApiAtomicBanksGetByIdReque
 		localVarReturnValue  *AtomicBank
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "BanksApiService.AtomicBanksGetById")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "BanksApiService.GetById")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -608,33 +608,33 @@ func (a *BanksApiService) AtomicBanksGetByIdExecute(r ApiAtomicBanksGetByIdReque
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiAtomicBanksReactRequest struct {
+type BanksApiReactRequest struct {
 	ctx context.Context
 	ApiService *BanksApiService
 	bankId string
 	atomicReactRequest *AtomicReactRequest
 }
 
-func (r ApiAtomicBanksReactRequest) AtomicReactRequest(atomicReactRequest AtomicReactRequest) ApiAtomicBanksReactRequest {
+func (r BanksApiReactRequest) AtomicReactRequest(atomicReactRequest AtomicReactRequest) BanksApiReactRequest {
 	r.atomicReactRequest = &atomicReactRequest
 	return r
 }
 
-func (r ApiAtomicBanksReactRequest) Execute() (*ReactResponse, *http.Response, error) {
-	return r.ApiService.AtomicBanksReactExecute(r)
+func (r BanksApiReactRequest) Execute() (*ReactResponse, *http.Response, error) {
+	return r.ApiService.ReactExecute(r)
 }
 
 /*
-AtomicBanksReact Method for AtomicBanksReact
+React Method for React
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param bankId
- @return ApiAtomicBanksReactRequest
+ @return BanksApiReactRequest
 
 Deprecated
 */
-func (a *BanksApiService) AtomicBanksReact(ctx context.Context, bankId string) ApiAtomicBanksReactRequest {
-	return ApiAtomicBanksReactRequest{
+func (a *BanksApiService) React(ctx context.Context, bankId string) BanksApiReactRequest {
+	return BanksApiReactRequest{
 		ApiService: a,
 		ctx: ctx,
 		bankId: bankId,
@@ -644,7 +644,7 @@ func (a *BanksApiService) AtomicBanksReact(ctx context.Context, bankId string) A
 // Execute executes the request
 //  @return ReactResponse
 // Deprecated
-func (a *BanksApiService) AtomicBanksReactExecute(r ApiAtomicBanksReactRequest) (*ReactResponse, *http.Response, error) {
+func (a *BanksApiService) ReactExecute(r BanksApiReactRequest) (*ReactResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
@@ -652,7 +652,7 @@ func (a *BanksApiService) AtomicBanksReactExecute(r ApiAtomicBanksReactRequest) 
 		localVarReturnValue  *ReactResponse
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "BanksApiService.AtomicBanksReact")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "BanksApiService.React")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -773,33 +773,33 @@ func (a *BanksApiService) AtomicBanksReactExecute(r ApiAtomicBanksReactRequest) 
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiAtomicBanksUpdateRequest struct {
+type BanksApiUpdateRequest struct {
 	ctx context.Context
 	ApiService *BanksApiService
 	id string
 	updateAtomicBankRequest *UpdateAtomicBankRequest
 }
 
-func (r ApiAtomicBanksUpdateRequest) UpdateAtomicBankRequest(updateAtomicBankRequest UpdateAtomicBankRequest) ApiAtomicBanksUpdateRequest {
+func (r BanksApiUpdateRequest) UpdateAtomicBankRequest(updateAtomicBankRequest UpdateAtomicBankRequest) BanksApiUpdateRequest {
 	r.updateAtomicBankRequest = &updateAtomicBankRequest
 	return r
 }
 
-func (r ApiAtomicBanksUpdateRequest) Execute() (*AtomicBank, *http.Response, error) {
-	return r.ApiService.AtomicBanksUpdateExecute(r)
+func (r BanksApiUpdateRequest) Execute() (*AtomicBank, *http.Response, error) {
+	return r.ApiService.UpdateExecute(r)
 }
 
 /*
-AtomicBanksUpdate Method for AtomicBanksUpdate
+Update Method for Update
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param id
- @return ApiAtomicBanksUpdateRequest
+ @return BanksApiUpdateRequest
 
 Deprecated
 */
-func (a *BanksApiService) AtomicBanksUpdate(ctx context.Context, id string) ApiAtomicBanksUpdateRequest {
-	return ApiAtomicBanksUpdateRequest{
+func (a *BanksApiService) Update(ctx context.Context, id string) BanksApiUpdateRequest {
+	return BanksApiUpdateRequest{
 		ApiService: a,
 		ctx: ctx,
 		id: id,
@@ -809,7 +809,7 @@ func (a *BanksApiService) AtomicBanksUpdate(ctx context.Context, id string) ApiA
 // Execute executes the request
 //  @return AtomicBank
 // Deprecated
-func (a *BanksApiService) AtomicBanksUpdateExecute(r ApiAtomicBanksUpdateRequest) (*AtomicBank, *http.Response, error) {
+func (a *BanksApiService) UpdateExecute(r BanksApiUpdateRequest) (*AtomicBank, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPatch
 		localVarPostBody     interface{}
@@ -817,7 +817,7 @@ func (a *BanksApiService) AtomicBanksUpdateExecute(r ApiAtomicBanksUpdateRequest
 		localVarReturnValue  *AtomicBank
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "BanksApiService.AtomicBanksUpdate")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "BanksApiService.Update")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}

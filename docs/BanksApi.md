@@ -4,18 +4,18 @@ All URIs are relative to *https://api.basistheory.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**AtomicBanksCreate**](BanksApi.md#AtomicBanksCreate) | **Post** /atomic/banks | 
-[**AtomicBanksDelete**](BanksApi.md#AtomicBanksDelete) | **Delete** /atomic/banks/{id} | 
-[**AtomicBanksGet**](BanksApi.md#AtomicBanksGet) | **Get** /atomic/banks | 
-[**AtomicBanksGetById**](BanksApi.md#AtomicBanksGetById) | **Get** /atomic/banks/{id} | 
-[**AtomicBanksReact**](BanksApi.md#AtomicBanksReact) | **Post** /atomic/banks/{bankId}/react | 
-[**AtomicBanksUpdate**](BanksApi.md#AtomicBanksUpdate) | **Patch** /atomic/banks/{id} | 
+[**Create**](BanksApi.md#Create) | **Post** /atomic/banks | 
+[**Delete**](BanksApi.md#Delete) | **Delete** /atomic/banks/{id} | 
+[**Get**](BanksApi.md#Get) | **Get** /atomic/banks | 
+[**GetById**](BanksApi.md#GetById) | **Get** /atomic/banks/{id} | 
+[**React**](BanksApi.md#React) | **Post** /atomic/banks/{bankId}/react | 
+[**Update**](BanksApi.md#Update) | **Patch** /atomic/banks/{id} | 
 
 
 
-## AtomicBanksCreate
+## Create
 
-> AtomicBank AtomicBanksCreate(ctx).CreateAtomicBankRequest(createAtomicBankRequest).Execute()
+> AtomicBank Create(ctx).CreateAtomicBankRequest(createAtomicBankRequest).Execute()
 
 
 
@@ -36,13 +36,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.BanksApi.AtomicBanksCreate(context.Background()).CreateAtomicBankRequest(createAtomicBankRequest).Execute()
+    resp, r, err := apiClient.BanksApi.Create(context.Background()).CreateAtomicBankRequest(createAtomicBankRequest).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `BanksApi.AtomicBanksCreate``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `BanksApi.Create``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `AtomicBanksCreate`: AtomicBank
-    fmt.Fprintf(os.Stdout, "Response from `BanksApi.AtomicBanksCreate`: %v\n", resp)
+    // response from `Create`: AtomicBank
+    fmt.Fprintf(os.Stdout, "Response from `BanksApi.Create`: %v\n", resp)
 }
 ```
 
@@ -52,7 +52,7 @@ func main() {
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiAtomicBanksCreateRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiCreateRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
@@ -77,9 +77,9 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
-## AtomicBanksDelete
+## Delete
 
-> AtomicBanksDelete(ctx, id).Execute()
+> Delete(ctx, id).Execute()
 
 
 
@@ -100,9 +100,9 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.BanksApi.AtomicBanksDelete(context.Background(), id).Execute()
+    resp, r, err := apiClient.BanksApi.Delete(context.Background(), id).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `BanksApi.AtomicBanksDelete``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `BanksApi.Delete``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
 }
@@ -118,7 +118,7 @@ Name | Type | Description  | Notes
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiAtomicBanksDeleteRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiDeleteRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
@@ -143,9 +143,9 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
-## AtomicBanksGet
+## Get
 
-> AtomicBankPaginatedList AtomicBanksGet(ctx).Page(page).Size(size).Execute()
+> AtomicBankPaginatedList Get(ctx).Page(page).Size(size).Execute()
 
 
 
@@ -167,13 +167,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.BanksApi.AtomicBanksGet(context.Background()).Page(page).Size(size).Execute()
+    resp, r, err := apiClient.BanksApi.Get(context.Background()).Page(page).Size(size).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `BanksApi.AtomicBanksGet``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `BanksApi.Get``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `AtomicBanksGet`: AtomicBankPaginatedList
-    fmt.Fprintf(os.Stdout, "Response from `BanksApi.AtomicBanksGet`: %v\n", resp)
+    // response from `Get`: AtomicBankPaginatedList
+    fmt.Fprintf(os.Stdout, "Response from `BanksApi.Get`: %v\n", resp)
 }
 ```
 
@@ -183,7 +183,7 @@ func main() {
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiAtomicBanksGetRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiGetRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
@@ -209,9 +209,9 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
-## AtomicBanksGetById
+## GetById
 
-> AtomicBank AtomicBanksGetById(ctx, id).Execute()
+> AtomicBank GetById(ctx, id).Execute()
 
 
 
@@ -232,13 +232,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.BanksApi.AtomicBanksGetById(context.Background(), id).Execute()
+    resp, r, err := apiClient.BanksApi.GetById(context.Background(), id).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `BanksApi.AtomicBanksGetById``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `BanksApi.GetById``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `AtomicBanksGetById`: AtomicBank
-    fmt.Fprintf(os.Stdout, "Response from `BanksApi.AtomicBanksGetById`: %v\n", resp)
+    // response from `GetById`: AtomicBank
+    fmt.Fprintf(os.Stdout, "Response from `BanksApi.GetById`: %v\n", resp)
 }
 ```
 
@@ -252,7 +252,7 @@ Name | Type | Description  | Notes
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiAtomicBanksGetByIdRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiGetByIdRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
@@ -277,9 +277,9 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
-## AtomicBanksReact
+## React
 
-> ReactResponse AtomicBanksReact(ctx, bankId).AtomicReactRequest(atomicReactRequest).Execute()
+> ReactResponse React(ctx, bankId).AtomicReactRequest(atomicReactRequest).Execute()
 
 
 
@@ -301,13 +301,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.BanksApi.AtomicBanksReact(context.Background(), bankId).AtomicReactRequest(atomicReactRequest).Execute()
+    resp, r, err := apiClient.BanksApi.React(context.Background(), bankId).AtomicReactRequest(atomicReactRequest).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `BanksApi.AtomicBanksReact``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `BanksApi.React``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `AtomicBanksReact`: ReactResponse
-    fmt.Fprintf(os.Stdout, "Response from `BanksApi.AtomicBanksReact`: %v\n", resp)
+    // response from `React`: ReactResponse
+    fmt.Fprintf(os.Stdout, "Response from `BanksApi.React`: %v\n", resp)
 }
 ```
 
@@ -321,7 +321,7 @@ Name | Type | Description  | Notes
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiAtomicBanksReactRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiReactRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
@@ -347,9 +347,9 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
-## AtomicBanksUpdate
+## Update
 
-> AtomicBank AtomicBanksUpdate(ctx, id).UpdateAtomicBankRequest(updateAtomicBankRequest).Execute()
+> AtomicBank Update(ctx, id).UpdateAtomicBankRequest(updateAtomicBankRequest).Execute()
 
 
 
@@ -371,13 +371,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.BanksApi.AtomicBanksUpdate(context.Background(), id).UpdateAtomicBankRequest(updateAtomicBankRequest).Execute()
+    resp, r, err := apiClient.BanksApi.Update(context.Background(), id).UpdateAtomicBankRequest(updateAtomicBankRequest).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `BanksApi.AtomicBanksUpdate``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `BanksApi.Update``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `AtomicBanksUpdate`: AtomicBank
-    fmt.Fprintf(os.Stdout, "Response from `BanksApi.AtomicBanksUpdate`: %v\n", resp)
+    // response from `Update`: AtomicBank
+    fmt.Fprintf(os.Stdout, "Response from `BanksApi.Update`: %v\n", resp)
 }
 ```
 
@@ -391,7 +391,7 @@ Name | Type | Description  | Notes
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiAtomicBanksUpdateRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiUpdateRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes

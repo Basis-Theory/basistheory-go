@@ -23,7 +23,7 @@ import (
 // LogsApiService LogsApi service
 type LogsApiService service
 
-type ApiLogsGetRequest struct {
+type LogsApiGetRequest struct {
 	ctx context.Context
 	ApiService *LogsApiService
 	entityType *string
@@ -34,48 +34,48 @@ type ApiLogsGetRequest struct {
 	size *int32
 }
 
-func (r ApiLogsGetRequest) EntityType(entityType string) ApiLogsGetRequest {
+func (r LogsApiGetRequest) EntityType(entityType string) LogsApiGetRequest {
 	r.entityType = &entityType
 	return r
 }
 
-func (r ApiLogsGetRequest) EntityId(entityId string) ApiLogsGetRequest {
+func (r LogsApiGetRequest) EntityId(entityId string) LogsApiGetRequest {
 	r.entityId = &entityId
 	return r
 }
 
-func (r ApiLogsGetRequest) StartDate(startDate time.Time) ApiLogsGetRequest {
+func (r LogsApiGetRequest) StartDate(startDate time.Time) LogsApiGetRequest {
 	r.startDate = &startDate
 	return r
 }
 
-func (r ApiLogsGetRequest) EndDate(endDate time.Time) ApiLogsGetRequest {
+func (r LogsApiGetRequest) EndDate(endDate time.Time) LogsApiGetRequest {
 	r.endDate = &endDate
 	return r
 }
 
-func (r ApiLogsGetRequest) Page(page int32) ApiLogsGetRequest {
+func (r LogsApiGetRequest) Page(page int32) LogsApiGetRequest {
 	r.page = &page
 	return r
 }
 
-func (r ApiLogsGetRequest) Size(size int32) ApiLogsGetRequest {
+func (r LogsApiGetRequest) Size(size int32) LogsApiGetRequest {
 	r.size = &size
 	return r
 }
 
-func (r ApiLogsGetRequest) Execute() (*LogPaginatedList, *http.Response, error) {
-	return r.ApiService.LogsGetExecute(r)
+func (r LogsApiGetRequest) Execute() (*LogPaginatedList, *http.Response, error) {
+	return r.ApiService.GetExecute(r)
 }
 
 /*
-LogsGet Method for LogsGet
+Get Method for Get
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiLogsGetRequest
+ @return LogsApiGetRequest
 */
-func (a *LogsApiService) LogsGet(ctx context.Context) ApiLogsGetRequest {
-	return ApiLogsGetRequest{
+func (a *LogsApiService) Get(ctx context.Context) LogsApiGetRequest {
+	return LogsApiGetRequest{
 		ApiService: a,
 		ctx: ctx,
 	}
@@ -83,7 +83,7 @@ func (a *LogsApiService) LogsGet(ctx context.Context) ApiLogsGetRequest {
 
 // Execute executes the request
 //  @return LogPaginatedList
-func (a *LogsApiService) LogsGetExecute(r ApiLogsGetRequest) (*LogPaginatedList, *http.Response, error) {
+func (a *LogsApiService) GetExecute(r LogsApiGetRequest) (*LogPaginatedList, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -91,7 +91,7 @@ func (a *LogsApiService) LogsGetExecute(r ApiLogsGetRequest) (*LogPaginatedList,
 		localVarReturnValue  *LogPaginatedList
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "LogsApiService.LogsGet")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "LogsApiService.Get")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -217,23 +217,23 @@ func (a *LogsApiService) LogsGetExecute(r ApiLogsGetRequest) (*LogPaginatedList,
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiLogsGetEntityTypesRequest struct {
+type LogsApiGetEntityTypesRequest struct {
 	ctx context.Context
 	ApiService *LogsApiService
 }
 
-func (r ApiLogsGetEntityTypesRequest) Execute() ([]LogEntityType, *http.Response, error) {
-	return r.ApiService.LogsGetEntityTypesExecute(r)
+func (r LogsApiGetEntityTypesRequest) Execute() ([]LogEntityType, *http.Response, error) {
+	return r.ApiService.GetEntityTypesExecute(r)
 }
 
 /*
-LogsGetEntityTypes Method for LogsGetEntityTypes
+GetEntityTypes Method for GetEntityTypes
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiLogsGetEntityTypesRequest
+ @return LogsApiGetEntityTypesRequest
 */
-func (a *LogsApiService) LogsGetEntityTypes(ctx context.Context) ApiLogsGetEntityTypesRequest {
-	return ApiLogsGetEntityTypesRequest{
+func (a *LogsApiService) GetEntityTypes(ctx context.Context) LogsApiGetEntityTypesRequest {
+	return LogsApiGetEntityTypesRequest{
 		ApiService: a,
 		ctx: ctx,
 	}
@@ -241,7 +241,7 @@ func (a *LogsApiService) LogsGetEntityTypes(ctx context.Context) ApiLogsGetEntit
 
 // Execute executes the request
 //  @return []LogEntityType
-func (a *LogsApiService) LogsGetEntityTypesExecute(r ApiLogsGetEntityTypesRequest) ([]LogEntityType, *http.Response, error) {
+func (a *LogsApiService) GetEntityTypesExecute(r LogsApiGetEntityTypesRequest) ([]LogEntityType, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -249,7 +249,7 @@ func (a *LogsApiService) LogsGetEntityTypesExecute(r ApiLogsGetEntityTypesReques
 		localVarReturnValue  []LogEntityType
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "LogsApiService.LogsGetEntityTypes")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "LogsApiService.GetEntityTypes")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}

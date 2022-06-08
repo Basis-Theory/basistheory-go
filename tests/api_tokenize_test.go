@@ -15,7 +15,7 @@ func TestTokenizeCRUD(t *testing.T) {
 		"myData":      "myValue",
 		"myOtherData": "myOtherValue",
 	}
-	createdToken, response, err := apiClient.TokenizeApi.TokenizeTokenize(contextWithAPIKey).Body(tokenData).Execute()
+	createdToken, response, err := apiClient.TokenizeApi.Tokenize(contextWithAPIKey).Body(tokenData).Execute()
 
 	testutils.AssertMethodDidNotError(err, response, "TokenizeTokenize", t)
 
@@ -24,18 +24,28 @@ func TestTokenizeCRUD(t *testing.T) {
 	myOtherDataTokenId := createdToken.(map[string]interface{})["myOtherData"].(string)
 
 	var tokens *basistheory.TokenPaginatedList
-	tokens, response, err = apiClient.TokensApi.TokensGet(contextWithAPIKey).Id([]string{myDataTokenId, myOtherDataTokenId}).Execute()
+	tokens, response, err = apiClient.TokensApi.Get(contextWithAPIKey).Id([]string{myDataTokenId, myOtherDataTokenId}).Execute()
+
+	var myDataToken basistheory.Token
+	var myOtherDataToken basistheory.Token
+	for _, tokenData := range tokens.Data {
+		if tokenData.GetId() == myDataTokenId {
+			myDataToken = tokenData
+		} else {
+			myOtherDataToken = tokenData
+		}
+	}
 
 	testutils.AssertMethodDidNotError(err, response, "TokensGetById", t)
-	testutils.AssertPropertiesMatch(tokens.Data[0].GetData(), "myOtherValue", t)
-	testutils.AssertPropertiesMatch(tokens.Data[1].GetData(), "myValue", t)
+	testutils.AssertPropertiesMatch(myDataToken.GetData(), "myValue", t)
+	testutils.AssertPropertiesMatch(myOtherDataToken.GetData(), "myOtherValue", t)
 
 	// DELETE
-	response, err = apiClient.TokensApi.TokensDelete(contextWithAPIKey, myDataTokenId).Execute()
+	response, err = apiClient.TokensApi.Delete(contextWithAPIKey, myDataTokenId).Execute()
 
 	testutils.AssertMethodDidNotError(err, response, "TokensDelete", t)
 
-	response, err = apiClient.TokensApi.TokensDelete(contextWithAPIKey, myOtherDataTokenId).Execute()
+	response, err = apiClient.TokensApi.Delete(contextWithAPIKey, myOtherDataTokenId).Execute()
 
 	testutils.AssertMethodDidNotError(err, response, "TokensDelete", t)
 }

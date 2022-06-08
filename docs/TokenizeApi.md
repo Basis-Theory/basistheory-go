@@ -4,13 +4,13 @@ All URIs are relative to *https://api.basistheory.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**TokenizeTokenize**](TokenizeApi.md#TokenizeTokenize) | **Post** /tokenize | 
+[**Tokenize**](TokenizeApi.md#Tokenize) | **Post** /tokenize | 
 
 
 
-## TokenizeTokenize
+## Tokenize
 
-> interface{} TokenizeTokenize(ctx).Body(body).Execute()
+> interface{} Tokenize(ctx).Body(body).Execute()
 
 
 
@@ -31,13 +31,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.TokenizeApi.TokenizeTokenize(context.Background()).Body(body).Execute()
+    resp, r, err := apiClient.TokenizeApi.Tokenize(context.Background()).Body(body).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `TokenizeApi.TokenizeTokenize``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `TokenizeApi.Tokenize``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `TokenizeTokenize`: interface{}
-    fmt.Fprintf(os.Stdout, "Response from `TokenizeApi.TokenizeTokenize`: %v\n", resp)
+    // response from `Tokenize`: interface{}
+    fmt.Fprintf(os.Stdout, "Response from `TokenizeApi.Tokenize`: %v\n", resp)
 }
 ```
 
@@ -47,7 +47,7 @@ func main() {
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiTokenizeTokenizeRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiTokenizeRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes

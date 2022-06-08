@@ -23,31 +23,31 @@ import (
 // CardsApiService CardsApi service
 type CardsApiService service
 
-type ApiAtomicCardsCreateRequest struct {
+type CardsApiCreateRequest struct {
 	ctx context.Context
 	ApiService *CardsApiService
 	createAtomicCardRequest *CreateAtomicCardRequest
 }
 
-func (r ApiAtomicCardsCreateRequest) CreateAtomicCardRequest(createAtomicCardRequest CreateAtomicCardRequest) ApiAtomicCardsCreateRequest {
+func (r CardsApiCreateRequest) CreateAtomicCardRequest(createAtomicCardRequest CreateAtomicCardRequest) CardsApiCreateRequest {
 	r.createAtomicCardRequest = &createAtomicCardRequest
 	return r
 }
 
-func (r ApiAtomicCardsCreateRequest) Execute() (*AtomicCard, *http.Response, error) {
-	return r.ApiService.AtomicCardsCreateExecute(r)
+func (r CardsApiCreateRequest) Execute() (*AtomicCard, *http.Response, error) {
+	return r.ApiService.CreateExecute(r)
 }
 
 /*
-AtomicCardsCreate Method for AtomicCardsCreate
+Create Method for Create
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiAtomicCardsCreateRequest
+ @return CardsApiCreateRequest
 
 Deprecated
 */
-func (a *CardsApiService) AtomicCardsCreate(ctx context.Context) ApiAtomicCardsCreateRequest {
-	return ApiAtomicCardsCreateRequest{
+func (a *CardsApiService) Create(ctx context.Context) CardsApiCreateRequest {
+	return CardsApiCreateRequest{
 		ApiService: a,
 		ctx: ctx,
 	}
@@ -56,7 +56,7 @@ func (a *CardsApiService) AtomicCardsCreate(ctx context.Context) ApiAtomicCardsC
 // Execute executes the request
 //  @return AtomicCard
 // Deprecated
-func (a *CardsApiService) AtomicCardsCreateExecute(r ApiAtomicCardsCreateRequest) (*AtomicCard, *http.Response, error) {
+func (a *CardsApiService) CreateExecute(r CardsApiCreateRequest) (*AtomicCard, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
@@ -64,7 +64,7 @@ func (a *CardsApiService) AtomicCardsCreateExecute(r ApiAtomicCardsCreateRequest
 		localVarReturnValue  *AtomicCard
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "CardsApiService.AtomicCardsCreate")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "CardsApiService.Create")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -174,27 +174,27 @@ func (a *CardsApiService) AtomicCardsCreateExecute(r ApiAtomicCardsCreateRequest
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiAtomicCardsDeleteRequest struct {
+type CardsApiDeleteRequest struct {
 	ctx context.Context
 	ApiService *CardsApiService
 	id string
 }
 
-func (r ApiAtomicCardsDeleteRequest) Execute() (*http.Response, error) {
-	return r.ApiService.AtomicCardsDeleteExecute(r)
+func (r CardsApiDeleteRequest) Execute() (*http.Response, error) {
+	return r.ApiService.DeleteExecute(r)
 }
 
 /*
-AtomicCardsDelete Method for AtomicCardsDelete
+Delete Method for Delete
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param id
- @return ApiAtomicCardsDeleteRequest
+ @return CardsApiDeleteRequest
 
 Deprecated
 */
-func (a *CardsApiService) AtomicCardsDelete(ctx context.Context, id string) ApiAtomicCardsDeleteRequest {
-	return ApiAtomicCardsDeleteRequest{
+func (a *CardsApiService) Delete(ctx context.Context, id string) CardsApiDeleteRequest {
+	return CardsApiDeleteRequest{
 		ApiService: a,
 		ctx: ctx,
 		id: id,
@@ -203,14 +203,14 @@ func (a *CardsApiService) AtomicCardsDelete(ctx context.Context, id string) ApiA
 
 // Execute executes the request
 // Deprecated
-func (a *CardsApiService) AtomicCardsDeleteExecute(r ApiAtomicCardsDeleteRequest) (*http.Response, error) {
+func (a *CardsApiService) DeleteExecute(r CardsApiDeleteRequest) (*http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodDelete
 		localVarPostBody     interface{}
 		formFiles            []formFile
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "CardsApiService.AtomicCardsDelete")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "CardsApiService.Delete")
 	if err != nil {
 		return nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -310,37 +310,37 @@ func (a *CardsApiService) AtomicCardsDeleteExecute(r ApiAtomicCardsDeleteRequest
 	return localVarHTTPResponse, nil
 }
 
-type ApiAtomicCardsGetRequest struct {
+type CardsApiGetRequest struct {
 	ctx context.Context
 	ApiService *CardsApiService
 	page *int32
 	size *int32
 }
 
-func (r ApiAtomicCardsGetRequest) Page(page int32) ApiAtomicCardsGetRequest {
+func (r CardsApiGetRequest) Page(page int32) CardsApiGetRequest {
 	r.page = &page
 	return r
 }
 
-func (r ApiAtomicCardsGetRequest) Size(size int32) ApiAtomicCardsGetRequest {
+func (r CardsApiGetRequest) Size(size int32) CardsApiGetRequest {
 	r.size = &size
 	return r
 }
 
-func (r ApiAtomicCardsGetRequest) Execute() (*AtomicCardPaginatedList, *http.Response, error) {
-	return r.ApiService.AtomicCardsGetExecute(r)
+func (r CardsApiGetRequest) Execute() (*AtomicCardPaginatedList, *http.Response, error) {
+	return r.ApiService.GetExecute(r)
 }
 
 /*
-AtomicCardsGet Method for AtomicCardsGet
+Get Method for Get
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiAtomicCardsGetRequest
+ @return CardsApiGetRequest
 
 Deprecated
 */
-func (a *CardsApiService) AtomicCardsGet(ctx context.Context) ApiAtomicCardsGetRequest {
-	return ApiAtomicCardsGetRequest{
+func (a *CardsApiService) Get(ctx context.Context) CardsApiGetRequest {
+	return CardsApiGetRequest{
 		ApiService: a,
 		ctx: ctx,
 	}
@@ -349,7 +349,7 @@ func (a *CardsApiService) AtomicCardsGet(ctx context.Context) ApiAtomicCardsGetR
 // Execute executes the request
 //  @return AtomicCardPaginatedList
 // Deprecated
-func (a *CardsApiService) AtomicCardsGetExecute(r ApiAtomicCardsGetRequest) (*AtomicCardPaginatedList, *http.Response, error) {
+func (a *CardsApiService) GetExecute(r CardsApiGetRequest) (*AtomicCardPaginatedList, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -357,7 +357,7 @@ func (a *CardsApiService) AtomicCardsGetExecute(r ApiAtomicCardsGetRequest) (*At
 		localVarReturnValue  *AtomicCardPaginatedList
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "CardsApiService.AtomicCardsGet")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "CardsApiService.Get")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -461,27 +461,27 @@ func (a *CardsApiService) AtomicCardsGetExecute(r ApiAtomicCardsGetRequest) (*At
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiAtomicCardsGetByIdRequest struct {
+type CardsApiGetByIdRequest struct {
 	ctx context.Context
 	ApiService *CardsApiService
 	id string
 }
 
-func (r ApiAtomicCardsGetByIdRequest) Execute() (*AtomicCard, *http.Response, error) {
-	return r.ApiService.AtomicCardsGetByIdExecute(r)
+func (r CardsApiGetByIdRequest) Execute() (*AtomicCard, *http.Response, error) {
+	return r.ApiService.GetByIdExecute(r)
 }
 
 /*
-AtomicCardsGetById Method for AtomicCardsGetById
+GetById Method for GetById
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param id
- @return ApiAtomicCardsGetByIdRequest
+ @return CardsApiGetByIdRequest
 
 Deprecated
 */
-func (a *CardsApiService) AtomicCardsGetById(ctx context.Context, id string) ApiAtomicCardsGetByIdRequest {
-	return ApiAtomicCardsGetByIdRequest{
+func (a *CardsApiService) GetById(ctx context.Context, id string) CardsApiGetByIdRequest {
+	return CardsApiGetByIdRequest{
 		ApiService: a,
 		ctx: ctx,
 		id: id,
@@ -491,7 +491,7 @@ func (a *CardsApiService) AtomicCardsGetById(ctx context.Context, id string) Api
 // Execute executes the request
 //  @return AtomicCard
 // Deprecated
-func (a *CardsApiService) AtomicCardsGetByIdExecute(r ApiAtomicCardsGetByIdRequest) (*AtomicCard, *http.Response, error) {
+func (a *CardsApiService) GetByIdExecute(r CardsApiGetByIdRequest) (*AtomicCard, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -499,7 +499,7 @@ func (a *CardsApiService) AtomicCardsGetByIdExecute(r ApiAtomicCardsGetByIdReque
 		localVarReturnValue  *AtomicCard
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "CardsApiService.AtomicCardsGetById")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "CardsApiService.GetById")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -608,33 +608,33 @@ func (a *CardsApiService) AtomicCardsGetByIdExecute(r ApiAtomicCardsGetByIdReque
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiAtomicCardsReactRequest struct {
+type CardsApiReactRequest struct {
 	ctx context.Context
 	ApiService *CardsApiService
 	cardId string
 	atomicReactRequest *AtomicReactRequest
 }
 
-func (r ApiAtomicCardsReactRequest) AtomicReactRequest(atomicReactRequest AtomicReactRequest) ApiAtomicCardsReactRequest {
+func (r CardsApiReactRequest) AtomicReactRequest(atomicReactRequest AtomicReactRequest) CardsApiReactRequest {
 	r.atomicReactRequest = &atomicReactRequest
 	return r
 }
 
-func (r ApiAtomicCardsReactRequest) Execute() (*ReactResponse, *http.Response, error) {
-	return r.ApiService.AtomicCardsReactExecute(r)
+func (r CardsApiReactRequest) Execute() (*ReactResponse, *http.Response, error) {
+	return r.ApiService.ReactExecute(r)
 }
 
 /*
-AtomicCardsReact Method for AtomicCardsReact
+React Method for React
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param cardId
- @return ApiAtomicCardsReactRequest
+ @return CardsApiReactRequest
 
 Deprecated
 */
-func (a *CardsApiService) AtomicCardsReact(ctx context.Context, cardId string) ApiAtomicCardsReactRequest {
-	return ApiAtomicCardsReactRequest{
+func (a *CardsApiService) React(ctx context.Context, cardId string) CardsApiReactRequest {
+	return CardsApiReactRequest{
 		ApiService: a,
 		ctx: ctx,
 		cardId: cardId,
@@ -644,7 +644,7 @@ func (a *CardsApiService) AtomicCardsReact(ctx context.Context, cardId string) A
 // Execute executes the request
 //  @return ReactResponse
 // Deprecated
-func (a *CardsApiService) AtomicCardsReactExecute(r ApiAtomicCardsReactRequest) (*ReactResponse, *http.Response, error) {
+func (a *CardsApiService) ReactExecute(r CardsApiReactRequest) (*ReactResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
@@ -652,7 +652,7 @@ func (a *CardsApiService) AtomicCardsReactExecute(r ApiAtomicCardsReactRequest) 
 		localVarReturnValue  *ReactResponse
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "CardsApiService.AtomicCardsReact")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "CardsApiService.React")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -773,33 +773,33 @@ func (a *CardsApiService) AtomicCardsReactExecute(r ApiAtomicCardsReactRequest) 
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiAtomicCardsUpdateRequest struct {
+type CardsApiUpdateRequest struct {
 	ctx context.Context
 	ApiService *CardsApiService
 	id string
 	updateAtomicCardRequest *UpdateAtomicCardRequest
 }
 
-func (r ApiAtomicCardsUpdateRequest) UpdateAtomicCardRequest(updateAtomicCardRequest UpdateAtomicCardRequest) ApiAtomicCardsUpdateRequest {
+func (r CardsApiUpdateRequest) UpdateAtomicCardRequest(updateAtomicCardRequest UpdateAtomicCardRequest) CardsApiUpdateRequest {
 	r.updateAtomicCardRequest = &updateAtomicCardRequest
 	return r
 }
 
-func (r ApiAtomicCardsUpdateRequest) Execute() (*AtomicCard, *http.Response, error) {
-	return r.ApiService.AtomicCardsUpdateExecute(r)
+func (r CardsApiUpdateRequest) Execute() (*AtomicCard, *http.Response, error) {
+	return r.ApiService.UpdateExecute(r)
 }
 
 /*
-AtomicCardsUpdate Method for AtomicCardsUpdate
+Update Method for Update
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param id
- @return ApiAtomicCardsUpdateRequest
+ @return CardsApiUpdateRequest
 
 Deprecated
 */
-func (a *CardsApiService) AtomicCardsUpdate(ctx context.Context, id string) ApiAtomicCardsUpdateRequest {
-	return ApiAtomicCardsUpdateRequest{
+func (a *CardsApiService) Update(ctx context.Context, id string) CardsApiUpdateRequest {
+	return CardsApiUpdateRequest{
 		ApiService: a,
 		ctx: ctx,
 		id: id,
@@ -809,7 +809,7 @@ func (a *CardsApiService) AtomicCardsUpdate(ctx context.Context, id string) ApiA
 // Execute executes the request
 //  @return AtomicCard
 // Deprecated
-func (a *CardsApiService) AtomicCardsUpdateExecute(r ApiAtomicCardsUpdateRequest) (*AtomicCard, *http.Response, error) {
+func (a *CardsApiService) UpdateExecute(r CardsApiUpdateRequest) (*AtomicCard, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPatch
 		localVarPostBody     interface{}
@@ -817,7 +817,7 @@ func (a *CardsApiService) AtomicCardsUpdateExecute(r ApiAtomicCardsUpdateRequest
 		localVarReturnValue  *AtomicCard
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "CardsApiService.AtomicCardsUpdate")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "CardsApiService.Update")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}

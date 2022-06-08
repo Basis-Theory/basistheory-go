@@ -4,14 +4,14 @@ All URIs are relative to *https://api.basistheory.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**LogsGet**](LogsApi.md#LogsGet) | **Get** /logs | 
-[**LogsGetEntityTypes**](LogsApi.md#LogsGetEntityTypes) | **Get** /logs/entity-types | 
+[**Get**](LogsApi.md#Get) | **Get** /logs | 
+[**GetEntityTypes**](LogsApi.md#GetEntityTypes) | **Get** /logs/entity-types | 
 
 
 
-## LogsGet
+## Get
 
-> LogPaginatedList LogsGet(ctx).EntityType(entityType).EntityId(entityId).StartDate(startDate).EndDate(endDate).Page(page).Size(size).Execute()
+> LogPaginatedList Get(ctx).EntityType(entityType).EntityId(entityId).StartDate(startDate).EndDate(endDate).Page(page).Size(size).Execute()
 
 
 
@@ -38,13 +38,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.LogsApi.LogsGet(context.Background()).EntityType(entityType).EntityId(entityId).StartDate(startDate).EndDate(endDate).Page(page).Size(size).Execute()
+    resp, r, err := apiClient.LogsApi.Get(context.Background()).EntityType(entityType).EntityId(entityId).StartDate(startDate).EndDate(endDate).Page(page).Size(size).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `LogsApi.LogsGet``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `LogsApi.Get``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `LogsGet`: LogPaginatedList
-    fmt.Fprintf(os.Stdout, "Response from `LogsApi.LogsGet`: %v\n", resp)
+    // response from `Get`: LogPaginatedList
+    fmt.Fprintf(os.Stdout, "Response from `LogsApi.Get`: %v\n", resp)
 }
 ```
 
@@ -54,7 +54,7 @@ func main() {
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiLogsGetRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiGetRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
@@ -84,9 +84,9 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
-## LogsGetEntityTypes
+## GetEntityTypes
 
-> []LogEntityType LogsGetEntityTypes(ctx).Execute()
+> []LogEntityType GetEntityTypes(ctx).Execute()
 
 
 
@@ -106,13 +106,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.LogsApi.LogsGetEntityTypes(context.Background()).Execute()
+    resp, r, err := apiClient.LogsApi.GetEntityTypes(context.Background()).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `LogsApi.LogsGetEntityTypes``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `LogsApi.GetEntityTypes``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `LogsGetEntityTypes`: []LogEntityType
-    fmt.Fprintf(os.Stdout, "Response from `LogsApi.LogsGetEntityTypes`: %v\n", resp)
+    // response from `GetEntityTypes`: []LogEntityType
+    fmt.Fprintf(os.Stdout, "Response from `LogsApi.GetEntityTypes`: %v\n", resp)
 }
 ```
 
@@ -122,7 +122,7 @@ This endpoint does not need any parameter.
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiLogsGetEntityTypesRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiGetEntityTypesRequest struct via the builder pattern
 
 
 ### Return type

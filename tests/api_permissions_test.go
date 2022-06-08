@@ -10,7 +10,7 @@ func TestPermissionsCRUD(t *testing.T) {
 	apiClient, contextWithAPIKey := testutils.CreateApiAndSrvrContext(t)
 
 	// GET Permissions
-	_, response, err := apiClient.PermissionsApi.PermissionsGet(contextWithAPIKey).Execute()
+	_, response, err := apiClient.PermissionsApi.Get(contextWithAPIKey).Execute()
 
 	testutils.AssertMethodDidNotError(err, response, "PermissionsGet", t)
 }

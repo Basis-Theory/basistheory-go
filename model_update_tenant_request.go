@@ -17,6 +17,7 @@ import (
 // UpdateTenantRequest struct for UpdateTenantRequest
 type UpdateTenantRequest struct {
 	Name string `json:"name"`
+	Settings map[string]string `json:"settings,omitempty"`
 }
 
 // NewUpdateTenantRequest instantiates a new UpdateTenantRequest object
@@ -61,10 +62,46 @@ func (o *UpdateTenantRequest) SetName(v string) {
 	o.Name = v
 }
 
+// GetSettings returns the Settings field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *UpdateTenantRequest) GetSettings() map[string]string {
+	if o == nil {
+		var ret map[string]string
+		return ret
+	}
+	return o.Settings
+}
+
+// GetSettingsOk returns a tuple with the Settings field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *UpdateTenantRequest) GetSettingsOk() (*map[string]string, bool) {
+	if o == nil || o.Settings == nil {
+		return nil, false
+	}
+	return &o.Settings, true
+}
+
+// HasSettings returns a boolean if a field has been set.
+func (o *UpdateTenantRequest) HasSettings() bool {
+	if o != nil && o.Settings != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetSettings gets a reference to the given map[string]string and assigns it to the Settings field.
+func (o *UpdateTenantRequest) SetSettings(v map[string]string) {
+	o.Settings = v
+}
+
 func (o UpdateTenantRequest) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if true {
 		toSerialize["name"] = o.Name
+	}
+	if o.Settings != nil {
+		toSerialize["settings"] = o.Settings
 	}
 	return json.Marshal(toSerialize)
 }

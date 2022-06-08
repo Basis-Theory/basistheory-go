@@ -22,7 +22,8 @@ type Proxy struct {
 	TenantId *string `json:"tenant_id,omitempty"`
 	Name NullableString `json:"name,omitempty"`
 	DestinationUrl NullableString `json:"destination_url,omitempty"`
-	RequestReactorId *string `json:"request_reactor_id,omitempty"`
+	RequestReactorId NullableString `json:"request_reactor_id,omitempty"`
+	ResponseReactorId NullableString `json:"response_reactor_id,omitempty"`
 	RequireAuth *bool `json:"require_auth,omitempty"`
 	CreatedBy NullableString `json:"created_by,omitempty"`
 	CreatedAt NullableTime `json:"created_at,omitempty"`
@@ -237,36 +238,88 @@ func (o *Proxy) UnsetDestinationUrl() {
 	o.DestinationUrl.Unset()
 }
 
-// GetRequestReactorId returns the RequestReactorId field value if set, zero value otherwise.
+// GetRequestReactorId returns the RequestReactorId field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *Proxy) GetRequestReactorId() string {
-	if o == nil || o.RequestReactorId == nil {
+	if o == nil || o.RequestReactorId.Get() == nil {
 		var ret string
 		return ret
 	}
-	return *o.RequestReactorId
+	return *o.RequestReactorId.Get()
 }
 
 // GetRequestReactorIdOk returns a tuple with the RequestReactorId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *Proxy) GetRequestReactorIdOk() (*string, bool) {
-	if o == nil || o.RequestReactorId == nil {
+	if o == nil {
 		return nil, false
 	}
-	return o.RequestReactorId, true
+	return o.RequestReactorId.Get(), o.RequestReactorId.IsSet()
 }
 
 // HasRequestReactorId returns a boolean if a field has been set.
 func (o *Proxy) HasRequestReactorId() bool {
-	if o != nil && o.RequestReactorId != nil {
+	if o != nil && o.RequestReactorId.IsSet() {
 		return true
 	}
 
 	return false
 }
 
-// SetRequestReactorId gets a reference to the given string and assigns it to the RequestReactorId field.
+// SetRequestReactorId gets a reference to the given NullableString and assigns it to the RequestReactorId field.
 func (o *Proxy) SetRequestReactorId(v string) {
-	o.RequestReactorId = &v
+	o.RequestReactorId.Set(&v)
+}
+// SetRequestReactorIdNil sets the value for RequestReactorId to be an explicit nil
+func (o *Proxy) SetRequestReactorIdNil() {
+	o.RequestReactorId.Set(nil)
+}
+
+// UnsetRequestReactorId ensures that no value is present for RequestReactorId, not even an explicit nil
+func (o *Proxy) UnsetRequestReactorId() {
+	o.RequestReactorId.Unset()
+}
+
+// GetResponseReactorId returns the ResponseReactorId field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *Proxy) GetResponseReactorId() string {
+	if o == nil || o.ResponseReactorId.Get() == nil {
+		var ret string
+		return ret
+	}
+	return *o.ResponseReactorId.Get()
+}
+
+// GetResponseReactorIdOk returns a tuple with the ResponseReactorId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *Proxy) GetResponseReactorIdOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.ResponseReactorId.Get(), o.ResponseReactorId.IsSet()
+}
+
+// HasResponseReactorId returns a boolean if a field has been set.
+func (o *Proxy) HasResponseReactorId() bool {
+	if o != nil && o.ResponseReactorId.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetResponseReactorId gets a reference to the given NullableString and assigns it to the ResponseReactorId field.
+func (o *Proxy) SetResponseReactorId(v string) {
+	o.ResponseReactorId.Set(&v)
+}
+// SetResponseReactorIdNil sets the value for ResponseReactorId to be an explicit nil
+func (o *Proxy) SetResponseReactorIdNil() {
+	o.ResponseReactorId.Set(nil)
+}
+
+// UnsetResponseReactorId ensures that no value is present for ResponseReactorId, not even an explicit nil
+func (o *Proxy) UnsetResponseReactorId() {
+	o.ResponseReactorId.Unset()
 }
 
 // GetRequireAuth returns the RequireAuth field value if set, zero value otherwise.
@@ -486,8 +539,11 @@ func (o Proxy) MarshalJSON() ([]byte, error) {
 	if o.DestinationUrl.IsSet() {
 		toSerialize["destination_url"] = o.DestinationUrl.Get()
 	}
-	if o.RequestReactorId != nil {
-		toSerialize["request_reactor_id"] = o.RequestReactorId
+	if o.RequestReactorId.IsSet() {
+		toSerialize["request_reactor_id"] = o.RequestReactorId.Get()
+	}
+	if o.ResponseReactorId.IsSet() {
+		toSerialize["response_reactor_id"] = o.ResponseReactorId.Get()
 	}
 	if o.RequireAuth != nil {
 		toSerialize["require_auth"] = o.RequireAuth

@@ -22,29 +22,29 @@ import (
 // TokenizeApiService TokenizeApi service
 type TokenizeApiService service
 
-type ApiTokenizeTokenizeRequest struct {
+type TokenizeApiTokenizeRequest struct {
 	ctx context.Context
 	ApiService *TokenizeApiService
 	body *interface{}
 }
 
-func (r ApiTokenizeTokenizeRequest) Body(body interface{}) ApiTokenizeTokenizeRequest {
+func (r TokenizeApiTokenizeRequest) Body(body interface{}) TokenizeApiTokenizeRequest {
 	r.body = &body
 	return r
 }
 
-func (r ApiTokenizeTokenizeRequest) Execute() (interface{}, *http.Response, error) {
-	return r.ApiService.TokenizeTokenizeExecute(r)
+func (r TokenizeApiTokenizeRequest) Execute() (interface{}, *http.Response, error) {
+	return r.ApiService.TokenizeExecute(r)
 }
 
 /*
-TokenizeTokenize Method for TokenizeTokenize
+Tokenize Method for Tokenize
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiTokenizeTokenizeRequest
+ @return TokenizeApiTokenizeRequest
 */
-func (a *TokenizeApiService) TokenizeTokenize(ctx context.Context) ApiTokenizeTokenizeRequest {
-	return ApiTokenizeTokenizeRequest{
+func (a *TokenizeApiService) Tokenize(ctx context.Context) TokenizeApiTokenizeRequest {
+	return TokenizeApiTokenizeRequest{
 		ApiService: a,
 		ctx: ctx,
 	}
@@ -52,7 +52,7 @@ func (a *TokenizeApiService) TokenizeTokenize(ctx context.Context) ApiTokenizeTo
 
 // Execute executes the request
 //  @return interface{}
-func (a *TokenizeApiService) TokenizeTokenizeExecute(r ApiTokenizeTokenizeRequest) (interface{}, *http.Response, error) {
+func (a *TokenizeApiService) TokenizeExecute(r TokenizeApiTokenizeRequest) (interface{}, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
@@ -60,7 +60,7 @@ func (a *TokenizeApiService) TokenizeTokenizeExecute(r ApiTokenizeTokenizeReques
 		localVarReturnValue  interface{}
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "TokenizeApiService.TokenizeTokenize")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "TokenizeApiService.Tokenize")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
