@@ -1,3 +1,13 @@
+# [3.0.0](https://github.com/Basis-Theory/basistheory-go/compare/v2.0.1...v3.0.0) (2022-06-10)
+
+
+* feat!: adds Tokens, Tokenize, Logs, Permissions, and other endpoints (#38) ([f79df19](https://github.com/Basis-Theory/basistheory-go/commit/f79df19fc0b68f8c3d574dae356c7e3835b55383)), closes [#38](https://github.com/Basis-Theory/basistheory-go/issues/38)
+
+
+### BREAKING CHANGES
+
+* updates CRUD function names for cleaner interface
+
 ## [2.0.1](https://github.com/Basis-Theory/basistheory-go/compare/v2.0.0...v2.0.1) (2022-06-03)
 
 
