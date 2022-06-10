@@ -4,18 +4,18 @@ All URIs are relative to *https://api.basistheory.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**ReactorsCreate**](ReactorsApi.md#ReactorsCreate) | **Post** /reactors | 
-[**ReactorsDelete**](ReactorsApi.md#ReactorsDelete) | **Delete** /reactors/{id} | 
-[**ReactorsGet**](ReactorsApi.md#ReactorsGet) | **Get** /reactors | 
-[**ReactorsGetById**](ReactorsApi.md#ReactorsGetById) | **Get** /reactors/{id} | 
-[**ReactorsReact**](ReactorsApi.md#ReactorsReact) | **Post** /reactors/{id}/react | 
-[**ReactorsUpdate**](ReactorsApi.md#ReactorsUpdate) | **Put** /reactors/{id} | 
+[**Create**](ReactorsApi.md#Create) | **Post** /reactors | 
+[**Delete**](ReactorsApi.md#Delete) | **Delete** /reactors/{id} | 
+[**Get**](ReactorsApi.md#Get) | **Get** /reactors | 
+[**GetById**](ReactorsApi.md#GetById) | **Get** /reactors/{id} | 
+[**React**](ReactorsApi.md#React) | **Post** /reactors/{id}/react | 
+[**Update**](ReactorsApi.md#Update) | **Put** /reactors/{id} | 
 
 
 
-## ReactorsCreate
+## Create
 
-> Reactor ReactorsCreate(ctx).CreateReactorRequest(createReactorRequest).Execute()
+> Reactor Create(ctx).CreateReactorRequest(createReactorRequest).Execute()
 
 
 
@@ -36,13 +36,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ReactorsApi.ReactorsCreate(context.Background()).CreateReactorRequest(createReactorRequest).Execute()
+    resp, r, err := apiClient.ReactorsApi.Create(context.Background()).CreateReactorRequest(createReactorRequest).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `ReactorsApi.ReactorsCreate``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `ReactorsApi.Create``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `ReactorsCreate`: Reactor
-    fmt.Fprintf(os.Stdout, "Response from `ReactorsApi.ReactorsCreate`: %v\n", resp)
+    // response from `Create`: Reactor
+    fmt.Fprintf(os.Stdout, "Response from `ReactorsApi.Create`: %v\n", resp)
 }
 ```
 
@@ -52,7 +52,7 @@ func main() {
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiReactorsCreateRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiCreateRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
@@ -77,9 +77,9 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
-## ReactorsDelete
+## Delete
 
-> ReactorsDelete(ctx, id).Execute()
+> Delete(ctx, id).Execute()
 
 
 
@@ -100,9 +100,9 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ReactorsApi.ReactorsDelete(context.Background(), id).Execute()
+    resp, r, err := apiClient.ReactorsApi.Delete(context.Background(), id).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `ReactorsApi.ReactorsDelete``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `ReactorsApi.Delete``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
 }
@@ -118,7 +118,7 @@ Name | Type | Description  | Notes
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiReactorsDeleteRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiDeleteRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
@@ -143,9 +143,9 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
-## ReactorsGet
+## Get
 
-> ReactorPaginatedList ReactorsGet(ctx).Id(id).Name(name).Page(page).Size(size).Execute()
+> ReactorPaginatedList Get(ctx).Id(id).Name(name).Page(page).Size(size).Execute()
 
 
 
@@ -169,13 +169,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ReactorsApi.ReactorsGet(context.Background()).Id(id).Name(name).Page(page).Size(size).Execute()
+    resp, r, err := apiClient.ReactorsApi.Get(context.Background()).Id(id).Name(name).Page(page).Size(size).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `ReactorsApi.ReactorsGet``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `ReactorsApi.Get``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `ReactorsGet`: ReactorPaginatedList
-    fmt.Fprintf(os.Stdout, "Response from `ReactorsApi.ReactorsGet`: %v\n", resp)
+    // response from `Get`: ReactorPaginatedList
+    fmt.Fprintf(os.Stdout, "Response from `ReactorsApi.Get`: %v\n", resp)
 }
 ```
 
@@ -185,7 +185,7 @@ func main() {
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiReactorsGetRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiGetRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
@@ -213,9 +213,9 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
-## ReactorsGetById
+## GetById
 
-> Reactor ReactorsGetById(ctx, id).Execute()
+> Reactor GetById(ctx, id).Execute()
 
 
 
@@ -236,13 +236,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ReactorsApi.ReactorsGetById(context.Background(), id).Execute()
+    resp, r, err := apiClient.ReactorsApi.GetById(context.Background(), id).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `ReactorsApi.ReactorsGetById``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `ReactorsApi.GetById``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `ReactorsGetById`: Reactor
-    fmt.Fprintf(os.Stdout, "Response from `ReactorsApi.ReactorsGetById`: %v\n", resp)
+    // response from `GetById`: Reactor
+    fmt.Fprintf(os.Stdout, "Response from `ReactorsApi.GetById`: %v\n", resp)
 }
 ```
 
@@ -256,7 +256,7 @@ Name | Type | Description  | Notes
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiReactorsGetByIdRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiGetByIdRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
@@ -281,9 +281,9 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
-## ReactorsReact
+## React
 
-> ReactResponse ReactorsReact(ctx, id).ReactRequest(reactRequest).Execute()
+> ReactResponse React(ctx, id).ReactRequest(reactRequest).Execute()
 
 
 
@@ -305,13 +305,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ReactorsApi.ReactorsReact(context.Background(), id).ReactRequest(reactRequest).Execute()
+    resp, r, err := apiClient.ReactorsApi.React(context.Background(), id).ReactRequest(reactRequest).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `ReactorsApi.ReactorsReact``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `ReactorsApi.React``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `ReactorsReact`: ReactResponse
-    fmt.Fprintf(os.Stdout, "Response from `ReactorsApi.ReactorsReact`: %v\n", resp)
+    // response from `React`: ReactResponse
+    fmt.Fprintf(os.Stdout, "Response from `ReactorsApi.React`: %v\n", resp)
 }
 ```
 
@@ -325,7 +325,7 @@ Name | Type | Description  | Notes
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiReactorsReactRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiReactRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
@@ -351,9 +351,9 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
-## ReactorsUpdate
+## Update
 
-> Reactor ReactorsUpdate(ctx, id).UpdateReactorRequest(updateReactorRequest).Execute()
+> Reactor Update(ctx, id).UpdateReactorRequest(updateReactorRequest).Execute()
 
 
 
@@ -375,13 +375,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ReactorsApi.ReactorsUpdate(context.Background(), id).UpdateReactorRequest(updateReactorRequest).Execute()
+    resp, r, err := apiClient.ReactorsApi.Update(context.Background(), id).UpdateReactorRequest(updateReactorRequest).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `ReactorsApi.ReactorsUpdate``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `ReactorsApi.Update``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `ReactorsUpdate`: Reactor
-    fmt.Fprintf(os.Stdout, "Response from `ReactorsApi.ReactorsUpdate`: %v\n", resp)
+    // response from `Update`: Reactor
+    fmt.Fprintf(os.Stdout, "Response from `ReactorsApi.Update`: %v\n", resp)
 }
 ```
 
@@ -395,7 +395,7 @@ Name | Type | Description  | Notes
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiReactorsUpdateRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiUpdateRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes

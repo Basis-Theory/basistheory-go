@@ -289,6 +289,662 @@ paths:
           description: Not Found
       tags:
       - Applications
+  /atomic/banks/{bankId}/react:
+    post:
+      deprecated: true
+      operationId: AtomicBanks_React
+      parameters:
+      - explode: false
+        in: path
+        name: bankId
+        required: true
+        schema:
+          format: uuid
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AtomicReactRequest'
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ReactResponse'
+          description: Success
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationProblemDetails'
+          description: Bad Request
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Unauthorized
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Forbidden
+        "422":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Client Error
+      tags:
+      - Banks
+  /atomic/banks:
+    get:
+      deprecated: true
+      operationId: AtomicBanks_Get
+      parameters:
+      - explode: true
+        in: query
+        name: page
+        required: false
+        schema:
+          format: int32
+          type: integer
+        style: form
+      - explode: true
+        in: query
+        name: size
+        required: false
+        schema:
+          format: int32
+          type: integer
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AtomicBankPaginatedList'
+          description: Success
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Unauthorized
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Forbidden
+      tags:
+      - Banks
+    post:
+      deprecated: true
+      operationId: AtomicBanks_Create
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateAtomicBankRequest'
+      responses:
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AtomicBank'
+          description: Created
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationProblemDetails'
+          description: Bad Request
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Unauthorized
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Forbidden
+      tags:
+      - Banks
+  /atomic/banks/{id}:
+    delete:
+      deprecated: true
+      operationId: AtomicBanks_Delete
+      parameters:
+      - explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          format: uuid
+          type: string
+        style: simple
+      responses:
+        "204":
+          description: No Content
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Unauthorized
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Forbidden
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Not Found
+      tags:
+      - Banks
+    get:
+      deprecated: true
+      operationId: AtomicBanks_GetById
+      parameters:
+      - explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          format: uuid
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AtomicBank'
+          description: Success
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Unauthorized
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Forbidden
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Not Found
+      tags:
+      - Banks
+    patch:
+      deprecated: true
+      operationId: AtomicBanks_Update
+      parameters:
+      - explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          format: uuid
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateAtomicBankRequest'
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AtomicBank'
+          description: Success
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationProblemDetails'
+          description: Bad Request
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Unauthorized
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Forbidden
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Not Found
+      tags:
+      - Banks
+  /atomic/cards/{cardId}/react:
+    post:
+      deprecated: true
+      operationId: AtomicCards_React
+      parameters:
+      - explode: false
+        in: path
+        name: cardId
+        required: true
+        schema:
+          format: uuid
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AtomicReactRequest'
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ReactResponse'
+          description: Success
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationProblemDetails'
+          description: Bad Request
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Unauthorized
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Forbidden
+        "422":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Client Error
+      tags:
+      - Cards
+  /atomic/cards:
+    get:
+      deprecated: true
+      operationId: AtomicCards_Get
+      parameters:
+      - explode: true
+        in: query
+        name: page
+        required: false
+        schema:
+          format: int32
+          type: integer
+        style: form
+      - explode: true
+        in: query
+        name: size
+        required: false
+        schema:
+          format: int32
+          type: integer
+        style: form
+      responses:
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AtomicCardPaginatedList'
+          description: Created
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Unauthorized
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Forbidden
+      tags:
+      - Cards
+    post:
+      deprecated: true
+      operationId: AtomicCards_Create
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateAtomicCardRequest'
+      responses:
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AtomicCard'
+          description: Created
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationProblemDetails'
+          description: Bad Request
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Unauthorized
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Forbidden
+      tags:
+      - Cards
+  /atomic/cards/{id}:
+    delete:
+      deprecated: true
+      operationId: AtomicCards_Delete
+      parameters:
+      - explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          format: uuid
+          type: string
+        style: simple
+      responses:
+        "204":
+          description: No Content
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Unauthorized
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Forbidden
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Not Found
+      tags:
+      - Cards
+    get:
+      deprecated: true
+      operationId: AtomicCards_GetById
+      parameters:
+      - explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          format: uuid
+          type: string
+        style: simple
+      responses:
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AtomicCard'
+          description: Created
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Unauthorized
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Forbidden
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Not Found
+      tags:
+      - Cards
+    patch:
+      deprecated: true
+      operationId: AtomicCards_Update
+      parameters:
+      - explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          format: uuid
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateAtomicCardRequest'
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AtomicCard'
+          description: Success
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationProblemDetails'
+          description: Bad Request
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Unauthorized
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Forbidden
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Not Found
+      tags:
+      - Cards
+  /logs:
+    get:
+      operationId: Logs_Get
+      parameters:
+      - explode: true
+        in: query
+        name: entity_type
+        required: false
+        schema:
+          nullable: true
+          type: string
+        style: form
+      - explode: true
+        in: query
+        name: entity_id
+        required: false
+        schema:
+          nullable: true
+          type: string
+        style: form
+      - explode: true
+        in: query
+        name: start_date
+        required: false
+        schema:
+          format: date-time
+          nullable: true
+          type: string
+        style: form
+      - explode: true
+        in: query
+        name: end_date
+        required: false
+        schema:
+          format: date-time
+          nullable: true
+          type: string
+        style: form
+      - explode: true
+        in: query
+        name: page
+        required: false
+        schema:
+          format: int32
+          nullable: true
+          type: integer
+        style: form
+      - explode: true
+        in: query
+        name: size
+        required: false
+        schema:
+          format: int32
+          nullable: true
+          type: integer
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LogPaginatedList'
+          description: Success
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Bad Request
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Unauthorized
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Forbidden
+      tags:
+      - Logs
+  /logs/entity-types:
+    get:
+      operationId: Logs_GetEntityTypes
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/LogEntityType'
+                type: array
+          description: Success
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Unauthorized
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Forbidden
+      tags:
+      - Logs
+  /permissions:
+    get:
+      operationId: Permissions_Get
+      parameters:
+      - explode: true
+        in: query
+        name: application_type
+        required: false
+        schema:
+          nullable: true
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/Permission'
+                type: array
+          description: Success
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Bad Request
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Unauthorized
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Forbidden
+      tags:
+      - Permissions
   /proxies:
     get:
       operationId: Proxies_Get
@@ -999,6 +1655,898 @@ paths:
           description: Client Error
       tags:
       - Reactors
+  /tenants/self/invitations:
+    get:
+      operationId: TenantInvitations_GetInvitations
+      parameters:
+      - explode: true
+        in: query
+        name: status
+        required: false
+        schema:
+          $ref: '#/components/schemas/TenantInvitationStatus'
+        style: form
+      - explode: true
+        in: query
+        name: page
+        required: false
+        schema:
+          format: int32
+          type: integer
+        style: form
+      - explode: true
+        in: query
+        name: size
+        required: false
+        schema:
+          format: int32
+          type: integer
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TenantInvitationResponsePaginatedList'
+          description: Success
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Unauthorized
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Forbidden
+      tags:
+      - Tenants
+    post:
+      operationId: TenantInvitations_CreateInvitation
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateTenantInvitationRequest'
+      responses:
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TenantInvitationResponse'
+          description: Created
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationProblemDetails'
+          description: Bad Request
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Unauthorized
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Forbidden
+      tags:
+      - Tenants
+  /tenants/self/invitations/{invitationId}/resend:
+    post:
+      operationId: TenantInvitations_ResendInvitation
+      parameters:
+      - explode: false
+        in: path
+        name: invitationId
+        required: true
+        schema:
+          format: uuid
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TenantInvitationResponse'
+          description: Success
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationProblemDetails'
+          description: Bad Request
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Unauthorized
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Forbidden
+      tags:
+      - Tenants
+  /tenants/self/invitations/{invitationId}:
+    delete:
+      operationId: TenantInvitations_DeleteInvitation
+      parameters:
+      - explode: false
+        in: path
+        name: invitationId
+        required: true
+        schema:
+          format: uuid
+          type: string
+        style: simple
+      responses:
+        "204":
+          description: No Content
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Unauthorized
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Forbidden
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Not Found
+      tags:
+      - Tenants
+  /tenants/self/members:
+    get:
+      operationId: TenantMembers_GetMembers
+      parameters:
+      - explode: true
+        in: query
+        name: user_id
+        required: false
+        schema:
+          items:
+            format: uuid
+            type: string
+          type: array
+        style: form
+      - explode: true
+        in: query
+        name: page
+        required: false
+        schema:
+          format: int32
+          type: integer
+        style: form
+      - explode: true
+        in: query
+        name: size
+        required: false
+        schema:
+          format: int32
+          type: integer
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TenantMemberResponsePaginatedList'
+          description: Success
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Unauthorized
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Forbidden
+      tags:
+      - Tenants
+  /tenants/self/members/{memberId}:
+    delete:
+      operationId: TenantMembers_DeleteMember
+      parameters:
+      - explode: false
+        in: path
+        name: memberId
+        required: true
+        schema:
+          format: uuid
+          type: string
+        style: simple
+      responses:
+        "204":
+          description: No Content
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Unauthorized
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Forbidden
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Not Found
+        "422":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Client Error
+      tags:
+      - Tenants
+  /tenants/self/reports/usage:
+    get:
+      operationId: TenantReports_GetTenantUsageReport
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TenantUsageReport'
+          description: Success
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Unauthorized
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Forbidden
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Not Found
+      tags:
+      - Tenants
+  /tenants/self/reports/operations:
+    get:
+      operationId: TenantReports_GetTenantOperationReport
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TenantUsageReport'
+          description: Success
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Unauthorized
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Forbidden
+      tags:
+      - Tenants
+  /tenants/self:
+    delete:
+      operationId: Tenants_Delete
+      responses:
+        "204":
+          description: No Content
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Unauthorized
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Forbidden
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Not Found
+      tags:
+      - Tenants
+    get:
+      operationId: Tenants_Get
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Tenant'
+          description: Success
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Unauthorized
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Forbidden
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Not Found
+      tags:
+      - Tenants
+    put:
+      operationId: Tenants_Update
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateTenantRequest'
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Tenant'
+          description: Success
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationProblemDetails'
+          description: Bad Request
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Unauthorized
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Forbidden
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Not Found
+      tags:
+      - Tenants
+  /tokens/{parentId}/children:
+    get:
+      operationId: Tokens_GetChildren
+      parameters:
+      - explode: false
+        in: path
+        name: parentId
+        required: true
+        schema:
+          format: uuid
+          type: string
+        style: simple
+      - explode: true
+        in: query
+        name: type
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - explode: true
+        in: query
+        name: id
+        required: false
+        schema:
+          items:
+            format: uuid
+            type: string
+          type: array
+        style: form
+      - explode: false
+        in: query
+        name: metadata
+        required: false
+        schema:
+          additionalProperties:
+            type: string
+          type: object
+        style: deepObject
+      - explode: true
+        in: query
+        name: page
+        required: false
+        schema:
+          format: int32
+          nullable: true
+          type: integer
+        style: form
+      - explode: true
+        in: query
+        name: size
+        required: false
+        schema:
+          format: int32
+          nullable: true
+          type: integer
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TokenPaginatedList'
+          description: Success
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Bad Request
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Unauthorized
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Forbidden
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Not Found
+      tags:
+      - Tokens
+    post:
+      operationId: Tokens_CreateChild
+      parameters:
+      - explode: false
+        in: path
+        name: parentId
+        required: true
+        schema:
+          format: uuid
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateTokenRequest'
+      responses:
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CreateTokenResponse'
+          description: Created
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Bad Request
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Unauthorized
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Forbidden
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Not Found
+      tags:
+      - Tokens
+  /tokens/{parentId}/children/{childId}:
+    delete:
+      operationId: Tokens_DeleteAssociation
+      parameters:
+      - explode: false
+        in: path
+        name: parentId
+        required: true
+        schema:
+          format: uuid
+          type: string
+        style: simple
+      - explode: false
+        in: path
+        name: childId
+        required: true
+        schema:
+          format: uuid
+          type: string
+        style: simple
+      responses:
+        "204":
+          description: No Content
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Bad Request
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Unauthorized
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Forbidden
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Not Found
+      tags:
+      - Tokens
+    post:
+      operationId: Tokens_CreateAssociation
+      parameters:
+      - explode: false
+        in: path
+        name: parentId
+        required: true
+        schema:
+          format: uuid
+          type: string
+        style: simple
+      - explode: false
+        in: path
+        name: childId
+        required: true
+        schema:
+          format: uuid
+          type: string
+        style: simple
+      responses:
+        "204":
+          description: No Content
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Bad Request
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Unauthorized
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Forbidden
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Not Found
+        "409":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Conflict
+      tags:
+      - Tokens
+  /tokenize:
+    post:
+      operationId: Tokenize_Tokenize
+      requestBody:
+        content:
+          application/json:
+            schema: {}
+      responses:
+        "200":
+          content:
+            application/json:
+              schema: {}
+          description: Success
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Bad Request
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Unauthorized
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Forbidden
+      tags:
+      - Tokenize
+  /tokens:
+    get:
+      operationId: Tokens_Get
+      parameters:
+      - explode: true
+        in: query
+        name: type
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - explode: true
+        in: query
+        name: id
+        required: false
+        schema:
+          items:
+            format: uuid
+            type: string
+          type: array
+        style: form
+      - explode: false
+        in: query
+        name: metadata
+        required: false
+        schema:
+          additionalProperties:
+            type: string
+          type: object
+        style: deepObject
+      - explode: true
+        in: query
+        name: page
+        required: false
+        schema:
+          format: int32
+          nullable: true
+          type: integer
+        style: form
+      - explode: true
+        in: query
+        name: size
+        required: false
+        schema:
+          format: int32
+          nullable: true
+          type: integer
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TokenPaginatedList'
+          description: Success
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Unauthorized
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Forbidden
+      tags:
+      - Tokens
+    post:
+      operationId: Tokens_Create
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateTokenRequest'
+      responses:
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CreateTokenResponse'
+          description: Created
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Bad Request
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Unauthorized
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Forbidden
+      tags:
+      - Tokens
+  /tokens/search:
+    post:
+      operationId: Tokens_Search
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SearchTokensRequest'
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TokenPaginatedList'
+          description: Success
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Bad Request
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Unauthorized
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Forbidden
+      tags:
+      - Tokens
+  /tokens/{id}:
+    delete:
+      operationId: Tokens_Delete
+      parameters:
+      - explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          format: uuid
+          type: string
+        style: simple
+      responses:
+        "204":
+          description: No Content
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Bad Request
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Unauthorized
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Forbidden
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Not Found
+      tags:
+      - Tokens
+    get:
+      operationId: Tokens_GetById
+      parameters:
+      - explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          format: uuid
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Token'
+          description: Success
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Unauthorized
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Forbidden
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Not Found
+      tags:
+      - Tokens
 components:
   schemas:
     Application:
@@ -1096,6 +2644,271 @@ components:
           nullable: true
           type: array
       type: object
+    AtomicBank:
+      additionalProperties: false
+      example:
+        tenant_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        bank:
+          account_number: account_number
+          routing_number: routing_number
+        metadata:
+          key: metadata
+        fingerprint: fingerprint
+        modified_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        created_at: 2000-01-23T04:56:07.000+00:00
+        id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        type: type
+        modified_at: 2000-01-23T04:56:07.000+00:00
+        created_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+      properties:
+        id:
+          format: uuid
+          type: string
+        tenant_id:
+          format: uuid
+          nullable: true
+          type: string
+        bank:
+          $ref: '#/components/schemas/Bank'
+        type:
+          nullable: true
+          type: string
+        fingerprint:
+          nullable: true
+          type: string
+        metadata:
+          additionalProperties:
+            nullable: true
+            type: string
+          nullable: true
+          type: object
+        created_by:
+          format: uuid
+          nullable: true
+          type: string
+        created_at:
+          format: date-time
+          nullable: true
+          type: string
+        modified_by:
+          format: uuid
+          nullable: true
+          type: string
+        modified_at:
+          format: date-time
+          nullable: true
+          type: string
+      type: object
+    AtomicBankPaginatedList:
+      additionalProperties: false
+      example:
+        pagination:
+          page_number: 6
+          total_pages: 5
+          total_items: 0
+          page_size: 1
+        data:
+        - tenant_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          bank:
+            account_number: account_number
+            routing_number: routing_number
+          metadata:
+            key: metadata
+          fingerprint: fingerprint
+          modified_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          created_at: 2000-01-23T04:56:07.000+00:00
+          id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          type: type
+          modified_at: 2000-01-23T04:56:07.000+00:00
+          created_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        - tenant_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          bank:
+            account_number: account_number
+            routing_number: routing_number
+          metadata:
+            key: metadata
+          fingerprint: fingerprint
+          modified_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          created_at: 2000-01-23T04:56:07.000+00:00
+          id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          type: type
+          modified_at: 2000-01-23T04:56:07.000+00:00
+          created_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+      properties:
+        pagination:
+          $ref: '#/components/schemas/Pagination'
+        data:
+          items:
+            $ref: '#/components/schemas/AtomicBank'
+          nullable: true
+          type: array
+      type: object
+    AtomicCard:
+      additionalProperties: false
+      example:
+        tenant_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        metadata:
+          key: metadata
+        fingerprint: fingerprint
+        modified_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        created_at: 2000-01-23T04:56:07.000+00:00
+        id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        type: type
+        modified_at: 2000-01-23T04:56:07.000+00:00
+        created_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        card:
+          number: number
+          expiration_year: 6424
+          cvc: cvc
+          expiration_month: 1
+      properties:
+        id:
+          format: uuid
+          type: string
+        tenant_id:
+          format: uuid
+          nullable: true
+          type: string
+        card:
+          $ref: '#/components/schemas/Card'
+        type:
+          nullable: true
+          type: string
+        fingerprint:
+          nullable: true
+          type: string
+        metadata:
+          additionalProperties:
+            nullable: true
+            type: string
+          nullable: true
+          type: object
+        created_by:
+          format: uuid
+          nullable: true
+          type: string
+        created_at:
+          format: date-time
+          nullable: true
+          type: string
+        modified_by:
+          format: uuid
+          nullable: true
+          type: string
+        modified_at:
+          format: date-time
+          nullable: true
+          type: string
+      type: object
+    AtomicCardPaginatedList:
+      additionalProperties: false
+      example:
+        pagination:
+          page_number: 6
+          total_pages: 5
+          total_items: 0
+          page_size: 1
+        data:
+        - tenant_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          metadata:
+            key: metadata
+          fingerprint: fingerprint
+          modified_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          created_at: 2000-01-23T04:56:07.000+00:00
+          id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          type: type
+          modified_at: 2000-01-23T04:56:07.000+00:00
+          created_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          card:
+            number: number
+            expiration_year: 6424
+            cvc: cvc
+            expiration_month: 1
+        - tenant_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          metadata:
+            key: metadata
+          fingerprint: fingerprint
+          modified_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          created_at: 2000-01-23T04:56:07.000+00:00
+          id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          type: type
+          modified_at: 2000-01-23T04:56:07.000+00:00
+          created_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          card:
+            number: number
+            expiration_year: 6424
+            cvc: cvc
+            expiration_month: 1
+      properties:
+        pagination:
+          $ref: '#/components/schemas/Pagination'
+        data:
+          items:
+            $ref: '#/components/schemas/AtomicCard'
+          nullable: true
+          type: array
+      type: object
+    AtomicReactRequest:
+      additionalProperties: false
+      example:
+        reactor_id: reactor_id
+        request_parameters:
+          key: ""
+      properties:
+        reactor_id:
+          minLength: 1
+          type: string
+        request_parameters:
+          additionalProperties:
+            nullable: true
+          nullable: true
+          type: object
+      required:
+      - reactor_id
+      type: object
+    Bank:
+      additionalProperties: false
+      example:
+        account_number: account_number
+        routing_number: routing_number
+      properties:
+        routing_number:
+          minLength: 1
+          type: string
+        account_number:
+          minLength: 1
+          type: string
+      required:
+      - account_number
+      - routing_number
+      type: object
+    Card:
+      additionalProperties: false
+      example:
+        number: number
+        expiration_year: 6424
+        cvc: cvc
+        expiration_month: 1
+      properties:
+        number:
+          nullable: true
+          type: string
+        expiration_month:
+          format: int32
+          maximum: 12
+          minimum: 1
+          nullable: true
+          type: integer
+        expiration_year:
+          format: int32
+          maximum: 9999
+          minimum: 1000
+          nullable: true
+          type: integer
+        cvc:
+          nullable: true
+          type: string
+      type: object
     CreateApplicationRequest:
       additionalProperties: false
       example:
@@ -1121,9 +2934,52 @@ components:
       - name
       - type
       type: object
+    CreateAtomicBankRequest:
+      additionalProperties: false
+      example:
+        bank:
+          account_number: account_number
+          routing_number: routing_number
+        metadata:
+          key: metadata
+      properties:
+        bank:
+          $ref: '#/components/schemas/Bank'
+        metadata:
+          additionalProperties:
+            nullable: true
+            type: string
+          nullable: true
+          type: object
+      required:
+      - bank
+      type: object
+    CreateAtomicCardRequest:
+      additionalProperties: false
+      example:
+        metadata:
+          key: metadata
+        card:
+          number: number
+          expiration_year: 6424
+          cvc: cvc
+          expiration_month: 1
+      properties:
+        card:
+          $ref: '#/components/schemas/Card'
+        metadata:
+          additionalProperties:
+            nullable: true
+            type: string
+          nullable: true
+          type: object
+      required:
+      - card
+      type: object
     CreateProxyRequest:
       additionalProperties: false
       example:
+        response_reactor_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
         name: name
         destination_url: destination_url
         require_auth: true
@@ -1139,6 +2995,11 @@ components:
           type: string
         request_reactor_id:
           format: uuid
+          nullable: true
+          type: string
+        response_reactor_id:
+          format: uuid
+          nullable: true
           type: string
         require_auth:
           nullable: true
@@ -1146,7 +3007,6 @@ components:
       required:
       - destination_url
       - name
-      - request_reactor_id
       type: object
     CreateReactorFormulaRequest:
       additionalProperties: false
@@ -1273,6 +3133,206 @@ components:
       required:
       - name
       type: object
+    CreateTenantInvitationRequest:
+      additionalProperties: false
+      example:
+        email: email
+      properties:
+        email:
+          format: email
+          minLength: 1
+          type: string
+      required:
+      - email
+      type: object
+    CreateTokenRequest:
+      additionalProperties: false
+      example:
+        fingerprint_expression: fingerprint_expression
+        metadata:
+          key: metadata
+        data: ""
+        encryption:
+          kek:
+            prov: prov
+            alg: alg
+            key: key
+          cek:
+            prov: prov
+            alg: alg
+            key: key
+        privacy:
+          restriction_policy: restriction_policy
+          impact_level: impact_level
+          classification: classification
+        search_indexes:
+        - search_indexes
+        - search_indexes
+        type: type
+      properties:
+        type:
+          nullable: true
+          type: string
+        data: {}
+        encryption:
+          $ref: '#/components/schemas/EncryptionMetadata'
+        privacy:
+          $ref: '#/components/schemas/Privacy'
+        metadata:
+          additionalProperties:
+            nullable: true
+            type: string
+          nullable: true
+          type: object
+        search_indexes:
+          items:
+            type: string
+          nullable: true
+          type: array
+        fingerprint_expression:
+          nullable: true
+          type: string
+      required:
+      - data
+      type: object
+    CreateTokenResponse:
+      additionalProperties: false
+      example:
+        tenant_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        fingerprint_expression: fingerprint_expression
+        metadata:
+          key: metadata
+        data: ""
+        privacy:
+          restriction_policy: restriction_policy
+          impact_level: impact_level
+          classification: classification
+        created_at: 2000-01-23T04:56:07.000+00:00
+        type: type
+        created_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        fingerprint: fingerprint
+        modified_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        search_indexes:
+        - search_indexes
+        - search_indexes
+        modified_at: 2000-01-23T04:56:07.000+00:00
+      properties:
+        id:
+          format: uuid
+          type: string
+        tenant_id:
+          format: uuid
+          type: string
+        type:
+          nullable: true
+          type: string
+        fingerprint:
+          nullable: true
+          type: string
+        fingerprint_expression:
+          nullable: true
+          type: string
+        data:
+          nullable: true
+        metadata:
+          additionalProperties:
+            nullable: true
+            type: string
+          nullable: true
+          type: object
+        privacy:
+          $ref: '#/components/schemas/Privacy'
+        search_indexes:
+          items:
+            type: string
+          nullable: true
+          type: array
+        created_by:
+          format: uuid
+          nullable: true
+          type: string
+        created_at:
+          format: date-time
+          nullable: true
+          type: string
+        modified_by:
+          format: uuid
+          nullable: true
+          type: string
+        modified_at:
+          format: date-time
+          nullable: true
+          type: string
+      type: object
+    EncryptionKey:
+      additionalProperties: false
+      example:
+        prov: prov
+        alg: alg
+        key: key
+      properties:
+        key:
+          type: string
+        prov:
+          nullable: true
+          type: string
+        alg:
+          nullable: true
+          type: string
+      required:
+      - key
+      type: object
+    EncryptionMetadata:
+      additionalProperties: false
+      example:
+        kek:
+          prov: prov
+          alg: alg
+          key: key
+        cek:
+          prov: prov
+          alg: alg
+          key: key
+      properties:
+        cek:
+          $ref: '#/components/schemas/EncryptionKey'
+        kek:
+          $ref: '#/components/schemas/EncryptionKey'
+      type: object
+    GetLogs:
+      additionalProperties: false
+      properties:
+        entityType:
+          nullable: true
+          type: string
+        entityId:
+          nullable: true
+          type: string
+        startDate:
+          format: date-time
+          nullable: true
+          type: string
+        endDate:
+          format: date-time
+          nullable: true
+          type: string
+        page:
+          format: int32
+          nullable: true
+          type: integer
+        size:
+          format: int32
+          nullable: true
+          type: integer
+      type: object
+    GetPermissions:
+      additionalProperties: false
+      properties:
+        applicationType:
+          nullable: true
+          type: string
+      type: object
     GetProxies:
       additionalProperties: false
       properties:
@@ -1295,6 +3355,121 @@ components:
           nullable: true
           type: integer
       type: object
+    GetTokens:
+      additionalProperties: false
+      properties:
+        types:
+          items:
+            type: string
+          nullable: true
+          type: array
+        tokenIds:
+          items:
+            format: uuid
+            type: string
+          nullable: true
+          type: array
+        metadataSearch:
+          additionalProperties:
+            nullable: true
+            type: string
+          nullable: true
+          type: object
+        page:
+          format: int32
+          nullable: true
+          type: integer
+        size:
+          format: int32
+          nullable: true
+          type: integer
+      type: object
+    Log:
+      additionalProperties: false
+      example:
+        tenant_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        entity_type: entity_type
+        actor_type: actor_type
+        created_at: 2000-01-23T04:56:07.000+00:00
+        actor_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        entity_id: entity_id
+        message: message
+        operation: operation
+      properties:
+        tenant_id:
+          format: uuid
+          type: string
+        actor_id:
+          format: uuid
+          nullable: true
+          type: string
+        actor_type:
+          nullable: true
+          type: string
+        entity_type:
+          nullable: true
+          type: string
+        entity_id:
+          nullable: true
+          type: string
+        operation:
+          nullable: true
+          type: string
+        message:
+          nullable: true
+          type: string
+        created_at:
+          format: date-time
+          nullable: true
+          type: string
+      type: object
+    LogEntityType:
+      additionalProperties: false
+      example:
+        display_name: display_name
+        value: value
+      properties:
+        display_name:
+          nullable: true
+          type: string
+        value:
+          nullable: true
+          type: string
+      type: object
+    LogPaginatedList:
+      additionalProperties: false
+      example:
+        pagination:
+          page_number: 6
+          total_pages: 5
+          total_items: 0
+          page_size: 1
+        data:
+        - tenant_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          entity_type: entity_type
+          actor_type: actor_type
+          created_at: 2000-01-23T04:56:07.000+00:00
+          actor_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          entity_id: entity_id
+          message: message
+          operation: operation
+        - tenant_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          entity_type: entity_type
+          actor_type: actor_type
+          created_at: 2000-01-23T04:56:07.000+00:00
+          actor_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          entity_id: entity_id
+          message: message
+          operation: operation
+      properties:
+        pagination:
+          $ref: '#/components/schemas/Pagination'
+        data:
+          items:
+            $ref: '#/components/schemas/Log'
+          nullable: true
+          type: array
+      type: object
     Pagination:
       additionalProperties: false
       example:
@@ -1315,6 +3490,44 @@ components:
         total_pages:
           format: int32
           type: integer
+      type: object
+    Permission:
+      additionalProperties: false
+      example:
+        description: description
+        type: type
+        application_types:
+        - application_types
+        - application_types
+      properties:
+        type:
+          nullable: true
+          type: string
+        description:
+          nullable: true
+          type: string
+        application_types:
+          items:
+            type: string
+          nullable: true
+          type: array
+      type: object
+    Privacy:
+      additionalProperties: false
+      example:
+        restriction_policy: restriction_policy
+        impact_level: impact_level
+        classification: classification
+      properties:
+        classification:
+          nullable: true
+          type: string
+        impact_level:
+          nullable: true
+          type: string
+        restriction_policy:
+          nullable: true
+          type: string
       type: object
     ProblemDetails:
       additionalProperties: {}
@@ -1340,6 +3553,7 @@ components:
       additionalProperties: false
       example:
         tenant_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        response_reactor_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
         name: name
         destination_url: destination_url
         modified_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
@@ -1369,6 +3583,11 @@ components:
           type: string
         request_reactor_id:
           format: uuid
+          nullable: true
+          type: string
+        response_reactor_id:
+          format: uuid
+          nullable: true
           type: string
         require_auth:
           type: boolean
@@ -1399,6 +3618,7 @@ components:
           page_size: 1
         data:
         - tenant_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          response_reactor_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           name: name
           destination_url: destination_url
           modified_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
@@ -1410,6 +3630,7 @@ components:
           created_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           key: key
         - tenant_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          response_reactor_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           name: name
           destination_url: destination_url
           modified_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
@@ -1853,6 +4074,455 @@ components:
           nullable: true
           type: array
       type: object
+    SearchTokensRequest:
+      additionalProperties: false
+      example:
+        size: 6
+        query: query
+        page: 0
+      properties:
+        query:
+          maxLength: 200
+          nullable: true
+          type: string
+        page:
+          format: int32
+          nullable: true
+          type: integer
+        size:
+          format: int32
+          nullable: true
+          type: integer
+      type: object
+    StringStringKeyValuePair:
+      additionalProperties: false
+      properties:
+        key:
+          minLength: 1
+          type: string
+        value:
+          minLength: 1
+          type: string
+      required:
+      - key
+      - value
+      type: object
+    Tenant:
+      additionalProperties: false
+      example:
+        owner_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        name: name
+        modified_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        created_at: 2000-01-23T04:56:07.000+00:00
+        id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        modified_at: 2000-01-23T04:56:07.000+00:00
+        created_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+      properties:
+        id:
+          format: uuid
+          type: string
+        owner_id:
+          format: uuid
+          type: string
+        name:
+          nullable: true
+          type: string
+        created_by:
+          format: uuid
+          nullable: true
+          type: string
+        created_at:
+          format: date-time
+          nullable: true
+          type: string
+        modified_by:
+          format: uuid
+          nullable: true
+          type: string
+        modified_at:
+          format: date-time
+          nullable: true
+          type: string
+      type: object
+    TenantInvitationResponse:
+      additionalProperties: false
+      example:
+        tenant_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        expires_at: 2000-01-23T04:56:07.000+00:00
+        modified_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        created_at: 2000-01-23T04:56:07.000+00:00
+        id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        modified_at: 2000-01-23T04:56:07.000+00:00
+        created_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        email: email
+        status: null
+      properties:
+        id:
+          format: uuid
+          type: string
+        tenant_id:
+          format: uuid
+          type: string
+        email:
+          nullable: true
+          type: string
+        status:
+          $ref: '#/components/schemas/TenantInvitationStatus'
+        expires_at:
+          format: date-time
+          type: string
+        created_by:
+          format: uuid
+          nullable: true
+          type: string
+        created_at:
+          format: date-time
+          nullable: true
+          type: string
+        modified_by:
+          format: uuid
+          nullable: true
+          type: string
+        modified_at:
+          format: date-time
+          nullable: true
+          type: string
+      type: object
+    TenantInvitationResponsePaginatedList:
+      additionalProperties: false
+      example:
+        pagination:
+          page_number: 6
+          total_pages: 5
+          total_items: 0
+          page_size: 1
+        data:
+        - tenant_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          expires_at: 2000-01-23T04:56:07.000+00:00
+          modified_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          created_at: 2000-01-23T04:56:07.000+00:00
+          id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          modified_at: 2000-01-23T04:56:07.000+00:00
+          created_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          email: email
+          status: null
+        - tenant_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          expires_at: 2000-01-23T04:56:07.000+00:00
+          modified_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          created_at: 2000-01-23T04:56:07.000+00:00
+          id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          modified_at: 2000-01-23T04:56:07.000+00:00
+          created_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          email: email
+          status: null
+      properties:
+        pagination:
+          $ref: '#/components/schemas/Pagination'
+        data:
+          items:
+            $ref: '#/components/schemas/TenantInvitationResponse'
+          nullable: true
+          type: array
+      type: object
+    TenantInvitationStatus:
+      enum:
+      - PENDING
+      - EXPIRED
+      type: string
+    TenantMemberResponse:
+      additionalProperties: false
+      example:
+        tenant_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        role: role
+        modified_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        created_date: 2000-01-23T04:56:07.000+00:00
+        modified_at: 2000-01-23T04:56:07.000+00:00
+        user:
+          last_name: last_name
+          id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          first_name: first_name
+          email: email
+          picture: picture
+        created_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+      properties:
+        id:
+          format: uuid
+          type: string
+        tenant_id:
+          format: uuid
+          type: string
+        user:
+          $ref: '#/components/schemas/User'
+        role:
+          nullable: true
+          type: string
+        created_by:
+          format: uuid
+          nullable: true
+          type: string
+        created_date:
+          format: date-time
+          nullable: true
+          type: string
+        modified_by:
+          format: uuid
+          nullable: true
+          type: string
+        modified_at:
+          format: date-time
+          nullable: true
+          type: string
+      type: object
+    TenantMemberResponsePaginatedList:
+      additionalProperties: false
+      example:
+        pagination:
+          page_number: 6
+          total_pages: 5
+          total_items: 0
+          page_size: 1
+        data:
+        - tenant_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          role: role
+          modified_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          created_date: 2000-01-23T04:56:07.000+00:00
+          modified_at: 2000-01-23T04:56:07.000+00:00
+          user:
+            last_name: last_name
+            id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+            first_name: first_name
+            email: email
+            picture: picture
+          created_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        - tenant_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          role: role
+          modified_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          created_date: 2000-01-23T04:56:07.000+00:00
+          modified_at: 2000-01-23T04:56:07.000+00:00
+          user:
+            last_name: last_name
+            id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+            first_name: first_name
+            email: email
+            picture: picture
+          created_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+      properties:
+        pagination:
+          $ref: '#/components/schemas/Pagination'
+        data:
+          items:
+            $ref: '#/components/schemas/TenantMemberResponse'
+          nullable: true
+          type: array
+      type: object
+    TenantUsageReport:
+      additionalProperties: false
+      example:
+        token_report:
+          metrics_by_type:
+            key:
+              last_created_at: 2000-01-23T04:56:07.000+00:00
+              count: 1
+          monthly_active_tokens: 6
+          included_monthly_active_tokens: 0
+      properties:
+        token_report:
+          $ref: '#/components/schemas/TokenReport'
+      type: object
+    Token:
+      additionalProperties: false
+      example:
+        tenant_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        fingerprint_expression: fingerprint_expression
+        metadata:
+          key: metadata
+        data: ""
+        created_at: 2000-01-23T04:56:07.000+00:00
+        privacy:
+          restriction_policy: restriction_policy
+          impact_level: impact_level
+          classification: classification
+        type: type
+        created_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        encryption:
+          kek:
+            prov: prov
+            alg: alg
+            key: key
+          cek:
+            prov: prov
+            alg: alg
+            key: key
+        modified_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        fingerprint: fingerprint
+        id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        search_indexes:
+        - search_indexes
+        - search_indexes
+        modified_at: 2000-01-23T04:56:07.000+00:00
+      properties:
+        id:
+          format: uuid
+          type: string
+        type:
+          nullable: true
+          type: string
+        tenant_id:
+          format: uuid
+          type: string
+        data:
+          nullable: true
+        metadata:
+          additionalProperties:
+            nullable: true
+            type: string
+          nullable: true
+          type: object
+        encryption:
+          $ref: '#/components/schemas/EncryptionMetadata'
+        created_by:
+          format: uuid
+          nullable: true
+          type: string
+        created_at:
+          format: date-time
+          nullable: true
+          type: string
+        modified_by:
+          format: uuid
+          nullable: true
+          type: string
+        modified_at:
+          format: date-time
+          nullable: true
+          type: string
+        fingerprint:
+          nullable: true
+          type: string
+        fingerprint_expression:
+          nullable: true
+          type: string
+        privacy:
+          $ref: '#/components/schemas/Privacy'
+        search_indexes:
+          items:
+            type: string
+          nullable: true
+          type: array
+      type: object
+    TokenMetrics:
+      additionalProperties: false
+      example:
+        last_created_at: 2000-01-23T04:56:07.000+00:00
+        count: 1
+      properties:
+        count:
+          format: int64
+          type: integer
+        last_created_at:
+          format: date-time
+          nullable: true
+          type: string
+      type: object
+    TokenPaginatedList:
+      additionalProperties: false
+      example:
+        pagination:
+          page_number: 6
+          total_pages: 5
+          total_items: 0
+          page_size: 1
+        data:
+        - tenant_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          fingerprint_expression: fingerprint_expression
+          metadata:
+            key: metadata
+          data: ""
+          created_at: 2000-01-23T04:56:07.000+00:00
+          privacy:
+            restriction_policy: restriction_policy
+            impact_level: impact_level
+            classification: classification
+          type: type
+          created_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          encryption:
+            kek:
+              prov: prov
+              alg: alg
+              key: key
+            cek:
+              prov: prov
+              alg: alg
+              key: key
+          modified_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          fingerprint: fingerprint
+          id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          search_indexes:
+          - search_indexes
+          - search_indexes
+          modified_at: 2000-01-23T04:56:07.000+00:00
+        - tenant_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          fingerprint_expression: fingerprint_expression
+          metadata:
+            key: metadata
+          data: ""
+          created_at: 2000-01-23T04:56:07.000+00:00
+          privacy:
+            restriction_policy: restriction_policy
+            impact_level: impact_level
+            classification: classification
+          type: type
+          created_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          encryption:
+            kek:
+              prov: prov
+              alg: alg
+              key: key
+            cek:
+              prov: prov
+              alg: alg
+              key: key
+          modified_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          fingerprint: fingerprint
+          id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          search_indexes:
+          - search_indexes
+          - search_indexes
+          modified_at: 2000-01-23T04:56:07.000+00:00
+      properties:
+        pagination:
+          $ref: '#/components/schemas/Pagination'
+        data:
+          items:
+            $ref: '#/components/schemas/Token'
+          nullable: true
+          type: array
+      type: object
+    TokenReport:
+      additionalProperties: false
+      example:
+        metrics_by_type:
+          key:
+            last_created_at: 2000-01-23T04:56:07.000+00:00
+            count: 1
+        monthly_active_tokens: 6
+        included_monthly_active_tokens: 0
+      properties:
+        included_monthly_active_tokens:
+          format: int64
+          type: integer
+        monthly_active_tokens:
+          format: int64
+          type: integer
+        metrics_by_type:
+          additionalProperties:
+            $ref: '#/components/schemas/TokenMetrics'
+          nullable: true
+          type: object
+      type: object
     UpdateApplicationRequest:
       additionalProperties: false
       example:
@@ -1873,9 +4543,36 @@ components:
       required:
       - name
       type: object
+    UpdateAtomicBankRequest:
+      additionalProperties: false
+      example:
+        bank:
+          account_number: account_number
+          routing_number: routing_number
+      properties:
+        bank:
+          $ref: '#/components/schemas/Bank'
+      required:
+      - bank
+      type: object
+    UpdateAtomicCardRequest:
+      additionalProperties: false
+      example:
+        card:
+          number: number
+          expiration_year: 6424
+          cvc: cvc
+          expiration_month: 1
+      properties:
+        card:
+          $ref: '#/components/schemas/Card'
+      required:
+      - card
+      type: object
     UpdateProxyRequest:
       additionalProperties: false
       example:
+        response_reactor_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
         name: name
         destination_url: destination_url
         require_auth: true
@@ -1891,6 +4588,11 @@ components:
           type: string
         request_reactor_id:
           format: uuid
+          nullable: true
+          type: string
+        response_reactor_id:
+          format: uuid
+          nullable: true
           type: string
         require_auth:
           nullable: true
@@ -1898,7 +4600,6 @@ components:
       required:
       - destination_url
       - name
-      - request_reactor_id
       type: object
     UpdateReactorFormulaRequest:
       additionalProperties: false
@@ -1989,6 +4690,51 @@ components:
           type: object
       required:
       - name
+      type: object
+    UpdateTenantRequest:
+      additionalProperties: false
+      example:
+        settings:
+          key: settings
+        name: name
+      properties:
+        name:
+          maxLength: 200
+          minLength: 1
+          type: string
+        settings:
+          additionalProperties:
+            nullable: true
+            type: string
+          nullable: true
+          type: object
+      required:
+      - name
+      type: object
+    User:
+      additionalProperties: false
+      example:
+        last_name: last_name
+        id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        first_name: first_name
+        email: email
+        picture: picture
+      properties:
+        id:
+          format: uuid
+          type: string
+        email:
+          nullable: true
+          type: string
+        first_name:
+          nullable: true
+          type: string
+        last_name:
+          nullable: true
+          type: string
+        picture:
+          nullable: true
+          type: string
       type: object
     ValidationProblemDetails:
       additionalProperties: {}

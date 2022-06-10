@@ -2,8 +2,8 @@ package basistheory_test
 
 import (
 	"context"
-	"github.com/Basis-Theory/basistheory-go/v2"
-	"github.com/Basis-Theory/basistheory-go/v2/internal/testutils"
+	"github.com/Basis-Theory/basistheory-go/v3"
+	"github.com/Basis-Theory/basistheory-go/v3/internal/testutils"
 	"testing"
 )
 
@@ -22,13 +22,13 @@ func TestApplicationCRUD(t *testing.T) {
 	createApplicationRequest := *basistheory.NewCreateApplicationRequest(applicationName, applicationType)
 	createApplicationRequest.SetPermissions(applicationPermissions)
 
-	createdApplication, response, err := apiClient.ApplicationsApi.ApplicationsCreate(contextWithAPIKey).CreateApplicationRequest(createApplicationRequest).Execute()
+	createdApplication, response, err := apiClient.ApplicationsApi.Create(contextWithAPIKey).CreateApplicationRequest(createApplicationRequest).Execute()
 
 	testutils.AssertMethodDidNotError(err, response, "ApplicationCreate", t)
 
 	// GET BY ID
 	var application *basistheory.Application
-	application, response, err = apiClient.ApplicationsApi.ApplicationsGetById(contextWithAPIKey, createdApplication.GetId()).Execute()
+	application, response, err = apiClient.ApplicationsApi.GetById(contextWithAPIKey, createdApplication.GetId()).Execute()
 
 	testutils.AssertMethodDidNotError(err, response, "ApplicationGetById", t)
 	testutils.AssertPropertiesMatch(application.GetName(), applicationName, t)
@@ -37,7 +37,7 @@ func TestApplicationCRUD(t *testing.T) {
 
 	// GET LIST
 	var applications *basistheory.ApplicationPaginatedList
-	applications, response, err = apiClient.ApplicationsApi.ApplicationsGet(contextWithAPIKey).Execute()
+	applications, response, err = apiClient.ApplicationsApi.Get(contextWithAPIKey).Execute()
 
 	testutils.AssertMethodDidNotError(err, response, "ApplicationsGet", t)
 	testutils.AssertPropertiesMatch(applications.Data[0].GetName(), applicationName, t)
@@ -52,18 +52,18 @@ func TestApplicationCRUD(t *testing.T) {
 	updateApplicationRequest.SetPermissions(updatedApplicationPermissions)
 
 	var updatedApplication *basistheory.Application
-	updatedApplication, response, err = apiClient.ApplicationsApi.ApplicationsUpdate(contextWithAPIKey, createdApplication.GetId()).UpdateApplicationRequest(updateApplicationRequest).Execute()
+	updatedApplication, response, err = apiClient.ApplicationsApi.Update(contextWithAPIKey, createdApplication.GetId()).UpdateApplicationRequest(updateApplicationRequest).Execute()
 
 	testutils.AssertMethodDidNotError(err, response, "ApplicationUpdate", t)
 	testutils.AssertPropertiesMatch(updatedApplication.GetName(), updatedApplicationName, t)
 	testutils.AssertPropertiesMatch(updatedApplication.GetPermissions(), updatedApplicationPermissions, t)
 
 	// DELETE
-	response, err = apiClient.ApplicationsApi.ApplicationsDelete(contextWithAPIKey, createdApplication.GetId()).Execute()
+	response, err = apiClient.ApplicationsApi.Delete(contextWithAPIKey, createdApplication.GetId()).Execute()
 
 	testutils.AssertMethodDidNotError(err, response, "ApplicationDelete", t)
 
-	_, _, err = apiClient.ApplicationsApi.ApplicationsGetById(contextWithAPIKey, createdApplication.GetId()).Execute()
+	_, _, err = apiClient.ApplicationsApi.GetById(contextWithAPIKey, createdApplication.GetId()).Execute()
 
 	testutils.AssertNotFound(err, t)
 }
@@ -76,17 +76,17 @@ func TestApplicationRegenerate(t *testing.T) {
 	createApplicationRequest := *basistheory.NewCreateApplicationRequest(applicationName, applicationType)
 	createApplicationRequest.SetPermissions(applicationPermissions)
 
-	createdApplication, response, err := apiClient.ApplicationsApi.ApplicationsCreate(contextWithAPIKey).CreateApplicationRequest(createApplicationRequest).Execute()
+	createdApplication, response, err := apiClient.ApplicationsApi.Create(contextWithAPIKey).CreateApplicationRequest(createApplicationRequest).Execute()
 
 	testutils.AssertMethodDidNotError(err, response, "ApplicationCreate", t)
 
 	var regeneratedApplication *basistheory.Application
-	regeneratedApplication, response, err = apiClient.ApplicationsApi.ApplicationsRegenerateKey(contextWithAPIKey, createdApplication.GetId()).Execute()
+	regeneratedApplication, response, err = apiClient.ApplicationsApi.RegenerateKey(contextWithAPIKey, createdApplication.GetId()).Execute()
 
 	testutils.AssertMethodDidNotError(err, response, "ApplicationRegenerate", t)
 	testutils.AssertPropertiesDoNotMatch(regeneratedApplication.GetKey(), createdApplication.GetKey(), t)
 
-	_, _ = apiClient.ApplicationsApi.ApplicationsDelete(contextWithAPIKey, createdApplication.GetId()).Execute()
+	_, _ = apiClient.ApplicationsApi.Delete(contextWithAPIKey, createdApplication.GetId()).Execute()
 }
 
 func TestApplicationKey(t *testing.T) {
@@ -97,7 +97,7 @@ func TestApplicationKey(t *testing.T) {
 	createApplicationRequest := *basistheory.NewCreateApplicationRequest(applicationName, applicationType)
 	createApplicationRequest.SetPermissions(applicationPermissions)
 
-	createdApplication, response, err := apiClient.ApplicationsApi.ApplicationsCreate(contextWithAPIKey).CreateApplicationRequest(createApplicationRequest).Execute()
+	createdApplication, response, err := apiClient.ApplicationsApi.Create(contextWithAPIKey).CreateApplicationRequest(createApplicationRequest).Execute()
 
 	testutils.AssertMethodDidNotError(err, response, "ApplicationCreate", t)
 
@@ -106,7 +106,7 @@ func TestApplicationKey(t *testing.T) {
 	})
 
 	var applicationFromApplicationKey *basistheory.Application
-	applicationFromApplicationKey, response, err = apiClient.ApplicationsApi.ApplicationsGetByKey(contextWithCreatedAppAPIKey).Execute()
+	applicationFromApplicationKey, response, err = apiClient.ApplicationsApi.GetByKey(contextWithCreatedAppAPIKey).Execute()
 
 	testutils.AssertMethodDidNotError(err, response, "ApplicationKey", t)
 
@@ -114,5 +114,5 @@ func TestApplicationKey(t *testing.T) {
 
 	testutils.AssertPropertiesMatch(applicationFromApplicationKey, createdApplication, t, basistheory.NullableString{}, basistheory.NullableTime{})
 
-	_, _ = apiClient.ApplicationsApi.ApplicationsDelete(contextWithAPIKey, createdApplication.GetId()).Execute()
+	_, _ = apiClient.ApplicationsApi.Delete(contextWithAPIKey, createdApplication.GetId()).Execute()
 }

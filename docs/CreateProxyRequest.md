@@ -6,14 +6,15 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Name** | **string** |  | 
 **DestinationUrl** | **string** |  | 
-**RequestReactorId** | **string** |  | 
+**RequestReactorId** | Pointer to **NullableString** |  | [optional] 
+**ResponseReactorId** | Pointer to **NullableString** |  | [optional] 
 **RequireAuth** | Pointer to **NullableBool** |  | [optional] 
 
 ## Methods
 
 ### NewCreateProxyRequest
 
-`func NewCreateProxyRequest(name string, destinationUrl string, requestReactorId string, ) *CreateProxyRequest`
+`func NewCreateProxyRequest(name string, destinationUrl string, ) *CreateProxyRequest`
 
 NewCreateProxyRequest instantiates a new CreateProxyRequest object
 This constructor will assign default values to properties that have it defined,
@@ -87,7 +88,57 @@ and a boolean to check if the value has been set.
 
 SetRequestReactorId sets RequestReactorId field to given value.
 
+### HasRequestReactorId
 
+`func (o *CreateProxyRequest) HasRequestReactorId() bool`
+
+HasRequestReactorId returns a boolean if a field has been set.
+
+### SetRequestReactorIdNil
+
+`func (o *CreateProxyRequest) SetRequestReactorIdNil(b bool)`
+
+ SetRequestReactorIdNil sets the value for RequestReactorId to be an explicit nil
+
+### UnsetRequestReactorId
+`func (o *CreateProxyRequest) UnsetRequestReactorId()`
+
+UnsetRequestReactorId ensures that no value is present for RequestReactorId, not even an explicit nil
+### GetResponseReactorId
+
+`func (o *CreateProxyRequest) GetResponseReactorId() string`
+
+GetResponseReactorId returns the ResponseReactorId field if non-nil, zero value otherwise.
+
+### GetResponseReactorIdOk
+
+`func (o *CreateProxyRequest) GetResponseReactorIdOk() (*string, bool)`
+
+GetResponseReactorIdOk returns a tuple with the ResponseReactorId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetResponseReactorId
+
+`func (o *CreateProxyRequest) SetResponseReactorId(v string)`
+
+SetResponseReactorId sets ResponseReactorId field to given value.
+
+### HasResponseReactorId
+
+`func (o *CreateProxyRequest) HasResponseReactorId() bool`
+
+HasResponseReactorId returns a boolean if a field has been set.
+
+### SetResponseReactorIdNil
+
+`func (o *CreateProxyRequest) SetResponseReactorIdNil(b bool)`
+
+ SetResponseReactorIdNil sets the value for ResponseReactorId to be an explicit nil
+
+### UnsetResponseReactorId
+`func (o *CreateProxyRequest) UnsetResponseReactorId()`
+
+UnsetResponseReactorId ensures that no value is present for ResponseReactorId, not even an explicit nil
 ### GetRequireAuth
 
 `func (o *CreateProxyRequest) GetRequireAuth() bool`

@@ -24,29 +24,29 @@ import (
 // ProxiesApiService ProxiesApi service
 type ProxiesApiService service
 
-type ApiProxiesCreateRequest struct {
+type ProxiesApiCreateRequest struct {
 	ctx context.Context
 	ApiService *ProxiesApiService
 	createProxyRequest *CreateProxyRequest
 }
 
-func (r ApiProxiesCreateRequest) CreateProxyRequest(createProxyRequest CreateProxyRequest) ApiProxiesCreateRequest {
+func (r ProxiesApiCreateRequest) CreateProxyRequest(createProxyRequest CreateProxyRequest) ProxiesApiCreateRequest {
 	r.createProxyRequest = &createProxyRequest
 	return r
 }
 
-func (r ApiProxiesCreateRequest) Execute() (*Proxy, *http.Response, error) {
-	return r.ApiService.ProxiesCreateExecute(r)
+func (r ProxiesApiCreateRequest) Execute() (*Proxy, *http.Response, error) {
+	return r.ApiService.CreateExecute(r)
 }
 
 /*
-ProxiesCreate Method for ProxiesCreate
+Create Method for Create
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiProxiesCreateRequest
+ @return ProxiesApiCreateRequest
 */
-func (a *ProxiesApiService) ProxiesCreate(ctx context.Context) ApiProxiesCreateRequest {
-	return ApiProxiesCreateRequest{
+func (a *ProxiesApiService) Create(ctx context.Context) ProxiesApiCreateRequest {
+	return ProxiesApiCreateRequest{
 		ApiService: a,
 		ctx: ctx,
 	}
@@ -54,7 +54,7 @@ func (a *ProxiesApiService) ProxiesCreate(ctx context.Context) ApiProxiesCreateR
 
 // Execute executes the request
 //  @return Proxy
-func (a *ProxiesApiService) ProxiesCreateExecute(r ApiProxiesCreateRequest) (*Proxy, *http.Response, error) {
+func (a *ProxiesApiService) CreateExecute(r ProxiesApiCreateRequest) (*Proxy, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
@@ -62,7 +62,7 @@ func (a *ProxiesApiService) ProxiesCreateExecute(r ApiProxiesCreateRequest) (*Pr
 		localVarReturnValue  *Proxy
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ProxiesApiService.ProxiesCreate")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ProxiesApiService.Create")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -172,25 +172,25 @@ func (a *ProxiesApiService) ProxiesCreateExecute(r ApiProxiesCreateRequest) (*Pr
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiProxiesDeleteRequest struct {
+type ProxiesApiDeleteRequest struct {
 	ctx context.Context
 	ApiService *ProxiesApiService
 	id string
 }
 
-func (r ApiProxiesDeleteRequest) Execute() (*http.Response, error) {
-	return r.ApiService.ProxiesDeleteExecute(r)
+func (r ProxiesApiDeleteRequest) Execute() (*http.Response, error) {
+	return r.ApiService.DeleteExecute(r)
 }
 
 /*
-ProxiesDelete Method for ProxiesDelete
+Delete Method for Delete
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param id
- @return ApiProxiesDeleteRequest
+ @return ProxiesApiDeleteRequest
 */
-func (a *ProxiesApiService) ProxiesDelete(ctx context.Context, id string) ApiProxiesDeleteRequest {
-	return ApiProxiesDeleteRequest{
+func (a *ProxiesApiService) Delete(ctx context.Context, id string) ProxiesApiDeleteRequest {
+	return ProxiesApiDeleteRequest{
 		ApiService: a,
 		ctx: ctx,
 		id: id,
@@ -198,14 +198,14 @@ func (a *ProxiesApiService) ProxiesDelete(ctx context.Context, id string) ApiPro
 }
 
 // Execute executes the request
-func (a *ProxiesApiService) ProxiesDeleteExecute(r ApiProxiesDeleteRequest) (*http.Response, error) {
+func (a *ProxiesApiService) DeleteExecute(r ProxiesApiDeleteRequest) (*http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodDelete
 		localVarPostBody     interface{}
 		formFiles            []formFile
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ProxiesApiService.ProxiesDelete")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ProxiesApiService.Delete")
 	if err != nil {
 		return nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -305,7 +305,7 @@ func (a *ProxiesApiService) ProxiesDeleteExecute(r ApiProxiesDeleteRequest) (*ht
 	return localVarHTTPResponse, nil
 }
 
-type ApiProxiesGetRequest struct {
+type ProxiesApiGetRequest struct {
 	ctx context.Context
 	ApiService *ProxiesApiService
 	id *[]string
@@ -314,38 +314,38 @@ type ApiProxiesGetRequest struct {
 	size *int32
 }
 
-func (r ApiProxiesGetRequest) Id(id []string) ApiProxiesGetRequest {
+func (r ProxiesApiGetRequest) Id(id []string) ProxiesApiGetRequest {
 	r.id = &id
 	return r
 }
 
-func (r ApiProxiesGetRequest) Name(name string) ApiProxiesGetRequest {
+func (r ProxiesApiGetRequest) Name(name string) ProxiesApiGetRequest {
 	r.name = &name
 	return r
 }
 
-func (r ApiProxiesGetRequest) Page(page int32) ApiProxiesGetRequest {
+func (r ProxiesApiGetRequest) Page(page int32) ProxiesApiGetRequest {
 	r.page = &page
 	return r
 }
 
-func (r ApiProxiesGetRequest) Size(size int32) ApiProxiesGetRequest {
+func (r ProxiesApiGetRequest) Size(size int32) ProxiesApiGetRequest {
 	r.size = &size
 	return r
 }
 
-func (r ApiProxiesGetRequest) Execute() (*ProxyPaginatedList, *http.Response, error) {
-	return r.ApiService.ProxiesGetExecute(r)
+func (r ProxiesApiGetRequest) Execute() (*ProxyPaginatedList, *http.Response, error) {
+	return r.ApiService.GetExecute(r)
 }
 
 /*
-ProxiesGet Method for ProxiesGet
+Get Method for Get
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiProxiesGetRequest
+ @return ProxiesApiGetRequest
 */
-func (a *ProxiesApiService) ProxiesGet(ctx context.Context) ApiProxiesGetRequest {
-	return ApiProxiesGetRequest{
+func (a *ProxiesApiService) Get(ctx context.Context) ProxiesApiGetRequest {
+	return ProxiesApiGetRequest{
 		ApiService: a,
 		ctx: ctx,
 	}
@@ -353,7 +353,7 @@ func (a *ProxiesApiService) ProxiesGet(ctx context.Context) ApiProxiesGetRequest
 
 // Execute executes the request
 //  @return ProxyPaginatedList
-func (a *ProxiesApiService) ProxiesGetExecute(r ApiProxiesGetRequest) (*ProxyPaginatedList, *http.Response, error) {
+func (a *ProxiesApiService) GetExecute(r ProxiesApiGetRequest) (*ProxyPaginatedList, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -361,7 +361,7 @@ func (a *ProxiesApiService) ProxiesGetExecute(r ApiProxiesGetRequest) (*ProxyPag
 		localVarReturnValue  *ProxyPaginatedList
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ProxiesApiService.ProxiesGet")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ProxiesApiService.Get")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -489,25 +489,25 @@ func (a *ProxiesApiService) ProxiesGetExecute(r ApiProxiesGetRequest) (*ProxyPag
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiProxiesGetByIdRequest struct {
+type ProxiesApiGetByIdRequest struct {
 	ctx context.Context
 	ApiService *ProxiesApiService
 	id string
 }
 
-func (r ApiProxiesGetByIdRequest) Execute() (*Proxy, *http.Response, error) {
-	return r.ApiService.ProxiesGetByIdExecute(r)
+func (r ProxiesApiGetByIdRequest) Execute() (*Proxy, *http.Response, error) {
+	return r.ApiService.GetByIdExecute(r)
 }
 
 /*
-ProxiesGetById Method for ProxiesGetById
+GetById Method for GetById
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param id
- @return ApiProxiesGetByIdRequest
+ @return ProxiesApiGetByIdRequest
 */
-func (a *ProxiesApiService) ProxiesGetById(ctx context.Context, id string) ApiProxiesGetByIdRequest {
-	return ApiProxiesGetByIdRequest{
+func (a *ProxiesApiService) GetById(ctx context.Context, id string) ProxiesApiGetByIdRequest {
+	return ProxiesApiGetByIdRequest{
 		ApiService: a,
 		ctx: ctx,
 		id: id,
@@ -516,7 +516,7 @@ func (a *ProxiesApiService) ProxiesGetById(ctx context.Context, id string) ApiPr
 
 // Execute executes the request
 //  @return Proxy
-func (a *ProxiesApiService) ProxiesGetByIdExecute(r ApiProxiesGetByIdRequest) (*Proxy, *http.Response, error) {
+func (a *ProxiesApiService) GetByIdExecute(r ProxiesApiGetByIdRequest) (*Proxy, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -524,7 +524,7 @@ func (a *ProxiesApiService) ProxiesGetByIdExecute(r ApiProxiesGetByIdRequest) (*
 		localVarReturnValue  *Proxy
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ProxiesApiService.ProxiesGetById")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ProxiesApiService.GetById")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -633,31 +633,31 @@ func (a *ProxiesApiService) ProxiesGetByIdExecute(r ApiProxiesGetByIdRequest) (*
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiProxiesUpdateRequest struct {
+type ProxiesApiUpdateRequest struct {
 	ctx context.Context
 	ApiService *ProxiesApiService
 	id string
 	updateProxyRequest *UpdateProxyRequest
 }
 
-func (r ApiProxiesUpdateRequest) UpdateProxyRequest(updateProxyRequest UpdateProxyRequest) ApiProxiesUpdateRequest {
+func (r ProxiesApiUpdateRequest) UpdateProxyRequest(updateProxyRequest UpdateProxyRequest) ProxiesApiUpdateRequest {
 	r.updateProxyRequest = &updateProxyRequest
 	return r
 }
 
-func (r ApiProxiesUpdateRequest) Execute() (*Proxy, *http.Response, error) {
-	return r.ApiService.ProxiesUpdateExecute(r)
+func (r ProxiesApiUpdateRequest) Execute() (*Proxy, *http.Response, error) {
+	return r.ApiService.UpdateExecute(r)
 }
 
 /*
-ProxiesUpdate Method for ProxiesUpdate
+Update Method for Update
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param id
- @return ApiProxiesUpdateRequest
+ @return ProxiesApiUpdateRequest
 */
-func (a *ProxiesApiService) ProxiesUpdate(ctx context.Context, id string) ApiProxiesUpdateRequest {
-	return ApiProxiesUpdateRequest{
+func (a *ProxiesApiService) Update(ctx context.Context, id string) ProxiesApiUpdateRequest {
+	return ProxiesApiUpdateRequest{
 		ApiService: a,
 		ctx: ctx,
 		id: id,
@@ -666,7 +666,7 @@ func (a *ProxiesApiService) ProxiesUpdate(ctx context.Context, id string) ApiPro
 
 // Execute executes the request
 //  @return Proxy
-func (a *ProxiesApiService) ProxiesUpdateExecute(r ApiProxiesUpdateRequest) (*Proxy, *http.Response, error) {
+func (a *ProxiesApiService) UpdateExecute(r ProxiesApiUpdateRequest) (*Proxy, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPut
 		localVarPostBody     interface{}
@@ -674,7 +674,7 @@ func (a *ProxiesApiService) ProxiesUpdateExecute(r ApiProxiesUpdateRequest) (*Pr
 		localVarReturnValue  *Proxy
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ProxiesApiService.ProxiesUpdate")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ProxiesApiService.Update")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
