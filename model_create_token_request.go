@@ -23,6 +23,7 @@ type CreateTokenRequest struct {
 	Metadata map[string]string `json:"metadata,omitempty"`
 	SearchIndexes []string `json:"search_indexes,omitempty"`
 	FingerprintExpression NullableString `json:"fingerprint_expression,omitempty"`
+	DeduplicateToken NullableBool `json:"deduplicate_token,omitempty"`
 }
 
 // NewCreateTokenRequest instantiates a new CreateTokenRequest object
@@ -283,6 +284,48 @@ func (o *CreateTokenRequest) UnsetFingerprintExpression() {
 	o.FingerprintExpression.Unset()
 }
 
+// GetDeduplicateToken returns the DeduplicateToken field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *CreateTokenRequest) GetDeduplicateToken() bool {
+	if o == nil || o.DeduplicateToken.Get() == nil {
+		var ret bool
+		return ret
+	}
+	return *o.DeduplicateToken.Get()
+}
+
+// GetDeduplicateTokenOk returns a tuple with the DeduplicateToken field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *CreateTokenRequest) GetDeduplicateTokenOk() (*bool, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.DeduplicateToken.Get(), o.DeduplicateToken.IsSet()
+}
+
+// HasDeduplicateToken returns a boolean if a field has been set.
+func (o *CreateTokenRequest) HasDeduplicateToken() bool {
+	if o != nil && o.DeduplicateToken.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetDeduplicateToken gets a reference to the given NullableBool and assigns it to the DeduplicateToken field.
+func (o *CreateTokenRequest) SetDeduplicateToken(v bool) {
+	o.DeduplicateToken.Set(&v)
+}
+// SetDeduplicateTokenNil sets the value for DeduplicateToken to be an explicit nil
+func (o *CreateTokenRequest) SetDeduplicateTokenNil() {
+	o.DeduplicateToken.Set(nil)
+}
+
+// UnsetDeduplicateToken ensures that no value is present for DeduplicateToken, not even an explicit nil
+func (o *CreateTokenRequest) UnsetDeduplicateToken() {
+	o.DeduplicateToken.Unset()
+}
+
 func (o CreateTokenRequest) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.Type.IsSet() {
@@ -305,6 +348,9 @@ func (o CreateTokenRequest) MarshalJSON() ([]byte, error) {
 	}
 	if o.FingerprintExpression.IsSet() {
 		toSerialize["fingerprint_expression"] = o.FingerprintExpression.Get()
+	}
+	if o.DeduplicateToken.IsSet() {
+		toSerialize["deduplicate_token"] = o.DeduplicateToken.Get()
 	}
 	return json.Marshal(toSerialize)
 }

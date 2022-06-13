@@ -19,10 +19,11 @@ func TestTokenCRUD(t *testing.T) {
 	createTokenRequest := *basistheory.NewCreateTokenRequest(tokenData)
 	createTokenRequest.SetType(tokenType)
 	createTokenRequest.SetSearchIndexes(tokenSearchIndexes)
+	createTokenRequest.SetDeduplicateToken(false)
 
 	createdToken, response, err := apiClient.TokensApi.Create(contextWithAPIKey).CreateTokenRequest(createTokenRequest).Execute()
 
-	testutils.AssertMethodDidNotError(err, response, "TokensCreate", t)
+	testutils.AssertMethodDidNotError(err, response, "TokensApi Create", t)
 	testutils.AssertPropertiesMatch(createdToken.GetData(), nil, t)
 	testutils.AssertPropertiesMatch(createdToken.GetType(), tokenType, t)
 	testutils.AssertPropertiesMatch(createdToken.GetSearchIndexes(), tokenSearchIndexes, t)
@@ -31,7 +32,7 @@ func TestTokenCRUD(t *testing.T) {
 	var token *basistheory.Token
 	token, response, err = apiClient.TokensApi.GetById(contextWithAPIKey, createdToken.GetId()).Execute()
 
-	testutils.AssertMethodDidNotError(err, response, "TokensGetById", t)
+	testutils.AssertMethodDidNotError(err, response, "TokensApi GetById", t)
 	testutils.AssertPropertiesMatch(token.GetData(), tokenData, t)
 	testutils.AssertPropertiesMatch(token.GetType(), tokenType, t)
 	testutils.AssertPropertiesMatch(token.GetSearchIndexes(), tokenSearchIndexes, t)
@@ -40,7 +41,7 @@ func TestTokenCRUD(t *testing.T) {
 	var tokens *basistheory.TokenPaginatedList
 	tokens, response, err = apiClient.TokensApi.Get(contextWithAPIKey).Execute()
 
-	testutils.AssertMethodDidNotError(err, response, "TokensGet", t)
+	testutils.AssertMethodDidNotError(err, response, "TokensApi Get", t)
 	testutils.AssertPropertiesMatch(tokens.Data[0].GetData(), tokenData, t)
 	testutils.AssertPropertiesMatch(tokens.Data[0].GetType(), tokenType, t)
 	testutils.AssertPropertiesMatch(tokens.Data[0].GetSearchIndexes(), tokenSearchIndexes, t)
@@ -48,7 +49,7 @@ func TestTokenCRUD(t *testing.T) {
 	// DELETE
 	response, err = apiClient.TokensApi.Delete(contextWithAPIKey, createdToken.GetId()).Execute()
 
-	testutils.AssertMethodDidNotError(err, response, "TokensDelete", t)
+	testutils.AssertMethodDidNotError(err, response, "TokensApi Delete", t)
 
 	_, _, err = apiClient.TokensApi.GetById(contextWithAPIKey, createdToken.GetId()).Execute()
 

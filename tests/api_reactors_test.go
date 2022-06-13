@@ -17,13 +17,13 @@ func TestReactorCRUD(t *testing.T) {
 
 	createdReactorFormula, response, err := apiClient.ReactorFormulasApi.Create(contextWithAPIKey).CreateReactorFormulaRequest(createReactorFormulaRequest).Execute()
 
-	testutils.AssertMethodDidNotError(err, response, "ReactorFormulaCreate", t)
+	testutils.AssertMethodDidNotError(err, response, "ReactorFormulasApi Create", t)
 
 	createApplicationRequest := *basistheory.NewCreateApplicationRequest("Go Test App", "server_to_server")
 
 	createdApplication, response, err := apiClient.ApplicationsApi.Create(contextWithAPIKey).CreateApplicationRequest(createApplicationRequest).Execute()
 
-	testutils.AssertMethodDidNotError(err, response, "ApplicationCreate", t)
+	testutils.AssertMethodDidNotError(err, response, "ApplicationsApi Create", t)
 
 	// CREATE
 	reactorName := "Go Test Reactor"
@@ -34,7 +34,7 @@ func TestReactorCRUD(t *testing.T) {
 	var createdReactor *basistheory.Reactor
 	createdReactor, response, err = apiClient.ReactorsApi.Create(contextWithAPIKey).CreateReactorRequest(createReactorRequest).Execute()
 
-	testutils.AssertMethodDidNotError(err, response, "ReactorCreate", t)
+	testutils.AssertMethodDidNotError(err, response, "ReactorsApi Create", t)
 	testutils.AssertPropertiesMatch(createdReactor.GetName(), reactorName, t)
 	testutils.AssertPropertiesMatch(createdReactor.Formula, createdReactorFormula, t, basistheory.NullableString{}, basistheory.NullableTime{})
 
@@ -42,7 +42,7 @@ func TestReactorCRUD(t *testing.T) {
 	var reactor *basistheory.Reactor
 	reactor, response, err = apiClient.ReactorsApi.GetById(contextWithAPIKey, createdReactor.GetId()).Execute()
 
-	testutils.AssertMethodDidNotError(err, response, "ReactorGetById", t)
+	testutils.AssertMethodDidNotError(err, response, "ReactorsApi GetById", t)
 	testutils.AssertPropertiesMatch(reactor.GetName(), reactorName, t)
 	testutils.AssertPropertiesMatch(reactor.Formula, createdReactorFormula, t, basistheory.NullableString{}, basistheory.NullableTime{})
 
@@ -50,7 +50,7 @@ func TestReactorCRUD(t *testing.T) {
 	var reactors *basistheory.ReactorPaginatedList
 	reactors, response, err = apiClient.ReactorsApi.Get(contextWithAPIKey).Execute()
 
-	testutils.AssertMethodDidNotError(err, response, "ReactorsGet", t)
+	testutils.AssertMethodDidNotError(err, response, "ReactorsApi sGet", t)
 	testutils.AssertPropertiesMatch(reactors.Data[0].GetName(), reactorName, t)
 	testutils.AssertPropertiesMatch(reactors.Data[0].Formula, createdReactorFormula, t, basistheory.NullableString{}, basistheory.NullableTime{})
 
@@ -61,14 +61,14 @@ func TestReactorCRUD(t *testing.T) {
 
 	var updatedReactor *basistheory.Reactor
 	updatedReactor, response, err = apiClient.ReactorsApi.Update(contextWithAPIKey, createdReactor.GetId()).UpdateReactorRequest(updateReactorRequest).Execute()
-	testutils.AssertMethodDidNotError(err, response, "ReactorUpdate", t)
+	testutils.AssertMethodDidNotError(err, response, "ReactorsApi Update", t)
 
 	testutils.AssertPropertiesMatch(updatedReactor.GetName(), updatedReactorName, t)
 
 	// DELETE
 	response, err = apiClient.ReactorsApi.Delete(contextWithAPIKey, createdReactor.GetId()).Execute()
 
-	testutils.AssertMethodDidNotError(err, response, "ReactorDelete", t)
+	testutils.AssertMethodDidNotError(err, response, "ReactorsApi Delete", t)
 
 	_, _, err = apiClient.ReactorsApi.GetById(contextWithAPIKey, createdReactor.GetId()).Execute()
 
@@ -88,7 +88,7 @@ func TestReactorReact(t *testing.T) {
 
 	createdReactorFormula, response, err := apiClient.ReactorFormulasApi.Create(contextWithAPIKey).CreateReactorFormulaRequest(createReactorFormulaRequest).Execute()
 
-	testutils.AssertMethodDidNotError(err, response, "ReactorFormulaCreate", t)
+	testutils.AssertMethodDidNotError(err, response, "ReactorsApi FormulasApi Create", t)
 
 	reactorName := "Go Test Reactor"
 
@@ -97,7 +97,7 @@ func TestReactorReact(t *testing.T) {
 	var createdReactor *basistheory.Reactor
 	createdReactor, response, err = apiClient.ReactorsApi.Create(contextWithAPIKey).CreateReactorRequest(createReactorRequest).Execute()
 
-	testutils.AssertMethodDidNotError(err, response, "ReactorCreate", t)
+	testutils.AssertMethodDidNotError(err, response, "ReactorsApi Create", t)
 
 	apiClient, contextWithAPIKey = testutils.CreateApiAndSrvrContext(t)
 	reactRequest := basistheory.ReactRequest{}
@@ -107,7 +107,7 @@ func TestReactorReact(t *testing.T) {
 	var reactResponse *basistheory.ReactResponse
 	reactResponse, response, err = apiClient.ReactorsApi.React(contextWithAPIKey, createdReactor.GetId()).ReactRequest(reactRequest).Execute()
 
-	testutils.AssertMethodDidNotError(err, response, "ReactorReact", t)
+	testutils.AssertMethodDidNotError(err, response, "ReactorsApi React", t)
 	testutils.AssertPropertiesMatch(reactResponse.Raw, "Goodbye World", t)
 
 	apiClient, contextWithAPIKey = testutils.CreateApiAndMgmtContext(t)

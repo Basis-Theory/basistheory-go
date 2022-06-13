@@ -24,6 +24,7 @@ type Tenant struct {
 	CreatedAt NullableTime `json:"created_at,omitempty"`
 	ModifiedBy NullableString `json:"modified_by,omitempty"`
 	ModifiedAt NullableTime `json:"modified_at,omitempty"`
+	Settings map[string]string `json:"settings,omitempty"`
 }
 
 // NewTenant instantiates a new Tenant object
@@ -317,6 +318,39 @@ func (o *Tenant) UnsetModifiedAt() {
 	o.ModifiedAt.Unset()
 }
 
+// GetSettings returns the Settings field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *Tenant) GetSettings() map[string]string {
+	if o == nil {
+		var ret map[string]string
+		return ret
+	}
+	return o.Settings
+}
+
+// GetSettingsOk returns a tuple with the Settings field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *Tenant) GetSettingsOk() (*map[string]string, bool) {
+	if o == nil || o.Settings == nil {
+		return nil, false
+	}
+	return &o.Settings, true
+}
+
+// HasSettings returns a boolean if a field has been set.
+func (o *Tenant) HasSettings() bool {
+	if o != nil && o.Settings != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetSettings gets a reference to the given map[string]string and assigns it to the Settings field.
+func (o *Tenant) SetSettings(v map[string]string) {
+	o.Settings = v
+}
+
 func (o Tenant) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.Id != nil {
@@ -339,6 +373,9 @@ func (o Tenant) MarshalJSON() ([]byte, error) {
 	}
 	if o.ModifiedAt.IsSet() {
 		toSerialize["modified_at"] = o.ModifiedAt.Get()
+	}
+	if o.Settings != nil {
+		toSerialize["settings"] = o.Settings
 	}
 	return json.Marshal(toSerialize)
 }

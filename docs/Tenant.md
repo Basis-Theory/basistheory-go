@@ -11,6 +11,7 @@ Name | Type | Description | Notes
 **CreatedAt** | Pointer to **NullableTime** |  | [optional] 
 **ModifiedBy** | Pointer to **NullableString** |  | [optional] 
 **ModifiedAt** | Pointer to **NullableTime** |  | [optional] 
+**Settings** | Pointer to **map[string]string** |  | [optional] 
 
 ## Methods
 
@@ -256,6 +257,41 @@ HasModifiedAt returns a boolean if a field has been set.
 `func (o *Tenant) UnsetModifiedAt()`
 
 UnsetModifiedAt ensures that no value is present for ModifiedAt, not even an explicit nil
+### GetSettings
+
+`func (o *Tenant) GetSettings() map[string]string`
+
+GetSettings returns the Settings field if non-nil, zero value otherwise.
+
+### GetSettingsOk
+
+`func (o *Tenant) GetSettingsOk() (*map[string]string, bool)`
+
+GetSettingsOk returns a tuple with the Settings field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetSettings
+
+`func (o *Tenant) SetSettings(v map[string]string)`
+
+SetSettings sets Settings field to given value.
+
+### HasSettings
+
+`func (o *Tenant) HasSettings() bool`
+
+HasSettings returns a boolean if a field has been set.
+
+### SetSettingsNil
+
+`func (o *Tenant) SetSettingsNil(b bool)`
+
+ SetSettingsNil sets the value for Settings to be an explicit nil
+
+### UnsetSettings
+`func (o *Tenant) UnsetSettings()`
+
+UnsetSettings ensures that no value is present for Settings, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

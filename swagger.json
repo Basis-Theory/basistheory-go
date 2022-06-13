@@ -4382,6 +4382,10 @@
           "fingerprint_expression": {
             "type": "string",
             "nullable": true
+          },
+          "deduplicate_token": {
+            "type": "boolean",
+            "nullable": true
           }
         },
         "additionalProperties": false
@@ -5126,6 +5130,14 @@
           "modified_at": {
             "type": "string",
             "format": "date-time",
+            "nullable": true
+          },
+          "settings": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "string",
+              "nullable": true
+            },
             "nullable": true
           }
         },

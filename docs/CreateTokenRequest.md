@@ -11,6 +11,7 @@ Name | Type | Description | Notes
 **Metadata** | Pointer to **map[string]string** |  | [optional] 
 **SearchIndexes** | Pointer to **[]string** |  | [optional] 
 **FingerprintExpression** | Pointer to **NullableString** |  | [optional] 
+**DeduplicateToken** | Pointer to **NullableBool** |  | [optional] 
 
 ## Methods
 
@@ -251,6 +252,41 @@ HasFingerprintExpression returns a boolean if a field has been set.
 `func (o *CreateTokenRequest) UnsetFingerprintExpression()`
 
 UnsetFingerprintExpression ensures that no value is present for FingerprintExpression, not even an explicit nil
+### GetDeduplicateToken
+
+`func (o *CreateTokenRequest) GetDeduplicateToken() bool`
+
+GetDeduplicateToken returns the DeduplicateToken field if non-nil, zero value otherwise.
+
+### GetDeduplicateTokenOk
+
+`func (o *CreateTokenRequest) GetDeduplicateTokenOk() (*bool, bool)`
+
+GetDeduplicateTokenOk returns a tuple with the DeduplicateToken field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetDeduplicateToken
+
+`func (o *CreateTokenRequest) SetDeduplicateToken(v bool)`
+
+SetDeduplicateToken sets DeduplicateToken field to given value.
+
+### HasDeduplicateToken
+
+`func (o *CreateTokenRequest) HasDeduplicateToken() bool`
+
+HasDeduplicateToken returns a boolean if a field has been set.
+
+### SetDeduplicateTokenNil
+
+`func (o *CreateTokenRequest) SetDeduplicateTokenNil(b bool)`
+
+ SetDeduplicateTokenNil sets the value for DeduplicateToken to be an explicit nil
+
+### UnsetDeduplicateToken
+`func (o *CreateTokenRequest) UnsetDeduplicateToken()`
+
+UnsetDeduplicateToken ensures that no value is present for DeduplicateToken, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 
