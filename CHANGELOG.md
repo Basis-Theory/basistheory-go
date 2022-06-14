@@ -1,3 +1,10 @@
+# [3.1.0](https://github.com/Basis-Theory/basistheory-go/compare/v3.0.0...v3.1.0) (2022-06-14)
+
+
+### Features
+
+* adds deduplicate_token on Tokens. adds settings on Tenants ([#40](https://github.com/Basis-Theory/basistheory-go/issues/40)) ([ec1b574](https://github.com/Basis-Theory/basistheory-go/commit/ec1b574b146bcaf331d97e0c6329b7b04d9179c6))
+
 # [3.0.0](https://github.com/Basis-Theory/basistheory-go/compare/v2.0.1...v3.0.0) (2022-06-10)
 
 
