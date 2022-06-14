@@ -12,5 +12,5 @@ func TestPermissionsCRUD(t *testing.T) {
 	// GET Permissions
 	_, response, err := apiClient.PermissionsApi.Get(contextWithAPIKey).Execute()
 
-	testutils.AssertMethodDidNotError(err, response, "PermissionsGet", t)
+	testutils.AssertMethodDidNotError(err, response, "PermissionsApi Get", t)
 }

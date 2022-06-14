@@ -39,9 +39,9 @@ os.Setenv("HTTP_PROXY", "http://proxy_name:proxy_port")
 
 ## Running tests locally
 
-To run tests locally, you'll need to create a server and management BT Application and add those `key` to a `.env.local`.
-You'll want to follow the same format as outlined on `.env.example`. Then you can run `make verify` from the root to run
-all tests.
+To run tests locally, you'll need to create a server and management BT Application with all permissions and add those `key`'s
+to a `.env.local`. You'll want to follow the same format as outlined on `.env.example`. Then you can run `make verify` from
+the root to run all tests.
 
 ## Configuration of Server URL
 

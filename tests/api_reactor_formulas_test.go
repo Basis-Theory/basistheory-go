@@ -19,7 +19,7 @@ func TestReactorFormulaCRUD(t *testing.T) {
 
 	createdReactorFormula, response, err := apiClient.ReactorFormulasApi.Create(contextWithAPIKey).CreateReactorFormulaRequest(createReactorFormulaRequest).Execute()
 
-	testutils.AssertMethodDidNotError(err, response, "ReactorFormulaCreate", t)
+	testutils.AssertMethodDidNotError(err, response, "ReactorFormulasApi Create", t)
 	testutils.AssertPropertiesMatch(createdReactorFormula.GetName(), reactorFormulaName, t)
 	testutils.AssertPropertiesMatch(createdReactorFormula.GetCode(), reactorFormulaCode, t)
 
@@ -27,7 +27,7 @@ func TestReactorFormulaCRUD(t *testing.T) {
 	var reactorFormula *basistheory.ReactorFormula
 	reactorFormula, response, err = apiClient.ReactorFormulasApi.GetById(contextWithAPIKey, createdReactorFormula.GetId()).Execute()
 
-	testutils.AssertMethodDidNotError(err, response, "ReactorFormulaGetById", t)
+	testutils.AssertMethodDidNotError(err, response, "ReactorFormulasApi GetById", t)
 	testutils.AssertPropertiesMatch(reactorFormula.GetName(), reactorFormulaName, t)
 	testutils.AssertPropertiesMatch(reactorFormula.GetCode(), reactorFormulaCode, t)
 
@@ -35,7 +35,7 @@ func TestReactorFormulaCRUD(t *testing.T) {
 	var reactorFormulas *basistheory.ReactorFormulaPaginatedList
 	reactorFormulas, response, err = apiClient.ReactorFormulasApi.Get(contextWithAPIKey).Execute()
 
-	testutils.AssertMethodDidNotError(err, response, "ReactorFormulasGet", t)
+	testutils.AssertMethodDidNotError(err, response, "ReactorFormulasApi sGet", t)
 	testutils.AssertPropertiesMatch(reactorFormulas.Data[0].GetName(), reactorFormulaName, t)
 	testutils.AssertPropertiesMatch(reactorFormulas.Data[0].GetCode(), reactorFormulaCode, t)
 
@@ -48,14 +48,14 @@ func TestReactorFormulaCRUD(t *testing.T) {
 	var updatedReactorFormula *basistheory.ReactorFormula
 	updatedReactorFormula, response, err = apiClient.ReactorFormulasApi.Update(contextWithAPIKey, createdReactorFormula.GetId()).UpdateReactorFormulaRequest(updateReactorFormulaRequest).Execute()
 
-	testutils.AssertMethodDidNotError(err, response, "ReactorFormulaUpdate", t)
+	testutils.AssertMethodDidNotError(err, response, "ReactorFormulasApi Update", t)
 	testutils.AssertPropertiesMatch(updatedReactorFormula.GetName(), updatedReactorFormulaName, t)
 	testutils.AssertPropertiesMatch(updatedReactorFormula.GetCode(), updatedReactorFormulaCode, t)
 
 	// DELETE
 	_, err = apiClient.ReactorFormulasApi.Delete(contextWithAPIKey, createdReactorFormula.GetId()).Execute()
 
-	testutils.AssertMethodDidNotError(err, response, "ReactorFormulaDelete", t)
+	testutils.AssertMethodDidNotError(err, response, "ReactorFormulasApi Delete", t)
 
 	_, _, err = apiClient.ReactorFormulasApi.GetById(contextWithAPIKey, createdReactorFormula.GetId()).Execute()
 

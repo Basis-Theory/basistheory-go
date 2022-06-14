@@ -3161,6 +3161,7 @@ components:
             prov: prov
             alg: alg
             key: key
+        deduplicate_token: true
         privacy:
           restriction_policy: restriction_policy
           impact_level: impact_level
@@ -3192,6 +3193,9 @@ components:
         fingerprint_expression:
           nullable: true
           type: string
+        deduplicate_token:
+          nullable: true
+          type: boolean
       required:
       - data
       type: object
@@ -4110,6 +4114,8 @@ components:
     Tenant:
       additionalProperties: false
       example:
+        settings:
+          key: settings
         owner_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
         name: name
         modified_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
@@ -4143,6 +4149,12 @@ components:
           format: date-time
           nullable: true
           type: string
+        settings:
+          additionalProperties:
+            nullable: true
+            type: string
+          nullable: true
+          type: object
       type: object
     TenantInvitationResponse:
       additionalProperties: false

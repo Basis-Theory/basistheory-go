@@ -24,13 +24,13 @@ func TestApplicationCRUD(t *testing.T) {
 
 	createdApplication, response, err := apiClient.ApplicationsApi.Create(contextWithAPIKey).CreateApplicationRequest(createApplicationRequest).Execute()
 
-	testutils.AssertMethodDidNotError(err, response, "ApplicationCreate", t)
+	testutils.AssertMethodDidNotError(err, response, "ApplicationsApi Create", t)
 
 	// GET BY ID
 	var application *basistheory.Application
 	application, response, err = apiClient.ApplicationsApi.GetById(contextWithAPIKey, createdApplication.GetId()).Execute()
 
-	testutils.AssertMethodDidNotError(err, response, "ApplicationGetById", t)
+	testutils.AssertMethodDidNotError(err, response, "ApplicationsApi GetById", t)
 	testutils.AssertPropertiesMatch(application.GetName(), applicationName, t)
 	testutils.AssertPropertiesMatch(application.GetType(), applicationType, t)
 	testutils.AssertPropertiesMatch(application.Permissions, applicationPermissions, t)
@@ -39,7 +39,7 @@ func TestApplicationCRUD(t *testing.T) {
 	var applications *basistheory.ApplicationPaginatedList
 	applications, response, err = apiClient.ApplicationsApi.Get(contextWithAPIKey).Execute()
 
-	testutils.AssertMethodDidNotError(err, response, "ApplicationsGet", t)
+	testutils.AssertMethodDidNotError(err, response, "ApplicationsApi sGet", t)
 	testutils.AssertPropertiesMatch(applications.Data[0].GetName(), applicationName, t)
 	testutils.AssertPropertiesMatch(applications.Data[0].GetType(), applicationType, t)
 	testutils.AssertPropertiesMatch(applications.Data[0].GetPermissions(), applicationPermissions, t)
@@ -54,14 +54,14 @@ func TestApplicationCRUD(t *testing.T) {
 	var updatedApplication *basistheory.Application
 	updatedApplication, response, err = apiClient.ApplicationsApi.Update(contextWithAPIKey, createdApplication.GetId()).UpdateApplicationRequest(updateApplicationRequest).Execute()
 
-	testutils.AssertMethodDidNotError(err, response, "ApplicationUpdate", t)
+	testutils.AssertMethodDidNotError(err, response, "ApplicationsApi Update", t)
 	testutils.AssertPropertiesMatch(updatedApplication.GetName(), updatedApplicationName, t)
 	testutils.AssertPropertiesMatch(updatedApplication.GetPermissions(), updatedApplicationPermissions, t)
 
 	// DELETE
 	response, err = apiClient.ApplicationsApi.Delete(contextWithAPIKey, createdApplication.GetId()).Execute()
 
-	testutils.AssertMethodDidNotError(err, response, "ApplicationDelete", t)
+	testutils.AssertMethodDidNotError(err, response, "ApplicationsApi Delete", t)
 
 	_, _, err = apiClient.ApplicationsApi.GetById(contextWithAPIKey, createdApplication.GetId()).Execute()
 
@@ -78,12 +78,12 @@ func TestApplicationRegenerate(t *testing.T) {
 
 	createdApplication, response, err := apiClient.ApplicationsApi.Create(contextWithAPIKey).CreateApplicationRequest(createApplicationRequest).Execute()
 
-	testutils.AssertMethodDidNotError(err, response, "ApplicationCreate", t)
+	testutils.AssertMethodDidNotError(err, response, "ApplicationsApi Create", t)
 
 	var regeneratedApplication *basistheory.Application
 	regeneratedApplication, response, err = apiClient.ApplicationsApi.RegenerateKey(contextWithAPIKey, createdApplication.GetId()).Execute()
 
-	testutils.AssertMethodDidNotError(err, response, "ApplicationRegenerate", t)
+	testutils.AssertMethodDidNotError(err, response, "ApplicationsApi Regenerate", t)
 	testutils.AssertPropertiesDoNotMatch(regeneratedApplication.GetKey(), createdApplication.GetKey(), t)
 
 	_, _ = apiClient.ApplicationsApi.Delete(contextWithAPIKey, createdApplication.GetId()).Execute()
@@ -99,7 +99,7 @@ func TestApplicationKey(t *testing.T) {
 
 	createdApplication, response, err := apiClient.ApplicationsApi.Create(contextWithAPIKey).CreateApplicationRequest(createApplicationRequest).Execute()
 
-	testutils.AssertMethodDidNotError(err, response, "ApplicationCreate", t)
+	testutils.AssertMethodDidNotError(err, response, "ApplicationsApi Create", t)
 
 	contextWithCreatedAppAPIKey := context.WithValue(context.Background(), basistheory.ContextAPIKeys, map[string]basistheory.APIKey{
 		"ApiKey": {Key: *createdApplication.Key.Get()},
@@ -108,7 +108,7 @@ func TestApplicationKey(t *testing.T) {
 	var applicationFromApplicationKey *basistheory.Application
 	applicationFromApplicationKey, response, err = apiClient.ApplicationsApi.GetByKey(contextWithCreatedAppAPIKey).Execute()
 
-	testutils.AssertMethodDidNotError(err, response, "ApplicationKey", t)
+	testutils.AssertMethodDidNotError(err, response, "ApplicationsApi Key", t)
 
 	applicationFromApplicationKey.SetKey(*createdApplication.Key.Get())
 
