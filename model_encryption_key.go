@@ -16,9 +16,9 @@ import (
 
 // EncryptionKey struct for EncryptionKey
 type EncryptionKey struct {
-	Key string `json:"key"`
+	Key  string         `json:"key"`
 	Prov NullableString `json:"prov,omitempty"`
-	Alg NullableString `json:"alg,omitempty"`
+	Alg  NullableString `json:"alg,omitempty"`
 }
 
 // NewEncryptionKey instantiates a new EncryptionKey object
@@ -95,6 +95,7 @@ func (o *EncryptionKey) HasProv() bool {
 func (o *EncryptionKey) SetProv(v string) {
 	o.Prov.Set(&v)
 }
+
 // SetProvNil sets the value for Prov to be an explicit nil
 func (o *EncryptionKey) SetProvNil() {
 	o.Prov.Set(nil)
@@ -137,6 +138,7 @@ func (o *EncryptionKey) HasAlg() bool {
 func (o *EncryptionKey) SetAlg(v string) {
 	o.Alg.Set(&v)
 }
+
 // SetAlgNil sets the value for Alg to be an explicit nil
 func (o *EncryptionKey) SetAlgNil() {
 	o.Alg.Set(nil)
@@ -196,5 +198,3 @@ func (v *NullableEncryptionKey) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

@@ -17,16 +17,16 @@ import (
 
 // AtomicBank struct for AtomicBank
 type AtomicBank struct {
-	Id *string `json:"id,omitempty"`
-	TenantId NullableString `json:"tenant_id,omitempty"`
-	Bank *Bank `json:"bank,omitempty"`
-	Type NullableString `json:"type,omitempty"`
-	Fingerprint NullableString `json:"fingerprint,omitempty"`
-	Metadata map[string]string `json:"metadata,omitempty"`
-	CreatedBy NullableString `json:"created_by,omitempty"`
-	CreatedAt NullableTime `json:"created_at,omitempty"`
-	ModifiedBy NullableString `json:"modified_by,omitempty"`
-	ModifiedAt NullableTime `json:"modified_at,omitempty"`
+	Id          *string           `json:"id,omitempty"`
+	TenantId    NullableString    `json:"tenant_id,omitempty"`
+	Bank        *Bank             `json:"bank,omitempty"`
+	Type        NullableString    `json:"type,omitempty"`
+	Fingerprint NullableString    `json:"fingerprint,omitempty"`
+	Metadata    map[string]string `json:"metadata,omitempty"`
+	CreatedBy   NullableString    `json:"created_by,omitempty"`
+	CreatedAt   NullableTime      `json:"created_at,omitempty"`
+	ModifiedBy  NullableString    `json:"modified_by,omitempty"`
+	ModifiedAt  NullableTime      `json:"modified_at,omitempty"`
 }
 
 // NewAtomicBank instantiates a new AtomicBank object
@@ -110,6 +110,7 @@ func (o *AtomicBank) HasTenantId() bool {
 func (o *AtomicBank) SetTenantId(v string) {
 	o.TenantId.Set(&v)
 }
+
 // SetTenantIdNil sets the value for TenantId to be an explicit nil
 func (o *AtomicBank) SetTenantIdNil() {
 	o.TenantId.Set(nil)
@@ -184,6 +185,7 @@ func (o *AtomicBank) HasType() bool {
 func (o *AtomicBank) SetType(v string) {
 	o.Type.Set(&v)
 }
+
 // SetTypeNil sets the value for Type to be an explicit nil
 func (o *AtomicBank) SetTypeNil() {
 	o.Type.Set(nil)
@@ -226,6 +228,7 @@ func (o *AtomicBank) HasFingerprint() bool {
 func (o *AtomicBank) SetFingerprint(v string) {
 	o.Fingerprint.Set(&v)
 }
+
 // SetFingerprintNil sets the value for Fingerprint to be an explicit nil
 func (o *AtomicBank) SetFingerprintNil() {
 	o.Fingerprint.Set(nil)
@@ -301,6 +304,7 @@ func (o *AtomicBank) HasCreatedBy() bool {
 func (o *AtomicBank) SetCreatedBy(v string) {
 	o.CreatedBy.Set(&v)
 }
+
 // SetCreatedByNil sets the value for CreatedBy to be an explicit nil
 func (o *AtomicBank) SetCreatedByNil() {
 	o.CreatedBy.Set(nil)
@@ -343,6 +347,7 @@ func (o *AtomicBank) HasCreatedAt() bool {
 func (o *AtomicBank) SetCreatedAt(v time.Time) {
 	o.CreatedAt.Set(&v)
 }
+
 // SetCreatedAtNil sets the value for CreatedAt to be an explicit nil
 func (o *AtomicBank) SetCreatedAtNil() {
 	o.CreatedAt.Set(nil)
@@ -385,6 +390,7 @@ func (o *AtomicBank) HasModifiedBy() bool {
 func (o *AtomicBank) SetModifiedBy(v string) {
 	o.ModifiedBy.Set(&v)
 }
+
 // SetModifiedByNil sets the value for ModifiedBy to be an explicit nil
 func (o *AtomicBank) SetModifiedByNil() {
 	o.ModifiedBy.Set(nil)
@@ -427,6 +433,7 @@ func (o *AtomicBank) HasModifiedAt() bool {
 func (o *AtomicBank) SetModifiedAt(v time.Time) {
 	o.ModifiedAt.Set(&v)
 }
+
 // SetModifiedAtNil sets the value for ModifiedAt to be an explicit nil
 func (o *AtomicBank) SetModifiedAtNil() {
 	o.ModifiedAt.Set(nil)
@@ -507,5 +514,3 @@ func (v *NullableAtomicBank) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

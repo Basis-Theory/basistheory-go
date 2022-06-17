@@ -16,17 +16,16 @@ import (
 	"io/ioutil"
 	"net/http"
 	"net/url"
-	"strings"
 	"reflect"
+	"strings"
 )
-
 
 // TenantsApiService TenantsApi service
 type TenantsApiService service
 
 type TenantsApiCreateInvitationRequest struct {
-	ctx context.Context
-	ApiService *TenantsApiService
+	ctx                           context.Context
+	ApiService                    *TenantsApiService
 	createTenantInvitationRequest *CreateTenantInvitationRequest
 }
 
@@ -48,7 +47,7 @@ CreateInvitation Method for CreateInvitation
 func (a *TenantsApiService) CreateInvitation(ctx context.Context) TenantsApiCreateInvitationRequest {
 	return TenantsApiCreateInvitationRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 	}
 }
 
@@ -56,10 +55,10 @@ func (a *TenantsApiService) CreateInvitation(ctx context.Context) TenantsApiCrea
 //  @return TenantInvitationResponse
 func (a *TenantsApiService) CreateInvitationExecute(r TenantsApiCreateInvitationRequest) (*TenantInvitationResponse, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodPost
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *TenantInvitationResponse
+		localVarHTTPMethod  = http.MethodPost
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *TenantInvitationResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "TenantsApiService.CreateInvitation")
@@ -173,7 +172,7 @@ func (a *TenantsApiService) CreateInvitationExecute(r TenantsApiCreateInvitation
 }
 
 type TenantsApiDeleteRequest struct {
-	ctx context.Context
+	ctx        context.Context
 	ApiService *TenantsApiService
 }
 
@@ -190,16 +189,16 @@ Delete Method for Delete
 func (a *TenantsApiService) Delete(ctx context.Context) TenantsApiDeleteRequest {
 	return TenantsApiDeleteRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 	}
 }
 
 // Execute executes the request
 func (a *TenantsApiService) DeleteExecute(r TenantsApiDeleteRequest) (*http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodDelete
-		localVarPostBody     interface{}
-		formFiles            []formFile
+		localVarHTTPMethod = http.MethodDelete
+		localVarPostBody   interface{}
+		formFiles          []formFile
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "TenantsApiService.Delete")
@@ -302,8 +301,8 @@ func (a *TenantsApiService) DeleteExecute(r TenantsApiDeleteRequest) (*http.Resp
 }
 
 type TenantsApiDeleteInvitationRequest struct {
-	ctx context.Context
-	ApiService *TenantsApiService
+	ctx          context.Context
+	ApiService   *TenantsApiService
 	invitationId string
 }
 
@@ -320,8 +319,8 @@ DeleteInvitation Method for DeleteInvitation
 */
 func (a *TenantsApiService) DeleteInvitation(ctx context.Context, invitationId string) TenantsApiDeleteInvitationRequest {
 	return TenantsApiDeleteInvitationRequest{
-		ApiService: a,
-		ctx: ctx,
+		ApiService:   a,
+		ctx:          ctx,
 		invitationId: invitationId,
 	}
 }
@@ -329,9 +328,9 @@ func (a *TenantsApiService) DeleteInvitation(ctx context.Context, invitationId s
 // Execute executes the request
 func (a *TenantsApiService) DeleteInvitationExecute(r TenantsApiDeleteInvitationRequest) (*http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodDelete
-		localVarPostBody     interface{}
-		formFiles            []formFile
+		localVarHTTPMethod = http.MethodDelete
+		localVarPostBody   interface{}
+		formFiles          []formFile
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "TenantsApiService.DeleteInvitation")
@@ -435,9 +434,9 @@ func (a *TenantsApiService) DeleteInvitationExecute(r TenantsApiDeleteInvitation
 }
 
 type TenantsApiDeleteMemberRequest struct {
-	ctx context.Context
+	ctx        context.Context
 	ApiService *TenantsApiService
-	memberId string
+	memberId   string
 }
 
 func (r TenantsApiDeleteMemberRequest) Execute() (*http.Response, error) {
@@ -454,17 +453,17 @@ DeleteMember Method for DeleteMember
 func (a *TenantsApiService) DeleteMember(ctx context.Context, memberId string) TenantsApiDeleteMemberRequest {
 	return TenantsApiDeleteMemberRequest{
 		ApiService: a,
-		ctx: ctx,
-		memberId: memberId,
+		ctx:        ctx,
+		memberId:   memberId,
 	}
 }
 
 // Execute executes the request
 func (a *TenantsApiService) DeleteMemberExecute(r TenantsApiDeleteMemberRequest) (*http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodDelete
-		localVarPostBody     interface{}
-		formFiles            []formFile
+		localVarHTTPMethod = http.MethodDelete
+		localVarPostBody   interface{}
+		formFiles          []formFile
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "TenantsApiService.DeleteMember")
@@ -578,7 +577,7 @@ func (a *TenantsApiService) DeleteMemberExecute(r TenantsApiDeleteMemberRequest)
 }
 
 type TenantsApiGetRequest struct {
-	ctx context.Context
+	ctx        context.Context
 	ApiService *TenantsApiService
 }
 
@@ -595,7 +594,7 @@ Get Method for Get
 func (a *TenantsApiService) Get(ctx context.Context) TenantsApiGetRequest {
 	return TenantsApiGetRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 	}
 }
 
@@ -603,10 +602,10 @@ func (a *TenantsApiService) Get(ctx context.Context) TenantsApiGetRequest {
 //  @return Tenant
 func (a *TenantsApiService) GetExecute(r TenantsApiGetRequest) (*Tenant, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodGet
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *Tenant
+		localVarHTTPMethod  = http.MethodGet
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *Tenant
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "TenantsApiService.Get")
@@ -718,11 +717,11 @@ func (a *TenantsApiService) GetExecute(r TenantsApiGetRequest) (*Tenant, *http.R
 }
 
 type TenantsApiGetInvitationsRequest struct {
-	ctx context.Context
+	ctx        context.Context
 	ApiService *TenantsApiService
-	status *TenantInvitationStatus
-	page *int32
-	size *int32
+	status     *TenantInvitationStatus
+	page       *int32
+	size       *int32
 }
 
 func (r TenantsApiGetInvitationsRequest) Status(status TenantInvitationStatus) TenantsApiGetInvitationsRequest {
@@ -753,7 +752,7 @@ GetInvitations Method for GetInvitations
 func (a *TenantsApiService) GetInvitations(ctx context.Context) TenantsApiGetInvitationsRequest {
 	return TenantsApiGetInvitationsRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 	}
 }
 
@@ -761,10 +760,10 @@ func (a *TenantsApiService) GetInvitations(ctx context.Context) TenantsApiGetInv
 //  @return TenantInvitationResponsePaginatedList
 func (a *TenantsApiService) GetInvitationsExecute(r TenantsApiGetInvitationsRequest) (*TenantInvitationResponsePaginatedList, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodGet
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *TenantInvitationResponsePaginatedList
+		localVarHTTPMethod  = http.MethodGet
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *TenantInvitationResponsePaginatedList
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "TenantsApiService.GetInvitations")
@@ -875,11 +874,11 @@ func (a *TenantsApiService) GetInvitationsExecute(r TenantsApiGetInvitationsRequ
 }
 
 type TenantsApiGetMembersRequest struct {
-	ctx context.Context
+	ctx        context.Context
 	ApiService *TenantsApiService
-	userId *[]string
-	page *int32
-	size *int32
+	userId     *[]string
+	page       *int32
+	size       *int32
 }
 
 func (r TenantsApiGetMembersRequest) UserId(userId []string) TenantsApiGetMembersRequest {
@@ -910,7 +909,7 @@ GetMembers Method for GetMembers
 func (a *TenantsApiService) GetMembers(ctx context.Context) TenantsApiGetMembersRequest {
 	return TenantsApiGetMembersRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 	}
 }
 
@@ -918,10 +917,10 @@ func (a *TenantsApiService) GetMembers(ctx context.Context) TenantsApiGetMembers
 //  @return TenantMemberResponsePaginatedList
 func (a *TenantsApiService) GetMembersExecute(r TenantsApiGetMembersRequest) (*TenantMemberResponsePaginatedList, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodGet
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *TenantMemberResponsePaginatedList
+		localVarHTTPMethod  = http.MethodGet
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *TenantMemberResponsePaginatedList
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "TenantsApiService.GetMembers")
@@ -1040,7 +1039,7 @@ func (a *TenantsApiService) GetMembersExecute(r TenantsApiGetMembersRequest) (*T
 }
 
 type TenantsApiGetTenantOperationReportRequest struct {
-	ctx context.Context
+	ctx        context.Context
 	ApiService *TenantsApiService
 }
 
@@ -1057,7 +1056,7 @@ GetTenantOperationReport Method for GetTenantOperationReport
 func (a *TenantsApiService) GetTenantOperationReport(ctx context.Context) TenantsApiGetTenantOperationReportRequest {
 	return TenantsApiGetTenantOperationReportRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 	}
 }
 
@@ -1065,10 +1064,10 @@ func (a *TenantsApiService) GetTenantOperationReport(ctx context.Context) Tenant
 //  @return TenantUsageReport
 func (a *TenantsApiService) GetTenantOperationReportExecute(r TenantsApiGetTenantOperationReportRequest) (*TenantUsageReport, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodGet
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *TenantUsageReport
+		localVarHTTPMethod  = http.MethodGet
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *TenantUsageReport
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "TenantsApiService.GetTenantOperationReport")
@@ -1170,7 +1169,7 @@ func (a *TenantsApiService) GetTenantOperationReportExecute(r TenantsApiGetTenan
 }
 
 type TenantsApiGetTenantUsageReportRequest struct {
-	ctx context.Context
+	ctx        context.Context
 	ApiService *TenantsApiService
 }
 
@@ -1187,7 +1186,7 @@ GetTenantUsageReport Method for GetTenantUsageReport
 func (a *TenantsApiService) GetTenantUsageReport(ctx context.Context) TenantsApiGetTenantUsageReportRequest {
 	return TenantsApiGetTenantUsageReportRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 	}
 }
 
@@ -1195,10 +1194,10 @@ func (a *TenantsApiService) GetTenantUsageReport(ctx context.Context) TenantsApi
 //  @return TenantUsageReport
 func (a *TenantsApiService) GetTenantUsageReportExecute(r TenantsApiGetTenantUsageReportRequest) (*TenantUsageReport, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodGet
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *TenantUsageReport
+		localVarHTTPMethod  = http.MethodGet
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *TenantUsageReport
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "TenantsApiService.GetTenantUsageReport")
@@ -1310,8 +1309,8 @@ func (a *TenantsApiService) GetTenantUsageReportExecute(r TenantsApiGetTenantUsa
 }
 
 type TenantsApiResendInvitationRequest struct {
-	ctx context.Context
-	ApiService *TenantsApiService
+	ctx          context.Context
+	ApiService   *TenantsApiService
 	invitationId string
 }
 
@@ -1328,8 +1327,8 @@ ResendInvitation Method for ResendInvitation
 */
 func (a *TenantsApiService) ResendInvitation(ctx context.Context, invitationId string) TenantsApiResendInvitationRequest {
 	return TenantsApiResendInvitationRequest{
-		ApiService: a,
-		ctx: ctx,
+		ApiService:   a,
+		ctx:          ctx,
 		invitationId: invitationId,
 	}
 }
@@ -1338,10 +1337,10 @@ func (a *TenantsApiService) ResendInvitation(ctx context.Context, invitationId s
 //  @return TenantInvitationResponse
 func (a *TenantsApiService) ResendInvitationExecute(r TenantsApiResendInvitationRequest) (*TenantInvitationResponse, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodPost
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *TenantInvitationResponse
+		localVarHTTPMethod  = http.MethodPost
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *TenantInvitationResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "TenantsApiService.ResendInvitation")
@@ -1454,8 +1453,8 @@ func (a *TenantsApiService) ResendInvitationExecute(r TenantsApiResendInvitation
 }
 
 type TenantsApiUpdateRequest struct {
-	ctx context.Context
-	ApiService *TenantsApiService
+	ctx                 context.Context
+	ApiService          *TenantsApiService
 	updateTenantRequest *UpdateTenantRequest
 }
 
@@ -1477,7 +1476,7 @@ Update Method for Update
 func (a *TenantsApiService) Update(ctx context.Context) TenantsApiUpdateRequest {
 	return TenantsApiUpdateRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 	}
 }
 
@@ -1485,10 +1484,10 @@ func (a *TenantsApiService) Update(ctx context.Context) TenantsApiUpdateRequest 
 //  @return Tenant
 func (a *TenantsApiService) UpdateExecute(r TenantsApiUpdateRequest) (*Tenant, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodPut
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *Tenant
+		localVarHTTPMethod  = http.MethodPut
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *Tenant
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "TenantsApiService.Update")

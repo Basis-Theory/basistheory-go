@@ -16,13 +16,13 @@ import (
 
 // CreateReactorFormulaRequest struct for CreateReactorFormulaRequest
 type CreateReactorFormulaRequest struct {
-	Id NullableString `json:"id,omitempty"`
-	Type string `json:"type"`
-	Name string `json:"name"`
-	Description NullableString `json:"description,omitempty"`
-	Icon NullableString `json:"icon,omitempty"`
-	Code NullableString `json:"code,omitempty"`
-	Configuration []ReactorFormulaConfiguration `json:"configuration,omitempty"`
+	Id                NullableString                   `json:"id,omitempty"`
+	Type              string                           `json:"type"`
+	Name              string                           `json:"name"`
+	Description       NullableString                   `json:"description,omitempty"`
+	Icon              NullableString                   `json:"icon,omitempty"`
+	Code              NullableString                   `json:"code,omitempty"`
+	Configuration     []ReactorFormulaConfiguration    `json:"configuration,omitempty"`
 	RequestParameters []ReactorFormulaRequestParameter `json:"request_parameters,omitempty"`
 }
 
@@ -77,6 +77,7 @@ func (o *CreateReactorFormulaRequest) HasId() bool {
 func (o *CreateReactorFormulaRequest) SetId(v string) {
 	o.Id.Set(&v)
 }
+
 // SetIdNil sets the value for Id to be an explicit nil
 func (o *CreateReactorFormulaRequest) SetIdNil() {
 	o.Id.Set(nil)
@@ -167,6 +168,7 @@ func (o *CreateReactorFormulaRequest) HasDescription() bool {
 func (o *CreateReactorFormulaRequest) SetDescription(v string) {
 	o.Description.Set(&v)
 }
+
 // SetDescriptionNil sets the value for Description to be an explicit nil
 func (o *CreateReactorFormulaRequest) SetDescriptionNil() {
 	o.Description.Set(nil)
@@ -209,6 +211,7 @@ func (o *CreateReactorFormulaRequest) HasIcon() bool {
 func (o *CreateReactorFormulaRequest) SetIcon(v string) {
 	o.Icon.Set(&v)
 }
+
 // SetIconNil sets the value for Icon to be an explicit nil
 func (o *CreateReactorFormulaRequest) SetIconNil() {
 	o.Icon.Set(nil)
@@ -251,6 +254,7 @@ func (o *CreateReactorFormulaRequest) HasCode() bool {
 func (o *CreateReactorFormulaRequest) SetCode(v string) {
 	o.Code.Set(&v)
 }
+
 // SetCodeNil sets the value for Code to be an explicit nil
 func (o *CreateReactorFormulaRequest) SetCodeNil() {
 	o.Code.Set(nil)
@@ -391,5 +395,3 @@ func (v *NullableCreateReactorFormulaRequest) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

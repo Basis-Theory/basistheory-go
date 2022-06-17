@@ -14,75 +14,31 @@ import (
 	"encoding/json"
 )
 
-// Privacy struct for Privacy
-type Privacy struct {
-	Classification    NullableString `json:"classification,omitempty"`
+// UpdatePrivacy struct for UpdatePrivacy
+type UpdatePrivacy struct {
 	ImpactLevel       NullableString `json:"impact_level,omitempty"`
 	RestrictionPolicy NullableString `json:"restriction_policy,omitempty"`
 }
 
-// NewPrivacy instantiates a new Privacy object
+// NewUpdatePrivacy instantiates a new UpdatePrivacy object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewPrivacy() *Privacy {
-	this := Privacy{}
+func NewUpdatePrivacy() *UpdatePrivacy {
+	this := UpdatePrivacy{}
 	return &this
 }
 
-// NewPrivacyWithDefaults instantiates a new Privacy object
+// NewUpdatePrivacyWithDefaults instantiates a new UpdatePrivacy object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
-func NewPrivacyWithDefaults() *Privacy {
-	this := Privacy{}
+func NewUpdatePrivacyWithDefaults() *UpdatePrivacy {
+	this := UpdatePrivacy{}
 	return &this
-}
-
-// GetClassification returns the Classification field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *Privacy) GetClassification() string {
-	if o == nil || o.Classification.Get() == nil {
-		var ret string
-		return ret
-	}
-	return *o.Classification.Get()
-}
-
-// GetClassificationOk returns a tuple with the Classification field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *Privacy) GetClassificationOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.Classification.Get(), o.Classification.IsSet()
-}
-
-// HasClassification returns a boolean if a field has been set.
-func (o *Privacy) HasClassification() bool {
-	if o != nil && o.Classification.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetClassification gets a reference to the given NullableString and assigns it to the Classification field.
-func (o *Privacy) SetClassification(v string) {
-	o.Classification.Set(&v)
-}
-
-// SetClassificationNil sets the value for Classification to be an explicit nil
-func (o *Privacy) SetClassificationNil() {
-	o.Classification.Set(nil)
-}
-
-// UnsetClassification ensures that no value is present for Classification, not even an explicit nil
-func (o *Privacy) UnsetClassification() {
-	o.Classification.Unset()
 }
 
 // GetImpactLevel returns the ImpactLevel field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *Privacy) GetImpactLevel() string {
+func (o *UpdatePrivacy) GetImpactLevel() string {
 	if o == nil || o.ImpactLevel.Get() == nil {
 		var ret string
 		return ret
@@ -93,7 +49,7 @@ func (o *Privacy) GetImpactLevel() string {
 // GetImpactLevelOk returns a tuple with the ImpactLevel field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *Privacy) GetImpactLevelOk() (*string, bool) {
+func (o *UpdatePrivacy) GetImpactLevelOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -101,7 +57,7 @@ func (o *Privacy) GetImpactLevelOk() (*string, bool) {
 }
 
 // HasImpactLevel returns a boolean if a field has been set.
-func (o *Privacy) HasImpactLevel() bool {
+func (o *UpdatePrivacy) HasImpactLevel() bool {
 	if o != nil && o.ImpactLevel.IsSet() {
 		return true
 	}
@@ -110,22 +66,22 @@ func (o *Privacy) HasImpactLevel() bool {
 }
 
 // SetImpactLevel gets a reference to the given NullableString and assigns it to the ImpactLevel field.
-func (o *Privacy) SetImpactLevel(v string) {
+func (o *UpdatePrivacy) SetImpactLevel(v string) {
 	o.ImpactLevel.Set(&v)
 }
 
 // SetImpactLevelNil sets the value for ImpactLevel to be an explicit nil
-func (o *Privacy) SetImpactLevelNil() {
+func (o *UpdatePrivacy) SetImpactLevelNil() {
 	o.ImpactLevel.Set(nil)
 }
 
 // UnsetImpactLevel ensures that no value is present for ImpactLevel, not even an explicit nil
-func (o *Privacy) UnsetImpactLevel() {
+func (o *UpdatePrivacy) UnsetImpactLevel() {
 	o.ImpactLevel.Unset()
 }
 
 // GetRestrictionPolicy returns the RestrictionPolicy field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *Privacy) GetRestrictionPolicy() string {
+func (o *UpdatePrivacy) GetRestrictionPolicy() string {
 	if o == nil || o.RestrictionPolicy.Get() == nil {
 		var ret string
 		return ret
@@ -136,7 +92,7 @@ func (o *Privacy) GetRestrictionPolicy() string {
 // GetRestrictionPolicyOk returns a tuple with the RestrictionPolicy field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *Privacy) GetRestrictionPolicyOk() (*string, bool) {
+func (o *UpdatePrivacy) GetRestrictionPolicyOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -144,7 +100,7 @@ func (o *Privacy) GetRestrictionPolicyOk() (*string, bool) {
 }
 
 // HasRestrictionPolicy returns a boolean if a field has been set.
-func (o *Privacy) HasRestrictionPolicy() bool {
+func (o *UpdatePrivacy) HasRestrictionPolicy() bool {
 	if o != nil && o.RestrictionPolicy.IsSet() {
 		return true
 	}
@@ -153,25 +109,22 @@ func (o *Privacy) HasRestrictionPolicy() bool {
 }
 
 // SetRestrictionPolicy gets a reference to the given NullableString and assigns it to the RestrictionPolicy field.
-func (o *Privacy) SetRestrictionPolicy(v string) {
+func (o *UpdatePrivacy) SetRestrictionPolicy(v string) {
 	o.RestrictionPolicy.Set(&v)
 }
 
 // SetRestrictionPolicyNil sets the value for RestrictionPolicy to be an explicit nil
-func (o *Privacy) SetRestrictionPolicyNil() {
+func (o *UpdatePrivacy) SetRestrictionPolicyNil() {
 	o.RestrictionPolicy.Set(nil)
 }
 
 // UnsetRestrictionPolicy ensures that no value is present for RestrictionPolicy, not even an explicit nil
-func (o *Privacy) UnsetRestrictionPolicy() {
+func (o *UpdatePrivacy) UnsetRestrictionPolicy() {
 	o.RestrictionPolicy.Unset()
 }
 
-func (o Privacy) MarshalJSON() ([]byte, error) {
+func (o UpdatePrivacy) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
-	if o.Classification.IsSet() {
-		toSerialize["classification"] = o.Classification.Get()
-	}
 	if o.ImpactLevel.IsSet() {
 		toSerialize["impact_level"] = o.ImpactLevel.Get()
 	}
@@ -181,38 +134,38 @@ func (o Privacy) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
-type NullablePrivacy struct {
-	value *Privacy
+type NullableUpdatePrivacy struct {
+	value *UpdatePrivacy
 	isSet bool
 }
 
-func (v NullablePrivacy) Get() *Privacy {
+func (v NullableUpdatePrivacy) Get() *UpdatePrivacy {
 	return v.value
 }
 
-func (v *NullablePrivacy) Set(val *Privacy) {
+func (v *NullableUpdatePrivacy) Set(val *UpdatePrivacy) {
 	v.value = val
 	v.isSet = true
 }
 
-func (v NullablePrivacy) IsSet() bool {
+func (v NullableUpdatePrivacy) IsSet() bool {
 	return v.isSet
 }
 
-func (v *NullablePrivacy) Unset() {
+func (v *NullableUpdatePrivacy) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
-func NewNullablePrivacy(val *Privacy) *NullablePrivacy {
-	return &NullablePrivacy{value: val, isSet: true}
+func NewNullableUpdatePrivacy(val *UpdatePrivacy) *NullableUpdatePrivacy {
+	return &NullableUpdatePrivacy{value: val, isSet: true}
 }
 
-func (v NullablePrivacy) MarshalJSON() ([]byte, error) {
+func (v NullableUpdatePrivacy) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
-func (v *NullablePrivacy) UnmarshalJSON(src []byte) error {
+func (v *NullableUpdatePrivacy) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }

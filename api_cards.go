@@ -19,13 +19,12 @@ import (
 	"strings"
 )
 
-
 // CardsApiService CardsApi service
 type CardsApiService service
 
 type CardsApiCreateRequest struct {
-	ctx context.Context
-	ApiService *CardsApiService
+	ctx                     context.Context
+	ApiService              *CardsApiService
 	createAtomicCardRequest *CreateAtomicCardRequest
 }
 
@@ -49,7 +48,7 @@ Deprecated
 func (a *CardsApiService) Create(ctx context.Context) CardsApiCreateRequest {
 	return CardsApiCreateRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 	}
 }
 
@@ -58,10 +57,10 @@ func (a *CardsApiService) Create(ctx context.Context) CardsApiCreateRequest {
 // Deprecated
 func (a *CardsApiService) CreateExecute(r CardsApiCreateRequest) (*AtomicCard, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodPost
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *AtomicCard
+		localVarHTTPMethod  = http.MethodPost
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *AtomicCard
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "CardsApiService.Create")
@@ -175,9 +174,9 @@ func (a *CardsApiService) CreateExecute(r CardsApiCreateRequest) (*AtomicCard, *
 }
 
 type CardsApiDeleteRequest struct {
-	ctx context.Context
+	ctx        context.Context
 	ApiService *CardsApiService
-	id string
+	id         string
 }
 
 func (r CardsApiDeleteRequest) Execute() (*http.Response, error) {
@@ -196,8 +195,8 @@ Deprecated
 func (a *CardsApiService) Delete(ctx context.Context, id string) CardsApiDeleteRequest {
 	return CardsApiDeleteRequest{
 		ApiService: a,
-		ctx: ctx,
-		id: id,
+		ctx:        ctx,
+		id:         id,
 	}
 }
 
@@ -205,9 +204,9 @@ func (a *CardsApiService) Delete(ctx context.Context, id string) CardsApiDeleteR
 // Deprecated
 func (a *CardsApiService) DeleteExecute(r CardsApiDeleteRequest) (*http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodDelete
-		localVarPostBody     interface{}
-		formFiles            []formFile
+		localVarHTTPMethod = http.MethodDelete
+		localVarPostBody   interface{}
+		formFiles          []formFile
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "CardsApiService.Delete")
@@ -311,10 +310,10 @@ func (a *CardsApiService) DeleteExecute(r CardsApiDeleteRequest) (*http.Response
 }
 
 type CardsApiGetRequest struct {
-	ctx context.Context
+	ctx        context.Context
 	ApiService *CardsApiService
-	page *int32
-	size *int32
+	page       *int32
+	size       *int32
 }
 
 func (r CardsApiGetRequest) Page(page int32) CardsApiGetRequest {
@@ -342,7 +341,7 @@ Deprecated
 func (a *CardsApiService) Get(ctx context.Context) CardsApiGetRequest {
 	return CardsApiGetRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 	}
 }
 
@@ -351,10 +350,10 @@ func (a *CardsApiService) Get(ctx context.Context) CardsApiGetRequest {
 // Deprecated
 func (a *CardsApiService) GetExecute(r CardsApiGetRequest) (*AtomicCardPaginatedList, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodGet
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *AtomicCardPaginatedList
+		localVarHTTPMethod  = http.MethodGet
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *AtomicCardPaginatedList
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "CardsApiService.Get")
@@ -462,9 +461,9 @@ func (a *CardsApiService) GetExecute(r CardsApiGetRequest) (*AtomicCardPaginated
 }
 
 type CardsApiGetByIdRequest struct {
-	ctx context.Context
+	ctx        context.Context
 	ApiService *CardsApiService
-	id string
+	id         string
 }
 
 func (r CardsApiGetByIdRequest) Execute() (*AtomicCard, *http.Response, error) {
@@ -483,8 +482,8 @@ Deprecated
 func (a *CardsApiService) GetById(ctx context.Context, id string) CardsApiGetByIdRequest {
 	return CardsApiGetByIdRequest{
 		ApiService: a,
-		ctx: ctx,
-		id: id,
+		ctx:        ctx,
+		id:         id,
 	}
 }
 
@@ -493,10 +492,10 @@ func (a *CardsApiService) GetById(ctx context.Context, id string) CardsApiGetByI
 // Deprecated
 func (a *CardsApiService) GetByIdExecute(r CardsApiGetByIdRequest) (*AtomicCard, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodGet
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *AtomicCard
+		localVarHTTPMethod  = http.MethodGet
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *AtomicCard
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "CardsApiService.GetById")
@@ -609,9 +608,9 @@ func (a *CardsApiService) GetByIdExecute(r CardsApiGetByIdRequest) (*AtomicCard,
 }
 
 type CardsApiReactRequest struct {
-	ctx context.Context
-	ApiService *CardsApiService
-	cardId string
+	ctx                context.Context
+	ApiService         *CardsApiService
+	cardId             string
 	atomicReactRequest *AtomicReactRequest
 }
 
@@ -636,8 +635,8 @@ Deprecated
 func (a *CardsApiService) React(ctx context.Context, cardId string) CardsApiReactRequest {
 	return CardsApiReactRequest{
 		ApiService: a,
-		ctx: ctx,
-		cardId: cardId,
+		ctx:        ctx,
+		cardId:     cardId,
 	}
 }
 
@@ -646,10 +645,10 @@ func (a *CardsApiService) React(ctx context.Context, cardId string) CardsApiReac
 // Deprecated
 func (a *CardsApiService) ReactExecute(r CardsApiReactRequest) (*ReactResponse, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodPost
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *ReactResponse
+		localVarHTTPMethod  = http.MethodPost
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *ReactResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "CardsApiService.React")
@@ -774,9 +773,9 @@ func (a *CardsApiService) ReactExecute(r CardsApiReactRequest) (*ReactResponse, 
 }
 
 type CardsApiUpdateRequest struct {
-	ctx context.Context
-	ApiService *CardsApiService
-	id string
+	ctx                     context.Context
+	ApiService              *CardsApiService
+	id                      string
 	updateAtomicCardRequest *UpdateAtomicCardRequest
 }
 
@@ -801,8 +800,8 @@ Deprecated
 func (a *CardsApiService) Update(ctx context.Context, id string) CardsApiUpdateRequest {
 	return CardsApiUpdateRequest{
 		ApiService: a,
-		ctx: ctx,
-		id: id,
+		ctx:        ctx,
+		id:         id,
 	}
 }
 
@@ -811,10 +810,10 @@ func (a *CardsApiService) Update(ctx context.Context, id string) CardsApiUpdateR
 // Deprecated
 func (a *CardsApiService) UpdateExecute(r CardsApiUpdateRequest) (*AtomicCard, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodPatch
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *AtomicCard
+		localVarHTTPMethod  = http.MethodPatch
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *AtomicCard
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "CardsApiService.Update")

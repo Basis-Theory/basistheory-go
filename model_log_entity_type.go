@@ -17,7 +17,7 @@ import (
 // LogEntityType struct for LogEntityType
 type LogEntityType struct {
 	DisplayName NullableString `json:"display_name,omitempty"`
-	Value NullableString `json:"value,omitempty"`
+	Value       NullableString `json:"value,omitempty"`
 }
 
 // NewLogEntityType instantiates a new LogEntityType object
@@ -69,6 +69,7 @@ func (o *LogEntityType) HasDisplayName() bool {
 func (o *LogEntityType) SetDisplayName(v string) {
 	o.DisplayName.Set(&v)
 }
+
 // SetDisplayNameNil sets the value for DisplayName to be an explicit nil
 func (o *LogEntityType) SetDisplayNameNil() {
 	o.DisplayName.Set(nil)
@@ -111,6 +112,7 @@ func (o *LogEntityType) HasValue() bool {
 func (o *LogEntityType) SetValue(v string) {
 	o.Value.Set(&v)
 }
+
 // SetValueNil sets the value for Value to be an explicit nil
 func (o *LogEntityType) SetValueNil() {
 	o.Value.Set(nil)
@@ -167,5 +169,3 @@ func (v *NullableLogEntityType) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

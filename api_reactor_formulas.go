@@ -19,13 +19,12 @@ import (
 	"strings"
 )
 
-
 // ReactorFormulasApiService ReactorFormulasApi service
 type ReactorFormulasApiService service
 
 type ReactorFormulasApiCreateRequest struct {
-	ctx context.Context
-	ApiService *ReactorFormulasApiService
+	ctx                         context.Context
+	ApiService                  *ReactorFormulasApiService
 	createReactorFormulaRequest *CreateReactorFormulaRequest
 }
 
@@ -47,7 +46,7 @@ Create Method for Create
 func (a *ReactorFormulasApiService) Create(ctx context.Context) ReactorFormulasApiCreateRequest {
 	return ReactorFormulasApiCreateRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 	}
 }
 
@@ -55,10 +54,10 @@ func (a *ReactorFormulasApiService) Create(ctx context.Context) ReactorFormulasA
 //  @return ReactorFormula
 func (a *ReactorFormulasApiService) CreateExecute(r ReactorFormulasApiCreateRequest) (*ReactorFormula, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodPost
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *ReactorFormula
+		localVarHTTPMethod  = http.MethodPost
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *ReactorFormula
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ReactorFormulasApiService.Create")
@@ -172,9 +171,9 @@ func (a *ReactorFormulasApiService) CreateExecute(r ReactorFormulasApiCreateRequ
 }
 
 type ReactorFormulasApiDeleteRequest struct {
-	ctx context.Context
+	ctx        context.Context
 	ApiService *ReactorFormulasApiService
-	id string
+	id         string
 }
 
 func (r ReactorFormulasApiDeleteRequest) Execute() (*http.Response, error) {
@@ -191,17 +190,17 @@ Delete Method for Delete
 func (a *ReactorFormulasApiService) Delete(ctx context.Context, id string) ReactorFormulasApiDeleteRequest {
 	return ReactorFormulasApiDeleteRequest{
 		ApiService: a,
-		ctx: ctx,
-		id: id,
+		ctx:        ctx,
+		id:         id,
 	}
 }
 
 // Execute executes the request
 func (a *ReactorFormulasApiService) DeleteExecute(r ReactorFormulasApiDeleteRequest) (*http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodDelete
-		localVarPostBody     interface{}
-		formFiles            []formFile
+		localVarHTTPMethod = http.MethodDelete
+		localVarPostBody   interface{}
+		formFiles          []formFile
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ReactorFormulasApiService.Delete")
@@ -305,11 +304,11 @@ func (a *ReactorFormulasApiService) DeleteExecute(r ReactorFormulasApiDeleteRequ
 }
 
 type ReactorFormulasApiGetRequest struct {
-	ctx context.Context
+	ctx        context.Context
 	ApiService *ReactorFormulasApiService
-	name *string
-	page *int32
-	size *int32
+	name       *string
+	page       *int32
+	size       *int32
 }
 
 func (r ReactorFormulasApiGetRequest) Name(name string) ReactorFormulasApiGetRequest {
@@ -340,7 +339,7 @@ Get Method for Get
 func (a *ReactorFormulasApiService) Get(ctx context.Context) ReactorFormulasApiGetRequest {
 	return ReactorFormulasApiGetRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 	}
 }
 
@@ -348,10 +347,10 @@ func (a *ReactorFormulasApiService) Get(ctx context.Context) ReactorFormulasApiG
 //  @return ReactorFormulaPaginatedList
 func (a *ReactorFormulasApiService) GetExecute(r ReactorFormulasApiGetRequest) (*ReactorFormulaPaginatedList, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodGet
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *ReactorFormulaPaginatedList
+		localVarHTTPMethod  = http.MethodGet
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *ReactorFormulaPaginatedList
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ReactorFormulasApiService.Get")
@@ -472,9 +471,9 @@ func (a *ReactorFormulasApiService) GetExecute(r ReactorFormulasApiGetRequest) (
 }
 
 type ReactorFormulasApiGetByIdRequest struct {
-	ctx context.Context
+	ctx        context.Context
 	ApiService *ReactorFormulasApiService
-	id string
+	id         string
 }
 
 func (r ReactorFormulasApiGetByIdRequest) Execute() (*ReactorFormula, *http.Response, error) {
@@ -491,8 +490,8 @@ GetById Method for GetById
 func (a *ReactorFormulasApiService) GetById(ctx context.Context, id string) ReactorFormulasApiGetByIdRequest {
 	return ReactorFormulasApiGetByIdRequest{
 		ApiService: a,
-		ctx: ctx,
-		id: id,
+		ctx:        ctx,
+		id:         id,
 	}
 }
 
@@ -500,10 +499,10 @@ func (a *ReactorFormulasApiService) GetById(ctx context.Context, id string) Reac
 //  @return ReactorFormula
 func (a *ReactorFormulasApiService) GetByIdExecute(r ReactorFormulasApiGetByIdRequest) (*ReactorFormula, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodGet
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *ReactorFormula
+		localVarHTTPMethod  = http.MethodGet
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *ReactorFormula
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ReactorFormulasApiService.GetById")
@@ -616,9 +615,9 @@ func (a *ReactorFormulasApiService) GetByIdExecute(r ReactorFormulasApiGetByIdRe
 }
 
 type ReactorFormulasApiUpdateRequest struct {
-	ctx context.Context
-	ApiService *ReactorFormulasApiService
-	id string
+	ctx                         context.Context
+	ApiService                  *ReactorFormulasApiService
+	id                          string
 	updateReactorFormulaRequest *UpdateReactorFormulaRequest
 }
 
@@ -641,8 +640,8 @@ Update Method for Update
 func (a *ReactorFormulasApiService) Update(ctx context.Context, id string) ReactorFormulasApiUpdateRequest {
 	return ReactorFormulasApiUpdateRequest{
 		ApiService: a,
-		ctx: ctx,
-		id: id,
+		ctx:        ctx,
+		id:         id,
 	}
 }
 
@@ -650,10 +649,10 @@ func (a *ReactorFormulasApiService) Update(ctx context.Context, id string) React
 //  @return ReactorFormula
 func (a *ReactorFormulasApiService) UpdateExecute(r ReactorFormulasApiUpdateRequest) (*ReactorFormula, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodPut
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *ReactorFormula
+		localVarHTTPMethod  = http.MethodPut
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *ReactorFormula
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ReactorFormulasApiService.Update")

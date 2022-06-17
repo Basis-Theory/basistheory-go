@@ -19,13 +19,12 @@ import (
 	"strings"
 )
 
-
 // BanksApiService BanksApi service
 type BanksApiService service
 
 type BanksApiCreateRequest struct {
-	ctx context.Context
-	ApiService *BanksApiService
+	ctx                     context.Context
+	ApiService              *BanksApiService
 	createAtomicBankRequest *CreateAtomicBankRequest
 }
 
@@ -49,7 +48,7 @@ Deprecated
 func (a *BanksApiService) Create(ctx context.Context) BanksApiCreateRequest {
 	return BanksApiCreateRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 	}
 }
 
@@ -58,10 +57,10 @@ func (a *BanksApiService) Create(ctx context.Context) BanksApiCreateRequest {
 // Deprecated
 func (a *BanksApiService) CreateExecute(r BanksApiCreateRequest) (*AtomicBank, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodPost
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *AtomicBank
+		localVarHTTPMethod  = http.MethodPost
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *AtomicBank
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "BanksApiService.Create")
@@ -175,9 +174,9 @@ func (a *BanksApiService) CreateExecute(r BanksApiCreateRequest) (*AtomicBank, *
 }
 
 type BanksApiDeleteRequest struct {
-	ctx context.Context
+	ctx        context.Context
 	ApiService *BanksApiService
-	id string
+	id         string
 }
 
 func (r BanksApiDeleteRequest) Execute() (*http.Response, error) {
@@ -196,8 +195,8 @@ Deprecated
 func (a *BanksApiService) Delete(ctx context.Context, id string) BanksApiDeleteRequest {
 	return BanksApiDeleteRequest{
 		ApiService: a,
-		ctx: ctx,
-		id: id,
+		ctx:        ctx,
+		id:         id,
 	}
 }
 
@@ -205,9 +204,9 @@ func (a *BanksApiService) Delete(ctx context.Context, id string) BanksApiDeleteR
 // Deprecated
 func (a *BanksApiService) DeleteExecute(r BanksApiDeleteRequest) (*http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodDelete
-		localVarPostBody     interface{}
-		formFiles            []formFile
+		localVarHTTPMethod = http.MethodDelete
+		localVarPostBody   interface{}
+		formFiles          []formFile
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "BanksApiService.Delete")
@@ -311,10 +310,10 @@ func (a *BanksApiService) DeleteExecute(r BanksApiDeleteRequest) (*http.Response
 }
 
 type BanksApiGetRequest struct {
-	ctx context.Context
+	ctx        context.Context
 	ApiService *BanksApiService
-	page *int32
-	size *int32
+	page       *int32
+	size       *int32
 }
 
 func (r BanksApiGetRequest) Page(page int32) BanksApiGetRequest {
@@ -342,7 +341,7 @@ Deprecated
 func (a *BanksApiService) Get(ctx context.Context) BanksApiGetRequest {
 	return BanksApiGetRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 	}
 }
 
@@ -351,10 +350,10 @@ func (a *BanksApiService) Get(ctx context.Context) BanksApiGetRequest {
 // Deprecated
 func (a *BanksApiService) GetExecute(r BanksApiGetRequest) (*AtomicBankPaginatedList, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodGet
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *AtomicBankPaginatedList
+		localVarHTTPMethod  = http.MethodGet
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *AtomicBankPaginatedList
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "BanksApiService.Get")
@@ -462,9 +461,9 @@ func (a *BanksApiService) GetExecute(r BanksApiGetRequest) (*AtomicBankPaginated
 }
 
 type BanksApiGetByIdRequest struct {
-	ctx context.Context
+	ctx        context.Context
 	ApiService *BanksApiService
-	id string
+	id         string
 }
 
 func (r BanksApiGetByIdRequest) Execute() (*AtomicBank, *http.Response, error) {
@@ -483,8 +482,8 @@ Deprecated
 func (a *BanksApiService) GetById(ctx context.Context, id string) BanksApiGetByIdRequest {
 	return BanksApiGetByIdRequest{
 		ApiService: a,
-		ctx: ctx,
-		id: id,
+		ctx:        ctx,
+		id:         id,
 	}
 }
 
@@ -493,10 +492,10 @@ func (a *BanksApiService) GetById(ctx context.Context, id string) BanksApiGetByI
 // Deprecated
 func (a *BanksApiService) GetByIdExecute(r BanksApiGetByIdRequest) (*AtomicBank, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodGet
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *AtomicBank
+		localVarHTTPMethod  = http.MethodGet
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *AtomicBank
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "BanksApiService.GetById")
@@ -609,9 +608,9 @@ func (a *BanksApiService) GetByIdExecute(r BanksApiGetByIdRequest) (*AtomicBank,
 }
 
 type BanksApiReactRequest struct {
-	ctx context.Context
-	ApiService *BanksApiService
-	bankId string
+	ctx                context.Context
+	ApiService         *BanksApiService
+	bankId             string
 	atomicReactRequest *AtomicReactRequest
 }
 
@@ -636,8 +635,8 @@ Deprecated
 func (a *BanksApiService) React(ctx context.Context, bankId string) BanksApiReactRequest {
 	return BanksApiReactRequest{
 		ApiService: a,
-		ctx: ctx,
-		bankId: bankId,
+		ctx:        ctx,
+		bankId:     bankId,
 	}
 }
 
@@ -646,10 +645,10 @@ func (a *BanksApiService) React(ctx context.Context, bankId string) BanksApiReac
 // Deprecated
 func (a *BanksApiService) ReactExecute(r BanksApiReactRequest) (*ReactResponse, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodPost
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *ReactResponse
+		localVarHTTPMethod  = http.MethodPost
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *ReactResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "BanksApiService.React")
@@ -774,9 +773,9 @@ func (a *BanksApiService) ReactExecute(r BanksApiReactRequest) (*ReactResponse, 
 }
 
 type BanksApiUpdateRequest struct {
-	ctx context.Context
-	ApiService *BanksApiService
-	id string
+	ctx                     context.Context
+	ApiService              *BanksApiService
+	id                      string
 	updateAtomicBankRequest *UpdateAtomicBankRequest
 }
 
@@ -801,8 +800,8 @@ Deprecated
 func (a *BanksApiService) Update(ctx context.Context, id string) BanksApiUpdateRequest {
 	return BanksApiUpdateRequest{
 		ApiService: a,
-		ctx: ctx,
-		id: id,
+		ctx:        ctx,
+		id:         id,
 	}
 }
 
@@ -811,10 +810,10 @@ func (a *BanksApiService) Update(ctx context.Context, id string) BanksApiUpdateR
 // Deprecated
 func (a *BanksApiService) UpdateExecute(r BanksApiUpdateRequest) (*AtomicBank, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodPatch
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *AtomicBank
+		localVarHTTPMethod  = http.MethodPatch
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *AtomicBank
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "BanksApiService.Update")

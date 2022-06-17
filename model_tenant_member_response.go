@@ -17,14 +17,14 @@ import (
 
 // TenantMemberResponse struct for TenantMemberResponse
 type TenantMemberResponse struct {
-	Id *string `json:"id,omitempty"`
-	TenantId *string `json:"tenant_id,omitempty"`
-	User *User `json:"user,omitempty"`
-	Role NullableString `json:"role,omitempty"`
-	CreatedBy NullableString `json:"created_by,omitempty"`
-	CreatedDate NullableTime `json:"created_date,omitempty"`
-	ModifiedBy NullableString `json:"modified_by,omitempty"`
-	ModifiedAt NullableTime `json:"modified_at,omitempty"`
+	Id          *string        `json:"id,omitempty"`
+	TenantId    *string        `json:"tenant_id,omitempty"`
+	User        *User          `json:"user,omitempty"`
+	Role        NullableString `json:"role,omitempty"`
+	CreatedBy   NullableString `json:"created_by,omitempty"`
+	CreatedDate NullableTime   `json:"created_date,omitempty"`
+	ModifiedBy  NullableString `json:"modified_by,omitempty"`
+	ModifiedAt  NullableTime   `json:"modified_at,omitempty"`
 }
 
 // NewTenantMemberResponse instantiates a new TenantMemberResponse object
@@ -172,6 +172,7 @@ func (o *TenantMemberResponse) HasRole() bool {
 func (o *TenantMemberResponse) SetRole(v string) {
 	o.Role.Set(&v)
 }
+
 // SetRoleNil sets the value for Role to be an explicit nil
 func (o *TenantMemberResponse) SetRoleNil() {
 	o.Role.Set(nil)
@@ -214,6 +215,7 @@ func (o *TenantMemberResponse) HasCreatedBy() bool {
 func (o *TenantMemberResponse) SetCreatedBy(v string) {
 	o.CreatedBy.Set(&v)
 }
+
 // SetCreatedByNil sets the value for CreatedBy to be an explicit nil
 func (o *TenantMemberResponse) SetCreatedByNil() {
 	o.CreatedBy.Set(nil)
@@ -256,6 +258,7 @@ func (o *TenantMemberResponse) HasCreatedDate() bool {
 func (o *TenantMemberResponse) SetCreatedDate(v time.Time) {
 	o.CreatedDate.Set(&v)
 }
+
 // SetCreatedDateNil sets the value for CreatedDate to be an explicit nil
 func (o *TenantMemberResponse) SetCreatedDateNil() {
 	o.CreatedDate.Set(nil)
@@ -298,6 +301,7 @@ func (o *TenantMemberResponse) HasModifiedBy() bool {
 func (o *TenantMemberResponse) SetModifiedBy(v string) {
 	o.ModifiedBy.Set(&v)
 }
+
 // SetModifiedByNil sets the value for ModifiedBy to be an explicit nil
 func (o *TenantMemberResponse) SetModifiedByNil() {
 	o.ModifiedBy.Set(nil)
@@ -340,6 +344,7 @@ func (o *TenantMemberResponse) HasModifiedAt() bool {
 func (o *TenantMemberResponse) SetModifiedAt(v time.Time) {
 	o.ModifiedAt.Set(&v)
 }
+
 // SetModifiedAtNil sets the value for ModifiedAt to be an explicit nil
 func (o *TenantMemberResponse) SetModifiedAtNil() {
 	o.ModifiedAt.Set(nil)
@@ -414,5 +419,3 @@ func (v *NullableTenantMemberResponse) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

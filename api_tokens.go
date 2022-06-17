@@ -16,17 +16,16 @@ import (
 	"io/ioutil"
 	"net/http"
 	"net/url"
-	"strings"
 	"reflect"
+	"strings"
 )
-
 
 // TokensApiService TokensApi service
 type TokensApiService service
 
 type TokensApiCreateRequest struct {
-	ctx context.Context
-	ApiService *TokensApiService
+	ctx                context.Context
+	ApiService         *TokensApiService
 	createTokenRequest *CreateTokenRequest
 }
 
@@ -48,7 +47,7 @@ Create Method for Create
 func (a *TokensApiService) Create(ctx context.Context) TokensApiCreateRequest {
 	return TokensApiCreateRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 	}
 }
 
@@ -56,10 +55,10 @@ func (a *TokensApiService) Create(ctx context.Context) TokensApiCreateRequest {
 //  @return CreateTokenResponse
 func (a *TokensApiService) CreateExecute(r TokensApiCreateRequest) (*CreateTokenResponse, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodPost
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *CreateTokenResponse
+		localVarHTTPMethod  = http.MethodPost
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *CreateTokenResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "TokensApiService.Create")
@@ -173,10 +172,10 @@ func (a *TokensApiService) CreateExecute(r TokensApiCreateRequest) (*CreateToken
 }
 
 type TokensApiCreateAssociationRequest struct {
-	ctx context.Context
+	ctx        context.Context
 	ApiService *TokensApiService
-	parentId string
-	childId string
+	parentId   string
+	childId    string
 }
 
 func (r TokensApiCreateAssociationRequest) Execute() (*http.Response, error) {
@@ -194,18 +193,18 @@ CreateAssociation Method for CreateAssociation
 func (a *TokensApiService) CreateAssociation(ctx context.Context, parentId string, childId string) TokensApiCreateAssociationRequest {
 	return TokensApiCreateAssociationRequest{
 		ApiService: a,
-		ctx: ctx,
-		parentId: parentId,
-		childId: childId,
+		ctx:        ctx,
+		parentId:   parentId,
+		childId:    childId,
 	}
 }
 
 // Execute executes the request
 func (a *TokensApiService) CreateAssociationExecute(r TokensApiCreateAssociationRequest) (*http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodPost
-		localVarPostBody     interface{}
-		formFiles            []formFile
+		localVarHTTPMethod = http.MethodPost
+		localVarPostBody   interface{}
+		formFiles          []formFile
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "TokensApiService.CreateAssociation")
@@ -330,9 +329,9 @@ func (a *TokensApiService) CreateAssociationExecute(r TokensApiCreateAssociation
 }
 
 type TokensApiCreateChildRequest struct {
-	ctx context.Context
-	ApiService *TokensApiService
-	parentId string
+	ctx                context.Context
+	ApiService         *TokensApiService
+	parentId           string
 	createTokenRequest *CreateTokenRequest
 }
 
@@ -355,8 +354,8 @@ CreateChild Method for CreateChild
 func (a *TokensApiService) CreateChild(ctx context.Context, parentId string) TokensApiCreateChildRequest {
 	return TokensApiCreateChildRequest{
 		ApiService: a,
-		ctx: ctx,
-		parentId: parentId,
+		ctx:        ctx,
+		parentId:   parentId,
 	}
 }
 
@@ -364,10 +363,10 @@ func (a *TokensApiService) CreateChild(ctx context.Context, parentId string) Tok
 //  @return CreateTokenResponse
 func (a *TokensApiService) CreateChildExecute(r TokensApiCreateChildRequest) (*CreateTokenResponse, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodPost
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *CreateTokenResponse
+		localVarHTTPMethod  = http.MethodPost
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *CreateTokenResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "TokensApiService.CreateChild")
@@ -492,9 +491,9 @@ func (a *TokensApiService) CreateChildExecute(r TokensApiCreateChildRequest) (*C
 }
 
 type TokensApiDeleteRequest struct {
-	ctx context.Context
+	ctx        context.Context
 	ApiService *TokensApiService
-	id string
+	id         string
 }
 
 func (r TokensApiDeleteRequest) Execute() (*http.Response, error) {
@@ -511,17 +510,17 @@ Delete Method for Delete
 func (a *TokensApiService) Delete(ctx context.Context, id string) TokensApiDeleteRequest {
 	return TokensApiDeleteRequest{
 		ApiService: a,
-		ctx: ctx,
-		id: id,
+		ctx:        ctx,
+		id:         id,
 	}
 }
 
 // Execute executes the request
 func (a *TokensApiService) DeleteExecute(r TokensApiDeleteRequest) (*http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodDelete
-		localVarPostBody     interface{}
-		formFiles            []formFile
+		localVarHTTPMethod = http.MethodDelete
+		localVarPostBody   interface{}
+		formFiles          []formFile
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "TokensApiService.Delete")
@@ -635,10 +634,10 @@ func (a *TokensApiService) DeleteExecute(r TokensApiDeleteRequest) (*http.Respon
 }
 
 type TokensApiDeleteAssociationRequest struct {
-	ctx context.Context
+	ctx        context.Context
 	ApiService *TokensApiService
-	parentId string
-	childId string
+	parentId   string
+	childId    string
 }
 
 func (r TokensApiDeleteAssociationRequest) Execute() (*http.Response, error) {
@@ -656,18 +655,18 @@ DeleteAssociation Method for DeleteAssociation
 func (a *TokensApiService) DeleteAssociation(ctx context.Context, parentId string, childId string) TokensApiDeleteAssociationRequest {
 	return TokensApiDeleteAssociationRequest{
 		ApiService: a,
-		ctx: ctx,
-		parentId: parentId,
-		childId: childId,
+		ctx:        ctx,
+		parentId:   parentId,
+		childId:    childId,
 	}
 }
 
 // Execute executes the request
 func (a *TokensApiService) DeleteAssociationExecute(r TokensApiDeleteAssociationRequest) (*http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodDelete
-		localVarPostBody     interface{}
-		formFiles            []formFile
+		localVarHTTPMethod = http.MethodDelete
+		localVarPostBody   interface{}
+		formFiles          []formFile
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "TokensApiService.DeleteAssociation")
@@ -782,13 +781,13 @@ func (a *TokensApiService) DeleteAssociationExecute(r TokensApiDeleteAssociation
 }
 
 type TokensApiGetRequest struct {
-	ctx context.Context
+	ctx        context.Context
 	ApiService *TokensApiService
-	type_ *[]string
-	id *[]string
-	metadata *map[string]string
-	page *int32
-	size *int32
+	type_      *[]string
+	id         *[]string
+	metadata   *map[string]string
+	page       *int32
+	size       *int32
 }
 
 func (r TokensApiGetRequest) Type_(type_ []string) TokensApiGetRequest {
@@ -829,7 +828,7 @@ Get Method for Get
 func (a *TokensApiService) Get(ctx context.Context) TokensApiGetRequest {
 	return TokensApiGetRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 	}
 }
 
@@ -837,10 +836,10 @@ func (a *TokensApiService) Get(ctx context.Context) TokensApiGetRequest {
 //  @return TokenPaginatedList
 func (a *TokensApiService) GetExecute(r TokensApiGetRequest) (*TokenPaginatedList, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodGet
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *TokenPaginatedList
+		localVarHTTPMethod  = http.MethodGet
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *TokenPaginatedList
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "TokensApiService.Get")
@@ -973,9 +972,9 @@ func (a *TokensApiService) GetExecute(r TokensApiGetRequest) (*TokenPaginatedLis
 }
 
 type TokensApiGetByIdRequest struct {
-	ctx context.Context
+	ctx        context.Context
 	ApiService *TokensApiService
-	id string
+	id         string
 }
 
 func (r TokensApiGetByIdRequest) Execute() (*Token, *http.Response, error) {
@@ -992,8 +991,8 @@ GetById Method for GetById
 func (a *TokensApiService) GetById(ctx context.Context, id string) TokensApiGetByIdRequest {
 	return TokensApiGetByIdRequest{
 		ApiService: a,
-		ctx: ctx,
-		id: id,
+		ctx:        ctx,
+		id:         id,
 	}
 }
 
@@ -1001,10 +1000,10 @@ func (a *TokensApiService) GetById(ctx context.Context, id string) TokensApiGetB
 //  @return Token
 func (a *TokensApiService) GetByIdExecute(r TokensApiGetByIdRequest) (*Token, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodGet
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *Token
+		localVarHTTPMethod  = http.MethodGet
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *Token
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "TokensApiService.GetById")
@@ -1117,14 +1116,14 @@ func (a *TokensApiService) GetByIdExecute(r TokensApiGetByIdRequest) (*Token, *h
 }
 
 type TokensApiGetChildrenRequest struct {
-	ctx context.Context
+	ctx        context.Context
 	ApiService *TokensApiService
-	parentId string
-	type_ *[]string
-	id *[]string
-	metadata *map[string]string
-	page *int32
-	size *int32
+	parentId   string
+	type_      *[]string
+	id         *[]string
+	metadata   *map[string]string
+	page       *int32
+	size       *int32
 }
 
 func (r TokensApiGetChildrenRequest) Type_(type_ []string) TokensApiGetChildrenRequest {
@@ -1166,8 +1165,8 @@ GetChildren Method for GetChildren
 func (a *TokensApiService) GetChildren(ctx context.Context, parentId string) TokensApiGetChildrenRequest {
 	return TokensApiGetChildrenRequest{
 		ApiService: a,
-		ctx: ctx,
-		parentId: parentId,
+		ctx:        ctx,
+		parentId:   parentId,
 	}
 }
 
@@ -1175,10 +1174,10 @@ func (a *TokensApiService) GetChildren(ctx context.Context, parentId string) Tok
 //  @return TokenPaginatedList
 func (a *TokensApiService) GetChildrenExecute(r TokensApiGetChildrenRequest) (*TokenPaginatedList, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodGet
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *TokenPaginatedList
+		localVarHTTPMethod  = http.MethodGet
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *TokenPaginatedList
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "TokensApiService.GetChildren")
@@ -1332,8 +1331,8 @@ func (a *TokensApiService) GetChildrenExecute(r TokensApiGetChildrenRequest) (*T
 }
 
 type TokensApiSearchRequest struct {
-	ctx context.Context
-	ApiService *TokensApiService
+	ctx                 context.Context
+	ApiService          *TokensApiService
 	searchTokensRequest *SearchTokensRequest
 }
 
@@ -1355,7 +1354,7 @@ Search Method for Search
 func (a *TokensApiService) Search(ctx context.Context) TokensApiSearchRequest {
 	return TokensApiSearchRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 	}
 }
 
@@ -1363,10 +1362,10 @@ func (a *TokensApiService) Search(ctx context.Context) TokensApiSearchRequest {
 //  @return TokenPaginatedList
 func (a *TokensApiService) SearchExecute(r TokensApiSearchRequest) (*TokenPaginatedList, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodPost
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *TokenPaginatedList
+		localVarHTTPMethod  = http.MethodPost
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *TokenPaginatedList
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "TokensApiService.Search")
@@ -1456,6 +1455,178 @@ func (a *TokensApiService) SearchExecute(r TokensApiSearchRequest) (*TokenPagina
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
+			var v ProblemDetails
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type TokensApiUpdateRequest struct {
+	ctx                context.Context
+	ApiService         *TokensApiService
+	id                 string
+	updateTokenRequest *UpdateTokenRequest
+}
+
+func (r TokensApiUpdateRequest) UpdateTokenRequest(updateTokenRequest UpdateTokenRequest) TokensApiUpdateRequest {
+	r.updateTokenRequest = &updateTokenRequest
+	return r
+}
+
+func (r TokensApiUpdateRequest) Execute() (*Token, *http.Response, error) {
+	return r.ApiService.UpdateExecute(r)
+}
+
+/*
+Update Method for Update
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param id
+ @return TokensApiUpdateRequest
+*/
+func (a *TokensApiService) Update(ctx context.Context, id string) TokensApiUpdateRequest {
+	return TokensApiUpdateRequest{
+		ApiService: a,
+		ctx:        ctx,
+		id:         id,
+	}
+}
+
+// Execute executes the request
+//  @return Token
+func (a *TokensApiService) UpdateExecute(r TokensApiUpdateRequest) (*Token, *http.Response, error) {
+	var (
+		localVarHTTPMethod  = http.MethodPatch
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *Token
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "TokensApiService.Update")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/tokens/{id}"
+	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterToString(r.id, "")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{"application/merge-patch+json"}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	// body params
+	localVarPostBody = r.updateTokenRequest
+	if r.ctx != nil {
+		// API Key Authentication
+		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+			if apiKey, ok := auth["ApiKey"]; ok {
+				var key string
+				if apiKey.Prefix != "" {
+					key = apiKey.Prefix + " " + apiKey.Key
+				} else {
+					key = apiKey.Key
+				}
+				localVarHeaderParams["BT-API-KEY"] = key
+			}
+		}
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v ValidationProblemDetails
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 401 {
+			var v ProblemDetails
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 403 {
+			var v ProblemDetails
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 404 {
+			var v ProblemDetails
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 409 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {

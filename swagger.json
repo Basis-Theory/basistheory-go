@@ -3814,6 +3814,94 @@
           }
         }
       },
+      "patch": {
+        "tags": [
+          "Tokens"
+        ],
+        "operationId": "Tokens_Update",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/merge-patch+json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateTokenRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Token"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ValidationProblemDetails"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Conflict",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      },
       "delete": {
         "tags": [
           "Tokens"
@@ -4383,6 +4471,9 @@
             "type": "string",
             "nullable": true
           },
+          "mask": {
+            "nullable": true
+          },
           "deduplicate_token": {
             "type": "boolean",
             "nullable": true
@@ -4411,6 +4502,9 @@
           },
           "fingerprint_expression": {
             "type": "string",
+            "nullable": true
+          },
+          "mask": {
             "nullable": true
           },
           "data": {
@@ -5334,6 +5428,9 @@
             "type": "string",
             "nullable": true
           },
+          "mask": {
+            "nullable": true
+          },
           "privacy": {
             "$ref": "#/components/schemas/Privacy"
           },
@@ -5440,6 +5537,20 @@
         "properties": {
           "card": {
             "$ref": "#/components/schemas/Card"
+          }
+        },
+        "additionalProperties": false
+      },
+      "UpdatePrivacy": {
+        "type": "object",
+        "properties": {
+          "impact_level": {
+            "type": "string",
+            "nullable": true
+          },
+          "restriction_policy": {
+            "type": "string",
+            "nullable": true
           }
         },
         "additionalProperties": false
@@ -5565,6 +5676,47 @@
               "type": "string",
               "nullable": true
             },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "UpdateTokenRequest": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "nullable": true
+          },
+          "encryption": {
+            "$ref": "#/components/schemas/EncryptionMetadata"
+          },
+          "privacy": {
+            "$ref": "#/components/schemas/UpdatePrivacy"
+          },
+          "metadata": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "string",
+              "nullable": true
+            },
+            "nullable": true
+          },
+          "search_indexes": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true
+          },
+          "fingerprint_expression": {
+            "type": "string",
+            "nullable": true
+          },
+          "mask": {
+            "nullable": true
+          },
+          "deduplicate_token": {
+            "type": "boolean",
             "nullable": true
           }
         },

@@ -17,19 +17,20 @@ import (
 
 // CreateTokenResponse struct for CreateTokenResponse
 type CreateTokenResponse struct {
-	Id *string `json:"id,omitempty"`
-	TenantId *string `json:"tenant_id,omitempty"`
-	Type NullableString `json:"type,omitempty"`
-	Fingerprint NullableString `json:"fingerprint,omitempty"`
-	FingerprintExpression NullableString `json:"fingerprint_expression,omitempty"`
-	Data interface{} `json:"data,omitempty"`
-	Metadata map[string]string `json:"metadata,omitempty"`
-	Privacy *Privacy `json:"privacy,omitempty"`
-	SearchIndexes []string `json:"search_indexes,omitempty"`
-	CreatedBy NullableString `json:"created_by,omitempty"`
-	CreatedAt NullableTime `json:"created_at,omitempty"`
-	ModifiedBy NullableString `json:"modified_by,omitempty"`
-	ModifiedAt NullableTime `json:"modified_at,omitempty"`
+	Id                    *string           `json:"id,omitempty"`
+	TenantId              *string           `json:"tenant_id,omitempty"`
+	Type                  NullableString    `json:"type,omitempty"`
+	Fingerprint           NullableString    `json:"fingerprint,omitempty"`
+	FingerprintExpression NullableString    `json:"fingerprint_expression,omitempty"`
+	Mask                  interface{}       `json:"mask,omitempty"`
+	Data                  interface{}       `json:"data,omitempty"`
+	Metadata              map[string]string `json:"metadata,omitempty"`
+	Privacy               *Privacy          `json:"privacy,omitempty"`
+	SearchIndexes         []string          `json:"search_indexes,omitempty"`
+	CreatedBy             NullableString    `json:"created_by,omitempty"`
+	CreatedAt             NullableTime      `json:"created_at,omitempty"`
+	ModifiedBy            NullableString    `json:"modified_by,omitempty"`
+	ModifiedAt            NullableTime      `json:"modified_at,omitempty"`
 }
 
 // NewCreateTokenResponse instantiates a new CreateTokenResponse object
@@ -145,6 +146,7 @@ func (o *CreateTokenResponse) HasType() bool {
 func (o *CreateTokenResponse) SetType(v string) {
 	o.Type.Set(&v)
 }
+
 // SetTypeNil sets the value for Type to be an explicit nil
 func (o *CreateTokenResponse) SetTypeNil() {
 	o.Type.Set(nil)
@@ -187,6 +189,7 @@ func (o *CreateTokenResponse) HasFingerprint() bool {
 func (o *CreateTokenResponse) SetFingerprint(v string) {
 	o.Fingerprint.Set(&v)
 }
+
 // SetFingerprintNil sets the value for Fingerprint to be an explicit nil
 func (o *CreateTokenResponse) SetFingerprintNil() {
 	o.Fingerprint.Set(nil)
@@ -229,6 +232,7 @@ func (o *CreateTokenResponse) HasFingerprintExpression() bool {
 func (o *CreateTokenResponse) SetFingerprintExpression(v string) {
 	o.FingerprintExpression.Set(&v)
 }
+
 // SetFingerprintExpressionNil sets the value for FingerprintExpression to be an explicit nil
 func (o *CreateTokenResponse) SetFingerprintExpressionNil() {
 	o.FingerprintExpression.Set(nil)
@@ -237,6 +241,39 @@ func (o *CreateTokenResponse) SetFingerprintExpressionNil() {
 // UnsetFingerprintExpression ensures that no value is present for FingerprintExpression, not even an explicit nil
 func (o *CreateTokenResponse) UnsetFingerprintExpression() {
 	o.FingerprintExpression.Unset()
+}
+
+// GetMask returns the Mask field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *CreateTokenResponse) GetMask() interface{} {
+	if o == nil {
+		var ret interface{}
+		return ret
+	}
+	return o.Mask
+}
+
+// GetMaskOk returns a tuple with the Mask field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *CreateTokenResponse) GetMaskOk() (*interface{}, bool) {
+	if o == nil || o.Mask == nil {
+		return nil, false
+	}
+	return &o.Mask, true
+}
+
+// HasMask returns a boolean if a field has been set.
+func (o *CreateTokenResponse) HasMask() bool {
+	if o != nil && o.Mask != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetMask gets a reference to the given interface{} and assigns it to the Mask field.
+func (o *CreateTokenResponse) SetMask(v interface{}) {
+	o.Mask = v
 }
 
 // GetData returns the Data field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -402,6 +439,7 @@ func (o *CreateTokenResponse) HasCreatedBy() bool {
 func (o *CreateTokenResponse) SetCreatedBy(v string) {
 	o.CreatedBy.Set(&v)
 }
+
 // SetCreatedByNil sets the value for CreatedBy to be an explicit nil
 func (o *CreateTokenResponse) SetCreatedByNil() {
 	o.CreatedBy.Set(nil)
@@ -444,6 +482,7 @@ func (o *CreateTokenResponse) HasCreatedAt() bool {
 func (o *CreateTokenResponse) SetCreatedAt(v time.Time) {
 	o.CreatedAt.Set(&v)
 }
+
 // SetCreatedAtNil sets the value for CreatedAt to be an explicit nil
 func (o *CreateTokenResponse) SetCreatedAtNil() {
 	o.CreatedAt.Set(nil)
@@ -486,6 +525,7 @@ func (o *CreateTokenResponse) HasModifiedBy() bool {
 func (o *CreateTokenResponse) SetModifiedBy(v string) {
 	o.ModifiedBy.Set(&v)
 }
+
 // SetModifiedByNil sets the value for ModifiedBy to be an explicit nil
 func (o *CreateTokenResponse) SetModifiedByNil() {
 	o.ModifiedBy.Set(nil)
@@ -528,6 +568,7 @@ func (o *CreateTokenResponse) HasModifiedAt() bool {
 func (o *CreateTokenResponse) SetModifiedAt(v time.Time) {
 	o.ModifiedAt.Set(&v)
 }
+
 // SetModifiedAtNil sets the value for ModifiedAt to be an explicit nil
 func (o *CreateTokenResponse) SetModifiedAtNil() {
 	o.ModifiedAt.Set(nil)
@@ -554,6 +595,9 @@ func (o CreateTokenResponse) MarshalJSON() ([]byte, error) {
 	}
 	if o.FingerprintExpression.IsSet() {
 		toSerialize["fingerprint_expression"] = o.FingerprintExpression.Get()
+	}
+	if o.Mask != nil {
+		toSerialize["mask"] = o.Mask
 	}
 	if o.Data != nil {
 		toSerialize["data"] = o.Data
@@ -617,5 +661,3 @@ func (v *NullableCreateTokenResponse) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

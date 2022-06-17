@@ -16,7 +16,7 @@ import (
 
 // CreateAtomicCardRequest struct for CreateAtomicCardRequest
 type CreateAtomicCardRequest struct {
-	Card Card `json:"card"`
+	Card     Card              `json:"card"`
 	Metadata map[string]string `json:"metadata,omitempty"`
 }
 
@@ -141,5 +141,3 @@ func (v *NullableCreateAtomicCardRequest) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

@@ -18,11 +18,11 @@ import (
 // GetLogs struct for GetLogs
 type GetLogs struct {
 	EntityType NullableString `json:"entityType,omitempty"`
-	EntityId NullableString `json:"entityId,omitempty"`
-	StartDate NullableTime `json:"startDate,omitempty"`
-	EndDate NullableTime `json:"endDate,omitempty"`
-	Page NullableInt32 `json:"page,omitempty"`
-	Size NullableInt32 `json:"size,omitempty"`
+	EntityId   NullableString `json:"entityId,omitempty"`
+	StartDate  NullableTime   `json:"startDate,omitempty"`
+	EndDate    NullableTime   `json:"endDate,omitempty"`
+	Page       NullableInt32  `json:"page,omitempty"`
+	Size       NullableInt32  `json:"size,omitempty"`
 }
 
 // NewGetLogs instantiates a new GetLogs object
@@ -74,6 +74,7 @@ func (o *GetLogs) HasEntityType() bool {
 func (o *GetLogs) SetEntityType(v string) {
 	o.EntityType.Set(&v)
 }
+
 // SetEntityTypeNil sets the value for EntityType to be an explicit nil
 func (o *GetLogs) SetEntityTypeNil() {
 	o.EntityType.Set(nil)
@@ -116,6 +117,7 @@ func (o *GetLogs) HasEntityId() bool {
 func (o *GetLogs) SetEntityId(v string) {
 	o.EntityId.Set(&v)
 }
+
 // SetEntityIdNil sets the value for EntityId to be an explicit nil
 func (o *GetLogs) SetEntityIdNil() {
 	o.EntityId.Set(nil)
@@ -158,6 +160,7 @@ func (o *GetLogs) HasStartDate() bool {
 func (o *GetLogs) SetStartDate(v time.Time) {
 	o.StartDate.Set(&v)
 }
+
 // SetStartDateNil sets the value for StartDate to be an explicit nil
 func (o *GetLogs) SetStartDateNil() {
 	o.StartDate.Set(nil)
@@ -200,6 +203,7 @@ func (o *GetLogs) HasEndDate() bool {
 func (o *GetLogs) SetEndDate(v time.Time) {
 	o.EndDate.Set(&v)
 }
+
 // SetEndDateNil sets the value for EndDate to be an explicit nil
 func (o *GetLogs) SetEndDateNil() {
 	o.EndDate.Set(nil)
@@ -242,6 +246,7 @@ func (o *GetLogs) HasPage() bool {
 func (o *GetLogs) SetPage(v int32) {
 	o.Page.Set(&v)
 }
+
 // SetPageNil sets the value for Page to be an explicit nil
 func (o *GetLogs) SetPageNil() {
 	o.Page.Set(nil)
@@ -284,6 +289,7 @@ func (o *GetLogs) HasSize() bool {
 func (o *GetLogs) SetSize(v int32) {
 	o.Size.Set(&v)
 }
+
 // SetSizeNil sets the value for Size to be an explicit nil
 func (o *GetLogs) SetSizeNil() {
 	o.Size.Set(nil)
@@ -352,5 +358,3 @@ func (v *NullableGetLogs) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

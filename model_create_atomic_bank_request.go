@@ -16,7 +16,7 @@ import (
 
 // CreateAtomicBankRequest struct for CreateAtomicBankRequest
 type CreateAtomicBankRequest struct {
-	Bank Bank `json:"bank"`
+	Bank     Bank              `json:"bank"`
 	Metadata map[string]string `json:"metadata,omitempty"`
 }
 
@@ -141,5 +141,3 @@ func (v *NullableCreateAtomicBankRequest) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

@@ -16,12 +16,12 @@ import (
 
 // UpdateReactorFormulaRequest struct for UpdateReactorFormulaRequest
 type UpdateReactorFormulaRequest struct {
-	Type string `json:"type"`
-	Name string `json:"name"`
-	Description NullableString `json:"description,omitempty"`
-	Icon NullableString `json:"icon,omitempty"`
-	Code NullableString `json:"code,omitempty"`
-	Configuration []ReactorFormulaConfiguration `json:"configuration,omitempty"`
+	Type              string                           `json:"type"`
+	Name              string                           `json:"name"`
+	Description       NullableString                   `json:"description,omitempty"`
+	Icon              NullableString                   `json:"icon,omitempty"`
+	Code              NullableString                   `json:"code,omitempty"`
+	Configuration     []ReactorFormulaConfiguration    `json:"configuration,omitempty"`
 	RequestParameters []ReactorFormulaRequestParameter `json:"request_parameters,omitempty"`
 }
 
@@ -124,6 +124,7 @@ func (o *UpdateReactorFormulaRequest) HasDescription() bool {
 func (o *UpdateReactorFormulaRequest) SetDescription(v string) {
 	o.Description.Set(&v)
 }
+
 // SetDescriptionNil sets the value for Description to be an explicit nil
 func (o *UpdateReactorFormulaRequest) SetDescriptionNil() {
 	o.Description.Set(nil)
@@ -166,6 +167,7 @@ func (o *UpdateReactorFormulaRequest) HasIcon() bool {
 func (o *UpdateReactorFormulaRequest) SetIcon(v string) {
 	o.Icon.Set(&v)
 }
+
 // SetIconNil sets the value for Icon to be an explicit nil
 func (o *UpdateReactorFormulaRequest) SetIconNil() {
 	o.Icon.Set(nil)
@@ -208,6 +210,7 @@ func (o *UpdateReactorFormulaRequest) HasCode() bool {
 func (o *UpdateReactorFormulaRequest) SetCode(v string) {
 	o.Code.Set(&v)
 }
+
 // SetCodeNil sets the value for Code to be an explicit nil
 func (o *UpdateReactorFormulaRequest) SetCodeNil() {
 	o.Code.Set(nil)
@@ -345,5 +348,3 @@ func (v *NullableUpdateReactorFormulaRequest) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

@@ -17,7 +17,7 @@ import (
 // LogPaginatedList struct for LogPaginatedList
 type LogPaginatedList struct {
 	Pagination *Pagination `json:"pagination,omitempty"`
-	Data []Log `json:"data,omitempty"`
+	Data       []Log       `json:"data,omitempty"`
 }
 
 // NewLogPaginatedList instantiates a new LogPaginatedList object
@@ -148,5 +148,3 @@ func (v *NullableLogPaginatedList) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

@@ -16,10 +16,10 @@ import (
 
 // Card struct for Card
 type Card struct {
-	Number NullableString `json:"number,omitempty"`
-	ExpirationMonth NullableInt32 `json:"expiration_month,omitempty"`
-	ExpirationYear NullableInt32 `json:"expiration_year,omitempty"`
-	Cvc NullableString `json:"cvc,omitempty"`
+	Number          NullableString `json:"number,omitempty"`
+	ExpirationMonth NullableInt32  `json:"expiration_month,omitempty"`
+	ExpirationYear  NullableInt32  `json:"expiration_year,omitempty"`
+	Cvc             NullableString `json:"cvc,omitempty"`
 }
 
 // NewCard instantiates a new Card object
@@ -71,6 +71,7 @@ func (o *Card) HasNumber() bool {
 func (o *Card) SetNumber(v string) {
 	o.Number.Set(&v)
 }
+
 // SetNumberNil sets the value for Number to be an explicit nil
 func (o *Card) SetNumberNil() {
 	o.Number.Set(nil)
@@ -113,6 +114,7 @@ func (o *Card) HasExpirationMonth() bool {
 func (o *Card) SetExpirationMonth(v int32) {
 	o.ExpirationMonth.Set(&v)
 }
+
 // SetExpirationMonthNil sets the value for ExpirationMonth to be an explicit nil
 func (o *Card) SetExpirationMonthNil() {
 	o.ExpirationMonth.Set(nil)
@@ -155,6 +157,7 @@ func (o *Card) HasExpirationYear() bool {
 func (o *Card) SetExpirationYear(v int32) {
 	o.ExpirationYear.Set(&v)
 }
+
 // SetExpirationYearNil sets the value for ExpirationYear to be an explicit nil
 func (o *Card) SetExpirationYearNil() {
 	o.ExpirationYear.Set(nil)
@@ -197,6 +200,7 @@ func (o *Card) HasCvc() bool {
 func (o *Card) SetCvc(v string) {
 	o.Cvc.Set(&v)
 }
+
 // SetCvcNil sets the value for Cvc to be an explicit nil
 func (o *Card) SetCvcNil() {
 	o.Cvc.Set(nil)
@@ -259,5 +263,3 @@ func (v *NullableCard) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

@@ -17,14 +17,14 @@ import (
 
 // Log struct for Log
 type Log struct {
-	TenantId *string `json:"tenant_id,omitempty"`
-	ActorId NullableString `json:"actor_id,omitempty"`
-	ActorType NullableString `json:"actor_type,omitempty"`
+	TenantId   *string        `json:"tenant_id,omitempty"`
+	ActorId    NullableString `json:"actor_id,omitempty"`
+	ActorType  NullableString `json:"actor_type,omitempty"`
 	EntityType NullableString `json:"entity_type,omitempty"`
-	EntityId NullableString `json:"entity_id,omitempty"`
-	Operation NullableString `json:"operation,omitempty"`
-	Message NullableString `json:"message,omitempty"`
-	CreatedAt NullableTime `json:"created_at,omitempty"`
+	EntityId   NullableString `json:"entity_id,omitempty"`
+	Operation  NullableString `json:"operation,omitempty"`
+	Message    NullableString `json:"message,omitempty"`
+	CreatedAt  NullableTime   `json:"created_at,omitempty"`
 }
 
 // NewLog instantiates a new Log object
@@ -108,6 +108,7 @@ func (o *Log) HasActorId() bool {
 func (o *Log) SetActorId(v string) {
 	o.ActorId.Set(&v)
 }
+
 // SetActorIdNil sets the value for ActorId to be an explicit nil
 func (o *Log) SetActorIdNil() {
 	o.ActorId.Set(nil)
@@ -150,6 +151,7 @@ func (o *Log) HasActorType() bool {
 func (o *Log) SetActorType(v string) {
 	o.ActorType.Set(&v)
 }
+
 // SetActorTypeNil sets the value for ActorType to be an explicit nil
 func (o *Log) SetActorTypeNil() {
 	o.ActorType.Set(nil)
@@ -192,6 +194,7 @@ func (o *Log) HasEntityType() bool {
 func (o *Log) SetEntityType(v string) {
 	o.EntityType.Set(&v)
 }
+
 // SetEntityTypeNil sets the value for EntityType to be an explicit nil
 func (o *Log) SetEntityTypeNil() {
 	o.EntityType.Set(nil)
@@ -234,6 +237,7 @@ func (o *Log) HasEntityId() bool {
 func (o *Log) SetEntityId(v string) {
 	o.EntityId.Set(&v)
 }
+
 // SetEntityIdNil sets the value for EntityId to be an explicit nil
 func (o *Log) SetEntityIdNil() {
 	o.EntityId.Set(nil)
@@ -276,6 +280,7 @@ func (o *Log) HasOperation() bool {
 func (o *Log) SetOperation(v string) {
 	o.Operation.Set(&v)
 }
+
 // SetOperationNil sets the value for Operation to be an explicit nil
 func (o *Log) SetOperationNil() {
 	o.Operation.Set(nil)
@@ -318,6 +323,7 @@ func (o *Log) HasMessage() bool {
 func (o *Log) SetMessage(v string) {
 	o.Message.Set(&v)
 }
+
 // SetMessageNil sets the value for Message to be an explicit nil
 func (o *Log) SetMessageNil() {
 	o.Message.Set(nil)
@@ -360,6 +366,7 @@ func (o *Log) HasCreatedAt() bool {
 func (o *Log) SetCreatedAt(v time.Time) {
 	o.CreatedAt.Set(&v)
 }
+
 // SetCreatedAtNil sets the value for CreatedAt to be an explicit nil
 func (o *Log) SetCreatedAtNil() {
 	o.CreatedAt.Set(nil)
@@ -434,5 +441,3 @@ func (v *NullableLog) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

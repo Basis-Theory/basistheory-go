@@ -16,8 +16,8 @@ import (
 
 // TenantInvitationResponsePaginatedList struct for TenantInvitationResponsePaginatedList
 type TenantInvitationResponsePaginatedList struct {
-	Pagination *Pagination `json:"pagination,omitempty"`
-	Data []TenantInvitationResponse `json:"data,omitempty"`
+	Pagination *Pagination                `json:"pagination,omitempty"`
+	Data       []TenantInvitationResponse `json:"data,omitempty"`
 }
 
 // NewTenantInvitationResponsePaginatedList instantiates a new TenantInvitationResponsePaginatedList object
@@ -148,5 +148,3 @@ func (v *NullableTenantInvitationResponsePaginatedList) UnmarshalJSON(src []byte
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

@@ -16,10 +16,10 @@ import (
 
 // GetProxies struct for GetProxies
 type GetProxies struct {
-	Ids []string `json:"ids,omitempty"`
+	Ids  []string       `json:"ids,omitempty"`
 	Name NullableString `json:"name,omitempty"`
-	Page NullableInt32 `json:"page,omitempty"`
-	Size NullableInt32 `json:"size,omitempty"`
+	Page NullableInt32  `json:"page,omitempty"`
+	Size NullableInt32  `json:"size,omitempty"`
 }
 
 // NewGetProxies instantiates a new GetProxies object
@@ -104,6 +104,7 @@ func (o *GetProxies) HasName() bool {
 func (o *GetProxies) SetName(v string) {
 	o.Name.Set(&v)
 }
+
 // SetNameNil sets the value for Name to be an explicit nil
 func (o *GetProxies) SetNameNil() {
 	o.Name.Set(nil)
@@ -146,6 +147,7 @@ func (o *GetProxies) HasPage() bool {
 func (o *GetProxies) SetPage(v int32) {
 	o.Page.Set(&v)
 }
+
 // SetPageNil sets the value for Page to be an explicit nil
 func (o *GetProxies) SetPageNil() {
 	o.Page.Set(nil)
@@ -188,6 +190,7 @@ func (o *GetProxies) HasSize() bool {
 func (o *GetProxies) SetSize(v int32) {
 	o.Size.Set(&v)
 }
+
 // SetSizeNil sets the value for Size to be an explicit nil
 func (o *GetProxies) SetSizeNil() {
 	o.Size.Set(nil)
@@ -250,5 +253,3 @@ func (v *NullableGetProxies) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

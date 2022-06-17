@@ -16,11 +16,11 @@ import (
 
 // GetTokens struct for GetTokens
 type GetTokens struct {
-	Types []string `json:"types,omitempty"`
-	TokenIds []string `json:"tokenIds,omitempty"`
+	Types          []string          `json:"types,omitempty"`
+	TokenIds       []string          `json:"tokenIds,omitempty"`
 	MetadataSearch map[string]string `json:"metadataSearch,omitempty"`
-	Page NullableInt32 `json:"page,omitempty"`
-	Size NullableInt32 `json:"size,omitempty"`
+	Page           NullableInt32     `json:"page,omitempty"`
+	Size           NullableInt32     `json:"size,omitempty"`
 }
 
 // NewGetTokens instantiates a new GetTokens object
@@ -171,6 +171,7 @@ func (o *GetTokens) HasPage() bool {
 func (o *GetTokens) SetPage(v int32) {
 	o.Page.Set(&v)
 }
+
 // SetPageNil sets the value for Page to be an explicit nil
 func (o *GetTokens) SetPageNil() {
 	o.Page.Set(nil)
@@ -213,6 +214,7 @@ func (o *GetTokens) HasSize() bool {
 func (o *GetTokens) SetSize(v int32) {
 	o.Size.Set(&v)
 }
+
 // SetSizeNil sets the value for Size to be an explicit nil
 func (o *GetTokens) SetSizeNil() {
 	o.Size.Set(nil)
@@ -278,5 +280,3 @@ func (v *NullableGetTokens) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

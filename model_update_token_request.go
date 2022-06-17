@@ -14,12 +14,11 @@ import (
 	"encoding/json"
 )
 
-// CreateTokenRequest struct for CreateTokenRequest
-type CreateTokenRequest struct {
-	Type                  NullableString      `json:"type,omitempty"`
-	Data                  interface{}         `json:"data"`
+// UpdateTokenRequest struct for UpdateTokenRequest
+type UpdateTokenRequest struct {
+	Data                  interface{}         `json:"data,omitempty"`
 	Encryption            *EncryptionMetadata `json:"encryption,omitempty"`
-	Privacy               *Privacy            `json:"privacy,omitempty"`
+	Privacy               *UpdatePrivacy      `json:"privacy,omitempty"`
 	Metadata              map[string]string   `json:"metadata,omitempty"`
 	SearchIndexes         []string            `json:"search_indexes,omitempty"`
 	FingerprintExpression NullableString      `json:"fingerprint_expression,omitempty"`
@@ -27,95 +26,58 @@ type CreateTokenRequest struct {
 	DeduplicateToken      NullableBool        `json:"deduplicate_token,omitempty"`
 }
 
-// NewCreateTokenRequest instantiates a new CreateTokenRequest object
+// NewUpdateTokenRequest instantiates a new UpdateTokenRequest object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewCreateTokenRequest(data interface{}) *CreateTokenRequest {
-	this := CreateTokenRequest{}
-	this.Data = data
+func NewUpdateTokenRequest() *UpdateTokenRequest {
+	this := UpdateTokenRequest{}
 	return &this
 }
 
-// NewCreateTokenRequestWithDefaults instantiates a new CreateTokenRequest object
+// NewUpdateTokenRequestWithDefaults instantiates a new UpdateTokenRequest object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
-func NewCreateTokenRequestWithDefaults() *CreateTokenRequest {
-	this := CreateTokenRequest{}
+func NewUpdateTokenRequestWithDefaults() *UpdateTokenRequest {
+	this := UpdateTokenRequest{}
 	return &this
 }
 
-// GetType returns the Type field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *CreateTokenRequest) GetType() string {
-	if o == nil || o.Type.Get() == nil {
-		var ret string
-		return ret
-	}
-	return *o.Type.Get()
-}
-
-// GetTypeOk returns a tuple with the Type field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *CreateTokenRequest) GetTypeOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.Type.Get(), o.Type.IsSet()
-}
-
-// HasType returns a boolean if a field has been set.
-func (o *CreateTokenRequest) HasType() bool {
-	if o != nil && o.Type.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetType gets a reference to the given NullableString and assigns it to the Type field.
-func (o *CreateTokenRequest) SetType(v string) {
-	o.Type.Set(&v)
-}
-
-// SetTypeNil sets the value for Type to be an explicit nil
-func (o *CreateTokenRequest) SetTypeNil() {
-	o.Type.Set(nil)
-}
-
-// UnsetType ensures that no value is present for Type, not even an explicit nil
-func (o *CreateTokenRequest) UnsetType() {
-	o.Type.Unset()
-}
-
-// GetData returns the Data field value
-// If the value is explicit nil, the zero value for interface{} will be returned
-func (o *CreateTokenRequest) GetData() interface{} {
+// GetData returns the Data field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *UpdateTokenRequest) GetData() interface{} {
 	if o == nil {
 		var ret interface{}
 		return ret
 	}
-
 	return o.Data
 }
 
-// GetDataOk returns a tuple with the Data field value
+// GetDataOk returns a tuple with the Data field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *CreateTokenRequest) GetDataOk() (*interface{}, bool) {
+func (o *UpdateTokenRequest) GetDataOk() (*interface{}, bool) {
 	if o == nil || o.Data == nil {
 		return nil, false
 	}
 	return &o.Data, true
 }
 
-// SetData sets field value
-func (o *CreateTokenRequest) SetData(v interface{}) {
+// HasData returns a boolean if a field has been set.
+func (o *UpdateTokenRequest) HasData() bool {
+	if o != nil && o.Data != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetData gets a reference to the given interface{} and assigns it to the Data field.
+func (o *UpdateTokenRequest) SetData(v interface{}) {
 	o.Data = v
 }
 
 // GetEncryption returns the Encryption field value if set, zero value otherwise.
-func (o *CreateTokenRequest) GetEncryption() EncryptionMetadata {
+func (o *UpdateTokenRequest) GetEncryption() EncryptionMetadata {
 	if o == nil || o.Encryption == nil {
 		var ret EncryptionMetadata
 		return ret
@@ -125,7 +87,7 @@ func (o *CreateTokenRequest) GetEncryption() EncryptionMetadata {
 
 // GetEncryptionOk returns a tuple with the Encryption field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateTokenRequest) GetEncryptionOk() (*EncryptionMetadata, bool) {
+func (o *UpdateTokenRequest) GetEncryptionOk() (*EncryptionMetadata, bool) {
 	if o == nil || o.Encryption == nil {
 		return nil, false
 	}
@@ -133,7 +95,7 @@ func (o *CreateTokenRequest) GetEncryptionOk() (*EncryptionMetadata, bool) {
 }
 
 // HasEncryption returns a boolean if a field has been set.
-func (o *CreateTokenRequest) HasEncryption() bool {
+func (o *UpdateTokenRequest) HasEncryption() bool {
 	if o != nil && o.Encryption != nil {
 		return true
 	}
@@ -142,14 +104,14 @@ func (o *CreateTokenRequest) HasEncryption() bool {
 }
 
 // SetEncryption gets a reference to the given EncryptionMetadata and assigns it to the Encryption field.
-func (o *CreateTokenRequest) SetEncryption(v EncryptionMetadata) {
+func (o *UpdateTokenRequest) SetEncryption(v EncryptionMetadata) {
 	o.Encryption = &v
 }
 
 // GetPrivacy returns the Privacy field value if set, zero value otherwise.
-func (o *CreateTokenRequest) GetPrivacy() Privacy {
+func (o *UpdateTokenRequest) GetPrivacy() UpdatePrivacy {
 	if o == nil || o.Privacy == nil {
-		var ret Privacy
+		var ret UpdatePrivacy
 		return ret
 	}
 	return *o.Privacy
@@ -157,7 +119,7 @@ func (o *CreateTokenRequest) GetPrivacy() Privacy {
 
 // GetPrivacyOk returns a tuple with the Privacy field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateTokenRequest) GetPrivacyOk() (*Privacy, bool) {
+func (o *UpdateTokenRequest) GetPrivacyOk() (*UpdatePrivacy, bool) {
 	if o == nil || o.Privacy == nil {
 		return nil, false
 	}
@@ -165,7 +127,7 @@ func (o *CreateTokenRequest) GetPrivacyOk() (*Privacy, bool) {
 }
 
 // HasPrivacy returns a boolean if a field has been set.
-func (o *CreateTokenRequest) HasPrivacy() bool {
+func (o *UpdateTokenRequest) HasPrivacy() bool {
 	if o != nil && o.Privacy != nil {
 		return true
 	}
@@ -173,13 +135,13 @@ func (o *CreateTokenRequest) HasPrivacy() bool {
 	return false
 }
 
-// SetPrivacy gets a reference to the given Privacy and assigns it to the Privacy field.
-func (o *CreateTokenRequest) SetPrivacy(v Privacy) {
+// SetPrivacy gets a reference to the given UpdatePrivacy and assigns it to the Privacy field.
+func (o *UpdateTokenRequest) SetPrivacy(v UpdatePrivacy) {
 	o.Privacy = &v
 }
 
 // GetMetadata returns the Metadata field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *CreateTokenRequest) GetMetadata() map[string]string {
+func (o *UpdateTokenRequest) GetMetadata() map[string]string {
 	if o == nil {
 		var ret map[string]string
 		return ret
@@ -190,7 +152,7 @@ func (o *CreateTokenRequest) GetMetadata() map[string]string {
 // GetMetadataOk returns a tuple with the Metadata field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *CreateTokenRequest) GetMetadataOk() (*map[string]string, bool) {
+func (o *UpdateTokenRequest) GetMetadataOk() (*map[string]string, bool) {
 	if o == nil || o.Metadata == nil {
 		return nil, false
 	}
@@ -198,7 +160,7 @@ func (o *CreateTokenRequest) GetMetadataOk() (*map[string]string, bool) {
 }
 
 // HasMetadata returns a boolean if a field has been set.
-func (o *CreateTokenRequest) HasMetadata() bool {
+func (o *UpdateTokenRequest) HasMetadata() bool {
 	if o != nil && o.Metadata != nil {
 		return true
 	}
@@ -207,12 +169,12 @@ func (o *CreateTokenRequest) HasMetadata() bool {
 }
 
 // SetMetadata gets a reference to the given map[string]string and assigns it to the Metadata field.
-func (o *CreateTokenRequest) SetMetadata(v map[string]string) {
+func (o *UpdateTokenRequest) SetMetadata(v map[string]string) {
 	o.Metadata = v
 }
 
 // GetSearchIndexes returns the SearchIndexes field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *CreateTokenRequest) GetSearchIndexes() []string {
+func (o *UpdateTokenRequest) GetSearchIndexes() []string {
 	if o == nil {
 		var ret []string
 		return ret
@@ -223,7 +185,7 @@ func (o *CreateTokenRequest) GetSearchIndexes() []string {
 // GetSearchIndexesOk returns a tuple with the SearchIndexes field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *CreateTokenRequest) GetSearchIndexesOk() ([]string, bool) {
+func (o *UpdateTokenRequest) GetSearchIndexesOk() ([]string, bool) {
 	if o == nil || o.SearchIndexes == nil {
 		return nil, false
 	}
@@ -231,7 +193,7 @@ func (o *CreateTokenRequest) GetSearchIndexesOk() ([]string, bool) {
 }
 
 // HasSearchIndexes returns a boolean if a field has been set.
-func (o *CreateTokenRequest) HasSearchIndexes() bool {
+func (o *UpdateTokenRequest) HasSearchIndexes() bool {
 	if o != nil && o.SearchIndexes != nil {
 		return true
 	}
@@ -240,12 +202,12 @@ func (o *CreateTokenRequest) HasSearchIndexes() bool {
 }
 
 // SetSearchIndexes gets a reference to the given []string and assigns it to the SearchIndexes field.
-func (o *CreateTokenRequest) SetSearchIndexes(v []string) {
+func (o *UpdateTokenRequest) SetSearchIndexes(v []string) {
 	o.SearchIndexes = v
 }
 
 // GetFingerprintExpression returns the FingerprintExpression field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *CreateTokenRequest) GetFingerprintExpression() string {
+func (o *UpdateTokenRequest) GetFingerprintExpression() string {
 	if o == nil || o.FingerprintExpression.Get() == nil {
 		var ret string
 		return ret
@@ -256,7 +218,7 @@ func (o *CreateTokenRequest) GetFingerprintExpression() string {
 // GetFingerprintExpressionOk returns a tuple with the FingerprintExpression field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *CreateTokenRequest) GetFingerprintExpressionOk() (*string, bool) {
+func (o *UpdateTokenRequest) GetFingerprintExpressionOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -264,7 +226,7 @@ func (o *CreateTokenRequest) GetFingerprintExpressionOk() (*string, bool) {
 }
 
 // HasFingerprintExpression returns a boolean if a field has been set.
-func (o *CreateTokenRequest) HasFingerprintExpression() bool {
+func (o *UpdateTokenRequest) HasFingerprintExpression() bool {
 	if o != nil && o.FingerprintExpression.IsSet() {
 		return true
 	}
@@ -273,22 +235,22 @@ func (o *CreateTokenRequest) HasFingerprintExpression() bool {
 }
 
 // SetFingerprintExpression gets a reference to the given NullableString and assigns it to the FingerprintExpression field.
-func (o *CreateTokenRequest) SetFingerprintExpression(v string) {
+func (o *UpdateTokenRequest) SetFingerprintExpression(v string) {
 	o.FingerprintExpression.Set(&v)
 }
 
 // SetFingerprintExpressionNil sets the value for FingerprintExpression to be an explicit nil
-func (o *CreateTokenRequest) SetFingerprintExpressionNil() {
+func (o *UpdateTokenRequest) SetFingerprintExpressionNil() {
 	o.FingerprintExpression.Set(nil)
 }
 
 // UnsetFingerprintExpression ensures that no value is present for FingerprintExpression, not even an explicit nil
-func (o *CreateTokenRequest) UnsetFingerprintExpression() {
+func (o *UpdateTokenRequest) UnsetFingerprintExpression() {
 	o.FingerprintExpression.Unset()
 }
 
 // GetMask returns the Mask field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *CreateTokenRequest) GetMask() interface{} {
+func (o *UpdateTokenRequest) GetMask() interface{} {
 	if o == nil {
 		var ret interface{}
 		return ret
@@ -299,7 +261,7 @@ func (o *CreateTokenRequest) GetMask() interface{} {
 // GetMaskOk returns a tuple with the Mask field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *CreateTokenRequest) GetMaskOk() (*interface{}, bool) {
+func (o *UpdateTokenRequest) GetMaskOk() (*interface{}, bool) {
 	if o == nil || o.Mask == nil {
 		return nil, false
 	}
@@ -307,7 +269,7 @@ func (o *CreateTokenRequest) GetMaskOk() (*interface{}, bool) {
 }
 
 // HasMask returns a boolean if a field has been set.
-func (o *CreateTokenRequest) HasMask() bool {
+func (o *UpdateTokenRequest) HasMask() bool {
 	if o != nil && o.Mask != nil {
 		return true
 	}
@@ -316,12 +278,12 @@ func (o *CreateTokenRequest) HasMask() bool {
 }
 
 // SetMask gets a reference to the given interface{} and assigns it to the Mask field.
-func (o *CreateTokenRequest) SetMask(v interface{}) {
+func (o *UpdateTokenRequest) SetMask(v interface{}) {
 	o.Mask = v
 }
 
 // GetDeduplicateToken returns the DeduplicateToken field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *CreateTokenRequest) GetDeduplicateToken() bool {
+func (o *UpdateTokenRequest) GetDeduplicateToken() bool {
 	if o == nil || o.DeduplicateToken.Get() == nil {
 		var ret bool
 		return ret
@@ -332,7 +294,7 @@ func (o *CreateTokenRequest) GetDeduplicateToken() bool {
 // GetDeduplicateTokenOk returns a tuple with the DeduplicateToken field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *CreateTokenRequest) GetDeduplicateTokenOk() (*bool, bool) {
+func (o *UpdateTokenRequest) GetDeduplicateTokenOk() (*bool, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -340,7 +302,7 @@ func (o *CreateTokenRequest) GetDeduplicateTokenOk() (*bool, bool) {
 }
 
 // HasDeduplicateToken returns a boolean if a field has been set.
-func (o *CreateTokenRequest) HasDeduplicateToken() bool {
+func (o *UpdateTokenRequest) HasDeduplicateToken() bool {
 	if o != nil && o.DeduplicateToken.IsSet() {
 		return true
 	}
@@ -349,25 +311,22 @@ func (o *CreateTokenRequest) HasDeduplicateToken() bool {
 }
 
 // SetDeduplicateToken gets a reference to the given NullableBool and assigns it to the DeduplicateToken field.
-func (o *CreateTokenRequest) SetDeduplicateToken(v bool) {
+func (o *UpdateTokenRequest) SetDeduplicateToken(v bool) {
 	o.DeduplicateToken.Set(&v)
 }
 
 // SetDeduplicateTokenNil sets the value for DeduplicateToken to be an explicit nil
-func (o *CreateTokenRequest) SetDeduplicateTokenNil() {
+func (o *UpdateTokenRequest) SetDeduplicateTokenNil() {
 	o.DeduplicateToken.Set(nil)
 }
 
 // UnsetDeduplicateToken ensures that no value is present for DeduplicateToken, not even an explicit nil
-func (o *CreateTokenRequest) UnsetDeduplicateToken() {
+func (o *UpdateTokenRequest) UnsetDeduplicateToken() {
 	o.DeduplicateToken.Unset()
 }
 
-func (o CreateTokenRequest) MarshalJSON() ([]byte, error) {
+func (o UpdateTokenRequest) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
-	if o.Type.IsSet() {
-		toSerialize["type"] = o.Type.Get()
-	}
 	if o.Data != nil {
 		toSerialize["data"] = o.Data
 	}
@@ -395,38 +354,38 @@ func (o CreateTokenRequest) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
-type NullableCreateTokenRequest struct {
-	value *CreateTokenRequest
+type NullableUpdateTokenRequest struct {
+	value *UpdateTokenRequest
 	isSet bool
 }
 
-func (v NullableCreateTokenRequest) Get() *CreateTokenRequest {
+func (v NullableUpdateTokenRequest) Get() *UpdateTokenRequest {
 	return v.value
 }
 
-func (v *NullableCreateTokenRequest) Set(val *CreateTokenRequest) {
+func (v *NullableUpdateTokenRequest) Set(val *UpdateTokenRequest) {
 	v.value = val
 	v.isSet = true
 }
 
-func (v NullableCreateTokenRequest) IsSet() bool {
+func (v NullableUpdateTokenRequest) IsSet() bool {
 	return v.isSet
 }
 
-func (v *NullableCreateTokenRequest) Unset() {
+func (v *NullableUpdateTokenRequest) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
-func NewNullableCreateTokenRequest(val *CreateTokenRequest) *NullableCreateTokenRequest {
-	return &NullableCreateTokenRequest{value: val, isSet: true}
+func NewNullableUpdateTokenRequest(val *UpdateTokenRequest) *NullableUpdateTokenRequest {
+	return &NullableUpdateTokenRequest{value: val, isSet: true}
 }
 
-func (v NullableCreateTokenRequest) MarshalJSON() ([]byte, error) {
+func (v NullableUpdateTokenRequest) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
-func (v *NullableCreateTokenRequest) UnmarshalJSON(src []byte) error {
+func (v *NullableUpdateTokenRequest) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }

@@ -16,11 +16,11 @@ import (
 
 // User struct for User
 type User struct {
-	Id *string `json:"id,omitempty"`
-	Email NullableString `json:"email,omitempty"`
+	Id        *string        `json:"id,omitempty"`
+	Email     NullableString `json:"email,omitempty"`
 	FirstName NullableString `json:"first_name,omitempty"`
-	LastName NullableString `json:"last_name,omitempty"`
-	Picture NullableString `json:"picture,omitempty"`
+	LastName  NullableString `json:"last_name,omitempty"`
+	Picture   NullableString `json:"picture,omitempty"`
 }
 
 // NewUser instantiates a new User object
@@ -104,6 +104,7 @@ func (o *User) HasEmail() bool {
 func (o *User) SetEmail(v string) {
 	o.Email.Set(&v)
 }
+
 // SetEmailNil sets the value for Email to be an explicit nil
 func (o *User) SetEmailNil() {
 	o.Email.Set(nil)
@@ -146,6 +147,7 @@ func (o *User) HasFirstName() bool {
 func (o *User) SetFirstName(v string) {
 	o.FirstName.Set(&v)
 }
+
 // SetFirstNameNil sets the value for FirstName to be an explicit nil
 func (o *User) SetFirstNameNil() {
 	o.FirstName.Set(nil)
@@ -188,6 +190,7 @@ func (o *User) HasLastName() bool {
 func (o *User) SetLastName(v string) {
 	o.LastName.Set(&v)
 }
+
 // SetLastNameNil sets the value for LastName to be an explicit nil
 func (o *User) SetLastNameNil() {
 	o.LastName.Set(nil)
@@ -230,6 +233,7 @@ func (o *User) HasPicture() bool {
 func (o *User) SetPicture(v string) {
 	o.Picture.Set(&v)
 }
+
 // SetPictureNil sets the value for Picture to be an explicit nil
 func (o *User) SetPictureNil() {
 	o.Picture.Set(nil)
@@ -295,5 +299,3 @@ func (v *NullableUser) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

@@ -81,10 +81,12 @@ docs/TokensApi.md
 docs/UpdateApplicationRequest.md
 docs/UpdateAtomicBankRequest.md
 docs/UpdateAtomicCardRequest.md
+docs/UpdatePrivacy.md
 docs/UpdateProxyRequest.md
 docs/UpdateReactorFormulaRequest.md
 docs/UpdateReactorRequest.md
 docs/UpdateTenantRequest.md
+docs/UpdateTokenRequest.md
 docs/User.md
 docs/ValidationProblemDetails.md
 model_application.go
@@ -144,10 +146,12 @@ model_token_report.go
 model_update_application_request.go
 model_update_atomic_bank_request.go
 model_update_atomic_card_request.go
+model_update_privacy.go
 model_update_proxy_request.go
 model_update_reactor_formula_request.go
 model_update_reactor_request.go
 model_update_tenant_request.go
+model_update_token_request.go
 model_user.go
 model_validation_problem_details.go
 response.go

@@ -17,14 +17,14 @@ import (
 
 // Tenant struct for Tenant
 type Tenant struct {
-	Id *string `json:"id,omitempty"`
-	OwnerId *string `json:"owner_id,omitempty"`
-	Name NullableString `json:"name,omitempty"`
-	CreatedBy NullableString `json:"created_by,omitempty"`
-	CreatedAt NullableTime `json:"created_at,omitempty"`
-	ModifiedBy NullableString `json:"modified_by,omitempty"`
-	ModifiedAt NullableTime `json:"modified_at,omitempty"`
-	Settings map[string]string `json:"settings,omitempty"`
+	Id         *string           `json:"id,omitempty"`
+	OwnerId    *string           `json:"owner_id,omitempty"`
+	Name       NullableString    `json:"name,omitempty"`
+	CreatedBy  NullableString    `json:"created_by,omitempty"`
+	CreatedAt  NullableTime      `json:"created_at,omitempty"`
+	ModifiedBy NullableString    `json:"modified_by,omitempty"`
+	ModifiedAt NullableTime      `json:"modified_at,omitempty"`
+	Settings   map[string]string `json:"settings,omitempty"`
 }
 
 // NewTenant instantiates a new Tenant object
@@ -140,6 +140,7 @@ func (o *Tenant) HasName() bool {
 func (o *Tenant) SetName(v string) {
 	o.Name.Set(&v)
 }
+
 // SetNameNil sets the value for Name to be an explicit nil
 func (o *Tenant) SetNameNil() {
 	o.Name.Set(nil)
@@ -182,6 +183,7 @@ func (o *Tenant) HasCreatedBy() bool {
 func (o *Tenant) SetCreatedBy(v string) {
 	o.CreatedBy.Set(&v)
 }
+
 // SetCreatedByNil sets the value for CreatedBy to be an explicit nil
 func (o *Tenant) SetCreatedByNil() {
 	o.CreatedBy.Set(nil)
@@ -224,6 +226,7 @@ func (o *Tenant) HasCreatedAt() bool {
 func (o *Tenant) SetCreatedAt(v time.Time) {
 	o.CreatedAt.Set(&v)
 }
+
 // SetCreatedAtNil sets the value for CreatedAt to be an explicit nil
 func (o *Tenant) SetCreatedAtNil() {
 	o.CreatedAt.Set(nil)
@@ -266,6 +269,7 @@ func (o *Tenant) HasModifiedBy() bool {
 func (o *Tenant) SetModifiedBy(v string) {
 	o.ModifiedBy.Set(&v)
 }
+
 // SetModifiedByNil sets the value for ModifiedBy to be an explicit nil
 func (o *Tenant) SetModifiedByNil() {
 	o.ModifiedBy.Set(nil)
@@ -308,6 +312,7 @@ func (o *Tenant) HasModifiedAt() bool {
 func (o *Tenant) SetModifiedAt(v time.Time) {
 	o.ModifiedAt.Set(&v)
 }
+
 // SetModifiedAtNil sets the value for ModifiedAt to be an explicit nil
 func (o *Tenant) SetModifiedAtNil() {
 	o.ModifiedAt.Set(nil)
@@ -415,5 +420,3 @@ func (v *NullableTenant) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

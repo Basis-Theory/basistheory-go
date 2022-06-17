@@ -16,12 +16,12 @@ import (
 
 // ValidationProblemDetails struct for ValidationProblemDetails
 type ValidationProblemDetails struct {
-	Errors map[string][]string `json:"errors,omitempty"`
-	Type NullableString `json:"type,omitempty"`
-	Title NullableString `json:"title,omitempty"`
-	Status NullableInt32 `json:"status,omitempty"`
-	Detail NullableString `json:"detail,omitempty"`
-	Instance NullableString `json:"instance,omitempty"`
+	Errors   map[string][]string `json:"errors,omitempty"`
+	Type     NullableString      `json:"type,omitempty"`
+	Title    NullableString      `json:"title,omitempty"`
+	Status   NullableInt32       `json:"status,omitempty"`
+	Detail   NullableString      `json:"detail,omitempty"`
+	Instance NullableString      `json:"instance,omitempty"`
 }
 
 // NewValidationProblemDetails instantiates a new ValidationProblemDetails object
@@ -106,6 +106,7 @@ func (o *ValidationProblemDetails) HasType() bool {
 func (o *ValidationProblemDetails) SetType(v string) {
 	o.Type.Set(&v)
 }
+
 // SetTypeNil sets the value for Type to be an explicit nil
 func (o *ValidationProblemDetails) SetTypeNil() {
 	o.Type.Set(nil)
@@ -148,6 +149,7 @@ func (o *ValidationProblemDetails) HasTitle() bool {
 func (o *ValidationProblemDetails) SetTitle(v string) {
 	o.Title.Set(&v)
 }
+
 // SetTitleNil sets the value for Title to be an explicit nil
 func (o *ValidationProblemDetails) SetTitleNil() {
 	o.Title.Set(nil)
@@ -190,6 +192,7 @@ func (o *ValidationProblemDetails) HasStatus() bool {
 func (o *ValidationProblemDetails) SetStatus(v int32) {
 	o.Status.Set(&v)
 }
+
 // SetStatusNil sets the value for Status to be an explicit nil
 func (o *ValidationProblemDetails) SetStatusNil() {
 	o.Status.Set(nil)
@@ -232,6 +235,7 @@ func (o *ValidationProblemDetails) HasDetail() bool {
 func (o *ValidationProblemDetails) SetDetail(v string) {
 	o.Detail.Set(&v)
 }
+
 // SetDetailNil sets the value for Detail to be an explicit nil
 func (o *ValidationProblemDetails) SetDetailNil() {
 	o.Detail.Set(nil)
@@ -274,6 +278,7 @@ func (o *ValidationProblemDetails) HasInstance() bool {
 func (o *ValidationProblemDetails) SetInstance(v string) {
 	o.Instance.Set(&v)
 }
+
 // SetInstanceNil sets the value for Instance to be an explicit nil
 func (o *ValidationProblemDetails) SetInstanceNil() {
 	o.Instance.Set(nil)
@@ -342,5 +347,3 @@ func (v *NullableValidationProblemDetails) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

@@ -16,11 +16,11 @@ import (
 
 // CreateProxyRequest struct for CreateProxyRequest
 type CreateProxyRequest struct {
-	Name string `json:"name"`
-	DestinationUrl string `json:"destination_url"`
-	RequestReactorId NullableString `json:"request_reactor_id,omitempty"`
+	Name              string         `json:"name"`
+	DestinationUrl    string         `json:"destination_url"`
+	RequestReactorId  NullableString `json:"request_reactor_id,omitempty"`
 	ResponseReactorId NullableString `json:"response_reactor_id,omitempty"`
-	RequireAuth NullableBool `json:"require_auth,omitempty"`
+	RequireAuth       NullableBool   `json:"require_auth,omitempty"`
 }
 
 // NewCreateProxyRequest instantiates a new CreateProxyRequest object
@@ -122,6 +122,7 @@ func (o *CreateProxyRequest) HasRequestReactorId() bool {
 func (o *CreateProxyRequest) SetRequestReactorId(v string) {
 	o.RequestReactorId.Set(&v)
 }
+
 // SetRequestReactorIdNil sets the value for RequestReactorId to be an explicit nil
 func (o *CreateProxyRequest) SetRequestReactorIdNil() {
 	o.RequestReactorId.Set(nil)
@@ -164,6 +165,7 @@ func (o *CreateProxyRequest) HasResponseReactorId() bool {
 func (o *CreateProxyRequest) SetResponseReactorId(v string) {
 	o.ResponseReactorId.Set(&v)
 }
+
 // SetResponseReactorIdNil sets the value for ResponseReactorId to be an explicit nil
 func (o *CreateProxyRequest) SetResponseReactorIdNil() {
 	o.ResponseReactorId.Set(nil)
@@ -206,6 +208,7 @@ func (o *CreateProxyRequest) HasRequireAuth() bool {
 func (o *CreateProxyRequest) SetRequireAuth(v bool) {
 	o.RequireAuth.Set(&v)
 }
+
 // SetRequireAuthNil sets the value for RequireAuth to be an explicit nil
 func (o *CreateProxyRequest) SetRequireAuthNil() {
 	o.RequireAuth.Set(nil)
@@ -271,5 +274,3 @@ func (v *NullableCreateProxyRequest) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-
