@@ -17,7 +17,7 @@ import (
 // ReactResponse struct for ReactResponse
 type ReactResponse struct {
 	Tokens interface{} `json:"tokens,omitempty"`
-	Raw interface{} `json:"raw,omitempty"`
+	Raw    interface{} `json:"raw,omitempty"`
 }
 
 // NewReactResponse instantiates a new ReactResponse object
@@ -149,5 +149,3 @@ func (v *NullableReactResponse) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

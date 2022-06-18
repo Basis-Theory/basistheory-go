@@ -17,7 +17,7 @@ import (
 // TokenPaginatedList struct for TokenPaginatedList
 type TokenPaginatedList struct {
 	Pagination *Pagination `json:"pagination,omitempty"`
-	Data []Token `json:"data,omitempty"`
+	Data       []Token     `json:"data,omitempty"`
 }
 
 // NewTokenPaginatedList instantiates a new TokenPaginatedList object
@@ -148,5 +148,3 @@ func (v *NullableTokenPaginatedList) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

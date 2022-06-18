@@ -18,14 +18,13 @@ import (
 	"net/url"
 )
 
-
 // TokenizeApiService TokenizeApi service
 type TokenizeApiService service
 
 type TokenizeApiTokenizeRequest struct {
-	ctx context.Context
+	ctx        context.Context
 	ApiService *TokenizeApiService
-	body *interface{}
+	body       *interface{}
 }
 
 func (r TokenizeApiTokenizeRequest) Body(body interface{}) TokenizeApiTokenizeRequest {
@@ -46,7 +45,7 @@ Tokenize Method for Tokenize
 func (a *TokenizeApiService) Tokenize(ctx context.Context) TokenizeApiTokenizeRequest {
 	return TokenizeApiTokenizeRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 	}
 }
 
@@ -54,10 +53,10 @@ func (a *TokenizeApiService) Tokenize(ctx context.Context) TokenizeApiTokenizeRe
 //  @return interface{}
 func (a *TokenizeApiService) TokenizeExecute(r TokenizeApiTokenizeRequest) (interface{}, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodPost
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  interface{}
+		localVarHTTPMethod  = http.MethodPost
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue interface{}
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "TokenizeApiService.Tokenize")

@@ -16,10 +16,10 @@ import (
 
 // ReactorFormulaRequestParameter struct for ReactorFormulaRequestParameter
 type ReactorFormulaRequestParameter struct {
-	Name string `json:"name"`
+	Name        string         `json:"name"`
 	Description NullableString `json:"description,omitempty"`
-	Type string `json:"type"`
-	Optional *bool `json:"optional,omitempty"`
+	Type        string         `json:"type"`
+	Optional    *bool          `json:"optional,omitempty"`
 }
 
 // NewReactorFormulaRequestParameter instantiates a new ReactorFormulaRequestParameter object
@@ -97,6 +97,7 @@ func (o *ReactorFormulaRequestParameter) HasDescription() bool {
 func (o *ReactorFormulaRequestParameter) SetDescription(v string) {
 	o.Description.Set(&v)
 }
+
 // SetDescriptionNil sets the value for Description to be an explicit nil
 func (o *ReactorFormulaRequestParameter) SetDescriptionNil() {
 	o.Description.Set(nil)
@@ -215,5 +216,3 @@ func (v *NullableReactorFormulaRequestParameter) UnmarshalJSON(src []byte) error
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

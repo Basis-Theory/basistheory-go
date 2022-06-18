@@ -17,7 +17,7 @@ import (
 
 // TokenMetrics struct for TokenMetrics
 type TokenMetrics struct {
-	Count *int64 `json:"count,omitempty"`
+	Count         *int64       `json:"count,omitempty"`
 	LastCreatedAt NullableTime `json:"last_created_at,omitempty"`
 }
 
@@ -102,6 +102,7 @@ func (o *TokenMetrics) HasLastCreatedAt() bool {
 func (o *TokenMetrics) SetLastCreatedAt(v time.Time) {
 	o.LastCreatedAt.Set(&v)
 }
+
 // SetLastCreatedAtNil sets the value for LastCreatedAt to be an explicit nil
 func (o *TokenMetrics) SetLastCreatedAtNil() {
 	o.LastCreatedAt.Set(nil)
@@ -158,5 +159,3 @@ func (v *NullableTokenMetrics) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

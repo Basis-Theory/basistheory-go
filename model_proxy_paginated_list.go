@@ -17,7 +17,7 @@ import (
 // ProxyPaginatedList struct for ProxyPaginatedList
 type ProxyPaginatedList struct {
 	Pagination *Pagination `json:"pagination,omitempty"`
-	Data []Proxy `json:"data,omitempty"`
+	Data       []Proxy     `json:"data,omitempty"`
 }
 
 // NewProxyPaginatedList instantiates a new ProxyPaginatedList object
@@ -148,5 +148,3 @@ func (v *NullableProxyPaginatedList) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

@@ -17,18 +17,18 @@ import (
 
 // Proxy struct for Proxy
 type Proxy struct {
-	Id *string `json:"id,omitempty"`
-	Key NullableString `json:"key,omitempty"`
-	TenantId *string `json:"tenant_id,omitempty"`
-	Name NullableString `json:"name,omitempty"`
-	DestinationUrl NullableString `json:"destination_url,omitempty"`
-	RequestReactorId NullableString `json:"request_reactor_id,omitempty"`
+	Id                *string        `json:"id,omitempty"`
+	Key               NullableString `json:"key,omitempty"`
+	TenantId          *string        `json:"tenant_id,omitempty"`
+	Name              NullableString `json:"name,omitempty"`
+	DestinationUrl    NullableString `json:"destination_url,omitempty"`
+	RequestReactorId  NullableString `json:"request_reactor_id,omitempty"`
 	ResponseReactorId NullableString `json:"response_reactor_id,omitempty"`
-	RequireAuth *bool `json:"require_auth,omitempty"`
-	CreatedBy NullableString `json:"created_by,omitempty"`
-	CreatedAt NullableTime `json:"created_at,omitempty"`
-	ModifiedBy NullableString `json:"modified_by,omitempty"`
-	ModifiedAt NullableTime `json:"modified_at,omitempty"`
+	RequireAuth       *bool          `json:"require_auth,omitempty"`
+	CreatedBy         NullableString `json:"created_by,omitempty"`
+	CreatedAt         NullableTime   `json:"created_at,omitempty"`
+	ModifiedBy        NullableString `json:"modified_by,omitempty"`
+	ModifiedAt        NullableTime   `json:"modified_at,omitempty"`
 }
 
 // NewProxy instantiates a new Proxy object
@@ -112,6 +112,7 @@ func (o *Proxy) HasKey() bool {
 func (o *Proxy) SetKey(v string) {
 	o.Key.Set(&v)
 }
+
 // SetKeyNil sets the value for Key to be an explicit nil
 func (o *Proxy) SetKeyNil() {
 	o.Key.Set(nil)
@@ -186,6 +187,7 @@ func (o *Proxy) HasName() bool {
 func (o *Proxy) SetName(v string) {
 	o.Name.Set(&v)
 }
+
 // SetNameNil sets the value for Name to be an explicit nil
 func (o *Proxy) SetNameNil() {
 	o.Name.Set(nil)
@@ -228,6 +230,7 @@ func (o *Proxy) HasDestinationUrl() bool {
 func (o *Proxy) SetDestinationUrl(v string) {
 	o.DestinationUrl.Set(&v)
 }
+
 // SetDestinationUrlNil sets the value for DestinationUrl to be an explicit nil
 func (o *Proxy) SetDestinationUrlNil() {
 	o.DestinationUrl.Set(nil)
@@ -270,6 +273,7 @@ func (o *Proxy) HasRequestReactorId() bool {
 func (o *Proxy) SetRequestReactorId(v string) {
 	o.RequestReactorId.Set(&v)
 }
+
 // SetRequestReactorIdNil sets the value for RequestReactorId to be an explicit nil
 func (o *Proxy) SetRequestReactorIdNil() {
 	o.RequestReactorId.Set(nil)
@@ -312,6 +316,7 @@ func (o *Proxy) HasResponseReactorId() bool {
 func (o *Proxy) SetResponseReactorId(v string) {
 	o.ResponseReactorId.Set(&v)
 }
+
 // SetResponseReactorIdNil sets the value for ResponseReactorId to be an explicit nil
 func (o *Proxy) SetResponseReactorIdNil() {
 	o.ResponseReactorId.Set(nil)
@@ -386,6 +391,7 @@ func (o *Proxy) HasCreatedBy() bool {
 func (o *Proxy) SetCreatedBy(v string) {
 	o.CreatedBy.Set(&v)
 }
+
 // SetCreatedByNil sets the value for CreatedBy to be an explicit nil
 func (o *Proxy) SetCreatedByNil() {
 	o.CreatedBy.Set(nil)
@@ -428,6 +434,7 @@ func (o *Proxy) HasCreatedAt() bool {
 func (o *Proxy) SetCreatedAt(v time.Time) {
 	o.CreatedAt.Set(&v)
 }
+
 // SetCreatedAtNil sets the value for CreatedAt to be an explicit nil
 func (o *Proxy) SetCreatedAtNil() {
 	o.CreatedAt.Set(nil)
@@ -470,6 +477,7 @@ func (o *Proxy) HasModifiedBy() bool {
 func (o *Proxy) SetModifiedBy(v string) {
 	o.ModifiedBy.Set(&v)
 }
+
 // SetModifiedByNil sets the value for ModifiedBy to be an explicit nil
 func (o *Proxy) SetModifiedByNil() {
 	o.ModifiedBy.Set(nil)
@@ -512,6 +520,7 @@ func (o *Proxy) HasModifiedAt() bool {
 func (o *Proxy) SetModifiedAt(v time.Time) {
 	o.ModifiedAt.Set(&v)
 }
+
 // SetModifiedAtNil sets the value for ModifiedAt to be an explicit nil
 func (o *Proxy) SetModifiedAtNil() {
 	o.ModifiedAt.Set(nil)
@@ -598,5 +607,3 @@ func (v *NullableProxy) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

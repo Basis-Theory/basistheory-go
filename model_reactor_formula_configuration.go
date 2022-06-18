@@ -16,9 +16,9 @@ import (
 
 // ReactorFormulaConfiguration struct for ReactorFormulaConfiguration
 type ReactorFormulaConfiguration struct {
-	Name string `json:"name"`
+	Name        string         `json:"name"`
 	Description NullableString `json:"description,omitempty"`
-	Type string `json:"type"`
+	Type        string         `json:"type"`
 }
 
 // NewReactorFormulaConfiguration instantiates a new ReactorFormulaConfiguration object
@@ -96,6 +96,7 @@ func (o *ReactorFormulaConfiguration) HasDescription() bool {
 func (o *ReactorFormulaConfiguration) SetDescription(v string) {
 	o.Description.Set(&v)
 }
+
 // SetDescriptionNil sets the value for Description to be an explicit nil
 func (o *ReactorFormulaConfiguration) SetDescriptionNil() {
 	o.Description.Set(nil)
@@ -179,5 +180,3 @@ func (v *NullableReactorFormulaConfiguration) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

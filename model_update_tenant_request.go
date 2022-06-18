@@ -16,7 +16,7 @@ import (
 
 // UpdateTenantRequest struct for UpdateTenantRequest
 type UpdateTenantRequest struct {
-	Name string `json:"name"`
+	Name     string            `json:"name"`
 	Settings map[string]string `json:"settings,omitempty"`
 }
 
@@ -141,5 +141,3 @@ func (v *NullableUpdateTenantRequest) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

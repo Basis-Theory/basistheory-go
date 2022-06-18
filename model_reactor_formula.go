@@ -17,18 +17,18 @@ import (
 
 // ReactorFormula struct for ReactorFormula
 type ReactorFormula struct {
-	Id *string `json:"id,omitempty"`
-	Type NullableString `json:"type,omitempty"`
-	Status NullableString `json:"status,omitempty"`
-	Name NullableString `json:"name,omitempty"`
-	Description NullableString `json:"description,omitempty"`
-	Icon NullableString `json:"icon,omitempty"`
-	Code NullableString `json:"code,omitempty"`
-	CreatedBy NullableString `json:"created_by,omitempty"`
-	CreatedAt NullableTime `json:"created_at,omitempty"`
-	ModifiedBy NullableString `json:"modified_by,omitempty"`
-	ModifiedAt NullableTime `json:"modified_at,omitempty"`
-	Configuration []ReactorFormulaConfiguration `json:"configuration,omitempty"`
+	Id                *string                          `json:"id,omitempty"`
+	Type              NullableString                   `json:"type,omitempty"`
+	Status            NullableString                   `json:"status,omitempty"`
+	Name              NullableString                   `json:"name,omitempty"`
+	Description       NullableString                   `json:"description,omitempty"`
+	Icon              NullableString                   `json:"icon,omitempty"`
+	Code              NullableString                   `json:"code,omitempty"`
+	CreatedBy         NullableString                   `json:"created_by,omitempty"`
+	CreatedAt         NullableTime                     `json:"created_at,omitempty"`
+	ModifiedBy        NullableString                   `json:"modified_by,omitempty"`
+	ModifiedAt        NullableTime                     `json:"modified_at,omitempty"`
+	Configuration     []ReactorFormulaConfiguration    `json:"configuration,omitempty"`
 	RequestParameters []ReactorFormulaRequestParameter `json:"request_parameters,omitempty"`
 }
 
@@ -113,6 +113,7 @@ func (o *ReactorFormula) HasType() bool {
 func (o *ReactorFormula) SetType(v string) {
 	o.Type.Set(&v)
 }
+
 // SetTypeNil sets the value for Type to be an explicit nil
 func (o *ReactorFormula) SetTypeNil() {
 	o.Type.Set(nil)
@@ -155,6 +156,7 @@ func (o *ReactorFormula) HasStatus() bool {
 func (o *ReactorFormula) SetStatus(v string) {
 	o.Status.Set(&v)
 }
+
 // SetStatusNil sets the value for Status to be an explicit nil
 func (o *ReactorFormula) SetStatusNil() {
 	o.Status.Set(nil)
@@ -197,6 +199,7 @@ func (o *ReactorFormula) HasName() bool {
 func (o *ReactorFormula) SetName(v string) {
 	o.Name.Set(&v)
 }
+
 // SetNameNil sets the value for Name to be an explicit nil
 func (o *ReactorFormula) SetNameNil() {
 	o.Name.Set(nil)
@@ -239,6 +242,7 @@ func (o *ReactorFormula) HasDescription() bool {
 func (o *ReactorFormula) SetDescription(v string) {
 	o.Description.Set(&v)
 }
+
 // SetDescriptionNil sets the value for Description to be an explicit nil
 func (o *ReactorFormula) SetDescriptionNil() {
 	o.Description.Set(nil)
@@ -281,6 +285,7 @@ func (o *ReactorFormula) HasIcon() bool {
 func (o *ReactorFormula) SetIcon(v string) {
 	o.Icon.Set(&v)
 }
+
 // SetIconNil sets the value for Icon to be an explicit nil
 func (o *ReactorFormula) SetIconNil() {
 	o.Icon.Set(nil)
@@ -323,6 +328,7 @@ func (o *ReactorFormula) HasCode() bool {
 func (o *ReactorFormula) SetCode(v string) {
 	o.Code.Set(&v)
 }
+
 // SetCodeNil sets the value for Code to be an explicit nil
 func (o *ReactorFormula) SetCodeNil() {
 	o.Code.Set(nil)
@@ -365,6 +371,7 @@ func (o *ReactorFormula) HasCreatedBy() bool {
 func (o *ReactorFormula) SetCreatedBy(v string) {
 	o.CreatedBy.Set(&v)
 }
+
 // SetCreatedByNil sets the value for CreatedBy to be an explicit nil
 func (o *ReactorFormula) SetCreatedByNil() {
 	o.CreatedBy.Set(nil)
@@ -407,6 +414,7 @@ func (o *ReactorFormula) HasCreatedAt() bool {
 func (o *ReactorFormula) SetCreatedAt(v time.Time) {
 	o.CreatedAt.Set(&v)
 }
+
 // SetCreatedAtNil sets the value for CreatedAt to be an explicit nil
 func (o *ReactorFormula) SetCreatedAtNil() {
 	o.CreatedAt.Set(nil)
@@ -449,6 +457,7 @@ func (o *ReactorFormula) HasModifiedBy() bool {
 func (o *ReactorFormula) SetModifiedBy(v string) {
 	o.ModifiedBy.Set(&v)
 }
+
 // SetModifiedByNil sets the value for ModifiedBy to be an explicit nil
 func (o *ReactorFormula) SetModifiedByNil() {
 	o.ModifiedBy.Set(nil)
@@ -491,6 +500,7 @@ func (o *ReactorFormula) HasModifiedAt() bool {
 func (o *ReactorFormula) SetModifiedAt(v time.Time) {
 	o.ModifiedAt.Set(&v)
 }
+
 // SetModifiedAtNil sets the value for ModifiedAt to be an explicit nil
 func (o *ReactorFormula) SetModifiedAtNil() {
 	o.ModifiedAt.Set(nil)
@@ -646,5 +656,3 @@ func (v *NullableReactorFormula) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

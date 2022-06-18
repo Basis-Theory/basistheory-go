@@ -16,8 +16,8 @@ import (
 
 // CreateApplicationRequest struct for CreateApplicationRequest
 type CreateApplicationRequest struct {
-	Name string `json:"name"`
-	Type string `json:"type"`
+	Name        string   `json:"name"`
+	Type        string   `json:"type"`
 	Permissions []string `json:"permissions,omitempty"`
 }
 
@@ -170,5 +170,3 @@ func (v *NullableCreateApplicationRequest) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

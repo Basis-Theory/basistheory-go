@@ -16,9 +16,9 @@ import (
 
 // TokenReport struct for TokenReport
 type TokenReport struct {
-	IncludedMonthlyActiveTokens *int64 `json:"included_monthly_active_tokens,omitempty"`
-	MonthlyActiveTokens *int64 `json:"monthly_active_tokens,omitempty"`
-	MetricsByType map[string]TokenMetrics `json:"metrics_by_type,omitempty"`
+	IncludedMonthlyActiveTokens *int64                  `json:"included_monthly_active_tokens,omitempty"`
+	MonthlyActiveTokens         *int64                  `json:"monthly_active_tokens,omitempty"`
+	MetricsByType               map[string]TokenMetrics `json:"metrics_by_type,omitempty"`
 }
 
 // NewTokenReport instantiates a new TokenReport object
@@ -184,5 +184,3 @@ func (v *NullableTokenReport) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

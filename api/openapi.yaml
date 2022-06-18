@@ -2547,6 +2547,61 @@ paths:
           description: Not Found
       tags:
       - Tokens
+    patch:
+      operationId: Tokens_Update
+      parameters:
+      - explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          format: uuid
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/merge-patch+json:
+            schema:
+              $ref: '#/components/schemas/UpdateTokenRequest'
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Token'
+          description: Success
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationProblemDetails'
+          description: Bad Request
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Unauthorized
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Forbidden
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Not Found
+        "409":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Conflict
+      tags:
+      - Tokens
 components:
   schemas:
     Application:
@@ -3170,6 +3225,7 @@ components:
         - search_indexes
         - search_indexes
         type: type
+        mask: ""
       properties:
         type:
           nullable: true
@@ -3193,6 +3249,8 @@ components:
         fingerprint_expression:
           nullable: true
           type: string
+        mask:
+          nullable: true
         deduplicate_token:
           nullable: true
           type: boolean
@@ -3221,6 +3279,7 @@ components:
         - search_indexes
         - search_indexes
         modified_at: 2000-01-23T04:56:07.000+00:00
+        mask: ""
       properties:
         id:
           format: uuid
@@ -3237,6 +3296,8 @@ components:
         fingerprint_expression:
           nullable: true
           type: string
+        mask:
+          nullable: true
         data:
           nullable: true
         metadata:
@@ -4375,6 +4436,7 @@ components:
         - search_indexes
         - search_indexes
         modified_at: 2000-01-23T04:56:07.000+00:00
+        mask: ""
       properties:
         id:
           format: uuid
@@ -4417,6 +4479,8 @@ components:
         fingerprint_expression:
           nullable: true
           type: string
+        mask:
+          nullable: true
         privacy:
           $ref: '#/components/schemas/Privacy'
         search_indexes:
@@ -4476,6 +4540,7 @@ components:
           - search_indexes
           - search_indexes
           modified_at: 2000-01-23T04:56:07.000+00:00
+          mask: ""
         - tenant_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           fingerprint_expression: fingerprint_expression
           metadata:
@@ -4504,6 +4569,7 @@ components:
           - search_indexes
           - search_indexes
           modified_at: 2000-01-23T04:56:07.000+00:00
+          mask: ""
       properties:
         pagination:
           $ref: '#/components/schemas/Pagination'
@@ -4580,6 +4646,16 @@ components:
           $ref: '#/components/schemas/Card'
       required:
       - card
+      type: object
+    UpdatePrivacy:
+      additionalProperties: false
+      properties:
+        impact_level:
+          nullable: true
+          type: string
+        restriction_policy:
+          nullable: true
+          type: string
       type: object
     UpdateProxyRequest:
       additionalProperties: false
@@ -4722,6 +4798,35 @@ components:
           type: object
       required:
       - name
+      type: object
+    UpdateTokenRequest:
+      additionalProperties: false
+      properties:
+        data:
+          nullable: true
+        encryption:
+          $ref: '#/components/schemas/EncryptionMetadata'
+        privacy:
+          $ref: '#/components/schemas/UpdatePrivacy'
+        metadata:
+          additionalProperties:
+            nullable: true
+            type: string
+          nullable: true
+          type: object
+        search_indexes:
+          items:
+            type: string
+          nullable: true
+          type: array
+        fingerprint_expression:
+          nullable: true
+          type: string
+        mask:
+          nullable: true
+        deduplicate_token:
+          nullable: true
+          type: boolean
       type: object
     User:
       additionalProperties: false

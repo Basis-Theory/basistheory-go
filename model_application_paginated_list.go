@@ -16,8 +16,8 @@ import (
 
 // ApplicationPaginatedList struct for ApplicationPaginatedList
 type ApplicationPaginatedList struct {
-	Pagination *Pagination `json:"pagination,omitempty"`
-	Data []Application `json:"data,omitempty"`
+	Pagination *Pagination   `json:"pagination,omitempty"`
+	Data       []Application `json:"data,omitempty"`
 }
 
 // NewApplicationPaginatedList instantiates a new ApplicationPaginatedList object
@@ -148,5 +148,3 @@ func (v *NullableApplicationPaginatedList) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

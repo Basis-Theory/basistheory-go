@@ -16,17 +16,16 @@ import (
 	"io/ioutil"
 	"net/http"
 	"net/url"
-	"strings"
 	"reflect"
+	"strings"
 )
-
 
 // ProxiesApiService ProxiesApi service
 type ProxiesApiService service
 
 type ProxiesApiCreateRequest struct {
-	ctx context.Context
-	ApiService *ProxiesApiService
+	ctx                context.Context
+	ApiService         *ProxiesApiService
 	createProxyRequest *CreateProxyRequest
 }
 
@@ -48,7 +47,7 @@ Create Method for Create
 func (a *ProxiesApiService) Create(ctx context.Context) ProxiesApiCreateRequest {
 	return ProxiesApiCreateRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 	}
 }
 
@@ -56,10 +55,10 @@ func (a *ProxiesApiService) Create(ctx context.Context) ProxiesApiCreateRequest 
 //  @return Proxy
 func (a *ProxiesApiService) CreateExecute(r ProxiesApiCreateRequest) (*Proxy, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodPost
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *Proxy
+		localVarHTTPMethod  = http.MethodPost
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *Proxy
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ProxiesApiService.Create")
@@ -173,9 +172,9 @@ func (a *ProxiesApiService) CreateExecute(r ProxiesApiCreateRequest) (*Proxy, *h
 }
 
 type ProxiesApiDeleteRequest struct {
-	ctx context.Context
+	ctx        context.Context
 	ApiService *ProxiesApiService
-	id string
+	id         string
 }
 
 func (r ProxiesApiDeleteRequest) Execute() (*http.Response, error) {
@@ -192,17 +191,17 @@ Delete Method for Delete
 func (a *ProxiesApiService) Delete(ctx context.Context, id string) ProxiesApiDeleteRequest {
 	return ProxiesApiDeleteRequest{
 		ApiService: a,
-		ctx: ctx,
-		id: id,
+		ctx:        ctx,
+		id:         id,
 	}
 }
 
 // Execute executes the request
 func (a *ProxiesApiService) DeleteExecute(r ProxiesApiDeleteRequest) (*http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodDelete
-		localVarPostBody     interface{}
-		formFiles            []formFile
+		localVarHTTPMethod = http.MethodDelete
+		localVarPostBody   interface{}
+		formFiles          []formFile
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ProxiesApiService.Delete")
@@ -306,12 +305,12 @@ func (a *ProxiesApiService) DeleteExecute(r ProxiesApiDeleteRequest) (*http.Resp
 }
 
 type ProxiesApiGetRequest struct {
-	ctx context.Context
+	ctx        context.Context
 	ApiService *ProxiesApiService
-	id *[]string
-	name *string
-	page *int32
-	size *int32
+	id         *[]string
+	name       *string
+	page       *int32
+	size       *int32
 }
 
 func (r ProxiesApiGetRequest) Id(id []string) ProxiesApiGetRequest {
@@ -347,7 +346,7 @@ Get Method for Get
 func (a *ProxiesApiService) Get(ctx context.Context) ProxiesApiGetRequest {
 	return ProxiesApiGetRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 	}
 }
 
@@ -355,10 +354,10 @@ func (a *ProxiesApiService) Get(ctx context.Context) ProxiesApiGetRequest {
 //  @return ProxyPaginatedList
 func (a *ProxiesApiService) GetExecute(r ProxiesApiGetRequest) (*ProxyPaginatedList, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodGet
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *ProxyPaginatedList
+		localVarHTTPMethod  = http.MethodGet
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *ProxyPaginatedList
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ProxiesApiService.Get")
@@ -490,9 +489,9 @@ func (a *ProxiesApiService) GetExecute(r ProxiesApiGetRequest) (*ProxyPaginatedL
 }
 
 type ProxiesApiGetByIdRequest struct {
-	ctx context.Context
+	ctx        context.Context
 	ApiService *ProxiesApiService
-	id string
+	id         string
 }
 
 func (r ProxiesApiGetByIdRequest) Execute() (*Proxy, *http.Response, error) {
@@ -509,8 +508,8 @@ GetById Method for GetById
 func (a *ProxiesApiService) GetById(ctx context.Context, id string) ProxiesApiGetByIdRequest {
 	return ProxiesApiGetByIdRequest{
 		ApiService: a,
-		ctx: ctx,
-		id: id,
+		ctx:        ctx,
+		id:         id,
 	}
 }
 
@@ -518,10 +517,10 @@ func (a *ProxiesApiService) GetById(ctx context.Context, id string) ProxiesApiGe
 //  @return Proxy
 func (a *ProxiesApiService) GetByIdExecute(r ProxiesApiGetByIdRequest) (*Proxy, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodGet
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *Proxy
+		localVarHTTPMethod  = http.MethodGet
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *Proxy
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ProxiesApiService.GetById")
@@ -634,9 +633,9 @@ func (a *ProxiesApiService) GetByIdExecute(r ProxiesApiGetByIdRequest) (*Proxy, 
 }
 
 type ProxiesApiUpdateRequest struct {
-	ctx context.Context
-	ApiService *ProxiesApiService
-	id string
+	ctx                context.Context
+	ApiService         *ProxiesApiService
+	id                 string
 	updateProxyRequest *UpdateProxyRequest
 }
 
@@ -659,8 +658,8 @@ Update Method for Update
 func (a *ProxiesApiService) Update(ctx context.Context, id string) ProxiesApiUpdateRequest {
 	return ProxiesApiUpdateRequest{
 		ApiService: a,
-		ctx: ctx,
-		id: id,
+		ctx:        ctx,
+		id:         id,
 	}
 }
 
@@ -668,10 +667,10 @@ func (a *ProxiesApiService) Update(ctx context.Context, id string) ProxiesApiUpd
 //  @return Proxy
 func (a *ProxiesApiService) UpdateExecute(r ProxiesApiUpdateRequest) (*Proxy, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodPut
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *Proxy
+		localVarHTTPMethod  = http.MethodPut
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *Proxy
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ProxiesApiService.Update")

@@ -149,6 +149,7 @@ Class | Method | HTTP request | Description
 *TokensApi* | [**GetById**](docs/TokensApi.md#getbyid) | **Get** /tokens/{id} | 
 *TokensApi* | [**GetChildren**](docs/TokensApi.md#getchildren) | **Get** /tokens/{parentId}/children | 
 *TokensApi* | [**Search**](docs/TokensApi.md#search) | **Post** /tokens/search | 
+*TokensApi* | [**Update**](docs/TokensApi.md#update) | **Patch** /tokens/{id} | 
 
 
 ## Documentation For Models
@@ -210,10 +211,12 @@ Class | Method | HTTP request | Description
  - [UpdateApplicationRequest](docs/UpdateApplicationRequest.md)
  - [UpdateAtomicBankRequest](docs/UpdateAtomicBankRequest.md)
  - [UpdateAtomicCardRequest](docs/UpdateAtomicCardRequest.md)
+ - [UpdatePrivacy](docs/UpdatePrivacy.md)
  - [UpdateProxyRequest](docs/UpdateProxyRequest.md)
  - [UpdateReactorFormulaRequest](docs/UpdateReactorFormulaRequest.md)
  - [UpdateReactorRequest](docs/UpdateReactorRequest.md)
  - [UpdateTenantRequest](docs/UpdateTenantRequest.md)
+ - [UpdateTokenRequest](docs/UpdateTokenRequest.md)
  - [User](docs/User.md)
  - [ValidationProblemDetails](docs/ValidationProblemDetails.md)
 

@@ -17,8 +17,8 @@ import (
 // SearchTokensRequest struct for SearchTokensRequest
 type SearchTokensRequest struct {
 	Query NullableString `json:"query,omitempty"`
-	Page NullableInt32 `json:"page,omitempty"`
-	Size NullableInt32 `json:"size,omitempty"`
+	Page  NullableInt32  `json:"page,omitempty"`
+	Size  NullableInt32  `json:"size,omitempty"`
 }
 
 // NewSearchTokensRequest instantiates a new SearchTokensRequest object
@@ -70,6 +70,7 @@ func (o *SearchTokensRequest) HasQuery() bool {
 func (o *SearchTokensRequest) SetQuery(v string) {
 	o.Query.Set(&v)
 }
+
 // SetQueryNil sets the value for Query to be an explicit nil
 func (o *SearchTokensRequest) SetQueryNil() {
 	o.Query.Set(nil)
@@ -112,6 +113,7 @@ func (o *SearchTokensRequest) HasPage() bool {
 func (o *SearchTokensRequest) SetPage(v int32) {
 	o.Page.Set(&v)
 }
+
 // SetPageNil sets the value for Page to be an explicit nil
 func (o *SearchTokensRequest) SetPageNil() {
 	o.Page.Set(nil)
@@ -154,6 +156,7 @@ func (o *SearchTokensRequest) HasSize() bool {
 func (o *SearchTokensRequest) SetSize(v int32) {
 	o.Size.Set(&v)
 }
+
 // SetSizeNil sets the value for Size to be an explicit nil
 func (o *SearchTokensRequest) SetSizeNil() {
 	o.Size.Set(nil)
@@ -213,5 +216,3 @@ func (v *NullableSearchTokensRequest) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

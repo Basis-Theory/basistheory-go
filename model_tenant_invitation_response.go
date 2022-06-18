@@ -17,15 +17,15 @@ import (
 
 // TenantInvitationResponse struct for TenantInvitationResponse
 type TenantInvitationResponse struct {
-	Id *string `json:"id,omitempty"`
-	TenantId *string `json:"tenant_id,omitempty"`
-	Email NullableString `json:"email,omitempty"`
-	Status *TenantInvitationStatus `json:"status,omitempty"`
-	ExpiresAt *time.Time `json:"expires_at,omitempty"`
-	CreatedBy NullableString `json:"created_by,omitempty"`
-	CreatedAt NullableTime `json:"created_at,omitempty"`
-	ModifiedBy NullableString `json:"modified_by,omitempty"`
-	ModifiedAt NullableTime `json:"modified_at,omitempty"`
+	Id         *string                 `json:"id,omitempty"`
+	TenantId   *string                 `json:"tenant_id,omitempty"`
+	Email      NullableString          `json:"email,omitempty"`
+	Status     *TenantInvitationStatus `json:"status,omitempty"`
+	ExpiresAt  *time.Time              `json:"expires_at,omitempty"`
+	CreatedBy  NullableString          `json:"created_by,omitempty"`
+	CreatedAt  NullableTime            `json:"created_at,omitempty"`
+	ModifiedBy NullableString          `json:"modified_by,omitempty"`
+	ModifiedAt NullableTime            `json:"modified_at,omitempty"`
 }
 
 // NewTenantInvitationResponse instantiates a new TenantInvitationResponse object
@@ -141,6 +141,7 @@ func (o *TenantInvitationResponse) HasEmail() bool {
 func (o *TenantInvitationResponse) SetEmail(v string) {
 	o.Email.Set(&v)
 }
+
 // SetEmailNil sets the value for Email to be an explicit nil
 func (o *TenantInvitationResponse) SetEmailNil() {
 	o.Email.Set(nil)
@@ -247,6 +248,7 @@ func (o *TenantInvitationResponse) HasCreatedBy() bool {
 func (o *TenantInvitationResponse) SetCreatedBy(v string) {
 	o.CreatedBy.Set(&v)
 }
+
 // SetCreatedByNil sets the value for CreatedBy to be an explicit nil
 func (o *TenantInvitationResponse) SetCreatedByNil() {
 	o.CreatedBy.Set(nil)
@@ -289,6 +291,7 @@ func (o *TenantInvitationResponse) HasCreatedAt() bool {
 func (o *TenantInvitationResponse) SetCreatedAt(v time.Time) {
 	o.CreatedAt.Set(&v)
 }
+
 // SetCreatedAtNil sets the value for CreatedAt to be an explicit nil
 func (o *TenantInvitationResponse) SetCreatedAtNil() {
 	o.CreatedAt.Set(nil)
@@ -331,6 +334,7 @@ func (o *TenantInvitationResponse) HasModifiedBy() bool {
 func (o *TenantInvitationResponse) SetModifiedBy(v string) {
 	o.ModifiedBy.Set(&v)
 }
+
 // SetModifiedByNil sets the value for ModifiedBy to be an explicit nil
 func (o *TenantInvitationResponse) SetModifiedByNil() {
 	o.ModifiedBy.Set(nil)
@@ -373,6 +377,7 @@ func (o *TenantInvitationResponse) HasModifiedAt() bool {
 func (o *TenantInvitationResponse) SetModifiedAt(v time.Time) {
 	o.ModifiedAt.Set(&v)
 }
+
 // SetModifiedAtNil sets the value for ModifiedAt to be an explicit nil
 func (o *TenantInvitationResponse) SetModifiedAtNil() {
 	o.ModifiedAt.Set(nil)
@@ -450,5 +455,3 @@ func (v *NullableTenantInvitationResponse) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

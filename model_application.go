@@ -17,16 +17,16 @@ import (
 
 // Application struct for Application
 type Application struct {
-	Id *string `json:"id,omitempty"`
-	TenantId *string `json:"tenant_id,omitempty"`
-	Name NullableString `json:"name,omitempty"`
-	Key NullableString `json:"key,omitempty"`
-	Type NullableString `json:"type,omitempty"`
-	CreatedBy NullableString `json:"created_by,omitempty"`
-	CreatedAt NullableTime `json:"created_at,omitempty"`
-	ModifiedBy NullableString `json:"modified_by,omitempty"`
-	ModifiedAt NullableTime `json:"modified_at,omitempty"`
-	Permissions []string `json:"permissions,omitempty"`
+	Id          *string        `json:"id,omitempty"`
+	TenantId    *string        `json:"tenant_id,omitempty"`
+	Name        NullableString `json:"name,omitempty"`
+	Key         NullableString `json:"key,omitempty"`
+	Type        NullableString `json:"type,omitempty"`
+	CreatedBy   NullableString `json:"created_by,omitempty"`
+	CreatedAt   NullableTime   `json:"created_at,omitempty"`
+	ModifiedBy  NullableString `json:"modified_by,omitempty"`
+	ModifiedAt  NullableTime   `json:"modified_at,omitempty"`
+	Permissions []string       `json:"permissions,omitempty"`
 }
 
 // NewApplication instantiates a new Application object
@@ -142,6 +142,7 @@ func (o *Application) HasName() bool {
 func (o *Application) SetName(v string) {
 	o.Name.Set(&v)
 }
+
 // SetNameNil sets the value for Name to be an explicit nil
 func (o *Application) SetNameNil() {
 	o.Name.Set(nil)
@@ -184,6 +185,7 @@ func (o *Application) HasKey() bool {
 func (o *Application) SetKey(v string) {
 	o.Key.Set(&v)
 }
+
 // SetKeyNil sets the value for Key to be an explicit nil
 func (o *Application) SetKeyNil() {
 	o.Key.Set(nil)
@@ -226,6 +228,7 @@ func (o *Application) HasType() bool {
 func (o *Application) SetType(v string) {
 	o.Type.Set(&v)
 }
+
 // SetTypeNil sets the value for Type to be an explicit nil
 func (o *Application) SetTypeNil() {
 	o.Type.Set(nil)
@@ -268,6 +271,7 @@ func (o *Application) HasCreatedBy() bool {
 func (o *Application) SetCreatedBy(v string) {
 	o.CreatedBy.Set(&v)
 }
+
 // SetCreatedByNil sets the value for CreatedBy to be an explicit nil
 func (o *Application) SetCreatedByNil() {
 	o.CreatedBy.Set(nil)
@@ -310,6 +314,7 @@ func (o *Application) HasCreatedAt() bool {
 func (o *Application) SetCreatedAt(v time.Time) {
 	o.CreatedAt.Set(&v)
 }
+
 // SetCreatedAtNil sets the value for CreatedAt to be an explicit nil
 func (o *Application) SetCreatedAtNil() {
 	o.CreatedAt.Set(nil)
@@ -352,6 +357,7 @@ func (o *Application) HasModifiedBy() bool {
 func (o *Application) SetModifiedBy(v string) {
 	o.ModifiedBy.Set(&v)
 }
+
 // SetModifiedByNil sets the value for ModifiedBy to be an explicit nil
 func (o *Application) SetModifiedByNil() {
 	o.ModifiedBy.Set(nil)
@@ -394,6 +400,7 @@ func (o *Application) HasModifiedAt() bool {
 func (o *Application) SetModifiedAt(v time.Time) {
 	o.ModifiedAt.Set(&v)
 }
+
 // SetModifiedAtNil sets the value for ModifiedAt to be an explicit nil
 func (o *Application) SetModifiedAtNil() {
 	o.ModifiedAt.Set(nil)
@@ -507,5 +514,3 @@ func (v *NullableApplication) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

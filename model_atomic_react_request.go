@@ -16,7 +16,7 @@ import (
 
 // AtomicReactRequest struct for AtomicReactRequest
 type AtomicReactRequest struct {
-	ReactorId string `json:"reactor_id"`
+	ReactorId         string                 `json:"reactor_id"`
 	RequestParameters map[string]interface{} `json:"request_parameters,omitempty"`
 }
 
@@ -141,5 +141,3 @@ func (v *NullableAtomicReactRequest) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

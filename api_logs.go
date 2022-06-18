@@ -19,19 +19,18 @@ import (
 	"time"
 )
 
-
 // LogsApiService LogsApi service
 type LogsApiService service
 
 type LogsApiGetRequest struct {
-	ctx context.Context
+	ctx        context.Context
 	ApiService *LogsApiService
 	entityType *string
-	entityId *string
-	startDate *time.Time
-	endDate *time.Time
-	page *int32
-	size *int32
+	entityId   *string
+	startDate  *time.Time
+	endDate    *time.Time
+	page       *int32
+	size       *int32
 }
 
 func (r LogsApiGetRequest) EntityType(entityType string) LogsApiGetRequest {
@@ -77,7 +76,7 @@ Get Method for Get
 func (a *LogsApiService) Get(ctx context.Context) LogsApiGetRequest {
 	return LogsApiGetRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 	}
 }
 
@@ -85,10 +84,10 @@ func (a *LogsApiService) Get(ctx context.Context) LogsApiGetRequest {
 //  @return LogPaginatedList
 func (a *LogsApiService) GetExecute(r LogsApiGetRequest) (*LogPaginatedList, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodGet
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *LogPaginatedList
+		localVarHTTPMethod  = http.MethodGet
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *LogPaginatedList
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "LogsApiService.Get")
@@ -218,7 +217,7 @@ func (a *LogsApiService) GetExecute(r LogsApiGetRequest) (*LogPaginatedList, *ht
 }
 
 type LogsApiGetEntityTypesRequest struct {
-	ctx context.Context
+	ctx        context.Context
 	ApiService *LogsApiService
 }
 
@@ -235,7 +234,7 @@ GetEntityTypes Method for GetEntityTypes
 func (a *LogsApiService) GetEntityTypes(ctx context.Context) LogsApiGetEntityTypesRequest {
 	return LogsApiGetEntityTypesRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 	}
 }
 
@@ -243,10 +242,10 @@ func (a *LogsApiService) GetEntityTypes(ctx context.Context) LogsApiGetEntityTyp
 //  @return []LogEntityType
 func (a *LogsApiService) GetEntityTypesExecute(r LogsApiGetEntityTypesRequest) ([]LogEntityType, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodGet
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  []LogEntityType
+		localVarHTTPMethod  = http.MethodGet
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue []LogEntityType
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "LogsApiService.GetEntityTypes")

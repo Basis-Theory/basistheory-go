@@ -16,6 +16,7 @@ Name | Type | Description | Notes
 **ModifiedAt** | Pointer to **NullableTime** |  | [optional] 
 **Fingerprint** | Pointer to **NullableString** |  | [optional] 
 **FingerprintExpression** | Pointer to **NullableString** |  | [optional] 
+**Mask** | Pointer to **interface{}** |  | [optional] 
 **Privacy** | Pointer to [**Privacy**](Privacy.md) |  | [optional] 
 **SearchIndexes** | Pointer to **[]string** |  | [optional] 
 
@@ -428,6 +429,41 @@ HasFingerprintExpression returns a boolean if a field has been set.
 `func (o *Token) UnsetFingerprintExpression()`
 
 UnsetFingerprintExpression ensures that no value is present for FingerprintExpression, not even an explicit nil
+### GetMask
+
+`func (o *Token) GetMask() interface{}`
+
+GetMask returns the Mask field if non-nil, zero value otherwise.
+
+### GetMaskOk
+
+`func (o *Token) GetMaskOk() (*interface{}, bool)`
+
+GetMaskOk returns a tuple with the Mask field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetMask
+
+`func (o *Token) SetMask(v interface{})`
+
+SetMask sets Mask field to given value.
+
+### HasMask
+
+`func (o *Token) HasMask() bool`
+
+HasMask returns a boolean if a field has been set.
+
+### SetMaskNil
+
+`func (o *Token) SetMaskNil(b bool)`
+
+ SetMaskNil sets the value for Mask to be an explicit nil
+
+### UnsetMask
+`func (o *Token) UnsetMask()`
+
+UnsetMask ensures that no value is present for Mask, not even an explicit nil
 ### GetPrivacy
 
 `func (o *Token) GetPrivacy() Privacy`

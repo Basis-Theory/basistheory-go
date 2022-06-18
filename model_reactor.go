@@ -17,15 +17,15 @@ import (
 
 // Reactor struct for Reactor
 type Reactor struct {
-	Id *string `json:"id,omitempty"`
-	TenantId *string `json:"tenant_id,omitempty"`
-	Name NullableString `json:"name,omitempty"`
-	Formula *ReactorFormula `json:"formula,omitempty"`
-	Application *Application `json:"application,omitempty"`
-	CreatedBy NullableString `json:"created_by,omitempty"`
-	CreatedAt NullableTime `json:"created_at,omitempty"`
-	ModifiedBy NullableString `json:"modified_by,omitempty"`
-	ModifiedAt NullableTime `json:"modified_at,omitempty"`
+	Id            *string           `json:"id,omitempty"`
+	TenantId      *string           `json:"tenant_id,omitempty"`
+	Name          NullableString    `json:"name,omitempty"`
+	Formula       *ReactorFormula   `json:"formula,omitempty"`
+	Application   *Application      `json:"application,omitempty"`
+	CreatedBy     NullableString    `json:"created_by,omitempty"`
+	CreatedAt     NullableTime      `json:"created_at,omitempty"`
+	ModifiedBy    NullableString    `json:"modified_by,omitempty"`
+	ModifiedAt    NullableTime      `json:"modified_at,omitempty"`
 	Configuration map[string]string `json:"configuration,omitempty"`
 }
 
@@ -142,6 +142,7 @@ func (o *Reactor) HasName() bool {
 func (o *Reactor) SetName(v string) {
 	o.Name.Set(&v)
 }
+
 // SetNameNil sets the value for Name to be an explicit nil
 func (o *Reactor) SetNameNil() {
 	o.Name.Set(nil)
@@ -248,6 +249,7 @@ func (o *Reactor) HasCreatedBy() bool {
 func (o *Reactor) SetCreatedBy(v string) {
 	o.CreatedBy.Set(&v)
 }
+
 // SetCreatedByNil sets the value for CreatedBy to be an explicit nil
 func (o *Reactor) SetCreatedByNil() {
 	o.CreatedBy.Set(nil)
@@ -290,6 +292,7 @@ func (o *Reactor) HasCreatedAt() bool {
 func (o *Reactor) SetCreatedAt(v time.Time) {
 	o.CreatedAt.Set(&v)
 }
+
 // SetCreatedAtNil sets the value for CreatedAt to be an explicit nil
 func (o *Reactor) SetCreatedAtNil() {
 	o.CreatedAt.Set(nil)
@@ -332,6 +335,7 @@ func (o *Reactor) HasModifiedBy() bool {
 func (o *Reactor) SetModifiedBy(v string) {
 	o.ModifiedBy.Set(&v)
 }
+
 // SetModifiedByNil sets the value for ModifiedBy to be an explicit nil
 func (o *Reactor) SetModifiedByNil() {
 	o.ModifiedBy.Set(nil)
@@ -374,6 +378,7 @@ func (o *Reactor) HasModifiedAt() bool {
 func (o *Reactor) SetModifiedAt(v time.Time) {
 	o.ModifiedAt.Set(&v)
 }
+
 // SetModifiedAtNil sets the value for ModifiedAt to be an explicit nil
 func (o *Reactor) SetModifiedAtNil() {
 	o.ModifiedAt.Set(nil)
@@ -487,5 +492,3 @@ func (v *NullableReactor) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

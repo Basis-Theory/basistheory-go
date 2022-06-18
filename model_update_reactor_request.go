@@ -16,8 +16,8 @@ import (
 
 // UpdateReactorRequest struct for UpdateReactorRequest
 type UpdateReactorRequest struct {
-	Name string `json:"name"`
-	Application *Application `json:"application,omitempty"`
+	Name          string            `json:"name"`
+	Application   *Application      `json:"application,omitempty"`
 	Configuration map[string]string `json:"configuration,omitempty"`
 }
 
@@ -177,5 +177,3 @@ func (v *NullableUpdateReactorRequest) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

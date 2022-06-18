@@ -17,7 +17,7 @@ import (
 // ReactorPaginatedList struct for ReactorPaginatedList
 type ReactorPaginatedList struct {
 	Pagination *Pagination `json:"pagination,omitempty"`
-	Data []Reactor `json:"data,omitempty"`
+	Data       []Reactor   `json:"data,omitempty"`
 }
 
 // NewReactorPaginatedList instantiates a new ReactorPaginatedList object
@@ -148,5 +148,3 @@ func (v *NullableReactorPaginatedList) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

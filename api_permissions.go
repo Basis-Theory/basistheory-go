@@ -18,13 +18,12 @@ import (
 	"net/url"
 )
 
-
 // PermissionsApiService PermissionsApi service
 type PermissionsApiService service
 
 type PermissionsApiGetRequest struct {
-	ctx context.Context
-	ApiService *PermissionsApiService
+	ctx             context.Context
+	ApiService      *PermissionsApiService
 	applicationType *string
 }
 
@@ -46,7 +45,7 @@ Get Method for Get
 func (a *PermissionsApiService) Get(ctx context.Context) PermissionsApiGetRequest {
 	return PermissionsApiGetRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 	}
 }
 
@@ -54,10 +53,10 @@ func (a *PermissionsApiService) Get(ctx context.Context) PermissionsApiGetReques
 //  @return []Permission
 func (a *PermissionsApiService) GetExecute(r PermissionsApiGetRequest) ([]Permission, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodGet
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  []Permission
+		localVarHTTPMethod  = http.MethodGet
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue []Permission
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "PermissionsApiService.Get")

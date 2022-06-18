@@ -16,9 +16,9 @@ import (
 
 // CreateReactorRequest struct for CreateReactorRequest
 type CreateReactorRequest struct {
-	Name string `json:"name"`
-	Formula *ReactorFormula `json:"formula,omitempty"`
-	Application *Application `json:"application,omitempty"`
+	Name          string            `json:"name"`
+	Formula       *ReactorFormula   `json:"formula,omitempty"`
+	Application   *Application      `json:"application,omitempty"`
 	Configuration map[string]string `json:"configuration,omitempty"`
 }
 
@@ -213,5 +213,3 @@ func (v *NullableCreateReactorRequest) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

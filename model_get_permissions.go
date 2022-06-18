@@ -68,6 +68,7 @@ func (o *GetPermissions) HasApplicationType() bool {
 func (o *GetPermissions) SetApplicationType(v string) {
 	o.ApplicationType.Set(&v)
 }
+
 // SetApplicationTypeNil sets the value for ApplicationType to be an explicit nil
 func (o *GetPermissions) SetApplicationTypeNil() {
 	o.ApplicationType.Set(nil)
@@ -121,5 +122,3 @@ func (v *NullableGetPermissions) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

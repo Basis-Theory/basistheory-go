@@ -18,7 +18,7 @@ import (
 type Pagination struct {
 	TotalItems *int32 `json:"total_items,omitempty"`
 	PageNumber *int32 `json:"page_number,omitempty"`
-	PageSize *int32 `json:"page_size,omitempty"`
+	PageSize   *int32 `json:"page_size,omitempty"`
 	TotalPages *int32 `json:"total_pages,omitempty"`
 }
 
@@ -219,5 +219,3 @@ func (v *NullablePagination) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

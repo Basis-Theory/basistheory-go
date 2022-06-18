@@ -16,9 +16,9 @@ import (
 
 // Permission struct for Permission
 type Permission struct {
-	Type NullableString `json:"type,omitempty"`
-	Description NullableString `json:"description,omitempty"`
-	ApplicationTypes []string `json:"application_types,omitempty"`
+	Type             NullableString `json:"type,omitempty"`
+	Description      NullableString `json:"description,omitempty"`
+	ApplicationTypes []string       `json:"application_types,omitempty"`
 }
 
 // NewPermission instantiates a new Permission object
@@ -70,6 +70,7 @@ func (o *Permission) HasType() bool {
 func (o *Permission) SetType(v string) {
 	o.Type.Set(&v)
 }
+
 // SetTypeNil sets the value for Type to be an explicit nil
 func (o *Permission) SetTypeNil() {
 	o.Type.Set(nil)
@@ -112,6 +113,7 @@ func (o *Permission) HasDescription() bool {
 func (o *Permission) SetDescription(v string) {
 	o.Description.Set(&v)
 }
+
 // SetDescriptionNil sets the value for Description to be an explicit nil
 func (o *Permission) SetDescriptionNil() {
 	o.Description.Set(nil)
@@ -204,5 +206,3 @@ func (v *NullablePermission) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

@@ -16,7 +16,7 @@ import (
 
 // UpdateApplicationRequest struct for UpdateApplicationRequest
 type UpdateApplicationRequest struct {
-	Name string `json:"name"`
+	Name        string   `json:"name"`
 	Permissions []string `json:"permissions,omitempty"`
 }
 
@@ -141,5 +141,3 @@ func (v *NullableUpdateApplicationRequest) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-
