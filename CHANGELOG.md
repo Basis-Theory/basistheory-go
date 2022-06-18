@@ -1,3 +1,10 @@
+# [3.2.0](https://github.com/Basis-Theory/basistheory-go/compare/v3.1.0...v3.2.0) (2022-06-18)
+
+
+### Features
+
+* adds PATCH on tokens and mask property ([#41](https://github.com/Basis-Theory/basistheory-go/issues/41)) ([03a2abe](https://github.com/Basis-Theory/basistheory-go/commit/03a2abea80f76a037d867f346daf076a12e162e8))
+
 # [3.1.0](https://github.com/Basis-Theory/basistheory-go/compare/v3.0.0...v3.1.0) (2022-06-14)
 
 
