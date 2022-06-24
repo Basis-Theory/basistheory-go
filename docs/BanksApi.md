@@ -96,7 +96,7 @@ import (
 )
 
 func main() {
-    id := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | 
+    id := "id_example" // string | 
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
@@ -228,7 +228,7 @@ import (
 )
 
 func main() {
-    id := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | 
+    id := "id_example" // string | 
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
@@ -296,7 +296,7 @@ import (
 )
 
 func main() {
-    bankId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | 
+    bankId := "bankId_example" // string | 
     atomicReactRequest := *openapiclient.NewAtomicReactRequest("ReactorId_example") // AtomicReactRequest |  (optional)
 
     configuration := openapiclient.NewConfiguration()
@@ -366,7 +366,7 @@ import (
 )
 
 func main() {
-    id := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | 
+    id := "id_example" // string | 
     updateAtomicBankRequest := *openapiclient.NewUpdateAtomicBankRequest(*openapiclient.NewBank("RoutingNumber_example", "AccountNumber_example")) // UpdateAtomicBankRequest |  (optional)
 
     configuration := openapiclient.NewConfiguration()

@@ -4,10 +4,10 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Id** | Pointer to **string** |  | [optional] 
+**Id** | Pointer to **NullableString** |  | [optional] 
 **TenantId** | Pointer to **NullableString** |  | [optional] 
-**Card** | Pointer to [**Card**](Card.md) |  | [optional] 
 **Type** | Pointer to **NullableString** |  | [optional] 
+**Card** | Pointer to [**Card**](Card.md) |  | [optional] 
 **Fingerprint** | Pointer to **NullableString** |  | [optional] 
 **Metadata** | Pointer to **map[string]string** |  | [optional] 
 **CreatedBy** | Pointer to **NullableString** |  | [optional] 
@@ -59,6 +59,16 @@ SetId sets Id field to given value.
 
 HasId returns a boolean if a field has been set.
 
+### SetIdNil
+
+`func (o *AtomicCard) SetIdNil(b bool)`
+
+ SetIdNil sets the value for Id to be an explicit nil
+
+### UnsetId
+`func (o *AtomicCard) UnsetId()`
+
+UnsetId ensures that no value is present for Id, not even an explicit nil
 ### GetTenantId
 
 `func (o *AtomicCard) GetTenantId() string`
@@ -94,31 +104,6 @@ HasTenantId returns a boolean if a field has been set.
 `func (o *AtomicCard) UnsetTenantId()`
 
 UnsetTenantId ensures that no value is present for TenantId, not even an explicit nil
-### GetCard
-
-`func (o *AtomicCard) GetCard() Card`
-
-GetCard returns the Card field if non-nil, zero value otherwise.
-
-### GetCardOk
-
-`func (o *AtomicCard) GetCardOk() (*Card, bool)`
-
-GetCardOk returns a tuple with the Card field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetCard
-
-`func (o *AtomicCard) SetCard(v Card)`
-
-SetCard sets Card field to given value.
-
-### HasCard
-
-`func (o *AtomicCard) HasCard() bool`
-
-HasCard returns a boolean if a field has been set.
-
 ### GetType
 
 `func (o *AtomicCard) GetType() string`
@@ -154,6 +139,31 @@ HasType returns a boolean if a field has been set.
 `func (o *AtomicCard) UnsetType()`
 
 UnsetType ensures that no value is present for Type, not even an explicit nil
+### GetCard
+
+`func (o *AtomicCard) GetCard() Card`
+
+GetCard returns the Card field if non-nil, zero value otherwise.
+
+### GetCardOk
+
+`func (o *AtomicCard) GetCardOk() (*Card, bool)`
+
+GetCardOk returns a tuple with the Card field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetCard
+
+`func (o *AtomicCard) SetCard(v Card)`
+
+SetCard sets Card field to given value.
+
+### HasCard
+
+`func (o *AtomicCard) HasCard() bool`
+
+HasCard returns a boolean if a field has been set.
+
 ### GetFingerprint
 
 `func (o *AtomicCard) GetFingerprint() string`

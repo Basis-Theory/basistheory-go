@@ -17,10 +17,10 @@ import (
 
 // AtomicBank struct for AtomicBank
 type AtomicBank struct {
-	Id          *string           `json:"id,omitempty"`
+	Id          NullableString    `json:"id,omitempty"`
 	TenantId    NullableString    `json:"tenant_id,omitempty"`
-	Bank        *Bank             `json:"bank,omitempty"`
 	Type        NullableString    `json:"type,omitempty"`
+	Bank        *Bank             `json:"bank,omitempty"`
 	Fingerprint NullableString    `json:"fingerprint,omitempty"`
 	Metadata    map[string]string `json:"metadata,omitempty"`
 	CreatedBy   NullableString    `json:"created_by,omitempty"`
@@ -46,36 +46,47 @@ func NewAtomicBankWithDefaults() *AtomicBank {
 	return &this
 }
 
-// GetId returns the Id field value if set, zero value otherwise.
+// GetId returns the Id field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *AtomicBank) GetId() string {
-	if o == nil || o.Id == nil {
+	if o == nil || o.Id.Get() == nil {
 		var ret string
 		return ret
 	}
-	return *o.Id
+	return *o.Id.Get()
 }
 
 // GetIdOk returns a tuple with the Id field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *AtomicBank) GetIdOk() (*string, bool) {
-	if o == nil || o.Id == nil {
+	if o == nil {
 		return nil, false
 	}
-	return o.Id, true
+	return o.Id.Get(), o.Id.IsSet()
 }
 
 // HasId returns a boolean if a field has been set.
 func (o *AtomicBank) HasId() bool {
-	if o != nil && o.Id != nil {
+	if o != nil && o.Id.IsSet() {
 		return true
 	}
 
 	return false
 }
 
-// SetId gets a reference to the given string and assigns it to the Id field.
+// SetId gets a reference to the given NullableString and assigns it to the Id field.
 func (o *AtomicBank) SetId(v string) {
-	o.Id = &v
+	o.Id.Set(&v)
+}
+
+// SetIdNil sets the value for Id to be an explicit nil
+func (o *AtomicBank) SetIdNil() {
+	o.Id.Set(nil)
+}
+
+// UnsetId ensures that no value is present for Id, not even an explicit nil
+func (o *AtomicBank) UnsetId() {
+	o.Id.Unset()
 }
 
 // GetTenantId returns the TenantId field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -121,38 +132,6 @@ func (o *AtomicBank) UnsetTenantId() {
 	o.TenantId.Unset()
 }
 
-// GetBank returns the Bank field value if set, zero value otherwise.
-func (o *AtomicBank) GetBank() Bank {
-	if o == nil || o.Bank == nil {
-		var ret Bank
-		return ret
-	}
-	return *o.Bank
-}
-
-// GetBankOk returns a tuple with the Bank field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *AtomicBank) GetBankOk() (*Bank, bool) {
-	if o == nil || o.Bank == nil {
-		return nil, false
-	}
-	return o.Bank, true
-}
-
-// HasBank returns a boolean if a field has been set.
-func (o *AtomicBank) HasBank() bool {
-	if o != nil && o.Bank != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetBank gets a reference to the given Bank and assigns it to the Bank field.
-func (o *AtomicBank) SetBank(v Bank) {
-	o.Bank = &v
-}
-
 // GetType returns the Type field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *AtomicBank) GetType() string {
 	if o == nil || o.Type.Get() == nil {
@@ -194,6 +173,38 @@ func (o *AtomicBank) SetTypeNil() {
 // UnsetType ensures that no value is present for Type, not even an explicit nil
 func (o *AtomicBank) UnsetType() {
 	o.Type.Unset()
+}
+
+// GetBank returns the Bank field value if set, zero value otherwise.
+func (o *AtomicBank) GetBank() Bank {
+	if o == nil || o.Bank == nil {
+		var ret Bank
+		return ret
+	}
+	return *o.Bank
+}
+
+// GetBankOk returns a tuple with the Bank field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *AtomicBank) GetBankOk() (*Bank, bool) {
+	if o == nil || o.Bank == nil {
+		return nil, false
+	}
+	return o.Bank, true
+}
+
+// HasBank returns a boolean if a field has been set.
+func (o *AtomicBank) HasBank() bool {
+	if o != nil && o.Bank != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetBank gets a reference to the given Bank and assigns it to the Bank field.
+func (o *AtomicBank) SetBank(v Bank) {
+	o.Bank = &v
 }
 
 // GetFingerprint returns the Fingerprint field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -446,17 +457,17 @@ func (o *AtomicBank) UnsetModifiedAt() {
 
 func (o AtomicBank) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
-	if o.Id != nil {
-		toSerialize["id"] = o.Id
+	if o.Id.IsSet() {
+		toSerialize["id"] = o.Id.Get()
 	}
 	if o.TenantId.IsSet() {
 		toSerialize["tenant_id"] = o.TenantId.Get()
 	}
-	if o.Bank != nil {
-		toSerialize["bank"] = o.Bank
-	}
 	if o.Type.IsSet() {
 		toSerialize["type"] = o.Type.Get()
+	}
+	if o.Bank != nil {
+		toSerialize["bank"] = o.Bank
 	}
 	if o.Fingerprint.IsSet() {
 		toSerialize["fingerprint"] = o.Fingerprint.Get()
