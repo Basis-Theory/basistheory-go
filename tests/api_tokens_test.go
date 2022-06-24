@@ -20,11 +20,14 @@ func TestTokenCRUD(t *testing.T) {
 	}
 	tokenType := "token"
 	tokenSearchIndexes := []string{"{{ data.myData }}"}
+	privacy := *basistheory.NewPrivacy()
+	privacy.SetRestrictionPolicy("mask")
 	createTokenRequest := *basistheory.NewCreateTokenRequest(tokenData)
 	createTokenRequest.SetType(tokenType)
 	createTokenRequest.SetSearchIndexes(tokenSearchIndexes)
 	createTokenRequest.SetDeduplicateToken(false)
 	createTokenRequest.SetMask(tokenMask)
+	createTokenRequest.SetPrivacy(privacy)
 
 	createdToken, response, err := apiClient.TokensApi.Create(contextWithAPIKey).CreateTokenRequest(createTokenRequest).Execute()
 

@@ -1,5 +1,7 @@
 # Go API client for basistheory
 
+[![Release](https://github.com/Basis-Theory/basistheory-go/actions/workflows/release.yml/badge.svg)](https://github.com/Basis-Theory/basistheory-go/actions/workflows/release.yml)
+
 ## Getting Started
 * Sign-in to [Basis Theory](https://basistheory.com) and go to [Applications](https://portal.basistheory.com/applications)
 * Create a Basis Theory Server to Server Application
@@ -26,7 +28,7 @@ go get golang.org/x/net/context
 Put the package under your project folder and add the following in import:
 
 ```golang
-import basistheory "github.com/GIT_USER_ID/GIT_REPO_ID"
+import basistheory "github.com/Basis-Theory/basistheory-go/v3"
 ```
 
 To use a proxy, set the environment variable `HTTP_PROXY`:
@@ -34,6 +36,12 @@ To use a proxy, set the environment variable `HTTP_PROXY`:
 ```golang
 os.Setenv("HTTP_PROXY", "http://proxy_name:proxy_port")
 ```
+
+## Running tests locally
+
+To run tests locally, you'll need to create a server and management BT Application with all permissions and add those `key`'s
+to a `.env.local`. You'll want to follow the same format as outlined on `.env.example`. Then you can run `make verify` from
+the root to run all tests.
 
 ## Configuration of Server URL
 
@@ -82,135 +90,135 @@ All URIs are relative to *https://api.basistheory.com*
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
-*ApplicationsApi* | [**Create**](docs/ApplicationsApi.md#create) | **Post** /applications | 
-*ApplicationsApi* | [**Delete**](docs/ApplicationsApi.md#delete) | **Delete** /applications/{id} | 
-*ApplicationsApi* | [**Get**](docs/ApplicationsApi.md#get) | **Get** /applications | 
-*ApplicationsApi* | [**GetById**](docs/ApplicationsApi.md#getbyid) | **Get** /applications/{id} | 
-*ApplicationsApi* | [**GetByKey**](docs/ApplicationsApi.md#getbykey) | **Get** /applications/key | 
-*ApplicationsApi* | [**RegenerateKey**](docs/ApplicationsApi.md#regeneratekey) | **Post** /applications/{id}/regenerate | 
-*ApplicationsApi* | [**Update**](docs/ApplicationsApi.md#update) | **Put** /applications/{id} | 
-*BanksApi* | [**Create**](docs/BanksApi.md#create) | **Post** /atomic/banks | 
-*BanksApi* | [**Delete**](docs/BanksApi.md#delete) | **Delete** /atomic/banks/{id} | 
-*BanksApi* | [**Get**](docs/BanksApi.md#get) | **Get** /atomic/banks | 
-*BanksApi* | [**GetById**](docs/BanksApi.md#getbyid) | **Get** /atomic/banks/{id} | 
-*BanksApi* | [**React**](docs/BanksApi.md#react) | **Post** /atomic/banks/{bankId}/react | 
-*BanksApi* | [**Update**](docs/BanksApi.md#update) | **Patch** /atomic/banks/{id} | 
-*CardsApi* | [**Create**](docs/CardsApi.md#create) | **Post** /atomic/cards | 
-*CardsApi* | [**Delete**](docs/CardsApi.md#delete) | **Delete** /atomic/cards/{id} | 
-*CardsApi* | [**Get**](docs/CardsApi.md#get) | **Get** /atomic/cards | 
-*CardsApi* | [**GetById**](docs/CardsApi.md#getbyid) | **Get** /atomic/cards/{id} | 
-*CardsApi* | [**React**](docs/CardsApi.md#react) | **Post** /atomic/cards/{cardId}/react | 
-*CardsApi* | [**Update**](docs/CardsApi.md#update) | **Patch** /atomic/cards/{id} | 
-*LogsApi* | [**Get**](docs/LogsApi.md#get) | **Get** /logs | 
-*LogsApi* | [**GetEntityTypes**](docs/LogsApi.md#getentitytypes) | **Get** /logs/entity-types | 
-*PermissionsApi* | [**Get**](docs/PermissionsApi.md#get) | **Get** /permissions | 
-*ProxiesApi* | [**Create**](docs/ProxiesApi.md#create) | **Post** /proxies | 
-*ProxiesApi* | [**Delete**](docs/ProxiesApi.md#delete) | **Delete** /proxies/{id} | 
-*ProxiesApi* | [**Get**](docs/ProxiesApi.md#get) | **Get** /proxies | 
-*ProxiesApi* | [**GetById**](docs/ProxiesApi.md#getbyid) | **Get** /proxies/{id} | 
-*ProxiesApi* | [**Update**](docs/ProxiesApi.md#update) | **Put** /proxies/{id} | 
-*ReactorFormulasApi* | [**Create**](docs/ReactorFormulasApi.md#create) | **Post** /reactor-formulas | 
-*ReactorFormulasApi* | [**Delete**](docs/ReactorFormulasApi.md#delete) | **Delete** /reactor-formulas/{id} | 
-*ReactorFormulasApi* | [**Get**](docs/ReactorFormulasApi.md#get) | **Get** /reactor-formulas | 
-*ReactorFormulasApi* | [**GetById**](docs/ReactorFormulasApi.md#getbyid) | **Get** /reactor-formulas/{id} | 
-*ReactorFormulasApi* | [**Update**](docs/ReactorFormulasApi.md#update) | **Put** /reactor-formulas/{id} | 
-*ReactorsApi* | [**Create**](docs/ReactorsApi.md#create) | **Post** /reactors | 
-*ReactorsApi* | [**Delete**](docs/ReactorsApi.md#delete) | **Delete** /reactors/{id} | 
-*ReactorsApi* | [**Get**](docs/ReactorsApi.md#get) | **Get** /reactors | 
-*ReactorsApi* | [**GetById**](docs/ReactorsApi.md#getbyid) | **Get** /reactors/{id} | 
-*ReactorsApi* | [**React**](docs/ReactorsApi.md#react) | **Post** /reactors/{id}/react | 
-*ReactorsApi* | [**Update**](docs/ReactorsApi.md#update) | **Put** /reactors/{id} | 
-*TenantsApi* | [**CreateInvitation**](docs/TenantsApi.md#createinvitation) | **Post** /tenants/self/invitations | 
-*TenantsApi* | [**Delete**](docs/TenantsApi.md#delete) | **Delete** /tenants/self | 
-*TenantsApi* | [**DeleteInvitation**](docs/TenantsApi.md#deleteinvitation) | **Delete** /tenants/self/invitations/{invitationId} | 
-*TenantsApi* | [**DeleteMember**](docs/TenantsApi.md#deletemember) | **Delete** /tenants/self/members/{memberId} | 
-*TenantsApi* | [**Get**](docs/TenantsApi.md#get) | **Get** /tenants/self | 
-*TenantsApi* | [**GetInvitations**](docs/TenantsApi.md#getinvitations) | **Get** /tenants/self/invitations | 
-*TenantsApi* | [**GetMembers**](docs/TenantsApi.md#getmembers) | **Get** /tenants/self/members | 
-*TenantsApi* | [**GetTenantOperationReport**](docs/TenantsApi.md#gettenantoperationreport) | **Get** /tenants/self/reports/operations | 
-*TenantsApi* | [**GetTenantUsageReport**](docs/TenantsApi.md#gettenantusagereport) | **Get** /tenants/self/reports/usage | 
-*TenantsApi* | [**ResendInvitation**](docs/TenantsApi.md#resendinvitation) | **Post** /tenants/self/invitations/{invitationId}/resend | 
-*TenantsApi* | [**Update**](docs/TenantsApi.md#update) | **Put** /tenants/self | 
-*TokenizeApi* | [**Tokenize**](docs/TokenizeApi.md#tokenize) | **Post** /tokenize | 
-*TokensApi* | [**Create**](docs/TokensApi.md#create) | **Post** /tokens | 
-*TokensApi* | [**CreateAssociation**](docs/TokensApi.md#createassociation) | **Post** /tokens/{parentId}/children/{childId} | 
-*TokensApi* | [**CreateChild**](docs/TokensApi.md#createchild) | **Post** /tokens/{parentId}/children | 
-*TokensApi* | [**Delete**](docs/TokensApi.md#delete) | **Delete** /tokens/{id} | 
-*TokensApi* | [**DeleteAssociation**](docs/TokensApi.md#deleteassociation) | **Delete** /tokens/{parentId}/children/{childId} | 
-*TokensApi* | [**Get**](docs/TokensApi.md#get) | **Get** /tokens | 
-*TokensApi* | [**GetById**](docs/TokensApi.md#getbyid) | **Get** /tokens/{id} | 
-*TokensApi* | [**GetChildren**](docs/TokensApi.md#getchildren) | **Get** /tokens/{parentId}/children | 
-*TokensApi* | [**Search**](docs/TokensApi.md#search) | **Post** /tokens/search | 
-*TokensApi* | [**Update**](docs/TokensApi.md#update) | **Patch** /tokens/{id} | 
+*ApplicationsApi* | [**Create**](docs/ApplicationsApi.md#create) | **Post** /applications |
+*ApplicationsApi* | [**Delete**](docs/ApplicationsApi.md#delete) | **Delete** /applications/{id} |
+*ApplicationsApi* | [**Get**](docs/ApplicationsApi.md#get) | **Get** /applications |
+*ApplicationsApi* | [**GetById**](docs/ApplicationsApi.md#getbyid) | **Get** /applications/{id} |
+*ApplicationsApi* | [**GetByKey**](docs/ApplicationsApi.md#getbykey) | **Get** /applications/key |
+*ApplicationsApi* | [**RegenerateKey**](docs/ApplicationsApi.md#regeneratekey) | **Post** /applications/{id}/regenerate |
+*ApplicationsApi* | [**Update**](docs/ApplicationsApi.md#update) | **Put** /applications/{id} |
+*BanksApi* | [**Create**](docs/BanksApi.md#create) | **Post** /atomic/banks |
+*BanksApi* | [**Delete**](docs/BanksApi.md#delete) | **Delete** /atomic/banks/{id} |
+*BanksApi* | [**Get**](docs/BanksApi.md#get) | **Get** /atomic/banks |
+*BanksApi* | [**GetById**](docs/BanksApi.md#getbyid) | **Get** /atomic/banks/{id} |
+*BanksApi* | [**React**](docs/BanksApi.md#react) | **Post** /atomic/banks/{bankId}/react |
+*BanksApi* | [**Update**](docs/BanksApi.md#update) | **Patch** /atomic/banks/{id} |
+*CardsApi* | [**Create**](docs/CardsApi.md#create) | **Post** /atomic/cards |
+*CardsApi* | [**Delete**](docs/CardsApi.md#delete) | **Delete** /atomic/cards/{id} |
+*CardsApi* | [**Get**](docs/CardsApi.md#get) | **Get** /atomic/cards |
+*CardsApi* | [**GetById**](docs/CardsApi.md#getbyid) | **Get** /atomic/cards/{id} |
+*CardsApi* | [**React**](docs/CardsApi.md#react) | **Post** /atomic/cards/{cardId}/react |
+*CardsApi* | [**Update**](docs/CardsApi.md#update) | **Patch** /atomic/cards/{id} |
+*LogsApi* | [**Get**](docs/LogsApi.md#get) | **Get** /logs |
+*LogsApi* | [**GetEntityTypes**](docs/LogsApi.md#getentitytypes) | **Get** /logs/entity-types |
+*PermissionsApi* | [**Get**](docs/PermissionsApi.md#get) | **Get** /permissions |
+*ProxiesApi* | [**Create**](docs/ProxiesApi.md#create) | **Post** /proxies |
+*ProxiesApi* | [**Delete**](docs/ProxiesApi.md#delete) | **Delete** /proxies/{id} |
+*ProxiesApi* | [**Get**](docs/ProxiesApi.md#get) | **Get** /proxies |
+*ProxiesApi* | [**GetById**](docs/ProxiesApi.md#getbyid) | **Get** /proxies/{id} |
+*ProxiesApi* | [**Update**](docs/ProxiesApi.md#update) | **Put** /proxies/{id} |
+*ReactorFormulasApi* | [**Create**](docs/ReactorFormulasApi.md#create) | **Post** /reactor-formulas |
+*ReactorFormulasApi* | [**Delete**](docs/ReactorFormulasApi.md#delete) | **Delete** /reactor-formulas/{id} |
+*ReactorFormulasApi* | [**Get**](docs/ReactorFormulasApi.md#get) | **Get** /reactor-formulas |
+*ReactorFormulasApi* | [**GetById**](docs/ReactorFormulasApi.md#getbyid) | **Get** /reactor-formulas/{id} |
+*ReactorFormulasApi* | [**Update**](docs/ReactorFormulasApi.md#update) | **Put** /reactor-formulas/{id} |
+*ReactorsApi* | [**Create**](docs/ReactorsApi.md#create) | **Post** /reactors |
+*ReactorsApi* | [**Delete**](docs/ReactorsApi.md#delete) | **Delete** /reactors/{id} |
+*ReactorsApi* | [**Get**](docs/ReactorsApi.md#get) | **Get** /reactors |
+*ReactorsApi* | [**GetById**](docs/ReactorsApi.md#getbyid) | **Get** /reactors/{id} |
+*ReactorsApi* | [**React**](docs/ReactorsApi.md#react) | **Post** /reactors/{id}/react |
+*ReactorsApi* | [**Update**](docs/ReactorsApi.md#update) | **Put** /reactors/{id} |
+*TenantsApi* | [**CreateInvitation**](docs/TenantsApi.md#createinvitation) | **Post** /tenants/self/invitations |
+*TenantsApi* | [**Delete**](docs/TenantsApi.md#delete) | **Delete** /tenants/self |
+*TenantsApi* | [**DeleteInvitation**](docs/TenantsApi.md#deleteinvitation) | **Delete** /tenants/self/invitations/{invitationId} |
+*TenantsApi* | [**DeleteMember**](docs/TenantsApi.md#deletemember) | **Delete** /tenants/self/members/{memberId} |
+*TenantsApi* | [**Get**](docs/TenantsApi.md#get) | **Get** /tenants/self |
+*TenantsApi* | [**GetInvitations**](docs/TenantsApi.md#getinvitations) | **Get** /tenants/self/invitations |
+*TenantsApi* | [**GetMembers**](docs/TenantsApi.md#getmembers) | **Get** /tenants/self/members |
+*TenantsApi* | [**GetTenantOperationReport**](docs/TenantsApi.md#gettenantoperationreport) | **Get** /tenants/self/reports/operations |
+*TenantsApi* | [**GetTenantUsageReport**](docs/TenantsApi.md#gettenantusagereport) | **Get** /tenants/self/reports/usage |
+*TenantsApi* | [**ResendInvitation**](docs/TenantsApi.md#resendinvitation) | **Post** /tenants/self/invitations/{invitationId}/resend |
+*TenantsApi* | [**Update**](docs/TenantsApi.md#update) | **Put** /tenants/self |
+*TokenizeApi* | [**Tokenize**](docs/TokenizeApi.md#tokenize) | **Post** /tokenize |
+*TokensApi* | [**Create**](docs/TokensApi.md#create) | **Post** /tokens |
+*TokensApi* | [**CreateAssociation**](docs/TokensApi.md#createassociation) | **Post** /tokens/{parentId}/children/{childId} |
+*TokensApi* | [**CreateChild**](docs/TokensApi.md#createchild) | **Post** /tokens/{parentId}/children |
+*TokensApi* | [**Delete**](docs/TokensApi.md#delete) | **Delete** /tokens/{id} |
+*TokensApi* | [**DeleteAssociation**](docs/TokensApi.md#deleteassociation) | **Delete** /tokens/{parentId}/children/{childId} |
+*TokensApi* | [**Get**](docs/TokensApi.md#get) | **Get** /tokens |
+*TokensApi* | [**GetById**](docs/TokensApi.md#getbyid) | **Get** /tokens/{id} |
+*TokensApi* | [**GetChildren**](docs/TokensApi.md#getchildren) | **Get** /tokens/{parentId}/children |
+*TokensApi* | [**Search**](docs/TokensApi.md#search) | **Post** /tokens/search |
+*TokensApi* | [**Update**](docs/TokensApi.md#update) | **Patch** /tokens/{id} |
 
 
 ## Documentation For Models
 
- - [Application](docs/Application.md)
- - [ApplicationPaginatedList](docs/ApplicationPaginatedList.md)
- - [AtomicBank](docs/AtomicBank.md)
- - [AtomicBankPaginatedList](docs/AtomicBankPaginatedList.md)
- - [AtomicCard](docs/AtomicCard.md)
- - [AtomicCardPaginatedList](docs/AtomicCardPaginatedList.md)
- - [AtomicReactRequest](docs/AtomicReactRequest.md)
- - [Bank](docs/Bank.md)
- - [Card](docs/Card.md)
- - [CreateApplicationRequest](docs/CreateApplicationRequest.md)
- - [CreateAtomicBankRequest](docs/CreateAtomicBankRequest.md)
- - [CreateAtomicCardRequest](docs/CreateAtomicCardRequest.md)
- - [CreateProxyRequest](docs/CreateProxyRequest.md)
- - [CreateReactorFormulaRequest](docs/CreateReactorFormulaRequest.md)
- - [CreateReactorRequest](docs/CreateReactorRequest.md)
- - [CreateTenantInvitationRequest](docs/CreateTenantInvitationRequest.md)
- - [CreateTokenRequest](docs/CreateTokenRequest.md)
- - [CreateTokenResponse](docs/CreateTokenResponse.md)
- - [EncryptionKey](docs/EncryptionKey.md)
- - [EncryptionMetadata](docs/EncryptionMetadata.md)
- - [GetLogs](docs/GetLogs.md)
- - [GetPermissions](docs/GetPermissions.md)
- - [GetProxies](docs/GetProxies.md)
- - [GetTokens](docs/GetTokens.md)
- - [Log](docs/Log.md)
- - [LogEntityType](docs/LogEntityType.md)
- - [LogPaginatedList](docs/LogPaginatedList.md)
- - [Pagination](docs/Pagination.md)
- - [Permission](docs/Permission.md)
- - [Privacy](docs/Privacy.md)
- - [ProblemDetails](docs/ProblemDetails.md)
- - [Proxy](docs/Proxy.md)
- - [ProxyPaginatedList](docs/ProxyPaginatedList.md)
- - [ReactRequest](docs/ReactRequest.md)
- - [ReactResponse](docs/ReactResponse.md)
- - [Reactor](docs/Reactor.md)
- - [ReactorFormula](docs/ReactorFormula.md)
- - [ReactorFormulaConfiguration](docs/ReactorFormulaConfiguration.md)
- - [ReactorFormulaPaginatedList](docs/ReactorFormulaPaginatedList.md)
- - [ReactorFormulaRequestParameter](docs/ReactorFormulaRequestParameter.md)
- - [ReactorPaginatedList](docs/ReactorPaginatedList.md)
- - [SearchTokensRequest](docs/SearchTokensRequest.md)
- - [StringStringKeyValuePair](docs/StringStringKeyValuePair.md)
- - [Tenant](docs/Tenant.md)
- - [TenantInvitationResponse](docs/TenantInvitationResponse.md)
- - [TenantInvitationResponsePaginatedList](docs/TenantInvitationResponsePaginatedList.md)
- - [TenantInvitationStatus](docs/TenantInvitationStatus.md)
- - [TenantMemberResponse](docs/TenantMemberResponse.md)
- - [TenantMemberResponsePaginatedList](docs/TenantMemberResponsePaginatedList.md)
- - [TenantUsageReport](docs/TenantUsageReport.md)
- - [Token](docs/Token.md)
- - [TokenMetrics](docs/TokenMetrics.md)
- - [TokenPaginatedList](docs/TokenPaginatedList.md)
- - [TokenReport](docs/TokenReport.md)
- - [UpdateApplicationRequest](docs/UpdateApplicationRequest.md)
- - [UpdateAtomicBankRequest](docs/UpdateAtomicBankRequest.md)
- - [UpdateAtomicCardRequest](docs/UpdateAtomicCardRequest.md)
- - [UpdatePrivacy](docs/UpdatePrivacy.md)
- - [UpdateProxyRequest](docs/UpdateProxyRequest.md)
- - [UpdateReactorFormulaRequest](docs/UpdateReactorFormulaRequest.md)
- - [UpdateReactorRequest](docs/UpdateReactorRequest.md)
- - [UpdateTenantRequest](docs/UpdateTenantRequest.md)
- - [UpdateTokenRequest](docs/UpdateTokenRequest.md)
- - [User](docs/User.md)
- - [ValidationProblemDetails](docs/ValidationProblemDetails.md)
+- [Application](docs/Application.md)
+- [ApplicationPaginatedList](docs/ApplicationPaginatedList.md)
+- [AtomicBank](docs/AtomicBank.md)
+- [AtomicBankPaginatedList](docs/AtomicBankPaginatedList.md)
+- [AtomicCard](docs/AtomicCard.md)
+- [AtomicCardPaginatedList](docs/AtomicCardPaginatedList.md)
+- [AtomicReactRequest](docs/AtomicReactRequest.md)
+- [Bank](docs/Bank.md)
+- [Card](docs/Card.md)
+- [CreateApplicationRequest](docs/CreateApplicationRequest.md)
+- [CreateAtomicBankRequest](docs/CreateAtomicBankRequest.md)
+- [CreateAtomicCardRequest](docs/CreateAtomicCardRequest.md)
+- [CreateProxyRequest](docs/CreateProxyRequest.md)
+- [CreateReactorFormulaRequest](docs/CreateReactorFormulaRequest.md)
+- [CreateReactorRequest](docs/CreateReactorRequest.md)
+- [CreateTenantInvitationRequest](docs/CreateTenantInvitationRequest.md)
+- [CreateTokenRequest](docs/CreateTokenRequest.md)
+- [CreateTokenResponse](docs/CreateTokenResponse.md)
+- [EncryptionKey](docs/EncryptionKey.md)
+- [EncryptionMetadata](docs/EncryptionMetadata.md)
+- [GetLogs](docs/GetLogs.md)
+- [GetPermissions](docs/GetPermissions.md)
+- [GetProxies](docs/GetProxies.md)
+- [GetTokens](docs/GetTokens.md)
+- [Log](docs/Log.md)
+- [LogEntityType](docs/LogEntityType.md)
+- [LogPaginatedList](docs/LogPaginatedList.md)
+- [Pagination](docs/Pagination.md)
+- [Permission](docs/Permission.md)
+- [Privacy](docs/Privacy.md)
+- [ProblemDetails](docs/ProblemDetails.md)
+- [Proxy](docs/Proxy.md)
+- [ProxyPaginatedList](docs/ProxyPaginatedList.md)
+- [ReactRequest](docs/ReactRequest.md)
+- [ReactResponse](docs/ReactResponse.md)
+- [Reactor](docs/Reactor.md)
+- [ReactorFormula](docs/ReactorFormula.md)
+- [ReactorFormulaConfiguration](docs/ReactorFormulaConfiguration.md)
+- [ReactorFormulaPaginatedList](docs/ReactorFormulaPaginatedList.md)
+- [ReactorFormulaRequestParameter](docs/ReactorFormulaRequestParameter.md)
+- [ReactorPaginatedList](docs/ReactorPaginatedList.md)
+- [SearchTokensRequest](docs/SearchTokensRequest.md)
+- [StringStringKeyValuePair](docs/StringStringKeyValuePair.md)
+- [Tenant](docs/Tenant.md)
+- [TenantInvitationResponse](docs/TenantInvitationResponse.md)
+- [TenantInvitationResponsePaginatedList](docs/TenantInvitationResponsePaginatedList.md)
+- [TenantInvitationStatus](docs/TenantInvitationStatus.md)
+- [TenantMemberResponse](docs/TenantMemberResponse.md)
+- [TenantMemberResponsePaginatedList](docs/TenantMemberResponsePaginatedList.md)
+- [TenantUsageReport](docs/TenantUsageReport.md)
+- [Token](docs/Token.md)
+- [TokenMetrics](docs/TokenMetrics.md)
+- [TokenPaginatedList](docs/TokenPaginatedList.md)
+- [TokenReport](docs/TokenReport.md)
+- [UpdateApplicationRequest](docs/UpdateApplicationRequest.md)
+- [UpdateAtomicBankRequest](docs/UpdateAtomicBankRequest.md)
+- [UpdateAtomicCardRequest](docs/UpdateAtomicCardRequest.md)
+- [UpdatePrivacy](docs/UpdatePrivacy.md)
+- [UpdateProxyRequest](docs/UpdateProxyRequest.md)
+- [UpdateReactorFormulaRequest](docs/UpdateReactorFormulaRequest.md)
+- [UpdateReactorRequest](docs/UpdateReactorRequest.md)
+- [UpdateTenantRequest](docs/UpdateTenantRequest.md)
+- [UpdateTokenRequest](docs/UpdateTokenRequest.md)
+- [User](docs/User.md)
+- [ValidationProblemDetails](docs/ValidationProblemDetails.md)
 
 
 ## Documentation For Authorization
@@ -244,5 +252,4 @@ Each of these functions takes a value of the given basic type and returns a poin
 
 ## Author
 
-
-
+Basis-Theory
