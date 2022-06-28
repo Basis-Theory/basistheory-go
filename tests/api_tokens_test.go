@@ -13,7 +13,7 @@ func TestTokenCRUD(t *testing.T) {
 
 	// CREATE
 	tokenData := map[string]interface{}{
-		"myData": "myValue",
+		"myData": "4444-4444-4444-4444",
 	}
 	tokenMask := map[string]interface{}{
 		"myData": "{{ data.myData | append: 'suffix' }}",
@@ -23,6 +23,7 @@ func TestTokenCRUD(t *testing.T) {
 	privacy := *basistheory.NewPrivacy()
 	privacy.SetRestrictionPolicy("mask")
 	createTokenRequest := *basistheory.NewCreateTokenRequest(tokenData)
+	createTokenRequest.SetId("{{ data.myData | alias_preserve_length: 0, 4 }}")
 	createTokenRequest.SetType(tokenType)
 	createTokenRequest.SetSearchIndexes(tokenSearchIndexes)
 	createTokenRequest.SetDeduplicateToken(false)
@@ -32,6 +33,8 @@ func TestTokenCRUD(t *testing.T) {
 	createdToken, response, err := apiClient.TokensApi.Create(contextWithAPIKey).CreateTokenRequest(createTokenRequest).Execute()
 
 	testutils.AssertMethodDidNotError(err, response, "TokensApi Create", t)
+	testutils.AssertPropertiesDoNotMatch(createdToken.GetId(), tokenData["myData"], t)
+	testutils.AssertPropertiesMatch(createdToken.GetId()[len(createdToken.GetId())-4:], "4444", t)
 	testutils.AssertPropertiesMatch(createdToken.GetData().(map[string]interface{})["myData"], fmt.Sprint(tokenData["myData"], "suffix"), t)
 	testutils.AssertPropertiesMatch(createdToken.GetType(), tokenType, t)
 	testutils.AssertPropertiesMatch(createdToken.GetSearchIndexes(), tokenSearchIndexes, t)

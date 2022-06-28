@@ -4435,10 +4435,8 @@ components:
         mask: ""
       properties:
         id:
-          nullable: true
           type: string
         type:
-          nullable: true
           type: string
         tenant_id:
           format: uuid

@@ -17,8 +17,8 @@ import (
 
 // Token struct for Token
 type Token struct {
-	Id                    NullableString      `json:"id,omitempty"`
-	Type                  NullableString      `json:"type,omitempty"`
+	Id                    *string             `json:"id,omitempty"`
+	Type                  *string             `json:"type,omitempty"`
 	TenantId              *string             `json:"tenant_id,omitempty"`
 	Data                  interface{}         `json:"data,omitempty"`
 	Metadata              map[string]string   `json:"metadata,omitempty"`
@@ -51,90 +51,68 @@ func NewTokenWithDefaults() *Token {
 	return &this
 }
 
-// GetId returns the Id field value if set, zero value otherwise (both if not set or set to explicit null).
+// GetId returns the Id field value if set, zero value otherwise.
 func (o *Token) GetId() string {
-	if o == nil || o.Id.Get() == nil {
+	if o == nil || o.Id == nil {
 		var ret string
 		return ret
 	}
-	return *o.Id.Get()
+	return *o.Id
 }
 
 // GetIdOk returns a tuple with the Id field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *Token) GetIdOk() (*string, bool) {
-	if o == nil {
+	if o == nil || o.Id == nil {
 		return nil, false
 	}
-	return o.Id.Get(), o.Id.IsSet()
+	return o.Id, true
 }
 
 // HasId returns a boolean if a field has been set.
 func (o *Token) HasId() bool {
-	if o != nil && o.Id.IsSet() {
+	if o != nil && o.Id != nil {
 		return true
 	}
 
 	return false
 }
 
-// SetId gets a reference to the given NullableString and assigns it to the Id field.
+// SetId gets a reference to the given string and assigns it to the Id field.
 func (o *Token) SetId(v string) {
-	o.Id.Set(&v)
+	o.Id = &v
 }
 
-// SetIdNil sets the value for Id to be an explicit nil
-func (o *Token) SetIdNil() {
-	o.Id.Set(nil)
-}
-
-// UnsetId ensures that no value is present for Id, not even an explicit nil
-func (o *Token) UnsetId() {
-	o.Id.Unset()
-}
-
-// GetType returns the Type field value if set, zero value otherwise (both if not set or set to explicit null).
+// GetType returns the Type field value if set, zero value otherwise.
 func (o *Token) GetType() string {
-	if o == nil || o.Type.Get() == nil {
+	if o == nil || o.Type == nil {
 		var ret string
 		return ret
 	}
-	return *o.Type.Get()
+	return *o.Type
 }
 
 // GetTypeOk returns a tuple with the Type field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *Token) GetTypeOk() (*string, bool) {
-	if o == nil {
+	if o == nil || o.Type == nil {
 		return nil, false
 	}
-	return o.Type.Get(), o.Type.IsSet()
+	return o.Type, true
 }
 
 // HasType returns a boolean if a field has been set.
 func (o *Token) HasType() bool {
-	if o != nil && o.Type.IsSet() {
+	if o != nil && o.Type != nil {
 		return true
 	}
 
 	return false
 }
 
-// SetType gets a reference to the given NullableString and assigns it to the Type field.
+// SetType gets a reference to the given string and assigns it to the Type field.
 func (o *Token) SetType(v string) {
-	o.Type.Set(&v)
-}
-
-// SetTypeNil sets the value for Type to be an explicit nil
-func (o *Token) SetTypeNil() {
-	o.Type.Set(nil)
-}
-
-// UnsetType ensures that no value is present for Type, not even an explicit nil
-func (o *Token) UnsetType() {
-	o.Type.Unset()
+	o.Type = &v
 }
 
 // GetTenantId returns the TenantId field value if set, zero value otherwise.
@@ -625,11 +603,11 @@ func (o *Token) SetSearchIndexes(v []string) {
 
 func (o Token) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
-	if o.Id.IsSet() {
-		toSerialize["id"] = o.Id.Get()
+	if o.Id != nil {
+		toSerialize["id"] = o.Id
 	}
-	if o.Type.IsSet() {
-		toSerialize["type"] = o.Type.Get()
+	if o.Type != nil {
+		toSerialize["type"] = o.Type
 	}
 	if o.TenantId != nil {
 		toSerialize["tenant_id"] = o.TenantId
