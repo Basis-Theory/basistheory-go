@@ -1,3 +1,15 @@
+## [3.3.1](https://github.com/Basis-Theory/basistheory-go/compare/v3.3.0...v3.3.1) (2022-06-30)
+
+
+### Code Refactoring
+
+* remove atomic react methods, fix required params ([#43](https://github.com/Basis-Theory/basistheory-go/issues/43)) ([a4eef9c](https://github.com/Basis-Theory/basistheory-go/commit/a4eef9c95cd11862b333f4d277a635f73367d0e5))
+
+
+### BREAKING CHANGES
+
+* remove react methods from atomic banks and cards clients
+
 # [3.3.0](https://github.com/Basis-Theory/basistheory-go/compare/v3.2.0...v3.3.0) (2022-06-30)
 
 
