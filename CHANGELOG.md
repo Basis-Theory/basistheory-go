@@ -1,3 +1,10 @@
+# [3.3.0](https://github.com/Basis-Theory/basistheory-go/compare/v3.2.0...v3.3.0) (2022-06-30)
+
+
+### Features
+
+* add id to create token request and return id string on responses ([#42](https://github.com/Basis-Theory/basistheory-go/issues/42)) ([7d3d581](https://github.com/Basis-Theory/basistheory-go/commit/7d3d5818f7043b3dd5928d0a28cb515e51a2efcc))
+
 # [3.2.0](https://github.com/Basis-Theory/basistheory-go/compare/v3.1.0...v3.2.0) (2022-06-18)
 
 
