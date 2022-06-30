@@ -8,7 +8,6 @@ Method | HTTP request | Description
 [**Delete**](CardsApi.md#Delete) | **Delete** /atomic/cards/{id} | 
 [**Get**](CardsApi.md#Get) | **Get** /atomic/cards | 
 [**GetById**](CardsApi.md#GetById) | **Get** /atomic/cards/{id} | 
-[**React**](CardsApi.md#React) | **Post** /atomic/cards/{cardId}/react | 
 [**Update**](CardsApi.md#Update) | **Patch** /atomic/cards/{id} | 
 
 
@@ -32,7 +31,7 @@ import (
 )
 
 func main() {
-    createAtomicCardRequest := *openapiclient.NewCreateAtomicCardRequest(*openapiclient.NewCard()) // CreateAtomicCardRequest |  (optional)
+    createAtomicCardRequest := *openapiclient.NewCreateAtomicCardRequest(*openapiclient.NewCard()) // CreateAtomicCardRequest | 
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
@@ -96,7 +95,7 @@ import (
 )
 
 func main() {
-    id := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | 
+    id := "id_example" // string | 
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
@@ -228,7 +227,7 @@ import (
 )
 
 func main() {
-    id := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | 
+    id := "id_example" // string | 
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
@@ -277,76 +276,6 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
-## React
-
-> ReactResponse React(ctx, cardId).AtomicReactRequest(atomicReactRequest).Execute()
-
-
-
-### Example
-
-```go
-package main
-
-import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "./openapi"
-)
-
-func main() {
-    cardId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | 
-    atomicReactRequest := *openapiclient.NewAtomicReactRequest("ReactorId_example") // AtomicReactRequest |  (optional)
-
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.CardsApi.React(context.Background(), cardId).AtomicReactRequest(atomicReactRequest).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `CardsApi.React``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `React`: ReactResponse
-    fmt.Fprintf(os.Stdout, "Response from `CardsApi.React`: %v\n", resp)
-}
-```
-
-### Path Parameters
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**cardId** | **string** |  | 
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiReactRequest struct via the builder pattern
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-
- **atomicReactRequest** | [**AtomicReactRequest**](AtomicReactRequest.md) |  | 
-
-### Return type
-
-[**ReactResponse**](ReactResponse.md)
-
-### Authorization
-
-[ApiKey](../README.md#ApiKey)
-
-### HTTP request headers
-
-- **Content-Type**: application/json
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
-
-
 ## Update
 
 > AtomicCard Update(ctx, id).UpdateAtomicCardRequest(updateAtomicCardRequest).Execute()
@@ -366,8 +295,8 @@ import (
 )
 
 func main() {
-    id := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | 
-    updateAtomicCardRequest := *openapiclient.NewUpdateAtomicCardRequest(*openapiclient.NewCard()) // UpdateAtomicCardRequest |  (optional)
+    id := "id_example" // string | 
+    updateAtomicCardRequest := *openapiclient.NewUpdateAtomicCardRequest(*openapiclient.NewCard()) // UpdateAtomicCardRequest | 
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)

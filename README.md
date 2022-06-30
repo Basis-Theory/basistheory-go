@@ -1,7 +1,5 @@
 # Go API client for basistheory
 
-[![Release](https://github.com/Basis-Theory/basistheory-go/actions/workflows/release.yml/badge.svg)](https://github.com/Basis-Theory/basistheory-go/actions/workflows/release.yml)
-
 ## Getting Started
 * Sign-in to [Basis Theory](https://basistheory.com) and go to [Applications](https://portal.basistheory.com/applications)
 * Create a Basis Theory Server to Server Application
@@ -28,7 +26,7 @@ go get golang.org/x/net/context
 Put the package under your project folder and add the following in import:
 
 ```golang
-import basistheory "github.com/Basis-Theory/basistheory-go/v3"
+import basistheory "github.com/GIT_USER_ID/GIT_REPO_ID"
 ```
 
 To use a proxy, set the environment variable `HTTP_PROXY`:
@@ -36,12 +34,6 @@ To use a proxy, set the environment variable `HTTP_PROXY`:
 ```golang
 os.Setenv("HTTP_PROXY", "http://proxy_name:proxy_port")
 ```
-
-## Running tests locally
-
-To run tests locally, you'll need to create a server and management BT Application with all permissions and add those `key`'s
-to a `.env.local`. You'll want to follow the same format as outlined on `.env.example`. Then you can run `make verify` from
-the root to run all tests.
 
 ## Configuration of Server URL
 
@@ -101,13 +93,11 @@ Class | Method | HTTP request | Description
 *BanksApi* | [**Delete**](docs/BanksApi.md#delete) | **Delete** /atomic/banks/{id} | 
 *BanksApi* | [**Get**](docs/BanksApi.md#get) | **Get** /atomic/banks | 
 *BanksApi* | [**GetById**](docs/BanksApi.md#getbyid) | **Get** /atomic/banks/{id} | 
-*BanksApi* | [**React**](docs/BanksApi.md#react) | **Post** /atomic/banks/{bankId}/react | 
 *BanksApi* | [**Update**](docs/BanksApi.md#update) | **Patch** /atomic/banks/{id} | 
 *CardsApi* | [**Create**](docs/CardsApi.md#create) | **Post** /atomic/cards | 
 *CardsApi* | [**Delete**](docs/CardsApi.md#delete) | **Delete** /atomic/cards/{id} | 
 *CardsApi* | [**Get**](docs/CardsApi.md#get) | **Get** /atomic/cards | 
 *CardsApi* | [**GetById**](docs/CardsApi.md#getbyid) | **Get** /atomic/cards/{id} | 
-*CardsApi* | [**React**](docs/CardsApi.md#react) | **Post** /atomic/cards/{cardId}/react | 
 *CardsApi* | [**Update**](docs/CardsApi.md#update) | **Patch** /atomic/cards/{id} | 
 *LogsApi* | [**Get**](docs/LogsApi.md#get) | **Get** /logs | 
 *LogsApi* | [**GetEntityTypes**](docs/LogsApi.md#getentitytypes) | **Get** /logs/entity-types | 
@@ -160,7 +150,6 @@ Class | Method | HTTP request | Description
  - [AtomicBankPaginatedList](docs/AtomicBankPaginatedList.md)
  - [AtomicCard](docs/AtomicCard.md)
  - [AtomicCardPaginatedList](docs/AtomicCardPaginatedList.md)
- - [AtomicReactRequest](docs/AtomicReactRequest.md)
  - [Bank](docs/Bank.md)
  - [Card](docs/Card.md)
  - [CreateApplicationRequest](docs/CreateApplicationRequest.md)
@@ -252,5 +241,5 @@ Each of these functions takes a value of the given basic type and returns a poin
 
 ## Author
 
-Basis-Theory
+
 

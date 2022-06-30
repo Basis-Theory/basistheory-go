@@ -4,10 +4,10 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Id** | Pointer to **string** |  | [optional] 
+**Id** | Pointer to **NullableString** |  | [optional] 
 **TenantId** | Pointer to **NullableString** |  | [optional] 
-**Bank** | Pointer to [**Bank**](Bank.md) |  | [optional] 
 **Type** | Pointer to **NullableString** |  | [optional] 
+**Bank** | Pointer to [**Bank**](Bank.md) |  | [optional] 
 **Fingerprint** | Pointer to **NullableString** |  | [optional] 
 **Metadata** | Pointer to **map[string]string** |  | [optional] 
 **CreatedBy** | Pointer to **NullableString** |  | [optional] 
@@ -59,6 +59,16 @@ SetId sets Id field to given value.
 
 HasId returns a boolean if a field has been set.
 
+### SetIdNil
+
+`func (o *AtomicBank) SetIdNil(b bool)`
+
+ SetIdNil sets the value for Id to be an explicit nil
+
+### UnsetId
+`func (o *AtomicBank) UnsetId()`
+
+UnsetId ensures that no value is present for Id, not even an explicit nil
 ### GetTenantId
 
 `func (o *AtomicBank) GetTenantId() string`
@@ -94,31 +104,6 @@ HasTenantId returns a boolean if a field has been set.
 `func (o *AtomicBank) UnsetTenantId()`
 
 UnsetTenantId ensures that no value is present for TenantId, not even an explicit nil
-### GetBank
-
-`func (o *AtomicBank) GetBank() Bank`
-
-GetBank returns the Bank field if non-nil, zero value otherwise.
-
-### GetBankOk
-
-`func (o *AtomicBank) GetBankOk() (*Bank, bool)`
-
-GetBankOk returns a tuple with the Bank field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetBank
-
-`func (o *AtomicBank) SetBank(v Bank)`
-
-SetBank sets Bank field to given value.
-
-### HasBank
-
-`func (o *AtomicBank) HasBank() bool`
-
-HasBank returns a boolean if a field has been set.
-
 ### GetType
 
 `func (o *AtomicBank) GetType() string`
@@ -154,6 +139,31 @@ HasType returns a boolean if a field has been set.
 `func (o *AtomicBank) UnsetType()`
 
 UnsetType ensures that no value is present for Type, not even an explicit nil
+### GetBank
+
+`func (o *AtomicBank) GetBank() Bank`
+
+GetBank returns the Bank field if non-nil, zero value otherwise.
+
+### GetBankOk
+
+`func (o *AtomicBank) GetBankOk() (*Bank, bool)`
+
+GetBankOk returns a tuple with the Bank field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetBank
+
+`func (o *AtomicBank) SetBank(v Bank)`
+
+SetBank sets Bank field to given value.
+
+### HasBank
+
+`func (o *AtomicBank) HasBank() bool`
+
+HasBank returns a boolean if a field has been set.
+
 ### GetFingerprint
 
 `func (o *AtomicBank) GetFingerprint() string`

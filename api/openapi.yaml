@@ -48,6 +48,12 @@ paths:
               schema:
                 $ref: '#/components/schemas/ApplicationPaginatedList'
           description: Success
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Not Found
         "401":
           content:
             application/json:
@@ -60,12 +66,6 @@ paths:
               schema:
                 $ref: '#/components/schemas/ProblemDetails'
           description: Forbidden
-        "404":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ProblemDetails'
-          description: Not Found
       tags:
       - Applications
     post:
@@ -118,6 +118,12 @@ paths:
       responses:
         "204":
           description: No Content
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Not Found
         "401":
           content:
             application/json:
@@ -130,12 +136,6 @@ paths:
               schema:
                 $ref: '#/components/schemas/ProblemDetails'
           description: Forbidden
-        "404":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ProblemDetails'
-          description: Not Found
       tags:
       - Applications
     get:
@@ -156,6 +156,12 @@ paths:
               schema:
                 $ref: '#/components/schemas/Application'
           description: Success
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Not Found
         "401":
           content:
             application/json:
@@ -168,12 +174,6 @@ paths:
               schema:
                 $ref: '#/components/schemas/ProblemDetails'
           description: Forbidden
-        "404":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ProblemDetails'
-          description: Not Found
       tags:
       - Applications
     put:
@@ -206,6 +206,12 @@ paths:
               schema:
                 $ref: '#/components/schemas/ValidationProblemDetails'
           description: Bad Request
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Not Found
         "401":
           content:
             application/json:
@@ -218,12 +224,6 @@ paths:
               schema:
                 $ref: '#/components/schemas/ProblemDetails'
           description: Forbidden
-        "404":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ProblemDetails'
-          description: Not Found
       tags:
       - Applications
   /applications/key:
@@ -236,18 +236,18 @@ paths:
               schema:
                 $ref: '#/components/schemas/Application'
           description: Success
-        "401":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ProblemDetails'
-          description: Unauthorized
         "404":
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ProblemDetails'
           description: Not Found
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Unauthorized
       tags:
       - Applications
   /applications/{id}/regenerate:
@@ -269,57 +269,12 @@ paths:
               schema:
                 $ref: '#/components/schemas/Application'
           description: Success
-        "401":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ProblemDetails'
-          description: Unauthorized
-        "403":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ProblemDetails'
-          description: Forbidden
         "404":
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ProblemDetails'
           description: Not Found
-      tags:
-      - Applications
-  /atomic/banks/{bankId}/react:
-    post:
-      deprecated: true
-      operationId: AtomicBanks_React
-      parameters:
-      - explode: false
-        in: path
-        name: bankId
-        required: true
-        schema:
-          format: uuid
-          type: string
-        style: simple
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/AtomicReactRequest'
-      responses:
-        "200":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ReactResponse'
-          description: Success
-        "400":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ValidationProblemDetails'
-          description: Bad Request
         "401":
           content:
             application/json:
@@ -332,14 +287,8 @@ paths:
               schema:
                 $ref: '#/components/schemas/ProblemDetails'
           description: Forbidden
-        "422":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ProblemDetails'
-          description: Client Error
       tags:
-      - Banks
+      - Applications
   /atomic/banks:
     get:
       deprecated: true
@@ -390,6 +339,7 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/CreateAtomicBankRequest'
+        required: true
       responses:
         "201":
           content:
@@ -427,7 +377,6 @@ paths:
         name: id
         required: true
         schema:
-          format: uuid
           type: string
         style: simple
       responses:
@@ -462,7 +411,6 @@ paths:
         name: id
         required: true
         schema:
-          format: uuid
           type: string
         style: simple
       responses:
@@ -501,7 +449,6 @@ paths:
         name: id
         required: true
         schema:
-          format: uuid
           type: string
         style: simple
       requestBody:
@@ -509,6 +456,7 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/UpdateAtomicBankRequest'
+        required: true
       responses:
         "200":
           content:
@@ -522,57 +470,12 @@ paths:
               schema:
                 $ref: '#/components/schemas/ValidationProblemDetails'
           description: Bad Request
-        "401":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ProblemDetails'
-          description: Unauthorized
-        "403":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ProblemDetails'
-          description: Forbidden
         "404":
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ProblemDetails'
           description: Not Found
-      tags:
-      - Banks
-  /atomic/cards/{cardId}/react:
-    post:
-      deprecated: true
-      operationId: AtomicCards_React
-      parameters:
-      - explode: false
-        in: path
-        name: cardId
-        required: true
-        schema:
-          format: uuid
-          type: string
-        style: simple
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/AtomicReactRequest'
-      responses:
-        "200":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ReactResponse'
-          description: Success
-        "400":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ValidationProblemDetails'
-          description: Bad Request
         "401":
           content:
             application/json:
@@ -585,14 +488,8 @@ paths:
               schema:
                 $ref: '#/components/schemas/ProblemDetails'
           description: Forbidden
-        "422":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ProblemDetails'
-          description: Client Error
       tags:
-      - Cards
+      - Banks
   /atomic/cards:
     get:
       deprecated: true
@@ -643,6 +540,7 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/CreateAtomicCardRequest'
+        required: true
       responses:
         "201":
           content:
@@ -680,7 +578,6 @@ paths:
         name: id
         required: true
         schema:
-          format: uuid
           type: string
         style: simple
       responses:
@@ -715,7 +612,6 @@ paths:
         name: id
         required: true
         schema:
-          format: uuid
           type: string
         style: simple
       responses:
@@ -754,7 +650,6 @@ paths:
         name: id
         required: true
         schema:
-          format: uuid
           type: string
         style: simple
       requestBody:
@@ -762,6 +657,7 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/UpdateAtomicCardRequest'
+        required: true
       responses:
         "200":
           content:
@@ -775,6 +671,12 @@ paths:
               schema:
                 $ref: '#/components/schemas/ValidationProblemDetails'
           description: Bad Request
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Not Found
         "401":
           content:
             application/json:
@@ -787,12 +689,6 @@ paths:
               schema:
                 $ref: '#/components/schemas/ProblemDetails'
           description: Forbidden
-        "404":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ProblemDetails'
-          description: Not Found
       tags:
       - Cards
   /logs:
@@ -993,6 +889,12 @@ paths:
               schema:
                 $ref: '#/components/schemas/ProxyPaginatedList'
           description: Success
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Not Found
         "401":
           content:
             application/json:
@@ -1005,12 +907,6 @@ paths:
               schema:
                 $ref: '#/components/schemas/ProblemDetails'
           description: Forbidden
-        "404":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ProblemDetails'
-          description: Not Found
       tags:
       - Proxies
     post:
@@ -1020,6 +916,7 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/CreateProxyRequest'
+        required: true
       responses:
         "201":
           content:
@@ -1062,6 +959,12 @@ paths:
       responses:
         "204":
           description: No Content
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Not Found
         "401":
           content:
             application/json:
@@ -1074,12 +977,6 @@ paths:
               schema:
                 $ref: '#/components/schemas/ProblemDetails'
           description: Forbidden
-        "404":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ProblemDetails'
-          description: Not Found
       tags:
       - Proxies
     get:
@@ -1100,6 +997,12 @@ paths:
               schema:
                 $ref: '#/components/schemas/Proxy'
           description: Success
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Not Found
         "401":
           content:
             application/json:
@@ -1112,12 +1015,6 @@ paths:
               schema:
                 $ref: '#/components/schemas/ProblemDetails'
           description: Forbidden
-        "404":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ProblemDetails'
-          description: Not Found
       tags:
       - Proxies
     put:
@@ -1136,6 +1033,7 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/UpdateProxyRequest'
+        required: true
       responses:
         "200":
           content:
@@ -1149,6 +1047,12 @@ paths:
               schema:
                 $ref: '#/components/schemas/ValidationProblemDetails'
           description: Bad Request
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Not Found
         "401":
           content:
             application/json:
@@ -1161,12 +1065,6 @@ paths:
               schema:
                 $ref: '#/components/schemas/ProblemDetails'
           description: Forbidden
-        "404":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ProblemDetails'
-          description: Not Found
       tags:
       - Proxies
   /reactor-formulas:
@@ -1230,6 +1128,7 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/CreateReactorFormulaRequest'
+        required: true
       responses:
         "201":
           content:
@@ -1310,6 +1209,12 @@ paths:
               schema:
                 $ref: '#/components/schemas/ReactorFormula'
           description: Success
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Not Found
         "401":
           content:
             application/json:
@@ -1322,12 +1227,6 @@ paths:
               schema:
                 $ref: '#/components/schemas/ProblemDetails'
           description: Forbidden
-        "404":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ProblemDetails'
-          description: Not Found
       tags:
       - ReactorFormulas
     put:
@@ -1346,6 +1245,7 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/UpdateReactorFormulaRequest'
+        required: true
       responses:
         "200":
           content:
@@ -1423,6 +1323,12 @@ paths:
               schema:
                 $ref: '#/components/schemas/ReactorPaginatedList'
           description: Success
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Not Found
         "401":
           content:
             application/json:
@@ -1435,12 +1341,6 @@ paths:
               schema:
                 $ref: '#/components/schemas/ProblemDetails'
           description: Forbidden
-        "404":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ProblemDetails'
-          description: Not Found
       tags:
       - Reactors
     post:
@@ -1450,6 +1350,7 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/CreateReactorRequest'
+        required: true
       responses:
         "201":
           content:
@@ -1492,6 +1393,12 @@ paths:
       responses:
         "204":
           description: No Content
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Not Found
         "401":
           content:
             application/json:
@@ -1504,12 +1411,6 @@ paths:
               schema:
                 $ref: '#/components/schemas/ProblemDetails'
           description: Forbidden
-        "404":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ProblemDetails'
-          description: Not Found
       tags:
       - Reactors
     get:
@@ -1530,6 +1431,12 @@ paths:
               schema:
                 $ref: '#/components/schemas/Reactor'
           description: Success
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Not Found
         "401":
           content:
             application/json:
@@ -1542,12 +1449,6 @@ paths:
               schema:
                 $ref: '#/components/schemas/ProblemDetails'
           description: Forbidden
-        "404":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ProblemDetails'
-          description: Not Found
       tags:
       - Reactors
     put:
@@ -1566,6 +1467,7 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/UpdateReactorRequest'
+        required: true
       responses:
         "200":
           content:
@@ -1579,6 +1481,12 @@ paths:
               schema:
                 $ref: '#/components/schemas/ValidationProblemDetails'
           description: Bad Request
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Not Found
         "401":
           content:
             application/json:
@@ -1591,12 +1499,6 @@ paths:
               schema:
                 $ref: '#/components/schemas/ProblemDetails'
           description: Forbidden
-        "404":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ProblemDetails'
-          description: Not Found
       tags:
       - Reactors
   /reactors/{id}/react:
@@ -1616,6 +1518,7 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/ReactRequest'
+        required: true
       responses:
         "200":
           content:
@@ -1629,18 +1532,6 @@ paths:
               schema:
                 $ref: '#/components/schemas/ValidationProblemDetails'
           description: Bad Request
-        "401":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ProblemDetails'
-          description: Unauthorized
-        "403":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ProblemDetails'
-          description: Forbidden
         "404":
           content:
             application/json:
@@ -1653,6 +1544,18 @@ paths:
               schema:
                 $ref: '#/components/schemas/ProblemDetails'
           description: Client Error
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Unauthorized
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Forbidden
       tags:
       - Reactors
   /tenants/self/invitations:
@@ -1710,6 +1613,7 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/CreateTenantInvitationRequest'
+        required: true
       responses:
         "201":
           content:
@@ -1913,6 +1817,12 @@ paths:
               schema:
                 $ref: '#/components/schemas/TenantUsageReport'
           description: Success
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Not Found
         "401":
           content:
             application/json:
@@ -1925,12 +1835,6 @@ paths:
               schema:
                 $ref: '#/components/schemas/ProblemDetails'
           description: Forbidden
-        "404":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ProblemDetails'
-          description: Not Found
       tags:
       - Tenants
   /tenants/self/reports/operations:
@@ -1963,6 +1867,12 @@ paths:
       responses:
         "204":
           description: No Content
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Not Found
         "401":
           content:
             application/json:
@@ -1975,12 +1885,6 @@ paths:
               schema:
                 $ref: '#/components/schemas/ProblemDetails'
           description: Forbidden
-        "404":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ProblemDetails'
-          description: Not Found
       tags:
       - Tenants
     get:
@@ -1992,6 +1896,12 @@ paths:
               schema:
                 $ref: '#/components/schemas/Tenant'
           description: Success
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Not Found
         "401":
           content:
             application/json:
@@ -2004,12 +1914,6 @@ paths:
               schema:
                 $ref: '#/components/schemas/ProblemDetails'
           description: Forbidden
-        "404":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ProblemDetails'
-          description: Not Found
       tags:
       - Tenants
     put:
@@ -2019,6 +1923,7 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/UpdateTenantRequest'
+        required: true
       responses:
         "200":
           content:
@@ -2032,6 +1937,12 @@ paths:
               schema:
                 $ref: '#/components/schemas/ValidationProblemDetails'
           description: Bad Request
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Not Found
         "401":
           content:
             application/json:
@@ -2044,12 +1955,6 @@ paths:
               schema:
                 $ref: '#/components/schemas/ProblemDetails'
           description: Forbidden
-        "404":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ProblemDetails'
-          description: Not Found
       tags:
       - Tenants
   /tokens/{parentId}/children:
@@ -2061,7 +1966,6 @@ paths:
         name: parentId
         required: true
         schema:
-          format: uuid
           type: string
         style: simple
       - explode: true
@@ -2079,7 +1983,6 @@ paths:
         required: false
         schema:
           items:
-            format: uuid
             type: string
           type: array
         style: form
@@ -2151,7 +2054,6 @@ paths:
         name: parentId
         required: true
         schema:
-          format: uuid
           type: string
         style: simple
       requestBody:
@@ -2159,6 +2061,7 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/CreateTokenRequest'
+        required: true
       responses:
         "201":
           content:
@@ -2201,7 +2104,6 @@ paths:
         name: parentId
         required: true
         schema:
-          format: uuid
           type: string
         style: simple
       - explode: false
@@ -2209,7 +2111,6 @@ paths:
         name: childId
         required: true
         schema:
-          format: uuid
           type: string
         style: simple
       responses:
@@ -2249,7 +2150,6 @@ paths:
         name: parentId
         required: true
         schema:
-          format: uuid
           type: string
         style: simple
       - explode: false
@@ -2257,7 +2157,6 @@ paths:
         name: childId
         required: true
         schema:
-          format: uuid
           type: string
         style: simple
       responses:
@@ -2326,6 +2225,12 @@ paths:
               schema:
                 $ref: '#/components/schemas/ProblemDetails'
           description: Forbidden
+        "409":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Conflict
       tags:
       - Tokenize
   /tokens:
@@ -2347,7 +2252,6 @@ paths:
         required: false
         schema:
           items:
-            format: uuid
             type: string
           type: array
         style: form
@@ -2406,6 +2310,7 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/CreateTokenRequest'
+        required: true
       responses:
         "201":
           content:
@@ -2431,6 +2336,12 @@ paths:
               schema:
                 $ref: '#/components/schemas/ProblemDetails'
           description: Forbidden
+        "409":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Conflict
       tags:
       - Tokens
   /tokens/search:
@@ -2441,6 +2352,7 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/SearchTokensRequest'
+        required: true
       responses:
         "200":
           content:
@@ -2477,7 +2389,6 @@ paths:
         name: id
         required: true
         schema:
-          format: uuid
           type: string
         style: simple
       responses:
@@ -2517,7 +2428,6 @@ paths:
         name: id
         required: true
         schema:
-          format: uuid
           type: string
         style: simple
       responses:
@@ -2555,7 +2465,6 @@ paths:
         name: id
         required: true
         schema:
-          format: uuid
           type: string
         style: simple
       requestBody:
@@ -2563,6 +2472,7 @@ paths:
           application/merge-patch+json:
             schema:
               $ref: '#/components/schemas/UpdateTokenRequest'
+        required: true
       responses:
         "200":
           content:
@@ -2711,23 +2621,23 @@ components:
         fingerprint: fingerprint
         modified_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
         created_at: 2000-01-23T04:56:07.000+00:00
-        id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        id: id
         type: type
         modified_at: 2000-01-23T04:56:07.000+00:00
         created_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
       properties:
         id:
-          format: uuid
+          nullable: true
           type: string
         tenant_id:
           format: uuid
           nullable: true
           type: string
-        bank:
-          $ref: '#/components/schemas/Bank'
         type:
           nullable: true
           type: string
+        bank:
+          $ref: '#/components/schemas/Bank'
         fingerprint:
           nullable: true
           type: string
@@ -2772,7 +2682,7 @@ components:
           fingerprint: fingerprint
           modified_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           created_at: 2000-01-23T04:56:07.000+00:00
-          id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          id: id
           type: type
           modified_at: 2000-01-23T04:56:07.000+00:00
           created_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
@@ -2785,7 +2695,7 @@ components:
           fingerprint: fingerprint
           modified_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           created_at: 2000-01-23T04:56:07.000+00:00
-          id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          id: id
           type: type
           modified_at: 2000-01-23T04:56:07.000+00:00
           created_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
@@ -2807,7 +2717,7 @@ components:
         fingerprint: fingerprint
         modified_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
         created_at: 2000-01-23T04:56:07.000+00:00
-        id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        id: id
         type: type
         modified_at: 2000-01-23T04:56:07.000+00:00
         created_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
@@ -2818,17 +2728,17 @@ components:
           expiration_month: 1
       properties:
         id:
-          format: uuid
+          nullable: true
           type: string
         tenant_id:
           format: uuid
           nullable: true
           type: string
-        card:
-          $ref: '#/components/schemas/Card'
         type:
           nullable: true
           type: string
+        card:
+          $ref: '#/components/schemas/Card'
         fingerprint:
           nullable: true
           type: string
@@ -2870,7 +2780,7 @@ components:
           fingerprint: fingerprint
           modified_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           created_at: 2000-01-23T04:56:07.000+00:00
-          id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          id: id
           type: type
           modified_at: 2000-01-23T04:56:07.000+00:00
           created_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
@@ -2885,7 +2795,7 @@ components:
           fingerprint: fingerprint
           modified_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           created_at: 2000-01-23T04:56:07.000+00:00
-          id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          id: id
           type: type
           modified_at: 2000-01-23T04:56:07.000+00:00
           created_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
@@ -2902,24 +2812,6 @@ components:
             $ref: '#/components/schemas/AtomicCard'
           nullable: true
           type: array
-      type: object
-    AtomicReactRequest:
-      additionalProperties: false
-      example:
-        reactor_id: reactor_id
-        request_parameters:
-          key: ""
-      properties:
-        reactor_id:
-          minLength: 1
-          type: string
-        request_parameters:
-          additionalProperties:
-            nullable: true
-          nullable: true
-          type: object
-      required:
-      - reactor_id
       type: object
     Bank:
       additionalProperties: false
@@ -3221,12 +3113,16 @@ components:
           restriction_policy: restriction_policy
           impact_level: impact_level
           classification: classification
+        id: id
         search_indexes:
         - search_indexes
         - search_indexes
         type: type
         mask: ""
       properties:
+        id:
+          nullable: true
+          type: string
         type:
           nullable: true
           type: string
@@ -3274,7 +3170,7 @@ components:
         created_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
         fingerprint: fingerprint
         modified_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-        id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        id: id
         search_indexes:
         - search_indexes
         - search_indexes
@@ -3282,7 +3178,7 @@ components:
         mask: ""
       properties:
         id:
-          format: uuid
+          nullable: true
           type: string
         tenant_id:
           format: uuid
@@ -3430,7 +3326,6 @@ components:
           type: array
         tokenIds:
           items:
-            format: uuid
             type: string
           nullable: true
           type: array
@@ -4431,7 +4326,7 @@ components:
             key: key
         modified_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
         fingerprint: fingerprint
-        id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        id: id
         search_indexes:
         - search_indexes
         - search_indexes
@@ -4439,10 +4334,8 @@ components:
         mask: ""
       properties:
         id:
-          format: uuid
           type: string
         type:
-          nullable: true
           type: string
         tenant_id:
           format: uuid
@@ -4535,7 +4428,7 @@ components:
               key: key
           modified_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           fingerprint: fingerprint
-          id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          id: id
           search_indexes:
           - search_indexes
           - search_indexes
@@ -4564,7 +4457,7 @@ components:
               key: key
           modified_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           fingerprint: fingerprint
-          id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          id: id
           search_indexes:
           - search_indexes
           - search_indexes

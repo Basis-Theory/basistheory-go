@@ -31,7 +31,7 @@ import (
 )
 
 func main() {
-    createReactorFormulaRequest := *openapiclient.NewCreateReactorFormulaRequest("Type_example", "Name_example") // CreateReactorFormulaRequest |  (optional)
+    createReactorFormulaRequest := *openapiclient.NewCreateReactorFormulaRequest("Type_example", "Name_example") // CreateReactorFormulaRequest | 
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
@@ -298,7 +298,7 @@ import (
 
 func main() {
     id := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | 
-    updateReactorFormulaRequest := *openapiclient.NewUpdateReactorFormulaRequest("Type_example", "Name_example") // UpdateReactorFormulaRequest |  (optional)
+    updateReactorFormulaRequest := *openapiclient.NewUpdateReactorFormulaRequest("Type_example", "Name_example") // UpdateReactorFormulaRequest | 
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
