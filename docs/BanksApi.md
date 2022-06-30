@@ -8,7 +8,6 @@ Method | HTTP request | Description
 [**Delete**](BanksApi.md#Delete) | **Delete** /atomic/banks/{id} | 
 [**Get**](BanksApi.md#Get) | **Get** /atomic/banks | 
 [**GetById**](BanksApi.md#GetById) | **Get** /atomic/banks/{id} | 
-[**React**](BanksApi.md#React) | **Post** /atomic/banks/{bankId}/react | 
 [**Update**](BanksApi.md#Update) | **Patch** /atomic/banks/{id} | 
 
 
@@ -32,7 +31,7 @@ import (
 )
 
 func main() {
-    createAtomicBankRequest := *openapiclient.NewCreateAtomicBankRequest(*openapiclient.NewBank("RoutingNumber_example", "AccountNumber_example")) // CreateAtomicBankRequest |  (optional)
+    createAtomicBankRequest := *openapiclient.NewCreateAtomicBankRequest(*openapiclient.NewBank("RoutingNumber_example", "AccountNumber_example")) // CreateAtomicBankRequest | 
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
@@ -277,76 +276,6 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
-## React
-
-> ReactResponse React(ctx, bankId).AtomicReactRequest(atomicReactRequest).Execute()
-
-
-
-### Example
-
-```go
-package main
-
-import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "./openapi"
-)
-
-func main() {
-    bankId := "bankId_example" // string | 
-    atomicReactRequest := *openapiclient.NewAtomicReactRequest("ReactorId_example") // AtomicReactRequest |  (optional)
-
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.BanksApi.React(context.Background(), bankId).AtomicReactRequest(atomicReactRequest).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `BanksApi.React``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `React`: ReactResponse
-    fmt.Fprintf(os.Stdout, "Response from `BanksApi.React`: %v\n", resp)
-}
-```
-
-### Path Parameters
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**bankId** | **string** |  | 
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiReactRequest struct via the builder pattern
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-
- **atomicReactRequest** | [**AtomicReactRequest**](AtomicReactRequest.md) |  | 
-
-### Return type
-
-[**ReactResponse**](ReactResponse.md)
-
-### Authorization
-
-[ApiKey](../README.md#ApiKey)
-
-### HTTP request headers
-
-- **Content-Type**: application/json
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
-
-
 ## Update
 
 > AtomicBank Update(ctx, id).UpdateAtomicBankRequest(updateAtomicBankRequest).Execute()
@@ -367,7 +296,7 @@ import (
 
 func main() {
     id := "id_example" // string | 
-    updateAtomicBankRequest := *openapiclient.NewUpdateAtomicBankRequest(*openapiclient.NewBank("RoutingNumber_example", "AccountNumber_example")) // UpdateAtomicBankRequest |  (optional)
+    updateAtomicBankRequest := *openapiclient.NewUpdateAtomicBankRequest(*openapiclient.NewBank("RoutingNumber_example", "AccountNumber_example")) // UpdateAtomicBankRequest | 
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)

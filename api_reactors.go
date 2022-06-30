@@ -71,6 +71,9 @@ func (a *ReactorsApiService) CreateExecute(r ReactorsApiCreateRequest) (*Reactor
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
+	if r.createReactorRequest == nil {
+		return localVarReturnValue, nil, reportError("createReactorRequest is required and must be specified")
+	}
 
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{"application/json"}
@@ -684,6 +687,9 @@ func (a *ReactorsApiService) ReactExecute(r ReactorsApiReactRequest) (*ReactResp
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
+	if r.reactRequest == nil {
+		return localVarReturnValue, nil, reportError("reactRequest is required and must be specified")
+	}
 
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{"application/json"}
@@ -856,6 +862,9 @@ func (a *ReactorsApiService) UpdateExecute(r ReactorsApiUpdateRequest) (*Reactor
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
+	if r.updateReactorRequest == nil {
+		return localVarReturnValue, nil, reportError("updateReactorRequest is required and must be specified")
+	}
 
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{"application/json"}

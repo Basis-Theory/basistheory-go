@@ -7,3 +7,8 @@ docker run --rm -v ${PWD}:/local openapitools/openapi-generator-cli generate \
   -o /local \
   -c /local/openapi-config.yml \
   --remove-operation-id-prefix
+
+cd $(dirname $0)
+cd ../
+
+go fmt

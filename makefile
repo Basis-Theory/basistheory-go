@@ -5,4 +5,3 @@ verify:
 
 generate-sdk:
 	./scripts/generate-sdk.sh
-	go fmt

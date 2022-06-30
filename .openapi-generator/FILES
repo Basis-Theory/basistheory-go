@@ -20,7 +20,6 @@ docs/AtomicBank.md
 docs/AtomicBankPaginatedList.md
 docs/AtomicCard.md
 docs/AtomicCardPaginatedList.md
-docs/AtomicReactRequest.md
 docs/Bank.md
 docs/BanksApi.md
 docs/Card.md
@@ -95,7 +94,6 @@ model_atomic_bank.go
 model_atomic_bank_paginated_list.go
 model_atomic_card.go
 model_atomic_card_paginated_list.go
-model_atomic_react_request.go
 model_bank.go
 model_card.go
 model_create_application_request.go

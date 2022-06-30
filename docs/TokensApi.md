@@ -36,7 +36,7 @@ import (
 )
 
 func main() {
-    createTokenRequest := *openapiclient.NewCreateTokenRequest(interface{}(123)) // CreateTokenRequest |  (optional)
+    createTokenRequest := *openapiclient.NewCreateTokenRequest(interface{}(123)) // CreateTokenRequest | 
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
@@ -170,7 +170,7 @@ import (
 
 func main() {
     parentId := "parentId_example" // string | 
-    createTokenRequest := *openapiclient.NewCreateTokenRequest(interface{}(123)) // CreateTokenRequest |  (optional)
+    createTokenRequest := *openapiclient.NewCreateTokenRequest(interface{}(123)) // CreateTokenRequest | 
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
@@ -592,7 +592,7 @@ import (
 )
 
 func main() {
-    searchTokensRequest := *openapiclient.NewSearchTokensRequest() // SearchTokensRequest |  (optional)
+    searchTokensRequest := *openapiclient.NewSearchTokensRequest() // SearchTokensRequest | 
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
@@ -657,7 +657,7 @@ import (
 
 func main() {
     id := "id_example" // string | 
-    updateTokenRequest := *openapiclient.NewUpdateTokenRequest() // UpdateTokenRequest |  (optional)
+    updateTokenRequest := *openapiclient.NewUpdateTokenRequest() // UpdateTokenRequest | 
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)

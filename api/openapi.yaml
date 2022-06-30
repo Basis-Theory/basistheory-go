@@ -289,56 +289,6 @@ paths:
           description: Forbidden
       tags:
       - Applications
-  /atomic/banks/{bankId}/react:
-    post:
-      deprecated: true
-      operationId: AtomicBanks_React
-      parameters:
-      - explode: false
-        in: path
-        name: bankId
-        required: true
-        schema:
-          type: string
-        style: simple
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/AtomicReactRequest'
-      responses:
-        "200":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ReactResponse'
-          description: Success
-        "400":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ValidationProblemDetails'
-          description: Bad Request
-        "422":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ProblemDetails'
-          description: Client Error
-        "401":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ProblemDetails'
-          description: Unauthorized
-        "403":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ProblemDetails'
-          description: Forbidden
-      tags:
-      - Banks
   /atomic/banks:
     get:
       deprecated: true
@@ -389,6 +339,7 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/CreateAtomicBankRequest'
+        required: true
       responses:
         "201":
           content:
@@ -505,6 +456,7 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/UpdateAtomicBankRequest'
+        required: true
       responses:
         "200":
           content:
@@ -538,56 +490,6 @@ paths:
           description: Forbidden
       tags:
       - Banks
-  /atomic/cards/{cardId}/react:
-    post:
-      deprecated: true
-      operationId: AtomicCards_React
-      parameters:
-      - explode: false
-        in: path
-        name: cardId
-        required: true
-        schema:
-          type: string
-        style: simple
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/AtomicReactRequest'
-      responses:
-        "200":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ReactResponse'
-          description: Success
-        "400":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ValidationProblemDetails'
-          description: Bad Request
-        "422":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ProblemDetails'
-          description: Client Error
-        "401":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ProblemDetails'
-          description: Unauthorized
-        "403":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ProblemDetails'
-          description: Forbidden
-      tags:
-      - Cards
   /atomic/cards:
     get:
       deprecated: true
@@ -638,6 +540,7 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/CreateAtomicCardRequest'
+        required: true
       responses:
         "201":
           content:
@@ -754,6 +657,7 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/UpdateAtomicCardRequest'
+        required: true
       responses:
         "200":
           content:
@@ -1012,6 +916,7 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/CreateProxyRequest'
+        required: true
       responses:
         "201":
           content:
@@ -1128,6 +1033,7 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/UpdateProxyRequest'
+        required: true
       responses:
         "200":
           content:
@@ -1222,6 +1128,7 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/CreateReactorFormulaRequest'
+        required: true
       responses:
         "201":
           content:
@@ -1338,6 +1245,7 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/UpdateReactorFormulaRequest'
+        required: true
       responses:
         "200":
           content:
@@ -1442,6 +1350,7 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/CreateReactorRequest'
+        required: true
       responses:
         "201":
           content:
@@ -1558,6 +1467,7 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/UpdateReactorRequest'
+        required: true
       responses:
         "200":
           content:
@@ -1608,6 +1518,7 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/ReactRequest'
+        required: true
       responses:
         "200":
           content:
@@ -1702,6 +1613,7 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/CreateTenantInvitationRequest'
+        required: true
       responses:
         "201":
           content:
@@ -2011,6 +1923,7 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/UpdateTenantRequest'
+        required: true
       responses:
         "200":
           content:
@@ -2148,6 +2061,7 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/CreateTokenRequest'
+        required: true
       responses:
         "201":
           content:
@@ -2396,6 +2310,7 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/CreateTokenRequest'
+        required: true
       responses:
         "201":
           content:
@@ -2437,6 +2352,7 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/SearchTokensRequest'
+        required: true
       responses:
         "200":
           content:
@@ -2556,6 +2472,7 @@ paths:
           application/merge-patch+json:
             schema:
               $ref: '#/components/schemas/UpdateTokenRequest'
+        required: true
       responses:
         "200":
           content:
@@ -2895,24 +2812,6 @@ components:
             $ref: '#/components/schemas/AtomicCard'
           nullable: true
           type: array
-      type: object
-    AtomicReactRequest:
-      additionalProperties: false
-      example:
-        reactor_id: reactor_id
-        request_parameters:
-          key: ""
-      properties:
-        reactor_id:
-          minLength: 1
-          type: string
-        request_parameters:
-          additionalProperties:
-            nullable: true
-          nullable: true
-          type: object
-      required:
-      - reactor_id
       type: object
     Bank:
       additionalProperties: false

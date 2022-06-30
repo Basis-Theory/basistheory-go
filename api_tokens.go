@@ -71,6 +71,9 @@ func (a *TokensApiService) CreateExecute(r TokensApiCreateRequest) (*CreateToken
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
+	if r.createTokenRequest == nil {
+		return localVarReturnValue, nil, reportError("createTokenRequest is required and must be specified")
+	}
 
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{"application/json"}
@@ -390,6 +393,9 @@ func (a *TokensApiService) CreateChildExecute(r TokensApiCreateChildRequest) (*C
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
+	if r.createTokenRequest == nil {
+		return localVarReturnValue, nil, reportError("createTokenRequest is required and must be specified")
+	}
 
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{"application/json"}
@@ -1388,6 +1394,9 @@ func (a *TokensApiService) SearchExecute(r TokensApiSearchRequest) (*TokenPagina
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
+	if r.searchTokensRequest == nil {
+		return localVarReturnValue, nil, reportError("searchTokensRequest is required and must be specified")
+	}
 
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{"application/json"}
@@ -1540,6 +1549,9 @@ func (a *TokensApiService) UpdateExecute(r TokensApiUpdateRequest) (*Token, *htt
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
+	if r.updateTokenRequest == nil {
+		return localVarReturnValue, nil, reportError("updateTokenRequest is required and must be specified")
+	}
 
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{"application/merge-patch+json"}

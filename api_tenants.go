@@ -71,6 +71,9 @@ func (a *TenantsApiService) CreateInvitationExecute(r TenantsApiCreateInvitation
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
+	if r.createTenantInvitationRequest == nil {
+		return localVarReturnValue, nil, reportError("createTenantInvitationRequest is required and must be specified")
+	}
 
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{"application/json"}
@@ -1500,6 +1503,9 @@ func (a *TenantsApiService) UpdateExecute(r TenantsApiUpdateRequest) (*Tenant, *
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
+	if r.updateTenantRequest == nil {
+		return localVarReturnValue, nil, reportError("updateTenantRequest is required and must be specified")
+	}
 
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{"application/json"}

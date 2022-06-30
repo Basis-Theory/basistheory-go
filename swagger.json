@@ -441,86 +441,6 @@
         }
       }
     },
-    "/atomic/banks/{bankId}/react": {
-      "post": {
-        "tags": [
-          "Banks"
-        ],
-        "operationId": "AtomicBanks_React",
-        "parameters": [
-          {
-            "name": "bankId",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/AtomicReactRequest"
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "Success",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ReactResponse"
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "Bad Request",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ValidationProblemDetails"
-                }
-              }
-            }
-          },
-          "422": {
-            "description": "Client Error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetails"
-                }
-              }
-            }
-          },
-          "401": {
-            "description": "Unauthorized",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetails"
-                }
-              }
-            }
-          },
-          "403": {
-            "description": "Forbidden",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetails"
-                }
-              }
-            }
-          }
-        },
-        "deprecated": true
-      }
-    },
     "/atomic/banks": {
       "get": {
         "tags": [
@@ -591,7 +511,8 @@
                 "$ref": "#/components/schemas/CreateAtomicBankRequest"
               }
             }
-          }
+          },
+          "required": true
         },
         "responses": {
           "201": {
@@ -720,7 +641,8 @@
                 "$ref": "#/components/schemas/UpdateAtomicBankRequest"
               }
             }
-          }
+          },
+          "required": true
         },
         "responses": {
           "200": {
@@ -829,86 +751,6 @@
         "deprecated": true
       }
     },
-    "/atomic/cards/{cardId}/react": {
-      "post": {
-        "tags": [
-          "Cards"
-        ],
-        "operationId": "AtomicCards_React",
-        "parameters": [
-          {
-            "name": "cardId",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/AtomicReactRequest"
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "Success",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ReactResponse"
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "Bad Request",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ValidationProblemDetails"
-                }
-              }
-            }
-          },
-          "422": {
-            "description": "Client Error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetails"
-                }
-              }
-            }
-          },
-          "401": {
-            "description": "Unauthorized",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetails"
-                }
-              }
-            }
-          },
-          "403": {
-            "description": "Forbidden",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetails"
-                }
-              }
-            }
-          }
-        },
-        "deprecated": true
-      }
-    },
     "/atomic/cards": {
       "get": {
         "tags": [
@@ -979,7 +821,8 @@
                 "$ref": "#/components/schemas/CreateAtomicCardRequest"
               }
             }
-          }
+          },
+          "required": true
         },
         "responses": {
           "201": {
@@ -1108,7 +951,8 @@
                 "$ref": "#/components/schemas/UpdateAtomicCardRequest"
               }
             }
-          }
+          },
+          "required": true
         },
         "responses": {
           "200": {
@@ -1528,7 +1372,8 @@
                 "$ref": "#/components/schemas/CreateProxyRequest"
               }
             }
-          }
+          },
+          "required": true
         },
         "responses": {
           "201": {
@@ -1657,7 +1502,8 @@
                 "$ref": "#/components/schemas/UpdateProxyRequest"
               }
             }
-          }
+          },
+          "required": true
         },
         "responses": {
           "200": {
@@ -1851,7 +1697,8 @@
                 "$ref": "#/components/schemas/CreateReactorFormulaRequest"
               }
             }
-          }
+          },
+          "required": true
         },
         "responses": {
           "201": {
@@ -1980,7 +1827,8 @@
                 "$ref": "#/components/schemas/UpdateReactorFormulaRequest"
               }
             }
-          }
+          },
+          "required": true
         },
         "responses": {
           "200": {
@@ -2185,7 +2033,8 @@
                 "$ref": "#/components/schemas/CreateReactorRequest"
               }
             }
-          }
+          },
+          "required": true
         },
         "responses": {
           "201": {
@@ -2314,7 +2163,8 @@
                 "$ref": "#/components/schemas/UpdateReactorRequest"
               }
             }
-          }
+          },
+          "required": true
         },
         "responses": {
           "200": {
@@ -2446,7 +2296,8 @@
                 "$ref": "#/components/schemas/ReactRequest"
               }
             }
-          }
+          },
+          "required": true
         },
         "responses": {
           "200": {
@@ -2525,7 +2376,8 @@
                 "$ref": "#/components/schemas/CreateTenantInvitationRequest"
               }
             }
-          }
+          },
+          "required": true
         },
         "responses": {
           "201": {
@@ -3033,7 +2885,8 @@
                 "$ref": "#/components/schemas/UpdateTenantRequest"
               }
             }
-          }
+          },
+          "required": true
         },
         "responses": {
           "200": {
@@ -3270,7 +3123,8 @@
                 "$ref": "#/components/schemas/CreateTokenRequest"
               }
             }
-          }
+          },
+          "required": true
         },
         "responses": {
           "201": {
@@ -3485,7 +3339,7 @@
         "requestBody": {
           "content": {
             "application/json": {
-              "schema": {}
+              "schema": { }
             }
           }
         },
@@ -3494,7 +3348,7 @@
             "description": "Success",
             "content": {
               "application/json": {
-                "schema": {}
+                "schema": { }
               }
             }
           },
@@ -3643,7 +3497,8 @@
                 "$ref": "#/components/schemas/CreateTokenRequest"
               }
             }
-          }
+          },
+          "required": true
         },
         "responses": {
           "201": {
@@ -3712,7 +3567,8 @@
                 "$ref": "#/components/schemas/SearchTokensRequest"
               }
             }
-          }
+          },
+          "required": true
         },
         "responses": {
           "200": {
@@ -3839,7 +3695,8 @@
                 "$ref": "#/components/schemas/UpdateTokenRequest"
               }
             }
-          }
+          },
+          "required": true
         },
         "responses": {
           "200": {
@@ -4178,26 +4035,6 @@
         },
         "additionalProperties": false
       },
-      "AtomicReactRequest": {
-        "required": [
-          "reactor_id"
-        ],
-        "type": "object",
-        "properties": {
-          "reactor_id": {
-            "minLength": 1,
-            "type": "string"
-          },
-          "request_parameters": {
-            "type": "object",
-            "additionalProperties": {
-              "nullable": true
-            },
-            "nullable": true
-          }
-        },
-        "additionalProperties": false
-      },
       "Bank": {
         "required": [
           "account_number",
@@ -4450,7 +4287,7 @@
             "type": "string",
             "nullable": true
           },
-          "data": {},
+          "data": { },
           "encryption": {
             "$ref": "#/components/schemas/EncryptionMetadata"
           },
@@ -4855,7 +4692,7 @@
             "nullable": true
           }
         },
-        "additionalProperties": {}
+        "additionalProperties": { }
       },
       "Proxy": {
         "type": "object",
@@ -5785,7 +5622,7 @@
             "nullable": true
           }
         },
-        "additionalProperties": {}
+        "additionalProperties": { }
       }
     },
     "securitySchemes": {
@@ -5799,7 +5636,7 @@
   },
   "security": [
     {
-      "ApiKey": []
+      "ApiKey": [ ]
     }
   ]
 }

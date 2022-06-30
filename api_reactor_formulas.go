@@ -70,6 +70,9 @@ func (a *ReactorFormulasApiService) CreateExecute(r ReactorFormulasApiCreateRequ
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
+	if r.createReactorFormulaRequest == nil {
+		return localVarReturnValue, nil, reportError("createReactorFormulaRequest is required and must be specified")
+	}
 
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{"application/json"}
@@ -666,6 +669,9 @@ func (a *ReactorFormulasApiService) UpdateExecute(r ReactorFormulasApiUpdateRequ
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
+	if r.updateReactorFormulaRequest == nil {
+		return localVarReturnValue, nil, reportError("updateReactorFormulaRequest is required and must be specified")
+	}
 
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{"application/json"}

@@ -101,13 +101,11 @@ Class | Method | HTTP request | Description
 *BanksApi* | [**Delete**](docs/BanksApi.md#delete) | **Delete** /atomic/banks/{id} | 
 *BanksApi* | [**Get**](docs/BanksApi.md#get) | **Get** /atomic/banks | 
 *BanksApi* | [**GetById**](docs/BanksApi.md#getbyid) | **Get** /atomic/banks/{id} | 
-*BanksApi* | [**React**](docs/BanksApi.md#react) | **Post** /atomic/banks/{bankId}/react | 
 *BanksApi* | [**Update**](docs/BanksApi.md#update) | **Patch** /atomic/banks/{id} | 
 *CardsApi* | [**Create**](docs/CardsApi.md#create) | **Post** /atomic/cards | 
 *CardsApi* | [**Delete**](docs/CardsApi.md#delete) | **Delete** /atomic/cards/{id} | 
 *CardsApi* | [**Get**](docs/CardsApi.md#get) | **Get** /atomic/cards | 
 *CardsApi* | [**GetById**](docs/CardsApi.md#getbyid) | **Get** /atomic/cards/{id} | 
-*CardsApi* | [**React**](docs/CardsApi.md#react) | **Post** /atomic/cards/{cardId}/react | 
 *CardsApi* | [**Update**](docs/CardsApi.md#update) | **Patch** /atomic/cards/{id} | 
 *LogsApi* | [**Get**](docs/LogsApi.md#get) | **Get** /logs | 
 *LogsApi* | [**GetEntityTypes**](docs/LogsApi.md#getentitytypes) | **Get** /logs/entity-types | 
@@ -160,7 +158,6 @@ Class | Method | HTTP request | Description
  - [AtomicBankPaginatedList](docs/AtomicBankPaginatedList.md)
  - [AtomicCard](docs/AtomicCard.md)
  - [AtomicCardPaginatedList](docs/AtomicCardPaginatedList.md)
- - [AtomicReactRequest](docs/AtomicReactRequest.md)
  - [Bank](docs/Bank.md)
  - [Card](docs/Card.md)
  - [CreateApplicationRequest](docs/CreateApplicationRequest.md)

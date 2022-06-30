@@ -71,6 +71,9 @@ func (a *ProxiesApiService) CreateExecute(r ProxiesApiCreateRequest) (*Proxy, *h
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
+	if r.createProxyRequest == nil {
+		return localVarReturnValue, nil, reportError("createProxyRequest is required and must be specified")
+	}
 
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{"application/json"}
@@ -684,6 +687,9 @@ func (a *ProxiesApiService) UpdateExecute(r ProxiesApiUpdateRequest) (*Proxy, *h
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
+	if r.updateProxyRequest == nil {
+		return localVarReturnValue, nil, reportError("updateProxyRequest is required and must be specified")
+	}
 
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{"application/json"}

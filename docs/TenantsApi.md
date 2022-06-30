@@ -37,7 +37,7 @@ import (
 )
 
 func main() {
-    createTenantInvitationRequest := *openapiclient.NewCreateTenantInvitationRequest("Email_example") // CreateTenantInvitationRequest |  (optional)
+    createTenantInvitationRequest := *openapiclient.NewCreateTenantInvitationRequest("Email_example") // CreateTenantInvitationRequest | 
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
@@ -671,7 +671,7 @@ import (
 )
 
 func main() {
-    updateTenantRequest := *openapiclient.NewUpdateTenantRequest("Name_example") // UpdateTenantRequest |  (optional)
+    updateTenantRequest := *openapiclient.NewUpdateTenantRequest("Name_example") // UpdateTenantRequest | 
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
