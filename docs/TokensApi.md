@@ -100,8 +100,8 @@ import (
 )
 
 func main() {
-    parentId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | 
-    childId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | 
+    parentId := "parentId_example" // string | 
+    childId := "childId_example" // string | 
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
@@ -169,7 +169,7 @@ import (
 )
 
 func main() {
-    parentId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | 
+    parentId := "parentId_example" // string | 
     createTokenRequest := *openapiclient.NewCreateTokenRequest(interface{}(123)) // CreateTokenRequest |  (optional)
 
     configuration := openapiclient.NewConfiguration()
@@ -239,7 +239,7 @@ import (
 )
 
 func main() {
-    id := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | 
+    id := "id_example" // string | 
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
@@ -305,8 +305,8 @@ import (
 )
 
 func main() {
-    parentId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | 
-    childId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | 
+    parentId := "parentId_example" // string | 
+    childId := "childId_example" // string | 
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
@@ -446,7 +446,7 @@ import (
 )
 
 func main() {
-    id := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | 
+    id := "id_example" // string | 
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
@@ -514,7 +514,7 @@ import (
 )
 
 func main() {
-    parentId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | 
+    parentId := "parentId_example" // string | 
     type_ := []string{"Inner_example"} // []string |  (optional)
     id := []string{"Inner_example"} // []string |  (optional)
     metadata := map[string]string{"key": map[string]string{"key": "Inner_example"}} // map[string]string |  (optional)
@@ -656,7 +656,7 @@ import (
 )
 
 func main() {
-    id := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | 
+    id := "id_example" // string | 
     updateTokenRequest := *openapiclient.NewUpdateTokenRequest() // UpdateTokenRequest |  (optional)
 
     configuration := openapiclient.NewConfiguration()
