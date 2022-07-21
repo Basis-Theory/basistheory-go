@@ -97,16 +97,6 @@ Class | Method | HTTP request | Description
 *ApplicationsApi* | [**GetByKey**](docs/ApplicationsApi.md#getbykey) | **Get** /applications/key | 
 *ApplicationsApi* | [**RegenerateKey**](docs/ApplicationsApi.md#regeneratekey) | **Post** /applications/{id}/regenerate | 
 *ApplicationsApi* | [**Update**](docs/ApplicationsApi.md#update) | **Put** /applications/{id} | 
-*BanksApi* | [**Create**](docs/BanksApi.md#create) | **Post** /atomic/banks | 
-*BanksApi* | [**Delete**](docs/BanksApi.md#delete) | **Delete** /atomic/banks/{id} | 
-*BanksApi* | [**Get**](docs/BanksApi.md#get) | **Get** /atomic/banks | 
-*BanksApi* | [**GetById**](docs/BanksApi.md#getbyid) | **Get** /atomic/banks/{id} | 
-*BanksApi* | [**Update**](docs/BanksApi.md#update) | **Patch** /atomic/banks/{id} | 
-*CardsApi* | [**Create**](docs/CardsApi.md#create) | **Post** /atomic/cards | 
-*CardsApi* | [**Delete**](docs/CardsApi.md#delete) | **Delete** /atomic/cards/{id} | 
-*CardsApi* | [**Get**](docs/CardsApi.md#get) | **Get** /atomic/cards | 
-*CardsApi* | [**GetById**](docs/CardsApi.md#getbyid) | **Get** /atomic/cards/{id} | 
-*CardsApi* | [**Update**](docs/CardsApi.md#update) | **Patch** /atomic/cards/{id} | 
 *LogsApi* | [**Get**](docs/LogsApi.md#get) | **Get** /logs | 
 *LogsApi* | [**GetEntityTypes**](docs/LogsApi.md#getentitytypes) | **Get** /logs/entity-types | 
 *PermissionsApi* | [**Get**](docs/PermissionsApi.md#get) | **Get** /permissions | 
@@ -154,15 +144,7 @@ Class | Method | HTTP request | Description
 
  - [Application](docs/Application.md)
  - [ApplicationPaginatedList](docs/ApplicationPaginatedList.md)
- - [AtomicBank](docs/AtomicBank.md)
- - [AtomicBankPaginatedList](docs/AtomicBankPaginatedList.md)
- - [AtomicCard](docs/AtomicCard.md)
- - [AtomicCardPaginatedList](docs/AtomicCardPaginatedList.md)
- - [Bank](docs/Bank.md)
- - [Card](docs/Card.md)
  - [CreateApplicationRequest](docs/CreateApplicationRequest.md)
- - [CreateAtomicBankRequest](docs/CreateAtomicBankRequest.md)
- - [CreateAtomicCardRequest](docs/CreateAtomicCardRequest.md)
  - [CreateProxyRequest](docs/CreateProxyRequest.md)
  - [CreateReactorFormulaRequest](docs/CreateReactorFormulaRequest.md)
  - [CreateReactorRequest](docs/CreateReactorRequest.md)
@@ -206,8 +188,6 @@ Class | Method | HTTP request | Description
  - [TokenPaginatedList](docs/TokenPaginatedList.md)
  - [TokenReport](docs/TokenReport.md)
  - [UpdateApplicationRequest](docs/UpdateApplicationRequest.md)
- - [UpdateAtomicBankRequest](docs/UpdateAtomicBankRequest.md)
- - [UpdateAtomicCardRequest](docs/UpdateAtomicCardRequest.md)
  - [UpdatePrivacy](docs/UpdatePrivacy.md)
  - [UpdateProxyRequest](docs/UpdateProxyRequest.md)
  - [UpdateReactorFormulaRequest](docs/UpdateReactorFormulaRequest.md)
