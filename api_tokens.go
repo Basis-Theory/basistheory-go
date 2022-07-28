@@ -71,6 +71,9 @@ func (a *TokensApiService) CreateExecute(r TokensApiCreateRequest) (*CreateToken
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
+	if r.createTokenRequest == nil {
+		return localVarReturnValue, nil, reportError("createTokenRequest is required and must be specified")
+	}
 
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{"application/json"}
@@ -128,7 +131,7 @@ func (a *TokensApiService) CreateExecute(r TokensApiCreateRequest) (*CreateToken
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v ProblemDetails
+			var v ValidationProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -148,6 +151,16 @@ func (a *TokensApiService) CreateExecute(r TokensApiCreateRequest) (*CreateToken
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
+			var v ProblemDetails
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 409 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -219,6 +232,12 @@ func (a *TokensApiService) CreateAssociationExecute(r TokensApiCreateAssociation
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
+	if strlen(r.parentId) > 200 {
+		return nil, reportError("parentId must have less than 200 elements")
+	}
+	if strlen(r.childId) > 200 {
+		return nil, reportError("childId must have less than 200 elements")
+	}
 
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -274,7 +293,7 @@ func (a *TokensApiService) CreateAssociationExecute(r TokensApiCreateAssociation
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v ProblemDetails
+			var v ValidationProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -380,6 +399,12 @@ func (a *TokensApiService) CreateChildExecute(r TokensApiCreateChildRequest) (*C
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
+	if strlen(r.parentId) > 200 {
+		return localVarReturnValue, nil, reportError("parentId must have less than 200 elements")
+	}
+	if r.createTokenRequest == nil {
+		return localVarReturnValue, nil, reportError("createTokenRequest is required and must be specified")
+	}
 
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{"application/json"}
@@ -437,7 +462,7 @@ func (a *TokensApiService) CreateChildExecute(r TokensApiCreateChildRequest) (*C
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v ProblemDetails
+			var v ValidationProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -534,6 +559,9 @@ func (a *TokensApiService) DeleteExecute(r TokensApiDeleteRequest) (*http.Respon
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
+	if strlen(r.id) > 200 {
+		return nil, reportError("id must have less than 200 elements")
+	}
 
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -589,7 +617,7 @@ func (a *TokensApiService) DeleteExecute(r TokensApiDeleteRequest) (*http.Respon
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v ProblemDetails
+			var v ValidationProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -681,6 +709,12 @@ func (a *TokensApiService) DeleteAssociationExecute(r TokensApiDeleteAssociation
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
+	if strlen(r.parentId) > 200 {
+		return nil, reportError("parentId must have less than 200 elements")
+	}
+	if strlen(r.childId) > 200 {
+		return nil, reportError("childId must have less than 200 elements")
+	}
 
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -736,7 +770,7 @@ func (a *TokensApiService) DeleteAssociationExecute(r TokensApiDeleteAssociation
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v ProblemDetails
+			var v ValidationProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1017,6 +1051,9 @@ func (a *TokensApiService) GetByIdExecute(r TokensApiGetByIdRequest) (*Token, *h
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
+	if strlen(r.id) > 200 {
+		return localVarReturnValue, nil, reportError("id must have less than 200 elements")
+	}
 
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -1191,6 +1228,9 @@ func (a *TokensApiService) GetChildrenExecute(r TokensApiGetChildrenRequest) (*T
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
+	if strlen(r.parentId) > 200 {
+		return localVarReturnValue, nil, reportError("parentId must have less than 200 elements")
+	}
 
 	if r.type_ != nil {
 		t := *r.type_
@@ -1277,7 +1317,7 @@ func (a *TokensApiService) GetChildrenExecute(r TokensApiGetChildrenRequest) (*T
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v ProblemDetails
+			var v ValidationProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1378,6 +1418,9 @@ func (a *TokensApiService) SearchExecute(r TokensApiSearchRequest) (*TokenPagina
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
+	if r.searchTokensRequest == nil {
+		return localVarReturnValue, nil, reportError("searchTokensRequest is required and must be specified")
+	}
 
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{"application/json"}
@@ -1435,7 +1478,7 @@ func (a *TokensApiService) SearchExecute(r TokensApiSearchRequest) (*TokenPagina
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v ProblemDetails
+			var v ValidationProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1530,6 +1573,12 @@ func (a *TokensApiService) UpdateExecute(r TokensApiUpdateRequest) (*Token, *htt
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
+	if strlen(r.id) > 200 {
+		return localVarReturnValue, nil, reportError("id must have less than 200 elements")
+	}
+	if r.updateTokenRequest == nil {
+		return localVarReturnValue, nil, reportError("updateTokenRequest is required and must be specified")
+	}
 
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{"application/merge-patch+json"}

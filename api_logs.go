@@ -173,7 +173,7 @@ func (a *LogsApiService) GetExecute(r LogsApiGetRequest) (*LogPaginatedList, *ht
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v ProblemDetails
+			var v ValidationProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()

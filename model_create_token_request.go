@@ -16,6 +16,7 @@ import (
 
 // CreateTokenRequest struct for CreateTokenRequest
 type CreateTokenRequest struct {
+	Id                    NullableString      `json:"id,omitempty"`
 	Type                  NullableString      `json:"type,omitempty"`
 	Data                  interface{}         `json:"data"`
 	Encryption            *EncryptionMetadata `json:"encryption,omitempty"`
@@ -25,6 +26,7 @@ type CreateTokenRequest struct {
 	FingerprintExpression NullableString      `json:"fingerprint_expression,omitempty"`
 	Mask                  interface{}         `json:"mask,omitempty"`
 	DeduplicateToken      NullableBool        `json:"deduplicate_token,omitempty"`
+	ExpiresAt             NullableString      `json:"expires_at,omitempty"`
 }
 
 // NewCreateTokenRequest instantiates a new CreateTokenRequest object
@@ -43,6 +45,49 @@ func NewCreateTokenRequest(data interface{}) *CreateTokenRequest {
 func NewCreateTokenRequestWithDefaults() *CreateTokenRequest {
 	this := CreateTokenRequest{}
 	return &this
+}
+
+// GetId returns the Id field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *CreateTokenRequest) GetId() string {
+	if o == nil || o.Id.Get() == nil {
+		var ret string
+		return ret
+	}
+	return *o.Id.Get()
+}
+
+// GetIdOk returns a tuple with the Id field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *CreateTokenRequest) GetIdOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.Id.Get(), o.Id.IsSet()
+}
+
+// HasId returns a boolean if a field has been set.
+func (o *CreateTokenRequest) HasId() bool {
+	if o != nil && o.Id.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetId gets a reference to the given NullableString and assigns it to the Id field.
+func (o *CreateTokenRequest) SetId(v string) {
+	o.Id.Set(&v)
+}
+
+// SetIdNil sets the value for Id to be an explicit nil
+func (o *CreateTokenRequest) SetIdNil() {
+	o.Id.Set(nil)
+}
+
+// UnsetId ensures that no value is present for Id, not even an explicit nil
+func (o *CreateTokenRequest) UnsetId() {
+	o.Id.Unset()
 }
 
 // GetType returns the Type field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -363,8 +408,54 @@ func (o *CreateTokenRequest) UnsetDeduplicateToken() {
 	o.DeduplicateToken.Unset()
 }
 
+// GetExpiresAt returns the ExpiresAt field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *CreateTokenRequest) GetExpiresAt() string {
+	if o == nil || o.ExpiresAt.Get() == nil {
+		var ret string
+		return ret
+	}
+	return *o.ExpiresAt.Get()
+}
+
+// GetExpiresAtOk returns a tuple with the ExpiresAt field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *CreateTokenRequest) GetExpiresAtOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.ExpiresAt.Get(), o.ExpiresAt.IsSet()
+}
+
+// HasExpiresAt returns a boolean if a field has been set.
+func (o *CreateTokenRequest) HasExpiresAt() bool {
+	if o != nil && o.ExpiresAt.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetExpiresAt gets a reference to the given NullableString and assigns it to the ExpiresAt field.
+func (o *CreateTokenRequest) SetExpiresAt(v string) {
+	o.ExpiresAt.Set(&v)
+}
+
+// SetExpiresAtNil sets the value for ExpiresAt to be an explicit nil
+func (o *CreateTokenRequest) SetExpiresAtNil() {
+	o.ExpiresAt.Set(nil)
+}
+
+// UnsetExpiresAt ensures that no value is present for ExpiresAt, not even an explicit nil
+func (o *CreateTokenRequest) UnsetExpiresAt() {
+	o.ExpiresAt.Unset()
+}
+
 func (o CreateTokenRequest) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
+	if o.Id.IsSet() {
+		toSerialize["id"] = o.Id.Get()
+	}
 	if o.Type.IsSet() {
 		toSerialize["type"] = o.Type.Get()
 	}
@@ -391,6 +482,9 @@ func (o CreateTokenRequest) MarshalJSON() ([]byte, error) {
 	}
 	if o.DeduplicateToken.IsSet() {
 		toSerialize["deduplicate_token"] = o.DeduplicateToken.Get()
+	}
+	if o.ExpiresAt.IsSet() {
+		toSerialize["expires_at"] = o.ExpiresAt.Get()
 	}
 	return json.Marshal(toSerialize)
 }

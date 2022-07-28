@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Id** | Pointer to **string** |  | [optional] 
-**Type** | Pointer to **NullableString** |  | [optional] 
+**Type** | Pointer to **string** |  | [optional] 
 **TenantId** | Pointer to **string** |  | [optional] 
 **Data** | Pointer to **interface{}** |  | [optional] 
 **Metadata** | Pointer to **map[string]string** |  | [optional] 
@@ -19,6 +19,7 @@ Name | Type | Description | Notes
 **Mask** | Pointer to **interface{}** |  | [optional] 
 **Privacy** | Pointer to [**Privacy**](Privacy.md) |  | [optional] 
 **SearchIndexes** | Pointer to **[]string** |  | [optional] 
+**ExpiresAt** | Pointer to **NullableTime** |  | [optional] 
 
 ## Methods
 
@@ -89,16 +90,6 @@ SetType sets Type field to given value.
 
 HasType returns a boolean if a field has been set.
 
-### SetTypeNil
-
-`func (o *Token) SetTypeNil(b bool)`
-
- SetTypeNil sets the value for Type to be an explicit nil
-
-### UnsetType
-`func (o *Token) UnsetType()`
-
-UnsetType ensures that no value is present for Type, not even an explicit nil
 ### GetTenantId
 
 `func (o *Token) GetTenantId() string`
@@ -524,6 +515,41 @@ HasSearchIndexes returns a boolean if a field has been set.
 `func (o *Token) UnsetSearchIndexes()`
 
 UnsetSearchIndexes ensures that no value is present for SearchIndexes, not even an explicit nil
+### GetExpiresAt
+
+`func (o *Token) GetExpiresAt() time.Time`
+
+GetExpiresAt returns the ExpiresAt field if non-nil, zero value otherwise.
+
+### GetExpiresAtOk
+
+`func (o *Token) GetExpiresAtOk() (*time.Time, bool)`
+
+GetExpiresAtOk returns a tuple with the ExpiresAt field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetExpiresAt
+
+`func (o *Token) SetExpiresAt(v time.Time)`
+
+SetExpiresAt sets ExpiresAt field to given value.
+
+### HasExpiresAt
+
+`func (o *Token) HasExpiresAt() bool`
+
+HasExpiresAt returns a boolean if a field has been set.
+
+### SetExpiresAtNil
+
+`func (o *Token) SetExpiresAtNil(b bool)`
+
+ SetExpiresAtNil sets the value for ExpiresAt to be an explicit nil
+
+### UnsetExpiresAt
+`func (o *Token) UnsetExpiresAt()`
+
+UnsetExpiresAt ensures that no value is present for ExpiresAt, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

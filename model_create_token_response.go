@@ -17,7 +17,7 @@ import (
 
 // CreateTokenResponse struct for CreateTokenResponse
 type CreateTokenResponse struct {
-	Id                    *string           `json:"id,omitempty"`
+	Id                    NullableString    `json:"id,omitempty"`
 	TenantId              *string           `json:"tenant_id,omitempty"`
 	Type                  NullableString    `json:"type,omitempty"`
 	Fingerprint           NullableString    `json:"fingerprint,omitempty"`
@@ -31,6 +31,7 @@ type CreateTokenResponse struct {
 	CreatedAt             NullableTime      `json:"created_at,omitempty"`
 	ModifiedBy            NullableString    `json:"modified_by,omitempty"`
 	ModifiedAt            NullableTime      `json:"modified_at,omitempty"`
+	ExpiresAt             NullableTime      `json:"expires_at,omitempty"`
 }
 
 // NewCreateTokenResponse instantiates a new CreateTokenResponse object
@@ -50,36 +51,47 @@ func NewCreateTokenResponseWithDefaults() *CreateTokenResponse {
 	return &this
 }
 
-// GetId returns the Id field value if set, zero value otherwise.
+// GetId returns the Id field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *CreateTokenResponse) GetId() string {
-	if o == nil || o.Id == nil {
+	if o == nil || o.Id.Get() == nil {
 		var ret string
 		return ret
 	}
-	return *o.Id
+	return *o.Id.Get()
 }
 
 // GetIdOk returns a tuple with the Id field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *CreateTokenResponse) GetIdOk() (*string, bool) {
-	if o == nil || o.Id == nil {
+	if o == nil {
 		return nil, false
 	}
-	return o.Id, true
+	return o.Id.Get(), o.Id.IsSet()
 }
 
 // HasId returns a boolean if a field has been set.
 func (o *CreateTokenResponse) HasId() bool {
-	if o != nil && o.Id != nil {
+	if o != nil && o.Id.IsSet() {
 		return true
 	}
 
 	return false
 }
 
-// SetId gets a reference to the given string and assigns it to the Id field.
+// SetId gets a reference to the given NullableString and assigns it to the Id field.
 func (o *CreateTokenResponse) SetId(v string) {
-	o.Id = &v
+	o.Id.Set(&v)
+}
+
+// SetIdNil sets the value for Id to be an explicit nil
+func (o *CreateTokenResponse) SetIdNil() {
+	o.Id.Set(nil)
+}
+
+// UnsetId ensures that no value is present for Id, not even an explicit nil
+func (o *CreateTokenResponse) UnsetId() {
+	o.Id.Unset()
 }
 
 // GetTenantId returns the TenantId field value if set, zero value otherwise.
@@ -579,10 +591,53 @@ func (o *CreateTokenResponse) UnsetModifiedAt() {
 	o.ModifiedAt.Unset()
 }
 
+// GetExpiresAt returns the ExpiresAt field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *CreateTokenResponse) GetExpiresAt() time.Time {
+	if o == nil || o.ExpiresAt.Get() == nil {
+		var ret time.Time
+		return ret
+	}
+	return *o.ExpiresAt.Get()
+}
+
+// GetExpiresAtOk returns a tuple with the ExpiresAt field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *CreateTokenResponse) GetExpiresAtOk() (*time.Time, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.ExpiresAt.Get(), o.ExpiresAt.IsSet()
+}
+
+// HasExpiresAt returns a boolean if a field has been set.
+func (o *CreateTokenResponse) HasExpiresAt() bool {
+	if o != nil && o.ExpiresAt.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetExpiresAt gets a reference to the given NullableTime and assigns it to the ExpiresAt field.
+func (o *CreateTokenResponse) SetExpiresAt(v time.Time) {
+	o.ExpiresAt.Set(&v)
+}
+
+// SetExpiresAtNil sets the value for ExpiresAt to be an explicit nil
+func (o *CreateTokenResponse) SetExpiresAtNil() {
+	o.ExpiresAt.Set(nil)
+}
+
+// UnsetExpiresAt ensures that no value is present for ExpiresAt, not even an explicit nil
+func (o *CreateTokenResponse) UnsetExpiresAt() {
+	o.ExpiresAt.Unset()
+}
+
 func (o CreateTokenResponse) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
-	if o.Id != nil {
-		toSerialize["id"] = o.Id
+	if o.Id.IsSet() {
+		toSerialize["id"] = o.Id.Get()
 	}
 	if o.TenantId != nil {
 		toSerialize["tenant_id"] = o.TenantId
@@ -622,6 +677,9 @@ func (o CreateTokenResponse) MarshalJSON() ([]byte, error) {
 	}
 	if o.ModifiedAt.IsSet() {
 		toSerialize["modified_at"] = o.ModifiedAt.Get()
+	}
+	if o.ExpiresAt.IsSet() {
+		toSerialize["expires_at"] = o.ExpiresAt.Get()
 	}
 	return json.Marshal(toSerialize)
 }

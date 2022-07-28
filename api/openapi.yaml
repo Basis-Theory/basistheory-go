@@ -22,6 +22,8 @@ paths:
         schema:
           items:
             format: uuid
+            maxLength: 36
+            pattern: "^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$"
             type: string
           type: array
         style: form
@@ -30,7 +32,11 @@ paths:
         name: page
         required: false
         schema:
+          exclusiveMinimum: true
           format: int32
+          maximum: 2147483647
+          minimum: 0
+          nullable: true
           type: integer
         style: form
       - explode: true
@@ -39,6 +45,9 @@ paths:
         required: false
         schema:
           format: int32
+          maximum: 100
+          minimum: 0
+          nullable: true
           type: integer
         style: form
       responses:
@@ -48,6 +57,12 @@ paths:
               schema:
                 $ref: '#/components/schemas/ApplicationPaginatedList'
           description: Success
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Not Found
         "401":
           content:
             application/json:
@@ -60,12 +75,6 @@ paths:
               schema:
                 $ref: '#/components/schemas/ProblemDetails'
           description: Forbidden
-        "404":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ProblemDetails'
-          description: Not Found
       tags:
       - Applications
     post:
@@ -113,11 +122,19 @@ paths:
         required: true
         schema:
           format: uuid
+          maxLength: 36
+          pattern: "^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$"
           type: string
         style: simple
       responses:
         "204":
           description: No Content
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Not Found
         "401":
           content:
             application/json:
@@ -130,12 +147,6 @@ paths:
               schema:
                 $ref: '#/components/schemas/ProblemDetails'
           description: Forbidden
-        "404":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ProblemDetails'
-          description: Not Found
       tags:
       - Applications
     get:
@@ -147,6 +158,8 @@ paths:
         required: true
         schema:
           format: uuid
+          maxLength: 36
+          pattern: "^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$"
           type: string
         style: simple
       responses:
@@ -156,6 +169,12 @@ paths:
               schema:
                 $ref: '#/components/schemas/Application'
           description: Success
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Not Found
         "401":
           content:
             application/json:
@@ -168,12 +187,6 @@ paths:
               schema:
                 $ref: '#/components/schemas/ProblemDetails'
           description: Forbidden
-        "404":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ProblemDetails'
-          description: Not Found
       tags:
       - Applications
     put:
@@ -185,6 +198,8 @@ paths:
         required: true
         schema:
           format: uuid
+          maxLength: 36
+          pattern: "^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$"
           type: string
         style: simple
       requestBody:
@@ -206,6 +221,12 @@ paths:
               schema:
                 $ref: '#/components/schemas/ValidationProblemDetails'
           description: Bad Request
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Not Found
         "401":
           content:
             application/json:
@@ -218,12 +239,6 @@ paths:
               schema:
                 $ref: '#/components/schemas/ProblemDetails'
           description: Forbidden
-        "404":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ProblemDetails'
-          description: Not Found
       tags:
       - Applications
   /applications/key:
@@ -236,18 +251,18 @@ paths:
               schema:
                 $ref: '#/components/schemas/Application'
           description: Success
-        "401":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ProblemDetails'
-          description: Unauthorized
         "404":
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ProblemDetails'
           description: Not Found
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Unauthorized
       tags:
       - Applications
   /applications/{id}/regenerate:
@@ -260,6 +275,8 @@ paths:
         required: true
         schema:
           format: uuid
+          maxLength: 36
+          pattern: "^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$"
           type: string
         style: simple
       responses:
@@ -269,6 +286,12 @@ paths:
               schema:
                 $ref: '#/components/schemas/Application'
           description: Success
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Not Found
         "401":
           content:
             application/json:
@@ -281,520 +304,8 @@ paths:
               schema:
                 $ref: '#/components/schemas/ProblemDetails'
           description: Forbidden
-        "404":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ProblemDetails'
-          description: Not Found
       tags:
       - Applications
-  /atomic/banks/{bankId}/react:
-    post:
-      deprecated: true
-      operationId: AtomicBanks_React
-      parameters:
-      - explode: false
-        in: path
-        name: bankId
-        required: true
-        schema:
-          format: uuid
-          type: string
-        style: simple
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/AtomicReactRequest'
-      responses:
-        "200":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ReactResponse'
-          description: Success
-        "400":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ValidationProblemDetails'
-          description: Bad Request
-        "401":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ProblemDetails'
-          description: Unauthorized
-        "403":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ProblemDetails'
-          description: Forbidden
-        "422":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ProblemDetails'
-          description: Client Error
-      tags:
-      - Banks
-  /atomic/banks:
-    get:
-      deprecated: true
-      operationId: AtomicBanks_Get
-      parameters:
-      - explode: true
-        in: query
-        name: page
-        required: false
-        schema:
-          format: int32
-          type: integer
-        style: form
-      - explode: true
-        in: query
-        name: size
-        required: false
-        schema:
-          format: int32
-          type: integer
-        style: form
-      responses:
-        "200":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/AtomicBankPaginatedList'
-          description: Success
-        "401":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ProblemDetails'
-          description: Unauthorized
-        "403":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ProblemDetails'
-          description: Forbidden
-      tags:
-      - Banks
-    post:
-      deprecated: true
-      operationId: AtomicBanks_Create
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/CreateAtomicBankRequest'
-      responses:
-        "201":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/AtomicBank'
-          description: Created
-        "400":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ValidationProblemDetails'
-          description: Bad Request
-        "401":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ProblemDetails'
-          description: Unauthorized
-        "403":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ProblemDetails'
-          description: Forbidden
-      tags:
-      - Banks
-  /atomic/banks/{id}:
-    delete:
-      deprecated: true
-      operationId: AtomicBanks_Delete
-      parameters:
-      - explode: false
-        in: path
-        name: id
-        required: true
-        schema:
-          format: uuid
-          type: string
-        style: simple
-      responses:
-        "204":
-          description: No Content
-        "401":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ProblemDetails'
-          description: Unauthorized
-        "403":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ProblemDetails'
-          description: Forbidden
-        "404":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ProblemDetails'
-          description: Not Found
-      tags:
-      - Banks
-    get:
-      deprecated: true
-      operationId: AtomicBanks_GetById
-      parameters:
-      - explode: false
-        in: path
-        name: id
-        required: true
-        schema:
-          format: uuid
-          type: string
-        style: simple
-      responses:
-        "200":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/AtomicBank'
-          description: Success
-        "401":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ProblemDetails'
-          description: Unauthorized
-        "403":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ProblemDetails'
-          description: Forbidden
-        "404":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ProblemDetails'
-          description: Not Found
-      tags:
-      - Banks
-    patch:
-      deprecated: true
-      operationId: AtomicBanks_Update
-      parameters:
-      - explode: false
-        in: path
-        name: id
-        required: true
-        schema:
-          format: uuid
-          type: string
-        style: simple
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/UpdateAtomicBankRequest'
-      responses:
-        "200":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/AtomicBank'
-          description: Success
-        "400":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ValidationProblemDetails'
-          description: Bad Request
-        "401":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ProblemDetails'
-          description: Unauthorized
-        "403":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ProblemDetails'
-          description: Forbidden
-        "404":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ProblemDetails'
-          description: Not Found
-      tags:
-      - Banks
-  /atomic/cards/{cardId}/react:
-    post:
-      deprecated: true
-      operationId: AtomicCards_React
-      parameters:
-      - explode: false
-        in: path
-        name: cardId
-        required: true
-        schema:
-          format: uuid
-          type: string
-        style: simple
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/AtomicReactRequest'
-      responses:
-        "200":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ReactResponse'
-          description: Success
-        "400":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ValidationProblemDetails'
-          description: Bad Request
-        "401":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ProblemDetails'
-          description: Unauthorized
-        "403":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ProblemDetails'
-          description: Forbidden
-        "422":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ProblemDetails'
-          description: Client Error
-      tags:
-      - Cards
-  /atomic/cards:
-    get:
-      deprecated: true
-      operationId: AtomicCards_Get
-      parameters:
-      - explode: true
-        in: query
-        name: page
-        required: false
-        schema:
-          format: int32
-          type: integer
-        style: form
-      - explode: true
-        in: query
-        name: size
-        required: false
-        schema:
-          format: int32
-          type: integer
-        style: form
-      responses:
-        "201":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/AtomicCardPaginatedList'
-          description: Created
-        "401":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ProblemDetails'
-          description: Unauthorized
-        "403":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ProblemDetails'
-          description: Forbidden
-      tags:
-      - Cards
-    post:
-      deprecated: true
-      operationId: AtomicCards_Create
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/CreateAtomicCardRequest'
-      responses:
-        "201":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/AtomicCard'
-          description: Created
-        "400":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ValidationProblemDetails'
-          description: Bad Request
-        "401":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ProblemDetails'
-          description: Unauthorized
-        "403":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ProblemDetails'
-          description: Forbidden
-      tags:
-      - Cards
-  /atomic/cards/{id}:
-    delete:
-      deprecated: true
-      operationId: AtomicCards_Delete
-      parameters:
-      - explode: false
-        in: path
-        name: id
-        required: true
-        schema:
-          format: uuid
-          type: string
-        style: simple
-      responses:
-        "204":
-          description: No Content
-        "401":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ProblemDetails'
-          description: Unauthorized
-        "403":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ProblemDetails'
-          description: Forbidden
-        "404":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ProblemDetails'
-          description: Not Found
-      tags:
-      - Cards
-    get:
-      deprecated: true
-      operationId: AtomicCards_GetById
-      parameters:
-      - explode: false
-        in: path
-        name: id
-        required: true
-        schema:
-          format: uuid
-          type: string
-        style: simple
-      responses:
-        "201":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/AtomicCard'
-          description: Created
-        "401":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ProblemDetails'
-          description: Unauthorized
-        "403":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ProblemDetails'
-          description: Forbidden
-        "404":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ProblemDetails'
-          description: Not Found
-      tags:
-      - Cards
-    patch:
-      deprecated: true
-      operationId: AtomicCards_Update
-      parameters:
-      - explode: false
-        in: path
-        name: id
-        required: true
-        schema:
-          format: uuid
-          type: string
-        style: simple
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/UpdateAtomicCardRequest'
-      responses:
-        "200":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/AtomicCard'
-          description: Success
-        "400":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ValidationProblemDetails'
-          description: Bad Request
-        "401":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ProblemDetails'
-          description: Unauthorized
-        "403":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ProblemDetails'
-          description: Forbidden
-        "404":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ProblemDetails'
-          description: Not Found
-      tags:
-      - Cards
   /logs:
     get:
       operationId: Logs_Get
@@ -805,6 +316,7 @@ paths:
         required: false
         schema:
           nullable: true
+          pattern: "^[A-z]+$"
           type: string
         style: form
       - explode: true
@@ -812,7 +324,9 @@ paths:
         name: entity_id
         required: false
         schema:
+          maxLength: 200
           nullable: true
+          pattern: ^.+$
           type: string
         style: form
       - explode: true
@@ -821,6 +335,7 @@ paths:
         required: false
         schema:
           format: date-time
+          maxLength: 40
           nullable: true
           type: string
         style: form
@@ -830,6 +345,7 @@ paths:
         required: false
         schema:
           format: date-time
+          maxLength: 40
           nullable: true
           type: string
         style: form
@@ -838,7 +354,10 @@ paths:
         name: page
         required: false
         schema:
+          exclusiveMinimum: true
           format: int32
+          maximum: 2147483647
+          minimum: 0
           nullable: true
           type: integer
         style: form
@@ -848,6 +367,8 @@ paths:
         required: false
         schema:
           format: int32
+          maximum: 10000
+          minimum: 0
           nullable: true
           type: integer
         style: form
@@ -862,7 +383,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ProblemDetails'
+                $ref: '#/components/schemas/ValidationProblemDetails'
           description: Bad Request
         "401":
           content:
@@ -929,7 +450,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ProblemDetails'
+                $ref: '#/components/schemas/ValidationProblemDetails'
           description: Bad Request
         "401":
           content:
@@ -956,6 +477,8 @@ paths:
         schema:
           items:
             format: uuid
+            maxLength: 36
+            pattern: "^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$"
             type: string
           type: array
         style: form
@@ -966,6 +489,7 @@ paths:
         schema:
           maxLength: 200
           nullable: true
+          pattern: ^.+$
           type: string
         style: form
       - explode: true
@@ -973,7 +497,10 @@ paths:
         name: page
         required: false
         schema:
+          exclusiveMinimum: true
           format: int32
+          maximum: 2147483647
+          minimum: 0
           nullable: true
           type: integer
         style: form
@@ -983,6 +510,8 @@ paths:
         required: false
         schema:
           format: int32
+          maximum: 100
+          minimum: 0
           nullable: true
           type: integer
         style: form
@@ -993,6 +522,12 @@ paths:
               schema:
                 $ref: '#/components/schemas/ProxyPaginatedList'
           description: Success
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Not Found
         "401":
           content:
             application/json:
@@ -1005,12 +540,6 @@ paths:
               schema:
                 $ref: '#/components/schemas/ProblemDetails'
           description: Forbidden
-        "404":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ProblemDetails'
-          description: Not Found
       tags:
       - Proxies
     post:
@@ -1020,6 +549,7 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/CreateProxyRequest'
+        required: true
       responses:
         "201":
           content:
@@ -1057,11 +587,19 @@ paths:
         required: true
         schema:
           format: uuid
+          maxLength: 36
+          pattern: "^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$"
           type: string
         style: simple
       responses:
         "204":
           description: No Content
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Not Found
         "401":
           content:
             application/json:
@@ -1074,12 +612,6 @@ paths:
               schema:
                 $ref: '#/components/schemas/ProblemDetails'
           description: Forbidden
-        "404":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ProblemDetails'
-          description: Not Found
       tags:
       - Proxies
     get:
@@ -1091,6 +623,8 @@ paths:
         required: true
         schema:
           format: uuid
+          maxLength: 36
+          pattern: "^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$"
           type: string
         style: simple
       responses:
@@ -1100,6 +634,12 @@ paths:
               schema:
                 $ref: '#/components/schemas/Proxy'
           description: Success
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Not Found
         "401":
           content:
             application/json:
@@ -1112,12 +652,6 @@ paths:
               schema:
                 $ref: '#/components/schemas/ProblemDetails'
           description: Forbidden
-        "404":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ProblemDetails'
-          description: Not Found
       tags:
       - Proxies
     put:
@@ -1129,6 +663,8 @@ paths:
         required: true
         schema:
           format: uuid
+          maxLength: 36
+          pattern: "^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$"
           type: string
         style: simple
       requestBody:
@@ -1136,6 +672,7 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/UpdateProxyRequest'
+        required: true
       responses:
         "200":
           content:
@@ -1149,6 +686,12 @@ paths:
               schema:
                 $ref: '#/components/schemas/ValidationProblemDetails'
           description: Bad Request
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Not Found
         "401":
           content:
             application/json:
@@ -1161,12 +704,6 @@ paths:
               schema:
                 $ref: '#/components/schemas/ProblemDetails'
           description: Forbidden
-        "404":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ProblemDetails'
-          description: Not Found
       tags:
       - Proxies
   /reactor-formulas:
@@ -1178,6 +715,8 @@ paths:
         name: name
         required: false
         schema:
+          maxLength: 200
+          nullable: true
           type: string
         style: form
       - explode: true
@@ -1185,7 +724,11 @@ paths:
         name: page
         required: false
         schema:
+          exclusiveMinimum: true
           format: int32
+          maximum: 2147483647
+          minimum: 0
+          nullable: true
           type: integer
         style: form
       - explode: true
@@ -1194,6 +737,9 @@ paths:
         required: false
         schema:
           format: int32
+          maximum: 100
+          minimum: 0
+          nullable: true
           type: integer
         style: form
       responses:
@@ -1207,7 +753,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ProblemDetails'
+                $ref: '#/components/schemas/ValidationProblemDetails'
           description: Bad Request
         "401":
           content:
@@ -1230,6 +776,7 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/CreateReactorFormulaRequest'
+        required: true
       responses:
         "201":
           content:
@@ -1267,6 +814,8 @@ paths:
         required: true
         schema:
           format: uuid
+          maxLength: 36
+          pattern: "^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$"
           type: string
         style: simple
       responses:
@@ -1301,6 +850,8 @@ paths:
         required: true
         schema:
           format: uuid
+          maxLength: 36
+          pattern: "^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$"
           type: string
         style: simple
       responses:
@@ -1310,6 +861,12 @@ paths:
               schema:
                 $ref: '#/components/schemas/ReactorFormula'
           description: Success
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Not Found
         "401":
           content:
             application/json:
@@ -1322,12 +879,6 @@ paths:
               schema:
                 $ref: '#/components/schemas/ProblemDetails'
           description: Forbidden
-        "404":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ProblemDetails'
-          description: Not Found
       tags:
       - ReactorFormulas
     put:
@@ -1339,6 +890,8 @@ paths:
         required: true
         schema:
           format: uuid
+          maxLength: 36
+          pattern: "^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$"
           type: string
         style: simple
       requestBody:
@@ -1346,6 +899,7 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/UpdateReactorFormulaRequest'
+        required: true
       responses:
         "200":
           content:
@@ -1390,6 +944,8 @@ paths:
         schema:
           items:
             format: uuid
+            maxLength: 36
+            pattern: "^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$"
             type: string
           type: array
         style: form
@@ -1398,6 +954,8 @@ paths:
         name: name
         required: false
         schema:
+          maxLength: 200
+          nullable: true
           type: string
         style: form
       - explode: true
@@ -1405,7 +963,11 @@ paths:
         name: page
         required: false
         schema:
+          exclusiveMinimum: true
           format: int32
+          maximum: 2147483647
+          minimum: 0
+          nullable: true
           type: integer
         style: form
       - explode: true
@@ -1414,6 +976,9 @@ paths:
         required: false
         schema:
           format: int32
+          maximum: 100
+          minimum: 0
+          nullable: true
           type: integer
         style: form
       responses:
@@ -1423,6 +988,12 @@ paths:
               schema:
                 $ref: '#/components/schemas/ReactorPaginatedList'
           description: Success
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Not Found
         "401":
           content:
             application/json:
@@ -1435,12 +1006,6 @@ paths:
               schema:
                 $ref: '#/components/schemas/ProblemDetails'
           description: Forbidden
-        "404":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ProblemDetails'
-          description: Not Found
       tags:
       - Reactors
     post:
@@ -1450,6 +1015,7 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/CreateReactorRequest'
+        required: true
       responses:
         "201":
           content:
@@ -1487,11 +1053,19 @@ paths:
         required: true
         schema:
           format: uuid
+          maxLength: 36
+          pattern: "^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$"
           type: string
         style: simple
       responses:
         "204":
           description: No Content
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Not Found
         "401":
           content:
             application/json:
@@ -1504,12 +1078,6 @@ paths:
               schema:
                 $ref: '#/components/schemas/ProblemDetails'
           description: Forbidden
-        "404":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ProblemDetails'
-          description: Not Found
       tags:
       - Reactors
     get:
@@ -1521,6 +1089,8 @@ paths:
         required: true
         schema:
           format: uuid
+          maxLength: 36
+          pattern: "^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$"
           type: string
         style: simple
       responses:
@@ -1530,6 +1100,12 @@ paths:
               schema:
                 $ref: '#/components/schemas/Reactor'
           description: Success
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Not Found
         "401":
           content:
             application/json:
@@ -1542,12 +1118,6 @@ paths:
               schema:
                 $ref: '#/components/schemas/ProblemDetails'
           description: Forbidden
-        "404":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ProblemDetails'
-          description: Not Found
       tags:
       - Reactors
     put:
@@ -1559,6 +1129,8 @@ paths:
         required: true
         schema:
           format: uuid
+          maxLength: 36
+          pattern: "^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$"
           type: string
         style: simple
       requestBody:
@@ -1566,6 +1138,7 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/UpdateReactorRequest'
+        required: true
       responses:
         "200":
           content:
@@ -1579,6 +1152,12 @@ paths:
               schema:
                 $ref: '#/components/schemas/ValidationProblemDetails'
           description: Bad Request
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Not Found
         "401":
           content:
             application/json:
@@ -1591,12 +1170,6 @@ paths:
               schema:
                 $ref: '#/components/schemas/ProblemDetails'
           description: Forbidden
-        "404":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ProblemDetails'
-          description: Not Found
       tags:
       - Reactors
   /reactors/{id}/react:
@@ -1609,6 +1182,8 @@ paths:
         required: true
         schema:
           format: uuid
+          maxLength: 36
+          pattern: "^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$"
           type: string
         style: simple
       requestBody:
@@ -1616,6 +1191,7 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/ReactRequest'
+        required: true
       responses:
         "200":
           content:
@@ -1629,18 +1205,6 @@ paths:
               schema:
                 $ref: '#/components/schemas/ValidationProblemDetails'
           description: Bad Request
-        "401":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ProblemDetails'
-          description: Unauthorized
-        "403":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ProblemDetails'
-          description: Forbidden
         "404":
           content:
             application/json:
@@ -1653,6 +1217,18 @@ paths:
               schema:
                 $ref: '#/components/schemas/ProblemDetails'
           description: Client Error
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Unauthorized
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Forbidden
       tags:
       - Reactors
   /tenants/self/invitations:
@@ -1671,7 +1247,11 @@ paths:
         name: page
         required: false
         schema:
+          exclusiveMinimum: true
           format: int32
+          maximum: 2147483647
+          minimum: 0
+          nullable: true
           type: integer
         style: form
       - explode: true
@@ -1680,6 +1260,9 @@ paths:
         required: false
         schema:
           format: int32
+          maximum: 100
+          minimum: 0
+          nullable: true
           type: integer
         style: form
       responses:
@@ -1710,6 +1293,7 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/CreateTenantInvitationRequest'
+        required: true
       responses:
         "201":
           content:
@@ -1747,6 +1331,8 @@ paths:
         required: true
         schema:
           format: uuid
+          maxLength: 36
+          pattern: "^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$"
           type: string
         style: simple
       responses:
@@ -1786,6 +1372,8 @@ paths:
         required: true
         schema:
           format: uuid
+          maxLength: 36
+          pattern: "^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$"
           type: string
         style: simple
       responses:
@@ -1822,6 +1410,8 @@ paths:
         schema:
           items:
             format: uuid
+            maxLength: 36
+            pattern: "^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$"
             type: string
           type: array
         style: form
@@ -1830,7 +1420,11 @@ paths:
         name: page
         required: false
         schema:
+          exclusiveMinimum: true
           format: int32
+          maximum: 2147483647
+          minimum: 0
+          nullable: true
           type: integer
         style: form
       - explode: true
@@ -1839,6 +1433,9 @@ paths:
         required: false
         schema:
           format: int32
+          maximum: 50
+          minimum: 0
+          nullable: true
           type: integer
         style: form
       responses:
@@ -1872,6 +1469,8 @@ paths:
         required: true
         schema:
           format: uuid
+          maxLength: 36
+          pattern: "^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$"
           type: string
         style: simple
       responses:
@@ -1913,6 +1512,12 @@ paths:
               schema:
                 $ref: '#/components/schemas/TenantUsageReport'
           description: Success
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Not Found
         "401":
           content:
             application/json:
@@ -1925,12 +1530,6 @@ paths:
               schema:
                 $ref: '#/components/schemas/ProblemDetails'
           description: Forbidden
-        "404":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ProblemDetails'
-          description: Not Found
       tags:
       - Tenants
   /tenants/self/reports/operations:
@@ -1963,6 +1562,12 @@ paths:
       responses:
         "204":
           description: No Content
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Not Found
         "401":
           content:
             application/json:
@@ -1975,12 +1580,6 @@ paths:
               schema:
                 $ref: '#/components/schemas/ProblemDetails'
           description: Forbidden
-        "404":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ProblemDetails'
-          description: Not Found
       tags:
       - Tenants
     get:
@@ -1992,6 +1591,12 @@ paths:
               schema:
                 $ref: '#/components/schemas/Tenant'
           description: Success
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Not Found
         "401":
           content:
             application/json:
@@ -2004,12 +1609,6 @@ paths:
               schema:
                 $ref: '#/components/schemas/ProblemDetails'
           description: Forbidden
-        "404":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ProblemDetails'
-          description: Not Found
       tags:
       - Tenants
     put:
@@ -2019,6 +1618,7 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/UpdateTenantRequest'
+        required: true
       responses:
         "200":
           content:
@@ -2032,6 +1632,12 @@ paths:
               schema:
                 $ref: '#/components/schemas/ValidationProblemDetails'
           description: Bad Request
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Not Found
         "401":
           content:
             application/json:
@@ -2044,12 +1650,6 @@ paths:
               schema:
                 $ref: '#/components/schemas/ProblemDetails'
           description: Forbidden
-        "404":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ProblemDetails'
-          description: Not Found
       tags:
       - Tenants
   /tokens/{parentId}/children:
@@ -2061,7 +1661,7 @@ paths:
         name: parentId
         required: true
         schema:
-          format: uuid
+          maxLength: 200
           type: string
         style: simple
       - explode: true
@@ -2079,7 +1679,6 @@ paths:
         required: false
         schema:
           items:
-            format: uuid
             type: string
           type: array
         style: form
@@ -2097,7 +1696,10 @@ paths:
         name: page
         required: false
         schema:
+          exclusiveMinimum: true
           format: int32
+          maximum: 2147483647
+          minimum: 0
           nullable: true
           type: integer
         style: form
@@ -2107,6 +1709,8 @@ paths:
         required: false
         schema:
           format: int32
+          maximum: 100
+          minimum: 0
           nullable: true
           type: integer
         style: form
@@ -2121,7 +1725,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ProblemDetails'
+                $ref: '#/components/schemas/ValidationProblemDetails'
           description: Bad Request
         "401":
           content:
@@ -2151,7 +1755,7 @@ paths:
         name: parentId
         required: true
         schema:
-          format: uuid
+          maxLength: 200
           type: string
         style: simple
       requestBody:
@@ -2159,6 +1763,7 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/CreateTokenRequest'
+        required: true
       responses:
         "201":
           content:
@@ -2170,7 +1775,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ProblemDetails'
+                $ref: '#/components/schemas/ValidationProblemDetails'
           description: Bad Request
         "401":
           content:
@@ -2201,7 +1806,7 @@ paths:
         name: parentId
         required: true
         schema:
-          format: uuid
+          maxLength: 200
           type: string
         style: simple
       - explode: false
@@ -2209,7 +1814,7 @@ paths:
         name: childId
         required: true
         schema:
-          format: uuid
+          maxLength: 200
           type: string
         style: simple
       responses:
@@ -2219,7 +1824,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ProblemDetails'
+                $ref: '#/components/schemas/ValidationProblemDetails'
           description: Bad Request
         "401":
           content:
@@ -2249,7 +1854,7 @@ paths:
         name: parentId
         required: true
         schema:
-          format: uuid
+          maxLength: 200
           type: string
         style: simple
       - explode: false
@@ -2257,7 +1862,7 @@ paths:
         name: childId
         required: true
         schema:
-          format: uuid
+          maxLength: 200
           type: string
         style: simple
       responses:
@@ -2267,7 +1872,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ProblemDetails'
+                $ref: '#/components/schemas/ValidationProblemDetails'
           description: Bad Request
         "401":
           content:
@@ -2312,7 +1917,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ProblemDetails'
+                $ref: '#/components/schemas/ValidationProblemDetails'
           description: Bad Request
         "401":
           content:
@@ -2326,6 +1931,12 @@ paths:
               schema:
                 $ref: '#/components/schemas/ProblemDetails'
           description: Forbidden
+        "409":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Conflict
       tags:
       - Tokenize
   /tokens:
@@ -2347,7 +1958,6 @@ paths:
         required: false
         schema:
           items:
-            format: uuid
             type: string
           type: array
         style: form
@@ -2365,7 +1975,10 @@ paths:
         name: page
         required: false
         schema:
+          exclusiveMinimum: true
           format: int32
+          maximum: 2147483647
+          minimum: 0
           nullable: true
           type: integer
         style: form
@@ -2375,6 +1988,8 @@ paths:
         required: false
         schema:
           format: int32
+          maximum: 100
+          minimum: 0
           nullable: true
           type: integer
         style: form
@@ -2406,6 +2021,7 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/CreateTokenRequest'
+        required: true
       responses:
         "201":
           content:
@@ -2417,7 +2033,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ProblemDetails'
+                $ref: '#/components/schemas/ValidationProblemDetails'
           description: Bad Request
         "401":
           content:
@@ -2431,6 +2047,12 @@ paths:
               schema:
                 $ref: '#/components/schemas/ProblemDetails'
           description: Forbidden
+        "409":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Conflict
       tags:
       - Tokens
   /tokens/search:
@@ -2441,6 +2063,7 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/SearchTokensRequest'
+        required: true
       responses:
         "200":
           content:
@@ -2452,7 +2075,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ProblemDetails'
+                $ref: '#/components/schemas/ValidationProblemDetails'
           description: Bad Request
         "401":
           content:
@@ -2477,7 +2100,7 @@ paths:
         name: id
         required: true
         schema:
-          format: uuid
+          maxLength: 200
           type: string
         style: simple
       responses:
@@ -2487,7 +2110,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ProblemDetails'
+                $ref: '#/components/schemas/ValidationProblemDetails'
           description: Bad Request
         "401":
           content:
@@ -2517,7 +2140,7 @@ paths:
         name: id
         required: true
         schema:
-          format: uuid
+          maxLength: 200
           type: string
         style: simple
       responses:
@@ -2555,7 +2178,7 @@ paths:
         name: id
         required: true
         schema:
-          format: uuid
+          maxLength: 200
           type: string
         style: simple
       requestBody:
@@ -2563,6 +2186,7 @@ paths:
           application/merge-patch+json:
             schema:
               $ref: '#/components/schemas/UpdateTokenRequest'
+        required: true
       responses:
         "200":
           content:
@@ -2611,6 +2235,9 @@ components:
         permissions:
         - permissions
         - permissions
+        - permissions
+        - permissions
+        - permissions
         name: name
         modified_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
         created_at: 2000-01-23T04:56:07.000+00:00
@@ -2622,38 +2249,55 @@ components:
       properties:
         id:
           format: uuid
+          maxLength: 36
+          pattern: "^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$"
           type: string
         tenant_id:
           format: uuid
+          maxLength: 36
+          pattern: "^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$"
           type: string
         name:
+          maxLength: 200
           nullable: true
+          pattern: ^.+$
           type: string
         key:
+          maxLength: 100
           nullable: true
+          pattern: "^[A-z0-9_]*$"
           type: string
         type:
+          maxLength: 50
           nullable: true
+          pattern: "^[A-z_]+$"
           type: string
         created_by:
           format: uuid
+          maxLength: 36
           nullable: true
+          pattern: "^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$"
           type: string
         created_at:
           format: date-time
+          maxLength: 40
           nullable: true
           type: string
         modified_by:
           format: uuid
+          maxLength: 36
           nullable: true
+          pattern: "^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$"
           type: string
         modified_at:
           format: date-time
+          maxLength: 40
           nullable: true
           type: string
         permissions:
           items:
             type: string
+          maxItems: 50
           nullable: true
           type: array
       type: object
@@ -2670,6 +2314,9 @@ components:
           permissions:
           - permissions
           - permissions
+          - permissions
+          - permissions
+          - permissions
           name: name
           modified_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           created_at: 2000-01-23T04:56:07.000+00:00
@@ -2680,6 +2327,54 @@ components:
           key: key
         - tenant_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           permissions:
+          - permissions
+          - permissions
+          - permissions
+          - permissions
+          - permissions
+          name: name
+          modified_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          created_at: 2000-01-23T04:56:07.000+00:00
+          id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          type: type
+          modified_at: 2000-01-23T04:56:07.000+00:00
+          created_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          key: key
+        - tenant_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          permissions:
+          - permissions
+          - permissions
+          - permissions
+          - permissions
+          - permissions
+          name: name
+          modified_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          created_at: 2000-01-23T04:56:07.000+00:00
+          id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          type: type
+          modified_at: 2000-01-23T04:56:07.000+00:00
+          created_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          key: key
+        - tenant_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          permissions:
+          - permissions
+          - permissions
+          - permissions
+          - permissions
+          - permissions
+          name: name
+          modified_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          created_at: 2000-01-23T04:56:07.000+00:00
+          id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          type: type
+          modified_at: 2000-01-23T04:56:07.000+00:00
+          created_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          key: key
+        - tenant_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          permissions:
+          - permissions
+          - permissions
+          - permissions
           - permissions
           - permissions
           name: name
@@ -2696,278 +2391,17 @@ components:
         data:
           items:
             $ref: '#/components/schemas/Application'
+          maxItems: 100
           nullable: true
           type: array
-      type: object
-    AtomicBank:
-      additionalProperties: false
-      example:
-        tenant_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-        bank:
-          account_number: account_number
-          routing_number: routing_number
-        metadata:
-          key: metadata
-        fingerprint: fingerprint
-        modified_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-        created_at: 2000-01-23T04:56:07.000+00:00
-        id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-        type: type
-        modified_at: 2000-01-23T04:56:07.000+00:00
-        created_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-      properties:
-        id:
-          format: uuid
-          type: string
-        tenant_id:
-          format: uuid
-          nullable: true
-          type: string
-        bank:
-          $ref: '#/components/schemas/Bank'
-        type:
-          nullable: true
-          type: string
-        fingerprint:
-          nullable: true
-          type: string
-        metadata:
-          additionalProperties:
-            nullable: true
-            type: string
-          nullable: true
-          type: object
-        created_by:
-          format: uuid
-          nullable: true
-          type: string
-        created_at:
-          format: date-time
-          nullable: true
-          type: string
-        modified_by:
-          format: uuid
-          nullable: true
-          type: string
-        modified_at:
-          format: date-time
-          nullable: true
-          type: string
-      type: object
-    AtomicBankPaginatedList:
-      additionalProperties: false
-      example:
-        pagination:
-          page_number: 6
-          total_pages: 5
-          total_items: 0
-          page_size: 1
-        data:
-        - tenant_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-          bank:
-            account_number: account_number
-            routing_number: routing_number
-          metadata:
-            key: metadata
-          fingerprint: fingerprint
-          modified_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-          created_at: 2000-01-23T04:56:07.000+00:00
-          id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-          type: type
-          modified_at: 2000-01-23T04:56:07.000+00:00
-          created_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-        - tenant_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-          bank:
-            account_number: account_number
-            routing_number: routing_number
-          metadata:
-            key: metadata
-          fingerprint: fingerprint
-          modified_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-          created_at: 2000-01-23T04:56:07.000+00:00
-          id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-          type: type
-          modified_at: 2000-01-23T04:56:07.000+00:00
-          created_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-      properties:
-        pagination:
-          $ref: '#/components/schemas/Pagination'
-        data:
-          items:
-            $ref: '#/components/schemas/AtomicBank'
-          nullable: true
-          type: array
-      type: object
-    AtomicCard:
-      additionalProperties: false
-      example:
-        tenant_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-        metadata:
-          key: metadata
-        fingerprint: fingerprint
-        modified_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-        created_at: 2000-01-23T04:56:07.000+00:00
-        id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-        type: type
-        modified_at: 2000-01-23T04:56:07.000+00:00
-        created_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-        card:
-          number: number
-          expiration_year: 6424
-          cvc: cvc
-          expiration_month: 1
-      properties:
-        id:
-          format: uuid
-          type: string
-        tenant_id:
-          format: uuid
-          nullable: true
-          type: string
-        card:
-          $ref: '#/components/schemas/Card'
-        type:
-          nullable: true
-          type: string
-        fingerprint:
-          nullable: true
-          type: string
-        metadata:
-          additionalProperties:
-            nullable: true
-            type: string
-          nullable: true
-          type: object
-        created_by:
-          format: uuid
-          nullable: true
-          type: string
-        created_at:
-          format: date-time
-          nullable: true
-          type: string
-        modified_by:
-          format: uuid
-          nullable: true
-          type: string
-        modified_at:
-          format: date-time
-          nullable: true
-          type: string
-      type: object
-    AtomicCardPaginatedList:
-      additionalProperties: false
-      example:
-        pagination:
-          page_number: 6
-          total_pages: 5
-          total_items: 0
-          page_size: 1
-        data:
-        - tenant_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-          metadata:
-            key: metadata
-          fingerprint: fingerprint
-          modified_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-          created_at: 2000-01-23T04:56:07.000+00:00
-          id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-          type: type
-          modified_at: 2000-01-23T04:56:07.000+00:00
-          created_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-          card:
-            number: number
-            expiration_year: 6424
-            cvc: cvc
-            expiration_month: 1
-        - tenant_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-          metadata:
-            key: metadata
-          fingerprint: fingerprint
-          modified_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-          created_at: 2000-01-23T04:56:07.000+00:00
-          id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-          type: type
-          modified_at: 2000-01-23T04:56:07.000+00:00
-          created_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-          card:
-            number: number
-            expiration_year: 6424
-            cvc: cvc
-            expiration_month: 1
-      properties:
-        pagination:
-          $ref: '#/components/schemas/Pagination'
-        data:
-          items:
-            $ref: '#/components/schemas/AtomicCard'
-          nullable: true
-          type: array
-      type: object
-    AtomicReactRequest:
-      additionalProperties: false
-      example:
-        reactor_id: reactor_id
-        request_parameters:
-          key: ""
-      properties:
-        reactor_id:
-          minLength: 1
-          type: string
-        request_parameters:
-          additionalProperties:
-            nullable: true
-          nullable: true
-          type: object
-      required:
-      - reactor_id
-      type: object
-    Bank:
-      additionalProperties: false
-      example:
-        account_number: account_number
-        routing_number: routing_number
-      properties:
-        routing_number:
-          minLength: 1
-          type: string
-        account_number:
-          minLength: 1
-          type: string
-      required:
-      - account_number
-      - routing_number
-      type: object
-    Card:
-      additionalProperties: false
-      example:
-        number: number
-        expiration_year: 6424
-        cvc: cvc
-        expiration_month: 1
-      properties:
-        number:
-          nullable: true
-          type: string
-        expiration_month:
-          format: int32
-          maximum: 12
-          minimum: 1
-          nullable: true
-          type: integer
-        expiration_year:
-          format: int32
-          maximum: 9999
-          minimum: 1000
-          nullable: true
-          type: integer
-        cvc:
-          nullable: true
-          type: string
       type: object
     CreateApplicationRequest:
       additionalProperties: false
       example:
         permissions:
+        - permissions
+        - permissions
+        - permissions
         - permissions
         - permissions
         name: name
@@ -2976,60 +2410,21 @@ components:
         name:
           maxLength: 200
           minLength: 1
+          pattern: ^.+$
           type: string
         type:
           minLength: 1
+          pattern: "^[A-z_]+$"
           type: string
         permissions:
           items:
             type: string
+          maxItems: 50
           nullable: true
           type: array
       required:
       - name
       - type
-      type: object
-    CreateAtomicBankRequest:
-      additionalProperties: false
-      example:
-        bank:
-          account_number: account_number
-          routing_number: routing_number
-        metadata:
-          key: metadata
-      properties:
-        bank:
-          $ref: '#/components/schemas/Bank'
-        metadata:
-          additionalProperties:
-            nullable: true
-            type: string
-          nullable: true
-          type: object
-      required:
-      - bank
-      type: object
-    CreateAtomicCardRequest:
-      additionalProperties: false
-      example:
-        metadata:
-          key: metadata
-        card:
-          number: number
-          expiration_year: 6424
-          cvc: cvc
-          expiration_month: 1
-      properties:
-        card:
-          $ref: '#/components/schemas/Card'
-        metadata:
-          additionalProperties:
-            nullable: true
-            type: string
-          nullable: true
-          type: object
-      required:
-      - card
       type: object
     CreateProxyRequest:
       additionalProperties: false
@@ -3043,18 +2438,24 @@ components:
         name:
           maxLength: 200
           minLength: 1
+          pattern: ^.+$
           type: string
         destination_url:
           maxLength: 400
           minLength: 1
+          pattern: ^https://.+$
           type: string
         request_reactor_id:
           format: uuid
+          maxLength: 36
           nullable: true
+          pattern: "^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$"
           type: string
         response_reactor_id:
           format: uuid
+          maxLength: 36
           nullable: true
+          pattern: "^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$"
           type: string
         require_auth:
           nullable: true
@@ -3068,6 +2469,15 @@ components:
       example:
         code: code
         configuration:
+        - name: name
+          description: description
+          type: type
+        - name: name
+          description: description
+          type: type
+        - name: name
+          description: description
+          type: type
         - name: name
           description: description
           type: type
@@ -3088,35 +2498,57 @@ components:
           description: description
           optional: true
           type: type
+        - name: name
+          description: description
+          optional: true
+          type: type
+        - name: name
+          description: description
+          optional: true
+          type: type
+        - name: name
+          description: description
+          optional: true
+          type: type
       properties:
         id:
           format: uuid
+          maxLength: 36
           nullable: true
+          pattern: "^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$"
           type: string
         type:
+          maxLength: 25
           minLength: 1
+          pattern: ^(?:private|official)$
           type: string
         name:
           maxLength: 200
           minLength: 1
+          pattern: ^.+$
           type: string
         description:
+          maxLength: 1000
           nullable: true
+          pattern: ^.*$
           type: string
         icon:
           nullable: true
           type: string
         code:
+          maxLength: 4000
           nullable: true
           type: string
         configuration:
           items:
             $ref: '#/components/schemas/ReactorFormulaConfiguration'
+          maxItems: 25
           nullable: true
           type: array
         request_parameters:
           items:
             $ref: '#/components/schemas/ReactorFormulaRequestParameter'
+          maxItems: 25
           nullable: true
           type: array
       required:
@@ -3129,6 +2561,9 @@ components:
         application:
           tenant_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           permissions:
+          - permissions
+          - permissions
+          - permissions
           - permissions
           - permissions
           name: name
@@ -3174,6 +2609,7 @@ components:
         name:
           maxLength: 200
           minLength: 1
+          pattern: ^.+$
           type: string
         formula:
           $ref: '#/components/schemas/ReactorFormula'
@@ -3195,6 +2631,7 @@ components:
       properties:
         email:
           format: email
+          maxLength: 330
           minLength: 1
           type: string
       required:
@@ -3206,6 +2643,7 @@ components:
         fingerprint_expression: fingerprint_expression
         metadata:
           key: metadata
+        expires_at: expires_at
         data: ""
         encryption:
           kek:
@@ -3221,12 +2659,22 @@ components:
           restriction_policy: restriction_policy
           impact_level: impact_level
           classification: classification
+        id: id
         search_indexes:
+        - search_indexes
+        - search_indexes
+        - search_indexes
         - search_indexes
         - search_indexes
         type: type
         mask: ""
       properties:
+        id:
+          maxLength: 400
+          minLength: 3
+          nullable: true
+          pattern: ^.+$
+          type: string
         type:
           nullable: true
           type: string
@@ -3244,16 +2692,22 @@ components:
         search_indexes:
           items:
             type: string
+          maxItems: 10
           nullable: true
           type: array
         fingerprint_expression:
+          maxLength: 400
           nullable: true
+          pattern: ^.*$
           type: string
         mask:
           nullable: true
         deduplicate_token:
           nullable: true
           type: boolean
+        expires_at:
+          nullable: true
+          type: string
       required:
       - data
       type: object
@@ -3272,29 +2726,43 @@ components:
         created_at: 2000-01-23T04:56:07.000+00:00
         type: type
         created_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        expires_at: 2000-01-23T04:56:07.000+00:00
         fingerprint: fingerprint
         modified_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-        id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        id: id
         search_indexes:
+        - search_indexes
+        - search_indexes
+        - search_indexes
         - search_indexes
         - search_indexes
         modified_at: 2000-01-23T04:56:07.000+00:00
         mask: ""
       properties:
         id:
-          format: uuid
+          maxLength: 400
+          nullable: true
+          pattern: ^.+$
           type: string
         tenant_id:
           format: uuid
+          maxLength: 36
+          pattern: "^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$"
           type: string
         type:
+          maxLength: 50
           nullable: true
+          pattern: "^[A-z_]*$"
           type: string
         fingerprint:
+          maxLength: 100
           nullable: true
+          pattern: "^[A-z0-9]*$"
           type: string
         fingerprint_expression:
+          maxLength: 400
           nullable: true
+          pattern: ^.*$
           type: string
         mask:
           nullable: true
@@ -3311,22 +2779,34 @@ components:
         search_indexes:
           items:
             type: string
+          maxItems: 10
           nullable: true
           type: array
         created_by:
           format: uuid
+          maxLength: 36
           nullable: true
+          pattern: "^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$"
           type: string
         created_at:
           format: date-time
+          maxLength: 40
           nullable: true
           type: string
         modified_by:
           format: uuid
+          maxLength: 36
           nullable: true
+          pattern: "^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$"
           type: string
         modified_at:
           format: date-time
+          maxLength: 40
+          nullable: true
+          type: string
+        expires_at:
+          format: date-time
+          maxLength: 40
           nullable: true
           type: string
       type: object
@@ -3365,29 +2845,65 @@ components:
         kek:
           $ref: '#/components/schemas/EncryptionKey'
       type: object
+    GetApplications:
+      additionalProperties: false
+      properties:
+        applicationIds:
+          items:
+            format: uuid
+            maxLength: 36
+            pattern: "^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$"
+            type: string
+          maxItems: 100
+          nullable: true
+          type: array
+        page:
+          exclusiveMinimum: true
+          format: int32
+          maximum: 2147483647
+          minimum: 0
+          nullable: true
+          type: integer
+        size:
+          format: int32
+          maximum: 100
+          minimum: 0
+          nullable: true
+          type: integer
+      type: object
     GetLogs:
       additionalProperties: false
       properties:
         entityType:
           nullable: true
+          pattern: "^[A-z]+$"
           type: string
         entityId:
+          maxLength: 200
           nullable: true
+          pattern: ^.+$
           type: string
         startDate:
           format: date-time
+          maxLength: 40
           nullable: true
           type: string
         endDate:
           format: date-time
+          maxLength: 40
           nullable: true
           type: string
         page:
+          exclusiveMinimum: true
           format: int32
+          maximum: 2147483647
+          minimum: 0
           nullable: true
           type: integer
         size:
           format: int32
+          maximum: 10000
+          minimum: 0
           nullable: true
           type: integer
       type: object
@@ -3404,7 +2920,62 @@ components:
         ids:
           items:
             format: uuid
+            maxLength: 36
+            pattern: "^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$"
             type: string
+          maxItems: 100
+          nullable: true
+          type: array
+        name:
+          maxLength: 200
+          nullable: true
+          pattern: ^.+$
+          type: string
+        page:
+          exclusiveMinimum: true
+          format: int32
+          maximum: 2147483647
+          minimum: 0
+          nullable: true
+          type: integer
+        size:
+          format: int32
+          maximum: 100
+          minimum: 0
+          nullable: true
+          type: integer
+      type: object
+    GetReactorFormulas:
+      additionalProperties: false
+      properties:
+        name:
+          maxLength: 200
+          nullable: true
+          type: string
+        page:
+          exclusiveMinimum: true
+          format: int32
+          maximum: 2147483647
+          minimum: 0
+          nullable: true
+          type: integer
+        size:
+          format: int32
+          maximum: 100
+          minimum: 0
+          nullable: true
+          type: integer
+      type: object
+    GetReactors:
+      additionalProperties: false
+      properties:
+        reactorIds:
+          items:
+            format: uuid
+            maxLength: 36
+            pattern: "^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$"
+            type: string
+          maxItems: 100
           nullable: true
           type: array
         name:
@@ -3412,11 +2983,61 @@ components:
           nullable: true
           type: string
         page:
+          exclusiveMinimum: true
           format: int32
+          maximum: 2147483647
+          minimum: 0
           nullable: true
           type: integer
         size:
           format: int32
+          maximum: 100
+          minimum: 0
+          nullable: true
+          type: integer
+      type: object
+    GetTenantInvitations:
+      additionalProperties: false
+      properties:
+        status:
+          $ref: '#/components/schemas/TenantInvitationStatus'
+        page:
+          exclusiveMinimum: true
+          format: int32
+          maximum: 2147483647
+          minimum: 0
+          nullable: true
+          type: integer
+        size:
+          format: int32
+          maximum: 100
+          minimum: 0
+          nullable: true
+          type: integer
+      type: object
+    GetTenantMembers:
+      additionalProperties: false
+      properties:
+        userIds:
+          items:
+            format: uuid
+            maxLength: 36
+            pattern: "^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$"
+            type: string
+          maxItems: 50
+          nullable: true
+          type: array
+        page:
+          exclusiveMinimum: true
+          format: int32
+          maximum: 2147483647
+          minimum: 0
+          nullable: true
+          type: integer
+        size:
+          format: int32
+          maximum: 50
+          minimum: 0
           nullable: true
           type: integer
       type: object
@@ -3426,26 +3047,33 @@ components:
         types:
           items:
             type: string
+          maxItems: 10
           nullable: true
           type: array
         tokenIds:
           items:
-            format: uuid
             type: string
+          maxItems: 100
           nullable: true
           type: array
         metadataSearch:
           additionalProperties:
             nullable: true
             type: string
+          maxLength: 10
           nullable: true
           type: object
         page:
+          exclusiveMinimum: true
           format: int32
+          maximum: 2147483647
+          minimum: 0
           nullable: true
           type: integer
         size:
           format: int32
+          maximum: 100
+          minimum: 0
           nullable: true
           type: integer
       type: object
@@ -3463,28 +3091,43 @@ components:
       properties:
         tenant_id:
           format: uuid
+          maxLength: 36
+          pattern: "^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$"
           type: string
         actor_id:
           format: uuid
+          maxLength: 36
           nullable: true
+          pattern: "^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$"
           type: string
         actor_type:
+          maxLength: 50
           nullable: true
+          pattern: "^[A-z]+$"
           type: string
         entity_type:
+          maxLength: 50
           nullable: true
+          pattern: "^[A-z]+$"
           type: string
         entity_id:
+          maxLength: 200
           nullable: true
+          pattern: ^.+$
           type: string
         operation:
+          maxLength: 50
           nullable: true
+          pattern: "^[A-z]+$"
           type: string
         message:
+          maxLength: 250
           nullable: true
+          pattern: ^.+$
           type: string
         created_at:
           format: date-time
+          maxLength: 40
           nullable: true
           type: string
       type: object
@@ -3495,10 +3138,14 @@ components:
         value: value
       properties:
         display_name:
+          maxLength: 50
           nullable: true
+          pattern: "^[A-z]+$"
           type: string
         value:
+          maxLength: 50
           nullable: true
+          pattern: "^[A-z]+$"
           type: string
       type: object
     LogPaginatedList:
@@ -3526,12 +3173,37 @@ components:
           entity_id: entity_id
           message: message
           operation: operation
+        - tenant_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          entity_type: entity_type
+          actor_type: actor_type
+          created_at: 2000-01-23T04:56:07.000+00:00
+          actor_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          entity_id: entity_id
+          message: message
+          operation: operation
+        - tenant_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          entity_type: entity_type
+          actor_type: actor_type
+          created_at: 2000-01-23T04:56:07.000+00:00
+          actor_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          entity_id: entity_id
+          message: message
+          operation: operation
+        - tenant_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          entity_type: entity_type
+          actor_type: actor_type
+          created_at: 2000-01-23T04:56:07.000+00:00
+          actor_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          entity_id: entity_id
+          message: message
+          operation: operation
       properties:
         pagination:
           $ref: '#/components/schemas/Pagination'
         data:
           items:
             $ref: '#/components/schemas/Log'
+          maxItems: 10000
           nullable: true
           type: array
       type: object
@@ -3564,16 +3236,24 @@ components:
         application_types:
         - application_types
         - application_types
+        - application_types
+        - application_types
+        - application_types
       properties:
         type:
+          maxLength: 100
           nullable: true
+          pattern: "^[a-z]+(?::[a-z]+){1,2}:[a-z]+$"
           type: string
         description:
+          maxLength: 250
           nullable: true
+          pattern: ^.*$
           type: string
         application_types:
           items:
             type: string
+          maxItems: 10
           nullable: true
           type: array
       type: object
@@ -3585,13 +3265,19 @@ components:
         classification: classification
       properties:
         classification:
+          maxLength: 25
           nullable: true
+          pattern: "^[A-z]*$"
           type: string
         impact_level:
+          maxLength: 10
           nullable: true
+          pattern: ^(?:low|moderate|high)$
           type: string
         restriction_policy:
+          maxLength: 10
           nullable: true
+          pattern: ^(?:mask|redact)$
           type: string
       type: object
     ProblemDetails:
@@ -3632,44 +3318,62 @@ components:
       properties:
         id:
           format: uuid
+          maxLength: 36
+          pattern: "^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$"
           type: string
         key:
+          maxLength: 100
           nullable: true
+          pattern: "^[A-z0-9]+$"
           readOnly: true
           type: string
         tenant_id:
           format: uuid
+          maxLength: 36
+          pattern: "^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$"
           type: string
         name:
+          maxLength: 200
           nullable: true
+          pattern: ^.+$
           type: string
         destination_url:
           nullable: true
           type: string
         request_reactor_id:
           format: uuid
+          maxLength: 36
           nullable: true
+          pattern: "^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$"
           type: string
         response_reactor_id:
           format: uuid
+          maxLength: 36
           nullable: true
+          pattern: "^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$"
           type: string
         require_auth:
           type: boolean
         created_by:
           format: uuid
+          maxLength: 36
           nullable: true
+          pattern: "^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$"
           type: string
         created_at:
           format: date-time
+          maxLength: 40
           nullable: true
           type: string
         modified_by:
           format: uuid
+          maxLength: 36
           nullable: true
+          pattern: "^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$"
           type: string
         modified_at:
           format: date-time
+          maxLength: 40
           nullable: true
           type: string
       type: object
@@ -3706,12 +3410,49 @@ components:
           modified_at: 2000-01-23T04:56:07.000+00:00
           created_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           key: key
+        - tenant_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          response_reactor_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          name: name
+          destination_url: destination_url
+          modified_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          require_auth: true
+          created_at: 2000-01-23T04:56:07.000+00:00
+          request_reactor_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          modified_at: 2000-01-23T04:56:07.000+00:00
+          created_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          key: key
+        - tenant_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          response_reactor_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          name: name
+          destination_url: destination_url
+          modified_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          require_auth: true
+          created_at: 2000-01-23T04:56:07.000+00:00
+          request_reactor_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          modified_at: 2000-01-23T04:56:07.000+00:00
+          created_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          key: key
+        - tenant_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          response_reactor_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          name: name
+          destination_url: destination_url
+          modified_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          require_auth: true
+          created_at: 2000-01-23T04:56:07.000+00:00
+          request_reactor_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          modified_at: 2000-01-23T04:56:07.000+00:00
+          created_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          key: key
       properties:
         pagination:
           $ref: '#/components/schemas/Pagination'
         data:
           items:
             $ref: '#/components/schemas/Proxy'
+          maxItems: 100
           nullable: true
           type: array
       type: object
@@ -3741,6 +3482,9 @@ components:
         application:
           tenant_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           permissions:
+          - permissions
+          - permissions
+          - permissions
           - permissions
           - permissions
           name: name
@@ -3790,12 +3534,18 @@ components:
       properties:
         id:
           format: uuid
+          maxLength: 36
+          pattern: "^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$"
           type: string
         tenant_id:
           format: uuid
+          maxLength: 36
+          pattern: "^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$"
           type: string
         name:
+          maxLength: 200
           nullable: true
+          pattern: ^.+$
           type: string
         formula:
           $ref: '#/components/schemas/ReactorFormula'
@@ -3803,18 +3553,24 @@ components:
           $ref: '#/components/schemas/Application'
         created_by:
           format: uuid
+          maxLength: 36
           nullable: true
+          pattern: "^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$"
           type: string
         created_at:
           format: date-time
+          maxLength: 40
           nullable: true
           type: string
         modified_by:
           format: uuid
+          maxLength: 36
           nullable: true
+          pattern: "^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$"
           type: string
         modified_at:
           format: date-time
+          maxLength: 40
           nullable: true
           type: string
         configuration:
@@ -3857,6 +3613,8 @@ components:
       properties:
         id:
           format: uuid
+          maxLength: 36
+          pattern: "^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$"
           type: string
         type:
           nullable: true
@@ -3878,18 +3636,24 @@ components:
           type: string
         created_by:
           format: uuid
+          maxLength: 36
           nullable: true
+          pattern: "^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$"
           type: string
         created_at:
           format: date-time
+          maxLength: 40
           nullable: true
           type: string
         modified_by:
           format: uuid
+          maxLength: 36
           nullable: true
+          pattern: "^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$"
           type: string
         modified_at:
           format: date-time
+          maxLength: 40
           nullable: true
           type: string
         configuration:
@@ -3916,10 +3680,13 @@ components:
           pattern: "^[\\w-]+$"
           type: string
         description:
+          maxLength: 400
           nullable: true
+          pattern: ^.*$
           type: string
         type:
           minLength: 1
+          pattern: ^(?:string|boolean|number)$
           type: string
       required:
       - name
@@ -3988,12 +3755,94 @@ components:
           id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           modified_at: 2000-01-23T04:56:07.000+00:00
           status: status
+        - code: code
+          configuration:
+          - name: name
+            description: description
+            type: type
+          - name: name
+            description: description
+            type: type
+          icon: icon
+          description: description
+          created_at: 2000-01-23T04:56:07.000+00:00
+          type: type
+          created_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          request_parameters:
+          - name: name
+            description: description
+            optional: true
+            type: type
+          - name: name
+            description: description
+            optional: true
+            type: type
+          name: name
+          modified_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          modified_at: 2000-01-23T04:56:07.000+00:00
+          status: status
+        - code: code
+          configuration:
+          - name: name
+            description: description
+            type: type
+          - name: name
+            description: description
+            type: type
+          icon: icon
+          description: description
+          created_at: 2000-01-23T04:56:07.000+00:00
+          type: type
+          created_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          request_parameters:
+          - name: name
+            description: description
+            optional: true
+            type: type
+          - name: name
+            description: description
+            optional: true
+            type: type
+          name: name
+          modified_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          modified_at: 2000-01-23T04:56:07.000+00:00
+          status: status
+        - code: code
+          configuration:
+          - name: name
+            description: description
+            type: type
+          - name: name
+            description: description
+            type: type
+          icon: icon
+          description: description
+          created_at: 2000-01-23T04:56:07.000+00:00
+          type: type
+          created_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          request_parameters:
+          - name: name
+            description: description
+            optional: true
+            type: type
+          - name: name
+            description: description
+            optional: true
+            type: type
+          name: name
+          modified_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          modified_at: 2000-01-23T04:56:07.000+00:00
+          status: status
       properties:
         pagination:
           $ref: '#/components/schemas/Pagination'
         data:
           items:
             $ref: '#/components/schemas/ReactorFormula'
+          maxItems: 100
           nullable: true
           type: array
       type: object
@@ -4008,6 +3857,7 @@ components:
         name:
           maxLength: 200
           minLength: 1
+          pattern: "^[A-z0-9][A-z0-9.\\-_]*[A-z0-9]$"
           type: string
         description:
           nullable: true
@@ -4034,6 +3884,9 @@ components:
           application:
             tenant_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
             permissions:
+            - permissions
+            - permissions
+            - permissions
             - permissions
             - permissions
             name: name
@@ -4084,6 +3937,168 @@ components:
           application:
             tenant_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
             permissions:
+            - permissions
+            - permissions
+            - permissions
+            - permissions
+            - permissions
+            name: name
+            modified_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+            created_at: 2000-01-23T04:56:07.000+00:00
+            id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+            type: type
+            modified_at: 2000-01-23T04:56:07.000+00:00
+            created_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+            key: key
+          configuration:
+            key: configuration
+          name: name
+          modified_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          formula:
+            code: code
+            configuration:
+            - name: name
+              description: description
+              type: type
+            - name: name
+              description: description
+              type: type
+            icon: icon
+            description: description
+            created_at: 2000-01-23T04:56:07.000+00:00
+            type: type
+            created_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+            request_parameters:
+            - name: name
+              description: description
+              optional: true
+              type: type
+            - name: name
+              description: description
+              optional: true
+              type: type
+            name: name
+            modified_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+            id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+            modified_at: 2000-01-23T04:56:07.000+00:00
+            status: status
+          created_at: 2000-01-23T04:56:07.000+00:00
+          id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          modified_at: 2000-01-23T04:56:07.000+00:00
+          created_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        - tenant_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          application:
+            tenant_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+            permissions:
+            - permissions
+            - permissions
+            - permissions
+            - permissions
+            - permissions
+            name: name
+            modified_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+            created_at: 2000-01-23T04:56:07.000+00:00
+            id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+            type: type
+            modified_at: 2000-01-23T04:56:07.000+00:00
+            created_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+            key: key
+          configuration:
+            key: configuration
+          name: name
+          modified_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          formula:
+            code: code
+            configuration:
+            - name: name
+              description: description
+              type: type
+            - name: name
+              description: description
+              type: type
+            icon: icon
+            description: description
+            created_at: 2000-01-23T04:56:07.000+00:00
+            type: type
+            created_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+            request_parameters:
+            - name: name
+              description: description
+              optional: true
+              type: type
+            - name: name
+              description: description
+              optional: true
+              type: type
+            name: name
+            modified_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+            id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+            modified_at: 2000-01-23T04:56:07.000+00:00
+            status: status
+          created_at: 2000-01-23T04:56:07.000+00:00
+          id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          modified_at: 2000-01-23T04:56:07.000+00:00
+          created_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        - tenant_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          application:
+            tenant_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+            permissions:
+            - permissions
+            - permissions
+            - permissions
+            - permissions
+            - permissions
+            name: name
+            modified_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+            created_at: 2000-01-23T04:56:07.000+00:00
+            id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+            type: type
+            modified_at: 2000-01-23T04:56:07.000+00:00
+            created_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+            key: key
+          configuration:
+            key: configuration
+          name: name
+          modified_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          formula:
+            code: code
+            configuration:
+            - name: name
+              description: description
+              type: type
+            - name: name
+              description: description
+              type: type
+            icon: icon
+            description: description
+            created_at: 2000-01-23T04:56:07.000+00:00
+            type: type
+            created_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+            request_parameters:
+            - name: name
+              description: description
+              optional: true
+              type: type
+            - name: name
+              description: description
+              optional: true
+              type: type
+            name: name
+            modified_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+            id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+            modified_at: 2000-01-23T04:56:07.000+00:00
+            status: status
+          created_at: 2000-01-23T04:56:07.000+00:00
+          id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          modified_at: 2000-01-23T04:56:07.000+00:00
+          created_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        - tenant_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          application:
+            tenant_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+            permissions:
+            - permissions
+            - permissions
+            - permissions
             - permissions
             - permissions
             name: name
@@ -4136,26 +4151,33 @@ components:
         data:
           items:
             $ref: '#/components/schemas/Reactor'
+          maxItems: 100
           nullable: true
           type: array
       type: object
     SearchTokensRequest:
       additionalProperties: false
       example:
-        size: 6
+        size: 60
         query: query
-        page: 0
+        page: 171976544
       properties:
         query:
           maxLength: 200
           nullable: true
+          pattern: ^.*$
           type: string
         page:
+          exclusiveMinimum: true
           format: int32
+          maximum: 2147483647
+          minimum: 0
           nullable: true
           type: integer
         size:
           format: int32
+          maximum: 100
+          minimum: 0
           nullable: true
           type: integer
       type: object
@@ -4187,27 +4209,39 @@ components:
       properties:
         id:
           format: uuid
+          maxLength: 36
+          pattern: "^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$"
           type: string
         owner_id:
           format: uuid
+          maxLength: 36
+          pattern: "^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$"
           type: string
         name:
+          maxLength: 200
           nullable: true
+          pattern: ^.+$
           type: string
         created_by:
           format: uuid
+          maxLength: 36
           nullable: true
+          pattern: "^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$"
           type: string
         created_at:
           format: date-time
+          maxLength: 40
           nullable: true
           type: string
         modified_by:
           format: uuid
+          maxLength: 36
           nullable: true
+          pattern: "^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$"
           type: string
         modified_at:
           format: date-time
+          maxLength: 40
           nullable: true
           type: string
         settings:
@@ -4232,32 +4266,45 @@ components:
       properties:
         id:
           format: uuid
+          maxLength: 36
+          pattern: "^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$"
           type: string
         tenant_id:
           format: uuid
+          maxLength: 36
+          pattern: "^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$"
           type: string
         email:
+          format: email
+          maxLength: 200
           nullable: true
           type: string
         status:
           $ref: '#/components/schemas/TenantInvitationStatus'
         expires_at:
           format: date-time
+          maxLength: 40
           type: string
         created_by:
           format: uuid
+          maxLength: 36
           nullable: true
+          pattern: "^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$"
           type: string
         created_at:
           format: date-time
+          maxLength: 40
           nullable: true
           type: string
         modified_by:
           format: uuid
+          maxLength: 36
           nullable: true
+          pattern: "^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$"
           type: string
         modified_at:
           format: date-time
+          maxLength: 40
           nullable: true
           type: string
       type: object
@@ -4288,12 +4335,40 @@ components:
           created_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           email: email
           status: null
+        - tenant_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          expires_at: 2000-01-23T04:56:07.000+00:00
+          modified_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          created_at: 2000-01-23T04:56:07.000+00:00
+          id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          modified_at: 2000-01-23T04:56:07.000+00:00
+          created_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          email: email
+          status: null
+        - tenant_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          expires_at: 2000-01-23T04:56:07.000+00:00
+          modified_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          created_at: 2000-01-23T04:56:07.000+00:00
+          id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          modified_at: 2000-01-23T04:56:07.000+00:00
+          created_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          email: email
+          status: null
+        - tenant_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          expires_at: 2000-01-23T04:56:07.000+00:00
+          modified_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          created_at: 2000-01-23T04:56:07.000+00:00
+          id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          modified_at: 2000-01-23T04:56:07.000+00:00
+          created_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          email: email
+          status: null
       properties:
         pagination:
           $ref: '#/components/schemas/Pagination'
         data:
           items:
             $ref: '#/components/schemas/TenantInvitationResponse'
+          maxItems: 100
           nullable: true
           type: array
       type: object
@@ -4321,29 +4396,41 @@ components:
       properties:
         id:
           format: uuid
+          maxLength: 36
+          pattern: "^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$"
           type: string
         tenant_id:
           format: uuid
+          maxLength: 36
+          pattern: "^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$"
           type: string
         user:
           $ref: '#/components/schemas/User'
         role:
+          maxLength: 25
           nullable: true
+          pattern: ^A-z+$
           type: string
         created_by:
           format: uuid
+          maxLength: 36
           nullable: true
+          pattern: "^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$"
           type: string
         created_date:
           format: date-time
+          maxLength: 40
           nullable: true
           type: string
         modified_by:
           format: uuid
+          maxLength: 36
           nullable: true
+          pattern: "^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$"
           type: string
         modified_at:
           format: date-time
+          maxLength: 40
           nullable: true
           type: string
       type: object
@@ -4382,12 +4469,52 @@ components:
             email: email
             picture: picture
           created_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        - tenant_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          role: role
+          modified_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          created_date: 2000-01-23T04:56:07.000+00:00
+          modified_at: 2000-01-23T04:56:07.000+00:00
+          user:
+            last_name: last_name
+            id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+            first_name: first_name
+            email: email
+            picture: picture
+          created_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        - tenant_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          role: role
+          modified_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          created_date: 2000-01-23T04:56:07.000+00:00
+          modified_at: 2000-01-23T04:56:07.000+00:00
+          user:
+            last_name: last_name
+            id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+            first_name: first_name
+            email: email
+            picture: picture
+          created_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        - tenant_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          role: role
+          modified_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          created_date: 2000-01-23T04:56:07.000+00:00
+          modified_at: 2000-01-23T04:56:07.000+00:00
+          user:
+            last_name: last_name
+            id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+            first_name: first_name
+            email: email
+            picture: picture
+          created_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
       properties:
         pagination:
           $ref: '#/components/schemas/Pagination'
         data:
           items:
             $ref: '#/components/schemas/TenantMemberResponse'
+          maxItems: 50
           nullable: true
           type: array
       type: object
@@ -4398,8 +4525,8 @@ components:
           metrics_by_type:
             key:
               last_created_at: 2000-01-23T04:56:07.000+00:00
-              count: 1
-          monthly_active_tokens: 6
+              count: 0
+          monthly_active_tokens: 0
           included_monthly_active_tokens: 0
       properties:
         token_report:
@@ -4420,6 +4547,7 @@ components:
           classification: classification
         type: type
         created_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        expires_at: 2000-01-23T04:56:07.000+00:00
         encryption:
           kek:
             prov: prov
@@ -4431,21 +4559,28 @@ components:
             key: key
         modified_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
         fingerprint: fingerprint
-        id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        id: id
         search_indexes:
+        - search_indexes
+        - search_indexes
+        - search_indexes
         - search_indexes
         - search_indexes
         modified_at: 2000-01-23T04:56:07.000+00:00
         mask: ""
       properties:
         id:
-          format: uuid
+          maxLength: 400
+          pattern: ^.+$
           type: string
         type:
-          nullable: true
+          maxLength: 50
+          pattern: "^[A-z_]*$"
           type: string
         tenant_id:
           format: uuid
+          maxLength: 36
+          pattern: "^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$"
           type: string
         data:
           nullable: true
@@ -4459,25 +4594,35 @@ components:
           $ref: '#/components/schemas/EncryptionMetadata'
         created_by:
           format: uuid
+          maxLength: 36
           nullable: true
+          pattern: "^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$"
           type: string
         created_at:
           format: date-time
+          maxLength: 40
           nullable: true
           type: string
         modified_by:
           format: uuid
+          maxLength: 36
           nullable: true
+          pattern: "^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$"
           type: string
         modified_at:
           format: date-time
+          maxLength: 40
           nullable: true
           type: string
         fingerprint:
+          maxLength: 100
           nullable: true
+          pattern: "^[A-z0-9]*$"
           type: string
         fingerprint_expression:
+          maxLength: 400
           nullable: true
+          pattern: ^.*$
           type: string
         mask:
           nullable: true
@@ -4486,20 +4631,28 @@ components:
         search_indexes:
           items:
             type: string
+          maxItems: 10
           nullable: true
           type: array
+        expires_at:
+          format: date-time
+          maxLength: 40
+          nullable: true
+          type: string
       type: object
     TokenMetrics:
       additionalProperties: false
       example:
         last_created_at: 2000-01-23T04:56:07.000+00:00
-        count: 1
+        count: 0
       properties:
         count:
           format: int64
+          minimum: 0
           type: integer
         last_created_at:
           format: date-time
+          maxLength: 40
           nullable: true
           type: string
       type: object
@@ -4524,6 +4677,7 @@ components:
             classification: classification
           type: type
           created_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          expires_at: 2000-01-23T04:56:07.000+00:00
           encryption:
             kek:
               prov: prov
@@ -4535,8 +4689,11 @@ components:
               key: key
           modified_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           fingerprint: fingerprint
-          id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          id: id
           search_indexes:
+          - search_indexes
+          - search_indexes
+          - search_indexes
           - search_indexes
           - search_indexes
           modified_at: 2000-01-23T04:56:07.000+00:00
@@ -4553,6 +4710,7 @@ components:
             classification: classification
           type: type
           created_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          expires_at: 2000-01-23T04:56:07.000+00:00
           encryption:
             kek:
               prov: prov
@@ -4564,8 +4722,110 @@ components:
               key: key
           modified_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           fingerprint: fingerprint
-          id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          id: id
           search_indexes:
+          - search_indexes
+          - search_indexes
+          - search_indexes
+          - search_indexes
+          - search_indexes
+          modified_at: 2000-01-23T04:56:07.000+00:00
+          mask: ""
+        - tenant_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          fingerprint_expression: fingerprint_expression
+          metadata:
+            key: metadata
+          data: ""
+          created_at: 2000-01-23T04:56:07.000+00:00
+          privacy:
+            restriction_policy: restriction_policy
+            impact_level: impact_level
+            classification: classification
+          type: type
+          created_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          expires_at: 2000-01-23T04:56:07.000+00:00
+          encryption:
+            kek:
+              prov: prov
+              alg: alg
+              key: key
+            cek:
+              prov: prov
+              alg: alg
+              key: key
+          modified_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          fingerprint: fingerprint
+          id: id
+          search_indexes:
+          - search_indexes
+          - search_indexes
+          - search_indexes
+          - search_indexes
+          - search_indexes
+          modified_at: 2000-01-23T04:56:07.000+00:00
+          mask: ""
+        - tenant_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          fingerprint_expression: fingerprint_expression
+          metadata:
+            key: metadata
+          data: ""
+          created_at: 2000-01-23T04:56:07.000+00:00
+          privacy:
+            restriction_policy: restriction_policy
+            impact_level: impact_level
+            classification: classification
+          type: type
+          created_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          expires_at: 2000-01-23T04:56:07.000+00:00
+          encryption:
+            kek:
+              prov: prov
+              alg: alg
+              key: key
+            cek:
+              prov: prov
+              alg: alg
+              key: key
+          modified_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          fingerprint: fingerprint
+          id: id
+          search_indexes:
+          - search_indexes
+          - search_indexes
+          - search_indexes
+          - search_indexes
+          - search_indexes
+          modified_at: 2000-01-23T04:56:07.000+00:00
+          mask: ""
+        - tenant_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          fingerprint_expression: fingerprint_expression
+          metadata:
+            key: metadata
+          data: ""
+          created_at: 2000-01-23T04:56:07.000+00:00
+          privacy:
+            restriction_policy: restriction_policy
+            impact_level: impact_level
+            classification: classification
+          type: type
+          created_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          expires_at: 2000-01-23T04:56:07.000+00:00
+          encryption:
+            kek:
+              prov: prov
+              alg: alg
+              key: key
+            cek:
+              prov: prov
+              alg: alg
+              key: key
+          modified_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          fingerprint: fingerprint
+          id: id
+          search_indexes:
+          - search_indexes
+          - search_indexes
+          - search_indexes
           - search_indexes
           - search_indexes
           modified_at: 2000-01-23T04:56:07.000+00:00
@@ -4576,6 +4836,7 @@ components:
         data:
           items:
             $ref: '#/components/schemas/Token'
+          maxItems: 100
           nullable: true
           type: array
       type: object
@@ -4585,15 +4846,17 @@ components:
         metrics_by_type:
           key:
             last_created_at: 2000-01-23T04:56:07.000+00:00
-            count: 1
-        monthly_active_tokens: 6
+            count: 0
+        monthly_active_tokens: 0
         included_monthly_active_tokens: 0
       properties:
         included_monthly_active_tokens:
           format: int64
+          minimum: 0
           type: integer
         monthly_active_tokens:
           format: int64
+          minimum: 0
           type: integer
         metrics_by_type:
           additionalProperties:
@@ -4607,45 +4870,24 @@ components:
         permissions:
         - permissions
         - permissions
+        - permissions
+        - permissions
+        - permissions
         name: name
       properties:
         name:
           maxLength: 200
           minLength: 1
+          pattern: ^.+$
           type: string
         permissions:
           items:
             type: string
+          maxItems: 50
           nullable: true
           type: array
       required:
       - name
-      type: object
-    UpdateAtomicBankRequest:
-      additionalProperties: false
-      example:
-        bank:
-          account_number: account_number
-          routing_number: routing_number
-      properties:
-        bank:
-          $ref: '#/components/schemas/Bank'
-      required:
-      - bank
-      type: object
-    UpdateAtomicCardRequest:
-      additionalProperties: false
-      example:
-        card:
-          number: number
-          expiration_year: 6424
-          cvc: cvc
-          expiration_month: 1
-      properties:
-        card:
-          $ref: '#/components/schemas/Card'
-      required:
-      - card
       type: object
     UpdatePrivacy:
       additionalProperties: false
@@ -4669,18 +4911,24 @@ components:
         name:
           maxLength: 200
           minLength: 1
+          pattern: ^.+$
           type: string
         destination_url:
           maxLength: 400
           minLength: 1
+          pattern: ^https://.+$
           type: string
         request_reactor_id:
           format: uuid
+          maxLength: 36
           nullable: true
+          pattern: "^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$"
           type: string
         response_reactor_id:
           format: uuid
+          maxLength: 36
           nullable: true
+          pattern: "^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$"
           type: string
         require_auth:
           nullable: true
@@ -4722,13 +4970,16 @@ components:
           minLength: 1
           type: string
         description:
+          maxLength: 1000
           nullable: true
+          pattern: ^.*$
           type: string
         icon:
           nullable: true
           type: string
         code:
           nullable: true
+          pattern: ^.*$
           type: string
         configuration:
           items:
@@ -4750,6 +5001,9 @@ components:
         application:
           tenant_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           permissions:
+          - permissions
+          - permissions
+          - permissions
           - permissions
           - permissions
           name: name
@@ -4839,15 +5093,23 @@ components:
       properties:
         id:
           format: uuid
+          maxLength: 36
+          pattern: "^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$"
           type: string
         email:
+          format: email
+          maxLength: 200
           nullable: true
           type: string
         first_name:
+          maxLength: 200
           nullable: true
+          pattern: ^.*$
           type: string
         last_name:
+          maxLength: 200
           nullable: true
+          pattern: ^.*$
           type: string
         picture:
           nullable: true

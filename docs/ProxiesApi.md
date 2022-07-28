@@ -31,7 +31,7 @@ import (
 )
 
 func main() {
-    createProxyRequest := *openapiclient.NewCreateProxyRequest("Name_example", "DestinationUrl_example") // CreateProxyRequest |  (optional)
+    createProxyRequest := *openapiclient.NewCreateProxyRequest("Name_example", "DestinationUrl_example") // CreateProxyRequest | 
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
@@ -300,7 +300,7 @@ import (
 
 func main() {
     id := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | 
-    updateProxyRequest := *openapiclient.NewUpdateProxyRequest("Name_example", "DestinationUrl_example") // UpdateProxyRequest |  (optional)
+    updateProxyRequest := *openapiclient.NewUpdateProxyRequest("Name_example", "DestinationUrl_example") // UpdateProxyRequest | 
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
