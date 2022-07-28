@@ -1,3 +1,29 @@
+# [3.4.0](https://github.com/Basis-Theory/basistheory-go/compare/v3.3.1...v3.4.0) (2022-07-21)
+
+
+### Features
+
+* removing atomics ([#44](https://github.com/Basis-Theory/basistheory-go/issues/44)) ([8dd7e11](https://github.com/Basis-Theory/basistheory-go/commit/8dd7e11bc64c2e84f1f1f0ca8362fc64515798eb))
+
+## [3.3.1](https://github.com/Basis-Theory/basistheory-go/compare/v3.3.0...v3.3.1) (2022-06-30)
+
+
+### Code Refactoring
+
+* remove atomic react methods, fix required params ([#43](https://github.com/Basis-Theory/basistheory-go/issues/43)) ([a4eef9c](https://github.com/Basis-Theory/basistheory-go/commit/a4eef9c95cd11862b333f4d277a635f73367d0e5))
+
+
+### BREAKING CHANGES
+
+* remove react methods from atomic banks and cards clients
+
+# [3.3.0](https://github.com/Basis-Theory/basistheory-go/compare/v3.2.0...v3.3.0) (2022-06-30)
+
+
+### Features
+
+* add id to create token request and return id string on responses ([#42](https://github.com/Basis-Theory/basistheory-go/issues/42)) ([7d3d581](https://github.com/Basis-Theory/basistheory-go/commit/7d3d5818f7043b3dd5928d0a28cb515e51a2efcc))
+
 # [3.2.0](https://github.com/Basis-Theory/basistheory-go/compare/v3.1.0...v3.2.0) (2022-06-18)
 
 

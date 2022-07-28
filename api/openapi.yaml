@@ -2391,7 +2391,10 @@ components:
         data:
           items:
             $ref: '#/components/schemas/Application'
+<<<<<<< HEAD
           maxItems: 100
+=======
+>>>>>>> 0edf8d7d1782f7bbf04866ba00e1dbb4442ca663
           nullable: true
           type: array
       type: object
