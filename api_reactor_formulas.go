@@ -217,6 +217,9 @@ func (a *ReactorFormulasApiService) DeleteExecute(r ReactorFormulasApiDeleteRequ
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
+	if strlen(r.id) > 36 {
+		return nil, reportError("id must have less than 36 elements")
+	}
 
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -430,7 +433,7 @@ func (a *ReactorFormulasApiService) GetExecute(r ReactorFormulasApiGetRequest) (
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v ProblemDetails
+			var v ValidationProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -519,6 +522,9 @@ func (a *ReactorFormulasApiService) GetByIdExecute(r ReactorFormulasApiGetByIdRe
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
+	if strlen(r.id) > 36 {
+		return localVarReturnValue, nil, reportError("id must have less than 36 elements")
+	}
 
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -669,6 +675,9 @@ func (a *ReactorFormulasApiService) UpdateExecute(r ReactorFormulasApiUpdateRequ
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
+	if strlen(r.id) > 36 {
+		return localVarReturnValue, nil, reportError("id must have less than 36 elements")
+	}
 	if r.updateReactorFormulaRequest == nil {
 		return localVarReturnValue, nil, reportError("updateReactorFormulaRequest is required and must be specified")
 	}

@@ -32,6 +32,7 @@ type Token struct {
 	Mask                  interface{}         `json:"mask,omitempty"`
 	Privacy               *Privacy            `json:"privacy,omitempty"`
 	SearchIndexes         []string            `json:"search_indexes,omitempty"`
+	ExpiresAt             NullableTime        `json:"expires_at,omitempty"`
 }
 
 // NewToken instantiates a new Token object
@@ -601,6 +602,49 @@ func (o *Token) SetSearchIndexes(v []string) {
 	o.SearchIndexes = v
 }
 
+// GetExpiresAt returns the ExpiresAt field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *Token) GetExpiresAt() time.Time {
+	if o == nil || o.ExpiresAt.Get() == nil {
+		var ret time.Time
+		return ret
+	}
+	return *o.ExpiresAt.Get()
+}
+
+// GetExpiresAtOk returns a tuple with the ExpiresAt field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *Token) GetExpiresAtOk() (*time.Time, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.ExpiresAt.Get(), o.ExpiresAt.IsSet()
+}
+
+// HasExpiresAt returns a boolean if a field has been set.
+func (o *Token) HasExpiresAt() bool {
+	if o != nil && o.ExpiresAt.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetExpiresAt gets a reference to the given NullableTime and assigns it to the ExpiresAt field.
+func (o *Token) SetExpiresAt(v time.Time) {
+	o.ExpiresAt.Set(&v)
+}
+
+// SetExpiresAtNil sets the value for ExpiresAt to be an explicit nil
+func (o *Token) SetExpiresAtNil() {
+	o.ExpiresAt.Set(nil)
+}
+
+// UnsetExpiresAt ensures that no value is present for ExpiresAt, not even an explicit nil
+func (o *Token) UnsetExpiresAt() {
+	o.ExpiresAt.Unset()
+}
+
 func (o Token) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.Id != nil {
@@ -647,6 +691,9 @@ func (o Token) MarshalJSON() ([]byte, error) {
 	}
 	if o.SearchIndexes != nil {
 		toSerialize["search_indexes"] = o.SearchIndexes
+	}
+	if o.ExpiresAt.IsSet() {
+		toSerialize["expires_at"] = o.ExpiresAt.Get()
 	}
 	return json.Marshal(toSerialize)
 }

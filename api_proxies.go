@@ -218,6 +218,9 @@ func (a *ProxiesApiService) DeleteExecute(r ProxiesApiDeleteRequest) (*http.Resp
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
+	if strlen(r.id) > 36 {
+		return nil, reportError("id must have less than 36 elements")
+	}
 
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -537,6 +540,9 @@ func (a *ProxiesApiService) GetByIdExecute(r ProxiesApiGetByIdRequest) (*Proxy, 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
+	if strlen(r.id) > 36 {
+		return localVarReturnValue, nil, reportError("id must have less than 36 elements")
+	}
 
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -687,6 +693,9 @@ func (a *ProxiesApiService) UpdateExecute(r ProxiesApiUpdateRequest) (*Proxy, *h
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
+	if strlen(r.id) > 36 {
+		return localVarReturnValue, nil, reportError("id must have less than 36 elements")
+	}
 	if r.updateProxyRequest == nil {
 		return localVarReturnValue, nil, reportError("updateProxyRequest is required and must be specified")
 	}

@@ -347,6 +347,9 @@ func (a *TenantsApiService) DeleteInvitationExecute(r TenantsApiDeleteInvitation
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
+	if strlen(r.invitationId) > 36 {
+		return nil, reportError("invitationId must have less than 36 elements")
+	}
 
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -480,6 +483,9 @@ func (a *TenantsApiService) DeleteMemberExecute(r TenantsApiDeleteMemberRequest)
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
+	if strlen(r.memberId) > 36 {
+		return nil, reportError("memberId must have less than 36 elements")
+	}
 
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -1357,6 +1363,9 @@ func (a *TenantsApiService) ResendInvitationExecute(r TenantsApiResendInvitation
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
+	if strlen(r.invitationId) > 36 {
+		return localVarReturnValue, nil, reportError("invitationId must have less than 36 elements")
+	}
 
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
