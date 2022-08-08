@@ -19,7 +19,7 @@ func TestReactorCRUD(t *testing.T) {
 
 	testutils.AssertMethodDidNotError(err, response, "ReactorFormulasApi Create", t)
 
-	createApplicationRequest := *basistheory.NewCreateApplicationRequest("Go Test App", "server_to_server")
+	createApplicationRequest := *basistheory.NewCreateApplicationRequest("Go Test App", "private")
 
 	createdApplication, response, err := apiClient.ApplicationsApi.Create(contextWithAPIKey).CreateApplicationRequest(createApplicationRequest).Execute()
 
