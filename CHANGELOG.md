@@ -1,3 +1,17 @@
+# [3.5.0](https://github.com/Basis-Theory/basistheory-go/compare/v3.4.0...v3.5.0) (2022-08-01)
+
+
+### Features
+
+* add token expires_at, validations, updated models  ([#45](https://github.com/Basis-Theory/basistheory-go/issues/45)) ([28b2b79](https://github.com/Basis-Theory/basistheory-go/commit/28b2b79a5a1774c500619409630fe8a7f11c78d8))
+
+# [3.4.0](https://github.com/Basis-Theory/basistheory-go/compare/v3.3.1...v3.4.0) (2022-07-21)
+
+
+### Features
+
+* removing atomics ([#44](https://github.com/Basis-Theory/basistheory-go/issues/44)) ([8dd7e11](https://github.com/Basis-Theory/basistheory-go/commit/8dd7e11bc64c2e84f1f1f0ca8362fc64515798eb))
+
 ## [3.3.1](https://github.com/Basis-Theory/basistheory-go/compare/v3.3.0...v3.3.1) (2022-06-30)
 
 

@@ -37,7 +37,7 @@ func TestProxiesCRUD(t *testing.T) {
 
 	// CREATE
 	proxyName := "Go Test  Proxy"
-	proxyDestinationUrl := "http://httpbin.org/post"
+	proxyDestinationUrl := "https://httpbin.org/post"
 
 	createProxyRequest := *basistheory.NewCreateProxyRequest(proxyName, proxyDestinationUrl)
 	createProxyRequest.SetRequestReactorId(createdReactor.GetId())

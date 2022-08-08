@@ -31,6 +31,7 @@ type CreateTokenResponse struct {
 	CreatedAt             NullableTime      `json:"created_at,omitempty"`
 	ModifiedBy            NullableString    `json:"modified_by,omitempty"`
 	ModifiedAt            NullableTime      `json:"modified_at,omitempty"`
+	ExpiresAt             NullableTime      `json:"expires_at,omitempty"`
 }
 
 // NewCreateTokenResponse instantiates a new CreateTokenResponse object
@@ -590,6 +591,49 @@ func (o *CreateTokenResponse) UnsetModifiedAt() {
 	o.ModifiedAt.Unset()
 }
 
+// GetExpiresAt returns the ExpiresAt field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *CreateTokenResponse) GetExpiresAt() time.Time {
+	if o == nil || o.ExpiresAt.Get() == nil {
+		var ret time.Time
+		return ret
+	}
+	return *o.ExpiresAt.Get()
+}
+
+// GetExpiresAtOk returns a tuple with the ExpiresAt field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *CreateTokenResponse) GetExpiresAtOk() (*time.Time, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.ExpiresAt.Get(), o.ExpiresAt.IsSet()
+}
+
+// HasExpiresAt returns a boolean if a field has been set.
+func (o *CreateTokenResponse) HasExpiresAt() bool {
+	if o != nil && o.ExpiresAt.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetExpiresAt gets a reference to the given NullableTime and assigns it to the ExpiresAt field.
+func (o *CreateTokenResponse) SetExpiresAt(v time.Time) {
+	o.ExpiresAt.Set(&v)
+}
+
+// SetExpiresAtNil sets the value for ExpiresAt to be an explicit nil
+func (o *CreateTokenResponse) SetExpiresAtNil() {
+	o.ExpiresAt.Set(nil)
+}
+
+// UnsetExpiresAt ensures that no value is present for ExpiresAt, not even an explicit nil
+func (o *CreateTokenResponse) UnsetExpiresAt() {
+	o.ExpiresAt.Unset()
+}
+
 func (o CreateTokenResponse) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.Id.IsSet() {
@@ -633,6 +677,9 @@ func (o CreateTokenResponse) MarshalJSON() ([]byte, error) {
 	}
 	if o.ModifiedAt.IsSet() {
 		toSerialize["modified_at"] = o.ModifiedAt.Get()
+	}
+	if o.ExpiresAt.IsSet() {
+		toSerialize["expires_at"] = o.ExpiresAt.Get()
 	}
 	return json.Marshal(toSerialize)
 }
