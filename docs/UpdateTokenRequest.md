@@ -12,6 +12,7 @@ Name | Type | Description | Notes
 **FingerprintExpression** | Pointer to **NullableString** |  | [optional] 
 **Mask** | Pointer to **interface{}** |  | [optional] 
 **DeduplicateToken** | Pointer to **NullableBool** |  | [optional] 
+**Container** | Pointer to **NullableString** |  | [optional] 
 
 ## Methods
 
@@ -292,6 +293,41 @@ HasDeduplicateToken returns a boolean if a field has been set.
 `func (o *UpdateTokenRequest) UnsetDeduplicateToken()`
 
 UnsetDeduplicateToken ensures that no value is present for DeduplicateToken, not even an explicit nil
+### GetContainer
+
+`func (o *UpdateTokenRequest) GetContainer() string`
+
+GetContainer returns the Container field if non-nil, zero value otherwise.
+
+### GetContainerOk
+
+`func (o *UpdateTokenRequest) GetContainerOk() (*string, bool)`
+
+GetContainerOk returns a tuple with the Container field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetContainer
+
+`func (o *UpdateTokenRequest) SetContainer(v string)`
+
+SetContainer sets Container field to given value.
+
+### HasContainer
+
+`func (o *UpdateTokenRequest) HasContainer() bool`
+
+HasContainer returns a boolean if a field has been set.
+
+### SetContainerNil
+
+`func (o *UpdateTokenRequest) SetContainerNil(b bool)`
+
+ SetContainerNil sets the value for Container to be an explicit nil
+
+### UnsetContainer
+`func (o *UpdateTokenRequest) UnsetContainer()`
+
+UnsetContainer ensures that no value is present for Container, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

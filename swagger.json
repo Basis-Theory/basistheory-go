@@ -2,7 +2,7 @@
   "openapi": "3.0.1",
   "info": {
     "title": "Basis Theory API",
-    "description": "## Getting Started\n* Sign-in to [Basis Theory](https://basistheory.com) and go to [Applications](https://portal.basistheory.com/applications)\n* Create a Basis Theory Server to Server Application\n* All permissions should be selected\n* Paste the API Key into the `BT-API-KEY` variable",
+    "description": "## Getting Started\n* Sign-in to [Basis Theory](https://basistheory.com) and go to [Applications](https://portal.basistheory.com/applications)\n* Create a Basis Theory Private Application\n* All permissions should be selected\n* Paste the API Key into the `BT-API-KEY` variable",
     "version": "v1"
   },
   "servers": [
@@ -280,6 +280,16 @@
           },
           "401": {
             "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
             "content": {
               "application/json": {
                 "schema": {
@@ -3628,6 +3638,12 @@
           "expires_at": {
             "type": "string",
             "nullable": true
+          },
+          "container": {
+            "maxLength": 400,
+            "pattern": "^(?!.*\/\/)(?!.+\/$)\/[A-z0-9_\\-\/]*$",
+            "type": "string",
+            "nullable": true
           }
         },
         "additionalProperties": false
@@ -3720,6 +3736,12 @@
             "maxLength": 40,
             "type": "string",
             "format": "date-time",
+            "nullable": true
+          },
+          "container": {
+            "maxLength": 400,
+            "pattern": "^(?!.*\/\/)(?!.+\/$)\/[A-z0-9_\\-\/]*$",
+            "type": "string",
             "nullable": true
           }
         },
@@ -4933,6 +4955,12 @@
             "type": "string",
             "format": "date-time",
             "nullable": true
+          },
+          "container": {
+            "maxLength": 400,
+            "pattern": "^(?!.*\/\/)(?!.+\/$)\/[A-z0-9_\\-\/]*$",
+            "type": "string",
+            "nullable": true
           }
         },
         "additionalProperties": false
@@ -5202,6 +5230,10 @@
           },
           "deduplicate_token": {
             "type": "boolean",
+            "nullable": true
+          },
+          "container": {
+            "type": "string",
             "nullable": true
           }
         },

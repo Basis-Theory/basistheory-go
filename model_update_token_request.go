@@ -1,7 +1,7 @@
 /*
 Basis Theory API
 
-## Getting Started * Sign-in to [Basis Theory](https://basistheory.com) and go to [Applications](https://portal.basistheory.com/applications) * Create a Basis Theory Server to Server Application * All permissions should be selected * Paste the API Key into the `BT-API-KEY` variable
+## Getting Started * Sign-in to [Basis Theory](https://basistheory.com) and go to [Applications](https://portal.basistheory.com/applications) * Create a Basis Theory Private Application * All permissions should be selected * Paste the API Key into the `BT-API-KEY` variable
 
 API version: v1
 */
@@ -24,6 +24,7 @@ type UpdateTokenRequest struct {
 	FingerprintExpression NullableString      `json:"fingerprint_expression,omitempty"`
 	Mask                  interface{}         `json:"mask,omitempty"`
 	DeduplicateToken      NullableBool        `json:"deduplicate_token,omitempty"`
+	Container             NullableString      `json:"container,omitempty"`
 }
 
 // NewUpdateTokenRequest instantiates a new UpdateTokenRequest object
@@ -325,6 +326,49 @@ func (o *UpdateTokenRequest) UnsetDeduplicateToken() {
 	o.DeduplicateToken.Unset()
 }
 
+// GetContainer returns the Container field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *UpdateTokenRequest) GetContainer() string {
+	if o == nil || o.Container.Get() == nil {
+		var ret string
+		return ret
+	}
+	return *o.Container.Get()
+}
+
+// GetContainerOk returns a tuple with the Container field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *UpdateTokenRequest) GetContainerOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.Container.Get(), o.Container.IsSet()
+}
+
+// HasContainer returns a boolean if a field has been set.
+func (o *UpdateTokenRequest) HasContainer() bool {
+	if o != nil && o.Container.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetContainer gets a reference to the given NullableString and assigns it to the Container field.
+func (o *UpdateTokenRequest) SetContainer(v string) {
+	o.Container.Set(&v)
+}
+
+// SetContainerNil sets the value for Container to be an explicit nil
+func (o *UpdateTokenRequest) SetContainerNil() {
+	o.Container.Set(nil)
+}
+
+// UnsetContainer ensures that no value is present for Container, not even an explicit nil
+func (o *UpdateTokenRequest) UnsetContainer() {
+	o.Container.Unset()
+}
+
 func (o UpdateTokenRequest) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.Data != nil {
@@ -350,6 +394,9 @@ func (o UpdateTokenRequest) MarshalJSON() ([]byte, error) {
 	}
 	if o.DeduplicateToken.IsSet() {
 		toSerialize["deduplicate_token"] = o.DeduplicateToken.Get()
+	}
+	if o.Container.IsSet() {
+		toSerialize["container"] = o.Container.Get()
 	}
 	return json.Marshal(toSerialize)
 }

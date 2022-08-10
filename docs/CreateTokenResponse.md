@@ -19,6 +19,7 @@ Name | Type | Description | Notes
 **ModifiedBy** | Pointer to **NullableString** |  | [optional] 
 **ModifiedAt** | Pointer to **NullableTime** |  | [optional] 
 **ExpiresAt** | Pointer to **NullableTime** |  | [optional] 
+**Container** | Pointer to **NullableString** |  | [optional] 
 
 ## Methods
 
@@ -544,6 +545,41 @@ HasExpiresAt returns a boolean if a field has been set.
 `func (o *CreateTokenResponse) UnsetExpiresAt()`
 
 UnsetExpiresAt ensures that no value is present for ExpiresAt, not even an explicit nil
+### GetContainer
+
+`func (o *CreateTokenResponse) GetContainer() string`
+
+GetContainer returns the Container field if non-nil, zero value otherwise.
+
+### GetContainerOk
+
+`func (o *CreateTokenResponse) GetContainerOk() (*string, bool)`
+
+GetContainerOk returns a tuple with the Container field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetContainer
+
+`func (o *CreateTokenResponse) SetContainer(v string)`
+
+SetContainer sets Container field to given value.
+
+### HasContainer
+
+`func (o *CreateTokenResponse) HasContainer() bool`
+
+HasContainer returns a boolean if a field has been set.
+
+### SetContainerNil
+
+`func (o *CreateTokenResponse) SetContainerNil(b bool)`
+
+ SetContainerNil sets the value for Container to be an explicit nil
+
+### UnsetContainer
+`func (o *CreateTokenResponse) UnsetContainer()`
+
+UnsetContainer ensures that no value is present for Container, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 
