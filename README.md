@@ -4,7 +4,7 @@
 
 ## Getting Started
 * Sign-in to [Basis Theory](https://basistheory.com) and go to [Applications](https://portal.basistheory.com/applications)
-* Create a Basis Theory Server to Server Application
+* Create a Basis Theory Private Application
 * All permissions should be selected
 * Paste the API Key into the `BT-API-KEY` variable
 
@@ -235,3 +235,6 @@ Each of these functions takes a value of the given basic type and returns a poin
 ## Author
 
 Basis-Theory
+
+
+

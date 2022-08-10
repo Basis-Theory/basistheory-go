@@ -8,7 +8,7 @@ import (
 )
 
 func getApplicationNameAndType() (string, string) {
-	return "Go Test App", "server_to_server"
+	return "Go Test App", "private"
 }
 
 func TestApplicationCRUD(t *testing.T) {

@@ -2,8 +2,8 @@ openapi: 3.0.1
 info:
   description: "## Getting Started\n* Sign-in to [Basis Theory](https://basistheory.com)\
     \ and go to [Applications](https://portal.basistheory.com/applications)\n* Create\
-    \ a Basis Theory Server to Server Application\n* All permissions should be selected\n\
-    * Paste the API Key into the `BT-API-KEY` variable"
+    \ a Basis Theory Private Application\n* All permissions should be selected\n*\
+    \ Paste the API Key into the `BT-API-KEY` variable"
   title: Basis Theory API
   version: v1
 servers:
@@ -2391,10 +2391,7 @@ components:
         data:
           items:
             $ref: '#/components/schemas/Application'
-<<<<<<< HEAD
           maxItems: 100
-=======
->>>>>>> 0edf8d7d1782f7bbf04866ba00e1dbb4442ca663
           nullable: true
           type: array
       type: object
@@ -2644,6 +2641,7 @@ components:
       additionalProperties: false
       example:
         fingerprint_expression: fingerprint_expression
+        container: container
         metadata:
           key: metadata
         expires_at: expires_at
@@ -2711,6 +2709,11 @@ components:
         expires_at:
           nullable: true
           type: string
+        container:
+          maxLength: 400
+          nullable: true
+          pattern: "^(?!.*//)(?!.+/$)/[A-z0-9_\\-/]*$"
+          type: string
       required:
       - data
       type: object
@@ -2719,6 +2722,7 @@ components:
       example:
         tenant_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
         fingerprint_expression: fingerprint_expression
+        container: container
         metadata:
           key: metadata
         data: ""
@@ -2811,6 +2815,11 @@ components:
           format: date-time
           maxLength: 40
           nullable: true
+          type: string
+        container:
+          maxLength: 400
+          nullable: true
+          pattern: "^(?!.*//)(?!.+/$)/[A-z0-9_\\-/]*$"
           type: string
       type: object
     EncryptionKey:
@@ -4540,6 +4549,7 @@ components:
       example:
         tenant_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
         fingerprint_expression: fingerprint_expression
+        container: container
         metadata:
           key: metadata
         data: ""
@@ -4642,6 +4652,11 @@ components:
           maxLength: 40
           nullable: true
           type: string
+        container:
+          maxLength: 400
+          nullable: true
+          pattern: "^(?!.*//)(?!.+/$)/[A-z0-9_\\-/]*$"
+          type: string
       type: object
     TokenMetrics:
       additionalProperties: false
@@ -4670,6 +4685,7 @@ components:
         data:
         - tenant_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           fingerprint_expression: fingerprint_expression
+          container: container
           metadata:
             key: metadata
           data: ""
@@ -4703,6 +4719,7 @@ components:
           mask: ""
         - tenant_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           fingerprint_expression: fingerprint_expression
+          container: container
           metadata:
             key: metadata
           data: ""
@@ -4736,6 +4753,7 @@ components:
           mask: ""
         - tenant_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           fingerprint_expression: fingerprint_expression
+          container: container
           metadata:
             key: metadata
           data: ""
@@ -4769,6 +4787,7 @@ components:
           mask: ""
         - tenant_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           fingerprint_expression: fingerprint_expression
+          container: container
           metadata:
             key: metadata
           data: ""
@@ -4802,6 +4821,7 @@ components:
           mask: ""
         - tenant_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           fingerprint_expression: fingerprint_expression
+          container: container
           metadata:
             key: metadata
           data: ""
@@ -5084,6 +5104,9 @@ components:
         deduplicate_token:
           nullable: true
           type: boolean
+        container:
+          nullable: true
+          type: string
       type: object
     User:
       additionalProperties: false

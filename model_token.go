@@ -1,7 +1,7 @@
 /*
 Basis Theory API
 
-## Getting Started * Sign-in to [Basis Theory](https://basistheory.com) and go to [Applications](https://portal.basistheory.com/applications) * Create a Basis Theory Server to Server Application * All permissions should be selected * Paste the API Key into the `BT-API-KEY` variable
+## Getting Started * Sign-in to [Basis Theory](https://basistheory.com) and go to [Applications](https://portal.basistheory.com/applications) * Create a Basis Theory Private Application * All permissions should be selected * Paste the API Key into the `BT-API-KEY` variable
 
 API version: v1
 */
@@ -33,6 +33,7 @@ type Token struct {
 	Privacy               *Privacy            `json:"privacy,omitempty"`
 	SearchIndexes         []string            `json:"search_indexes,omitempty"`
 	ExpiresAt             NullableTime        `json:"expires_at,omitempty"`
+	Container             NullableString      `json:"container,omitempty"`
 }
 
 // NewToken instantiates a new Token object
@@ -645,6 +646,49 @@ func (o *Token) UnsetExpiresAt() {
 	o.ExpiresAt.Unset()
 }
 
+// GetContainer returns the Container field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *Token) GetContainer() string {
+	if o == nil || o.Container.Get() == nil {
+		var ret string
+		return ret
+	}
+	return *o.Container.Get()
+}
+
+// GetContainerOk returns a tuple with the Container field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *Token) GetContainerOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.Container.Get(), o.Container.IsSet()
+}
+
+// HasContainer returns a boolean if a field has been set.
+func (o *Token) HasContainer() bool {
+	if o != nil && o.Container.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetContainer gets a reference to the given NullableString and assigns it to the Container field.
+func (o *Token) SetContainer(v string) {
+	o.Container.Set(&v)
+}
+
+// SetContainerNil sets the value for Container to be an explicit nil
+func (o *Token) SetContainerNil() {
+	o.Container.Set(nil)
+}
+
+// UnsetContainer ensures that no value is present for Container, not even an explicit nil
+func (o *Token) UnsetContainer() {
+	o.Container.Unset()
+}
+
 func (o Token) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.Id != nil {
@@ -694,6 +738,9 @@ func (o Token) MarshalJSON() ([]byte, error) {
 	}
 	if o.ExpiresAt.IsSet() {
 		toSerialize["expires_at"] = o.ExpiresAt.Get()
+	}
+	if o.Container.IsSet() {
+		toSerialize["container"] = o.Container.Get()
 	}
 	return json.Marshal(toSerialize)
 }
