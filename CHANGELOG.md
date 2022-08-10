@@ -1,3 +1,10 @@
+# [3.6.0](https://github.com/Basis-Theory/basistheory-go/compare/v3.5.0...v3.6.0) (2022-08-10)
+
+
+### Features
+
+* update app types and add tokens container field ([#51](https://github.com/Basis-Theory/basistheory-go/issues/51)) ([8869091](https://github.com/Basis-Theory/basistheory-go/commit/8869091236381d7b8905d482ee726ef04755a607))
+
 # [3.5.0](https://github.com/Basis-Theory/basistheory-go/compare/v3.4.0...v3.5.0) (2022-08-01)
 
 
