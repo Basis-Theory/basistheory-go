@@ -27,7 +27,7 @@ type CreateTokenRequest struct {
 	Mask                  interface{}         `json:"mask,omitempty"`
 	DeduplicateToken      NullableBool        `json:"deduplicate_token,omitempty"`
 	ExpiresAt             NullableString      `json:"expires_at,omitempty"`
-	Container             NullableString      `json:"container,omitempty"`
+	Containers            []string            `json:"containers,omitempty"`
 }
 
 // NewCreateTokenRequest instantiates a new CreateTokenRequest object
@@ -452,47 +452,37 @@ func (o *CreateTokenRequest) UnsetExpiresAt() {
 	o.ExpiresAt.Unset()
 }
 
-// GetContainer returns the Container field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *CreateTokenRequest) GetContainer() string {
-	if o == nil || o.Container.Get() == nil {
-		var ret string
+// GetContainers returns the Containers field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *CreateTokenRequest) GetContainers() []string {
+	if o == nil {
+		var ret []string
 		return ret
 	}
-	return *o.Container.Get()
+	return o.Containers
 }
 
-// GetContainerOk returns a tuple with the Container field value if set, nil otherwise
+// GetContainersOk returns a tuple with the Containers field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *CreateTokenRequest) GetContainerOk() (*string, bool) {
-	if o == nil {
+func (o *CreateTokenRequest) GetContainersOk() ([]string, bool) {
+	if o == nil || o.Containers == nil {
 		return nil, false
 	}
-	return o.Container.Get(), o.Container.IsSet()
+	return o.Containers, true
 }
 
-// HasContainer returns a boolean if a field has been set.
-func (o *CreateTokenRequest) HasContainer() bool {
-	if o != nil && o.Container.IsSet() {
+// HasContainers returns a boolean if a field has been set.
+func (o *CreateTokenRequest) HasContainers() bool {
+	if o != nil && o.Containers != nil {
 		return true
 	}
 
 	return false
 }
 
-// SetContainer gets a reference to the given NullableString and assigns it to the Container field.
-func (o *CreateTokenRequest) SetContainer(v string) {
-	o.Container.Set(&v)
-}
-
-// SetContainerNil sets the value for Container to be an explicit nil
-func (o *CreateTokenRequest) SetContainerNil() {
-	o.Container.Set(nil)
-}
-
-// UnsetContainer ensures that no value is present for Container, not even an explicit nil
-func (o *CreateTokenRequest) UnsetContainer() {
-	o.Container.Unset()
+// SetContainers gets a reference to the given []string and assigns it to the Containers field.
+func (o *CreateTokenRequest) SetContainers(v []string) {
+	o.Containers = v
 }
 
 func (o CreateTokenRequest) MarshalJSON() ([]byte, error) {
@@ -530,8 +520,8 @@ func (o CreateTokenRequest) MarshalJSON() ([]byte, error) {
 	if o.ExpiresAt.IsSet() {
 		toSerialize["expires_at"] = o.ExpiresAt.Get()
 	}
-	if o.Container.IsSet() {
-		toSerialize["container"] = o.Container.Get()
+	if o.Containers != nil {
+		toSerialize["containers"] = o.Containers
 	}
 	return json.Marshal(toSerialize)
 }

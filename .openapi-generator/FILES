@@ -1,5 +1,6 @@
 README.md
 api/openapi.yaml
+api_application_templates.go
 api_applications.go
 api_logs.go
 api_permissions.go
@@ -11,8 +12,11 @@ api_tokenize.go
 api_tokens.go
 client.go
 configuration.go
+docs/AccessRule.md
 docs/Application.md
 docs/ApplicationPaginatedList.md
+docs/ApplicationTemplate.md
+docs/ApplicationTemplatesApi.md
 docs/ApplicationsApi.md
 docs/CreateApplicationRequest.md
 docs/CreateProxyRequest.md
@@ -36,6 +40,7 @@ docs/Log.md
 docs/LogEntityType.md
 docs/LogPaginatedList.md
 docs/LogsApi.md
+docs/MonthlyActiveTokenHistory.md
 docs/Pagination.md
 docs/Permission.md
 docs/PermissionsApi.md
@@ -79,8 +84,10 @@ docs/UpdateTenantRequest.md
 docs/UpdateTokenRequest.md
 docs/User.md
 docs/ValidationProblemDetails.md
+model_access_rule.go
 model_application.go
 model_application_paginated_list.go
+model_application_template.go
 model_create_application_request.go
 model_create_proxy_request.go
 model_create_reactor_formula_request.go
@@ -102,6 +109,7 @@ model_get_tokens.go
 model_log.go
 model_log_entity_type.go
 model_log_paginated_list.go
+model_monthly_active_token_history.go
 model_pagination.go
 model_permission.go
 model_privacy.go

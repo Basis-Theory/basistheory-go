@@ -16,9 +16,9 @@ import (
 
 // GetTenantMembers struct for GetTenantMembers
 type GetTenantMembers struct {
-	UserIds []string      `json:"userIds,omitempty"`
-	Page    NullableInt32 `json:"page,omitempty"`
-	Size    NullableInt32 `json:"size,omitempty"`
+	UserId []string      `json:"user_id,omitempty"`
+	Page   NullableInt32 `json:"page,omitempty"`
+	Size   NullableInt32 `json:"size,omitempty"`
 }
 
 // NewGetTenantMembers instantiates a new GetTenantMembers object
@@ -38,37 +38,37 @@ func NewGetTenantMembersWithDefaults() *GetTenantMembers {
 	return &this
 }
 
-// GetUserIds returns the UserIds field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *GetTenantMembers) GetUserIds() []string {
+// GetUserId returns the UserId field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *GetTenantMembers) GetUserId() []string {
 	if o == nil {
 		var ret []string
 		return ret
 	}
-	return o.UserIds
+	return o.UserId
 }
 
-// GetUserIdsOk returns a tuple with the UserIds field value if set, nil otherwise
+// GetUserIdOk returns a tuple with the UserId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *GetTenantMembers) GetUserIdsOk() ([]string, bool) {
-	if o == nil || o.UserIds == nil {
+func (o *GetTenantMembers) GetUserIdOk() ([]string, bool) {
+	if o == nil || o.UserId == nil {
 		return nil, false
 	}
-	return o.UserIds, true
+	return o.UserId, true
 }
 
-// HasUserIds returns a boolean if a field has been set.
-func (o *GetTenantMembers) HasUserIds() bool {
-	if o != nil && o.UserIds != nil {
+// HasUserId returns a boolean if a field has been set.
+func (o *GetTenantMembers) HasUserId() bool {
+	if o != nil && o.UserId != nil {
 		return true
 	}
 
 	return false
 }
 
-// SetUserIds gets a reference to the given []string and assigns it to the UserIds field.
-func (o *GetTenantMembers) SetUserIds(v []string) {
-	o.UserIds = v
+// SetUserId gets a reference to the given []string and assigns it to the UserId field.
+func (o *GetTenantMembers) SetUserId(v []string) {
+	o.UserId = v
 }
 
 // GetPage returns the Page field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -159,8 +159,8 @@ func (o *GetTenantMembers) UnsetSize() {
 
 func (o GetTenantMembers) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
-	if o.UserIds != nil {
-		toSerialize["userIds"] = o.UserIds
+	if o.UserId != nil {
+		toSerialize["user_id"] = o.UserId
 	}
 	if o.Page.IsSet() {
 		toSerialize["page"] = o.Page.Get()

@@ -16,7 +16,8 @@ import (
 
 // GetPermissions struct for GetPermissions
 type GetPermissions struct {
-	ApplicationType NullableString `json:"applicationType,omitempty"`
+	ApplicationType NullableString `json:"application_type,omitempty"`
+	Version         NullableInt32  `json:"version,omitempty"`
 }
 
 // NewGetPermissions instantiates a new GetPermissions object
@@ -79,10 +80,56 @@ func (o *GetPermissions) UnsetApplicationType() {
 	o.ApplicationType.Unset()
 }
 
+// GetVersion returns the Version field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *GetPermissions) GetVersion() int32 {
+	if o == nil || o.Version.Get() == nil {
+		var ret int32
+		return ret
+	}
+	return *o.Version.Get()
+}
+
+// GetVersionOk returns a tuple with the Version field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *GetPermissions) GetVersionOk() (*int32, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.Version.Get(), o.Version.IsSet()
+}
+
+// HasVersion returns a boolean if a field has been set.
+func (o *GetPermissions) HasVersion() bool {
+	if o != nil && o.Version.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetVersion gets a reference to the given NullableInt32 and assigns it to the Version field.
+func (o *GetPermissions) SetVersion(v int32) {
+	o.Version.Set(&v)
+}
+
+// SetVersionNil sets the value for Version to be an explicit nil
+func (o *GetPermissions) SetVersionNil() {
+	o.Version.Set(nil)
+}
+
+// UnsetVersion ensures that no value is present for Version, not even an explicit nil
+func (o *GetPermissions) UnsetVersion() {
+	o.Version.Unset()
+}
+
 func (o GetPermissions) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.ApplicationType.IsSet() {
-		toSerialize["applicationType"] = o.ApplicationType.Get()
+		toSerialize["application_type"] = o.ApplicationType.Get()
+	}
+	if o.Version.IsSet() {
+		toSerialize["version"] = o.Version.Get()
 	}
 	return json.Marshal(toSerialize)
 }

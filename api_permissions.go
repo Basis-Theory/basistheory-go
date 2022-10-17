@@ -25,10 +25,16 @@ type PermissionsApiGetRequest struct {
 	ctx             context.Context
 	ApiService      *PermissionsApiService
 	applicationType *string
+	version         *int32
 }
 
 func (r PermissionsApiGetRequest) ApplicationType(applicationType string) PermissionsApiGetRequest {
 	r.applicationType = &applicationType
+	return r
+}
+
+func (r PermissionsApiGetRequest) Version(version int32) PermissionsApiGetRequest {
+	r.version = &version
 	return r
 }
 
@@ -39,8 +45,8 @@ func (r PermissionsApiGetRequest) Execute() ([]Permission, *http.Response, error
 /*
 Get Method for Get
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return PermissionsApiGetRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return PermissionsApiGetRequest
 */
 func (a *PermissionsApiService) Get(ctx context.Context) PermissionsApiGetRequest {
 	return PermissionsApiGetRequest{
@@ -50,7 +56,8 @@ func (a *PermissionsApiService) Get(ctx context.Context) PermissionsApiGetReques
 }
 
 // Execute executes the request
-//  @return []Permission
+//
+//	@return []Permission
 func (a *PermissionsApiService) GetExecute(r PermissionsApiGetRequest) ([]Permission, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
@@ -72,6 +79,9 @@ func (a *PermissionsApiService) GetExecute(r PermissionsApiGetRequest) ([]Permis
 
 	if r.applicationType != nil {
 		localVarQueryParams.Add("application_type", parameterToString(*r.applicationType, ""))
+	}
+	if r.version != nil {
+		localVarQueryParams.Add("version", parameterToString(*r.version, ""))
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}

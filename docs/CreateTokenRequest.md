@@ -15,7 +15,7 @@ Name | Type | Description | Notes
 **Mask** | Pointer to **interface{}** |  | [optional] 
 **DeduplicateToken** | Pointer to **NullableBool** |  | [optional] 
 **ExpiresAt** | Pointer to **NullableString** |  | [optional] 
-**Container** | Pointer to **NullableString** |  | [optional] 
+**Containers** | Pointer to **[]string** |  | [optional] 
 
 ## Methods
 
@@ -396,41 +396,41 @@ HasExpiresAt returns a boolean if a field has been set.
 `func (o *CreateTokenRequest) UnsetExpiresAt()`
 
 UnsetExpiresAt ensures that no value is present for ExpiresAt, not even an explicit nil
-### GetContainer
+### GetContainers
 
-`func (o *CreateTokenRequest) GetContainer() string`
+`func (o *CreateTokenRequest) GetContainers() []string`
 
-GetContainer returns the Container field if non-nil, zero value otherwise.
+GetContainers returns the Containers field if non-nil, zero value otherwise.
 
-### GetContainerOk
+### GetContainersOk
 
-`func (o *CreateTokenRequest) GetContainerOk() (*string, bool)`
+`func (o *CreateTokenRequest) GetContainersOk() (*[]string, bool)`
 
-GetContainerOk returns a tuple with the Container field if it's non-nil, zero value otherwise
+GetContainersOk returns a tuple with the Containers field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetContainer
+### SetContainers
 
-`func (o *CreateTokenRequest) SetContainer(v string)`
+`func (o *CreateTokenRequest) SetContainers(v []string)`
 
-SetContainer sets Container field to given value.
+SetContainers sets Containers field to given value.
 
-### HasContainer
+### HasContainers
 
-`func (o *CreateTokenRequest) HasContainer() bool`
+`func (o *CreateTokenRequest) HasContainers() bool`
 
-HasContainer returns a boolean if a field has been set.
+HasContainers returns a boolean if a field has been set.
 
-### SetContainerNil
+### SetContainersNil
 
-`func (o *CreateTokenRequest) SetContainerNil(b bool)`
+`func (o *CreateTokenRequest) SetContainersNil(b bool)`
 
- SetContainerNil sets the value for Container to be an explicit nil
+ SetContainersNil sets the value for Containers to be an explicit nil
 
-### UnsetContainer
-`func (o *CreateTokenRequest) UnsetContainer()`
+### UnsetContainers
+`func (o *CreateTokenRequest) UnsetContainers()`
 
-UnsetContainer ensures that no value is present for Container, not even an explicit nil
+UnsetContainers ensures that no value is present for Containers, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

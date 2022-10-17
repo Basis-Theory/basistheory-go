@@ -16,8 +16,9 @@ import (
 
 // UpdateApplicationRequest struct for UpdateApplicationRequest
 type UpdateApplicationRequest struct {
-	Name        string   `json:"name"`
-	Permissions []string `json:"permissions,omitempty"`
+	Name        string       `json:"name"`
+	Permissions []string     `json:"permissions,omitempty"`
+	Rules       []AccessRule `json:"rules,omitempty"`
 }
 
 // NewUpdateApplicationRequest instantiates a new UpdateApplicationRequest object
@@ -95,6 +96,39 @@ func (o *UpdateApplicationRequest) SetPermissions(v []string) {
 	o.Permissions = v
 }
 
+// GetRules returns the Rules field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *UpdateApplicationRequest) GetRules() []AccessRule {
+	if o == nil {
+		var ret []AccessRule
+		return ret
+	}
+	return o.Rules
+}
+
+// GetRulesOk returns a tuple with the Rules field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *UpdateApplicationRequest) GetRulesOk() ([]AccessRule, bool) {
+	if o == nil || o.Rules == nil {
+		return nil, false
+	}
+	return o.Rules, true
+}
+
+// HasRules returns a boolean if a field has been set.
+func (o *UpdateApplicationRequest) HasRules() bool {
+	if o != nil && o.Rules != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetRules gets a reference to the given []AccessRule and assigns it to the Rules field.
+func (o *UpdateApplicationRequest) SetRules(v []AccessRule) {
+	o.Rules = v
+}
+
 func (o UpdateApplicationRequest) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if true {
@@ -102,6 +136,9 @@ func (o UpdateApplicationRequest) MarshalJSON() ([]byte, error) {
 	}
 	if o.Permissions != nil {
 		toSerialize["permissions"] = o.Permissions
+	}
+	if o.Rules != nil {
+		toSerialize["rules"] = o.Rules
 	}
 	return json.Marshal(toSerialize)
 }

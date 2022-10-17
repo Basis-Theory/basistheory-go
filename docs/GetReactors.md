@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**ReactorIds** | Pointer to **[]string** |  | [optional] 
+**Id** | Pointer to **[]string** |  | [optional] 
 **Name** | Pointer to **NullableString** |  | [optional] 
 **Page** | Pointer to **NullableInt32** |  | [optional] 
 **Size** | Pointer to **NullableInt32** |  | [optional] 
@@ -28,41 +28,41 @@ NewGetReactorsWithDefaults instantiates a new GetReactors object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
-### GetReactorIds
+### GetId
 
-`func (o *GetReactors) GetReactorIds() []string`
+`func (o *GetReactors) GetId() []string`
 
-GetReactorIds returns the ReactorIds field if non-nil, zero value otherwise.
+GetId returns the Id field if non-nil, zero value otherwise.
 
-### GetReactorIdsOk
+### GetIdOk
 
-`func (o *GetReactors) GetReactorIdsOk() (*[]string, bool)`
+`func (o *GetReactors) GetIdOk() (*[]string, bool)`
 
-GetReactorIdsOk returns a tuple with the ReactorIds field if it's non-nil, zero value otherwise
+GetIdOk returns a tuple with the Id field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetReactorIds
+### SetId
 
-`func (o *GetReactors) SetReactorIds(v []string)`
+`func (o *GetReactors) SetId(v []string)`
 
-SetReactorIds sets ReactorIds field to given value.
+SetId sets Id field to given value.
 
-### HasReactorIds
+### HasId
 
-`func (o *GetReactors) HasReactorIds() bool`
+`func (o *GetReactors) HasId() bool`
 
-HasReactorIds returns a boolean if a field has been set.
+HasId returns a boolean if a field has been set.
 
-### SetReactorIdsNil
+### SetIdNil
 
-`func (o *GetReactors) SetReactorIdsNil(b bool)`
+`func (o *GetReactors) SetIdNil(b bool)`
 
- SetReactorIdsNil sets the value for ReactorIds to be an explicit nil
+ SetIdNil sets the value for Id to be an explicit nil
 
-### UnsetReactorIds
-`func (o *GetReactors) UnsetReactorIds()`
+### UnsetId
+`func (o *GetReactors) UnsetId()`
 
-UnsetReactorIds ensures that no value is present for ReactorIds, not even an explicit nil
+UnsetId ensures that no value is present for Id, not even an explicit nil
 ### GetName
 
 `func (o *GetReactors) GetName() string`

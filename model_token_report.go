@@ -16,9 +16,10 @@ import (
 
 // TokenReport struct for TokenReport
 type TokenReport struct {
-	IncludedMonthlyActiveTokens *int64                  `json:"included_monthly_active_tokens,omitempty"`
-	MonthlyActiveTokens         *int64                  `json:"monthly_active_tokens,omitempty"`
-	MetricsByType               map[string]TokenMetrics `json:"metrics_by_type,omitempty"`
+	IncludedMonthlyActiveTokens *int64                      `json:"included_monthly_active_tokens,omitempty"`
+	MonthlyActiveTokens         *int64                      `json:"monthly_active_tokens,omitempty"`
+	MetricsByType               map[string]TokenMetrics     `json:"metrics_by_type,omitempty"`
+	MonthlyActiveTokenHistory   []MonthlyActiveTokenHistory `json:"monthly_active_token_history,omitempty"`
 }
 
 // NewTokenReport instantiates a new TokenReport object
@@ -135,6 +136,39 @@ func (o *TokenReport) SetMetricsByType(v map[string]TokenMetrics) {
 	o.MetricsByType = v
 }
 
+// GetMonthlyActiveTokenHistory returns the MonthlyActiveTokenHistory field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *TokenReport) GetMonthlyActiveTokenHistory() []MonthlyActiveTokenHistory {
+	if o == nil {
+		var ret []MonthlyActiveTokenHistory
+		return ret
+	}
+	return o.MonthlyActiveTokenHistory
+}
+
+// GetMonthlyActiveTokenHistoryOk returns a tuple with the MonthlyActiveTokenHistory field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *TokenReport) GetMonthlyActiveTokenHistoryOk() ([]MonthlyActiveTokenHistory, bool) {
+	if o == nil || o.MonthlyActiveTokenHistory == nil {
+		return nil, false
+	}
+	return o.MonthlyActiveTokenHistory, true
+}
+
+// HasMonthlyActiveTokenHistory returns a boolean if a field has been set.
+func (o *TokenReport) HasMonthlyActiveTokenHistory() bool {
+	if o != nil && o.MonthlyActiveTokenHistory != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetMonthlyActiveTokenHistory gets a reference to the given []MonthlyActiveTokenHistory and assigns it to the MonthlyActiveTokenHistory field.
+func (o *TokenReport) SetMonthlyActiveTokenHistory(v []MonthlyActiveTokenHistory) {
+	o.MonthlyActiveTokenHistory = v
+}
+
 func (o TokenReport) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.IncludedMonthlyActiveTokens != nil {
@@ -145,6 +179,9 @@ func (o TokenReport) MarshalJSON() ([]byte, error) {
 	}
 	if o.MetricsByType != nil {
 		toSerialize["metrics_by_type"] = o.MetricsByType
+	}
+	if o.MonthlyActiveTokenHistory != nil {
+		toSerialize["monthly_active_token_history"] = o.MonthlyActiveTokenHistory
 	}
 	return json.Marshal(toSerialize)
 }

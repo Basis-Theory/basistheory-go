@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**ApplicationIds** | Pointer to **[]string** |  | [optional] 
+**Id** | Pointer to **[]string** |  | [optional] 
 **Page** | Pointer to **NullableInt32** |  | [optional] 
 **Size** | Pointer to **NullableInt32** |  | [optional] 
 
@@ -27,41 +27,41 @@ NewGetApplicationsWithDefaults instantiates a new GetApplications object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
-### GetApplicationIds
+### GetId
 
-`func (o *GetApplications) GetApplicationIds() []string`
+`func (o *GetApplications) GetId() []string`
 
-GetApplicationIds returns the ApplicationIds field if non-nil, zero value otherwise.
+GetId returns the Id field if non-nil, zero value otherwise.
 
-### GetApplicationIdsOk
+### GetIdOk
 
-`func (o *GetApplications) GetApplicationIdsOk() (*[]string, bool)`
+`func (o *GetApplications) GetIdOk() (*[]string, bool)`
 
-GetApplicationIdsOk returns a tuple with the ApplicationIds field if it's non-nil, zero value otherwise
+GetIdOk returns a tuple with the Id field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetApplicationIds
+### SetId
 
-`func (o *GetApplications) SetApplicationIds(v []string)`
+`func (o *GetApplications) SetId(v []string)`
 
-SetApplicationIds sets ApplicationIds field to given value.
+SetId sets Id field to given value.
 
-### HasApplicationIds
+### HasId
 
-`func (o *GetApplications) HasApplicationIds() bool`
+`func (o *GetApplications) HasId() bool`
 
-HasApplicationIds returns a boolean if a field has been set.
+HasId returns a boolean if a field has been set.
 
-### SetApplicationIdsNil
+### SetIdNil
 
-`func (o *GetApplications) SetApplicationIdsNil(b bool)`
+`func (o *GetApplications) SetIdNil(b bool)`
 
- SetApplicationIdsNil sets the value for ApplicationIds to be an explicit nil
+ SetIdNil sets the value for Id to be an explicit nil
 
-### UnsetApplicationIds
-`func (o *GetApplications) UnsetApplicationIds()`
+### UnsetId
+`func (o *GetApplications) UnsetId()`
 
-UnsetApplicationIds ensures that no value is present for ApplicationIds, not even an explicit nil
+UnsetId ensures that no value is present for Id, not even an explicit nil
 ### GetPage
 
 `func (o *GetApplications) GetPage() int32`
