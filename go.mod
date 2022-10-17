@@ -1,6 +1,6 @@
 module github.com/Basis-Theory/basistheory-go/v3
 
-go 1.18
+go 1.19
 
 require (
 	github.com/davecgh/go-spew v1.1.1
@@ -16,6 +16,5 @@ require (
 	golang.org/x/net v0.0.0-20221017152216-f25eb7ecb193 // indirect
 	google.golang.org/appengine v1.6.7 // indirect
 	google.golang.org/protobuf v1.28.0 // indirect
-	gopkg.in/yaml.v2 v2.2.2 // indirect
 	gopkg.in/yaml.v3 v3.0.1 // indirect
 )
