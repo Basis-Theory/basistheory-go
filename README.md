@@ -1,5 +1,7 @@
 # Go API client for basistheory
 
+[![Release](https://github.com/Basis-Theory/basistheory-go/actions/workflows/release.yml/badge.svg)](https://github.com/Basis-Theory/basistheory-go/actions/workflows/release.yml)
+
 ## Getting Started
 * Sign-in to [Basis Theory](https://basistheory.com) and go to [Applications](https://portal.basistheory.com/applications)
 * Create a Basis Theory Private Application
@@ -26,7 +28,7 @@ go get golang.org/x/net/context
 Put the package under your project folder and add the following in import:
 
 ```golang
-import basistheory "github.com/GIT_USER_ID/GIT_REPO_ID"
+import basistheory "github.com/Basis-Theory/basistheory-go/v3"
 ```
 
 To use a proxy, set the environment variable `HTTP_PROXY`:
