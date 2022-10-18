@@ -16,7 +16,7 @@ import (
 
 // GetProxies struct for GetProxies
 type GetProxies struct {
-	Ids  []string       `json:"ids,omitempty"`
+	Id   []string       `json:"id,omitempty"`
 	Name NullableString `json:"name,omitempty"`
 	Page NullableInt32  `json:"page,omitempty"`
 	Size NullableInt32  `json:"size,omitempty"`
@@ -39,37 +39,37 @@ func NewGetProxiesWithDefaults() *GetProxies {
 	return &this
 }
 
-// GetIds returns the Ids field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *GetProxies) GetIds() []string {
+// GetId returns the Id field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *GetProxies) GetId() []string {
 	if o == nil {
 		var ret []string
 		return ret
 	}
-	return o.Ids
+	return o.Id
 }
 
-// GetIdsOk returns a tuple with the Ids field value if set, nil otherwise
+// GetIdOk returns a tuple with the Id field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *GetProxies) GetIdsOk() ([]string, bool) {
-	if o == nil || o.Ids == nil {
+func (o *GetProxies) GetIdOk() ([]string, bool) {
+	if o == nil || o.Id == nil {
 		return nil, false
 	}
-	return o.Ids, true
+	return o.Id, true
 }
 
-// HasIds returns a boolean if a field has been set.
-func (o *GetProxies) HasIds() bool {
-	if o != nil && o.Ids != nil {
+// HasId returns a boolean if a field has been set.
+func (o *GetProxies) HasId() bool {
+	if o != nil && o.Id != nil {
 		return true
 	}
 
 	return false
 }
 
-// SetIds gets a reference to the given []string and assigns it to the Ids field.
-func (o *GetProxies) SetIds(v []string) {
-	o.Ids = v
+// SetId gets a reference to the given []string and assigns it to the Id field.
+func (o *GetProxies) SetId(v []string) {
+	o.Id = v
 }
 
 // GetName returns the Name field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -203,8 +203,8 @@ func (o *GetProxies) UnsetSize() {
 
 func (o GetProxies) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
-	if o.Ids != nil {
-		toSerialize["ids"] = o.Ids
+	if o.Id != nil {
+		toSerialize["id"] = o.Id
 	}
 	if o.Name.IsSet() {
 		toSerialize["name"] = o.Name.Get()

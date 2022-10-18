@@ -20,15 +20,12 @@ func TestTokenCRUD(t *testing.T) {
 	}
 	tokenType := "token"
 	tokenSearchIndexes := []string{"{{ data.myData }}"}
-	privacy := *basistheory.NewPrivacy()
-	privacy.SetRestrictionPolicy("mask")
 	createTokenRequest := *basistheory.NewCreateTokenRequest(tokenData)
 	createTokenRequest.SetId("{{ data.myData | alias_preserve_length: 0, 4 }}")
 	createTokenRequest.SetType(tokenType)
 	createTokenRequest.SetSearchIndexes(tokenSearchIndexes)
 	createTokenRequest.SetDeduplicateToken(false)
 	createTokenRequest.SetMask(tokenMask)
-	createTokenRequest.SetPrivacy(privacy)
 
 	createdToken, response, err := apiClient.TokensApi.Create(contextWithAPIKey).CreateTokenRequest(createTokenRequest).Execute()
 
@@ -76,8 +73,8 @@ func TestTokenCRUD(t *testing.T) {
 	token, response, err = apiClient.TokensApi.Update(contextWithAPIKey, createdToken.GetId()).UpdateTokenRequest(updateTokenRequest).Execute()
 
 	testutils.AssertMethodDidNotError(err, response, "TokensApi Update", t)
-	testutils.AssertPropertiesMatch(token.GetData().(map[string]interface{})["myData"], tokenData["myData"], t)
-	testutils.AssertPropertiesMatch(token.GetData().(map[string]interface{})["myNewData"], updatedTokenData["myNewData"], t)
+	testutils.AssertPropertiesMatch(token.GetData().(map[string]interface{})["myData"], fmt.Sprint(tokenData["myData"], "suffix"), t)
+	testutils.AssertPropertiesMatch(token.GetData().(map[string]interface{})["myNewData"], fmt.Sprint("prefix", updatedTokenData["myNewData"]), t)
 	testutils.AssertPropertiesMatch(token.GetType(), tokenType, t)
 	testutils.AssertPropertiesMatch(token.GetSearchIndexes(), updatedTokenSearchIndexes, t)
 	testutils.AssertPropertiesMatch(token.GetMask().(map[string]interface{})["myData"], tokenMask["myData"], t)

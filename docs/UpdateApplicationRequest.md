@@ -6,6 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Name** | **string** |  | 
 **Permissions** | Pointer to **[]string** |  | [optional] 
+**Rules** | Pointer to [**[]AccessRule**](AccessRule.md) |  | [optional] 
 
 ## Methods
 
@@ -81,6 +82,41 @@ HasPermissions returns a boolean if a field has been set.
 `func (o *UpdateApplicationRequest) UnsetPermissions()`
 
 UnsetPermissions ensures that no value is present for Permissions, not even an explicit nil
+### GetRules
+
+`func (o *UpdateApplicationRequest) GetRules() []AccessRule`
+
+GetRules returns the Rules field if non-nil, zero value otherwise.
+
+### GetRulesOk
+
+`func (o *UpdateApplicationRequest) GetRulesOk() (*[]AccessRule, bool)`
+
+GetRulesOk returns a tuple with the Rules field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetRules
+
+`func (o *UpdateApplicationRequest) SetRules(v []AccessRule)`
+
+SetRules sets Rules field to given value.
+
+### HasRules
+
+`func (o *UpdateApplicationRequest) HasRules() bool`
+
+HasRules returns a boolean if a field has been set.
+
+### SetRulesNil
+
+`func (o *UpdateApplicationRequest) SetRulesNil(b bool)`
+
+ SetRulesNil sets the value for Rules to be an explicit nil
+
+### UnsetRules
+`func (o *UpdateApplicationRequest) UnsetRules()`
+
+UnsetRules ensures that no value is present for Rules, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

@@ -18,7 +18,7 @@ func TestApplicationCRUD(t *testing.T) {
 	// CREATE
 	applicationName, applicationType := getApplicationNameAndType()
 
-	applicationPermissions := []string{"token:pci:create"}
+	applicationPermissions := []string{"token:create"}
 	createApplicationRequest := *basistheory.NewCreateApplicationRequest(applicationName, applicationType)
 	createApplicationRequest.SetPermissions(applicationPermissions)
 
@@ -46,7 +46,7 @@ func TestApplicationCRUD(t *testing.T) {
 
 	// UPDATE
 	updatedApplicationName := "Updated Name"
-	updatedApplicationPermissions := []string{"token:general:read:low"}
+	updatedApplicationPermissions := []string{"token:read"}
 	updateApplicationRequest := basistheory.UpdateApplicationRequest{}
 	updateApplicationRequest.SetName(updatedApplicationName)
 	updateApplicationRequest.SetPermissions(updatedApplicationPermissions)
@@ -72,7 +72,7 @@ func TestApplicationRegenerate(t *testing.T) {
 	apiClient, contextWithAPIKey := testutils.CreateApiAndMgmtContext(t)
 	applicationName, applicationType := getApplicationNameAndType()
 
-	applicationPermissions := []string{"token:pci:create"}
+	applicationPermissions := []string{"token:create"}
 	createApplicationRequest := *basistheory.NewCreateApplicationRequest(applicationName, applicationType)
 	createApplicationRequest.SetPermissions(applicationPermissions)
 
@@ -93,7 +93,7 @@ func TestApplicationKey(t *testing.T) {
 	apiClient, contextWithAPIKey := testutils.CreateApiAndMgmtContext(t)
 	applicationName, applicationType := getApplicationNameAndType()
 
-	applicationPermissions := []string{"token:pci:create"}
+	applicationPermissions := []string{"token:create"}
 	createApplicationRequest := *basistheory.NewCreateApplicationRequest(applicationName, applicationType)
 	createApplicationRequest.SetPermissions(applicationPermissions)
 

@@ -16,54 +16,18 @@ import (
 	"io/ioutil"
 	"net/http"
 	"net/url"
-	"time"
+	"strings"
 )
 
-// LogsApiService LogsApi service
-type LogsApiService service
+// ApplicationTemplatesApiService ApplicationTemplatesApi service
+type ApplicationTemplatesApiService service
 
-type LogsApiGetRequest struct {
+type ApplicationTemplatesApiGetRequest struct {
 	ctx        context.Context
-	ApiService *LogsApiService
-	entityType *string
-	entityId   *string
-	startDate  *time.Time
-	endDate    *time.Time
-	page       *int32
-	size       *int32
+	ApiService *ApplicationTemplatesApiService
 }
 
-func (r LogsApiGetRequest) EntityType(entityType string) LogsApiGetRequest {
-	r.entityType = &entityType
-	return r
-}
-
-func (r LogsApiGetRequest) EntityId(entityId string) LogsApiGetRequest {
-	r.entityId = &entityId
-	return r
-}
-
-func (r LogsApiGetRequest) StartDate(startDate time.Time) LogsApiGetRequest {
-	r.startDate = &startDate
-	return r
-}
-
-func (r LogsApiGetRequest) EndDate(endDate time.Time) LogsApiGetRequest {
-	r.endDate = &endDate
-	return r
-}
-
-func (r LogsApiGetRequest) Page(page int32) LogsApiGetRequest {
-	r.page = &page
-	return r
-}
-
-func (r LogsApiGetRequest) Size(size int32) LogsApiGetRequest {
-	r.size = &size
-	return r
-}
-
-func (r LogsApiGetRequest) Execute() (*LogPaginatedList, *http.Response, error) {
+func (r ApplicationTemplatesApiGetRequest) Execute() ([]ApplicationTemplate, *http.Response, error) {
 	return r.ApiService.GetExecute(r)
 }
 
@@ -71,10 +35,10 @@ func (r LogsApiGetRequest) Execute() (*LogPaginatedList, *http.Response, error) 
 Get Method for Get
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@return LogsApiGetRequest
+	@return ApplicationTemplatesApiGetRequest
 */
-func (a *LogsApiService) Get(ctx context.Context) LogsApiGetRequest {
-	return LogsApiGetRequest{
+func (a *ApplicationTemplatesApiService) Get(ctx context.Context) ApplicationTemplatesApiGetRequest {
+	return ApplicationTemplatesApiGetRequest{
 		ApiService: a,
 		ctx:        ctx,
 	}
@@ -82,44 +46,26 @@ func (a *LogsApiService) Get(ctx context.Context) LogsApiGetRequest {
 
 // Execute executes the request
 //
-//	@return LogPaginatedList
-func (a *LogsApiService) GetExecute(r LogsApiGetRequest) (*LogPaginatedList, *http.Response, error) {
+//	@return []ApplicationTemplate
+func (a *ApplicationTemplatesApiService) GetExecute(r ApplicationTemplatesApiGetRequest) ([]ApplicationTemplate, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
 		localVarPostBody    interface{}
 		formFiles           []formFile
-		localVarReturnValue *LogPaginatedList
+		localVarReturnValue []ApplicationTemplate
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "LogsApiService.Get")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ApplicationTemplatesApiService.Get")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/logs"
+	localVarPath := localBasePath + "/application-templates"
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 
-	if r.entityType != nil {
-		localVarQueryParams.Add("entity_type", parameterToString(*r.entityType, ""))
-	}
-	if r.entityId != nil {
-		localVarQueryParams.Add("entity_id", parameterToString(*r.entityId, ""))
-	}
-	if r.startDate != nil {
-		localVarQueryParams.Add("start_date", parameterToString(*r.startDate, ""))
-	}
-	if r.endDate != nil {
-		localVarQueryParams.Add("end_date", parameterToString(*r.endDate, ""))
-	}
-	if r.page != nil {
-		localVarQueryParams.Add("page", parameterToString(*r.page, ""))
-	}
-	if r.size != nil {
-		localVarQueryParams.Add("size", parameterToString(*r.size, ""))
-	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
 
@@ -173,16 +119,6 @@ func (a *LogsApiService) GetExecute(r LogsApiGetRequest) (*LogPaginatedList, *ht
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 400 {
-			var v ValidationProblemDetails
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
@@ -193,7 +129,7 @@ func (a *LogsApiService) GetExecute(r LogsApiGetRequest) (*LogPaginatedList, *ht
 			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
-		if localVarHTTPResponse.StatusCode == 403 {
+		if localVarHTTPResponse.StatusCode == 404 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -217,49 +153,56 @@ func (a *LogsApiService) GetExecute(r LogsApiGetRequest) (*LogPaginatedList, *ht
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type LogsApiGetEntityTypesRequest struct {
+type ApplicationTemplatesApiGetByIdRequest struct {
 	ctx        context.Context
-	ApiService *LogsApiService
+	ApiService *ApplicationTemplatesApiService
+	id         string
 }
 
-func (r LogsApiGetEntityTypesRequest) Execute() ([]LogEntityType, *http.Response, error) {
-	return r.ApiService.GetEntityTypesExecute(r)
+func (r ApplicationTemplatesApiGetByIdRequest) Execute() (*ApplicationTemplate, *http.Response, error) {
+	return r.ApiService.GetByIdExecute(r)
 }
 
 /*
-GetEntityTypes Method for GetEntityTypes
+GetById Method for GetById
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@return LogsApiGetEntityTypesRequest
+	@param id
+	@return ApplicationTemplatesApiGetByIdRequest
 */
-func (a *LogsApiService) GetEntityTypes(ctx context.Context) LogsApiGetEntityTypesRequest {
-	return LogsApiGetEntityTypesRequest{
+func (a *ApplicationTemplatesApiService) GetById(ctx context.Context, id string) ApplicationTemplatesApiGetByIdRequest {
+	return ApplicationTemplatesApiGetByIdRequest{
 		ApiService: a,
 		ctx:        ctx,
+		id:         id,
 	}
 }
 
 // Execute executes the request
 //
-//	@return []LogEntityType
-func (a *LogsApiService) GetEntityTypesExecute(r LogsApiGetEntityTypesRequest) ([]LogEntityType, *http.Response, error) {
+//	@return ApplicationTemplate
+func (a *ApplicationTemplatesApiService) GetByIdExecute(r ApplicationTemplatesApiGetByIdRequest) (*ApplicationTemplate, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
 		localVarPostBody    interface{}
 		formFiles           []formFile
-		localVarReturnValue []LogEntityType
+		localVarReturnValue *ApplicationTemplate
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "LogsApiService.GetEntityTypes")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ApplicationTemplatesApiService.GetById")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/logs/entity-types"
+	localVarPath := localBasePath + "/application-templates/{id}"
+	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterToString(r.id, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
+	if strlen(r.id) > 36 {
+		return localVarReturnValue, nil, reportError("id must have less than 36 elements")
+	}
 
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -324,7 +267,7 @@ func (a *LogsApiService) GetEntityTypesExecute(r LogsApiGetEntityTypesRequest) (
 			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
-		if localVarHTTPResponse.StatusCode == 403 {
+		if localVarHTTPResponse.StatusCode == 404 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {

@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**UserIds** | Pointer to **[]string** |  | [optional] 
+**UserId** | Pointer to **[]string** |  | [optional] 
 **Page** | Pointer to **NullableInt32** |  | [optional] 
 **Size** | Pointer to **NullableInt32** |  | [optional] 
 
@@ -27,41 +27,41 @@ NewGetTenantMembersWithDefaults instantiates a new GetTenantMembers object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
-### GetUserIds
+### GetUserId
 
-`func (o *GetTenantMembers) GetUserIds() []string`
+`func (o *GetTenantMembers) GetUserId() []string`
 
-GetUserIds returns the UserIds field if non-nil, zero value otherwise.
+GetUserId returns the UserId field if non-nil, zero value otherwise.
 
-### GetUserIdsOk
+### GetUserIdOk
 
-`func (o *GetTenantMembers) GetUserIdsOk() (*[]string, bool)`
+`func (o *GetTenantMembers) GetUserIdOk() (*[]string, bool)`
 
-GetUserIdsOk returns a tuple with the UserIds field if it's non-nil, zero value otherwise
+GetUserIdOk returns a tuple with the UserId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetUserIds
+### SetUserId
 
-`func (o *GetTenantMembers) SetUserIds(v []string)`
+`func (o *GetTenantMembers) SetUserId(v []string)`
 
-SetUserIds sets UserIds field to given value.
+SetUserId sets UserId field to given value.
 
-### HasUserIds
+### HasUserId
 
-`func (o *GetTenantMembers) HasUserIds() bool`
+`func (o *GetTenantMembers) HasUserId() bool`
 
-HasUserIds returns a boolean if a field has been set.
+HasUserId returns a boolean if a field has been set.
 
-### SetUserIdsNil
+### SetUserIdNil
 
-`func (o *GetTenantMembers) SetUserIdsNil(b bool)`
+`func (o *GetTenantMembers) SetUserIdNil(b bool)`
 
- SetUserIdsNil sets the value for UserIds to be an explicit nil
+ SetUserIdNil sets the value for UserId to be an explicit nil
 
-### UnsetUserIds
-`func (o *GetTenantMembers) UnsetUserIds()`
+### UnsetUserId
+`func (o *GetTenantMembers) UnsetUserId()`
 
-UnsetUserIds ensures that no value is present for UserIds, not even an explicit nil
+UnsetUserId ensures that no value is present for UserId, not even an explicit nil
 ### GetPage
 
 `func (o *GetTenantMembers) GetPage() int32`

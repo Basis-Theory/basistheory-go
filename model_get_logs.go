@@ -17,10 +17,10 @@ import (
 
 // GetLogs struct for GetLogs
 type GetLogs struct {
-	EntityType NullableString `json:"entityType,omitempty"`
-	EntityId   NullableString `json:"entityId,omitempty"`
-	StartDate  NullableTime   `json:"startDate,omitempty"`
-	EndDate    NullableTime   `json:"endDate,omitempty"`
+	EntityType NullableString `json:"entity_type,omitempty"`
+	EntityId   NullableString `json:"entity_id,omitempty"`
+	StartDate  NullableTime   `json:"start_date,omitempty"`
+	EndDate    NullableTime   `json:"end_date,omitempty"`
 	Page       NullableInt32  `json:"page,omitempty"`
 	Size       NullableInt32  `json:"size,omitempty"`
 }
@@ -303,16 +303,16 @@ func (o *GetLogs) UnsetSize() {
 func (o GetLogs) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.EntityType.IsSet() {
-		toSerialize["entityType"] = o.EntityType.Get()
+		toSerialize["entity_type"] = o.EntityType.Get()
 	}
 	if o.EntityId.IsSet() {
-		toSerialize["entityId"] = o.EntityId.Get()
+		toSerialize["entity_id"] = o.EntityId.Get()
 	}
 	if o.StartDate.IsSet() {
-		toSerialize["startDate"] = o.StartDate.Get()
+		toSerialize["start_date"] = o.StartDate.Get()
 	}
 	if o.EndDate.IsSet() {
-		toSerialize["endDate"] = o.EndDate.Get()
+		toSerialize["end_date"] = o.EndDate.Get()
 	}
 	if o.Page.IsSet() {
 		toSerialize["page"] = o.Page.Get()

@@ -16,10 +16,10 @@ import (
 
 // GetReactors struct for GetReactors
 type GetReactors struct {
-	ReactorIds []string       `json:"reactorIds,omitempty"`
-	Name       NullableString `json:"name,omitempty"`
-	Page       NullableInt32  `json:"page,omitempty"`
-	Size       NullableInt32  `json:"size,omitempty"`
+	Id   []string       `json:"id,omitempty"`
+	Name NullableString `json:"name,omitempty"`
+	Page NullableInt32  `json:"page,omitempty"`
+	Size NullableInt32  `json:"size,omitempty"`
 }
 
 // NewGetReactors instantiates a new GetReactors object
@@ -39,37 +39,37 @@ func NewGetReactorsWithDefaults() *GetReactors {
 	return &this
 }
 
-// GetReactorIds returns the ReactorIds field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *GetReactors) GetReactorIds() []string {
+// GetId returns the Id field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *GetReactors) GetId() []string {
 	if o == nil {
 		var ret []string
 		return ret
 	}
-	return o.ReactorIds
+	return o.Id
 }
 
-// GetReactorIdsOk returns a tuple with the ReactorIds field value if set, nil otherwise
+// GetIdOk returns a tuple with the Id field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *GetReactors) GetReactorIdsOk() ([]string, bool) {
-	if o == nil || o.ReactorIds == nil {
+func (o *GetReactors) GetIdOk() ([]string, bool) {
+	if o == nil || o.Id == nil {
 		return nil, false
 	}
-	return o.ReactorIds, true
+	return o.Id, true
 }
 
-// HasReactorIds returns a boolean if a field has been set.
-func (o *GetReactors) HasReactorIds() bool {
-	if o != nil && o.ReactorIds != nil {
+// HasId returns a boolean if a field has been set.
+func (o *GetReactors) HasId() bool {
+	if o != nil && o.Id != nil {
 		return true
 	}
 
 	return false
 }
 
-// SetReactorIds gets a reference to the given []string and assigns it to the ReactorIds field.
-func (o *GetReactors) SetReactorIds(v []string) {
-	o.ReactorIds = v
+// SetId gets a reference to the given []string and assigns it to the Id field.
+func (o *GetReactors) SetId(v []string) {
+	o.Id = v
 }
 
 // GetName returns the Name field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -203,8 +203,8 @@ func (o *GetReactors) UnsetSize() {
 
 func (o GetReactors) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
-	if o.ReactorIds != nil {
-		toSerialize["reactorIds"] = o.ReactorIds
+	if o.Id != nil {
+		toSerialize["id"] = o.Id
 	}
 	if o.Name.IsSet() {
 		toSerialize["name"] = o.Name.Get()

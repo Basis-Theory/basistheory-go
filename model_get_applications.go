@@ -16,9 +16,9 @@ import (
 
 // GetApplications struct for GetApplications
 type GetApplications struct {
-	ApplicationIds []string      `json:"applicationIds,omitempty"`
-	Page           NullableInt32 `json:"page,omitempty"`
-	Size           NullableInt32 `json:"size,omitempty"`
+	Id   []string      `json:"id,omitempty"`
+	Page NullableInt32 `json:"page,omitempty"`
+	Size NullableInt32 `json:"size,omitempty"`
 }
 
 // NewGetApplications instantiates a new GetApplications object
@@ -38,37 +38,37 @@ func NewGetApplicationsWithDefaults() *GetApplications {
 	return &this
 }
 
-// GetApplicationIds returns the ApplicationIds field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *GetApplications) GetApplicationIds() []string {
+// GetId returns the Id field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *GetApplications) GetId() []string {
 	if o == nil {
 		var ret []string
 		return ret
 	}
-	return o.ApplicationIds
+	return o.Id
 }
 
-// GetApplicationIdsOk returns a tuple with the ApplicationIds field value if set, nil otherwise
+// GetIdOk returns a tuple with the Id field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *GetApplications) GetApplicationIdsOk() ([]string, bool) {
-	if o == nil || o.ApplicationIds == nil {
+func (o *GetApplications) GetIdOk() ([]string, bool) {
+	if o == nil || o.Id == nil {
 		return nil, false
 	}
-	return o.ApplicationIds, true
+	return o.Id, true
 }
 
-// HasApplicationIds returns a boolean if a field has been set.
-func (o *GetApplications) HasApplicationIds() bool {
-	if o != nil && o.ApplicationIds != nil {
+// HasId returns a boolean if a field has been set.
+func (o *GetApplications) HasId() bool {
+	if o != nil && o.Id != nil {
 		return true
 	}
 
 	return false
 }
 
-// SetApplicationIds gets a reference to the given []string and assigns it to the ApplicationIds field.
-func (o *GetApplications) SetApplicationIds(v []string) {
-	o.ApplicationIds = v
+// SetId gets a reference to the given []string and assigns it to the Id field.
+func (o *GetApplications) SetId(v []string) {
+	o.Id = v
 }
 
 // GetPage returns the Page field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -159,8 +159,8 @@ func (o *GetApplications) UnsetSize() {
 
 func (o GetApplications) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
-	if o.ApplicationIds != nil {
-		toSerialize["applicationIds"] = o.ApplicationIds
+	if o.Id != nil {
+		toSerialize["id"] = o.Id
 	}
 	if o.Page.IsSet() {
 		toSerialize["page"] = o.Page.Get()

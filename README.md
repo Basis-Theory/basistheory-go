@@ -36,7 +36,6 @@ To use a proxy, set the environment variable `HTTP_PROXY`:
 ```golang
 os.Setenv("HTTP_PROXY", "http://proxy_name:proxy_port")
 ```
-
 ## Running tests locally
 
 To run tests locally, you'll need to create a server and management BT Application with all permissions and add those `key`'s
@@ -73,7 +72,7 @@ Each operation can use different server URL defined using `OperationServers` map
 An operation is uniquely identified by `"{classname}Service.{nickname}"` string.
 Similar rules for overriding default operation server index and variables applies by using `sw.ContextOperationServerIndices` and `sw.ContextOperationServerVariables` context maps.
 
-```
+```golang
 ctx := context.WithValue(context.Background(), basistheory.ContextOperationServerIndices, map[string]int{
 	"{classname}Service.{nickname}": 2,
 })
@@ -90,6 +89,8 @@ All URIs are relative to *https://api.basistheory.com*
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
+*ApplicationTemplatesApi* | [**Get**](docs/ApplicationTemplatesApi.md#get) | **Get** /application-templates | 
+*ApplicationTemplatesApi* | [**GetById**](docs/ApplicationTemplatesApi.md#getbyid) | **Get** /application-templates/{id} | 
 *ApplicationsApi* | [**Create**](docs/ApplicationsApi.md#create) | **Post** /applications | 
 *ApplicationsApi* | [**Delete**](docs/ApplicationsApi.md#delete) | **Delete** /applications/{id} | 
 *ApplicationsApi* | [**Get**](docs/ApplicationsApi.md#get) | **Get** /applications | 
@@ -142,8 +143,10 @@ Class | Method | HTTP request | Description
 
 ## Documentation For Models
 
+ - [AccessRule](docs/AccessRule.md)
  - [Application](docs/Application.md)
  - [ApplicationPaginatedList](docs/ApplicationPaginatedList.md)
+ - [ApplicationTemplate](docs/ApplicationTemplate.md)
  - [CreateApplicationRequest](docs/CreateApplicationRequest.md)
  - [CreateProxyRequest](docs/CreateProxyRequest.md)
  - [CreateReactorFormulaRequest](docs/CreateReactorFormulaRequest.md)
@@ -165,6 +168,7 @@ Class | Method | HTTP request | Description
  - [Log](docs/Log.md)
  - [LogEntityType](docs/LogEntityType.md)
  - [LogPaginatedList](docs/LogPaginatedList.md)
+ - [MonthlyActiveTokenHistory](docs/MonthlyActiveTokenHistory.md)
  - [Pagination](docs/Pagination.md)
  - [Permission](docs/Permission.md)
  - [Privacy](docs/Privacy.md)
@@ -234,7 +238,4 @@ Each of these functions takes a value of the given basic type and returns a poin
 
 ## Author
 
-Basis-Theory
-
-
-
+[Basis Theory](mailto:support@basistheory.com)
