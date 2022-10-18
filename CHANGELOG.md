@@ -1,3 +1,10 @@
+# [3.7.0](https://github.com/Basis-Theory/basistheory-go/compare/v3.6.0...v3.7.0) (2022-10-18)
+
+
+### Features
+
+* adds support for access rules and token containers ([#53](https://github.com/Basis-Theory/basistheory-go/issues/53)) ([cc73b75](https://github.com/Basis-Theory/basistheory-go/commit/cc73b7507a91cf56bafd650d48737dffde4f2134))
+
 # [3.6.0](https://github.com/Basis-Theory/basistheory-go/compare/v3.5.0...v3.6.0) (2022-08-10)
 
 
