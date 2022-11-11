@@ -17,17 +17,19 @@ import (
 
 // Application struct for Application
 type Application struct {
-	Id          *string        `json:"id,omitempty"`
-	TenantId    *string        `json:"tenant_id,omitempty"`
-	Name        NullableString `json:"name,omitempty"`
-	Key         NullableString `json:"key,omitempty"`
-	Type        NullableString `json:"type,omitempty"`
-	CreatedBy   NullableString `json:"created_by,omitempty"`
-	CreatedAt   NullableTime   `json:"created_at,omitempty"`
-	ModifiedBy  NullableString `json:"modified_by,omitempty"`
-	ModifiedAt  NullableTime   `json:"modified_at,omitempty"`
-	Permissions []string       `json:"permissions,omitempty"`
-	Rules       []AccessRule   `json:"rules,omitempty"`
+	Id                            *string        `json:"id,omitempty"`
+	TenantId                      *string        `json:"tenant_id,omitempty"`
+	Name                          NullableString `json:"name,omitempty"`
+	Key                           NullableString `json:"key,omitempty"`
+	Type                          NullableString `json:"type,omitempty"`
+	CreatedBy                     NullableString `json:"created_by,omitempty"`
+	CreatedAt                     NullableTime   `json:"created_at,omitempty"`
+	ModifiedBy                    NullableString `json:"modified_by,omitempty"`
+	ModifiedAt                    NullableTime   `json:"modified_at,omitempty"`
+	CanCreateExpiringApplications NullableBool   `json:"can_create_expiring_applications,omitempty"`
+	ExpiresAt                     NullableTime   `json:"expires_at,omitempty"`
+	Permissions                   []string       `json:"permissions,omitempty"`
+	Rules                         []AccessRule   `json:"rules,omitempty"`
 }
 
 // NewApplication instantiates a new Application object
@@ -49,7 +51,7 @@ func NewApplicationWithDefaults() *Application {
 
 // GetId returns the Id field value if set, zero value otherwise.
 func (o *Application) GetId() string {
-	if o == nil || o.Id == nil {
+	if o == nil || isNil(o.Id) {
 		var ret string
 		return ret
 	}
@@ -59,7 +61,7 @@ func (o *Application) GetId() string {
 // GetIdOk returns a tuple with the Id field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Application) GetIdOk() (*string, bool) {
-	if o == nil || o.Id == nil {
+	if o == nil || isNil(o.Id) {
 		return nil, false
 	}
 	return o.Id, true
@@ -67,7 +69,7 @@ func (o *Application) GetIdOk() (*string, bool) {
 
 // HasId returns a boolean if a field has been set.
 func (o *Application) HasId() bool {
-	if o != nil && o.Id != nil {
+	if o != nil && !isNil(o.Id) {
 		return true
 	}
 
@@ -81,7 +83,7 @@ func (o *Application) SetId(v string) {
 
 // GetTenantId returns the TenantId field value if set, zero value otherwise.
 func (o *Application) GetTenantId() string {
-	if o == nil || o.TenantId == nil {
+	if o == nil || isNil(o.TenantId) {
 		var ret string
 		return ret
 	}
@@ -91,7 +93,7 @@ func (o *Application) GetTenantId() string {
 // GetTenantIdOk returns a tuple with the TenantId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Application) GetTenantIdOk() (*string, bool) {
-	if o == nil || o.TenantId == nil {
+	if o == nil || isNil(o.TenantId) {
 		return nil, false
 	}
 	return o.TenantId, true
@@ -99,7 +101,7 @@ func (o *Application) GetTenantIdOk() (*string, bool) {
 
 // HasTenantId returns a boolean if a field has been set.
 func (o *Application) HasTenantId() bool {
-	if o != nil && o.TenantId != nil {
+	if o != nil && !isNil(o.TenantId) {
 		return true
 	}
 
@@ -113,7 +115,7 @@ func (o *Application) SetTenantId(v string) {
 
 // GetName returns the Name field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *Application) GetName() string {
-	if o == nil || o.Name.Get() == nil {
+	if o == nil || isNil(o.Name.Get()) {
 		var ret string
 		return ret
 	}
@@ -156,7 +158,7 @@ func (o *Application) UnsetName() {
 
 // GetKey returns the Key field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *Application) GetKey() string {
-	if o == nil || o.Key.Get() == nil {
+	if o == nil || isNil(o.Key.Get()) {
 		var ret string
 		return ret
 	}
@@ -199,7 +201,7 @@ func (o *Application) UnsetKey() {
 
 // GetType returns the Type field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *Application) GetType() string {
-	if o == nil || o.Type.Get() == nil {
+	if o == nil || isNil(o.Type.Get()) {
 		var ret string
 		return ret
 	}
@@ -242,7 +244,7 @@ func (o *Application) UnsetType() {
 
 // GetCreatedBy returns the CreatedBy field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *Application) GetCreatedBy() string {
-	if o == nil || o.CreatedBy.Get() == nil {
+	if o == nil || isNil(o.CreatedBy.Get()) {
 		var ret string
 		return ret
 	}
@@ -285,7 +287,7 @@ func (o *Application) UnsetCreatedBy() {
 
 // GetCreatedAt returns the CreatedAt field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *Application) GetCreatedAt() time.Time {
-	if o == nil || o.CreatedAt.Get() == nil {
+	if o == nil || isNil(o.CreatedAt.Get()) {
 		var ret time.Time
 		return ret
 	}
@@ -328,7 +330,7 @@ func (o *Application) UnsetCreatedAt() {
 
 // GetModifiedBy returns the ModifiedBy field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *Application) GetModifiedBy() string {
-	if o == nil || o.ModifiedBy.Get() == nil {
+	if o == nil || isNil(o.ModifiedBy.Get()) {
 		var ret string
 		return ret
 	}
@@ -371,7 +373,7 @@ func (o *Application) UnsetModifiedBy() {
 
 // GetModifiedAt returns the ModifiedAt field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *Application) GetModifiedAt() time.Time {
-	if o == nil || o.ModifiedAt.Get() == nil {
+	if o == nil || isNil(o.ModifiedAt.Get()) {
 		var ret time.Time
 		return ret
 	}
@@ -412,6 +414,92 @@ func (o *Application) UnsetModifiedAt() {
 	o.ModifiedAt.Unset()
 }
 
+// GetCanCreateExpiringApplications returns the CanCreateExpiringApplications field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *Application) GetCanCreateExpiringApplications() bool {
+	if o == nil || isNil(o.CanCreateExpiringApplications.Get()) {
+		var ret bool
+		return ret
+	}
+	return *o.CanCreateExpiringApplications.Get()
+}
+
+// GetCanCreateExpiringApplicationsOk returns a tuple with the CanCreateExpiringApplications field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *Application) GetCanCreateExpiringApplicationsOk() (*bool, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.CanCreateExpiringApplications.Get(), o.CanCreateExpiringApplications.IsSet()
+}
+
+// HasCanCreateExpiringApplications returns a boolean if a field has been set.
+func (o *Application) HasCanCreateExpiringApplications() bool {
+	if o != nil && o.CanCreateExpiringApplications.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetCanCreateExpiringApplications gets a reference to the given NullableBool and assigns it to the CanCreateExpiringApplications field.
+func (o *Application) SetCanCreateExpiringApplications(v bool) {
+	o.CanCreateExpiringApplications.Set(&v)
+}
+
+// SetCanCreateExpiringApplicationsNil sets the value for CanCreateExpiringApplications to be an explicit nil
+func (o *Application) SetCanCreateExpiringApplicationsNil() {
+	o.CanCreateExpiringApplications.Set(nil)
+}
+
+// UnsetCanCreateExpiringApplications ensures that no value is present for CanCreateExpiringApplications, not even an explicit nil
+func (o *Application) UnsetCanCreateExpiringApplications() {
+	o.CanCreateExpiringApplications.Unset()
+}
+
+// GetExpiresAt returns the ExpiresAt field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *Application) GetExpiresAt() time.Time {
+	if o == nil || isNil(o.ExpiresAt.Get()) {
+		var ret time.Time
+		return ret
+	}
+	return *o.ExpiresAt.Get()
+}
+
+// GetExpiresAtOk returns a tuple with the ExpiresAt field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *Application) GetExpiresAtOk() (*time.Time, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.ExpiresAt.Get(), o.ExpiresAt.IsSet()
+}
+
+// HasExpiresAt returns a boolean if a field has been set.
+func (o *Application) HasExpiresAt() bool {
+	if o != nil && o.ExpiresAt.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetExpiresAt gets a reference to the given NullableTime and assigns it to the ExpiresAt field.
+func (o *Application) SetExpiresAt(v time.Time) {
+	o.ExpiresAt.Set(&v)
+}
+
+// SetExpiresAtNil sets the value for ExpiresAt to be an explicit nil
+func (o *Application) SetExpiresAtNil() {
+	o.ExpiresAt.Set(nil)
+}
+
+// UnsetExpiresAt ensures that no value is present for ExpiresAt, not even an explicit nil
+func (o *Application) UnsetExpiresAt() {
+	o.ExpiresAt.Unset()
+}
+
 // GetPermissions returns the Permissions field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *Application) GetPermissions() []string {
 	if o == nil {
@@ -425,7 +513,7 @@ func (o *Application) GetPermissions() []string {
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *Application) GetPermissionsOk() ([]string, bool) {
-	if o == nil || o.Permissions == nil {
+	if o == nil || isNil(o.Permissions) {
 		return nil, false
 	}
 	return o.Permissions, true
@@ -433,7 +521,7 @@ func (o *Application) GetPermissionsOk() ([]string, bool) {
 
 // HasPermissions returns a boolean if a field has been set.
 func (o *Application) HasPermissions() bool {
-	if o != nil && o.Permissions != nil {
+	if o != nil && isNil(o.Permissions) {
 		return true
 	}
 
@@ -458,7 +546,7 @@ func (o *Application) GetRules() []AccessRule {
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *Application) GetRulesOk() ([]AccessRule, bool) {
-	if o == nil || o.Rules == nil {
+	if o == nil || isNil(o.Rules) {
 		return nil, false
 	}
 	return o.Rules, true
@@ -466,7 +554,7 @@ func (o *Application) GetRulesOk() ([]AccessRule, bool) {
 
 // HasRules returns a boolean if a field has been set.
 func (o *Application) HasRules() bool {
-	if o != nil && o.Rules != nil {
+	if o != nil && isNil(o.Rules) {
 		return true
 	}
 
@@ -480,10 +568,10 @@ func (o *Application) SetRules(v []AccessRule) {
 
 func (o Application) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
-	if o.Id != nil {
+	if !isNil(o.Id) {
 		toSerialize["id"] = o.Id
 	}
-	if o.TenantId != nil {
+	if !isNil(o.TenantId) {
 		toSerialize["tenant_id"] = o.TenantId
 	}
 	if o.Name.IsSet() {
@@ -506,6 +594,12 @@ func (o Application) MarshalJSON() ([]byte, error) {
 	}
 	if o.ModifiedAt.IsSet() {
 		toSerialize["modified_at"] = o.ModifiedAt.Get()
+	}
+	if o.CanCreateExpiringApplications.IsSet() {
+		toSerialize["can_create_expiring_applications"] = o.CanCreateExpiringApplications.Get()
+	}
+	if o.ExpiresAt.IsSet() {
+		toSerialize["expires_at"] = o.ExpiresAt.Get()
 	}
 	if o.Permissions != nil {
 		toSerialize["permissions"] = o.Permissions

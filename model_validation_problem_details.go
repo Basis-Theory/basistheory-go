@@ -54,7 +54,7 @@ func (o *ValidationProblemDetails) GetErrors() map[string][]string {
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *ValidationProblemDetails) GetErrorsOk() (*map[string][]string, bool) {
-	if o == nil || o.Errors == nil {
+	if o == nil || isNil(o.Errors) {
 		return nil, false
 	}
 	return &o.Errors, true
@@ -62,7 +62,7 @@ func (o *ValidationProblemDetails) GetErrorsOk() (*map[string][]string, bool) {
 
 // HasErrors returns a boolean if a field has been set.
 func (o *ValidationProblemDetails) HasErrors() bool {
-	if o != nil && o.Errors != nil {
+	if o != nil && isNil(o.Errors) {
 		return true
 	}
 
@@ -76,7 +76,7 @@ func (o *ValidationProblemDetails) SetErrors(v map[string][]string) {
 
 // GetType returns the Type field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *ValidationProblemDetails) GetType() string {
-	if o == nil || o.Type.Get() == nil {
+	if o == nil || isNil(o.Type.Get()) {
 		var ret string
 		return ret
 	}
@@ -119,7 +119,7 @@ func (o *ValidationProblemDetails) UnsetType() {
 
 // GetTitle returns the Title field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *ValidationProblemDetails) GetTitle() string {
-	if o == nil || o.Title.Get() == nil {
+	if o == nil || isNil(o.Title.Get()) {
 		var ret string
 		return ret
 	}
@@ -162,7 +162,7 @@ func (o *ValidationProblemDetails) UnsetTitle() {
 
 // GetStatus returns the Status field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *ValidationProblemDetails) GetStatus() int32 {
-	if o == nil || o.Status.Get() == nil {
+	if o == nil || isNil(o.Status.Get()) {
 		var ret int32
 		return ret
 	}
@@ -205,7 +205,7 @@ func (o *ValidationProblemDetails) UnsetStatus() {
 
 // GetDetail returns the Detail field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *ValidationProblemDetails) GetDetail() string {
-	if o == nil || o.Detail.Get() == nil {
+	if o == nil || isNil(o.Detail.Get()) {
 		var ret string
 		return ret
 	}
@@ -248,7 +248,7 @@ func (o *ValidationProblemDetails) UnsetDetail() {
 
 // GetInstance returns the Instance field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *ValidationProblemDetails) GetInstance() string {
-	if o == nil || o.Instance.Get() == nil {
+	if o == nil || isNil(o.Instance.Get()) {
 		var ret string
 		return ret
 	}

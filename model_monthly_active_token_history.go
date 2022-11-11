@@ -40,7 +40,7 @@ func NewMonthlyActiveTokenHistoryWithDefaults() *MonthlyActiveTokenHistory {
 
 // GetYear returns the Year field value if set, zero value otherwise.
 func (o *MonthlyActiveTokenHistory) GetYear() int32 {
-	if o == nil || o.Year == nil {
+	if o == nil || isNil(o.Year) {
 		var ret int32
 		return ret
 	}
@@ -50,7 +50,7 @@ func (o *MonthlyActiveTokenHistory) GetYear() int32 {
 // GetYearOk returns a tuple with the Year field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *MonthlyActiveTokenHistory) GetYearOk() (*int32, bool) {
-	if o == nil || o.Year == nil {
+	if o == nil || isNil(o.Year) {
 		return nil, false
 	}
 	return o.Year, true
@@ -58,7 +58,7 @@ func (o *MonthlyActiveTokenHistory) GetYearOk() (*int32, bool) {
 
 // HasYear returns a boolean if a field has been set.
 func (o *MonthlyActiveTokenHistory) HasYear() bool {
-	if o != nil && o.Year != nil {
+	if o != nil && !isNil(o.Year) {
 		return true
 	}
 
@@ -72,7 +72,7 @@ func (o *MonthlyActiveTokenHistory) SetYear(v int32) {
 
 // GetMonth returns the Month field value if set, zero value otherwise.
 func (o *MonthlyActiveTokenHistory) GetMonth() int32 {
-	if o == nil || o.Month == nil {
+	if o == nil || isNil(o.Month) {
 		var ret int32
 		return ret
 	}
@@ -82,7 +82,7 @@ func (o *MonthlyActiveTokenHistory) GetMonth() int32 {
 // GetMonthOk returns a tuple with the Month field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *MonthlyActiveTokenHistory) GetMonthOk() (*int32, bool) {
-	if o == nil || o.Month == nil {
+	if o == nil || isNil(o.Month) {
 		return nil, false
 	}
 	return o.Month, true
@@ -90,7 +90,7 @@ func (o *MonthlyActiveTokenHistory) GetMonthOk() (*int32, bool) {
 
 // HasMonth returns a boolean if a field has been set.
 func (o *MonthlyActiveTokenHistory) HasMonth() bool {
-	if o != nil && o.Month != nil {
+	if o != nil && !isNil(o.Month) {
 		return true
 	}
 
@@ -104,7 +104,7 @@ func (o *MonthlyActiveTokenHistory) SetMonth(v int32) {
 
 // GetCount returns the Count field value if set, zero value otherwise.
 func (o *MonthlyActiveTokenHistory) GetCount() int64 {
-	if o == nil || o.Count == nil {
+	if o == nil || isNil(o.Count) {
 		var ret int64
 		return ret
 	}
@@ -114,7 +114,7 @@ func (o *MonthlyActiveTokenHistory) GetCount() int64 {
 // GetCountOk returns a tuple with the Count field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *MonthlyActiveTokenHistory) GetCountOk() (*int64, bool) {
-	if o == nil || o.Count == nil {
+	if o == nil || isNil(o.Count) {
 		return nil, false
 	}
 	return o.Count, true
@@ -122,7 +122,7 @@ func (o *MonthlyActiveTokenHistory) GetCountOk() (*int64, bool) {
 
 // HasCount returns a boolean if a field has been set.
 func (o *MonthlyActiveTokenHistory) HasCount() bool {
-	if o != nil && o.Count != nil {
+	if o != nil && !isNil(o.Count) {
 		return true
 	}
 
@@ -136,13 +136,13 @@ func (o *MonthlyActiveTokenHistory) SetCount(v int64) {
 
 func (o MonthlyActiveTokenHistory) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
-	if o.Year != nil {
+	if !isNil(o.Year) {
 		toSerialize["year"] = o.Year
 	}
-	if o.Month != nil {
+	if !isNil(o.Month) {
 		toSerialize["month"] = o.Month
 	}
-	if o.Count != nil {
+	if !isNil(o.Count) {
 		toSerialize["count"] = o.Count
 	}
 	return json.Marshal(toSerialize)

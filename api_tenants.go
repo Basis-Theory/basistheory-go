@@ -41,8 +41,8 @@ func (r TenantsApiCreateInvitationRequest) Execute() (*TenantInvitationResponse,
 /*
 CreateInvitation Method for CreateInvitation
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@return TenantsApiCreateInvitationRequest
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @return TenantsApiCreateInvitationRequest
 */
 func (a *TenantsApiService) CreateInvitation(ctx context.Context) TenantsApiCreateInvitationRequest {
 	return TenantsApiCreateInvitationRequest{
@@ -52,8 +52,7 @@ func (a *TenantsApiService) CreateInvitation(ctx context.Context) TenantsApiCrea
 }
 
 // Execute executes the request
-//
-//	@return TenantInvitationResponse
+//  @return TenantInvitationResponse
 func (a *TenantsApiService) CreateInvitationExecute(r TenantsApiCreateInvitationRequest) (*TenantInvitationResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodPost
@@ -187,8 +186,8 @@ func (r TenantsApiDeleteRequest) Execute() (*http.Response, error) {
 /*
 Delete Method for Delete
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@return TenantsApiDeleteRequest
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @return TenantsApiDeleteRequest
 */
 func (a *TenantsApiService) Delete(ctx context.Context) TenantsApiDeleteRequest {
 	return TenantsApiDeleteRequest{
@@ -317,9 +316,9 @@ func (r TenantsApiDeleteInvitationRequest) Execute() (*http.Response, error) {
 /*
 DeleteInvitation Method for DeleteInvitation
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param invitationId
-	@return TenantsApiDeleteInvitationRequest
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param invitationId
+ @return TenantsApiDeleteInvitationRequest
 */
 func (a *TenantsApiService) DeleteInvitation(ctx context.Context, invitationId string) TenantsApiDeleteInvitationRequest {
 	return TenantsApiDeleteInvitationRequest{
@@ -453,9 +452,9 @@ func (r TenantsApiDeleteMemberRequest) Execute() (*http.Response, error) {
 /*
 DeleteMember Method for DeleteMember
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param memberId
-	@return TenantsApiDeleteMemberRequest
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param memberId
+ @return TenantsApiDeleteMemberRequest
 */
 func (a *TenantsApiService) DeleteMember(ctx context.Context, memberId string) TenantsApiDeleteMemberRequest {
 	return TenantsApiDeleteMemberRequest{
@@ -598,8 +597,8 @@ func (r TenantsApiGetRequest) Execute() (*Tenant, *http.Response, error) {
 /*
 Get Method for Get
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@return TenantsApiGetRequest
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @return TenantsApiGetRequest
 */
 func (a *TenantsApiService) Get(ctx context.Context) TenantsApiGetRequest {
 	return TenantsApiGetRequest{
@@ -609,8 +608,7 @@ func (a *TenantsApiService) Get(ctx context.Context) TenantsApiGetRequest {
 }
 
 // Execute executes the request
-//
-//	@return Tenant
+//  @return Tenant
 func (a *TenantsApiService) GetExecute(r TenantsApiGetRequest) (*Tenant, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
@@ -757,8 +755,8 @@ func (r TenantsApiGetInvitationsRequest) Execute() (*TenantInvitationResponsePag
 /*
 GetInvitations Method for GetInvitations
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@return TenantsApiGetInvitationsRequest
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @return TenantsApiGetInvitationsRequest
 */
 func (a *TenantsApiService) GetInvitations(ctx context.Context) TenantsApiGetInvitationsRequest {
 	return TenantsApiGetInvitationsRequest{
@@ -768,8 +766,7 @@ func (a *TenantsApiService) GetInvitations(ctx context.Context) TenantsApiGetInv
 }
 
 // Execute executes the request
-//
-//	@return TenantInvitationResponsePaginatedList
+//  @return TenantInvitationResponsePaginatedList
 func (a *TenantsApiService) GetInvitationsExecute(r TenantsApiGetInvitationsRequest) (*TenantInvitationResponsePaginatedList, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
@@ -915,8 +912,8 @@ func (r TenantsApiGetMembersRequest) Execute() (*TenantMemberResponsePaginatedLi
 /*
 GetMembers Method for GetMembers
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@return TenantsApiGetMembersRequest
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @return TenantsApiGetMembersRequest
 */
 func (a *TenantsApiService) GetMembers(ctx context.Context) TenantsApiGetMembersRequest {
 	return TenantsApiGetMembersRequest{
@@ -926,8 +923,7 @@ func (a *TenantsApiService) GetMembers(ctx context.Context) TenantsApiGetMembers
 }
 
 // Execute executes the request
-//
-//	@return TenantMemberResponsePaginatedList
+//  @return TenantMemberResponsePaginatedList
 func (a *TenantsApiService) GetMembersExecute(r TenantsApiGetMembersRequest) (*TenantMemberResponsePaginatedList, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
@@ -1063,8 +1059,8 @@ func (r TenantsApiGetTenantOperationReportRequest) Execute() (*TenantUsageReport
 /*
 GetTenantOperationReport Method for GetTenantOperationReport
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@return TenantsApiGetTenantOperationReportRequest
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @return TenantsApiGetTenantOperationReportRequest
 */
 func (a *TenantsApiService) GetTenantOperationReport(ctx context.Context) TenantsApiGetTenantOperationReportRequest {
 	return TenantsApiGetTenantOperationReportRequest{
@@ -1074,8 +1070,7 @@ func (a *TenantsApiService) GetTenantOperationReport(ctx context.Context) Tenant
 }
 
 // Execute executes the request
-//
-//	@return TenantUsageReport
+//  @return TenantUsageReport
 func (a *TenantsApiService) GetTenantOperationReportExecute(r TenantsApiGetTenantOperationReportRequest) (*TenantUsageReport, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
@@ -1194,8 +1189,8 @@ func (r TenantsApiGetTenantUsageReportRequest) Execute() (*TenantUsageReport, *h
 /*
 GetTenantUsageReport Method for GetTenantUsageReport
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@return TenantsApiGetTenantUsageReportRequest
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @return TenantsApiGetTenantUsageReportRequest
 */
 func (a *TenantsApiService) GetTenantUsageReport(ctx context.Context) TenantsApiGetTenantUsageReportRequest {
 	return TenantsApiGetTenantUsageReportRequest{
@@ -1205,8 +1200,7 @@ func (a *TenantsApiService) GetTenantUsageReport(ctx context.Context) TenantsApi
 }
 
 // Execute executes the request
-//
-//	@return TenantUsageReport
+//  @return TenantUsageReport
 func (a *TenantsApiService) GetTenantUsageReportExecute(r TenantsApiGetTenantUsageReportRequest) (*TenantUsageReport, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
@@ -1336,9 +1330,9 @@ func (r TenantsApiResendInvitationRequest) Execute() (*TenantInvitationResponse,
 /*
 ResendInvitation Method for ResendInvitation
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param invitationId
-	@return TenantsApiResendInvitationRequest
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param invitationId
+ @return TenantsApiResendInvitationRequest
 */
 func (a *TenantsApiService) ResendInvitation(ctx context.Context, invitationId string) TenantsApiResendInvitationRequest {
 	return TenantsApiResendInvitationRequest{
@@ -1349,8 +1343,7 @@ func (a *TenantsApiService) ResendInvitation(ctx context.Context, invitationId s
 }
 
 // Execute executes the request
-//
-//	@return TenantInvitationResponse
+//  @return TenantInvitationResponse
 func (a *TenantsApiService) ResendInvitationExecute(r TenantsApiResendInvitationRequest) (*TenantInvitationResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodPost
@@ -1489,8 +1482,8 @@ func (r TenantsApiUpdateRequest) Execute() (*Tenant, *http.Response, error) {
 /*
 Update Method for Update
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@return TenantsApiUpdateRequest
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @return TenantsApiUpdateRequest
 */
 func (a *TenantsApiService) Update(ctx context.Context) TenantsApiUpdateRequest {
 	return TenantsApiUpdateRequest{
@@ -1500,8 +1493,7 @@ func (a *TenantsApiService) Update(ctx context.Context) TenantsApiUpdateRequest 
 }
 
 // Execute executes the request
-//
-//	@return Tenant
+//  @return Tenant
 func (a *TenantsApiService) UpdateExecute(r TenantsApiUpdateRequest) (*Tenant, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodPut

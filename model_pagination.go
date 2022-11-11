@@ -41,7 +41,7 @@ func NewPaginationWithDefaults() *Pagination {
 
 // GetTotalItems returns the TotalItems field value if set, zero value otherwise.
 func (o *Pagination) GetTotalItems() int32 {
-	if o == nil || o.TotalItems == nil {
+	if o == nil || isNil(o.TotalItems) {
 		var ret int32
 		return ret
 	}
@@ -51,7 +51,7 @@ func (o *Pagination) GetTotalItems() int32 {
 // GetTotalItemsOk returns a tuple with the TotalItems field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Pagination) GetTotalItemsOk() (*int32, bool) {
-	if o == nil || o.TotalItems == nil {
+	if o == nil || isNil(o.TotalItems) {
 		return nil, false
 	}
 	return o.TotalItems, true
@@ -59,7 +59,7 @@ func (o *Pagination) GetTotalItemsOk() (*int32, bool) {
 
 // HasTotalItems returns a boolean if a field has been set.
 func (o *Pagination) HasTotalItems() bool {
-	if o != nil && o.TotalItems != nil {
+	if o != nil && !isNil(o.TotalItems) {
 		return true
 	}
 
@@ -73,7 +73,7 @@ func (o *Pagination) SetTotalItems(v int32) {
 
 // GetPageNumber returns the PageNumber field value if set, zero value otherwise.
 func (o *Pagination) GetPageNumber() int32 {
-	if o == nil || o.PageNumber == nil {
+	if o == nil || isNil(o.PageNumber) {
 		var ret int32
 		return ret
 	}
@@ -83,7 +83,7 @@ func (o *Pagination) GetPageNumber() int32 {
 // GetPageNumberOk returns a tuple with the PageNumber field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Pagination) GetPageNumberOk() (*int32, bool) {
-	if o == nil || o.PageNumber == nil {
+	if o == nil || isNil(o.PageNumber) {
 		return nil, false
 	}
 	return o.PageNumber, true
@@ -91,7 +91,7 @@ func (o *Pagination) GetPageNumberOk() (*int32, bool) {
 
 // HasPageNumber returns a boolean if a field has been set.
 func (o *Pagination) HasPageNumber() bool {
-	if o != nil && o.PageNumber != nil {
+	if o != nil && !isNil(o.PageNumber) {
 		return true
 	}
 
@@ -105,7 +105,7 @@ func (o *Pagination) SetPageNumber(v int32) {
 
 // GetPageSize returns the PageSize field value if set, zero value otherwise.
 func (o *Pagination) GetPageSize() int32 {
-	if o == nil || o.PageSize == nil {
+	if o == nil || isNil(o.PageSize) {
 		var ret int32
 		return ret
 	}
@@ -115,7 +115,7 @@ func (o *Pagination) GetPageSize() int32 {
 // GetPageSizeOk returns a tuple with the PageSize field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Pagination) GetPageSizeOk() (*int32, bool) {
-	if o == nil || o.PageSize == nil {
+	if o == nil || isNil(o.PageSize) {
 		return nil, false
 	}
 	return o.PageSize, true
@@ -123,7 +123,7 @@ func (o *Pagination) GetPageSizeOk() (*int32, bool) {
 
 // HasPageSize returns a boolean if a field has been set.
 func (o *Pagination) HasPageSize() bool {
-	if o != nil && o.PageSize != nil {
+	if o != nil && !isNil(o.PageSize) {
 		return true
 	}
 
@@ -137,7 +137,7 @@ func (o *Pagination) SetPageSize(v int32) {
 
 // GetTotalPages returns the TotalPages field value if set, zero value otherwise.
 func (o *Pagination) GetTotalPages() int32 {
-	if o == nil || o.TotalPages == nil {
+	if o == nil || isNil(o.TotalPages) {
 		var ret int32
 		return ret
 	}
@@ -147,7 +147,7 @@ func (o *Pagination) GetTotalPages() int32 {
 // GetTotalPagesOk returns a tuple with the TotalPages field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Pagination) GetTotalPagesOk() (*int32, bool) {
-	if o == nil || o.TotalPages == nil {
+	if o == nil || isNil(o.TotalPages) {
 		return nil, false
 	}
 	return o.TotalPages, true
@@ -155,7 +155,7 @@ func (o *Pagination) GetTotalPagesOk() (*int32, bool) {
 
 // HasTotalPages returns a boolean if a field has been set.
 func (o *Pagination) HasTotalPages() bool {
-	if o != nil && o.TotalPages != nil {
+	if o != nil && !isNil(o.TotalPages) {
 		return true
 	}
 
@@ -169,16 +169,16 @@ func (o *Pagination) SetTotalPages(v int32) {
 
 func (o Pagination) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
-	if o.TotalItems != nil {
+	if !isNil(o.TotalItems) {
 		toSerialize["total_items"] = o.TotalItems
 	}
-	if o.PageNumber != nil {
+	if !isNil(o.PageNumber) {
 		toSerialize["page_number"] = o.PageNumber
 	}
-	if o.PageSize != nil {
+	if !isNil(o.PageSize) {
 		toSerialize["page_size"] = o.PageSize
 	}
-	if o.TotalPages != nil {
+	if !isNil(o.TotalPages) {
 		toSerialize["total_pages"] = o.TotalPages
 	}
 	return json.Marshal(toSerialize)

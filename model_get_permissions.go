@@ -39,7 +39,7 @@ func NewGetPermissionsWithDefaults() *GetPermissions {
 
 // GetApplicationType returns the ApplicationType field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *GetPermissions) GetApplicationType() string {
-	if o == nil || o.ApplicationType.Get() == nil {
+	if o == nil || isNil(o.ApplicationType.Get()) {
 		var ret string
 		return ret
 	}
@@ -82,7 +82,7 @@ func (o *GetPermissions) UnsetApplicationType() {
 
 // GetVersion returns the Version field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *GetPermissions) GetVersion() int32 {
-	if o == nil || o.Version.Get() == nil {
+	if o == nil || isNil(o.Version.Get()) {
 		var ret int32
 		return ret
 	}

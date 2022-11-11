@@ -32,6 +32,16 @@ paths:
         style: form
       - explode: true
         in: query
+        name: type
+        required: false
+        schema:
+          items:
+            type: string
+          nullable: true
+          type: array
+        style: form
+      - explode: true
+        in: query
         name: page
         required: false
         schema:
@@ -2360,14 +2370,6 @@ components:
       additionalProperties: false
       example:
         tenant_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-        permissions:
-        - permissions
-        - permissions
-        - permissions
-        - permissions
-        - permissions
-        name: name
-        modified_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
         created_at: 2000-01-23T04:56:07.000+00:00
         rules:
         - container: container
@@ -2384,10 +2386,20 @@ components:
           - permissions
           description: description
           priority: 5
-        id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
         type: type
-        modified_at: 2000-01-23T04:56:07.000+00:00
         created_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        can_create_expiring_applications: true
+        expires_at: 2000-01-23T04:56:07.000+00:00
+        permissions:
+        - permissions
+        - permissions
+        - permissions
+        - permissions
+        - permissions
+        name: name
+        modified_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        modified_at: 2000-01-23T04:56:07.000+00:00
         key: key
       properties:
         id:
@@ -2437,6 +2449,14 @@ components:
           maxLength: 40
           nullable: true
           type: string
+        can_create_expiring_applications:
+          nullable: true
+          type: boolean
+        expires_at:
+          format: date-time
+          maxLength: 40
+          nullable: true
+          type: string
         permissions:
           items:
             type: string
@@ -2459,14 +2479,6 @@ components:
           page_size: 1
         data:
         - tenant_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-          permissions:
-          - permissions
-          - permissions
-          - permissions
-          - permissions
-          - permissions
-          name: name
-          modified_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           created_at: 2000-01-23T04:56:07.000+00:00
           rules:
           - container: container
@@ -2483,20 +2495,22 @@ components:
             - permissions
             description: description
             priority: 5
-          id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           type: type
-          modified_at: 2000-01-23T04:56:07.000+00:00
           created_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          can_create_expiring_applications: true
+          expires_at: 2000-01-23T04:56:07.000+00:00
+          permissions:
+          - permissions
+          - permissions
+          - permissions
+          - permissions
+          - permissions
+          name: name
+          modified_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          modified_at: 2000-01-23T04:56:07.000+00:00
           key: key
         - tenant_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-          permissions:
-          - permissions
-          - permissions
-          - permissions
-          - permissions
-          - permissions
-          name: name
-          modified_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           created_at: 2000-01-23T04:56:07.000+00:00
           rules:
           - container: container
@@ -2513,20 +2527,22 @@ components:
             - permissions
             description: description
             priority: 5
-          id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           type: type
-          modified_at: 2000-01-23T04:56:07.000+00:00
           created_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          can_create_expiring_applications: true
+          expires_at: 2000-01-23T04:56:07.000+00:00
+          permissions:
+          - permissions
+          - permissions
+          - permissions
+          - permissions
+          - permissions
+          name: name
+          modified_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          modified_at: 2000-01-23T04:56:07.000+00:00
           key: key
         - tenant_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-          permissions:
-          - permissions
-          - permissions
-          - permissions
-          - permissions
-          - permissions
-          name: name
-          modified_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           created_at: 2000-01-23T04:56:07.000+00:00
           rules:
           - container: container
@@ -2543,20 +2559,22 @@ components:
             - permissions
             description: description
             priority: 5
-          id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           type: type
-          modified_at: 2000-01-23T04:56:07.000+00:00
           created_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          can_create_expiring_applications: true
+          expires_at: 2000-01-23T04:56:07.000+00:00
+          permissions:
+          - permissions
+          - permissions
+          - permissions
+          - permissions
+          - permissions
+          name: name
+          modified_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          modified_at: 2000-01-23T04:56:07.000+00:00
           key: key
         - tenant_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-          permissions:
-          - permissions
-          - permissions
-          - permissions
-          - permissions
-          - permissions
-          name: name
-          modified_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           created_at: 2000-01-23T04:56:07.000+00:00
           rules:
           - container: container
@@ -2573,20 +2591,22 @@ components:
             - permissions
             description: description
             priority: 5
-          id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           type: type
-          modified_at: 2000-01-23T04:56:07.000+00:00
           created_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          can_create_expiring_applications: true
+          expires_at: 2000-01-23T04:56:07.000+00:00
+          permissions:
+          - permissions
+          - permissions
+          - permissions
+          - permissions
+          - permissions
+          name: name
+          modified_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          modified_at: 2000-01-23T04:56:07.000+00:00
           key: key
         - tenant_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-          permissions:
-          - permissions
-          - permissions
-          - permissions
-          - permissions
-          - permissions
-          name: name
-          modified_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           created_at: 2000-01-23T04:56:07.000+00:00
           rules:
           - container: container
@@ -2603,10 +2623,20 @@ components:
             - permissions
             description: description
             priority: 5
-          id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           type: type
-          modified_at: 2000-01-23T04:56:07.000+00:00
           created_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          can_create_expiring_applications: true
+          expires_at: 2000-01-23T04:56:07.000+00:00
+          permissions:
+          - permissions
+          - permissions
+          - permissions
+          - permissions
+          - permissions
+          name: name
+          modified_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          modified_at: 2000-01-23T04:56:07.000+00:00
           key: key
       properties:
         pagination:
@@ -2679,6 +2709,8 @@ components:
     CreateApplicationRequest:
       additionalProperties: false
       example:
+        can_create_expiring_applications: true
+        expires_at: expires_at
         permissions:
         - permissions
         - permissions
@@ -2705,13 +2737,19 @@ components:
       properties:
         name:
           maxLength: 200
-          minLength: 1
+          nullable: true
           pattern: ^.+$
           type: string
         type:
           maxLength: 25
           minLength: 1
           pattern: "^[A-z_]+$"
+          type: string
+        can_create_expiring_applications:
+          nullable: true
+          type: boolean
+        expires_at:
+          nullable: true
           type: string
         permissions:
           items:
@@ -2725,7 +2763,6 @@ components:
           nullable: true
           type: array
       required:
-      - name
       - type
       type: object
     CreateProxyRequest:
@@ -2862,14 +2899,6 @@ components:
       example:
         application:
           tenant_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-          permissions:
-          - permissions
-          - permissions
-          - permissions
-          - permissions
-          - permissions
-          name: name
-          modified_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           created_at: 2000-01-23T04:56:07.000+00:00
           rules:
           - container: container
@@ -2886,10 +2915,20 @@ components:
             - permissions
             description: description
             priority: 5
-          id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           type: type
-          modified_at: 2000-01-23T04:56:07.000+00:00
           created_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          can_create_expiring_applications: true
+          expires_at: 2000-01-23T04:56:07.000+00:00
+          permissions:
+          - permissions
+          - permissions
+          - permissions
+          - permissions
+          - permissions
+          name: name
+          modified_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          modified_at: 2000-01-23T04:56:07.000+00:00
           key: key
         configuration:
           key: configuration
@@ -3162,7 +3201,7 @@ components:
             type: string
           maxItems: 1
           nullable: true
-          pattern: "^(?!.*\\/\\/)(?=.*\\/$)\\/[A-z0-9_\\-\\/]*$"
+          pattern: "^(?!.*//)(?=.*/$)/[A-z0-9_\\-/]*$"
           type: array
       type: object
     EncryptionKey:
@@ -3208,6 +3247,11 @@ components:
             format: uuid
             maxLength: 36
             pattern: "^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$"
+            type: string
+          nullable: true
+          type: array
+        type:
+          items:
             type: string
           nullable: true
           type: array
@@ -3864,14 +3908,6 @@ components:
         tenant_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
         application:
           tenant_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-          permissions:
-          - permissions
-          - permissions
-          - permissions
-          - permissions
-          - permissions
-          name: name
-          modified_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           created_at: 2000-01-23T04:56:07.000+00:00
           rules:
           - container: container
@@ -3888,10 +3924,20 @@ components:
             - permissions
             description: description
             priority: 5
-          id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           type: type
-          modified_at: 2000-01-23T04:56:07.000+00:00
           created_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          can_create_expiring_applications: true
+          expires_at: 2000-01-23T04:56:07.000+00:00
+          permissions:
+          - permissions
+          - permissions
+          - permissions
+          - permissions
+          - permissions
+          name: name
+          modified_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          modified_at: 2000-01-23T04:56:07.000+00:00
           key: key
         configuration:
           key: configuration
@@ -4079,11 +4125,9 @@ components:
         icon:
           maxLength: 50000
           nullable: true
-          pattern: "(^data:(image\\/png|image\\/jpg|image\\/jpeg|image\\/svg\\+xml);\\\
-            s*base64,\\s*(?:[A-Za-z0-9+\\/]{4})*(?:[A-Za-z0-9+\\/]{2}==|[A-Za-z0-9+\\\
-            /]{3}=|[A-Za-z0-9+\\/]{4})$)|(^data:(image\\/png|image\\/jpg|image\\/jpeg);\\\
-            s*base64,\\s*(?:[A-Za-z0-9+\\/]{4})*(?:[A-Za-z0-9+\\/]{2}==|[A-Za-z0-9+\\\
-            /]{3}=|[A-Za-z0-9+\\/]{4})$)"
+          pattern: "(^data:(image/png|image/jpg|image/jpeg|image/svg\\+xml);\\s*base64,\\\
+            s*(?:[A-Za-z0-9+/]{4})*(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=|[A-Za-z0-9+/]{4})$)|(^data:(image/png|image/jpg|image/jpeg);\\\
+            s*base64,\\s*(?:[A-Za-z0-9+/]{4})*(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=|[A-Za-z0-9+/]{4})$)"
           type: string
         code:
           maxLength: 4000
@@ -4451,14 +4495,6 @@ components:
         - tenant_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           application:
             tenant_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-            permissions:
-            - permissions
-            - permissions
-            - permissions
-            - permissions
-            - permissions
-            name: name
-            modified_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
             created_at: 2000-01-23T04:56:07.000+00:00
             rules:
             - container: container
@@ -4475,10 +4511,20 @@ components:
               - permissions
               description: description
               priority: 5
-            id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
             type: type
-            modified_at: 2000-01-23T04:56:07.000+00:00
             created_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+            can_create_expiring_applications: true
+            expires_at: 2000-01-23T04:56:07.000+00:00
+            permissions:
+            - permissions
+            - permissions
+            - permissions
+            - permissions
+            - permissions
+            name: name
+            modified_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+            id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+            modified_at: 2000-01-23T04:56:07.000+00:00
             key: key
           configuration:
             key: configuration
@@ -4540,14 +4586,6 @@ components:
         - tenant_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           application:
             tenant_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-            permissions:
-            - permissions
-            - permissions
-            - permissions
-            - permissions
-            - permissions
-            name: name
-            modified_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
             created_at: 2000-01-23T04:56:07.000+00:00
             rules:
             - container: container
@@ -4564,10 +4602,20 @@ components:
               - permissions
               description: description
               priority: 5
-            id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
             type: type
-            modified_at: 2000-01-23T04:56:07.000+00:00
             created_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+            can_create_expiring_applications: true
+            expires_at: 2000-01-23T04:56:07.000+00:00
+            permissions:
+            - permissions
+            - permissions
+            - permissions
+            - permissions
+            - permissions
+            name: name
+            modified_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+            id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+            modified_at: 2000-01-23T04:56:07.000+00:00
             key: key
           configuration:
             key: configuration
@@ -4629,14 +4677,6 @@ components:
         - tenant_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           application:
             tenant_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-            permissions:
-            - permissions
-            - permissions
-            - permissions
-            - permissions
-            - permissions
-            name: name
-            modified_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
             created_at: 2000-01-23T04:56:07.000+00:00
             rules:
             - container: container
@@ -4653,10 +4693,20 @@ components:
               - permissions
               description: description
               priority: 5
-            id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
             type: type
-            modified_at: 2000-01-23T04:56:07.000+00:00
             created_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+            can_create_expiring_applications: true
+            expires_at: 2000-01-23T04:56:07.000+00:00
+            permissions:
+            - permissions
+            - permissions
+            - permissions
+            - permissions
+            - permissions
+            name: name
+            modified_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+            id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+            modified_at: 2000-01-23T04:56:07.000+00:00
             key: key
           configuration:
             key: configuration
@@ -4718,14 +4768,6 @@ components:
         - tenant_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           application:
             tenant_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-            permissions:
-            - permissions
-            - permissions
-            - permissions
-            - permissions
-            - permissions
-            name: name
-            modified_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
             created_at: 2000-01-23T04:56:07.000+00:00
             rules:
             - container: container
@@ -4742,10 +4784,20 @@ components:
               - permissions
               description: description
               priority: 5
-            id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
             type: type
-            modified_at: 2000-01-23T04:56:07.000+00:00
             created_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+            can_create_expiring_applications: true
+            expires_at: 2000-01-23T04:56:07.000+00:00
+            permissions:
+            - permissions
+            - permissions
+            - permissions
+            - permissions
+            - permissions
+            name: name
+            modified_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+            id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+            modified_at: 2000-01-23T04:56:07.000+00:00
             key: key
           configuration:
             key: configuration
@@ -4807,14 +4859,6 @@ components:
         - tenant_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           application:
             tenant_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-            permissions:
-            - permissions
-            - permissions
-            - permissions
-            - permissions
-            - permissions
-            name: name
-            modified_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
             created_at: 2000-01-23T04:56:07.000+00:00
             rules:
             - container: container
@@ -4831,10 +4875,20 @@ components:
               - permissions
               description: description
               priority: 5
-            id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
             type: type
-            modified_at: 2000-01-23T04:56:07.000+00:00
             created_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+            can_create_expiring_applications: true
+            expires_at: 2000-01-23T04:56:07.000+00:00
+            permissions:
+            - permissions
+            - permissions
+            - permissions
+            - permissions
+            - permissions
+            name: name
+            modified_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+            id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+            modified_at: 2000-01-23T04:56:07.000+00:00
             key: key
           configuration:
             key: configuration
@@ -5401,7 +5455,7 @@ components:
             type: string
           maxItems: 1
           nullable: true
-          pattern: "^(?!.*\\/\\/)(?=.*\\/$)\\/[A-z0-9_\\-\\/]*$"
+          pattern: "^(?!.*//)(?=.*/$)/[A-z0-9_\\-/]*$"
           type: array
       type: object
     TokenMetrics:
@@ -5655,6 +5709,7 @@ components:
     UpdateApplicationRequest:
       additionalProperties: false
       example:
+        can_create_expiring_applications: true
         permissions:
         - permissions
         - permissions
@@ -5683,6 +5738,9 @@ components:
           minLength: 1
           pattern: ^.+$
           type: string
+        can_create_expiring_applications:
+          nullable: true
+          type: boolean
         permissions:
           items:
             type: string
@@ -5835,14 +5893,6 @@ components:
       example:
         application:
           tenant_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-          permissions:
-          - permissions
-          - permissions
-          - permissions
-          - permissions
-          - permissions
-          name: name
-          modified_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           created_at: 2000-01-23T04:56:07.000+00:00
           rules:
           - container: container
@@ -5859,10 +5909,20 @@ components:
             - permissions
             description: description
             priority: 5
-          id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           type: type
-          modified_at: 2000-01-23T04:56:07.000+00:00
           created_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          can_create_expiring_applications: true
+          expires_at: 2000-01-23T04:56:07.000+00:00
+          permissions:
+          - permissions
+          - permissions
+          - permissions
+          - permissions
+          - permissions
+          name: name
+          modified_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          modified_at: 2000-01-23T04:56:07.000+00:00
           key: key
         configuration:
           key: configuration

@@ -39,7 +39,7 @@ func NewReactorPaginatedListWithDefaults() *ReactorPaginatedList {
 
 // GetPagination returns the Pagination field value if set, zero value otherwise.
 func (o *ReactorPaginatedList) GetPagination() Pagination {
-	if o == nil || o.Pagination == nil {
+	if o == nil || isNil(o.Pagination) {
 		var ret Pagination
 		return ret
 	}
@@ -49,7 +49,7 @@ func (o *ReactorPaginatedList) GetPagination() Pagination {
 // GetPaginationOk returns a tuple with the Pagination field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ReactorPaginatedList) GetPaginationOk() (*Pagination, bool) {
-	if o == nil || o.Pagination == nil {
+	if o == nil || isNil(o.Pagination) {
 		return nil, false
 	}
 	return o.Pagination, true
@@ -57,7 +57,7 @@ func (o *ReactorPaginatedList) GetPaginationOk() (*Pagination, bool) {
 
 // HasPagination returns a boolean if a field has been set.
 func (o *ReactorPaginatedList) HasPagination() bool {
-	if o != nil && o.Pagination != nil {
+	if o != nil && !isNil(o.Pagination) {
 		return true
 	}
 
@@ -82,7 +82,7 @@ func (o *ReactorPaginatedList) GetData() []Reactor {
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *ReactorPaginatedList) GetDataOk() ([]Reactor, bool) {
-	if o == nil || o.Data == nil {
+	if o == nil || isNil(o.Data) {
 		return nil, false
 	}
 	return o.Data, true
@@ -90,7 +90,7 @@ func (o *ReactorPaginatedList) GetDataOk() ([]Reactor, bool) {
 
 // HasData returns a boolean if a field has been set.
 func (o *ReactorPaginatedList) HasData() bool {
-	if o != nil && o.Data != nil {
+	if o != nil && isNil(o.Data) {
 		return true
 	}
 
@@ -104,7 +104,7 @@ func (o *ReactorPaginatedList) SetData(v []Reactor) {
 
 func (o ReactorPaginatedList) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
-	if o.Pagination != nil {
+	if !isNil(o.Pagination) {
 		toSerialize["pagination"] = o.Pagination
 	}
 	if o.Data != nil {

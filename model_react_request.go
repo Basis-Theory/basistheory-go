@@ -49,7 +49,7 @@ func (o *ReactRequest) GetArgs() interface{} {
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *ReactRequest) GetArgsOk() (*interface{}, bool) {
-	if o == nil || o.Args == nil {
+	if o == nil || isNil(o.Args) {
 		return nil, false
 	}
 	return &o.Args, true
@@ -57,7 +57,7 @@ func (o *ReactRequest) GetArgsOk() (*interface{}, bool) {
 
 // HasArgs returns a boolean if a field has been set.
 func (o *ReactRequest) HasArgs() bool {
-	if o != nil && o.Args != nil {
+	if o != nil && isNil(o.Args) {
 		return true
 	}
 

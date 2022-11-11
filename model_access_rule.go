@@ -42,7 +42,7 @@ func NewAccessRuleWithDefaults() *AccessRule {
 
 // GetDescription returns the Description field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *AccessRule) GetDescription() string {
-	if o == nil || o.Description.Get() == nil {
+	if o == nil || isNil(o.Description.Get()) {
 		var ret string
 		return ret
 	}
@@ -85,7 +85,7 @@ func (o *AccessRule) UnsetDescription() {
 
 // GetPriority returns the Priority field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *AccessRule) GetPriority() int32 {
-	if o == nil || o.Priority.Get() == nil {
+	if o == nil || isNil(o.Priority.Get()) {
 		var ret int32
 		return ret
 	}
@@ -128,7 +128,7 @@ func (o *AccessRule) UnsetPriority() {
 
 // GetContainer returns the Container field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *AccessRule) GetContainer() string {
-	if o == nil || o.Container.Get() == nil {
+	if o == nil || isNil(o.Container.Get()) {
 		var ret string
 		return ret
 	}
@@ -171,7 +171,7 @@ func (o *AccessRule) UnsetContainer() {
 
 // GetTransform returns the Transform field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *AccessRule) GetTransform() string {
-	if o == nil || o.Transform.Get() == nil {
+	if o == nil || isNil(o.Transform.Get()) {
 		var ret string
 		return ret
 	}
@@ -225,7 +225,7 @@ func (o *AccessRule) GetPermissions() []string {
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *AccessRule) GetPermissionsOk() ([]string, bool) {
-	if o == nil || o.Permissions == nil {
+	if o == nil || isNil(o.Permissions) {
 		return nil, false
 	}
 	return o.Permissions, true
@@ -233,7 +233,7 @@ func (o *AccessRule) GetPermissionsOk() ([]string, bool) {
 
 // HasPermissions returns a boolean if a field has been set.
 func (o *AccessRule) HasPermissions() bool {
-	if o != nil && o.Permissions != nil {
+	if o != nil && isNil(o.Permissions) {
 		return true
 	}
 

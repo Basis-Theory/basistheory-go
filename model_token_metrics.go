@@ -40,7 +40,7 @@ func NewTokenMetricsWithDefaults() *TokenMetrics {
 
 // GetCount returns the Count field value if set, zero value otherwise.
 func (o *TokenMetrics) GetCount() int64 {
-	if o == nil || o.Count == nil {
+	if o == nil || isNil(o.Count) {
 		var ret int64
 		return ret
 	}
@@ -50,7 +50,7 @@ func (o *TokenMetrics) GetCount() int64 {
 // GetCountOk returns a tuple with the Count field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *TokenMetrics) GetCountOk() (*int64, bool) {
-	if o == nil || o.Count == nil {
+	if o == nil || isNil(o.Count) {
 		return nil, false
 	}
 	return o.Count, true
@@ -58,7 +58,7 @@ func (o *TokenMetrics) GetCountOk() (*int64, bool) {
 
 // HasCount returns a boolean if a field has been set.
 func (o *TokenMetrics) HasCount() bool {
-	if o != nil && o.Count != nil {
+	if o != nil && !isNil(o.Count) {
 		return true
 	}
 
@@ -72,7 +72,7 @@ func (o *TokenMetrics) SetCount(v int64) {
 
 // GetLastCreatedAt returns the LastCreatedAt field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *TokenMetrics) GetLastCreatedAt() time.Time {
-	if o == nil || o.LastCreatedAt.Get() == nil {
+	if o == nil || isNil(o.LastCreatedAt.Get()) {
 		var ret time.Time
 		return ret
 	}
@@ -115,7 +115,7 @@ func (o *TokenMetrics) UnsetLastCreatedAt() {
 
 func (o TokenMetrics) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
-	if o.Count != nil {
+	if !isNil(o.Count) {
 		toSerialize["count"] = o.Count
 	}
 	if o.LastCreatedAt.IsSet() {

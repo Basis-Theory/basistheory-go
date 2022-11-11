@@ -17,6 +17,7 @@ import (
 // GetApplications struct for GetApplications
 type GetApplications struct {
 	Id   []string      `json:"id,omitempty"`
+	Type []string      `json:"type,omitempty"`
 	Page NullableInt32 `json:"page,omitempty"`
 	Size NullableInt32 `json:"size,omitempty"`
 }
@@ -51,7 +52,7 @@ func (o *GetApplications) GetId() []string {
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *GetApplications) GetIdOk() ([]string, bool) {
-	if o == nil || o.Id == nil {
+	if o == nil || isNil(o.Id) {
 		return nil, false
 	}
 	return o.Id, true
@@ -59,7 +60,7 @@ func (o *GetApplications) GetIdOk() ([]string, bool) {
 
 // HasId returns a boolean if a field has been set.
 func (o *GetApplications) HasId() bool {
-	if o != nil && o.Id != nil {
+	if o != nil && isNil(o.Id) {
 		return true
 	}
 
@@ -71,9 +72,42 @@ func (o *GetApplications) SetId(v []string) {
 	o.Id = v
 }
 
+// GetType returns the Type field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *GetApplications) GetType() []string {
+	if o == nil {
+		var ret []string
+		return ret
+	}
+	return o.Type
+}
+
+// GetTypeOk returns a tuple with the Type field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *GetApplications) GetTypeOk() ([]string, bool) {
+	if o == nil || isNil(o.Type) {
+		return nil, false
+	}
+	return o.Type, true
+}
+
+// HasType returns a boolean if a field has been set.
+func (o *GetApplications) HasType() bool {
+	if o != nil && isNil(o.Type) {
+		return true
+	}
+
+	return false
+}
+
+// SetType gets a reference to the given []string and assigns it to the Type field.
+func (o *GetApplications) SetType(v []string) {
+	o.Type = v
+}
+
 // GetPage returns the Page field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *GetApplications) GetPage() int32 {
-	if o == nil || o.Page.Get() == nil {
+	if o == nil || isNil(o.Page.Get()) {
 		var ret int32
 		return ret
 	}
@@ -116,7 +150,7 @@ func (o *GetApplications) UnsetPage() {
 
 // GetSize returns the Size field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *GetApplications) GetSize() int32 {
-	if o == nil || o.Size.Get() == nil {
+	if o == nil || isNil(o.Size.Get()) {
 		var ret int32
 		return ret
 	}
@@ -161,6 +195,9 @@ func (o GetApplications) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.Id != nil {
 		toSerialize["id"] = o.Id
+	}
+	if o.Type != nil {
+		toSerialize["type"] = o.Type
 	}
 	if o.Page.IsSet() {
 		toSerialize["page"] = o.Page.Get()

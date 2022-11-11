@@ -13,6 +13,8 @@ Name | Type | Description | Notes
 **CreatedAt** | Pointer to **NullableTime** |  | [optional] 
 **ModifiedBy** | Pointer to **NullableString** |  | [optional] 
 **ModifiedAt** | Pointer to **NullableTime** |  | [optional] 
+**CanCreateExpiringApplications** | Pointer to **NullableBool** |  | [optional] 
+**ExpiresAt** | Pointer to **NullableTime** |  | [optional] 
 **Permissions** | Pointer to **[]string** |  | [optional] 
 **Rules** | Pointer to [**[]AccessRule**](AccessRule.md) |  | [optional] 
 
@@ -330,6 +332,76 @@ HasModifiedAt returns a boolean if a field has been set.
 `func (o *Application) UnsetModifiedAt()`
 
 UnsetModifiedAt ensures that no value is present for ModifiedAt, not even an explicit nil
+### GetCanCreateExpiringApplications
+
+`func (o *Application) GetCanCreateExpiringApplications() bool`
+
+GetCanCreateExpiringApplications returns the CanCreateExpiringApplications field if non-nil, zero value otherwise.
+
+### GetCanCreateExpiringApplicationsOk
+
+`func (o *Application) GetCanCreateExpiringApplicationsOk() (*bool, bool)`
+
+GetCanCreateExpiringApplicationsOk returns a tuple with the CanCreateExpiringApplications field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetCanCreateExpiringApplications
+
+`func (o *Application) SetCanCreateExpiringApplications(v bool)`
+
+SetCanCreateExpiringApplications sets CanCreateExpiringApplications field to given value.
+
+### HasCanCreateExpiringApplications
+
+`func (o *Application) HasCanCreateExpiringApplications() bool`
+
+HasCanCreateExpiringApplications returns a boolean if a field has been set.
+
+### SetCanCreateExpiringApplicationsNil
+
+`func (o *Application) SetCanCreateExpiringApplicationsNil(b bool)`
+
+ SetCanCreateExpiringApplicationsNil sets the value for CanCreateExpiringApplications to be an explicit nil
+
+### UnsetCanCreateExpiringApplications
+`func (o *Application) UnsetCanCreateExpiringApplications()`
+
+UnsetCanCreateExpiringApplications ensures that no value is present for CanCreateExpiringApplications, not even an explicit nil
+### GetExpiresAt
+
+`func (o *Application) GetExpiresAt() time.Time`
+
+GetExpiresAt returns the ExpiresAt field if non-nil, zero value otherwise.
+
+### GetExpiresAtOk
+
+`func (o *Application) GetExpiresAtOk() (*time.Time, bool)`
+
+GetExpiresAtOk returns a tuple with the ExpiresAt field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetExpiresAt
+
+`func (o *Application) SetExpiresAt(v time.Time)`
+
+SetExpiresAt sets ExpiresAt field to given value.
+
+### HasExpiresAt
+
+`func (o *Application) HasExpiresAt() bool`
+
+HasExpiresAt returns a boolean if a field has been set.
+
+### SetExpiresAtNil
+
+`func (o *Application) SetExpiresAtNil(b bool)`
+
+ SetExpiresAtNil sets the value for ExpiresAt to be an explicit nil
+
+### UnsetExpiresAt
+`func (o *Application) UnsetExpiresAt()`
+
+UnsetExpiresAt ensures that no value is present for ExpiresAt, not even an explicit nil
 ### GetPermissions
 
 `func (o *Application) GetPermissions() []string`

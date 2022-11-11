@@ -51,7 +51,7 @@ func (o *GetTenantMembers) GetUserId() []string {
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *GetTenantMembers) GetUserIdOk() ([]string, bool) {
-	if o == nil || o.UserId == nil {
+	if o == nil || isNil(o.UserId) {
 		return nil, false
 	}
 	return o.UserId, true
@@ -59,7 +59,7 @@ func (o *GetTenantMembers) GetUserIdOk() ([]string, bool) {
 
 // HasUserId returns a boolean if a field has been set.
 func (o *GetTenantMembers) HasUserId() bool {
-	if o != nil && o.UserId != nil {
+	if o != nil && isNil(o.UserId) {
 		return true
 	}
 
@@ -73,7 +73,7 @@ func (o *GetTenantMembers) SetUserId(v []string) {
 
 // GetPage returns the Page field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *GetTenantMembers) GetPage() int32 {
-	if o == nil || o.Page.Get() == nil {
+	if o == nil || isNil(o.Page.Get()) {
 		var ret int32
 		return ret
 	}
@@ -116,7 +116,7 @@ func (o *GetTenantMembers) UnsetPage() {
 
 // GetSize returns the Size field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *GetTenantMembers) GetSize() int32 {
-	if o == nil || o.Size.Get() == nil {
+	if o == nil || isNil(o.Size.Get()) {
 		var ret int32
 		return ret
 	}

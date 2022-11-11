@@ -147,4 +147,14 @@ model_update_token_request.go
 model_user.go
 model_validation_problem_details.go
 response.go
+test/api_application_templates_test.go
+test/api_applications_test.go
+test/api_logs_test.go
+test/api_permissions_test.go
+test/api_proxies_test.go
+test/api_reactor_formulas_test.go
+test/api_reactors_test.go
+test/api_tenants_test.go
+test/api_tokenize_test.go
+test/api_tokens_test.go
 utils.go

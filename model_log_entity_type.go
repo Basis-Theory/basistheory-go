@@ -39,7 +39,7 @@ func NewLogEntityTypeWithDefaults() *LogEntityType {
 
 // GetDisplayName returns the DisplayName field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *LogEntityType) GetDisplayName() string {
-	if o == nil || o.DisplayName.Get() == nil {
+	if o == nil || isNil(o.DisplayName.Get()) {
 		var ret string
 		return ret
 	}
@@ -82,7 +82,7 @@ func (o *LogEntityType) UnsetDisplayName() {
 
 // GetValue returns the Value field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *LogEntityType) GetValue() string {
-	if o == nil || o.Value.Get() == nil {
+	if o == nil || isNil(o.Value.Get()) {
 		var ret string
 		return ret
 	}

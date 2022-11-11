@@ -40,8 +40,8 @@ func (r ReactorFormulasApiCreateRequest) Execute() (*ReactorFormula, *http.Respo
 /*
 Create Method for Create
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@return ReactorFormulasApiCreateRequest
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @return ReactorFormulasApiCreateRequest
 */
 func (a *ReactorFormulasApiService) Create(ctx context.Context) ReactorFormulasApiCreateRequest {
 	return ReactorFormulasApiCreateRequest{
@@ -51,8 +51,7 @@ func (a *ReactorFormulasApiService) Create(ctx context.Context) ReactorFormulasA
 }
 
 // Execute executes the request
-//
-//	@return ReactorFormula
+//  @return ReactorFormula
 func (a *ReactorFormulasApiService) CreateExecute(r ReactorFormulasApiCreateRequest) (*ReactorFormula, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodPost
@@ -187,9 +186,9 @@ func (r ReactorFormulasApiDeleteRequest) Execute() (*http.Response, error) {
 /*
 Delete Method for Delete
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param id
-	@return ReactorFormulasApiDeleteRequest
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param id
+ @return ReactorFormulasApiDeleteRequest
 */
 func (a *ReactorFormulasApiService) Delete(ctx context.Context, id string) ReactorFormulasApiDeleteRequest {
 	return ReactorFormulasApiDeleteRequest{
@@ -340,8 +339,8 @@ func (r ReactorFormulasApiGetRequest) Execute() (*ReactorFormulaPaginatedList, *
 /*
 Get Method for Get
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@return ReactorFormulasApiGetRequest
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @return ReactorFormulasApiGetRequest
 */
 func (a *ReactorFormulasApiService) Get(ctx context.Context) ReactorFormulasApiGetRequest {
 	return ReactorFormulasApiGetRequest{
@@ -351,8 +350,7 @@ func (a *ReactorFormulasApiService) Get(ctx context.Context) ReactorFormulasApiG
 }
 
 // Execute executes the request
-//
-//	@return ReactorFormulaPaginatedList
+//  @return ReactorFormulaPaginatedList
 func (a *ReactorFormulasApiService) GetExecute(r ReactorFormulasApiGetRequest) (*ReactorFormulaPaginatedList, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
@@ -491,9 +489,9 @@ func (r ReactorFormulasApiGetByIdRequest) Execute() (*ReactorFormula, *http.Resp
 /*
 GetById Method for GetById
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param id
-	@return ReactorFormulasApiGetByIdRequest
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param id
+ @return ReactorFormulasApiGetByIdRequest
 */
 func (a *ReactorFormulasApiService) GetById(ctx context.Context, id string) ReactorFormulasApiGetByIdRequest {
 	return ReactorFormulasApiGetByIdRequest{
@@ -504,8 +502,7 @@ func (a *ReactorFormulasApiService) GetById(ctx context.Context, id string) Reac
 }
 
 // Execute executes the request
-//
-//	@return ReactorFormula
+//  @return ReactorFormula
 func (a *ReactorFormulasApiService) GetByIdExecute(r ReactorFormulasApiGetByIdRequest) (*ReactorFormula, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
@@ -645,9 +642,9 @@ func (r ReactorFormulasApiUpdateRequest) Execute() (*ReactorFormula, *http.Respo
 /*
 Update Method for Update
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param id
-	@return ReactorFormulasApiUpdateRequest
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param id
+ @return ReactorFormulasApiUpdateRequest
 */
 func (a *ReactorFormulasApiService) Update(ctx context.Context, id string) ReactorFormulasApiUpdateRequest {
 	return ReactorFormulasApiUpdateRequest{
@@ -658,8 +655,7 @@ func (a *ReactorFormulasApiService) Update(ctx context.Context, id string) React
 }
 
 // Execute executes the request
-//
-//	@return ReactorFormula
+//  @return ReactorFormula
 func (a *ReactorFormulasApiService) UpdateExecute(r ReactorFormulasApiUpdateRequest) (*ReactorFormula, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodPut

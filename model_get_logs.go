@@ -44,7 +44,7 @@ func NewGetLogsWithDefaults() *GetLogs {
 
 // GetEntityType returns the EntityType field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *GetLogs) GetEntityType() string {
-	if o == nil || o.EntityType.Get() == nil {
+	if o == nil || isNil(o.EntityType.Get()) {
 		var ret string
 		return ret
 	}
@@ -87,7 +87,7 @@ func (o *GetLogs) UnsetEntityType() {
 
 // GetEntityId returns the EntityId field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *GetLogs) GetEntityId() string {
-	if o == nil || o.EntityId.Get() == nil {
+	if o == nil || isNil(o.EntityId.Get()) {
 		var ret string
 		return ret
 	}
@@ -130,7 +130,7 @@ func (o *GetLogs) UnsetEntityId() {
 
 // GetStartDate returns the StartDate field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *GetLogs) GetStartDate() time.Time {
-	if o == nil || o.StartDate.Get() == nil {
+	if o == nil || isNil(o.StartDate.Get()) {
 		var ret time.Time
 		return ret
 	}
@@ -173,7 +173,7 @@ func (o *GetLogs) UnsetStartDate() {
 
 // GetEndDate returns the EndDate field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *GetLogs) GetEndDate() time.Time {
-	if o == nil || o.EndDate.Get() == nil {
+	if o == nil || isNil(o.EndDate.Get()) {
 		var ret time.Time
 		return ret
 	}
@@ -216,7 +216,7 @@ func (o *GetLogs) UnsetEndDate() {
 
 // GetPage returns the Page field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *GetLogs) GetPage() int32 {
-	if o == nil || o.Page.Get() == nil {
+	if o == nil || isNil(o.Page.Get()) {
 		var ret int32
 		return ret
 	}
@@ -259,7 +259,7 @@ func (o *GetLogs) UnsetPage() {
 
 // GetSize returns the Size field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *GetLogs) GetSize() int32 {
-	if o == nil || o.Size.Get() == nil {
+	if o == nil || isNil(o.Size.Get()) {
 		var ret int32
 		return ret
 	}

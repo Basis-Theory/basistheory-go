@@ -46,7 +46,7 @@ func NewTenantWithDefaults() *Tenant {
 
 // GetId returns the Id field value if set, zero value otherwise.
 func (o *Tenant) GetId() string {
-	if o == nil || o.Id == nil {
+	if o == nil || isNil(o.Id) {
 		var ret string
 		return ret
 	}
@@ -56,7 +56,7 @@ func (o *Tenant) GetId() string {
 // GetIdOk returns a tuple with the Id field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Tenant) GetIdOk() (*string, bool) {
-	if o == nil || o.Id == nil {
+	if o == nil || isNil(o.Id) {
 		return nil, false
 	}
 	return o.Id, true
@@ -64,7 +64,7 @@ func (o *Tenant) GetIdOk() (*string, bool) {
 
 // HasId returns a boolean if a field has been set.
 func (o *Tenant) HasId() bool {
-	if o != nil && o.Id != nil {
+	if o != nil && !isNil(o.Id) {
 		return true
 	}
 
@@ -78,7 +78,7 @@ func (o *Tenant) SetId(v string) {
 
 // GetOwnerId returns the OwnerId field value if set, zero value otherwise.
 func (o *Tenant) GetOwnerId() string {
-	if o == nil || o.OwnerId == nil {
+	if o == nil || isNil(o.OwnerId) {
 		var ret string
 		return ret
 	}
@@ -88,7 +88,7 @@ func (o *Tenant) GetOwnerId() string {
 // GetOwnerIdOk returns a tuple with the OwnerId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Tenant) GetOwnerIdOk() (*string, bool) {
-	if o == nil || o.OwnerId == nil {
+	if o == nil || isNil(o.OwnerId) {
 		return nil, false
 	}
 	return o.OwnerId, true
@@ -96,7 +96,7 @@ func (o *Tenant) GetOwnerIdOk() (*string, bool) {
 
 // HasOwnerId returns a boolean if a field has been set.
 func (o *Tenant) HasOwnerId() bool {
-	if o != nil && o.OwnerId != nil {
+	if o != nil && !isNil(o.OwnerId) {
 		return true
 	}
 
@@ -110,7 +110,7 @@ func (o *Tenant) SetOwnerId(v string) {
 
 // GetName returns the Name field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *Tenant) GetName() string {
-	if o == nil || o.Name.Get() == nil {
+	if o == nil || isNil(o.Name.Get()) {
 		var ret string
 		return ret
 	}
@@ -153,7 +153,7 @@ func (o *Tenant) UnsetName() {
 
 // GetCreatedBy returns the CreatedBy field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *Tenant) GetCreatedBy() string {
-	if o == nil || o.CreatedBy.Get() == nil {
+	if o == nil || isNil(o.CreatedBy.Get()) {
 		var ret string
 		return ret
 	}
@@ -196,7 +196,7 @@ func (o *Tenant) UnsetCreatedBy() {
 
 // GetCreatedAt returns the CreatedAt field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *Tenant) GetCreatedAt() time.Time {
-	if o == nil || o.CreatedAt.Get() == nil {
+	if o == nil || isNil(o.CreatedAt.Get()) {
 		var ret time.Time
 		return ret
 	}
@@ -239,7 +239,7 @@ func (o *Tenant) UnsetCreatedAt() {
 
 // GetModifiedBy returns the ModifiedBy field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *Tenant) GetModifiedBy() string {
-	if o == nil || o.ModifiedBy.Get() == nil {
+	if o == nil || isNil(o.ModifiedBy.Get()) {
 		var ret string
 		return ret
 	}
@@ -282,7 +282,7 @@ func (o *Tenant) UnsetModifiedBy() {
 
 // GetModifiedAt returns the ModifiedAt field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *Tenant) GetModifiedAt() time.Time {
-	if o == nil || o.ModifiedAt.Get() == nil {
+	if o == nil || isNil(o.ModifiedAt.Get()) {
 		var ret time.Time
 		return ret
 	}
@@ -336,7 +336,7 @@ func (o *Tenant) GetSettings() map[string]string {
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *Tenant) GetSettingsOk() (*map[string]string, bool) {
-	if o == nil || o.Settings == nil {
+	if o == nil || isNil(o.Settings) {
 		return nil, false
 	}
 	return &o.Settings, true
@@ -344,7 +344,7 @@ func (o *Tenant) GetSettingsOk() (*map[string]string, bool) {
 
 // HasSettings returns a boolean if a field has been set.
 func (o *Tenant) HasSettings() bool {
-	if o != nil && o.Settings != nil {
+	if o != nil && isNil(o.Settings) {
 		return true
 	}
 
@@ -358,10 +358,10 @@ func (o *Tenant) SetSettings(v map[string]string) {
 
 func (o Tenant) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
-	if o.Id != nil {
+	if !isNil(o.Id) {
 		toSerialize["id"] = o.Id
 	}
-	if o.OwnerId != nil {
+	if !isNil(o.OwnerId) {
 		toSerialize["owner_id"] = o.OwnerId
 	}
 	if o.Name.IsSet() {

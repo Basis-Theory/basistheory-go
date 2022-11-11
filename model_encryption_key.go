@@ -65,7 +65,7 @@ func (o *EncryptionKey) SetKey(v string) {
 
 // GetProv returns the Prov field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *EncryptionKey) GetProv() string {
-	if o == nil || o.Prov.Get() == nil {
+	if o == nil || isNil(o.Prov.Get()) {
 		var ret string
 		return ret
 	}
@@ -108,7 +108,7 @@ func (o *EncryptionKey) UnsetProv() {
 
 // GetAlg returns the Alg field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *EncryptionKey) GetAlg() string {
-	if o == nil || o.Alg.Get() == nil {
+	if o == nil || isNil(o.Alg.Get()) {
 		var ret string
 		return ret
 	}

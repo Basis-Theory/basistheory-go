@@ -45,7 +45,7 @@ func NewApplicationTemplateWithDefaults() *ApplicationTemplate {
 
 // GetId returns the Id field value if set, zero value otherwise.
 func (o *ApplicationTemplate) GetId() string {
-	if o == nil || o.Id == nil {
+	if o == nil || isNil(o.Id) {
 		var ret string
 		return ret
 	}
@@ -55,7 +55,7 @@ func (o *ApplicationTemplate) GetId() string {
 // GetIdOk returns a tuple with the Id field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ApplicationTemplate) GetIdOk() (*string, bool) {
-	if o == nil || o.Id == nil {
+	if o == nil || isNil(o.Id) {
 		return nil, false
 	}
 	return o.Id, true
@@ -63,7 +63,7 @@ func (o *ApplicationTemplate) GetIdOk() (*string, bool) {
 
 // HasId returns a boolean if a field has been set.
 func (o *ApplicationTemplate) HasId() bool {
-	if o != nil && o.Id != nil {
+	if o != nil && !isNil(o.Id) {
 		return true
 	}
 
@@ -77,7 +77,7 @@ func (o *ApplicationTemplate) SetId(v string) {
 
 // GetName returns the Name field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *ApplicationTemplate) GetName() string {
-	if o == nil || o.Name.Get() == nil {
+	if o == nil || isNil(o.Name.Get()) {
 		var ret string
 		return ret
 	}
@@ -120,7 +120,7 @@ func (o *ApplicationTemplate) UnsetName() {
 
 // GetDescription returns the Description field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *ApplicationTemplate) GetDescription() string {
-	if o == nil || o.Description.Get() == nil {
+	if o == nil || isNil(o.Description.Get()) {
 		var ret string
 		return ret
 	}
@@ -163,7 +163,7 @@ func (o *ApplicationTemplate) UnsetDescription() {
 
 // GetApplicationType returns the ApplicationType field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *ApplicationTemplate) GetApplicationType() string {
-	if o == nil || o.ApplicationType.Get() == nil {
+	if o == nil || isNil(o.ApplicationType.Get()) {
 		var ret string
 		return ret
 	}
@@ -206,7 +206,7 @@ func (o *ApplicationTemplate) UnsetApplicationType() {
 
 // GetTemplateType returns the TemplateType field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *ApplicationTemplate) GetTemplateType() string {
-	if o == nil || o.TemplateType.Get() == nil {
+	if o == nil || isNil(o.TemplateType.Get()) {
 		var ret string
 		return ret
 	}
@@ -249,7 +249,7 @@ func (o *ApplicationTemplate) UnsetTemplateType() {
 
 // GetIsStarter returns the IsStarter field value if set, zero value otherwise.
 func (o *ApplicationTemplate) GetIsStarter() bool {
-	if o == nil || o.IsStarter == nil {
+	if o == nil || isNil(o.IsStarter) {
 		var ret bool
 		return ret
 	}
@@ -259,7 +259,7 @@ func (o *ApplicationTemplate) GetIsStarter() bool {
 // GetIsStarterOk returns a tuple with the IsStarter field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ApplicationTemplate) GetIsStarterOk() (*bool, bool) {
-	if o == nil || o.IsStarter == nil {
+	if o == nil || isNil(o.IsStarter) {
 		return nil, false
 	}
 	return o.IsStarter, true
@@ -267,7 +267,7 @@ func (o *ApplicationTemplate) GetIsStarterOk() (*bool, bool) {
 
 // HasIsStarter returns a boolean if a field has been set.
 func (o *ApplicationTemplate) HasIsStarter() bool {
-	if o != nil && o.IsStarter != nil {
+	if o != nil && !isNil(o.IsStarter) {
 		return true
 	}
 
@@ -292,7 +292,7 @@ func (o *ApplicationTemplate) GetRules() []AccessRule {
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *ApplicationTemplate) GetRulesOk() ([]AccessRule, bool) {
-	if o == nil || o.Rules == nil {
+	if o == nil || isNil(o.Rules) {
 		return nil, false
 	}
 	return o.Rules, true
@@ -300,7 +300,7 @@ func (o *ApplicationTemplate) GetRulesOk() ([]AccessRule, bool) {
 
 // HasRules returns a boolean if a field has been set.
 func (o *ApplicationTemplate) HasRules() bool {
-	if o != nil && o.Rules != nil {
+	if o != nil && isNil(o.Rules) {
 		return true
 	}
 
@@ -325,7 +325,7 @@ func (o *ApplicationTemplate) GetPermissions() []string {
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *ApplicationTemplate) GetPermissionsOk() ([]string, bool) {
-	if o == nil || o.Permissions == nil {
+	if o == nil || isNil(o.Permissions) {
 		return nil, false
 	}
 	return o.Permissions, true
@@ -333,7 +333,7 @@ func (o *ApplicationTemplate) GetPermissionsOk() ([]string, bool) {
 
 // HasPermissions returns a boolean if a field has been set.
 func (o *ApplicationTemplate) HasPermissions() bool {
-	if o != nil && o.Permissions != nil {
+	if o != nil && isNil(o.Permissions) {
 		return true
 	}
 
@@ -347,7 +347,7 @@ func (o *ApplicationTemplate) SetPermissions(v []string) {
 
 func (o ApplicationTemplate) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
-	if o.Id != nil {
+	if !isNil(o.Id) {
 		toSerialize["id"] = o.Id
 	}
 	if o.Name.IsSet() {
@@ -362,7 +362,7 @@ func (o ApplicationTemplate) MarshalJSON() ([]byte, error) {
 	if o.TemplateType.IsSet() {
 		toSerialize["template_type"] = o.TemplateType.Get()
 	}
-	if o.IsStarter != nil {
+	if !isNil(o.IsStarter) {
 		toSerialize["is_starter"] = o.IsStarter
 	}
 	if o.Rules != nil {
