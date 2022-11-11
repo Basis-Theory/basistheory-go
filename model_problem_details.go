@@ -1,7 +1,7 @@
 /*
 Basis Theory API
 
-## Getting Started * Sign-in to [Basis Theory](https://basistheory.com) and go to [Applications](https://portal.basistheory.com/applications) * Create a Basis Theory Server to Server Application * All permissions should be selected * Paste the API Key into the `BT-API-KEY` variable
+## Getting Started * Sign-in to [Basis Theory](https://basistheory.com) and go to [Applications](https://portal.basistheory.com/applications) * Create a Basis Theory Private Application * All permissions should be selected * Paste the API Key into the `BT-API-KEY` variable
 
 API version: v1
 */
@@ -42,7 +42,7 @@ func NewProblemDetailsWithDefaults() *ProblemDetails {
 
 // GetType returns the Type field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *ProblemDetails) GetType() string {
-	if o == nil || o.Type.Get() == nil {
+	if o == nil || isNil(o.Type.Get()) {
 		var ret string
 		return ret
 	}
@@ -85,7 +85,7 @@ func (o *ProblemDetails) UnsetType() {
 
 // GetTitle returns the Title field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *ProblemDetails) GetTitle() string {
-	if o == nil || o.Title.Get() == nil {
+	if o == nil || isNil(o.Title.Get()) {
 		var ret string
 		return ret
 	}
@@ -128,7 +128,7 @@ func (o *ProblemDetails) UnsetTitle() {
 
 // GetStatus returns the Status field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *ProblemDetails) GetStatus() int32 {
-	if o == nil || o.Status.Get() == nil {
+	if o == nil || isNil(o.Status.Get()) {
 		var ret int32
 		return ret
 	}
@@ -171,7 +171,7 @@ func (o *ProblemDetails) UnsetStatus() {
 
 // GetDetail returns the Detail field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *ProblemDetails) GetDetail() string {
-	if o == nil || o.Detail.Get() == nil {
+	if o == nil || isNil(o.Detail.Get()) {
 		var ret string
 		return ret
 	}
@@ -214,7 +214,7 @@ func (o *ProblemDetails) UnsetDetail() {
 
 // GetInstance returns the Instance field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *ProblemDetails) GetInstance() string {
-	if o == nil || o.Instance.Get() == nil {
+	if o == nil || isNil(o.Instance.Get()) {
 		var ret string
 		return ret
 	}

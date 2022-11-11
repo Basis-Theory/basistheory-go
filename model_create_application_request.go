@@ -1,7 +1,7 @@
 /*
 Basis Theory API
 
-## Getting Started * Sign-in to [Basis Theory](https://basistheory.com) and go to [Applications](https://portal.basistheory.com/applications) * Create a Basis Theory Server to Server Application * All permissions should be selected * Paste the API Key into the `BT-API-KEY` variable
+## Getting Started * Sign-in to [Basis Theory](https://basistheory.com) and go to [Applications](https://portal.basistheory.com/applications) * Create a Basis Theory Private Application * All permissions should be selected * Paste the API Key into the `BT-API-KEY` variable
 
 API version: v1
 */
@@ -16,18 +16,20 @@ import (
 
 // CreateApplicationRequest struct for CreateApplicationRequest
 type CreateApplicationRequest struct {
-	Name        string   `json:"name"`
-	Type        string   `json:"type"`
-	Permissions []string `json:"permissions,omitempty"`
+	Name                          NullableString `json:"name,omitempty"`
+	Type                          string         `json:"type"`
+	CanCreateExpiringApplications NullableBool   `json:"can_create_expiring_applications,omitempty"`
+	ExpiresAt                     NullableString `json:"expires_at,omitempty"`
+	Permissions                   []string       `json:"permissions,omitempty"`
+	Rules                         []AccessRule   `json:"rules,omitempty"`
 }
 
 // NewCreateApplicationRequest instantiates a new CreateApplicationRequest object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewCreateApplicationRequest(name string, type_ string) *CreateApplicationRequest {
+func NewCreateApplicationRequest(type_ string) *CreateApplicationRequest {
 	this := CreateApplicationRequest{}
-	this.Name = name
 	this.Type = type_
 	return &this
 }
@@ -40,28 +42,47 @@ func NewCreateApplicationRequestWithDefaults() *CreateApplicationRequest {
 	return &this
 }
 
-// GetName returns the Name field value
+// GetName returns the Name field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *CreateApplicationRequest) GetName() string {
-	if o == nil {
+	if o == nil || isNil(o.Name.Get()) {
 		var ret string
 		return ret
 	}
-
-	return o.Name
+	return *o.Name.Get()
 }
 
-// GetNameOk returns a tuple with the Name field value
+// GetNameOk returns a tuple with the Name field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *CreateApplicationRequest) GetNameOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.Name, true
+	return o.Name.Get(), o.Name.IsSet()
 }
 
-// SetName sets field value
+// HasName returns a boolean if a field has been set.
+func (o *CreateApplicationRequest) HasName() bool {
+	if o != nil && o.Name.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetName gets a reference to the given NullableString and assigns it to the Name field.
 func (o *CreateApplicationRequest) SetName(v string) {
-	o.Name = v
+	o.Name.Set(&v)
+}
+
+// SetNameNil sets the value for Name to be an explicit nil
+func (o *CreateApplicationRequest) SetNameNil() {
+	o.Name.Set(nil)
+}
+
+// UnsetName ensures that no value is present for Name, not even an explicit nil
+func (o *CreateApplicationRequest) UnsetName() {
+	o.Name.Unset()
 }
 
 // GetType returns the Type field value
@@ -88,6 +109,92 @@ func (o *CreateApplicationRequest) SetType(v string) {
 	o.Type = v
 }
 
+// GetCanCreateExpiringApplications returns the CanCreateExpiringApplications field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *CreateApplicationRequest) GetCanCreateExpiringApplications() bool {
+	if o == nil || isNil(o.CanCreateExpiringApplications.Get()) {
+		var ret bool
+		return ret
+	}
+	return *o.CanCreateExpiringApplications.Get()
+}
+
+// GetCanCreateExpiringApplicationsOk returns a tuple with the CanCreateExpiringApplications field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *CreateApplicationRequest) GetCanCreateExpiringApplicationsOk() (*bool, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.CanCreateExpiringApplications.Get(), o.CanCreateExpiringApplications.IsSet()
+}
+
+// HasCanCreateExpiringApplications returns a boolean if a field has been set.
+func (o *CreateApplicationRequest) HasCanCreateExpiringApplications() bool {
+	if o != nil && o.CanCreateExpiringApplications.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetCanCreateExpiringApplications gets a reference to the given NullableBool and assigns it to the CanCreateExpiringApplications field.
+func (o *CreateApplicationRequest) SetCanCreateExpiringApplications(v bool) {
+	o.CanCreateExpiringApplications.Set(&v)
+}
+
+// SetCanCreateExpiringApplicationsNil sets the value for CanCreateExpiringApplications to be an explicit nil
+func (o *CreateApplicationRequest) SetCanCreateExpiringApplicationsNil() {
+	o.CanCreateExpiringApplications.Set(nil)
+}
+
+// UnsetCanCreateExpiringApplications ensures that no value is present for CanCreateExpiringApplications, not even an explicit nil
+func (o *CreateApplicationRequest) UnsetCanCreateExpiringApplications() {
+	o.CanCreateExpiringApplications.Unset()
+}
+
+// GetExpiresAt returns the ExpiresAt field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *CreateApplicationRequest) GetExpiresAt() string {
+	if o == nil || isNil(o.ExpiresAt.Get()) {
+		var ret string
+		return ret
+	}
+	return *o.ExpiresAt.Get()
+}
+
+// GetExpiresAtOk returns a tuple with the ExpiresAt field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *CreateApplicationRequest) GetExpiresAtOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.ExpiresAt.Get(), o.ExpiresAt.IsSet()
+}
+
+// HasExpiresAt returns a boolean if a field has been set.
+func (o *CreateApplicationRequest) HasExpiresAt() bool {
+	if o != nil && o.ExpiresAt.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetExpiresAt gets a reference to the given NullableString and assigns it to the ExpiresAt field.
+func (o *CreateApplicationRequest) SetExpiresAt(v string) {
+	o.ExpiresAt.Set(&v)
+}
+
+// SetExpiresAtNil sets the value for ExpiresAt to be an explicit nil
+func (o *CreateApplicationRequest) SetExpiresAtNil() {
+	o.ExpiresAt.Set(nil)
+}
+
+// UnsetExpiresAt ensures that no value is present for ExpiresAt, not even an explicit nil
+func (o *CreateApplicationRequest) UnsetExpiresAt() {
+	o.ExpiresAt.Unset()
+}
+
 // GetPermissions returns the Permissions field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *CreateApplicationRequest) GetPermissions() []string {
 	if o == nil {
@@ -101,7 +208,7 @@ func (o *CreateApplicationRequest) GetPermissions() []string {
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *CreateApplicationRequest) GetPermissionsOk() ([]string, bool) {
-	if o == nil || o.Permissions == nil {
+	if o == nil || isNil(o.Permissions) {
 		return nil, false
 	}
 	return o.Permissions, true
@@ -109,7 +216,7 @@ func (o *CreateApplicationRequest) GetPermissionsOk() ([]string, bool) {
 
 // HasPermissions returns a boolean if a field has been set.
 func (o *CreateApplicationRequest) HasPermissions() bool {
-	if o != nil && o.Permissions != nil {
+	if o != nil && isNil(o.Permissions) {
 		return true
 	}
 
@@ -121,16 +228,58 @@ func (o *CreateApplicationRequest) SetPermissions(v []string) {
 	o.Permissions = v
 }
 
+// GetRules returns the Rules field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *CreateApplicationRequest) GetRules() []AccessRule {
+	if o == nil {
+		var ret []AccessRule
+		return ret
+	}
+	return o.Rules
+}
+
+// GetRulesOk returns a tuple with the Rules field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *CreateApplicationRequest) GetRulesOk() ([]AccessRule, bool) {
+	if o == nil || isNil(o.Rules) {
+		return nil, false
+	}
+	return o.Rules, true
+}
+
+// HasRules returns a boolean if a field has been set.
+func (o *CreateApplicationRequest) HasRules() bool {
+	if o != nil && isNil(o.Rules) {
+		return true
+	}
+
+	return false
+}
+
+// SetRules gets a reference to the given []AccessRule and assigns it to the Rules field.
+func (o *CreateApplicationRequest) SetRules(v []AccessRule) {
+	o.Rules = v
+}
+
 func (o CreateApplicationRequest) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["name"] = o.Name
+	if o.Name.IsSet() {
+		toSerialize["name"] = o.Name.Get()
 	}
 	if true {
 		toSerialize["type"] = o.Type
 	}
+	if o.CanCreateExpiringApplications.IsSet() {
+		toSerialize["can_create_expiring_applications"] = o.CanCreateExpiringApplications.Get()
+	}
+	if o.ExpiresAt.IsSet() {
+		toSerialize["expires_at"] = o.ExpiresAt.Get()
+	}
 	if o.Permissions != nil {
 		toSerialize["permissions"] = o.Permissions
+	}
+	if o.Rules != nil {
+		toSerialize["rules"] = o.Rules
 	}
 	return json.Marshal(toSerialize)
 }

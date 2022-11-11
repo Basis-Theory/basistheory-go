@@ -1,7 +1,7 @@
 /*
 Basis Theory API
 
-## Getting Started * Sign-in to [Basis Theory](https://basistheory.com) and go to [Applications](https://portal.basistheory.com/applications) * Create a Basis Theory Server to Server Application * All permissions should be selected * Paste the API Key into the `BT-API-KEY` variable
+## Getting Started * Sign-in to [Basis Theory](https://basistheory.com) and go to [Applications](https://portal.basistheory.com/applications) * Create a Basis Theory Private Application * All permissions should be selected * Paste the API Key into the `BT-API-KEY` variable
 
 API version: v1
 */
@@ -47,7 +47,7 @@ func NewCreateReactorFormulaRequestWithDefaults() *CreateReactorFormulaRequest {
 
 // GetId returns the Id field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *CreateReactorFormulaRequest) GetId() string {
-	if o == nil || o.Id.Get() == nil {
+	if o == nil || isNil(o.Id.Get()) {
 		var ret string
 		return ret
 	}
@@ -138,7 +138,7 @@ func (o *CreateReactorFormulaRequest) SetName(v string) {
 
 // GetDescription returns the Description field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *CreateReactorFormulaRequest) GetDescription() string {
-	if o == nil || o.Description.Get() == nil {
+	if o == nil || isNil(o.Description.Get()) {
 		var ret string
 		return ret
 	}
@@ -181,7 +181,7 @@ func (o *CreateReactorFormulaRequest) UnsetDescription() {
 
 // GetIcon returns the Icon field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *CreateReactorFormulaRequest) GetIcon() string {
-	if o == nil || o.Icon.Get() == nil {
+	if o == nil || isNil(o.Icon.Get()) {
 		var ret string
 		return ret
 	}
@@ -224,7 +224,7 @@ func (o *CreateReactorFormulaRequest) UnsetIcon() {
 
 // GetCode returns the Code field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *CreateReactorFormulaRequest) GetCode() string {
-	if o == nil || o.Code.Get() == nil {
+	if o == nil || isNil(o.Code.Get()) {
 		var ret string
 		return ret
 	}
@@ -278,7 +278,7 @@ func (o *CreateReactorFormulaRequest) GetConfiguration() []ReactorFormulaConfigu
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *CreateReactorFormulaRequest) GetConfigurationOk() ([]ReactorFormulaConfiguration, bool) {
-	if o == nil || o.Configuration == nil {
+	if o == nil || isNil(o.Configuration) {
 		return nil, false
 	}
 	return o.Configuration, true
@@ -286,7 +286,7 @@ func (o *CreateReactorFormulaRequest) GetConfigurationOk() ([]ReactorFormulaConf
 
 // HasConfiguration returns a boolean if a field has been set.
 func (o *CreateReactorFormulaRequest) HasConfiguration() bool {
-	if o != nil && o.Configuration != nil {
+	if o != nil && isNil(o.Configuration) {
 		return true
 	}
 
@@ -311,7 +311,7 @@ func (o *CreateReactorFormulaRequest) GetRequestParameters() []ReactorFormulaReq
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *CreateReactorFormulaRequest) GetRequestParametersOk() ([]ReactorFormulaRequestParameter, bool) {
-	if o == nil || o.RequestParameters == nil {
+	if o == nil || isNil(o.RequestParameters) {
 		return nil, false
 	}
 	return o.RequestParameters, true
@@ -319,7 +319,7 @@ func (o *CreateReactorFormulaRequest) GetRequestParametersOk() ([]ReactorFormula
 
 // HasRequestParameters returns a boolean if a field has been set.
 func (o *CreateReactorFormulaRequest) HasRequestParameters() bool {
-	if o != nil && o.RequestParameters != nil {
+	if o != nil && isNil(o.RequestParameters) {
 		return true
 	}
 

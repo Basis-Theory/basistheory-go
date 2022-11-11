@@ -33,7 +33,7 @@ import (
 )
 
 func main() {
-    createApplicationRequest := *openapiclient.NewCreateApplicationRequest("Name_example", "Type_example") // CreateApplicationRequest | 
+    createApplicationRequest := *openapiclient.NewCreateApplicationRequest("Type_example") // CreateApplicationRequest | 
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
@@ -146,7 +146,7 @@ Name | Type | Description  | Notes
 
 ## Get
 
-> ApplicationPaginatedList Get(ctx).Id(id).Page(page).Size(size).Execute()
+> ApplicationPaginatedList Get(ctx).Id(id).Type_(type_).Page(page).Size(size).Execute()
 
 
 
@@ -164,12 +164,13 @@ import (
 
 func main() {
     id := []string{"Inner_example"} // []string |  (optional)
+    type_ := []string{"Inner_example"} // []string |  (optional)
     page := int32(56) // int32 |  (optional)
     size := int32(56) // int32 |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ApplicationsApi.Get(context.Background()).Id(id).Page(page).Size(size).Execute()
+    resp, r, err := apiClient.ApplicationsApi.Get(context.Background()).Id(id).Type_(type_).Page(page).Size(size).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ApplicationsApi.Get``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -191,6 +192,7 @@ Other parameters are passed through a pointer to a apiGetRequest struct via the 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **[]string** |  | 
+ **type_** | **[]string** |  | 
  **page** | **int32** |  | 
  **size** | **int32** |  | 
 

@@ -1,7 +1,7 @@
 /*
 Basis Theory API
 
-## Getting Started * Sign-in to [Basis Theory](https://basistheory.com) and go to [Applications](https://portal.basistheory.com/applications) * Create a Basis Theory Server to Server Application * All permissions should be selected * Paste the API Key into the `BT-API-KEY` variable
+## Getting Started * Sign-in to [Basis Theory](https://basistheory.com) and go to [Applications](https://portal.basistheory.com/applications) * Create a Basis Theory Private Application * All permissions should be selected * Paste the API Key into the `BT-API-KEY` variable
 
 API version: v1
 */
@@ -39,7 +39,7 @@ func NewEncryptionMetadataWithDefaults() *EncryptionMetadata {
 
 // GetCek returns the Cek field value if set, zero value otherwise.
 func (o *EncryptionMetadata) GetCek() EncryptionKey {
-	if o == nil || o.Cek == nil {
+	if o == nil || isNil(o.Cek) {
 		var ret EncryptionKey
 		return ret
 	}
@@ -49,7 +49,7 @@ func (o *EncryptionMetadata) GetCek() EncryptionKey {
 // GetCekOk returns a tuple with the Cek field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *EncryptionMetadata) GetCekOk() (*EncryptionKey, bool) {
-	if o == nil || o.Cek == nil {
+	if o == nil || isNil(o.Cek) {
 		return nil, false
 	}
 	return o.Cek, true
@@ -57,7 +57,7 @@ func (o *EncryptionMetadata) GetCekOk() (*EncryptionKey, bool) {
 
 // HasCek returns a boolean if a field has been set.
 func (o *EncryptionMetadata) HasCek() bool {
-	if o != nil && o.Cek != nil {
+	if o != nil && !isNil(o.Cek) {
 		return true
 	}
 
@@ -71,7 +71,7 @@ func (o *EncryptionMetadata) SetCek(v EncryptionKey) {
 
 // GetKek returns the Kek field value if set, zero value otherwise.
 func (o *EncryptionMetadata) GetKek() EncryptionKey {
-	if o == nil || o.Kek == nil {
+	if o == nil || isNil(o.Kek) {
 		var ret EncryptionKey
 		return ret
 	}
@@ -81,7 +81,7 @@ func (o *EncryptionMetadata) GetKek() EncryptionKey {
 // GetKekOk returns a tuple with the Kek field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *EncryptionMetadata) GetKekOk() (*EncryptionKey, bool) {
-	if o == nil || o.Kek == nil {
+	if o == nil || isNil(o.Kek) {
 		return nil, false
 	}
 	return o.Kek, true
@@ -89,7 +89,7 @@ func (o *EncryptionMetadata) GetKekOk() (*EncryptionKey, bool) {
 
 // HasKek returns a boolean if a field has been set.
 func (o *EncryptionMetadata) HasKek() bool {
-	if o != nil && o.Kek != nil {
+	if o != nil && !isNil(o.Kek) {
 		return true
 	}
 
@@ -103,10 +103,10 @@ func (o *EncryptionMetadata) SetKek(v EncryptionKey) {
 
 func (o EncryptionMetadata) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
-	if o.Cek != nil {
+	if !isNil(o.Cek) {
 		toSerialize["cek"] = o.Cek
 	}
-	if o.Kek != nil {
+	if !isNil(o.Kek) {
 		toSerialize["kek"] = o.Kek
 	}
 	return json.Marshal(toSerialize)

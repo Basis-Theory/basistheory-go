@@ -1,7 +1,7 @@
 /*
 Basis Theory API
 
-## Getting Started * Sign-in to [Basis Theory](https://basistheory.com) and go to [Applications](https://portal.basistheory.com/applications) * Create a Basis Theory Server to Server Application * All permissions should be selected * Paste the API Key into the `BT-API-KEY` variable
+## Getting Started * Sign-in to [Basis Theory](https://basistheory.com) and go to [Applications](https://portal.basistheory.com/applications) * Create a Basis Theory Private Application * All permissions should be selected * Paste the API Key into the `BT-API-KEY` variable
 
 API version: v1
 */
@@ -25,10 +25,16 @@ type PermissionsApiGetRequest struct {
 	ctx             context.Context
 	ApiService      *PermissionsApiService
 	applicationType *string
+	version         *int32
 }
 
 func (r PermissionsApiGetRequest) ApplicationType(applicationType string) PermissionsApiGetRequest {
 	r.applicationType = &applicationType
+	return r
+}
+
+func (r PermissionsApiGetRequest) Version(version int32) PermissionsApiGetRequest {
+	r.version = &version
 	return r
 }
 
@@ -72,6 +78,9 @@ func (a *PermissionsApiService) GetExecute(r PermissionsApiGetRequest) ([]Permis
 
 	if r.applicationType != nil {
 		localVarQueryParams.Add("application_type", parameterToString(*r.applicationType, ""))
+	}
+	if r.version != nil {
+		localVarQueryParams.Add("version", parameterToString(*r.version, ""))
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}

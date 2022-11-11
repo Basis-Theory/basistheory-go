@@ -1,7 +1,7 @@
 /*
 Basis Theory API
 
-## Getting Started * Sign-in to [Basis Theory](https://basistheory.com) and go to [Applications](https://portal.basistheory.com/applications) * Create a Basis Theory Server to Server Application * All permissions should be selected * Paste the API Key into the `BT-API-KEY` variable
+## Getting Started * Sign-in to [Basis Theory](https://basistheory.com) and go to [Applications](https://portal.basistheory.com/applications) * Create a Basis Theory Private Application * All permissions should be selected * Paste the API Key into the `BT-API-KEY` variable
 
 API version: v1
 */
@@ -67,7 +67,7 @@ func (o *ReactorFormulaRequestParameter) SetName(v string) {
 
 // GetDescription returns the Description field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *ReactorFormulaRequestParameter) GetDescription() string {
-	if o == nil || o.Description.Get() == nil {
+	if o == nil || isNil(o.Description.Get()) {
 		var ret string
 		return ret
 	}
@@ -134,7 +134,7 @@ func (o *ReactorFormulaRequestParameter) SetType(v string) {
 
 // GetOptional returns the Optional field value if set, zero value otherwise.
 func (o *ReactorFormulaRequestParameter) GetOptional() bool {
-	if o == nil || o.Optional == nil {
+	if o == nil || isNil(o.Optional) {
 		var ret bool
 		return ret
 	}
@@ -144,7 +144,7 @@ func (o *ReactorFormulaRequestParameter) GetOptional() bool {
 // GetOptionalOk returns a tuple with the Optional field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ReactorFormulaRequestParameter) GetOptionalOk() (*bool, bool) {
-	if o == nil || o.Optional == nil {
+	if o == nil || isNil(o.Optional) {
 		return nil, false
 	}
 	return o.Optional, true
@@ -152,7 +152,7 @@ func (o *ReactorFormulaRequestParameter) GetOptionalOk() (*bool, bool) {
 
 // HasOptional returns a boolean if a field has been set.
 func (o *ReactorFormulaRequestParameter) HasOptional() bool {
-	if o != nil && o.Optional != nil {
+	if o != nil && !isNil(o.Optional) {
 		return true
 	}
 
@@ -175,7 +175,7 @@ func (o ReactorFormulaRequestParameter) MarshalJSON() ([]byte, error) {
 	if true {
 		toSerialize["type"] = o.Type
 	}
-	if o.Optional != nil {
+	if !isNil(o.Optional) {
 		toSerialize["optional"] = o.Optional
 	}
 	return json.Marshal(toSerialize)

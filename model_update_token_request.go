@@ -1,7 +1,7 @@
 /*
 Basis Theory API
 
-## Getting Started * Sign-in to [Basis Theory](https://basistheory.com) and go to [Applications](https://portal.basistheory.com/applications) * Create a Basis Theory Server to Server Application * All permissions should be selected * Paste the API Key into the `BT-API-KEY` variable
+## Getting Started * Sign-in to [Basis Theory](https://basistheory.com) and go to [Applications](https://portal.basistheory.com/applications) * Create a Basis Theory Private Application * All permissions should be selected * Paste the API Key into the `BT-API-KEY` variable
 
 API version: v1
 */
@@ -24,6 +24,7 @@ type UpdateTokenRequest struct {
 	FingerprintExpression NullableString      `json:"fingerprint_expression,omitempty"`
 	Mask                  interface{}         `json:"mask,omitempty"`
 	DeduplicateToken      NullableBool        `json:"deduplicate_token,omitempty"`
+	Containers            []string            `json:"containers,omitempty"`
 }
 
 // NewUpdateTokenRequest instantiates a new UpdateTokenRequest object
@@ -56,7 +57,7 @@ func (o *UpdateTokenRequest) GetData() interface{} {
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *UpdateTokenRequest) GetDataOk() (*interface{}, bool) {
-	if o == nil || o.Data == nil {
+	if o == nil || isNil(o.Data) {
 		return nil, false
 	}
 	return &o.Data, true
@@ -64,7 +65,7 @@ func (o *UpdateTokenRequest) GetDataOk() (*interface{}, bool) {
 
 // HasData returns a boolean if a field has been set.
 func (o *UpdateTokenRequest) HasData() bool {
-	if o != nil && o.Data != nil {
+	if o != nil && isNil(o.Data) {
 		return true
 	}
 
@@ -78,7 +79,7 @@ func (o *UpdateTokenRequest) SetData(v interface{}) {
 
 // GetEncryption returns the Encryption field value if set, zero value otherwise.
 func (o *UpdateTokenRequest) GetEncryption() EncryptionMetadata {
-	if o == nil || o.Encryption == nil {
+	if o == nil || isNil(o.Encryption) {
 		var ret EncryptionMetadata
 		return ret
 	}
@@ -88,7 +89,7 @@ func (o *UpdateTokenRequest) GetEncryption() EncryptionMetadata {
 // GetEncryptionOk returns a tuple with the Encryption field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateTokenRequest) GetEncryptionOk() (*EncryptionMetadata, bool) {
-	if o == nil || o.Encryption == nil {
+	if o == nil || isNil(o.Encryption) {
 		return nil, false
 	}
 	return o.Encryption, true
@@ -96,7 +97,7 @@ func (o *UpdateTokenRequest) GetEncryptionOk() (*EncryptionMetadata, bool) {
 
 // HasEncryption returns a boolean if a field has been set.
 func (o *UpdateTokenRequest) HasEncryption() bool {
-	if o != nil && o.Encryption != nil {
+	if o != nil && !isNil(o.Encryption) {
 		return true
 	}
 
@@ -110,7 +111,7 @@ func (o *UpdateTokenRequest) SetEncryption(v EncryptionMetadata) {
 
 // GetPrivacy returns the Privacy field value if set, zero value otherwise.
 func (o *UpdateTokenRequest) GetPrivacy() UpdatePrivacy {
-	if o == nil || o.Privacy == nil {
+	if o == nil || isNil(o.Privacy) {
 		var ret UpdatePrivacy
 		return ret
 	}
@@ -120,7 +121,7 @@ func (o *UpdateTokenRequest) GetPrivacy() UpdatePrivacy {
 // GetPrivacyOk returns a tuple with the Privacy field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateTokenRequest) GetPrivacyOk() (*UpdatePrivacy, bool) {
-	if o == nil || o.Privacy == nil {
+	if o == nil || isNil(o.Privacy) {
 		return nil, false
 	}
 	return o.Privacy, true
@@ -128,7 +129,7 @@ func (o *UpdateTokenRequest) GetPrivacyOk() (*UpdatePrivacy, bool) {
 
 // HasPrivacy returns a boolean if a field has been set.
 func (o *UpdateTokenRequest) HasPrivacy() bool {
-	if o != nil && o.Privacy != nil {
+	if o != nil && !isNil(o.Privacy) {
 		return true
 	}
 
@@ -153,7 +154,7 @@ func (o *UpdateTokenRequest) GetMetadata() map[string]string {
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *UpdateTokenRequest) GetMetadataOk() (*map[string]string, bool) {
-	if o == nil || o.Metadata == nil {
+	if o == nil || isNil(o.Metadata) {
 		return nil, false
 	}
 	return &o.Metadata, true
@@ -161,7 +162,7 @@ func (o *UpdateTokenRequest) GetMetadataOk() (*map[string]string, bool) {
 
 // HasMetadata returns a boolean if a field has been set.
 func (o *UpdateTokenRequest) HasMetadata() bool {
-	if o != nil && o.Metadata != nil {
+	if o != nil && isNil(o.Metadata) {
 		return true
 	}
 
@@ -186,7 +187,7 @@ func (o *UpdateTokenRequest) GetSearchIndexes() []string {
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *UpdateTokenRequest) GetSearchIndexesOk() ([]string, bool) {
-	if o == nil || o.SearchIndexes == nil {
+	if o == nil || isNil(o.SearchIndexes) {
 		return nil, false
 	}
 	return o.SearchIndexes, true
@@ -194,7 +195,7 @@ func (o *UpdateTokenRequest) GetSearchIndexesOk() ([]string, bool) {
 
 // HasSearchIndexes returns a boolean if a field has been set.
 func (o *UpdateTokenRequest) HasSearchIndexes() bool {
-	if o != nil && o.SearchIndexes != nil {
+	if o != nil && isNil(o.SearchIndexes) {
 		return true
 	}
 
@@ -208,7 +209,7 @@ func (o *UpdateTokenRequest) SetSearchIndexes(v []string) {
 
 // GetFingerprintExpression returns the FingerprintExpression field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *UpdateTokenRequest) GetFingerprintExpression() string {
-	if o == nil || o.FingerprintExpression.Get() == nil {
+	if o == nil || isNil(o.FingerprintExpression.Get()) {
 		var ret string
 		return ret
 	}
@@ -262,7 +263,7 @@ func (o *UpdateTokenRequest) GetMask() interface{} {
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *UpdateTokenRequest) GetMaskOk() (*interface{}, bool) {
-	if o == nil || o.Mask == nil {
+	if o == nil || isNil(o.Mask) {
 		return nil, false
 	}
 	return &o.Mask, true
@@ -270,7 +271,7 @@ func (o *UpdateTokenRequest) GetMaskOk() (*interface{}, bool) {
 
 // HasMask returns a boolean if a field has been set.
 func (o *UpdateTokenRequest) HasMask() bool {
-	if o != nil && o.Mask != nil {
+	if o != nil && isNil(o.Mask) {
 		return true
 	}
 
@@ -284,7 +285,7 @@ func (o *UpdateTokenRequest) SetMask(v interface{}) {
 
 // GetDeduplicateToken returns the DeduplicateToken field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *UpdateTokenRequest) GetDeduplicateToken() bool {
-	if o == nil || o.DeduplicateToken.Get() == nil {
+	if o == nil || isNil(o.DeduplicateToken.Get()) {
 		var ret bool
 		return ret
 	}
@@ -325,15 +326,48 @@ func (o *UpdateTokenRequest) UnsetDeduplicateToken() {
 	o.DeduplicateToken.Unset()
 }
 
+// GetContainers returns the Containers field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *UpdateTokenRequest) GetContainers() []string {
+	if o == nil {
+		var ret []string
+		return ret
+	}
+	return o.Containers
+}
+
+// GetContainersOk returns a tuple with the Containers field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *UpdateTokenRequest) GetContainersOk() ([]string, bool) {
+	if o == nil || isNil(o.Containers) {
+		return nil, false
+	}
+	return o.Containers, true
+}
+
+// HasContainers returns a boolean if a field has been set.
+func (o *UpdateTokenRequest) HasContainers() bool {
+	if o != nil && isNil(o.Containers) {
+		return true
+	}
+
+	return false
+}
+
+// SetContainers gets a reference to the given []string and assigns it to the Containers field.
+func (o *UpdateTokenRequest) SetContainers(v []string) {
+	o.Containers = v
+}
+
 func (o UpdateTokenRequest) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.Data != nil {
 		toSerialize["data"] = o.Data
 	}
-	if o.Encryption != nil {
+	if !isNil(o.Encryption) {
 		toSerialize["encryption"] = o.Encryption
 	}
-	if o.Privacy != nil {
+	if !isNil(o.Privacy) {
 		toSerialize["privacy"] = o.Privacy
 	}
 	if o.Metadata != nil {
@@ -350,6 +384,9 @@ func (o UpdateTokenRequest) MarshalJSON() ([]byte, error) {
 	}
 	if o.DeduplicateToken.IsSet() {
 		toSerialize["deduplicate_token"] = o.DeduplicateToken.Get()
+	}
+	if o.Containers != nil {
+		toSerialize["containers"] = o.Containers
 	}
 	return json.Marshal(toSerialize)
 }

@@ -1,7 +1,7 @@
 /*
 Basis Theory API
 
-## Getting Started * Sign-in to [Basis Theory](https://basistheory.com) and go to [Applications](https://portal.basistheory.com/applications) * Create a Basis Theory Server to Server Application * All permissions should be selected * Paste the API Key into the `BT-API-KEY` variable
+## Getting Started * Sign-in to [Basis Theory](https://basistheory.com) and go to [Applications](https://portal.basistheory.com/applications) * Create a Basis Theory Private Application * All permissions should be selected * Paste the API Key into the `BT-API-KEY` variable
 
 API version: v1
 */
@@ -42,7 +42,7 @@ func NewUserWithDefaults() *User {
 
 // GetId returns the Id field value if set, zero value otherwise.
 func (o *User) GetId() string {
-	if o == nil || o.Id == nil {
+	if o == nil || isNil(o.Id) {
 		var ret string
 		return ret
 	}
@@ -52,7 +52,7 @@ func (o *User) GetId() string {
 // GetIdOk returns a tuple with the Id field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *User) GetIdOk() (*string, bool) {
-	if o == nil || o.Id == nil {
+	if o == nil || isNil(o.Id) {
 		return nil, false
 	}
 	return o.Id, true
@@ -60,7 +60,7 @@ func (o *User) GetIdOk() (*string, bool) {
 
 // HasId returns a boolean if a field has been set.
 func (o *User) HasId() bool {
-	if o != nil && o.Id != nil {
+	if o != nil && !isNil(o.Id) {
 		return true
 	}
 
@@ -74,7 +74,7 @@ func (o *User) SetId(v string) {
 
 // GetEmail returns the Email field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *User) GetEmail() string {
-	if o == nil || o.Email.Get() == nil {
+	if o == nil || isNil(o.Email.Get()) {
 		var ret string
 		return ret
 	}
@@ -117,7 +117,7 @@ func (o *User) UnsetEmail() {
 
 // GetFirstName returns the FirstName field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *User) GetFirstName() string {
-	if o == nil || o.FirstName.Get() == nil {
+	if o == nil || isNil(o.FirstName.Get()) {
 		var ret string
 		return ret
 	}
@@ -160,7 +160,7 @@ func (o *User) UnsetFirstName() {
 
 // GetLastName returns the LastName field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *User) GetLastName() string {
-	if o == nil || o.LastName.Get() == nil {
+	if o == nil || isNil(o.LastName.Get()) {
 		var ret string
 		return ret
 	}
@@ -203,7 +203,7 @@ func (o *User) UnsetLastName() {
 
 // GetPicture returns the Picture field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *User) GetPicture() string {
-	if o == nil || o.Picture.Get() == nil {
+	if o == nil || isNil(o.Picture.Get()) {
 		var ret string
 		return ret
 	}
@@ -246,7 +246,7 @@ func (o *User) UnsetPicture() {
 
 func (o User) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
-	if o.Id != nil {
+	if !isNil(o.Id) {
 		toSerialize["id"] = o.Id
 	}
 	if o.Email.IsSet() {

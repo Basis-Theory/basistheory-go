@@ -1,7 +1,7 @@
 /*
 Basis Theory API
 
-## Getting Started * Sign-in to [Basis Theory](https://basistheory.com) and go to [Applications](https://portal.basistheory.com/applications) * Create a Basis Theory Server to Server Application * All permissions should be selected * Paste the API Key into the `BT-API-KEY` variable
+## Getting Started * Sign-in to [Basis Theory](https://basistheory.com) and go to [Applications](https://portal.basistheory.com/applications) * Create a Basis Theory Private Application * All permissions should be selected * Paste the API Key into the `BT-API-KEY` variable
 
 API version: v1
 */
@@ -49,7 +49,7 @@ func (o *ReactRequest) GetArgs() interface{} {
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *ReactRequest) GetArgsOk() (*interface{}, bool) {
-	if o == nil || o.Args == nil {
+	if o == nil || isNil(o.Args) {
 		return nil, false
 	}
 	return &o.Args, true
@@ -57,7 +57,7 @@ func (o *ReactRequest) GetArgsOk() (*interface{}, bool) {
 
 // HasArgs returns a boolean if a field has been set.
 func (o *ReactRequest) HasArgs() bool {
-	if o != nil && o.Args != nil {
+	if o != nil && isNil(o.Args) {
 		return true
 	}
 

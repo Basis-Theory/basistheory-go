@@ -20,6 +20,7 @@ Name | Type | Description | Notes
 **Privacy** | Pointer to [**Privacy**](Privacy.md) |  | [optional] 
 **SearchIndexes** | Pointer to **[]string** |  | [optional] 
 **ExpiresAt** | Pointer to **NullableTime** |  | [optional] 
+**Containers** | Pointer to **[]string** |  | [optional] 
 
 ## Methods
 
@@ -550,6 +551,41 @@ HasExpiresAt returns a boolean if a field has been set.
 `func (o *Token) UnsetExpiresAt()`
 
 UnsetExpiresAt ensures that no value is present for ExpiresAt, not even an explicit nil
+### GetContainers
+
+`func (o *Token) GetContainers() []string`
+
+GetContainers returns the Containers field if non-nil, zero value otherwise.
+
+### GetContainersOk
+
+`func (o *Token) GetContainersOk() (*[]string, bool)`
+
+GetContainersOk returns a tuple with the Containers field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetContainers
+
+`func (o *Token) SetContainers(v []string)`
+
+SetContainers sets Containers field to given value.
+
+### HasContainers
+
+`func (o *Token) HasContainers() bool`
+
+HasContainers returns a boolean if a field has been set.
+
+### SetContainersNil
+
+`func (o *Token) SetContainersNil(b bool)`
+
+ SetContainersNil sets the value for Containers to be an explicit nil
+
+### UnsetContainers
+`func (o *Token) UnsetContainers()`
+
+UnsetContainers ensures that no value is present for Containers, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

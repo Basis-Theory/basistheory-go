@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Ids** | Pointer to **[]string** |  | [optional] 
+**Id** | Pointer to **[]string** |  | [optional] 
 **Name** | Pointer to **NullableString** |  | [optional] 
 **Page** | Pointer to **NullableInt32** |  | [optional] 
 **Size** | Pointer to **NullableInt32** |  | [optional] 
@@ -28,41 +28,41 @@ NewGetProxiesWithDefaults instantiates a new GetProxies object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
-### GetIds
+### GetId
 
-`func (o *GetProxies) GetIds() []string`
+`func (o *GetProxies) GetId() []string`
 
-GetIds returns the Ids field if non-nil, zero value otherwise.
+GetId returns the Id field if non-nil, zero value otherwise.
 
-### GetIdsOk
+### GetIdOk
 
-`func (o *GetProxies) GetIdsOk() (*[]string, bool)`
+`func (o *GetProxies) GetIdOk() (*[]string, bool)`
 
-GetIdsOk returns a tuple with the Ids field if it's non-nil, zero value otherwise
+GetIdOk returns a tuple with the Id field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetIds
+### SetId
 
-`func (o *GetProxies) SetIds(v []string)`
+`func (o *GetProxies) SetId(v []string)`
 
-SetIds sets Ids field to given value.
+SetId sets Id field to given value.
 
-### HasIds
+### HasId
 
-`func (o *GetProxies) HasIds() bool`
+`func (o *GetProxies) HasId() bool`
 
-HasIds returns a boolean if a field has been set.
+HasId returns a boolean if a field has been set.
 
-### SetIdsNil
+### SetIdNil
 
-`func (o *GetProxies) SetIdsNil(b bool)`
+`func (o *GetProxies) SetIdNil(b bool)`
 
- SetIdsNil sets the value for Ids to be an explicit nil
+ SetIdNil sets the value for Id to be an explicit nil
 
-### UnsetIds
-`func (o *GetProxies) UnsetIds()`
+### UnsetId
+`func (o *GetProxies) UnsetId()`
 
-UnsetIds ensures that no value is present for Ids, not even an explicit nil
+UnsetId ensures that no value is present for Id, not even an explicit nil
 ### GetName
 
 `func (o *GetProxies) GetName() string`

@@ -1,7 +1,7 @@
 /*
 Basis Theory API
 
-## Getting Started * Sign-in to [Basis Theory](https://basistheory.com) and go to [Applications](https://portal.basistheory.com/applications) * Create a Basis Theory Server to Server Application * All permissions should be selected * Paste the API Key into the `BT-API-KEY` variable
+## Getting Started * Sign-in to [Basis Theory](https://basistheory.com) and go to [Applications](https://portal.basistheory.com/applications) * Create a Basis Theory Private Application * All permissions should be selected * Paste the API Key into the `BT-API-KEY` variable
 
 API version: v1
 */
@@ -40,7 +40,7 @@ func NewPrivacyWithDefaults() *Privacy {
 
 // GetClassification returns the Classification field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *Privacy) GetClassification() string {
-	if o == nil || o.Classification.Get() == nil {
+	if o == nil || isNil(o.Classification.Get()) {
 		var ret string
 		return ret
 	}
@@ -83,7 +83,7 @@ func (o *Privacy) UnsetClassification() {
 
 // GetImpactLevel returns the ImpactLevel field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *Privacy) GetImpactLevel() string {
-	if o == nil || o.ImpactLevel.Get() == nil {
+	if o == nil || isNil(o.ImpactLevel.Get()) {
 		var ret string
 		return ret
 	}
@@ -126,7 +126,7 @@ func (o *Privacy) UnsetImpactLevel() {
 
 // GetRestrictionPolicy returns the RestrictionPolicy field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *Privacy) GetRestrictionPolicy() string {
-	if o == nil || o.RestrictionPolicy.Get() == nil {
+	if o == nil || isNil(o.RestrictionPolicy.Get()) {
 		var ret string
 		return ret
 	}

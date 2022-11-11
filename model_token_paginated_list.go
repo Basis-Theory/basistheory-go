@@ -1,7 +1,7 @@
 /*
 Basis Theory API
 
-## Getting Started * Sign-in to [Basis Theory](https://basistheory.com) and go to [Applications](https://portal.basistheory.com/applications) * Create a Basis Theory Server to Server Application * All permissions should be selected * Paste the API Key into the `BT-API-KEY` variable
+## Getting Started * Sign-in to [Basis Theory](https://basistheory.com) and go to [Applications](https://portal.basistheory.com/applications) * Create a Basis Theory Private Application * All permissions should be selected * Paste the API Key into the `BT-API-KEY` variable
 
 API version: v1
 */
@@ -39,7 +39,7 @@ func NewTokenPaginatedListWithDefaults() *TokenPaginatedList {
 
 // GetPagination returns the Pagination field value if set, zero value otherwise.
 func (o *TokenPaginatedList) GetPagination() Pagination {
-	if o == nil || o.Pagination == nil {
+	if o == nil || isNil(o.Pagination) {
 		var ret Pagination
 		return ret
 	}
@@ -49,7 +49,7 @@ func (o *TokenPaginatedList) GetPagination() Pagination {
 // GetPaginationOk returns a tuple with the Pagination field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *TokenPaginatedList) GetPaginationOk() (*Pagination, bool) {
-	if o == nil || o.Pagination == nil {
+	if o == nil || isNil(o.Pagination) {
 		return nil, false
 	}
 	return o.Pagination, true
@@ -57,7 +57,7 @@ func (o *TokenPaginatedList) GetPaginationOk() (*Pagination, bool) {
 
 // HasPagination returns a boolean if a field has been set.
 func (o *TokenPaginatedList) HasPagination() bool {
-	if o != nil && o.Pagination != nil {
+	if o != nil && !isNil(o.Pagination) {
 		return true
 	}
 
@@ -82,7 +82,7 @@ func (o *TokenPaginatedList) GetData() []Token {
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *TokenPaginatedList) GetDataOk() ([]Token, bool) {
-	if o == nil || o.Data == nil {
+	if o == nil || isNil(o.Data) {
 		return nil, false
 	}
 	return o.Data, true
@@ -90,7 +90,7 @@ func (o *TokenPaginatedList) GetDataOk() ([]Token, bool) {
 
 // HasData returns a boolean if a field has been set.
 func (o *TokenPaginatedList) HasData() bool {
-	if o != nil && o.Data != nil {
+	if o != nil && isNil(o.Data) {
 		return true
 	}
 
@@ -104,7 +104,7 @@ func (o *TokenPaginatedList) SetData(v []Token) {
 
 func (o TokenPaginatedList) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
-	if o.Pagination != nil {
+	if !isNil(o.Pagination) {
 		toSerialize["pagination"] = o.Pagination
 	}
 	if o.Data != nil {

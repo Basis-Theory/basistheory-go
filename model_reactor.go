@@ -1,7 +1,7 @@
 /*
 Basis Theory API
 
-## Getting Started * Sign-in to [Basis Theory](https://basistheory.com) and go to [Applications](https://portal.basistheory.com/applications) * Create a Basis Theory Server to Server Application * All permissions should be selected * Paste the API Key into the `BT-API-KEY` variable
+## Getting Started * Sign-in to [Basis Theory](https://basistheory.com) and go to [Applications](https://portal.basistheory.com/applications) * Create a Basis Theory Private Application * All permissions should be selected * Paste the API Key into the `BT-API-KEY` variable
 
 API version: v1
 */
@@ -48,7 +48,7 @@ func NewReactorWithDefaults() *Reactor {
 
 // GetId returns the Id field value if set, zero value otherwise.
 func (o *Reactor) GetId() string {
-	if o == nil || o.Id == nil {
+	if o == nil || isNil(o.Id) {
 		var ret string
 		return ret
 	}
@@ -58,7 +58,7 @@ func (o *Reactor) GetId() string {
 // GetIdOk returns a tuple with the Id field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Reactor) GetIdOk() (*string, bool) {
-	if o == nil || o.Id == nil {
+	if o == nil || isNil(o.Id) {
 		return nil, false
 	}
 	return o.Id, true
@@ -66,7 +66,7 @@ func (o *Reactor) GetIdOk() (*string, bool) {
 
 // HasId returns a boolean if a field has been set.
 func (o *Reactor) HasId() bool {
-	if o != nil && o.Id != nil {
+	if o != nil && !isNil(o.Id) {
 		return true
 	}
 
@@ -80,7 +80,7 @@ func (o *Reactor) SetId(v string) {
 
 // GetTenantId returns the TenantId field value if set, zero value otherwise.
 func (o *Reactor) GetTenantId() string {
-	if o == nil || o.TenantId == nil {
+	if o == nil || isNil(o.TenantId) {
 		var ret string
 		return ret
 	}
@@ -90,7 +90,7 @@ func (o *Reactor) GetTenantId() string {
 // GetTenantIdOk returns a tuple with the TenantId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Reactor) GetTenantIdOk() (*string, bool) {
-	if o == nil || o.TenantId == nil {
+	if o == nil || isNil(o.TenantId) {
 		return nil, false
 	}
 	return o.TenantId, true
@@ -98,7 +98,7 @@ func (o *Reactor) GetTenantIdOk() (*string, bool) {
 
 // HasTenantId returns a boolean if a field has been set.
 func (o *Reactor) HasTenantId() bool {
-	if o != nil && o.TenantId != nil {
+	if o != nil && !isNil(o.TenantId) {
 		return true
 	}
 
@@ -112,7 +112,7 @@ func (o *Reactor) SetTenantId(v string) {
 
 // GetName returns the Name field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *Reactor) GetName() string {
-	if o == nil || o.Name.Get() == nil {
+	if o == nil || isNil(o.Name.Get()) {
 		var ret string
 		return ret
 	}
@@ -155,7 +155,7 @@ func (o *Reactor) UnsetName() {
 
 // GetFormula returns the Formula field value if set, zero value otherwise.
 func (o *Reactor) GetFormula() ReactorFormula {
-	if o == nil || o.Formula == nil {
+	if o == nil || isNil(o.Formula) {
 		var ret ReactorFormula
 		return ret
 	}
@@ -165,7 +165,7 @@ func (o *Reactor) GetFormula() ReactorFormula {
 // GetFormulaOk returns a tuple with the Formula field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Reactor) GetFormulaOk() (*ReactorFormula, bool) {
-	if o == nil || o.Formula == nil {
+	if o == nil || isNil(o.Formula) {
 		return nil, false
 	}
 	return o.Formula, true
@@ -173,7 +173,7 @@ func (o *Reactor) GetFormulaOk() (*ReactorFormula, bool) {
 
 // HasFormula returns a boolean if a field has been set.
 func (o *Reactor) HasFormula() bool {
-	if o != nil && o.Formula != nil {
+	if o != nil && !isNil(o.Formula) {
 		return true
 	}
 
@@ -187,7 +187,7 @@ func (o *Reactor) SetFormula(v ReactorFormula) {
 
 // GetApplication returns the Application field value if set, zero value otherwise.
 func (o *Reactor) GetApplication() Application {
-	if o == nil || o.Application == nil {
+	if o == nil || isNil(o.Application) {
 		var ret Application
 		return ret
 	}
@@ -197,7 +197,7 @@ func (o *Reactor) GetApplication() Application {
 // GetApplicationOk returns a tuple with the Application field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Reactor) GetApplicationOk() (*Application, bool) {
-	if o == nil || o.Application == nil {
+	if o == nil || isNil(o.Application) {
 		return nil, false
 	}
 	return o.Application, true
@@ -205,7 +205,7 @@ func (o *Reactor) GetApplicationOk() (*Application, bool) {
 
 // HasApplication returns a boolean if a field has been set.
 func (o *Reactor) HasApplication() bool {
-	if o != nil && o.Application != nil {
+	if o != nil && !isNil(o.Application) {
 		return true
 	}
 
@@ -219,7 +219,7 @@ func (o *Reactor) SetApplication(v Application) {
 
 // GetCreatedBy returns the CreatedBy field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *Reactor) GetCreatedBy() string {
-	if o == nil || o.CreatedBy.Get() == nil {
+	if o == nil || isNil(o.CreatedBy.Get()) {
 		var ret string
 		return ret
 	}
@@ -262,7 +262,7 @@ func (o *Reactor) UnsetCreatedBy() {
 
 // GetCreatedAt returns the CreatedAt field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *Reactor) GetCreatedAt() time.Time {
-	if o == nil || o.CreatedAt.Get() == nil {
+	if o == nil || isNil(o.CreatedAt.Get()) {
 		var ret time.Time
 		return ret
 	}
@@ -305,7 +305,7 @@ func (o *Reactor) UnsetCreatedAt() {
 
 // GetModifiedBy returns the ModifiedBy field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *Reactor) GetModifiedBy() string {
-	if o == nil || o.ModifiedBy.Get() == nil {
+	if o == nil || isNil(o.ModifiedBy.Get()) {
 		var ret string
 		return ret
 	}
@@ -348,7 +348,7 @@ func (o *Reactor) UnsetModifiedBy() {
 
 // GetModifiedAt returns the ModifiedAt field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *Reactor) GetModifiedAt() time.Time {
-	if o == nil || o.ModifiedAt.Get() == nil {
+	if o == nil || isNil(o.ModifiedAt.Get()) {
 		var ret time.Time
 		return ret
 	}
@@ -402,7 +402,7 @@ func (o *Reactor) GetConfiguration() map[string]string {
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *Reactor) GetConfigurationOk() (*map[string]string, bool) {
-	if o == nil || o.Configuration == nil {
+	if o == nil || isNil(o.Configuration) {
 		return nil, false
 	}
 	return &o.Configuration, true
@@ -410,7 +410,7 @@ func (o *Reactor) GetConfigurationOk() (*map[string]string, bool) {
 
 // HasConfiguration returns a boolean if a field has been set.
 func (o *Reactor) HasConfiguration() bool {
-	if o != nil && o.Configuration != nil {
+	if o != nil && isNil(o.Configuration) {
 		return true
 	}
 
@@ -424,19 +424,19 @@ func (o *Reactor) SetConfiguration(v map[string]string) {
 
 func (o Reactor) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
-	if o.Id != nil {
+	if !isNil(o.Id) {
 		toSerialize["id"] = o.Id
 	}
-	if o.TenantId != nil {
+	if !isNil(o.TenantId) {
 		toSerialize["tenant_id"] = o.TenantId
 	}
 	if o.Name.IsSet() {
 		toSerialize["name"] = o.Name.Get()
 	}
-	if o.Formula != nil {
+	if !isNil(o.Formula) {
 		toSerialize["formula"] = o.Formula
 	}
-	if o.Application != nil {
+	if !isNil(o.Application) {
 		toSerialize["application"] = o.Application
 	}
 	if o.CreatedBy.IsSet() {

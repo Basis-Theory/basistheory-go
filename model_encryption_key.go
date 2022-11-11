@@ -1,7 +1,7 @@
 /*
 Basis Theory API
 
-## Getting Started * Sign-in to [Basis Theory](https://basistheory.com) and go to [Applications](https://portal.basistheory.com/applications) * Create a Basis Theory Server to Server Application * All permissions should be selected * Paste the API Key into the `BT-API-KEY` variable
+## Getting Started * Sign-in to [Basis Theory](https://basistheory.com) and go to [Applications](https://portal.basistheory.com/applications) * Create a Basis Theory Private Application * All permissions should be selected * Paste the API Key into the `BT-API-KEY` variable
 
 API version: v1
 */
@@ -65,7 +65,7 @@ func (o *EncryptionKey) SetKey(v string) {
 
 // GetProv returns the Prov field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *EncryptionKey) GetProv() string {
-	if o == nil || o.Prov.Get() == nil {
+	if o == nil || isNil(o.Prov.Get()) {
 		var ret string
 		return ret
 	}
@@ -108,7 +108,7 @@ func (o *EncryptionKey) UnsetProv() {
 
 // GetAlg returns the Alg field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *EncryptionKey) GetAlg() string {
-	if o == nil || o.Alg.Get() == nil {
+	if o == nil || isNil(o.Alg.Get()) {
 		var ret string
 		return ret
 	}

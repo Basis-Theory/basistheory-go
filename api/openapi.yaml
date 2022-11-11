@@ -1,9 +1,11 @@
 openapi: 3.0.1
 info:
-  description: "## Getting Started\n* Sign-in to [Basis Theory](https://basistheory.com)\
-    \ and go to [Applications](https://portal.basistheory.com/applications)\n* Create\
-    \ a Basis Theory Server to Server Application\n* All permissions should be selected\n\
-    * Paste the API Key into the `BT-API-KEY` variable"
+  description: |-
+    ## Getting Started
+    * Sign-in to [Basis Theory](https://basistheory.com) and go to [Applications](https://portal.basistheory.com/applications)
+    * Create a Basis Theory Private Application
+    * All permissions should be selected
+    * Paste the API Key into the `BT-API-KEY` variable
   title: Basis Theory API
   version: v1
 servers:
@@ -25,6 +27,17 @@ paths:
             maxLength: 36
             pattern: "^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$"
             type: string
+          nullable: true
+          type: array
+        style: form
+      - explode: true
+        in: query
+        name: type
+        required: false
+        schema:
+          items:
+            type: string
+          nullable: true
           type: array
         style: form
       - explode: true
@@ -306,6 +319,67 @@ paths:
           description: Forbidden
       tags:
       - Applications
+  /application-templates:
+    get:
+      operationId: ApplicationTemplates_Get
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/ApplicationTemplate'
+                type: array
+          description: Success
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Unauthorized
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Not Found
+      tags:
+      - ApplicationTemplates
+  /application-templates/{id}:
+    get:
+      operationId: ApplicationTemplates_GetById
+      parameters:
+      - explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          format: uuid
+          maxLength: 36
+          pattern: "^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$"
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApplicationTemplate'
+          description: Success
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Unauthorized
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Not Found
+      tags:
+      - ApplicationTemplates
   /logs:
     get:
       operationId: Logs_Get
@@ -315,6 +389,7 @@ paths:
         name: entity_type
         required: false
         schema:
+          maxLength: 50
           nullable: true
           pattern: "^[A-z]+$"
           type: string
@@ -434,8 +509,21 @@ paths:
         name: application_type
         required: false
         schema:
+          maxLength: 25
           nullable: true
+          pattern: "^[A-z_]+$"
           type: string
+        style: form
+      - explode: true
+        in: query
+        name: version
+        required: false
+        schema:
+          format: int32
+          maximum: 2147483647
+          minimum: 0
+          nullable: true
+          type: integer
         style: form
       responses:
         "200":
@@ -480,6 +568,7 @@ paths:
             maxLength: 36
             pattern: "^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$"
             type: string
+          nullable: true
           type: array
         style: form
       - explode: true
@@ -717,6 +806,7 @@ paths:
         schema:
           maxLength: 200
           nullable: true
+          pattern: ^.+$
           type: string
         style: form
       - explode: true
@@ -947,6 +1037,7 @@ paths:
             maxLength: 36
             pattern: "^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$"
             type: string
+          nullable: true
           type: array
         style: form
       - explode: true
@@ -956,6 +1047,7 @@ paths:
         schema:
           maxLength: 200
           nullable: true
+          pattern: ^.+$
           type: string
         style: form
       - explode: true
@@ -1413,6 +1505,7 @@ paths:
             maxLength: 36
             pattern: "^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$"
             type: string
+          nullable: true
           type: array
         style: form
       - explode: true
@@ -1662,6 +1755,7 @@ paths:
         required: true
         schema:
           maxLength: 200
+          pattern: ^.+$
           type: string
         style: simple
       - explode: true
@@ -1671,6 +1765,7 @@ paths:
         schema:
           items:
             type: string
+          nullable: true
           type: array
         style: form
       - explode: true
@@ -1680,6 +1775,7 @@ paths:
         schema:
           items:
             type: string
+          nullable: true
           type: array
         style: form
       - explode: false
@@ -1689,6 +1785,7 @@ paths:
         schema:
           additionalProperties:
             type: string
+          nullable: true
           type: object
         style: deepObject
       - explode: true
@@ -1756,6 +1853,7 @@ paths:
         required: true
         schema:
           maxLength: 200
+          pattern: ^.+$
           type: string
         style: simple
       requestBody:
@@ -1807,6 +1905,7 @@ paths:
         required: true
         schema:
           maxLength: 200
+          pattern: ^.+$
           type: string
         style: simple
       - explode: false
@@ -1815,6 +1914,7 @@ paths:
         required: true
         schema:
           maxLength: 200
+          pattern: ^.+$
           type: string
         style: simple
       responses:
@@ -1855,6 +1955,7 @@ paths:
         required: true
         schema:
           maxLength: 200
+          pattern: ^.+$
           type: string
         style: simple
       - explode: false
@@ -1863,6 +1964,7 @@ paths:
         required: true
         schema:
           maxLength: 200
+          pattern: ^.+$
           type: string
         style: simple
       responses:
@@ -1950,6 +2052,7 @@ paths:
         schema:
           items:
             type: string
+          nullable: true
           type: array
         style: form
       - explode: true
@@ -1959,6 +2062,7 @@ paths:
         schema:
           items:
             type: string
+          nullable: true
           type: array
         style: form
       - explode: false
@@ -1968,6 +2072,7 @@ paths:
         schema:
           additionalProperties:
             type: string
+          nullable: true
           type: object
         style: deepObject
       - explode: true
@@ -2101,6 +2206,7 @@ paths:
         required: true
         schema:
           maxLength: 200
+          pattern: ^.+$
           type: string
         style: simple
       responses:
@@ -2141,6 +2247,7 @@ paths:
         required: true
         schema:
           maxLength: 200
+          pattern: ^.+$
           type: string
         style: simple
       responses:
@@ -2179,6 +2286,7 @@ paths:
         required: true
         schema:
           maxLength: 200
+          pattern: ^.+$
           type: string
         style: simple
       requestBody:
@@ -2228,10 +2336,60 @@ paths:
       - Tokens
 components:
   schemas:
+    AccessRule:
+      additionalProperties: false
+      example:
+        container: container
+        transform: transform
+        permissions:
+        - permissions
+        - permissions
+        description: description
+        priority: 5
+      properties:
+        description:
+          nullable: true
+          type: string
+        priority:
+          format: int32
+          nullable: true
+          type: integer
+        container:
+          nullable: true
+          type: string
+        transform:
+          nullable: true
+          type: string
+        permissions:
+          items:
+            type: string
+          nullable: true
+          type: array
+      type: object
     Application:
       additionalProperties: false
       example:
         tenant_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        created_at: 2000-01-23T04:56:07.000+00:00
+        rules:
+        - container: container
+          transform: transform
+          permissions:
+          - permissions
+          - permissions
+          description: description
+          priority: 5
+        - container: container
+          transform: transform
+          permissions:
+          - permissions
+          - permissions
+          description: description
+          priority: 5
+        type: type
+        created_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        can_create_expiring_applications: true
+        expires_at: 2000-01-23T04:56:07.000+00:00
         permissions:
         - permissions
         - permissions
@@ -2240,11 +2398,8 @@ components:
         - permissions
         name: name
         modified_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-        created_at: 2000-01-23T04:56:07.000+00:00
         id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-        type: type
         modified_at: 2000-01-23T04:56:07.000+00:00
-        created_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
         key: key
       properties:
         id:
@@ -2294,10 +2449,23 @@ components:
           maxLength: 40
           nullable: true
           type: string
+        can_create_expiring_applications:
+          nullable: true
+          type: boolean
+        expires_at:
+          format: date-time
+          maxLength: 40
+          nullable: true
+          type: string
         permissions:
           items:
             type: string
           maxItems: 50
+          nullable: true
+          type: array
+        rules:
+          items:
+            $ref: '#/components/schemas/AccessRule'
           nullable: true
           type: array
       type: object
@@ -2311,6 +2479,26 @@ components:
           page_size: 1
         data:
         - tenant_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          created_at: 2000-01-23T04:56:07.000+00:00
+          rules:
+          - container: container
+            transform: transform
+            permissions:
+            - permissions
+            - permissions
+            description: description
+            priority: 5
+          - container: container
+            transform: transform
+            permissions:
+            - permissions
+            - permissions
+            description: description
+            priority: 5
+          type: type
+          created_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          can_create_expiring_applications: true
+          expires_at: 2000-01-23T04:56:07.000+00:00
           permissions:
           - permissions
           - permissions
@@ -2319,13 +2507,30 @@ components:
           - permissions
           name: name
           modified_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-          created_at: 2000-01-23T04:56:07.000+00:00
           id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-          type: type
           modified_at: 2000-01-23T04:56:07.000+00:00
-          created_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           key: key
         - tenant_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          created_at: 2000-01-23T04:56:07.000+00:00
+          rules:
+          - container: container
+            transform: transform
+            permissions:
+            - permissions
+            - permissions
+            description: description
+            priority: 5
+          - container: container
+            transform: transform
+            permissions:
+            - permissions
+            - permissions
+            description: description
+            priority: 5
+          type: type
+          created_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          can_create_expiring_applications: true
+          expires_at: 2000-01-23T04:56:07.000+00:00
           permissions:
           - permissions
           - permissions
@@ -2334,13 +2539,30 @@ components:
           - permissions
           name: name
           modified_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-          created_at: 2000-01-23T04:56:07.000+00:00
           id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-          type: type
           modified_at: 2000-01-23T04:56:07.000+00:00
-          created_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           key: key
         - tenant_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          created_at: 2000-01-23T04:56:07.000+00:00
+          rules:
+          - container: container
+            transform: transform
+            permissions:
+            - permissions
+            - permissions
+            description: description
+            priority: 5
+          - container: container
+            transform: transform
+            permissions:
+            - permissions
+            - permissions
+            description: description
+            priority: 5
+          type: type
+          created_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          can_create_expiring_applications: true
+          expires_at: 2000-01-23T04:56:07.000+00:00
           permissions:
           - permissions
           - permissions
@@ -2349,13 +2571,30 @@ components:
           - permissions
           name: name
           modified_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-          created_at: 2000-01-23T04:56:07.000+00:00
           id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-          type: type
           modified_at: 2000-01-23T04:56:07.000+00:00
-          created_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           key: key
         - tenant_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          created_at: 2000-01-23T04:56:07.000+00:00
+          rules:
+          - container: container
+            transform: transform
+            permissions:
+            - permissions
+            - permissions
+            description: description
+            priority: 5
+          - container: container
+            transform: transform
+            permissions:
+            - permissions
+            - permissions
+            description: description
+            priority: 5
+          type: type
+          created_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          can_create_expiring_applications: true
+          expires_at: 2000-01-23T04:56:07.000+00:00
           permissions:
           - permissions
           - permissions
@@ -2364,13 +2603,30 @@ components:
           - permissions
           name: name
           modified_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-          created_at: 2000-01-23T04:56:07.000+00:00
           id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-          type: type
           modified_at: 2000-01-23T04:56:07.000+00:00
-          created_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           key: key
         - tenant_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          created_at: 2000-01-23T04:56:07.000+00:00
+          rules:
+          - container: container
+            transform: transform
+            permissions:
+            - permissions
+            - permissions
+            description: description
+            priority: 5
+          - container: container
+            transform: transform
+            permissions:
+            - permissions
+            - permissions
+            description: description
+            priority: 5
+          type: type
+          created_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          can_create_expiring_applications: true
+          expires_at: 2000-01-23T04:56:07.000+00:00
           permissions:
           - permissions
           - permissions
@@ -2379,11 +2635,8 @@ components:
           - permissions
           name: name
           modified_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-          created_at: 2000-01-23T04:56:07.000+00:00
           id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-          type: type
           modified_at: 2000-01-23T04:56:07.000+00:00
-          created_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           key: key
       properties:
         pagination:
@@ -2391,16 +2644,73 @@ components:
         data:
           items:
             $ref: '#/components/schemas/Application'
-<<<<<<< HEAD
           maxItems: 100
-=======
->>>>>>> 0edf8d7d1782f7bbf04866ba00e1dbb4442ca663
+          nullable: true
+          type: array
+      type: object
+    ApplicationTemplate:
+      additionalProperties: false
+      example:
+        is_starter: true
+        application_type: application_type
+        permissions:
+        - permissions
+        - permissions
+        name: name
+        description: description
+        template_type: template_type
+        rules:
+        - container: container
+          transform: transform
+          permissions:
+          - permissions
+          - permissions
+          description: description
+          priority: 5
+        - container: container
+          transform: transform
+          permissions:
+          - permissions
+          - permissions
+          description: description
+          priority: 5
+        id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+      properties:
+        id:
+          format: uuid
+          maxLength: 36
+          pattern: "^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$"
+          type: string
+        name:
+          nullable: true
+          type: string
+        description:
+          nullable: true
+          type: string
+        application_type:
+          nullable: true
+          type: string
+        template_type:
+          nullable: true
+          type: string
+        is_starter:
+          type: boolean
+        rules:
+          items:
+            $ref: '#/components/schemas/AccessRule'
+          nullable: true
+          type: array
+        permissions:
+          items:
+            type: string
           nullable: true
           type: array
       type: object
     CreateApplicationRequest:
       additionalProperties: false
       example:
+        can_create_expiring_applications: true
+        expires_at: expires_at
         permissions:
         - permissions
         - permissions
@@ -2408,16 +2718,38 @@ components:
         - permissions
         - permissions
         name: name
+        rules:
+        - container: container
+          transform: transform
+          permissions:
+          - permissions
+          - permissions
+          description: description
+          priority: 5
+        - container: container
+          transform: transform
+          permissions:
+          - permissions
+          - permissions
+          description: description
+          priority: 5
         type: type
       properties:
         name:
           maxLength: 200
-          minLength: 1
+          nullable: true
           pattern: ^.+$
           type: string
         type:
+          maxLength: 25
           minLength: 1
           pattern: "^[A-z_]+$"
+          type: string
+        can_create_expiring_applications:
+          nullable: true
+          type: boolean
+        expires_at:
+          nullable: true
           type: string
         permissions:
           items:
@@ -2425,8 +2757,12 @@ components:
           maxItems: 50
           nullable: true
           type: array
+        rules:
+          items:
+            $ref: '#/components/schemas/AccessRule'
+          nullable: true
+          type: array
       required:
-      - name
       - type
       type: object
     CreateProxyRequest:
@@ -2533,7 +2869,7 @@ components:
         description:
           maxLength: 1000
           nullable: true
-          pattern: ^.*$
+          pattern: "^[\\S\\s]*$"
           type: string
         icon:
           nullable: true
@@ -2563,6 +2899,26 @@ components:
       example:
         application:
           tenant_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          created_at: 2000-01-23T04:56:07.000+00:00
+          rules:
+          - container: container
+            transform: transform
+            permissions:
+            - permissions
+            - permissions
+            description: description
+            priority: 5
+          - container: container
+            transform: transform
+            permissions:
+            - permissions
+            - permissions
+            description: description
+            priority: 5
+          type: type
+          created_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          can_create_expiring_applications: true
+          expires_at: 2000-01-23T04:56:07.000+00:00
           permissions:
           - permissions
           - permissions
@@ -2571,11 +2927,8 @@ components:
           - permissions
           name: name
           modified_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-          created_at: 2000-01-23T04:56:07.000+00:00
           id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-          type: type
           modified_at: 2000-01-23T04:56:07.000+00:00
-          created_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           key: key
         configuration:
           key: configuration
@@ -2589,12 +2942,33 @@ components:
           - name: name
             description: description
             type: type
+          - name: name
+            description: description
+            type: type
+          - name: name
+            description: description
+            type: type
+          - name: name
+            description: description
+            type: type
           icon: icon
           description: description
           created_at: 2000-01-23T04:56:07.000+00:00
           type: type
           created_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           request_parameters:
+          - name: name
+            description: description
+            optional: true
+            type: type
+          - name: name
+            description: description
+            optional: true
+            type: type
+          - name: name
+            description: description
+            optional: true
+            type: type
           - name: name
             description: description
             optional: true
@@ -2662,6 +3036,8 @@ components:
           restriction_policy: restriction_policy
           impact_level: impact_level
           classification: classification
+        containers:
+        - containers
         id: id
         search_indexes:
         - search_indexes
@@ -2711,6 +3087,12 @@ components:
         expires_at:
           nullable: true
           type: string
+        containers:
+          items:
+            type: string
+          maxItems: 1
+          nullable: true
+          type: array
       required:
       - data
       type: object
@@ -2732,6 +3114,8 @@ components:
         expires_at: 2000-01-23T04:56:07.000+00:00
         fingerprint: fingerprint
         modified_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        containers:
+        - containers
         id: id
         search_indexes:
         - search_indexes
@@ -2812,6 +3196,13 @@ components:
           maxLength: 40
           nullable: true
           type: string
+        containers:
+          items:
+            type: string
+          maxItems: 1
+          nullable: true
+          pattern: "^(?!.*//)(?=.*/$)/[A-z0-9_\\-/]*$"
+          type: array
       type: object
     EncryptionKey:
       additionalProperties: false
@@ -2851,13 +3242,17 @@ components:
     GetApplications:
       additionalProperties: false
       properties:
-        applicationIds:
+        id:
           items:
             format: uuid
             maxLength: 36
             pattern: "^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$"
             type: string
-          maxItems: 100
+          nullable: true
+          type: array
+        type:
+          items:
+            type: string
           nullable: true
           type: array
         page:
@@ -2877,21 +3272,22 @@ components:
     GetLogs:
       additionalProperties: false
       properties:
-        entityType:
+        entity_type:
+          maxLength: 50
           nullable: true
           pattern: "^[A-z]+$"
           type: string
-        entityId:
+        entity_id:
           maxLength: 200
           nullable: true
           pattern: ^.+$
           type: string
-        startDate:
+        start_date:
           format: date-time
           maxLength: 40
           nullable: true
           type: string
-        endDate:
+        end_date:
           format: date-time
           maxLength: 40
           nullable: true
@@ -2913,20 +3309,27 @@ components:
     GetPermissions:
       additionalProperties: false
       properties:
-        applicationType:
+        application_type:
+          maxLength: 25
           nullable: true
+          pattern: "^[A-z_]+$"
           type: string
+        version:
+          format: int32
+          maximum: 2147483647
+          minimum: 0
+          nullable: true
+          type: integer
       type: object
     GetProxies:
       additionalProperties: false
       properties:
-        ids:
+        id:
           items:
             format: uuid
             maxLength: 36
             pattern: "^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$"
             type: string
-          maxItems: 100
           nullable: true
           type: array
         name:
@@ -2954,6 +3357,7 @@ components:
         name:
           maxLength: 200
           nullable: true
+          pattern: ^.+$
           type: string
         page:
           exclusiveMinimum: true
@@ -2972,18 +3376,18 @@ components:
     GetReactors:
       additionalProperties: false
       properties:
-        reactorIds:
+        id:
           items:
             format: uuid
             maxLength: 36
             pattern: "^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$"
             type: string
-          maxItems: 100
           nullable: true
           type: array
         name:
           maxLength: 200
           nullable: true
+          pattern: ^.+$
           type: string
         page:
           exclusiveMinimum: true
@@ -3021,13 +3425,12 @@ components:
     GetTenantMembers:
       additionalProperties: false
       properties:
-        userIds:
+        user_id:
           items:
             format: uuid
             maxLength: 36
             pattern: "^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$"
             type: string
-          maxItems: 50
           nullable: true
           type: array
         page:
@@ -3047,23 +3450,20 @@ components:
     GetTokens:
       additionalProperties: false
       properties:
-        types:
+        type:
           items:
             type: string
-          maxItems: 10
           nullable: true
           type: array
-        tokenIds:
+        id:
           items:
             type: string
-          maxItems: 100
           nullable: true
           type: array
-        metadataSearch:
+        metadata:
           additionalProperties:
             nullable: true
             type: string
-          maxLength: 10
           nullable: true
           type: object
         page:
@@ -3210,6 +3610,28 @@ components:
           nullable: true
           type: array
       type: object
+    MonthlyActiveTokenHistory:
+      additionalProperties: false
+      example:
+        month: 7
+        year: 6365
+        count: 0
+      properties:
+        year:
+          format: int32
+          maximum: 9999
+          minimum: 1000
+          type: integer
+        month:
+          format: int32
+          maximum: 12
+          minimum: 1
+          type: integer
+        count:
+          format: int64
+          minimum: 0
+          type: integer
+      type: object
     Pagination:
       additionalProperties: false
       example:
@@ -3341,7 +3763,9 @@ components:
           pattern: ^.+$
           type: string
         destination_url:
+          maxLength: 400
           nullable: true
+          pattern: ^https://.+$
           type: string
         request_reactor_id:
           format: uuid
@@ -3484,6 +3908,26 @@ components:
         tenant_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
         application:
           tenant_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          created_at: 2000-01-23T04:56:07.000+00:00
+          rules:
+          - container: container
+            transform: transform
+            permissions:
+            - permissions
+            - permissions
+            description: description
+            priority: 5
+          - container: container
+            transform: transform
+            permissions:
+            - permissions
+            - permissions
+            description: description
+            priority: 5
+          type: type
+          created_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          can_create_expiring_applications: true
+          expires_at: 2000-01-23T04:56:07.000+00:00
           permissions:
           - permissions
           - permissions
@@ -3492,11 +3936,8 @@ components:
           - permissions
           name: name
           modified_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-          created_at: 2000-01-23T04:56:07.000+00:00
           id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-          type: type
           modified_at: 2000-01-23T04:56:07.000+00:00
-          created_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           key: key
         configuration:
           key: configuration
@@ -3511,12 +3952,33 @@ components:
           - name: name
             description: description
             type: type
+          - name: name
+            description: description
+            type: type
+          - name: name
+            description: description
+            type: type
+          - name: name
+            description: description
+            type: type
           icon: icon
           description: description
           created_at: 2000-01-23T04:56:07.000+00:00
           type: type
           created_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           request_parameters:
+          - name: name
+            description: description
+            optional: true
+            type: type
+          - name: name
+            description: description
+            optional: true
+            type: type
+          - name: name
+            description: description
+            optional: true
+            type: type
           - name: name
             description: description
             optional: true
@@ -3594,12 +4056,33 @@ components:
         - name: name
           description: description
           type: type
+        - name: name
+          description: description
+          type: type
+        - name: name
+          description: description
+          type: type
+        - name: name
+          description: description
+          type: type
         icon: icon
         description: description
         created_at: 2000-01-23T04:56:07.000+00:00
         type: type
         created_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
         request_parameters:
+        - name: name
+          description: description
+          optional: true
+          type: type
+        - name: name
+          description: description
+          optional: true
+          type: type
+        - name: name
+          description: description
+          optional: true
+          type: type
         - name: name
           description: description
           optional: true
@@ -3620,22 +4103,36 @@ components:
           pattern: "^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$"
           type: string
         type:
+          maxLength: 25
           nullable: true
+          pattern: ^(?:private|official)$
           type: string
         status:
+          maxLength: 25
           nullable: true
+          pattern: ^(?:verified|coming_soon)$
           type: string
         name:
+          maxLength: 200
           nullable: true
+          pattern: ^.+$
           type: string
         description:
+          maxLength: 1000
           nullable: true
+          pattern: "^[\\S\\s]*$"
           type: string
         icon:
+          maxLength: 50000
           nullable: true
+          pattern: "(^data:(image/png|image/jpg|image/jpeg|image/svg\\+xml);\\s*base64,\\\
+            s*(?:[A-Za-z0-9+/]{4})*(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=|[A-Za-z0-9+/]{4})$)|(^data:(image/png|image/jpg|image/jpeg);\\\
+            s*base64,\\s*(?:[A-Za-z0-9+/]{4})*(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=|[A-Za-z0-9+/]{4})$)"
           type: string
         code:
+          maxLength: 4000
           nullable: true
+          pattern: "^[\\S\\s]*$"
           type: string
         created_by:
           format: uuid
@@ -3662,11 +4159,13 @@ components:
         configuration:
           items:
             $ref: '#/components/schemas/ReactorFormulaConfiguration'
+          maxItems: 25
           nullable: true
           type: array
         request_parameters:
           items:
             $ref: '#/components/schemas/ReactorFormulaRequestParameter'
+          maxItems: 25
           nullable: true
           type: array
       type: object
@@ -3688,6 +4187,7 @@ components:
           pattern: ^.*$
           type: string
         type:
+          maxLength: 25
           minLength: 1
           pattern: ^(?:string|boolean|number)$
           type: string
@@ -3712,12 +4212,33 @@ components:
           - name: name
             description: description
             type: type
+          - name: name
+            description: description
+            type: type
+          - name: name
+            description: description
+            type: type
+          - name: name
+            description: description
+            type: type
           icon: icon
           description: description
           created_at: 2000-01-23T04:56:07.000+00:00
           type: type
           created_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           request_parameters:
+          - name: name
+            description: description
+            optional: true
+            type: type
+          - name: name
+            description: description
+            optional: true
+            type: type
+          - name: name
+            description: description
+            optional: true
+            type: type
           - name: name
             description: description
             optional: true
@@ -3739,12 +4260,33 @@ components:
           - name: name
             description: description
             type: type
+          - name: name
+            description: description
+            type: type
+          - name: name
+            description: description
+            type: type
+          - name: name
+            description: description
+            type: type
           icon: icon
           description: description
           created_at: 2000-01-23T04:56:07.000+00:00
           type: type
           created_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           request_parameters:
+          - name: name
+            description: description
+            optional: true
+            type: type
+          - name: name
+            description: description
+            optional: true
+            type: type
+          - name: name
+            description: description
+            optional: true
+            type: type
           - name: name
             description: description
             optional: true
@@ -3766,12 +4308,33 @@ components:
           - name: name
             description: description
             type: type
+          - name: name
+            description: description
+            type: type
+          - name: name
+            description: description
+            type: type
+          - name: name
+            description: description
+            type: type
           icon: icon
           description: description
           created_at: 2000-01-23T04:56:07.000+00:00
           type: type
           created_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           request_parameters:
+          - name: name
+            description: description
+            optional: true
+            type: type
+          - name: name
+            description: description
+            optional: true
+            type: type
+          - name: name
+            description: description
+            optional: true
+            type: type
           - name: name
             description: description
             optional: true
@@ -3793,12 +4356,33 @@ components:
           - name: name
             description: description
             type: type
+          - name: name
+            description: description
+            type: type
+          - name: name
+            description: description
+            type: type
+          - name: name
+            description: description
+            type: type
           icon: icon
           description: description
           created_at: 2000-01-23T04:56:07.000+00:00
           type: type
           created_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           request_parameters:
+          - name: name
+            description: description
+            optional: true
+            type: type
+          - name: name
+            description: description
+            optional: true
+            type: type
+          - name: name
+            description: description
+            optional: true
+            type: type
           - name: name
             description: description
             optional: true
@@ -3820,12 +4404,33 @@ components:
           - name: name
             description: description
             type: type
+          - name: name
+            description: description
+            type: type
+          - name: name
+            description: description
+            type: type
+          - name: name
+            description: description
+            type: type
           icon: icon
           description: description
           created_at: 2000-01-23T04:56:07.000+00:00
           type: type
           created_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           request_parameters:
+          - name: name
+            description: description
+            optional: true
+            type: type
+          - name: name
+            description: description
+            optional: true
+            type: type
+          - name: name
+            description: description
+            optional: true
+            type: type
           - name: name
             description: description
             optional: true
@@ -3863,10 +4468,14 @@ components:
           pattern: "^[A-z0-9][A-z0-9.\\-_]*[A-z0-9]$"
           type: string
         description:
+          maxLength: 400
           nullable: true
+          pattern: ^.*$
           type: string
         type:
+          maxLength: 25
           minLength: 1
+          pattern: ^(?:string|boolean|number)$
           type: string
         optional:
           type: boolean
@@ -3886,6 +4495,26 @@ components:
         - tenant_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           application:
             tenant_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+            created_at: 2000-01-23T04:56:07.000+00:00
+            rules:
+            - container: container
+              transform: transform
+              permissions:
+              - permissions
+              - permissions
+              description: description
+              priority: 5
+            - container: container
+              transform: transform
+              permissions:
+              - permissions
+              - permissions
+              description: description
+              priority: 5
+            type: type
+            created_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+            can_create_expiring_applications: true
+            expires_at: 2000-01-23T04:56:07.000+00:00
             permissions:
             - permissions
             - permissions
@@ -3894,11 +4523,8 @@ components:
             - permissions
             name: name
             modified_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-            created_at: 2000-01-23T04:56:07.000+00:00
             id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-            type: type
             modified_at: 2000-01-23T04:56:07.000+00:00
-            created_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
             key: key
           configuration:
             key: configuration
@@ -3913,12 +4539,33 @@ components:
             - name: name
               description: description
               type: type
+            - name: name
+              description: description
+              type: type
+            - name: name
+              description: description
+              type: type
+            - name: name
+              description: description
+              type: type
             icon: icon
             description: description
             created_at: 2000-01-23T04:56:07.000+00:00
             type: type
             created_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
             request_parameters:
+            - name: name
+              description: description
+              optional: true
+              type: type
+            - name: name
+              description: description
+              optional: true
+              type: type
+            - name: name
+              description: description
+              optional: true
+              type: type
             - name: name
               description: description
               optional: true
@@ -3939,6 +4586,26 @@ components:
         - tenant_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           application:
             tenant_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+            created_at: 2000-01-23T04:56:07.000+00:00
+            rules:
+            - container: container
+              transform: transform
+              permissions:
+              - permissions
+              - permissions
+              description: description
+              priority: 5
+            - container: container
+              transform: transform
+              permissions:
+              - permissions
+              - permissions
+              description: description
+              priority: 5
+            type: type
+            created_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+            can_create_expiring_applications: true
+            expires_at: 2000-01-23T04:56:07.000+00:00
             permissions:
             - permissions
             - permissions
@@ -3947,11 +4614,8 @@ components:
             - permissions
             name: name
             modified_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-            created_at: 2000-01-23T04:56:07.000+00:00
             id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-            type: type
             modified_at: 2000-01-23T04:56:07.000+00:00
-            created_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
             key: key
           configuration:
             key: configuration
@@ -3966,12 +4630,33 @@ components:
             - name: name
               description: description
               type: type
+            - name: name
+              description: description
+              type: type
+            - name: name
+              description: description
+              type: type
+            - name: name
+              description: description
+              type: type
             icon: icon
             description: description
             created_at: 2000-01-23T04:56:07.000+00:00
             type: type
             created_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
             request_parameters:
+            - name: name
+              description: description
+              optional: true
+              type: type
+            - name: name
+              description: description
+              optional: true
+              type: type
+            - name: name
+              description: description
+              optional: true
+              type: type
             - name: name
               description: description
               optional: true
@@ -3992,6 +4677,26 @@ components:
         - tenant_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           application:
             tenant_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+            created_at: 2000-01-23T04:56:07.000+00:00
+            rules:
+            - container: container
+              transform: transform
+              permissions:
+              - permissions
+              - permissions
+              description: description
+              priority: 5
+            - container: container
+              transform: transform
+              permissions:
+              - permissions
+              - permissions
+              description: description
+              priority: 5
+            type: type
+            created_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+            can_create_expiring_applications: true
+            expires_at: 2000-01-23T04:56:07.000+00:00
             permissions:
             - permissions
             - permissions
@@ -4000,11 +4705,8 @@ components:
             - permissions
             name: name
             modified_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-            created_at: 2000-01-23T04:56:07.000+00:00
             id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-            type: type
             modified_at: 2000-01-23T04:56:07.000+00:00
-            created_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
             key: key
           configuration:
             key: configuration
@@ -4019,12 +4721,33 @@ components:
             - name: name
               description: description
               type: type
+            - name: name
+              description: description
+              type: type
+            - name: name
+              description: description
+              type: type
+            - name: name
+              description: description
+              type: type
             icon: icon
             description: description
             created_at: 2000-01-23T04:56:07.000+00:00
             type: type
             created_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
             request_parameters:
+            - name: name
+              description: description
+              optional: true
+              type: type
+            - name: name
+              description: description
+              optional: true
+              type: type
+            - name: name
+              description: description
+              optional: true
+              type: type
             - name: name
               description: description
               optional: true
@@ -4045,6 +4768,26 @@ components:
         - tenant_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           application:
             tenant_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+            created_at: 2000-01-23T04:56:07.000+00:00
+            rules:
+            - container: container
+              transform: transform
+              permissions:
+              - permissions
+              - permissions
+              description: description
+              priority: 5
+            - container: container
+              transform: transform
+              permissions:
+              - permissions
+              - permissions
+              description: description
+              priority: 5
+            type: type
+            created_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+            can_create_expiring_applications: true
+            expires_at: 2000-01-23T04:56:07.000+00:00
             permissions:
             - permissions
             - permissions
@@ -4053,11 +4796,8 @@ components:
             - permissions
             name: name
             modified_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-            created_at: 2000-01-23T04:56:07.000+00:00
             id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-            type: type
             modified_at: 2000-01-23T04:56:07.000+00:00
-            created_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
             key: key
           configuration:
             key: configuration
@@ -4072,12 +4812,33 @@ components:
             - name: name
               description: description
               type: type
+            - name: name
+              description: description
+              type: type
+            - name: name
+              description: description
+              type: type
+            - name: name
+              description: description
+              type: type
             icon: icon
             description: description
             created_at: 2000-01-23T04:56:07.000+00:00
             type: type
             created_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
             request_parameters:
+            - name: name
+              description: description
+              optional: true
+              type: type
+            - name: name
+              description: description
+              optional: true
+              type: type
+            - name: name
+              description: description
+              optional: true
+              type: type
             - name: name
               description: description
               optional: true
@@ -4098,6 +4859,26 @@ components:
         - tenant_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           application:
             tenant_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+            created_at: 2000-01-23T04:56:07.000+00:00
+            rules:
+            - container: container
+              transform: transform
+              permissions:
+              - permissions
+              - permissions
+              description: description
+              priority: 5
+            - container: container
+              transform: transform
+              permissions:
+              - permissions
+              - permissions
+              description: description
+              priority: 5
+            type: type
+            created_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+            can_create_expiring_applications: true
+            expires_at: 2000-01-23T04:56:07.000+00:00
             permissions:
             - permissions
             - permissions
@@ -4106,11 +4887,8 @@ components:
             - permissions
             name: name
             modified_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-            created_at: 2000-01-23T04:56:07.000+00:00
             id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-            type: type
             modified_at: 2000-01-23T04:56:07.000+00:00
-            created_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
             key: key
           configuration:
             key: configuration
@@ -4125,12 +4903,33 @@ components:
             - name: name
               description: description
               type: type
+            - name: name
+              description: description
+              type: type
+            - name: name
+              description: description
+              type: type
+            - name: name
+              description: description
+              type: type
             icon: icon
             description: description
             created_at: 2000-01-23T04:56:07.000+00:00
             type: type
             created_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
             request_parameters:
+            - name: name
+              description: description
+              optional: true
+              type: type
+            - name: name
+              description: description
+              optional: true
+              type: type
+            - name: name
+              description: description
+              optional: true
+              type: type
             - name: name
               description: description
               optional: true
@@ -4528,9 +5327,16 @@ components:
           metrics_by_type:
             key:
               last_created_at: 2000-01-23T04:56:07.000+00:00
-              count: 0
+              count: 314780940
+          monthly_active_token_history:
+          - month: 7
+            year: 6365
+            count: 0
+          - month: 7
+            year: 6365
+            count: 0
           monthly_active_tokens: 0
-          included_monthly_active_tokens: 0
+          included_monthly_active_tokens: 171976544
       properties:
         token_report:
           $ref: '#/components/schemas/TokenReport'
@@ -4562,6 +5368,8 @@ components:
             key: key
         modified_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
         fingerprint: fingerprint
+        containers:
+        - containers
         id: id
         search_indexes:
         - search_indexes
@@ -4642,15 +5450,23 @@ components:
           maxLength: 40
           nullable: true
           type: string
+        containers:
+          items:
+            type: string
+          maxItems: 1
+          nullable: true
+          pattern: "^(?!.*//)(?=.*/$)/[A-z0-9_\\-/]*$"
+          type: array
       type: object
     TokenMetrics:
       additionalProperties: false
       example:
         last_created_at: 2000-01-23T04:56:07.000+00:00
-        count: 0
+        count: 314780940
       properties:
         count:
           format: int64
+          maximum: 2147483647
           minimum: 0
           type: integer
         last_created_at:
@@ -4692,6 +5508,8 @@ components:
               key: key
           modified_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           fingerprint: fingerprint
+          containers:
+          - containers
           id: id
           search_indexes:
           - search_indexes
@@ -4725,6 +5543,8 @@ components:
               key: key
           modified_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           fingerprint: fingerprint
+          containers:
+          - containers
           id: id
           search_indexes:
           - search_indexes
@@ -4758,6 +5578,8 @@ components:
               key: key
           modified_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           fingerprint: fingerprint
+          containers:
+          - containers
           id: id
           search_indexes:
           - search_indexes
@@ -4791,6 +5613,8 @@ components:
               key: key
           modified_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           fingerprint: fingerprint
+          containers:
+          - containers
           id: id
           search_indexes:
           - search_indexes
@@ -4824,6 +5648,8 @@ components:
               key: key
           modified_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           fingerprint: fingerprint
+          containers:
+          - containers
           id: id
           search_indexes:
           - search_indexes
@@ -4849,12 +5675,20 @@ components:
         metrics_by_type:
           key:
             last_created_at: 2000-01-23T04:56:07.000+00:00
-            count: 0
+            count: 314780940
+        monthly_active_token_history:
+        - month: 7
+          year: 6365
+          count: 0
+        - month: 7
+          year: 6365
+          count: 0
         monthly_active_tokens: 0
-        included_monthly_active_tokens: 0
+        included_monthly_active_tokens: 171976544
       properties:
         included_monthly_active_tokens:
           format: int64
+          maximum: 2147483647
           minimum: 0
           type: integer
         monthly_active_tokens:
@@ -4866,10 +5700,16 @@ components:
             $ref: '#/components/schemas/TokenMetrics'
           nullable: true
           type: object
+        monthly_active_token_history:
+          items:
+            $ref: '#/components/schemas/MonthlyActiveTokenHistory'
+          nullable: true
+          type: array
       type: object
     UpdateApplicationRequest:
       additionalProperties: false
       example:
+        can_create_expiring_applications: true
         permissions:
         - permissions
         - permissions
@@ -4877,16 +5717,39 @@ components:
         - permissions
         - permissions
         name: name
+        rules:
+        - container: container
+          transform: transform
+          permissions:
+          - permissions
+          - permissions
+          description: description
+          priority: 5
+        - container: container
+          transform: transform
+          permissions:
+          - permissions
+          - permissions
+          description: description
+          priority: 5
       properties:
         name:
           maxLength: 200
           minLength: 1
           pattern: ^.+$
           type: string
+        can_create_expiring_applications:
+          nullable: true
+          type: boolean
         permissions:
           items:
             type: string
           maxItems: 50
+          nullable: true
+          type: array
+        rules:
+          items:
+            $ref: '#/components/schemas/AccessRule'
           nullable: true
           type: array
       required:
@@ -4951,6 +5814,15 @@ components:
         - name: name
           description: description
           type: type
+        - name: name
+          description: description
+          type: type
+        - name: name
+          description: description
+          type: type
+        - name: name
+          description: description
+          type: type
         name: name
         icon: icon
         description: description
@@ -4964,34 +5836,52 @@ components:
           description: description
           optional: true
           type: type
+        - name: name
+          description: description
+          optional: true
+          type: type
+        - name: name
+          description: description
+          optional: true
+          type: type
+        - name: name
+          description: description
+          optional: true
+          type: type
       properties:
         type:
+          maxLength: 25
           minLength: 1
+          pattern: ^(?:private|official)$
           type: string
         name:
           maxLength: 200
           minLength: 1
+          pattern: ^.+$
           type: string
         description:
           maxLength: 1000
           nullable: true
-          pattern: ^.*$
+          pattern: "^[\\S\\s]*$"
           type: string
         icon:
           nullable: true
           type: string
         code:
+          maxLength: 4000
           nullable: true
-          pattern: ^.*$
+          pattern: "^[\\S\\s]*$"
           type: string
         configuration:
           items:
             $ref: '#/components/schemas/ReactorFormulaConfiguration'
+          maxItems: 25
           nullable: true
           type: array
         request_parameters:
           items:
             $ref: '#/components/schemas/ReactorFormulaRequestParameter'
+          maxItems: 25
           nullable: true
           type: array
       required:
@@ -5003,6 +5893,26 @@ components:
       example:
         application:
           tenant_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          created_at: 2000-01-23T04:56:07.000+00:00
+          rules:
+          - container: container
+            transform: transform
+            permissions:
+            - permissions
+            - permissions
+            description: description
+            priority: 5
+          - container: container
+            transform: transform
+            permissions:
+            - permissions
+            - permissions
+            description: description
+            priority: 5
+          type: type
+          created_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          can_create_expiring_applications: true
+          expires_at: 2000-01-23T04:56:07.000+00:00
           permissions:
           - permissions
           - permissions
@@ -5011,11 +5921,8 @@ components:
           - permissions
           name: name
           modified_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-          created_at: 2000-01-23T04:56:07.000+00:00
           id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-          type: type
           modified_at: 2000-01-23T04:56:07.000+00:00
-          created_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           key: key
         configuration:
           key: configuration
@@ -5024,6 +5931,7 @@ components:
         name:
           maxLength: 200
           minLength: 1
+          pattern: ^.+$
           type: string
         application:
           $ref: '#/components/schemas/Application'
@@ -5046,6 +5954,7 @@ components:
         name:
           maxLength: 200
           minLength: 1
+          pattern: ^.+$
           type: string
         settings:
           additionalProperties:
@@ -5074,16 +5983,25 @@ components:
         search_indexes:
           items:
             type: string
+          maxItems: 10
           nullable: true
           type: array
         fingerprint_expression:
+          maxLength: 400
           nullable: true
+          pattern: ^.*$
           type: string
         mask:
           nullable: true
         deduplicate_token:
           nullable: true
           type: boolean
+        containers:
+          items:
+            type: string
+          maxItems: 1
+          nullable: true
+          type: array
       type: object
     User:
       additionalProperties: false
@@ -5115,6 +6033,7 @@ components:
           pattern: ^.*$
           type: string
         picture:
+          maxLength: 400
           nullable: true
           type: string
       type: object

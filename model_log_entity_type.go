@@ -1,7 +1,7 @@
 /*
 Basis Theory API
 
-## Getting Started * Sign-in to [Basis Theory](https://basistheory.com) and go to [Applications](https://portal.basistheory.com/applications) * Create a Basis Theory Server to Server Application * All permissions should be selected * Paste the API Key into the `BT-API-KEY` variable
+## Getting Started * Sign-in to [Basis Theory](https://basistheory.com) and go to [Applications](https://portal.basistheory.com/applications) * Create a Basis Theory Private Application * All permissions should be selected * Paste the API Key into the `BT-API-KEY` variable
 
 API version: v1
 */
@@ -39,7 +39,7 @@ func NewLogEntityTypeWithDefaults() *LogEntityType {
 
 // GetDisplayName returns the DisplayName field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *LogEntityType) GetDisplayName() string {
-	if o == nil || o.DisplayName.Get() == nil {
+	if o == nil || isNil(o.DisplayName.Get()) {
 		var ret string
 		return ret
 	}
@@ -82,7 +82,7 @@ func (o *LogEntityType) UnsetDisplayName() {
 
 // GetValue returns the Value field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *LogEntityType) GetValue() string {
-	if o == nil || o.Value.Get() == nil {
+	if o == nil || isNil(o.Value.Get()) {
 		var ret string
 		return ret
 	}

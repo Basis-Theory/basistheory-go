@@ -1,7 +1,7 @@
 /*
 Basis Theory API
 
-## Getting Started * Sign-in to [Basis Theory](https://basistheory.com) and go to [Applications](https://portal.basistheory.com/applications) * Create a Basis Theory Server to Server Application * All permissions should be selected * Paste the API Key into the `BT-API-KEY` variable
+## Getting Started * Sign-in to [Basis Theory](https://basistheory.com) and go to [Applications](https://portal.basistheory.com/applications) * Create a Basis Theory Private Application * All permissions should be selected * Paste the API Key into the `BT-API-KEY` variable
 
 API version: v1
 */
@@ -40,7 +40,7 @@ func NewSearchTokensRequestWithDefaults() *SearchTokensRequest {
 
 // GetQuery returns the Query field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *SearchTokensRequest) GetQuery() string {
-	if o == nil || o.Query.Get() == nil {
+	if o == nil || isNil(o.Query.Get()) {
 		var ret string
 		return ret
 	}
@@ -83,7 +83,7 @@ func (o *SearchTokensRequest) UnsetQuery() {
 
 // GetPage returns the Page field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *SearchTokensRequest) GetPage() int32 {
-	if o == nil || o.Page.Get() == nil {
+	if o == nil || isNil(o.Page.Get()) {
 		var ret int32
 		return ret
 	}
@@ -126,7 +126,7 @@ func (o *SearchTokensRequest) UnsetPage() {
 
 // GetSize returns the Size field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *SearchTokensRequest) GetSize() int32 {
-	if o == nil || o.Size.Get() == nil {
+	if o == nil || isNil(o.Size.Get()) {
 		var ret int32
 		return ret
 	}

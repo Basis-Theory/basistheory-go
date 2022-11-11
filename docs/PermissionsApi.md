@@ -10,7 +10,7 @@ Method | HTTP request | Description
 
 ## Get
 
-> []Permission Get(ctx).ApplicationType(applicationType).Execute()
+> []Permission Get(ctx).ApplicationType(applicationType).Version(version).Execute()
 
 
 
@@ -28,10 +28,11 @@ import (
 
 func main() {
     applicationType := "applicationType_example" // string |  (optional)
+    version := int32(56) // int32 |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.PermissionsApi.Get(context.Background()).ApplicationType(applicationType).Execute()
+    resp, r, err := apiClient.PermissionsApi.Get(context.Background()).ApplicationType(applicationType).Version(version).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `PermissionsApi.Get``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -53,6 +54,7 @@ Other parameters are passed through a pointer to a apiGetRequest struct via the 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **applicationType** | **string** |  | 
+ **version** | **int32** |  | 
 
 ### Return type
 

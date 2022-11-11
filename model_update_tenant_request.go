@@ -1,7 +1,7 @@
 /*
 Basis Theory API
 
-## Getting Started * Sign-in to [Basis Theory](https://basistheory.com) and go to [Applications](https://portal.basistheory.com/applications) * Create a Basis Theory Server to Server Application * All permissions should be selected * Paste the API Key into the `BT-API-KEY` variable
+## Getting Started * Sign-in to [Basis Theory](https://basistheory.com) and go to [Applications](https://portal.basistheory.com/applications) * Create a Basis Theory Private Application * All permissions should be selected * Paste the API Key into the `BT-API-KEY` variable
 
 API version: v1
 */
@@ -75,7 +75,7 @@ func (o *UpdateTenantRequest) GetSettings() map[string]string {
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *UpdateTenantRequest) GetSettingsOk() (*map[string]string, bool) {
-	if o == nil || o.Settings == nil {
+	if o == nil || isNil(o.Settings) {
 		return nil, false
 	}
 	return &o.Settings, true
@@ -83,7 +83,7 @@ func (o *UpdateTenantRequest) GetSettingsOk() (*map[string]string, bool) {
 
 // HasSettings returns a boolean if a field has been set.
 func (o *UpdateTenantRequest) HasSettings() bool {
-	if o != nil && o.Settings != nil {
+	if o != nil && isNil(o.Settings) {
 		return true
 	}
 

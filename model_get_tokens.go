@@ -1,7 +1,7 @@
 /*
 Basis Theory API
 
-## Getting Started * Sign-in to [Basis Theory](https://basistheory.com) and go to [Applications](https://portal.basistheory.com/applications) * Create a Basis Theory Server to Server Application * All permissions should be selected * Paste the API Key into the `BT-API-KEY` variable
+## Getting Started * Sign-in to [Basis Theory](https://basistheory.com) and go to [Applications](https://portal.basistheory.com/applications) * Create a Basis Theory Private Application * All permissions should be selected * Paste the API Key into the `BT-API-KEY` variable
 
 API version: v1
 */
@@ -16,11 +16,11 @@ import (
 
 // GetTokens struct for GetTokens
 type GetTokens struct {
-	Types          []string          `json:"types,omitempty"`
-	TokenIds       []string          `json:"tokenIds,omitempty"`
-	MetadataSearch map[string]string `json:"metadataSearch,omitempty"`
-	Page           NullableInt32     `json:"page,omitempty"`
-	Size           NullableInt32     `json:"size,omitempty"`
+	Type     []string          `json:"type,omitempty"`
+	Id       []string          `json:"id,omitempty"`
+	Metadata map[string]string `json:"metadata,omitempty"`
+	Page     NullableInt32     `json:"page,omitempty"`
+	Size     NullableInt32     `json:"size,omitempty"`
 }
 
 // NewGetTokens instantiates a new GetTokens object
@@ -40,108 +40,108 @@ func NewGetTokensWithDefaults() *GetTokens {
 	return &this
 }
 
-// GetTypes returns the Types field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *GetTokens) GetTypes() []string {
+// GetType returns the Type field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *GetTokens) GetType() []string {
 	if o == nil {
 		var ret []string
 		return ret
 	}
-	return o.Types
+	return o.Type
 }
 
-// GetTypesOk returns a tuple with the Types field value if set, nil otherwise
+// GetTypeOk returns a tuple with the Type field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *GetTokens) GetTypesOk() ([]string, bool) {
-	if o == nil || o.Types == nil {
+func (o *GetTokens) GetTypeOk() ([]string, bool) {
+	if o == nil || isNil(o.Type) {
 		return nil, false
 	}
-	return o.Types, true
+	return o.Type, true
 }
 
-// HasTypes returns a boolean if a field has been set.
-func (o *GetTokens) HasTypes() bool {
-	if o != nil && o.Types != nil {
+// HasType returns a boolean if a field has been set.
+func (o *GetTokens) HasType() bool {
+	if o != nil && isNil(o.Type) {
 		return true
 	}
 
 	return false
 }
 
-// SetTypes gets a reference to the given []string and assigns it to the Types field.
-func (o *GetTokens) SetTypes(v []string) {
-	o.Types = v
+// SetType gets a reference to the given []string and assigns it to the Type field.
+func (o *GetTokens) SetType(v []string) {
+	o.Type = v
 }
 
-// GetTokenIds returns the TokenIds field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *GetTokens) GetTokenIds() []string {
+// GetId returns the Id field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *GetTokens) GetId() []string {
 	if o == nil {
 		var ret []string
 		return ret
 	}
-	return o.TokenIds
+	return o.Id
 }
 
-// GetTokenIdsOk returns a tuple with the TokenIds field value if set, nil otherwise
+// GetIdOk returns a tuple with the Id field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *GetTokens) GetTokenIdsOk() ([]string, bool) {
-	if o == nil || o.TokenIds == nil {
+func (o *GetTokens) GetIdOk() ([]string, bool) {
+	if o == nil || isNil(o.Id) {
 		return nil, false
 	}
-	return o.TokenIds, true
+	return o.Id, true
 }
 
-// HasTokenIds returns a boolean if a field has been set.
-func (o *GetTokens) HasTokenIds() bool {
-	if o != nil && o.TokenIds != nil {
+// HasId returns a boolean if a field has been set.
+func (o *GetTokens) HasId() bool {
+	if o != nil && isNil(o.Id) {
 		return true
 	}
 
 	return false
 }
 
-// SetTokenIds gets a reference to the given []string and assigns it to the TokenIds field.
-func (o *GetTokens) SetTokenIds(v []string) {
-	o.TokenIds = v
+// SetId gets a reference to the given []string and assigns it to the Id field.
+func (o *GetTokens) SetId(v []string) {
+	o.Id = v
 }
 
-// GetMetadataSearch returns the MetadataSearch field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *GetTokens) GetMetadataSearch() map[string]string {
+// GetMetadata returns the Metadata field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *GetTokens) GetMetadata() map[string]string {
 	if o == nil {
 		var ret map[string]string
 		return ret
 	}
-	return o.MetadataSearch
+	return o.Metadata
 }
 
-// GetMetadataSearchOk returns a tuple with the MetadataSearch field value if set, nil otherwise
+// GetMetadataOk returns a tuple with the Metadata field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *GetTokens) GetMetadataSearchOk() (*map[string]string, bool) {
-	if o == nil || o.MetadataSearch == nil {
+func (o *GetTokens) GetMetadataOk() (*map[string]string, bool) {
+	if o == nil || isNil(o.Metadata) {
 		return nil, false
 	}
-	return &o.MetadataSearch, true
+	return &o.Metadata, true
 }
 
-// HasMetadataSearch returns a boolean if a field has been set.
-func (o *GetTokens) HasMetadataSearch() bool {
-	if o != nil && o.MetadataSearch != nil {
+// HasMetadata returns a boolean if a field has been set.
+func (o *GetTokens) HasMetadata() bool {
+	if o != nil && isNil(o.Metadata) {
 		return true
 	}
 
 	return false
 }
 
-// SetMetadataSearch gets a reference to the given map[string]string and assigns it to the MetadataSearch field.
-func (o *GetTokens) SetMetadataSearch(v map[string]string) {
-	o.MetadataSearch = v
+// SetMetadata gets a reference to the given map[string]string and assigns it to the Metadata field.
+func (o *GetTokens) SetMetadata(v map[string]string) {
+	o.Metadata = v
 }
 
 // GetPage returns the Page field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *GetTokens) GetPage() int32 {
-	if o == nil || o.Page.Get() == nil {
+	if o == nil || isNil(o.Page.Get()) {
 		var ret int32
 		return ret
 	}
@@ -184,7 +184,7 @@ func (o *GetTokens) UnsetPage() {
 
 // GetSize returns the Size field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *GetTokens) GetSize() int32 {
-	if o == nil || o.Size.Get() == nil {
+	if o == nil || isNil(o.Size.Get()) {
 		var ret int32
 		return ret
 	}
@@ -227,14 +227,14 @@ func (o *GetTokens) UnsetSize() {
 
 func (o GetTokens) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
-	if o.Types != nil {
-		toSerialize["types"] = o.Types
+	if o.Type != nil {
+		toSerialize["type"] = o.Type
 	}
-	if o.TokenIds != nil {
-		toSerialize["tokenIds"] = o.TokenIds
+	if o.Id != nil {
+		toSerialize["id"] = o.Id
 	}
-	if o.MetadataSearch != nil {
-		toSerialize["metadataSearch"] = o.MetadataSearch
+	if o.Metadata != nil {
+		toSerialize["metadata"] = o.Metadata
 	}
 	if o.Page.IsSet() {
 		toSerialize["page"] = o.Page.Get()

@@ -1,7 +1,7 @@
 /*
 Basis Theory API
 
-## Getting Started * Sign-in to [Basis Theory](https://basistheory.com) and go to [Applications](https://portal.basistheory.com/applications) * Create a Basis Theory Server to Server Application * All permissions should be selected * Paste the API Key into the `BT-API-KEY` variable
+## Getting Started * Sign-in to [Basis Theory](https://basistheory.com) and go to [Applications](https://portal.basistheory.com/applications) * Create a Basis Theory Private Application * All permissions should be selected * Paste the API Key into the `BT-API-KEY` variable
 
 API version: v1
 */
@@ -16,10 +16,10 @@ import (
 
 // GetReactors struct for GetReactors
 type GetReactors struct {
-	ReactorIds []string       `json:"reactorIds,omitempty"`
-	Name       NullableString `json:"name,omitempty"`
-	Page       NullableInt32  `json:"page,omitempty"`
-	Size       NullableInt32  `json:"size,omitempty"`
+	Id   []string       `json:"id,omitempty"`
+	Name NullableString `json:"name,omitempty"`
+	Page NullableInt32  `json:"page,omitempty"`
+	Size NullableInt32  `json:"size,omitempty"`
 }
 
 // NewGetReactors instantiates a new GetReactors object
@@ -39,42 +39,42 @@ func NewGetReactorsWithDefaults() *GetReactors {
 	return &this
 }
 
-// GetReactorIds returns the ReactorIds field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *GetReactors) GetReactorIds() []string {
+// GetId returns the Id field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *GetReactors) GetId() []string {
 	if o == nil {
 		var ret []string
 		return ret
 	}
-	return o.ReactorIds
+	return o.Id
 }
 
-// GetReactorIdsOk returns a tuple with the ReactorIds field value if set, nil otherwise
+// GetIdOk returns a tuple with the Id field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *GetReactors) GetReactorIdsOk() ([]string, bool) {
-	if o == nil || o.ReactorIds == nil {
+func (o *GetReactors) GetIdOk() ([]string, bool) {
+	if o == nil || isNil(o.Id) {
 		return nil, false
 	}
-	return o.ReactorIds, true
+	return o.Id, true
 }
 
-// HasReactorIds returns a boolean if a field has been set.
-func (o *GetReactors) HasReactorIds() bool {
-	if o != nil && o.ReactorIds != nil {
+// HasId returns a boolean if a field has been set.
+func (o *GetReactors) HasId() bool {
+	if o != nil && isNil(o.Id) {
 		return true
 	}
 
 	return false
 }
 
-// SetReactorIds gets a reference to the given []string and assigns it to the ReactorIds field.
-func (o *GetReactors) SetReactorIds(v []string) {
-	o.ReactorIds = v
+// SetId gets a reference to the given []string and assigns it to the Id field.
+func (o *GetReactors) SetId(v []string) {
+	o.Id = v
 }
 
 // GetName returns the Name field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *GetReactors) GetName() string {
-	if o == nil || o.Name.Get() == nil {
+	if o == nil || isNil(o.Name.Get()) {
 		var ret string
 		return ret
 	}
@@ -117,7 +117,7 @@ func (o *GetReactors) UnsetName() {
 
 // GetPage returns the Page field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *GetReactors) GetPage() int32 {
-	if o == nil || o.Page.Get() == nil {
+	if o == nil || isNil(o.Page.Get()) {
 		var ret int32
 		return ret
 	}
@@ -160,7 +160,7 @@ func (o *GetReactors) UnsetPage() {
 
 // GetSize returns the Size field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *GetReactors) GetSize() int32 {
-	if o == nil || o.Size.Get() == nil {
+	if o == nil || isNil(o.Size.Get()) {
 		var ret int32
 		return ret
 	}
@@ -203,8 +203,8 @@ func (o *GetReactors) UnsetSize() {
 
 func (o GetReactors) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
-	if o.ReactorIds != nil {
-		toSerialize["reactorIds"] = o.ReactorIds
+	if o.Id != nil {
+		toSerialize["id"] = o.Id
 	}
 	if o.Name.IsSet() {
 		toSerialize["name"] = o.Name.Get()

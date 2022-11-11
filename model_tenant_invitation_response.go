@@ -1,7 +1,7 @@
 /*
 Basis Theory API
 
-## Getting Started * Sign-in to [Basis Theory](https://basistheory.com) and go to [Applications](https://portal.basistheory.com/applications) * Create a Basis Theory Server to Server Application * All permissions should be selected * Paste the API Key into the `BT-API-KEY` variable
+## Getting Started * Sign-in to [Basis Theory](https://basistheory.com) and go to [Applications](https://portal.basistheory.com/applications) * Create a Basis Theory Private Application * All permissions should be selected * Paste the API Key into the `BT-API-KEY` variable
 
 API version: v1
 */
@@ -47,7 +47,7 @@ func NewTenantInvitationResponseWithDefaults() *TenantInvitationResponse {
 
 // GetId returns the Id field value if set, zero value otherwise.
 func (o *TenantInvitationResponse) GetId() string {
-	if o == nil || o.Id == nil {
+	if o == nil || isNil(o.Id) {
 		var ret string
 		return ret
 	}
@@ -57,7 +57,7 @@ func (o *TenantInvitationResponse) GetId() string {
 // GetIdOk returns a tuple with the Id field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *TenantInvitationResponse) GetIdOk() (*string, bool) {
-	if o == nil || o.Id == nil {
+	if o == nil || isNil(o.Id) {
 		return nil, false
 	}
 	return o.Id, true
@@ -65,7 +65,7 @@ func (o *TenantInvitationResponse) GetIdOk() (*string, bool) {
 
 // HasId returns a boolean if a field has been set.
 func (o *TenantInvitationResponse) HasId() bool {
-	if o != nil && o.Id != nil {
+	if o != nil && !isNil(o.Id) {
 		return true
 	}
 
@@ -79,7 +79,7 @@ func (o *TenantInvitationResponse) SetId(v string) {
 
 // GetTenantId returns the TenantId field value if set, zero value otherwise.
 func (o *TenantInvitationResponse) GetTenantId() string {
-	if o == nil || o.TenantId == nil {
+	if o == nil || isNil(o.TenantId) {
 		var ret string
 		return ret
 	}
@@ -89,7 +89,7 @@ func (o *TenantInvitationResponse) GetTenantId() string {
 // GetTenantIdOk returns a tuple with the TenantId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *TenantInvitationResponse) GetTenantIdOk() (*string, bool) {
-	if o == nil || o.TenantId == nil {
+	if o == nil || isNil(o.TenantId) {
 		return nil, false
 	}
 	return o.TenantId, true
@@ -97,7 +97,7 @@ func (o *TenantInvitationResponse) GetTenantIdOk() (*string, bool) {
 
 // HasTenantId returns a boolean if a field has been set.
 func (o *TenantInvitationResponse) HasTenantId() bool {
-	if o != nil && o.TenantId != nil {
+	if o != nil && !isNil(o.TenantId) {
 		return true
 	}
 
@@ -111,7 +111,7 @@ func (o *TenantInvitationResponse) SetTenantId(v string) {
 
 // GetEmail returns the Email field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *TenantInvitationResponse) GetEmail() string {
-	if o == nil || o.Email.Get() == nil {
+	if o == nil || isNil(o.Email.Get()) {
 		var ret string
 		return ret
 	}
@@ -154,7 +154,7 @@ func (o *TenantInvitationResponse) UnsetEmail() {
 
 // GetStatus returns the Status field value if set, zero value otherwise.
 func (o *TenantInvitationResponse) GetStatus() TenantInvitationStatus {
-	if o == nil || o.Status == nil {
+	if o == nil || isNil(o.Status) {
 		var ret TenantInvitationStatus
 		return ret
 	}
@@ -164,7 +164,7 @@ func (o *TenantInvitationResponse) GetStatus() TenantInvitationStatus {
 // GetStatusOk returns a tuple with the Status field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *TenantInvitationResponse) GetStatusOk() (*TenantInvitationStatus, bool) {
-	if o == nil || o.Status == nil {
+	if o == nil || isNil(o.Status) {
 		return nil, false
 	}
 	return o.Status, true
@@ -172,7 +172,7 @@ func (o *TenantInvitationResponse) GetStatusOk() (*TenantInvitationStatus, bool)
 
 // HasStatus returns a boolean if a field has been set.
 func (o *TenantInvitationResponse) HasStatus() bool {
-	if o != nil && o.Status != nil {
+	if o != nil && !isNil(o.Status) {
 		return true
 	}
 
@@ -186,7 +186,7 @@ func (o *TenantInvitationResponse) SetStatus(v TenantInvitationStatus) {
 
 // GetExpiresAt returns the ExpiresAt field value if set, zero value otherwise.
 func (o *TenantInvitationResponse) GetExpiresAt() time.Time {
-	if o == nil || o.ExpiresAt == nil {
+	if o == nil || isNil(o.ExpiresAt) {
 		var ret time.Time
 		return ret
 	}
@@ -196,7 +196,7 @@ func (o *TenantInvitationResponse) GetExpiresAt() time.Time {
 // GetExpiresAtOk returns a tuple with the ExpiresAt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *TenantInvitationResponse) GetExpiresAtOk() (*time.Time, bool) {
-	if o == nil || o.ExpiresAt == nil {
+	if o == nil || isNil(o.ExpiresAt) {
 		return nil, false
 	}
 	return o.ExpiresAt, true
@@ -204,7 +204,7 @@ func (o *TenantInvitationResponse) GetExpiresAtOk() (*time.Time, bool) {
 
 // HasExpiresAt returns a boolean if a field has been set.
 func (o *TenantInvitationResponse) HasExpiresAt() bool {
-	if o != nil && o.ExpiresAt != nil {
+	if o != nil && !isNil(o.ExpiresAt) {
 		return true
 	}
 
@@ -218,7 +218,7 @@ func (o *TenantInvitationResponse) SetExpiresAt(v time.Time) {
 
 // GetCreatedBy returns the CreatedBy field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *TenantInvitationResponse) GetCreatedBy() string {
-	if o == nil || o.CreatedBy.Get() == nil {
+	if o == nil || isNil(o.CreatedBy.Get()) {
 		var ret string
 		return ret
 	}
@@ -261,7 +261,7 @@ func (o *TenantInvitationResponse) UnsetCreatedBy() {
 
 // GetCreatedAt returns the CreatedAt field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *TenantInvitationResponse) GetCreatedAt() time.Time {
-	if o == nil || o.CreatedAt.Get() == nil {
+	if o == nil || isNil(o.CreatedAt.Get()) {
 		var ret time.Time
 		return ret
 	}
@@ -304,7 +304,7 @@ func (o *TenantInvitationResponse) UnsetCreatedAt() {
 
 // GetModifiedBy returns the ModifiedBy field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *TenantInvitationResponse) GetModifiedBy() string {
-	if o == nil || o.ModifiedBy.Get() == nil {
+	if o == nil || isNil(o.ModifiedBy.Get()) {
 		var ret string
 		return ret
 	}
@@ -347,7 +347,7 @@ func (o *TenantInvitationResponse) UnsetModifiedBy() {
 
 // GetModifiedAt returns the ModifiedAt field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *TenantInvitationResponse) GetModifiedAt() time.Time {
-	if o == nil || o.ModifiedAt.Get() == nil {
+	if o == nil || isNil(o.ModifiedAt.Get()) {
 		var ret time.Time
 		return ret
 	}
@@ -390,19 +390,19 @@ func (o *TenantInvitationResponse) UnsetModifiedAt() {
 
 func (o TenantInvitationResponse) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
-	if o.Id != nil {
+	if !isNil(o.Id) {
 		toSerialize["id"] = o.Id
 	}
-	if o.TenantId != nil {
+	if !isNil(o.TenantId) {
 		toSerialize["tenant_id"] = o.TenantId
 	}
 	if o.Email.IsSet() {
 		toSerialize["email"] = o.Email.Get()
 	}
-	if o.Status != nil {
+	if !isNil(o.Status) {
 		toSerialize["status"] = o.Status
 	}
-	if o.ExpiresAt != nil {
+	if !isNil(o.ExpiresAt) {
 		toSerialize["expires_at"] = o.ExpiresAt
 	}
 	if o.CreatedBy.IsSet() {

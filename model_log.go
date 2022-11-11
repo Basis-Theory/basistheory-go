@@ -1,7 +1,7 @@
 /*
 Basis Theory API
 
-## Getting Started * Sign-in to [Basis Theory](https://basistheory.com) and go to [Applications](https://portal.basistheory.com/applications) * Create a Basis Theory Server to Server Application * All permissions should be selected * Paste the API Key into the `BT-API-KEY` variable
+## Getting Started * Sign-in to [Basis Theory](https://basistheory.com) and go to [Applications](https://portal.basistheory.com/applications) * Create a Basis Theory Private Application * All permissions should be selected * Paste the API Key into the `BT-API-KEY` variable
 
 API version: v1
 */
@@ -46,7 +46,7 @@ func NewLogWithDefaults() *Log {
 
 // GetTenantId returns the TenantId field value if set, zero value otherwise.
 func (o *Log) GetTenantId() string {
-	if o == nil || o.TenantId == nil {
+	if o == nil || isNil(o.TenantId) {
 		var ret string
 		return ret
 	}
@@ -56,7 +56,7 @@ func (o *Log) GetTenantId() string {
 // GetTenantIdOk returns a tuple with the TenantId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Log) GetTenantIdOk() (*string, bool) {
-	if o == nil || o.TenantId == nil {
+	if o == nil || isNil(o.TenantId) {
 		return nil, false
 	}
 	return o.TenantId, true
@@ -64,7 +64,7 @@ func (o *Log) GetTenantIdOk() (*string, bool) {
 
 // HasTenantId returns a boolean if a field has been set.
 func (o *Log) HasTenantId() bool {
-	if o != nil && o.TenantId != nil {
+	if o != nil && !isNil(o.TenantId) {
 		return true
 	}
 
@@ -78,7 +78,7 @@ func (o *Log) SetTenantId(v string) {
 
 // GetActorId returns the ActorId field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *Log) GetActorId() string {
-	if o == nil || o.ActorId.Get() == nil {
+	if o == nil || isNil(o.ActorId.Get()) {
 		var ret string
 		return ret
 	}
@@ -121,7 +121,7 @@ func (o *Log) UnsetActorId() {
 
 // GetActorType returns the ActorType field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *Log) GetActorType() string {
-	if o == nil || o.ActorType.Get() == nil {
+	if o == nil || isNil(o.ActorType.Get()) {
 		var ret string
 		return ret
 	}
@@ -164,7 +164,7 @@ func (o *Log) UnsetActorType() {
 
 // GetEntityType returns the EntityType field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *Log) GetEntityType() string {
-	if o == nil || o.EntityType.Get() == nil {
+	if o == nil || isNil(o.EntityType.Get()) {
 		var ret string
 		return ret
 	}
@@ -207,7 +207,7 @@ func (o *Log) UnsetEntityType() {
 
 // GetEntityId returns the EntityId field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *Log) GetEntityId() string {
-	if o == nil || o.EntityId.Get() == nil {
+	if o == nil || isNil(o.EntityId.Get()) {
 		var ret string
 		return ret
 	}
@@ -250,7 +250,7 @@ func (o *Log) UnsetEntityId() {
 
 // GetOperation returns the Operation field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *Log) GetOperation() string {
-	if o == nil || o.Operation.Get() == nil {
+	if o == nil || isNil(o.Operation.Get()) {
 		var ret string
 		return ret
 	}
@@ -293,7 +293,7 @@ func (o *Log) UnsetOperation() {
 
 // GetMessage returns the Message field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *Log) GetMessage() string {
-	if o == nil || o.Message.Get() == nil {
+	if o == nil || isNil(o.Message.Get()) {
 		var ret string
 		return ret
 	}
@@ -336,7 +336,7 @@ func (o *Log) UnsetMessage() {
 
 // GetCreatedAt returns the CreatedAt field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *Log) GetCreatedAt() time.Time {
-	if o == nil || o.CreatedAt.Get() == nil {
+	if o == nil || isNil(o.CreatedAt.Get()) {
 		var ret time.Time
 		return ret
 	}
@@ -379,7 +379,7 @@ func (o *Log) UnsetCreatedAt() {
 
 func (o Log) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
-	if o.TenantId != nil {
+	if !isNil(o.TenantId) {
 		toSerialize["tenant_id"] = o.TenantId
 	}
 	if o.ActorId.IsSet() {

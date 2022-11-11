@@ -4,9 +4,9 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Types** | Pointer to **[]string** |  | [optional] 
-**TokenIds** | Pointer to **[]string** |  | [optional] 
-**MetadataSearch** | Pointer to **map[string]string** |  | [optional] 
+**Type** | Pointer to **[]string** |  | [optional] 
+**Id** | Pointer to **[]string** |  | [optional] 
+**Metadata** | Pointer to **map[string]string** |  | [optional] 
 **Page** | Pointer to **NullableInt32** |  | [optional] 
 **Size** | Pointer to **NullableInt32** |  | [optional] 
 
@@ -29,111 +29,111 @@ NewGetTokensWithDefaults instantiates a new GetTokens object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
-### GetTypes
+### GetType
 
-`func (o *GetTokens) GetTypes() []string`
+`func (o *GetTokens) GetType() []string`
 
-GetTypes returns the Types field if non-nil, zero value otherwise.
+GetType returns the Type field if non-nil, zero value otherwise.
 
-### GetTypesOk
+### GetTypeOk
 
-`func (o *GetTokens) GetTypesOk() (*[]string, bool)`
+`func (o *GetTokens) GetTypeOk() (*[]string, bool)`
 
-GetTypesOk returns a tuple with the Types field if it's non-nil, zero value otherwise
+GetTypeOk returns a tuple with the Type field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetTypes
+### SetType
 
-`func (o *GetTokens) SetTypes(v []string)`
+`func (o *GetTokens) SetType(v []string)`
 
-SetTypes sets Types field to given value.
+SetType sets Type field to given value.
 
-### HasTypes
+### HasType
 
-`func (o *GetTokens) HasTypes() bool`
+`func (o *GetTokens) HasType() bool`
 
-HasTypes returns a boolean if a field has been set.
+HasType returns a boolean if a field has been set.
 
-### SetTypesNil
+### SetTypeNil
 
-`func (o *GetTokens) SetTypesNil(b bool)`
+`func (o *GetTokens) SetTypeNil(b bool)`
 
- SetTypesNil sets the value for Types to be an explicit nil
+ SetTypeNil sets the value for Type to be an explicit nil
 
-### UnsetTypes
-`func (o *GetTokens) UnsetTypes()`
+### UnsetType
+`func (o *GetTokens) UnsetType()`
 
-UnsetTypes ensures that no value is present for Types, not even an explicit nil
-### GetTokenIds
+UnsetType ensures that no value is present for Type, not even an explicit nil
+### GetId
 
-`func (o *GetTokens) GetTokenIds() []string`
+`func (o *GetTokens) GetId() []string`
 
-GetTokenIds returns the TokenIds field if non-nil, zero value otherwise.
+GetId returns the Id field if non-nil, zero value otherwise.
 
-### GetTokenIdsOk
+### GetIdOk
 
-`func (o *GetTokens) GetTokenIdsOk() (*[]string, bool)`
+`func (o *GetTokens) GetIdOk() (*[]string, bool)`
 
-GetTokenIdsOk returns a tuple with the TokenIds field if it's non-nil, zero value otherwise
+GetIdOk returns a tuple with the Id field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetTokenIds
+### SetId
 
-`func (o *GetTokens) SetTokenIds(v []string)`
+`func (o *GetTokens) SetId(v []string)`
 
-SetTokenIds sets TokenIds field to given value.
+SetId sets Id field to given value.
 
-### HasTokenIds
+### HasId
 
-`func (o *GetTokens) HasTokenIds() bool`
+`func (o *GetTokens) HasId() bool`
 
-HasTokenIds returns a boolean if a field has been set.
+HasId returns a boolean if a field has been set.
 
-### SetTokenIdsNil
+### SetIdNil
 
-`func (o *GetTokens) SetTokenIdsNil(b bool)`
+`func (o *GetTokens) SetIdNil(b bool)`
 
- SetTokenIdsNil sets the value for TokenIds to be an explicit nil
+ SetIdNil sets the value for Id to be an explicit nil
 
-### UnsetTokenIds
-`func (o *GetTokens) UnsetTokenIds()`
+### UnsetId
+`func (o *GetTokens) UnsetId()`
 
-UnsetTokenIds ensures that no value is present for TokenIds, not even an explicit nil
-### GetMetadataSearch
+UnsetId ensures that no value is present for Id, not even an explicit nil
+### GetMetadata
 
-`func (o *GetTokens) GetMetadataSearch() map[string]string`
+`func (o *GetTokens) GetMetadata() map[string]string`
 
-GetMetadataSearch returns the MetadataSearch field if non-nil, zero value otherwise.
+GetMetadata returns the Metadata field if non-nil, zero value otherwise.
 
-### GetMetadataSearchOk
+### GetMetadataOk
 
-`func (o *GetTokens) GetMetadataSearchOk() (*map[string]string, bool)`
+`func (o *GetTokens) GetMetadataOk() (*map[string]string, bool)`
 
-GetMetadataSearchOk returns a tuple with the MetadataSearch field if it's non-nil, zero value otherwise
+GetMetadataOk returns a tuple with the Metadata field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetMetadataSearch
+### SetMetadata
 
-`func (o *GetTokens) SetMetadataSearch(v map[string]string)`
+`func (o *GetTokens) SetMetadata(v map[string]string)`
 
-SetMetadataSearch sets MetadataSearch field to given value.
+SetMetadata sets Metadata field to given value.
 
-### HasMetadataSearch
+### HasMetadata
 
-`func (o *GetTokens) HasMetadataSearch() bool`
+`func (o *GetTokens) HasMetadata() bool`
 
-HasMetadataSearch returns a boolean if a field has been set.
+HasMetadata returns a boolean if a field has been set.
 
-### SetMetadataSearchNil
+### SetMetadataNil
 
-`func (o *GetTokens) SetMetadataSearchNil(b bool)`
+`func (o *GetTokens) SetMetadataNil(b bool)`
 
- SetMetadataSearchNil sets the value for MetadataSearch to be an explicit nil
+ SetMetadataNil sets the value for Metadata to be an explicit nil
 
-### UnsetMetadataSearch
-`func (o *GetTokens) UnsetMetadataSearch()`
+### UnsetMetadata
+`func (o *GetTokens) UnsetMetadata()`
 
-UnsetMetadataSearch ensures that no value is present for MetadataSearch, not even an explicit nil
+UnsetMetadata ensures that no value is present for Metadata, not even an explicit nil
 ### GetPage
 
 `func (o *GetTokens) GetPage() int32`

@@ -1,7 +1,7 @@
 /*
 Basis Theory API
 
-## Getting Started * Sign-in to [Basis Theory](https://basistheory.com) and go to [Applications](https://portal.basistheory.com/applications) * Create a Basis Theory Server to Server Application * All permissions should be selected * Paste the API Key into the `BT-API-KEY` variable
+## Getting Started * Sign-in to [Basis Theory](https://basistheory.com) and go to [Applications](https://portal.basistheory.com/applications) * Create a Basis Theory Private Application * All permissions should be selected * Paste the API Key into the `BT-API-KEY` variable
 
 API version: v1
 */
@@ -65,7 +65,7 @@ func (o *UpdateReactorRequest) SetName(v string) {
 
 // GetApplication returns the Application field value if set, zero value otherwise.
 func (o *UpdateReactorRequest) GetApplication() Application {
-	if o == nil || o.Application == nil {
+	if o == nil || isNil(o.Application) {
 		var ret Application
 		return ret
 	}
@@ -75,7 +75,7 @@ func (o *UpdateReactorRequest) GetApplication() Application {
 // GetApplicationOk returns a tuple with the Application field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateReactorRequest) GetApplicationOk() (*Application, bool) {
-	if o == nil || o.Application == nil {
+	if o == nil || isNil(o.Application) {
 		return nil, false
 	}
 	return o.Application, true
@@ -83,7 +83,7 @@ func (o *UpdateReactorRequest) GetApplicationOk() (*Application, bool) {
 
 // HasApplication returns a boolean if a field has been set.
 func (o *UpdateReactorRequest) HasApplication() bool {
-	if o != nil && o.Application != nil {
+	if o != nil && !isNil(o.Application) {
 		return true
 	}
 
@@ -108,7 +108,7 @@ func (o *UpdateReactorRequest) GetConfiguration() map[string]string {
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *UpdateReactorRequest) GetConfigurationOk() (*map[string]string, bool) {
-	if o == nil || o.Configuration == nil {
+	if o == nil || isNil(o.Configuration) {
 		return nil, false
 	}
 	return &o.Configuration, true
@@ -116,7 +116,7 @@ func (o *UpdateReactorRequest) GetConfigurationOk() (*map[string]string, bool) {
 
 // HasConfiguration returns a boolean if a field has been set.
 func (o *UpdateReactorRequest) HasConfiguration() bool {
-	if o != nil && o.Configuration != nil {
+	if o != nil && isNil(o.Configuration) {
 		return true
 	}
 
@@ -133,7 +133,7 @@ func (o UpdateReactorRequest) MarshalJSON() ([]byte, error) {
 	if true {
 		toSerialize["name"] = o.Name
 	}
-	if o.Application != nil {
+	if !isNil(o.Application) {
 		toSerialize["application"] = o.Application
 	}
 	if o.Configuration != nil {

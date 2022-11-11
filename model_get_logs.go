@@ -1,7 +1,7 @@
 /*
 Basis Theory API
 
-## Getting Started * Sign-in to [Basis Theory](https://basistheory.com) and go to [Applications](https://portal.basistheory.com/applications) * Create a Basis Theory Server to Server Application * All permissions should be selected * Paste the API Key into the `BT-API-KEY` variable
+## Getting Started * Sign-in to [Basis Theory](https://basistheory.com) and go to [Applications](https://portal.basistheory.com/applications) * Create a Basis Theory Private Application * All permissions should be selected * Paste the API Key into the `BT-API-KEY` variable
 
 API version: v1
 */
@@ -17,10 +17,10 @@ import (
 
 // GetLogs struct for GetLogs
 type GetLogs struct {
-	EntityType NullableString `json:"entityType,omitempty"`
-	EntityId   NullableString `json:"entityId,omitempty"`
-	StartDate  NullableTime   `json:"startDate,omitempty"`
-	EndDate    NullableTime   `json:"endDate,omitempty"`
+	EntityType NullableString `json:"entity_type,omitempty"`
+	EntityId   NullableString `json:"entity_id,omitempty"`
+	StartDate  NullableTime   `json:"start_date,omitempty"`
+	EndDate    NullableTime   `json:"end_date,omitempty"`
 	Page       NullableInt32  `json:"page,omitempty"`
 	Size       NullableInt32  `json:"size,omitempty"`
 }
@@ -44,7 +44,7 @@ func NewGetLogsWithDefaults() *GetLogs {
 
 // GetEntityType returns the EntityType field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *GetLogs) GetEntityType() string {
-	if o == nil || o.EntityType.Get() == nil {
+	if o == nil || isNil(o.EntityType.Get()) {
 		var ret string
 		return ret
 	}
@@ -87,7 +87,7 @@ func (o *GetLogs) UnsetEntityType() {
 
 // GetEntityId returns the EntityId field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *GetLogs) GetEntityId() string {
-	if o == nil || o.EntityId.Get() == nil {
+	if o == nil || isNil(o.EntityId.Get()) {
 		var ret string
 		return ret
 	}
@@ -130,7 +130,7 @@ func (o *GetLogs) UnsetEntityId() {
 
 // GetStartDate returns the StartDate field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *GetLogs) GetStartDate() time.Time {
-	if o == nil || o.StartDate.Get() == nil {
+	if o == nil || isNil(o.StartDate.Get()) {
 		var ret time.Time
 		return ret
 	}
@@ -173,7 +173,7 @@ func (o *GetLogs) UnsetStartDate() {
 
 // GetEndDate returns the EndDate field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *GetLogs) GetEndDate() time.Time {
-	if o == nil || o.EndDate.Get() == nil {
+	if o == nil || isNil(o.EndDate.Get()) {
 		var ret time.Time
 		return ret
 	}
@@ -216,7 +216,7 @@ func (o *GetLogs) UnsetEndDate() {
 
 // GetPage returns the Page field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *GetLogs) GetPage() int32 {
-	if o == nil || o.Page.Get() == nil {
+	if o == nil || isNil(o.Page.Get()) {
 		var ret int32
 		return ret
 	}
@@ -259,7 +259,7 @@ func (o *GetLogs) UnsetPage() {
 
 // GetSize returns the Size field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *GetLogs) GetSize() int32 {
-	if o == nil || o.Size.Get() == nil {
+	if o == nil || isNil(o.Size.Get()) {
 		var ret int32
 		return ret
 	}
@@ -303,16 +303,16 @@ func (o *GetLogs) UnsetSize() {
 func (o GetLogs) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.EntityType.IsSet() {
-		toSerialize["entityType"] = o.EntityType.Get()
+		toSerialize["entity_type"] = o.EntityType.Get()
 	}
 	if o.EntityId.IsSet() {
-		toSerialize["entityId"] = o.EntityId.Get()
+		toSerialize["entity_id"] = o.EntityId.Get()
 	}
 	if o.StartDate.IsSet() {
-		toSerialize["startDate"] = o.StartDate.Get()
+		toSerialize["start_date"] = o.StartDate.Get()
 	}
 	if o.EndDate.IsSet() {
-		toSerialize["endDate"] = o.EndDate.Get()
+		toSerialize["end_date"] = o.EndDate.Get()
 	}
 	if o.Page.IsSet() {
 		toSerialize["page"] = o.Page.Get()

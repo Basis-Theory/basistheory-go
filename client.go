@@ -1,7 +1,7 @@
 /*
 Basis Theory API
 
-## Getting Started * Sign-in to [Basis Theory](https://basistheory.com) and go to [Applications](https://portal.basistheory.com/applications) * Create a Basis Theory Server to Server Application * All permissions should be selected * Paste the API Key into the `BT-API-KEY` variable
+## Getting Started * Sign-in to [Basis Theory](https://basistheory.com) and go to [Applications](https://portal.basistheory.com/applications) * Create a Basis Theory Private Application * All permissions should be selected * Paste the API Key into the `BT-API-KEY` variable
 
 API version: v1
 */
@@ -49,6 +49,8 @@ type APIClient struct {
 
 	// API Services
 
+	ApplicationTemplatesApi *ApplicationTemplatesApiService
+
 	ApplicationsApi *ApplicationsApiService
 
 	LogsApi *LogsApiService
@@ -84,6 +86,7 @@ func NewAPIClient(cfg *Configuration) *APIClient {
 	c.common.client = c
 
 	// API Services
+	c.ApplicationTemplatesApi = (*ApplicationTemplatesApiService)(&c.common)
 	c.ApplicationsApi = (*ApplicationsApiService)(&c.common)
 	c.LogsApi = (*LogsApiService)(&c.common)
 	c.PermissionsApi = (*PermissionsApiService)(&c.common)

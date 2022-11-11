@@ -1,7 +1,7 @@
 /*
 Basis Theory API
 
-## Getting Started * Sign-in to [Basis Theory](https://basistheory.com) and go to [Applications](https://portal.basistheory.com/applications) * Create a Basis Theory Server to Server Application * All permissions should be selected * Paste the API Key into the `BT-API-KEY` variable
+## Getting Started * Sign-in to [Basis Theory](https://basistheory.com) and go to [Applications](https://portal.basistheory.com/applications) * Create a Basis Theory Private Application * All permissions should be selected * Paste the API Key into the `BT-API-KEY` variable
 
 API version: v1
 */
@@ -314,12 +314,18 @@ type ApplicationsApiGetRequest struct {
 	ctx        context.Context
 	ApiService *ApplicationsApiService
 	id         *[]string
+	type_      *[]string
 	page       *int32
 	size       *int32
 }
 
 func (r ApplicationsApiGetRequest) Id(id []string) ApplicationsApiGetRequest {
 	r.id = &id
+	return r
+}
+
+func (r ApplicationsApiGetRequest) Type_(type_ []string) ApplicationsApiGetRequest {
+	r.type_ = &type_
 	return r
 }
 
@@ -380,6 +386,17 @@ func (a *ApplicationsApiService) GetExecute(r ApplicationsApiGetRequest) (*Appli
 			}
 		} else {
 			localVarQueryParams.Add("id", parameterToString(t, "multi"))
+		}
+	}
+	if r.type_ != nil {
+		t := *r.type_
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				localVarQueryParams.Add("type", parameterToString(s.Index(i), "multi"))
+			}
+		} else {
+			localVarQueryParams.Add("type", parameterToString(t, "multi"))
 		}
 	}
 	if r.page != nil {

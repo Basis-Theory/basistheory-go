@@ -13,7 +13,10 @@ Name | Type | Description | Notes
 **CreatedAt** | Pointer to **NullableTime** |  | [optional] 
 **ModifiedBy** | Pointer to **NullableString** |  | [optional] 
 **ModifiedAt** | Pointer to **NullableTime** |  | [optional] 
+**CanCreateExpiringApplications** | Pointer to **NullableBool** |  | [optional] 
+**ExpiresAt** | Pointer to **NullableTime** |  | [optional] 
 **Permissions** | Pointer to **[]string** |  | [optional] 
+**Rules** | Pointer to [**[]AccessRule**](AccessRule.md) |  | [optional] 
 
 ## Methods
 
@@ -329,6 +332,76 @@ HasModifiedAt returns a boolean if a field has been set.
 `func (o *Application) UnsetModifiedAt()`
 
 UnsetModifiedAt ensures that no value is present for ModifiedAt, not even an explicit nil
+### GetCanCreateExpiringApplications
+
+`func (o *Application) GetCanCreateExpiringApplications() bool`
+
+GetCanCreateExpiringApplications returns the CanCreateExpiringApplications field if non-nil, zero value otherwise.
+
+### GetCanCreateExpiringApplicationsOk
+
+`func (o *Application) GetCanCreateExpiringApplicationsOk() (*bool, bool)`
+
+GetCanCreateExpiringApplicationsOk returns a tuple with the CanCreateExpiringApplications field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetCanCreateExpiringApplications
+
+`func (o *Application) SetCanCreateExpiringApplications(v bool)`
+
+SetCanCreateExpiringApplications sets CanCreateExpiringApplications field to given value.
+
+### HasCanCreateExpiringApplications
+
+`func (o *Application) HasCanCreateExpiringApplications() bool`
+
+HasCanCreateExpiringApplications returns a boolean if a field has been set.
+
+### SetCanCreateExpiringApplicationsNil
+
+`func (o *Application) SetCanCreateExpiringApplicationsNil(b bool)`
+
+ SetCanCreateExpiringApplicationsNil sets the value for CanCreateExpiringApplications to be an explicit nil
+
+### UnsetCanCreateExpiringApplications
+`func (o *Application) UnsetCanCreateExpiringApplications()`
+
+UnsetCanCreateExpiringApplications ensures that no value is present for CanCreateExpiringApplications, not even an explicit nil
+### GetExpiresAt
+
+`func (o *Application) GetExpiresAt() time.Time`
+
+GetExpiresAt returns the ExpiresAt field if non-nil, zero value otherwise.
+
+### GetExpiresAtOk
+
+`func (o *Application) GetExpiresAtOk() (*time.Time, bool)`
+
+GetExpiresAtOk returns a tuple with the ExpiresAt field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetExpiresAt
+
+`func (o *Application) SetExpiresAt(v time.Time)`
+
+SetExpiresAt sets ExpiresAt field to given value.
+
+### HasExpiresAt
+
+`func (o *Application) HasExpiresAt() bool`
+
+HasExpiresAt returns a boolean if a field has been set.
+
+### SetExpiresAtNil
+
+`func (o *Application) SetExpiresAtNil(b bool)`
+
+ SetExpiresAtNil sets the value for ExpiresAt to be an explicit nil
+
+### UnsetExpiresAt
+`func (o *Application) UnsetExpiresAt()`
+
+UnsetExpiresAt ensures that no value is present for ExpiresAt, not even an explicit nil
 ### GetPermissions
 
 `func (o *Application) GetPermissions() []string`
@@ -364,6 +437,41 @@ HasPermissions returns a boolean if a field has been set.
 `func (o *Application) UnsetPermissions()`
 
 UnsetPermissions ensures that no value is present for Permissions, not even an explicit nil
+### GetRules
+
+`func (o *Application) GetRules() []AccessRule`
+
+GetRules returns the Rules field if non-nil, zero value otherwise.
+
+### GetRulesOk
+
+`func (o *Application) GetRulesOk() (*[]AccessRule, bool)`
+
+GetRulesOk returns a tuple with the Rules field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetRules
+
+`func (o *Application) SetRules(v []AccessRule)`
+
+SetRules sets Rules field to given value.
+
+### HasRules
+
+`func (o *Application) HasRules() bool`
+
+HasRules returns a boolean if a field has been set.
+
+### SetRulesNil
+
+`func (o *Application) SetRulesNil(b bool)`
+
+ SetRulesNil sets the value for Rules to be an explicit nil
+
+### UnsetRules
+`func (o *Application) UnsetRules()`
+
+UnsetRules ensures that no value is present for Rules, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 
