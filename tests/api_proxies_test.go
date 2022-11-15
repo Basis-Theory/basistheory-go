@@ -21,7 +21,8 @@ func TestProxiesCRUD(t *testing.T) {
 	testutils.AssertMethodDidNotError(err, response, "ReactorFormulasApi Create", t)
 
 	applicationPermissions := []string{"token:create"}
-	createApplicationRequest := *basistheory.NewCreateApplicationRequest("Go Test App", "private")
+	createApplicationRequest := *basistheory.NewCreateApplicationRequest("private")
+	createApplicationRequest.SetName("Go Test App")
 	createApplicationRequest.SetPermissions(applicationPermissions)
 
 	createdApplication, response, err := apiClient.ApplicationsApi.Create(contextWithAPIKey).CreateApplicationRequest(createApplicationRequest).Execute()

@@ -3484,6 +3484,13 @@
             "type": "string",
             "nullable": true
           },
+          "conditions": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Condition"
+            },
+            "nullable": true
+          },
           "permissions": {
             "type": "array",
             "items": {
@@ -3638,6 +3645,24 @@
             "items": {
               "type": "string"
             },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "Condition": {
+        "type": "object",
+        "properties": {
+          "attribute": {
+            "type": "string",
+            "nullable": true
+          },
+          "operator": {
+            "type": "string",
+            "nullable": true
+          },
+          "value": {
+            "type": "string",
             "nullable": true
           }
         },
@@ -5570,6 +5595,10 @@
             "nullable": true
           },
           "mask": {
+            "nullable": true
+          },
+          "expires_at": {
+            "type": "string",
             "nullable": true
           },
           "deduplicate_token": {

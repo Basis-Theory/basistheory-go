@@ -11,6 +11,7 @@ Name | Type | Description | Notes
 **SearchIndexes** | Pointer to **[]string** |  | [optional] 
 **FingerprintExpression** | Pointer to **NullableString** |  | [optional] 
 **Mask** | Pointer to **interface{}** |  | [optional] 
+**ExpiresAt** | Pointer to **NullableString** |  | [optional] 
 **DeduplicateToken** | Pointer to **NullableBool** |  | [optional] 
 **Containers** | Pointer to **[]string** |  | [optional] 
 
@@ -258,6 +259,41 @@ HasMask returns a boolean if a field has been set.
 `func (o *UpdateTokenRequest) UnsetMask()`
 
 UnsetMask ensures that no value is present for Mask, not even an explicit nil
+### GetExpiresAt
+
+`func (o *UpdateTokenRequest) GetExpiresAt() string`
+
+GetExpiresAt returns the ExpiresAt field if non-nil, zero value otherwise.
+
+### GetExpiresAtOk
+
+`func (o *UpdateTokenRequest) GetExpiresAtOk() (*string, bool)`
+
+GetExpiresAtOk returns a tuple with the ExpiresAt field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetExpiresAt
+
+`func (o *UpdateTokenRequest) SetExpiresAt(v string)`
+
+SetExpiresAt sets ExpiresAt field to given value.
+
+### HasExpiresAt
+
+`func (o *UpdateTokenRequest) HasExpiresAt() bool`
+
+HasExpiresAt returns a boolean if a field has been set.
+
+### SetExpiresAtNil
+
+`func (o *UpdateTokenRequest) SetExpiresAtNil(b bool)`
+
+ SetExpiresAtNil sets the value for ExpiresAt to be an explicit nil
+
+### UnsetExpiresAt
+`func (o *UpdateTokenRequest) UnsetExpiresAt()`
+
+UnsetExpiresAt ensures that no value is present for ExpiresAt, not even an explicit nil
 ### GetDeduplicateToken
 
 `func (o *UpdateTokenRequest) GetDeduplicateToken() bool`

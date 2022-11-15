@@ -23,6 +23,7 @@ type UpdateTokenRequest struct {
 	SearchIndexes         []string            `json:"search_indexes,omitempty"`
 	FingerprintExpression NullableString      `json:"fingerprint_expression,omitempty"`
 	Mask                  interface{}         `json:"mask,omitempty"`
+	ExpiresAt             NullableString      `json:"expires_at,omitempty"`
 	DeduplicateToken      NullableBool        `json:"deduplicate_token,omitempty"`
 	Containers            []string            `json:"containers,omitempty"`
 }
@@ -283,6 +284,49 @@ func (o *UpdateTokenRequest) SetMask(v interface{}) {
 	o.Mask = v
 }
 
+// GetExpiresAt returns the ExpiresAt field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *UpdateTokenRequest) GetExpiresAt() string {
+	if o == nil || isNil(o.ExpiresAt.Get()) {
+		var ret string
+		return ret
+	}
+	return *o.ExpiresAt.Get()
+}
+
+// GetExpiresAtOk returns a tuple with the ExpiresAt field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *UpdateTokenRequest) GetExpiresAtOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.ExpiresAt.Get(), o.ExpiresAt.IsSet()
+}
+
+// HasExpiresAt returns a boolean if a field has been set.
+func (o *UpdateTokenRequest) HasExpiresAt() bool {
+	if o != nil && o.ExpiresAt.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetExpiresAt gets a reference to the given NullableString and assigns it to the ExpiresAt field.
+func (o *UpdateTokenRequest) SetExpiresAt(v string) {
+	o.ExpiresAt.Set(&v)
+}
+
+// SetExpiresAtNil sets the value for ExpiresAt to be an explicit nil
+func (o *UpdateTokenRequest) SetExpiresAtNil() {
+	o.ExpiresAt.Set(nil)
+}
+
+// UnsetExpiresAt ensures that no value is present for ExpiresAt, not even an explicit nil
+func (o *UpdateTokenRequest) UnsetExpiresAt() {
+	o.ExpiresAt.Unset()
+}
+
 // GetDeduplicateToken returns the DeduplicateToken field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *UpdateTokenRequest) GetDeduplicateToken() bool {
 	if o == nil || isNil(o.DeduplicateToken.Get()) {
@@ -381,6 +425,9 @@ func (o UpdateTokenRequest) MarshalJSON() ([]byte, error) {
 	}
 	if o.Mask != nil {
 		toSerialize["mask"] = o.Mask
+	}
+	if o.ExpiresAt.IsSet() {
+		toSerialize["expires_at"] = o.ExpiresAt.Get()
 	}
 	if o.DeduplicateToken.IsSet() {
 		toSerialize["deduplicate_token"] = o.DeduplicateToken.Get()

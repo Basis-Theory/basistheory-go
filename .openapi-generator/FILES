@@ -18,6 +18,7 @@ docs/ApplicationPaginatedList.md
 docs/ApplicationTemplate.md
 docs/ApplicationTemplatesApi.md
 docs/ApplicationsApi.md
+docs/Condition.md
 docs/CreateApplicationRequest.md
 docs/CreateProxyRequest.md
 docs/CreateReactorFormulaRequest.md
@@ -88,6 +89,7 @@ model_access_rule.go
 model_application.go
 model_application_paginated_list.go
 model_application_template.go
+model_condition.go
 model_create_application_request.go
 model_create_proxy_request.go
 model_create_reactor_formula_request.go

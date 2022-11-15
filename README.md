@@ -148,6 +148,7 @@ Class | Method | HTTP request | Description
  - [Application](docs/Application.md)
  - [ApplicationPaginatedList](docs/ApplicationPaginatedList.md)
  - [ApplicationTemplate](docs/ApplicationTemplate.md)
+ - [Condition](docs/Condition.md)
  - [CreateApplicationRequest](docs/CreateApplicationRequest.md)
  - [CreateProxyRequest](docs/CreateProxyRequest.md)
  - [CreateReactorFormulaRequest](docs/CreateReactorFormulaRequest.md)

@@ -2346,6 +2346,13 @@ components:
         - permissions
         description: description
         priority: 5
+        conditions:
+        - attribute: attribute
+          value: value
+          operator: operator
+        - attribute: attribute
+          value: value
+          operator: operator
       properties:
         description:
           nullable: true
@@ -2360,6 +2367,11 @@ components:
         transform:
           nullable: true
           type: string
+        conditions:
+          items:
+            $ref: '#/components/schemas/Condition'
+          nullable: true
+          type: array
         permissions:
           items:
             type: string
@@ -2379,6 +2391,13 @@ components:
           - permissions
           description: description
           priority: 5
+          conditions:
+          - attribute: attribute
+            value: value
+            operator: operator
+          - attribute: attribute
+            value: value
+            operator: operator
         - container: container
           transform: transform
           permissions:
@@ -2386,6 +2405,13 @@ components:
           - permissions
           description: description
           priority: 5
+          conditions:
+          - attribute: attribute
+            value: value
+            operator: operator
+          - attribute: attribute
+            value: value
+            operator: operator
         type: type
         created_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
         can_create_expiring_applications: true
@@ -2488,6 +2514,13 @@ components:
             - permissions
             description: description
             priority: 5
+            conditions:
+            - attribute: attribute
+              value: value
+              operator: operator
+            - attribute: attribute
+              value: value
+              operator: operator
           - container: container
             transform: transform
             permissions:
@@ -2495,6 +2528,13 @@ components:
             - permissions
             description: description
             priority: 5
+            conditions:
+            - attribute: attribute
+              value: value
+              operator: operator
+            - attribute: attribute
+              value: value
+              operator: operator
           type: type
           created_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           can_create_expiring_applications: true
@@ -2520,6 +2560,13 @@ components:
             - permissions
             description: description
             priority: 5
+            conditions:
+            - attribute: attribute
+              value: value
+              operator: operator
+            - attribute: attribute
+              value: value
+              operator: operator
           - container: container
             transform: transform
             permissions:
@@ -2527,6 +2574,13 @@ components:
             - permissions
             description: description
             priority: 5
+            conditions:
+            - attribute: attribute
+              value: value
+              operator: operator
+            - attribute: attribute
+              value: value
+              operator: operator
           type: type
           created_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           can_create_expiring_applications: true
@@ -2552,6 +2606,13 @@ components:
             - permissions
             description: description
             priority: 5
+            conditions:
+            - attribute: attribute
+              value: value
+              operator: operator
+            - attribute: attribute
+              value: value
+              operator: operator
           - container: container
             transform: transform
             permissions:
@@ -2559,6 +2620,13 @@ components:
             - permissions
             description: description
             priority: 5
+            conditions:
+            - attribute: attribute
+              value: value
+              operator: operator
+            - attribute: attribute
+              value: value
+              operator: operator
           type: type
           created_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           can_create_expiring_applications: true
@@ -2584,6 +2652,13 @@ components:
             - permissions
             description: description
             priority: 5
+            conditions:
+            - attribute: attribute
+              value: value
+              operator: operator
+            - attribute: attribute
+              value: value
+              operator: operator
           - container: container
             transform: transform
             permissions:
@@ -2591,6 +2666,13 @@ components:
             - permissions
             description: description
             priority: 5
+            conditions:
+            - attribute: attribute
+              value: value
+              operator: operator
+            - attribute: attribute
+              value: value
+              operator: operator
           type: type
           created_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           can_create_expiring_applications: true
@@ -2616,6 +2698,13 @@ components:
             - permissions
             description: description
             priority: 5
+            conditions:
+            - attribute: attribute
+              value: value
+              operator: operator
+            - attribute: attribute
+              value: value
+              operator: operator
           - container: container
             transform: transform
             permissions:
@@ -2623,6 +2712,13 @@ components:
             - permissions
             description: description
             priority: 5
+            conditions:
+            - attribute: attribute
+              value: value
+              operator: operator
+            - attribute: attribute
+              value: value
+              operator: operator
           type: type
           created_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           can_create_expiring_applications: true
@@ -2667,6 +2763,13 @@ components:
           - permissions
           description: description
           priority: 5
+          conditions:
+          - attribute: attribute
+            value: value
+            operator: operator
+          - attribute: attribute
+            value: value
+            operator: operator
         - container: container
           transform: transform
           permissions:
@@ -2674,6 +2777,13 @@ components:
           - permissions
           description: description
           priority: 5
+          conditions:
+          - attribute: attribute
+            value: value
+            operator: operator
+          - attribute: attribute
+            value: value
+            operator: operator
         id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
       properties:
         id:
@@ -2706,6 +2816,23 @@ components:
           nullable: true
           type: array
       type: object
+    Condition:
+      additionalProperties: false
+      example:
+        attribute: attribute
+        value: value
+        operator: operator
+      properties:
+        attribute:
+          nullable: true
+          type: string
+        operator:
+          nullable: true
+          type: string
+        value:
+          nullable: true
+          type: string
+      type: object
     CreateApplicationRequest:
       additionalProperties: false
       example:
@@ -2726,6 +2853,13 @@ components:
           - permissions
           description: description
           priority: 5
+          conditions:
+          - attribute: attribute
+            value: value
+            operator: operator
+          - attribute: attribute
+            value: value
+            operator: operator
         - container: container
           transform: transform
           permissions:
@@ -2733,6 +2867,13 @@ components:
           - permissions
           description: description
           priority: 5
+          conditions:
+          - attribute: attribute
+            value: value
+            operator: operator
+          - attribute: attribute
+            value: value
+            operator: operator
         type: type
       properties:
         name:
@@ -2908,6 +3049,13 @@ components:
             - permissions
             description: description
             priority: 5
+            conditions:
+            - attribute: attribute
+              value: value
+              operator: operator
+            - attribute: attribute
+              value: value
+              operator: operator
           - container: container
             transform: transform
             permissions:
@@ -2915,6 +3063,13 @@ components:
             - permissions
             description: description
             priority: 5
+            conditions:
+            - attribute: attribute
+              value: value
+              operator: operator
+            - attribute: attribute
+              value: value
+              operator: operator
           type: type
           created_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           can_create_expiring_applications: true
@@ -3917,6 +4072,13 @@ components:
             - permissions
             description: description
             priority: 5
+            conditions:
+            - attribute: attribute
+              value: value
+              operator: operator
+            - attribute: attribute
+              value: value
+              operator: operator
           - container: container
             transform: transform
             permissions:
@@ -3924,6 +4086,13 @@ components:
             - permissions
             description: description
             priority: 5
+            conditions:
+            - attribute: attribute
+              value: value
+              operator: operator
+            - attribute: attribute
+              value: value
+              operator: operator
           type: type
           created_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           can_create_expiring_applications: true
@@ -4504,6 +4673,13 @@ components:
               - permissions
               description: description
               priority: 5
+              conditions:
+              - attribute: attribute
+                value: value
+                operator: operator
+              - attribute: attribute
+                value: value
+                operator: operator
             - container: container
               transform: transform
               permissions:
@@ -4511,6 +4687,13 @@ components:
               - permissions
               description: description
               priority: 5
+              conditions:
+              - attribute: attribute
+                value: value
+                operator: operator
+              - attribute: attribute
+                value: value
+                operator: operator
             type: type
             created_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
             can_create_expiring_applications: true
@@ -4595,6 +4778,13 @@ components:
               - permissions
               description: description
               priority: 5
+              conditions:
+              - attribute: attribute
+                value: value
+                operator: operator
+              - attribute: attribute
+                value: value
+                operator: operator
             - container: container
               transform: transform
               permissions:
@@ -4602,6 +4792,13 @@ components:
               - permissions
               description: description
               priority: 5
+              conditions:
+              - attribute: attribute
+                value: value
+                operator: operator
+              - attribute: attribute
+                value: value
+                operator: operator
             type: type
             created_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
             can_create_expiring_applications: true
@@ -4686,6 +4883,13 @@ components:
               - permissions
               description: description
               priority: 5
+              conditions:
+              - attribute: attribute
+                value: value
+                operator: operator
+              - attribute: attribute
+                value: value
+                operator: operator
             - container: container
               transform: transform
               permissions:
@@ -4693,6 +4897,13 @@ components:
               - permissions
               description: description
               priority: 5
+              conditions:
+              - attribute: attribute
+                value: value
+                operator: operator
+              - attribute: attribute
+                value: value
+                operator: operator
             type: type
             created_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
             can_create_expiring_applications: true
@@ -4777,6 +4988,13 @@ components:
               - permissions
               description: description
               priority: 5
+              conditions:
+              - attribute: attribute
+                value: value
+                operator: operator
+              - attribute: attribute
+                value: value
+                operator: operator
             - container: container
               transform: transform
               permissions:
@@ -4784,6 +5002,13 @@ components:
               - permissions
               description: description
               priority: 5
+              conditions:
+              - attribute: attribute
+                value: value
+                operator: operator
+              - attribute: attribute
+                value: value
+                operator: operator
             type: type
             created_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
             can_create_expiring_applications: true
@@ -4868,6 +5093,13 @@ components:
               - permissions
               description: description
               priority: 5
+              conditions:
+              - attribute: attribute
+                value: value
+                operator: operator
+              - attribute: attribute
+                value: value
+                operator: operator
             - container: container
               transform: transform
               permissions:
@@ -4875,6 +5107,13 @@ components:
               - permissions
               description: description
               priority: 5
+              conditions:
+              - attribute: attribute
+                value: value
+                operator: operator
+              - attribute: attribute
+                value: value
+                operator: operator
             type: type
             created_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
             can_create_expiring_applications: true
@@ -5725,6 +5964,13 @@ components:
           - permissions
           description: description
           priority: 5
+          conditions:
+          - attribute: attribute
+            value: value
+            operator: operator
+          - attribute: attribute
+            value: value
+            operator: operator
         - container: container
           transform: transform
           permissions:
@@ -5732,6 +5978,13 @@ components:
           - permissions
           description: description
           priority: 5
+          conditions:
+          - attribute: attribute
+            value: value
+            operator: operator
+          - attribute: attribute
+            value: value
+            operator: operator
       properties:
         name:
           maxLength: 200
@@ -5902,6 +6155,13 @@ components:
             - permissions
             description: description
             priority: 5
+            conditions:
+            - attribute: attribute
+              value: value
+              operator: operator
+            - attribute: attribute
+              value: value
+              operator: operator
           - container: container
             transform: transform
             permissions:
@@ -5909,6 +6169,13 @@ components:
             - permissions
             description: description
             priority: 5
+            conditions:
+            - attribute: attribute
+              value: value
+              operator: operator
+            - attribute: attribute
+              value: value
+              operator: operator
           type: type
           created_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           can_create_expiring_applications: true
@@ -5993,6 +6260,9 @@ components:
           type: string
         mask:
           nullable: true
+        expires_at:
+          nullable: true
+          type: string
         deduplicate_token:
           nullable: true
           type: boolean

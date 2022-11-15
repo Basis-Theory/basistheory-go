@@ -8,6 +8,7 @@ Name | Type | Description | Notes
 **Priority** | Pointer to **NullableInt32** |  | [optional] 
 **Container** | Pointer to **NullableString** |  | [optional] 
 **Transform** | Pointer to **NullableString** |  | [optional] 
+**Conditions** | Pointer to [**[]Condition**](Condition.md) |  | [optional] 
 **Permissions** | Pointer to **[]string** |  | [optional] 
 
 ## Methods
@@ -169,6 +170,41 @@ HasTransform returns a boolean if a field has been set.
 `func (o *AccessRule) UnsetTransform()`
 
 UnsetTransform ensures that no value is present for Transform, not even an explicit nil
+### GetConditions
+
+`func (o *AccessRule) GetConditions() []Condition`
+
+GetConditions returns the Conditions field if non-nil, zero value otherwise.
+
+### GetConditionsOk
+
+`func (o *AccessRule) GetConditionsOk() (*[]Condition, bool)`
+
+GetConditionsOk returns a tuple with the Conditions field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetConditions
+
+`func (o *AccessRule) SetConditions(v []Condition)`
+
+SetConditions sets Conditions field to given value.
+
+### HasConditions
+
+`func (o *AccessRule) HasConditions() bool`
+
+HasConditions returns a boolean if a field has been set.
+
+### SetConditionsNil
+
+`func (o *AccessRule) SetConditionsNil(b bool)`
+
+ SetConditionsNil sets the value for Conditions to be an explicit nil
+
+### UnsetConditions
+`func (o *AccessRule) UnsetConditions()`
+
+UnsetConditions ensures that no value is present for Conditions, not even an explicit nil
 ### GetPermissions
 
 `func (o *AccessRule) GetPermissions() []string`

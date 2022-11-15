@@ -19,7 +19,8 @@ func TestApplicationCRUD(t *testing.T) {
 	applicationName, applicationType := getApplicationNameAndType()
 
 	applicationPermissions := []string{"token:create"}
-	createApplicationRequest := *basistheory.NewCreateApplicationRequest(applicationName, applicationType)
+	createApplicationRequest := *basistheory.NewCreateApplicationRequest(applicationType)
+	createApplicationRequest.SetName(applicationName)
 	createApplicationRequest.SetPermissions(applicationPermissions)
 
 	createdApplication, response, err := apiClient.ApplicationsApi.Create(contextWithAPIKey).CreateApplicationRequest(createApplicationRequest).Execute()
@@ -73,7 +74,8 @@ func TestApplicationRegenerate(t *testing.T) {
 	applicationName, applicationType := getApplicationNameAndType()
 
 	applicationPermissions := []string{"token:create"}
-	createApplicationRequest := *basistheory.NewCreateApplicationRequest(applicationName, applicationType)
+	createApplicationRequest := *basistheory.NewCreateApplicationRequest(applicationType)
+	createApplicationRequest.SetName(applicationName)
 	createApplicationRequest.SetPermissions(applicationPermissions)
 
 	createdApplication, response, err := apiClient.ApplicationsApi.Create(contextWithAPIKey).CreateApplicationRequest(createApplicationRequest).Execute()
@@ -94,7 +96,8 @@ func TestApplicationKey(t *testing.T) {
 	applicationName, applicationType := getApplicationNameAndType()
 
 	applicationPermissions := []string{"token:create"}
-	createApplicationRequest := *basistheory.NewCreateApplicationRequest(applicationName, applicationType)
+	createApplicationRequest := *basistheory.NewCreateApplicationRequest(applicationType)
+	createApplicationRequest.SetName(applicationName)
 	createApplicationRequest.SetPermissions(applicationPermissions)
 
 	createdApplication, response, err := apiClient.ApplicationsApi.Create(contextWithAPIKey).CreateApplicationRequest(createApplicationRequest).Execute()
@@ -112,7 +115,9 @@ func TestApplicationKey(t *testing.T) {
 
 	applicationFromApplicationKey.SetKey(*createdApplication.Key.Get())
 
-	testutils.AssertPropertiesMatch(applicationFromApplicationKey, createdApplication, t, basistheory.NullableString{}, basistheory.NullableTime{})
+	testutils.AssertPropertiesMatch(applicationFromApplicationKey.GetName(), applicationName, t)
+	testutils.AssertPropertiesMatch(applicationFromApplicationKey.GetType(), applicationType, t)
+	testutils.AssertPropertiesMatch(applicationFromApplicationKey.GetPermissions(), createdApplication.Permissions, t)
 
 	_, _ = apiClient.ApplicationsApi.Delete(contextWithAPIKey, createdApplication.GetId()).Execute()
 }
