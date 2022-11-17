@@ -1,3 +1,10 @@
+# [3.8.0](https://github.com/Basis-Theory/basistheory-go/compare/v3.7.0...v3.8.0) (2022-11-17)
+
+
+### Features
+
+* add support for expiring application types ([#57](https://github.com/Basis-Theory/basistheory-go/issues/57)) ([273c10a](https://github.com/Basis-Theory/basistheory-go/commit/273c10a1e048bb5ad7b2417668a6dca7903bcc7a))
+
 # [3.7.0](https://github.com/Basis-Theory/basistheory-go/compare/v3.6.0...v3.7.0) (2022-10-18)
 
 
