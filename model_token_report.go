@@ -41,7 +41,7 @@ func NewTokenReportWithDefaults() *TokenReport {
 
 // GetIncludedMonthlyActiveTokens returns the IncludedMonthlyActiveTokens field value if set, zero value otherwise.
 func (o *TokenReport) GetIncludedMonthlyActiveTokens() int64 {
-	if o == nil || o.IncludedMonthlyActiveTokens == nil {
+	if o == nil || isNil(o.IncludedMonthlyActiveTokens) {
 		var ret int64
 		return ret
 	}
@@ -51,7 +51,7 @@ func (o *TokenReport) GetIncludedMonthlyActiveTokens() int64 {
 // GetIncludedMonthlyActiveTokensOk returns a tuple with the IncludedMonthlyActiveTokens field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *TokenReport) GetIncludedMonthlyActiveTokensOk() (*int64, bool) {
-	if o == nil || o.IncludedMonthlyActiveTokens == nil {
+	if o == nil || isNil(o.IncludedMonthlyActiveTokens) {
 		return nil, false
 	}
 	return o.IncludedMonthlyActiveTokens, true
@@ -59,7 +59,7 @@ func (o *TokenReport) GetIncludedMonthlyActiveTokensOk() (*int64, bool) {
 
 // HasIncludedMonthlyActiveTokens returns a boolean if a field has been set.
 func (o *TokenReport) HasIncludedMonthlyActiveTokens() bool {
-	if o != nil && o.IncludedMonthlyActiveTokens != nil {
+	if o != nil && !isNil(o.IncludedMonthlyActiveTokens) {
 		return true
 	}
 
@@ -73,7 +73,7 @@ func (o *TokenReport) SetIncludedMonthlyActiveTokens(v int64) {
 
 // GetMonthlyActiveTokens returns the MonthlyActiveTokens field value if set, zero value otherwise.
 func (o *TokenReport) GetMonthlyActiveTokens() int64 {
-	if o == nil || o.MonthlyActiveTokens == nil {
+	if o == nil || isNil(o.MonthlyActiveTokens) {
 		var ret int64
 		return ret
 	}
@@ -83,7 +83,7 @@ func (o *TokenReport) GetMonthlyActiveTokens() int64 {
 // GetMonthlyActiveTokensOk returns a tuple with the MonthlyActiveTokens field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *TokenReport) GetMonthlyActiveTokensOk() (*int64, bool) {
-	if o == nil || o.MonthlyActiveTokens == nil {
+	if o == nil || isNil(o.MonthlyActiveTokens) {
 		return nil, false
 	}
 	return o.MonthlyActiveTokens, true
@@ -91,7 +91,7 @@ func (o *TokenReport) GetMonthlyActiveTokensOk() (*int64, bool) {
 
 // HasMonthlyActiveTokens returns a boolean if a field has been set.
 func (o *TokenReport) HasMonthlyActiveTokens() bool {
-	if o != nil && o.MonthlyActiveTokens != nil {
+	if o != nil && !isNil(o.MonthlyActiveTokens) {
 		return true
 	}
 
@@ -116,7 +116,7 @@ func (o *TokenReport) GetMetricsByType() map[string]TokenMetrics {
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *TokenReport) GetMetricsByTypeOk() (*map[string]TokenMetrics, bool) {
-	if o == nil || o.MetricsByType == nil {
+	if o == nil || isNil(o.MetricsByType) {
 		return nil, false
 	}
 	return &o.MetricsByType, true
@@ -124,7 +124,7 @@ func (o *TokenReport) GetMetricsByTypeOk() (*map[string]TokenMetrics, bool) {
 
 // HasMetricsByType returns a boolean if a field has been set.
 func (o *TokenReport) HasMetricsByType() bool {
-	if o != nil && o.MetricsByType != nil {
+	if o != nil && isNil(o.MetricsByType) {
 		return true
 	}
 
@@ -149,7 +149,7 @@ func (o *TokenReport) GetMonthlyActiveTokenHistory() []MonthlyActiveTokenHistory
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *TokenReport) GetMonthlyActiveTokenHistoryOk() ([]MonthlyActiveTokenHistory, bool) {
-	if o == nil || o.MonthlyActiveTokenHistory == nil {
+	if o == nil || isNil(o.MonthlyActiveTokenHistory) {
 		return nil, false
 	}
 	return o.MonthlyActiveTokenHistory, true
@@ -157,7 +157,7 @@ func (o *TokenReport) GetMonthlyActiveTokenHistoryOk() ([]MonthlyActiveTokenHist
 
 // HasMonthlyActiveTokenHistory returns a boolean if a field has been set.
 func (o *TokenReport) HasMonthlyActiveTokenHistory() bool {
-	if o != nil && o.MonthlyActiveTokenHistory != nil {
+	if o != nil && isNil(o.MonthlyActiveTokenHistory) {
 		return true
 	}
 
@@ -171,10 +171,10 @@ func (o *TokenReport) SetMonthlyActiveTokenHistory(v []MonthlyActiveTokenHistory
 
 func (o TokenReport) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
-	if o.IncludedMonthlyActiveTokens != nil {
+	if !isNil(o.IncludedMonthlyActiveTokens) {
 		toSerialize["included_monthly_active_tokens"] = o.IncludedMonthlyActiveTokens
 	}
-	if o.MonthlyActiveTokens != nil {
+	if !isNil(o.MonthlyActiveTokens) {
 		toSerialize["monthly_active_tokens"] = o.MonthlyActiveTokens
 	}
 	if o.MetricsByType != nil {

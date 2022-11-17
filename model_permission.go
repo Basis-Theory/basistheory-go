@@ -40,7 +40,7 @@ func NewPermissionWithDefaults() *Permission {
 
 // GetType returns the Type field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *Permission) GetType() string {
-	if o == nil || o.Type.Get() == nil {
+	if o == nil || isNil(o.Type.Get()) {
 		var ret string
 		return ret
 	}
@@ -83,7 +83,7 @@ func (o *Permission) UnsetType() {
 
 // GetDescription returns the Description field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *Permission) GetDescription() string {
-	if o == nil || o.Description.Get() == nil {
+	if o == nil || isNil(o.Description.Get()) {
 		var ret string
 		return ret
 	}
@@ -137,7 +137,7 @@ func (o *Permission) GetApplicationTypes() []string {
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *Permission) GetApplicationTypesOk() ([]string, bool) {
-	if o == nil || o.ApplicationTypes == nil {
+	if o == nil || isNil(o.ApplicationTypes) {
 		return nil, false
 	}
 	return o.ApplicationTypes, true
@@ -145,7 +145,7 @@ func (o *Permission) GetApplicationTypesOk() ([]string, bool) {
 
 // HasApplicationTypes returns a boolean if a field has been set.
 func (o *Permission) HasApplicationTypes() bool {
-	if o != nil && o.ApplicationTypes != nil {
+	if o != nil && isNil(o.ApplicationTypes) {
 		return true
 	}
 

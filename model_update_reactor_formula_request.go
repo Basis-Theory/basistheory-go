@@ -94,7 +94,7 @@ func (o *UpdateReactorFormulaRequest) SetName(v string) {
 
 // GetDescription returns the Description field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *UpdateReactorFormulaRequest) GetDescription() string {
-	if o == nil || o.Description.Get() == nil {
+	if o == nil || isNil(o.Description.Get()) {
 		var ret string
 		return ret
 	}
@@ -137,7 +137,7 @@ func (o *UpdateReactorFormulaRequest) UnsetDescription() {
 
 // GetIcon returns the Icon field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *UpdateReactorFormulaRequest) GetIcon() string {
-	if o == nil || o.Icon.Get() == nil {
+	if o == nil || isNil(o.Icon.Get()) {
 		var ret string
 		return ret
 	}
@@ -180,7 +180,7 @@ func (o *UpdateReactorFormulaRequest) UnsetIcon() {
 
 // GetCode returns the Code field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *UpdateReactorFormulaRequest) GetCode() string {
-	if o == nil || o.Code.Get() == nil {
+	if o == nil || isNil(o.Code.Get()) {
 		var ret string
 		return ret
 	}
@@ -234,7 +234,7 @@ func (o *UpdateReactorFormulaRequest) GetConfiguration() []ReactorFormulaConfigu
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *UpdateReactorFormulaRequest) GetConfigurationOk() ([]ReactorFormulaConfiguration, bool) {
-	if o == nil || o.Configuration == nil {
+	if o == nil || isNil(o.Configuration) {
 		return nil, false
 	}
 	return o.Configuration, true
@@ -242,7 +242,7 @@ func (o *UpdateReactorFormulaRequest) GetConfigurationOk() ([]ReactorFormulaConf
 
 // HasConfiguration returns a boolean if a field has been set.
 func (o *UpdateReactorFormulaRequest) HasConfiguration() bool {
-	if o != nil && o.Configuration != nil {
+	if o != nil && isNil(o.Configuration) {
 		return true
 	}
 
@@ -267,7 +267,7 @@ func (o *UpdateReactorFormulaRequest) GetRequestParameters() []ReactorFormulaReq
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *UpdateReactorFormulaRequest) GetRequestParametersOk() ([]ReactorFormulaRequestParameter, bool) {
-	if o == nil || o.RequestParameters == nil {
+	if o == nil || isNil(o.RequestParameters) {
 		return nil, false
 	}
 	return o.RequestParameters, true
@@ -275,7 +275,7 @@ func (o *UpdateReactorFormulaRequest) GetRequestParametersOk() ([]ReactorFormula
 
 // HasRequestParameters returns a boolean if a field has been set.
 func (o *UpdateReactorFormulaRequest) HasRequestParameters() bool {
-	if o != nil && o.RequestParameters != nil {
+	if o != nil && isNil(o.RequestParameters) {
 		return true
 	}
 

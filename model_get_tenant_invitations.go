@@ -40,7 +40,7 @@ func NewGetTenantInvitationsWithDefaults() *GetTenantInvitations {
 
 // GetStatus returns the Status field value if set, zero value otherwise.
 func (o *GetTenantInvitations) GetStatus() TenantInvitationStatus {
-	if o == nil || o.Status == nil {
+	if o == nil || isNil(o.Status) {
 		var ret TenantInvitationStatus
 		return ret
 	}
@@ -50,7 +50,7 @@ func (o *GetTenantInvitations) GetStatus() TenantInvitationStatus {
 // GetStatusOk returns a tuple with the Status field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetTenantInvitations) GetStatusOk() (*TenantInvitationStatus, bool) {
-	if o == nil || o.Status == nil {
+	if o == nil || isNil(o.Status) {
 		return nil, false
 	}
 	return o.Status, true
@@ -58,7 +58,7 @@ func (o *GetTenantInvitations) GetStatusOk() (*TenantInvitationStatus, bool) {
 
 // HasStatus returns a boolean if a field has been set.
 func (o *GetTenantInvitations) HasStatus() bool {
-	if o != nil && o.Status != nil {
+	if o != nil && !isNil(o.Status) {
 		return true
 	}
 
@@ -72,7 +72,7 @@ func (o *GetTenantInvitations) SetStatus(v TenantInvitationStatus) {
 
 // GetPage returns the Page field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *GetTenantInvitations) GetPage() int32 {
-	if o == nil || o.Page.Get() == nil {
+	if o == nil || isNil(o.Page.Get()) {
 		var ret int32
 		return ret
 	}
@@ -115,7 +115,7 @@ func (o *GetTenantInvitations) UnsetPage() {
 
 // GetSize returns the Size field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *GetTenantInvitations) GetSize() int32 {
-	if o == nil || o.Size.Get() == nil {
+	if o == nil || isNil(o.Size.Get()) {
 		var ret int32
 		return ret
 	}
@@ -158,7 +158,7 @@ func (o *GetTenantInvitations) UnsetSize() {
 
 func (o GetTenantInvitations) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
-	if o.Status != nil {
+	if !isNil(o.Status) {
 		toSerialize["status"] = o.Status
 	}
 	if o.Page.IsSet() {

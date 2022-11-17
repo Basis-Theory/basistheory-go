@@ -53,7 +53,7 @@ func (o *GetTokens) GetType() []string {
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *GetTokens) GetTypeOk() ([]string, bool) {
-	if o == nil || o.Type == nil {
+	if o == nil || isNil(o.Type) {
 		return nil, false
 	}
 	return o.Type, true
@@ -61,7 +61,7 @@ func (o *GetTokens) GetTypeOk() ([]string, bool) {
 
 // HasType returns a boolean if a field has been set.
 func (o *GetTokens) HasType() bool {
-	if o != nil && o.Type != nil {
+	if o != nil && isNil(o.Type) {
 		return true
 	}
 
@@ -86,7 +86,7 @@ func (o *GetTokens) GetId() []string {
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *GetTokens) GetIdOk() ([]string, bool) {
-	if o == nil || o.Id == nil {
+	if o == nil || isNil(o.Id) {
 		return nil, false
 	}
 	return o.Id, true
@@ -94,7 +94,7 @@ func (o *GetTokens) GetIdOk() ([]string, bool) {
 
 // HasId returns a boolean if a field has been set.
 func (o *GetTokens) HasId() bool {
-	if o != nil && o.Id != nil {
+	if o != nil && isNil(o.Id) {
 		return true
 	}
 
@@ -119,7 +119,7 @@ func (o *GetTokens) GetMetadata() map[string]string {
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *GetTokens) GetMetadataOk() (*map[string]string, bool) {
-	if o == nil || o.Metadata == nil {
+	if o == nil || isNil(o.Metadata) {
 		return nil, false
 	}
 	return &o.Metadata, true
@@ -127,7 +127,7 @@ func (o *GetTokens) GetMetadataOk() (*map[string]string, bool) {
 
 // HasMetadata returns a boolean if a field has been set.
 func (o *GetTokens) HasMetadata() bool {
-	if o != nil && o.Metadata != nil {
+	if o != nil && isNil(o.Metadata) {
 		return true
 	}
 
@@ -141,7 +141,7 @@ func (o *GetTokens) SetMetadata(v map[string]string) {
 
 // GetPage returns the Page field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *GetTokens) GetPage() int32 {
-	if o == nil || o.Page.Get() == nil {
+	if o == nil || isNil(o.Page.Get()) {
 		var ret int32
 		return ret
 	}
@@ -184,7 +184,7 @@ func (o *GetTokens) UnsetPage() {
 
 // GetSize returns the Size field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *GetTokens) GetSize() int32 {
-	if o == nil || o.Size.Get() == nil {
+	if o == nil || isNil(o.Size.Get()) {
 		var ret int32
 		return ret
 	}

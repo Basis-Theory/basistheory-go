@@ -5,6 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Name** | **string** |  | 
+**CanCreateExpiringApplications** | Pointer to **NullableBool** |  | [optional] 
 **Permissions** | Pointer to **[]string** |  | [optional] 
 **Rules** | Pointer to [**[]AccessRule**](AccessRule.md) |  | [optional] 
 
@@ -47,6 +48,41 @@ and a boolean to check if the value has been set.
 SetName sets Name field to given value.
 
 
+### GetCanCreateExpiringApplications
+
+`func (o *UpdateApplicationRequest) GetCanCreateExpiringApplications() bool`
+
+GetCanCreateExpiringApplications returns the CanCreateExpiringApplications field if non-nil, zero value otherwise.
+
+### GetCanCreateExpiringApplicationsOk
+
+`func (o *UpdateApplicationRequest) GetCanCreateExpiringApplicationsOk() (*bool, bool)`
+
+GetCanCreateExpiringApplicationsOk returns a tuple with the CanCreateExpiringApplications field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetCanCreateExpiringApplications
+
+`func (o *UpdateApplicationRequest) SetCanCreateExpiringApplications(v bool)`
+
+SetCanCreateExpiringApplications sets CanCreateExpiringApplications field to given value.
+
+### HasCanCreateExpiringApplications
+
+`func (o *UpdateApplicationRequest) HasCanCreateExpiringApplications() bool`
+
+HasCanCreateExpiringApplications returns a boolean if a field has been set.
+
+### SetCanCreateExpiringApplicationsNil
+
+`func (o *UpdateApplicationRequest) SetCanCreateExpiringApplicationsNil(b bool)`
+
+ SetCanCreateExpiringApplicationsNil sets the value for CanCreateExpiringApplications to be an explicit nil
+
+### UnsetCanCreateExpiringApplications
+`func (o *UpdateApplicationRequest) UnsetCanCreateExpiringApplications()`
+
+UnsetCanCreateExpiringApplications ensures that no value is present for CanCreateExpiringApplications, not even an explicit nil
 ### GetPermissions
 
 `func (o *UpdateApplicationRequest) GetPermissions() []string`

@@ -21,7 +21,8 @@ func TestProxiesCRUD(t *testing.T) {
 	testutils.AssertMethodDidNotError(err, response, "ReactorFormulasApi Create", t)
 
 	applicationPermissions := []string{"token:create"}
-	createApplicationRequest := *basistheory.NewCreateApplicationRequest("Go Test App", "private")
+	createApplicationRequest := *basistheory.NewCreateApplicationRequest("private")
+	createApplicationRequest.SetName("Go Test App")
 	createApplicationRequest.SetPermissions(applicationPermissions)
 
 	createdApplication, response, err := apiClient.ApplicationsApi.Create(contextWithAPIKey).CreateApplicationRequest(createApplicationRequest).Execute()
@@ -65,7 +66,7 @@ func TestProxiesCRUD(t *testing.T) {
 
 	// GET LIST
 	var proxies *basistheory.ProxyPaginatedList
-	proxies, response, err = apiClient.ProxiesApi.Get(contextWithAPIKey).Execute()
+	proxies, response, err = apiClient.ProxiesApi.Get(contextWithAPIKey).Id([]string{createdProxy.GetId()}).Execute()
 
 	testutils.AssertMethodDidNotError(err, response, "ProxiesApi Get", t)
 	testutils.AssertPropertiesMatch(proxies.Data[0].GetName(), proxyName, t)

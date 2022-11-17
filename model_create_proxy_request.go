@@ -92,7 +92,7 @@ func (o *CreateProxyRequest) SetDestinationUrl(v string) {
 
 // GetRequestReactorId returns the RequestReactorId field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *CreateProxyRequest) GetRequestReactorId() string {
-	if o == nil || o.RequestReactorId.Get() == nil {
+	if o == nil || isNil(o.RequestReactorId.Get()) {
 		var ret string
 		return ret
 	}
@@ -135,7 +135,7 @@ func (o *CreateProxyRequest) UnsetRequestReactorId() {
 
 // GetResponseReactorId returns the ResponseReactorId field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *CreateProxyRequest) GetResponseReactorId() string {
-	if o == nil || o.ResponseReactorId.Get() == nil {
+	if o == nil || isNil(o.ResponseReactorId.Get()) {
 		var ret string
 		return ret
 	}
@@ -178,7 +178,7 @@ func (o *CreateProxyRequest) UnsetResponseReactorId() {
 
 // GetRequireAuth returns the RequireAuth field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *CreateProxyRequest) GetRequireAuth() bool {
-	if o == nil || o.RequireAuth.Get() == nil {
+	if o == nil || isNil(o.RequireAuth.Get()) {
 		var ret bool
 		return ret
 	}

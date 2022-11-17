@@ -41,8 +41,8 @@ func (r ApplicationsApiCreateRequest) Execute() (*Application, *http.Response, e
 /*
 Create Method for Create
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@return ApplicationsApiCreateRequest
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @return ApplicationsApiCreateRequest
 */
 func (a *ApplicationsApiService) Create(ctx context.Context) ApplicationsApiCreateRequest {
 	return ApplicationsApiCreateRequest{
@@ -52,8 +52,7 @@ func (a *ApplicationsApiService) Create(ctx context.Context) ApplicationsApiCrea
 }
 
 // Execute executes the request
-//
-//	@return Application
+//  @return Application
 func (a *ApplicationsApiService) CreateExecute(r ApplicationsApiCreateRequest) (*Application, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodPost
@@ -188,9 +187,9 @@ func (r ApplicationsApiDeleteRequest) Execute() (*http.Response, error) {
 /*
 Delete Method for Delete
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param id
-	@return ApplicationsApiDeleteRequest
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param id
+ @return ApplicationsApiDeleteRequest
 */
 func (a *ApplicationsApiService) Delete(ctx context.Context, id string) ApplicationsApiDeleteRequest {
 	return ApplicationsApiDeleteRequest{
@@ -315,12 +314,18 @@ type ApplicationsApiGetRequest struct {
 	ctx        context.Context
 	ApiService *ApplicationsApiService
 	id         *[]string
+	type_      *[]string
 	page       *int32
 	size       *int32
 }
 
 func (r ApplicationsApiGetRequest) Id(id []string) ApplicationsApiGetRequest {
 	r.id = &id
+	return r
+}
+
+func (r ApplicationsApiGetRequest) Type_(type_ []string) ApplicationsApiGetRequest {
+	r.type_ = &type_
 	return r
 }
 
@@ -341,8 +346,8 @@ func (r ApplicationsApiGetRequest) Execute() (*ApplicationPaginatedList, *http.R
 /*
 Get Method for Get
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@return ApplicationsApiGetRequest
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @return ApplicationsApiGetRequest
 */
 func (a *ApplicationsApiService) Get(ctx context.Context) ApplicationsApiGetRequest {
 	return ApplicationsApiGetRequest{
@@ -352,8 +357,7 @@ func (a *ApplicationsApiService) Get(ctx context.Context) ApplicationsApiGetRequ
 }
 
 // Execute executes the request
-//
-//	@return ApplicationPaginatedList
+//  @return ApplicationPaginatedList
 func (a *ApplicationsApiService) GetExecute(r ApplicationsApiGetRequest) (*ApplicationPaginatedList, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
@@ -382,6 +386,17 @@ func (a *ApplicationsApiService) GetExecute(r ApplicationsApiGetRequest) (*Appli
 			}
 		} else {
 			localVarQueryParams.Add("id", parameterToString(t, "multi"))
+		}
+	}
+	if r.type_ != nil {
+		t := *r.type_
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				localVarQueryParams.Add("type", parameterToString(s.Index(i), "multi"))
+			}
+		} else {
+			localVarQueryParams.Add("type", parameterToString(t, "multi"))
 		}
 	}
 	if r.page != nil {
@@ -500,9 +515,9 @@ func (r ApplicationsApiGetByIdRequest) Execute() (*Application, *http.Response, 
 /*
 GetById Method for GetById
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param id
-	@return ApplicationsApiGetByIdRequest
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param id
+ @return ApplicationsApiGetByIdRequest
 */
 func (a *ApplicationsApiService) GetById(ctx context.Context, id string) ApplicationsApiGetByIdRequest {
 	return ApplicationsApiGetByIdRequest{
@@ -513,8 +528,7 @@ func (a *ApplicationsApiService) GetById(ctx context.Context, id string) Applica
 }
 
 // Execute executes the request
-//
-//	@return Application
+//  @return Application
 func (a *ApplicationsApiService) GetByIdExecute(r ApplicationsApiGetByIdRequest) (*Application, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
@@ -647,8 +661,8 @@ func (r ApplicationsApiGetByKeyRequest) Execute() (*Application, *http.Response,
 /*
 GetByKey Method for GetByKey
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@return ApplicationsApiGetByKeyRequest
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @return ApplicationsApiGetByKeyRequest
 */
 func (a *ApplicationsApiService) GetByKey(ctx context.Context) ApplicationsApiGetByKeyRequest {
 	return ApplicationsApiGetByKeyRequest{
@@ -658,8 +672,7 @@ func (a *ApplicationsApiService) GetByKey(ctx context.Context) ApplicationsApiGe
 }
 
 // Execute executes the request
-//
-//	@return Application
+//  @return Application
 func (a *ApplicationsApiService) GetByKeyExecute(r ApplicationsApiGetByKeyRequest) (*Application, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
@@ -779,9 +792,9 @@ func (r ApplicationsApiRegenerateKeyRequest) Execute() (*Application, *http.Resp
 /*
 RegenerateKey Method for RegenerateKey
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param id
-	@return ApplicationsApiRegenerateKeyRequest
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param id
+ @return ApplicationsApiRegenerateKeyRequest
 */
 func (a *ApplicationsApiService) RegenerateKey(ctx context.Context, id string) ApplicationsApiRegenerateKeyRequest {
 	return ApplicationsApiRegenerateKeyRequest{
@@ -792,8 +805,7 @@ func (a *ApplicationsApiService) RegenerateKey(ctx context.Context, id string) A
 }
 
 // Execute executes the request
-//
-//	@return Application
+//  @return Application
 func (a *ApplicationsApiService) RegenerateKeyExecute(r ApplicationsApiRegenerateKeyRequest) (*Application, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodPost
@@ -933,9 +945,9 @@ func (r ApplicationsApiUpdateRequest) Execute() (*Application, *http.Response, e
 /*
 Update Method for Update
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param id
-	@return ApplicationsApiUpdateRequest
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param id
+ @return ApplicationsApiUpdateRequest
 */
 func (a *ApplicationsApiService) Update(ctx context.Context, id string) ApplicationsApiUpdateRequest {
 	return ApplicationsApiUpdateRequest{
@@ -946,8 +958,7 @@ func (a *ApplicationsApiService) Update(ctx context.Context, id string) Applicat
 }
 
 // Execute executes the request
-//
-//	@return Application
+//  @return Application
 func (a *ApplicationsApiService) UpdateExecute(r ApplicationsApiUpdateRequest) (*Application, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodPut

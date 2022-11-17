@@ -20,7 +20,8 @@ func TestReactorCRUD(t *testing.T) {
 	testutils.AssertMethodDidNotError(err, response, "ReactorFormulasApi Create", t)
 
 	applicationPermissions := []string{"token:create"}
-	createApplicationRequest := *basistheory.NewCreateApplicationRequest("Go Test App", "private")
+	createApplicationRequest := *basistheory.NewCreateApplicationRequest("private")
+	createApplicationRequest.SetName("Go Test App")
 	createApplicationRequest.SetPermissions(applicationPermissions)
 
 	createdApplication, response, err := apiClient.ApplicationsApi.Create(contextWithAPIKey).CreateApplicationRequest(createApplicationRequest).Execute()
@@ -50,7 +51,7 @@ func TestReactorCRUD(t *testing.T) {
 
 	// GET LIST
 	var reactors *basistheory.ReactorPaginatedList
-	reactors, response, err = apiClient.ReactorsApi.Get(contextWithAPIKey).Execute()
+	reactors, response, err = apiClient.ReactorsApi.Get(contextWithAPIKey).Id([]string{createdReactor.GetId()}).Execute()
 
 	testutils.AssertMethodDidNotError(err, response, "ReactorsApi sGet", t)
 	testutils.AssertPropertiesMatch(reactors.Data[0].GetName(), reactorName, t)

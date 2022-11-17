@@ -39,7 +39,7 @@ func NewUpdatePrivacyWithDefaults() *UpdatePrivacy {
 
 // GetImpactLevel returns the ImpactLevel field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *UpdatePrivacy) GetImpactLevel() string {
-	if o == nil || o.ImpactLevel.Get() == nil {
+	if o == nil || isNil(o.ImpactLevel.Get()) {
 		var ret string
 		return ret
 	}
@@ -82,7 +82,7 @@ func (o *UpdatePrivacy) UnsetImpactLevel() {
 
 // GetRestrictionPolicy returns the RestrictionPolicy field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *UpdatePrivacy) GetRestrictionPolicy() string {
-	if o == nil || o.RestrictionPolicy.Get() == nil {
+	if o == nil || isNil(o.RestrictionPolicy.Get()) {
 		var ret string
 		return ret
 	}

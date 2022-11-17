@@ -39,7 +39,7 @@ func NewReactorFormulaPaginatedListWithDefaults() *ReactorFormulaPaginatedList {
 
 // GetPagination returns the Pagination field value if set, zero value otherwise.
 func (o *ReactorFormulaPaginatedList) GetPagination() Pagination {
-	if o == nil || o.Pagination == nil {
+	if o == nil || isNil(o.Pagination) {
 		var ret Pagination
 		return ret
 	}
@@ -49,7 +49,7 @@ func (o *ReactorFormulaPaginatedList) GetPagination() Pagination {
 // GetPaginationOk returns a tuple with the Pagination field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ReactorFormulaPaginatedList) GetPaginationOk() (*Pagination, bool) {
-	if o == nil || o.Pagination == nil {
+	if o == nil || isNil(o.Pagination) {
 		return nil, false
 	}
 	return o.Pagination, true
@@ -57,7 +57,7 @@ func (o *ReactorFormulaPaginatedList) GetPaginationOk() (*Pagination, bool) {
 
 // HasPagination returns a boolean if a field has been set.
 func (o *ReactorFormulaPaginatedList) HasPagination() bool {
-	if o != nil && o.Pagination != nil {
+	if o != nil && !isNil(o.Pagination) {
 		return true
 	}
 
@@ -82,7 +82,7 @@ func (o *ReactorFormulaPaginatedList) GetData() []ReactorFormula {
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *ReactorFormulaPaginatedList) GetDataOk() ([]ReactorFormula, bool) {
-	if o == nil || o.Data == nil {
+	if o == nil || isNil(o.Data) {
 		return nil, false
 	}
 	return o.Data, true
@@ -90,7 +90,7 @@ func (o *ReactorFormulaPaginatedList) GetDataOk() ([]ReactorFormula, bool) {
 
 // HasData returns a boolean if a field has been set.
 func (o *ReactorFormulaPaginatedList) HasData() bool {
-	if o != nil && o.Data != nil {
+	if o != nil && isNil(o.Data) {
 		return true
 	}
 
@@ -104,7 +104,7 @@ func (o *ReactorFormulaPaginatedList) SetData(v []ReactorFormula) {
 
 func (o ReactorFormulaPaginatedList) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
-	if o.Pagination != nil {
+	if !isNil(o.Pagination) {
 		toSerialize["pagination"] = o.Pagination
 	}
 	if o.Data != nil {

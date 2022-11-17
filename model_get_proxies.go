@@ -52,7 +52,7 @@ func (o *GetProxies) GetId() []string {
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *GetProxies) GetIdOk() ([]string, bool) {
-	if o == nil || o.Id == nil {
+	if o == nil || isNil(o.Id) {
 		return nil, false
 	}
 	return o.Id, true
@@ -60,7 +60,7 @@ func (o *GetProxies) GetIdOk() ([]string, bool) {
 
 // HasId returns a boolean if a field has been set.
 func (o *GetProxies) HasId() bool {
-	if o != nil && o.Id != nil {
+	if o != nil && isNil(o.Id) {
 		return true
 	}
 
@@ -74,7 +74,7 @@ func (o *GetProxies) SetId(v []string) {
 
 // GetName returns the Name field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *GetProxies) GetName() string {
-	if o == nil || o.Name.Get() == nil {
+	if o == nil || isNil(o.Name.Get()) {
 		var ret string
 		return ret
 	}
@@ -117,7 +117,7 @@ func (o *GetProxies) UnsetName() {
 
 // GetPage returns the Page field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *GetProxies) GetPage() int32 {
-	if o == nil || o.Page.Get() == nil {
+	if o == nil || isNil(o.Page.Get()) {
 		var ret int32
 		return ret
 	}
@@ -160,7 +160,7 @@ func (o *GetProxies) UnsetPage() {
 
 // GetSize returns the Size field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *GetProxies) GetSize() int32 {
-	if o == nil || o.Size.Get() == nil {
+	if o == nil || isNil(o.Size.Get()) {
 		var ret int32
 		return ret
 	}

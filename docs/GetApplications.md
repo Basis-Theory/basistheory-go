@@ -5,6 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Id** | Pointer to **[]string** |  | [optional] 
+**Type** | Pointer to **[]string** |  | [optional] 
 **Page** | Pointer to **NullableInt32** |  | [optional] 
 **Size** | Pointer to **NullableInt32** |  | [optional] 
 
@@ -62,6 +63,41 @@ HasId returns a boolean if a field has been set.
 `func (o *GetApplications) UnsetId()`
 
 UnsetId ensures that no value is present for Id, not even an explicit nil
+### GetType
+
+`func (o *GetApplications) GetType() []string`
+
+GetType returns the Type field if non-nil, zero value otherwise.
+
+### GetTypeOk
+
+`func (o *GetApplications) GetTypeOk() (*[]string, bool)`
+
+GetTypeOk returns a tuple with the Type field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetType
+
+`func (o *GetApplications) SetType(v []string)`
+
+SetType sets Type field to given value.
+
+### HasType
+
+`func (o *GetApplications) HasType() bool`
+
+HasType returns a boolean if a field has been set.
+
+### SetTypeNil
+
+`func (o *GetApplications) SetTypeNil(b bool)`
+
+ SetTypeNil sets the value for Type to be an explicit nil
+
+### UnsetType
+`func (o *GetApplications) UnsetType()`
+
+UnsetType ensures that no value is present for Type, not even an explicit nil
 ### GetPage
 
 `func (o *GetApplications) GetPage() int32`
