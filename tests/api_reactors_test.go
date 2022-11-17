@@ -51,7 +51,7 @@ func TestReactorCRUD(t *testing.T) {
 
 	// GET LIST
 	var reactors *basistheory.ReactorPaginatedList
-	reactors, response, err = apiClient.ReactorsApi.Get(contextWithAPIKey).Execute()
+	reactors, response, err = apiClient.ReactorsApi.Get(contextWithAPIKey).Id([]string{createdReactor.GetId()}).Execute()
 
 	testutils.AssertMethodDidNotError(err, response, "ReactorsApi sGet", t)
 	testutils.AssertPropertiesMatch(reactors.Data[0].GetName(), reactorName, t)

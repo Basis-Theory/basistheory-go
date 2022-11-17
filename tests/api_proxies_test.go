@@ -66,7 +66,7 @@ func TestProxiesCRUD(t *testing.T) {
 
 	// GET LIST
 	var proxies *basistheory.ProxyPaginatedList
-	proxies, response, err = apiClient.ProxiesApi.Get(contextWithAPIKey).Execute()
+	proxies, response, err = apiClient.ProxiesApi.Get(contextWithAPIKey).Id([]string{createdProxy.GetId()}).Execute()
 
 	testutils.AssertMethodDidNotError(err, response, "ProxiesApi Get", t)
 	testutils.AssertPropertiesMatch(proxies.Data[0].GetName(), proxyName, t)

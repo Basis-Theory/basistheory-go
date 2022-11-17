@@ -33,7 +33,7 @@ func TestReactorFormulaCRUD(t *testing.T) {
 
 	// GET LIST
 	var reactorFormulas *basistheory.ReactorFormulaPaginatedList
-	reactorFormulas, response, err = apiClient.ReactorFormulasApi.Get(contextWithAPIKey).Execute()
+	reactorFormulas, response, err = apiClient.ReactorFormulasApi.Get(contextWithAPIKey).Name(reactorFormulaName).Execute()
 
 	testutils.AssertMethodDidNotError(err, response, "ReactorFormulasApi sGet", t)
 	testutils.AssertPropertiesMatch(reactorFormulas.Data[0].GetName(), reactorFormulaName, t)
