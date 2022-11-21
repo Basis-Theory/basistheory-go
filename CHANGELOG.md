@@ -1,3 +1,10 @@
+## [3.8.1](https://github.com/Basis-Theory/basistheory-go/compare/v3.8.0...v3.8.1) (2022-11-21)
+
+
+### Bug Fixes
+
+* Pinning open api generator to v6.2.1 ([#58](https://github.com/Basis-Theory/basistheory-go/issues/58)) ([3536790](https://github.com/Basis-Theory/basistheory-go/commit/35367908a177c4d5008343a94f612c9ccf8819ec))
+
 # [3.8.0](https://github.com/Basis-Theory/basistheory-go/compare/v3.7.0...v3.8.0) (2022-11-17)
 
 
