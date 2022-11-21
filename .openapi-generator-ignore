@@ -27,3 +27,4 @@ git_push.sh
 .travis.yml
 go.mod
 go.sum
+test
