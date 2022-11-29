@@ -16,8 +16,10 @@ import (
 
 // ReactResponse struct for ReactResponse
 type ReactResponse struct {
-	Tokens interface{} `json:"tokens,omitempty"`
-	Raw    interface{} `json:"raw,omitempty"`
+	Tokens  interface{} `json:"tokens,omitempty"`
+	Raw     interface{} `json:"raw,omitempty"`
+	Body    interface{} `json:"body,omitempty"`
+	Headers interface{} `json:"headers,omitempty"`
 }
 
 // NewReactResponse instantiates a new ReactResponse object
@@ -103,6 +105,72 @@ func (o *ReactResponse) SetRaw(v interface{}) {
 	o.Raw = v
 }
 
+// GetBody returns the Body field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ReactResponse) GetBody() interface{} {
+	if o == nil {
+		var ret interface{}
+		return ret
+	}
+	return o.Body
+}
+
+// GetBodyOk returns a tuple with the Body field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ReactResponse) GetBodyOk() (*interface{}, bool) {
+	if o == nil || isNil(o.Body) {
+		return nil, false
+	}
+	return &o.Body, true
+}
+
+// HasBody returns a boolean if a field has been set.
+func (o *ReactResponse) HasBody() bool {
+	if o != nil && isNil(o.Body) {
+		return true
+	}
+
+	return false
+}
+
+// SetBody gets a reference to the given interface{} and assigns it to the Body field.
+func (o *ReactResponse) SetBody(v interface{}) {
+	o.Body = v
+}
+
+// GetHeaders returns the Headers field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ReactResponse) GetHeaders() interface{} {
+	if o == nil {
+		var ret interface{}
+		return ret
+	}
+	return o.Headers
+}
+
+// GetHeadersOk returns a tuple with the Headers field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ReactResponse) GetHeadersOk() (*interface{}, bool) {
+	if o == nil || isNil(o.Headers) {
+		return nil, false
+	}
+	return &o.Headers, true
+}
+
+// HasHeaders returns a boolean if a field has been set.
+func (o *ReactResponse) HasHeaders() bool {
+	if o != nil && isNil(o.Headers) {
+		return true
+	}
+
+	return false
+}
+
+// SetHeaders gets a reference to the given interface{} and assigns it to the Headers field.
+func (o *ReactResponse) SetHeaders(v interface{}) {
+	o.Headers = v
+}
+
 func (o ReactResponse) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.Tokens != nil {
@@ -110,6 +178,12 @@ func (o ReactResponse) MarshalJSON() ([]byte, error) {
 	}
 	if o.Raw != nil {
 		toSerialize["raw"] = o.Raw
+	}
+	if o.Body != nil {
+		toSerialize["body"] = o.Body
+	}
+	if o.Headers != nil {
+		toSerialize["headers"] = o.Headers
 	}
 	return json.Marshal(toSerialize)
 }

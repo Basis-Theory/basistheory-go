@@ -6,6 +6,8 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Tokens** | Pointer to **interface{}** |  | [optional] 
 **Raw** | Pointer to **interface{}** |  | [optional] 
+**Body** | Pointer to **interface{}** |  | [optional] 
+**Headers** | Pointer to **interface{}** |  | [optional] 
 
 ## Methods
 
@@ -96,6 +98,76 @@ HasRaw returns a boolean if a field has been set.
 `func (o *ReactResponse) UnsetRaw()`
 
 UnsetRaw ensures that no value is present for Raw, not even an explicit nil
+### GetBody
+
+`func (o *ReactResponse) GetBody() interface{}`
+
+GetBody returns the Body field if non-nil, zero value otherwise.
+
+### GetBodyOk
+
+`func (o *ReactResponse) GetBodyOk() (*interface{}, bool)`
+
+GetBodyOk returns a tuple with the Body field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetBody
+
+`func (o *ReactResponse) SetBody(v interface{})`
+
+SetBody sets Body field to given value.
+
+### HasBody
+
+`func (o *ReactResponse) HasBody() bool`
+
+HasBody returns a boolean if a field has been set.
+
+### SetBodyNil
+
+`func (o *ReactResponse) SetBodyNil(b bool)`
+
+ SetBodyNil sets the value for Body to be an explicit nil
+
+### UnsetBody
+`func (o *ReactResponse) UnsetBody()`
+
+UnsetBody ensures that no value is present for Body, not even an explicit nil
+### GetHeaders
+
+`func (o *ReactResponse) GetHeaders() interface{}`
+
+GetHeaders returns the Headers field if non-nil, zero value otherwise.
+
+### GetHeadersOk
+
+`func (o *ReactResponse) GetHeadersOk() (*interface{}, bool)`
+
+GetHeadersOk returns a tuple with the Headers field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetHeaders
+
+`func (o *ReactResponse) SetHeaders(v interface{})`
+
+SetHeaders sets Headers field to given value.
+
+### HasHeaders
+
+`func (o *ReactResponse) HasHeaders() bool`
+
+HasHeaders returns a boolean if a field has been set.
+
+### SetHeadersNil
+
+`func (o *ReactResponse) SetHeadersNil(b bool)`
+
+ SetHeadersNil sets the value for Headers to be an explicit nil
+
+### UnsetHeaders
+`func (o *ReactResponse) UnsetHeaders()`
+
+UnsetHeaders ensures that no value is present for Headers, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

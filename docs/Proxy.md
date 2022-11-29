@@ -12,6 +12,10 @@ Name | Type | Description | Notes
 **RequestReactorId** | Pointer to **NullableString** |  | [optional] 
 **ResponseReactorId** | Pointer to **NullableString** |  | [optional] 
 **RequireAuth** | Pointer to **bool** |  | [optional] 
+**RequestTransform** | Pointer to [**ProxyTransform**](ProxyTransform.md) |  | [optional] 
+**ResponseTransform** | Pointer to [**ProxyTransform**](ProxyTransform.md) |  | [optional] 
+**ApplicationId** | Pointer to **NullableString** |  | [optional] 
+**Configuration** | Pointer to **map[string]string** |  | [optional] 
 **CreatedBy** | Pointer to **NullableString** |  | [optional] 
 **CreatedAt** | Pointer to **NullableTime** |  | [optional] 
 **ModifiedBy** | Pointer to **NullableString** |  | [optional] 
@@ -286,6 +290,126 @@ SetRequireAuth sets RequireAuth field to given value.
 
 HasRequireAuth returns a boolean if a field has been set.
 
+### GetRequestTransform
+
+`func (o *Proxy) GetRequestTransform() ProxyTransform`
+
+GetRequestTransform returns the RequestTransform field if non-nil, zero value otherwise.
+
+### GetRequestTransformOk
+
+`func (o *Proxy) GetRequestTransformOk() (*ProxyTransform, bool)`
+
+GetRequestTransformOk returns a tuple with the RequestTransform field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetRequestTransform
+
+`func (o *Proxy) SetRequestTransform(v ProxyTransform)`
+
+SetRequestTransform sets RequestTransform field to given value.
+
+### HasRequestTransform
+
+`func (o *Proxy) HasRequestTransform() bool`
+
+HasRequestTransform returns a boolean if a field has been set.
+
+### GetResponseTransform
+
+`func (o *Proxy) GetResponseTransform() ProxyTransform`
+
+GetResponseTransform returns the ResponseTransform field if non-nil, zero value otherwise.
+
+### GetResponseTransformOk
+
+`func (o *Proxy) GetResponseTransformOk() (*ProxyTransform, bool)`
+
+GetResponseTransformOk returns a tuple with the ResponseTransform field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetResponseTransform
+
+`func (o *Proxy) SetResponseTransform(v ProxyTransform)`
+
+SetResponseTransform sets ResponseTransform field to given value.
+
+### HasResponseTransform
+
+`func (o *Proxy) HasResponseTransform() bool`
+
+HasResponseTransform returns a boolean if a field has been set.
+
+### GetApplicationId
+
+`func (o *Proxy) GetApplicationId() string`
+
+GetApplicationId returns the ApplicationId field if non-nil, zero value otherwise.
+
+### GetApplicationIdOk
+
+`func (o *Proxy) GetApplicationIdOk() (*string, bool)`
+
+GetApplicationIdOk returns a tuple with the ApplicationId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetApplicationId
+
+`func (o *Proxy) SetApplicationId(v string)`
+
+SetApplicationId sets ApplicationId field to given value.
+
+### HasApplicationId
+
+`func (o *Proxy) HasApplicationId() bool`
+
+HasApplicationId returns a boolean if a field has been set.
+
+### SetApplicationIdNil
+
+`func (o *Proxy) SetApplicationIdNil(b bool)`
+
+ SetApplicationIdNil sets the value for ApplicationId to be an explicit nil
+
+### UnsetApplicationId
+`func (o *Proxy) UnsetApplicationId()`
+
+UnsetApplicationId ensures that no value is present for ApplicationId, not even an explicit nil
+### GetConfiguration
+
+`func (o *Proxy) GetConfiguration() map[string]string`
+
+GetConfiguration returns the Configuration field if non-nil, zero value otherwise.
+
+### GetConfigurationOk
+
+`func (o *Proxy) GetConfigurationOk() (*map[string]string, bool)`
+
+GetConfigurationOk returns a tuple with the Configuration field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetConfiguration
+
+`func (o *Proxy) SetConfiguration(v map[string]string)`
+
+SetConfiguration sets Configuration field to given value.
+
+### HasConfiguration
+
+`func (o *Proxy) HasConfiguration() bool`
+
+HasConfiguration returns a boolean if a field has been set.
+
+### SetConfigurationNil
+
+`func (o *Proxy) SetConfigurationNil(b bool)`
+
+ SetConfigurationNil sets the value for Configuration to be an explicit nil
+
+### UnsetConfiguration
+`func (o *Proxy) UnsetConfiguration()`
+
+UnsetConfiguration ensures that no value is present for Configuration, not even an explicit nil
 ### GetCreatedBy
 
 `func (o *Proxy) GetCreatedBy() string`
