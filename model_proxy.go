@@ -17,18 +17,22 @@ import (
 
 // Proxy struct for Proxy
 type Proxy struct {
-	Id                *string        `json:"id,omitempty"`
-	Key               NullableString `json:"key,omitempty"`
-	TenantId          *string        `json:"tenant_id,omitempty"`
-	Name              NullableString `json:"name,omitempty"`
-	DestinationUrl    NullableString `json:"destination_url,omitempty"`
-	RequestReactorId  NullableString `json:"request_reactor_id,omitempty"`
-	ResponseReactorId NullableString `json:"response_reactor_id,omitempty"`
-	RequireAuth       *bool          `json:"require_auth,omitempty"`
-	CreatedBy         NullableString `json:"created_by,omitempty"`
-	CreatedAt         NullableTime   `json:"created_at,omitempty"`
-	ModifiedBy        NullableString `json:"modified_by,omitempty"`
-	ModifiedAt        NullableTime   `json:"modified_at,omitempty"`
+	Id                *string           `json:"id,omitempty"`
+	Key               NullableString    `json:"key,omitempty"`
+	TenantId          *string           `json:"tenant_id,omitempty"`
+	Name              NullableString    `json:"name,omitempty"`
+	DestinationUrl    NullableString    `json:"destination_url,omitempty"`
+	RequestReactorId  NullableString    `json:"request_reactor_id,omitempty"`
+	ResponseReactorId NullableString    `json:"response_reactor_id,omitempty"`
+	RequireAuth       *bool             `json:"require_auth,omitempty"`
+	RequestTransform  *ProxyTransform   `json:"request_transform,omitempty"`
+	ResponseTransform *ProxyTransform   `json:"response_transform,omitempty"`
+	ApplicationId     NullableString    `json:"application_id,omitempty"`
+	Configuration     map[string]string `json:"configuration,omitempty"`
+	CreatedBy         NullableString    `json:"created_by,omitempty"`
+	CreatedAt         NullableTime      `json:"created_at,omitempty"`
+	ModifiedBy        NullableString    `json:"modified_by,omitempty"`
+	ModifiedAt        NullableTime      `json:"modified_at,omitempty"`
 }
 
 // NewProxy instantiates a new Proxy object
@@ -359,6 +363,146 @@ func (o *Proxy) SetRequireAuth(v bool) {
 	o.RequireAuth = &v
 }
 
+// GetRequestTransform returns the RequestTransform field value if set, zero value otherwise.
+func (o *Proxy) GetRequestTransform() ProxyTransform {
+	if o == nil || isNil(o.RequestTransform) {
+		var ret ProxyTransform
+		return ret
+	}
+	return *o.RequestTransform
+}
+
+// GetRequestTransformOk returns a tuple with the RequestTransform field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Proxy) GetRequestTransformOk() (*ProxyTransform, bool) {
+	if o == nil || isNil(o.RequestTransform) {
+		return nil, false
+	}
+	return o.RequestTransform, true
+}
+
+// HasRequestTransform returns a boolean if a field has been set.
+func (o *Proxy) HasRequestTransform() bool {
+	if o != nil && !isNil(o.RequestTransform) {
+		return true
+	}
+
+	return false
+}
+
+// SetRequestTransform gets a reference to the given ProxyTransform and assigns it to the RequestTransform field.
+func (o *Proxy) SetRequestTransform(v ProxyTransform) {
+	o.RequestTransform = &v
+}
+
+// GetResponseTransform returns the ResponseTransform field value if set, zero value otherwise.
+func (o *Proxy) GetResponseTransform() ProxyTransform {
+	if o == nil || isNil(o.ResponseTransform) {
+		var ret ProxyTransform
+		return ret
+	}
+	return *o.ResponseTransform
+}
+
+// GetResponseTransformOk returns a tuple with the ResponseTransform field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Proxy) GetResponseTransformOk() (*ProxyTransform, bool) {
+	if o == nil || isNil(o.ResponseTransform) {
+		return nil, false
+	}
+	return o.ResponseTransform, true
+}
+
+// HasResponseTransform returns a boolean if a field has been set.
+func (o *Proxy) HasResponseTransform() bool {
+	if o != nil && !isNil(o.ResponseTransform) {
+		return true
+	}
+
+	return false
+}
+
+// SetResponseTransform gets a reference to the given ProxyTransform and assigns it to the ResponseTransform field.
+func (o *Proxy) SetResponseTransform(v ProxyTransform) {
+	o.ResponseTransform = &v
+}
+
+// GetApplicationId returns the ApplicationId field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *Proxy) GetApplicationId() string {
+	if o == nil || isNil(o.ApplicationId.Get()) {
+		var ret string
+		return ret
+	}
+	return *o.ApplicationId.Get()
+}
+
+// GetApplicationIdOk returns a tuple with the ApplicationId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *Proxy) GetApplicationIdOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.ApplicationId.Get(), o.ApplicationId.IsSet()
+}
+
+// HasApplicationId returns a boolean if a field has been set.
+func (o *Proxy) HasApplicationId() bool {
+	if o != nil && o.ApplicationId.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetApplicationId gets a reference to the given NullableString and assigns it to the ApplicationId field.
+func (o *Proxy) SetApplicationId(v string) {
+	o.ApplicationId.Set(&v)
+}
+
+// SetApplicationIdNil sets the value for ApplicationId to be an explicit nil
+func (o *Proxy) SetApplicationIdNil() {
+	o.ApplicationId.Set(nil)
+}
+
+// UnsetApplicationId ensures that no value is present for ApplicationId, not even an explicit nil
+func (o *Proxy) UnsetApplicationId() {
+	o.ApplicationId.Unset()
+}
+
+// GetConfiguration returns the Configuration field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *Proxy) GetConfiguration() map[string]string {
+	if o == nil {
+		var ret map[string]string
+		return ret
+	}
+	return o.Configuration
+}
+
+// GetConfigurationOk returns a tuple with the Configuration field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *Proxy) GetConfigurationOk() (*map[string]string, bool) {
+	if o == nil || isNil(o.Configuration) {
+		return nil, false
+	}
+	return &o.Configuration, true
+}
+
+// HasConfiguration returns a boolean if a field has been set.
+func (o *Proxy) HasConfiguration() bool {
+	if o != nil && isNil(o.Configuration) {
+		return true
+	}
+
+	return false
+}
+
+// SetConfiguration gets a reference to the given map[string]string and assigns it to the Configuration field.
+func (o *Proxy) SetConfiguration(v map[string]string) {
+	o.Configuration = v
+}
+
 // GetCreatedBy returns the CreatedBy field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *Proxy) GetCreatedBy() string {
 	if o == nil || isNil(o.CreatedBy.Get()) {
@@ -556,6 +700,18 @@ func (o Proxy) MarshalJSON() ([]byte, error) {
 	}
 	if !isNil(o.RequireAuth) {
 		toSerialize["require_auth"] = o.RequireAuth
+	}
+	if !isNil(o.RequestTransform) {
+		toSerialize["request_transform"] = o.RequestTransform
+	}
+	if !isNil(o.ResponseTransform) {
+		toSerialize["response_transform"] = o.ResponseTransform
+	}
+	if o.ApplicationId.IsSet() {
+		toSerialize["application_id"] = o.ApplicationId.Get()
+	}
+	if o.Configuration != nil {
+		toSerialize["configuration"] = o.Configuration
 	}
 	if o.CreatedBy.IsSet() {
 		toSerialize["created_by"] = o.CreatedBy.Get()
