@@ -1,3 +1,10 @@
+# [3.9.0](https://github.com/Basis-Theory/basistheory-go/compare/v3.8.1...v3.9.0) (2022-11-30)
+
+
+### Features
+
+* add proxy transform attributes ([#60](https://github.com/Basis-Theory/basistheory-go/issues/60)) ([2393a0b](https://github.com/Basis-Theory/basistheory-go/commit/2393a0bac8430afd500a7ab04e917a5f68031f00))
+
 ## [3.8.1](https://github.com/Basis-Theory/basistheory-go/compare/v3.8.0...v3.8.1) (2022-11-21)
 
 
