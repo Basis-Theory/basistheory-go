@@ -118,6 +118,8 @@ Class | Method | HTTP request | Description
 *ReactorsApi* | [**GetById**](docs/ReactorsApi.md#getbyid) | **Get** /reactors/{id} | 
 *ReactorsApi* | [**React**](docs/ReactorsApi.md#react) | **Post** /reactors/{id}/react | 
 *ReactorsApi* | [**Update**](docs/ReactorsApi.md#update) | **Put** /reactors/{id} | 
+*SessionsApi* | [**Authorize**](docs/SessionsApi.md#authorize) | **Post** /sessions/authorize | 
+*SessionsApi* | [**Create**](docs/SessionsApi.md#create) | **Post** /sessions | 
 *TenantsApi* | [**CreateInvitation**](docs/TenantsApi.md#createinvitation) | **Post** /tenants/self/invitations | 
 *TenantsApi* | [**Delete**](docs/TenantsApi.md#delete) | **Delete** /tenants/self | 
 *TenantsApi* | [**DeleteInvitation**](docs/TenantsApi.md#deleteinvitation) | **Delete** /tenants/self/invitations/{invitationId} | 
@@ -148,11 +150,13 @@ Class | Method | HTTP request | Description
  - [Application](docs/Application.md)
  - [ApplicationPaginatedList](docs/ApplicationPaginatedList.md)
  - [ApplicationTemplate](docs/ApplicationTemplate.md)
+ - [AuthorizeSessionRequest](docs/AuthorizeSessionRequest.md)
  - [Condition](docs/Condition.md)
  - [CreateApplicationRequest](docs/CreateApplicationRequest.md)
  - [CreateProxyRequest](docs/CreateProxyRequest.md)
  - [CreateReactorFormulaRequest](docs/CreateReactorFormulaRequest.md)
  - [CreateReactorRequest](docs/CreateReactorRequest.md)
+ - [CreateSessionResponse](docs/CreateSessionResponse.md)
  - [CreateTenantInvitationRequest](docs/CreateTenantInvitationRequest.md)
  - [CreateTokenRequest](docs/CreateTokenRequest.md)
  - [CreateTokenResponse](docs/CreateTokenResponse.md)
@@ -177,6 +181,7 @@ Class | Method | HTTP request | Description
  - [ProblemDetails](docs/ProblemDetails.md)
  - [Proxy](docs/Proxy.md)
  - [ProxyPaginatedList](docs/ProxyPaginatedList.md)
+ - [ProxyTransform](docs/ProxyTransform.md)
  - [ReactRequest](docs/ReactRequest.md)
  - [ReactResponse](docs/ReactResponse.md)
  - [Reactor](docs/Reactor.md)

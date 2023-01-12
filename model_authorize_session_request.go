@@ -14,84 +14,58 @@ import (
 	"encoding/json"
 )
 
-// CreateApplicationRequest struct for CreateApplicationRequest
-type CreateApplicationRequest struct {
-	Name        string         `json:"name"`
-	Type        string         `json:"type"`
+// AuthorizeSessionRequest struct for AuthorizeSessionRequest
+type AuthorizeSessionRequest struct {
+	Nonce       string         `json:"nonce"`
 	ExpiresAt   NullableString `json:"expires_at,omitempty"`
 	Permissions []string       `json:"permissions,omitempty"`
 	Rules       []AccessRule   `json:"rules,omitempty"`
 }
 
-// NewCreateApplicationRequest instantiates a new CreateApplicationRequest object
+// NewAuthorizeSessionRequest instantiates a new AuthorizeSessionRequest object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewCreateApplicationRequest(name string, type_ string) *CreateApplicationRequest {
-	this := CreateApplicationRequest{}
-	this.Name = name
-	this.Type = type_
+func NewAuthorizeSessionRequest(nonce string) *AuthorizeSessionRequest {
+	this := AuthorizeSessionRequest{}
+	this.Nonce = nonce
 	return &this
 }
 
-// NewCreateApplicationRequestWithDefaults instantiates a new CreateApplicationRequest object
+// NewAuthorizeSessionRequestWithDefaults instantiates a new AuthorizeSessionRequest object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
-func NewCreateApplicationRequestWithDefaults() *CreateApplicationRequest {
-	this := CreateApplicationRequest{}
+func NewAuthorizeSessionRequestWithDefaults() *AuthorizeSessionRequest {
+	this := AuthorizeSessionRequest{}
 	return &this
 }
 
-// GetName returns the Name field value
-func (o *CreateApplicationRequest) GetName() string {
+// GetNonce returns the Nonce field value
+func (o *AuthorizeSessionRequest) GetNonce() string {
 	if o == nil {
 		var ret string
 		return ret
 	}
 
-	return o.Name
+	return o.Nonce
 }
 
-// GetNameOk returns a tuple with the Name field value
+// GetNonceOk returns a tuple with the Nonce field value
 // and a boolean to check if the value has been set.
-func (o *CreateApplicationRequest) GetNameOk() (*string, bool) {
+func (o *AuthorizeSessionRequest) GetNonceOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.Name, true
+	return &o.Nonce, true
 }
 
-// SetName sets field value
-func (o *CreateApplicationRequest) SetName(v string) {
-	o.Name = v
-}
-
-// GetType returns the Type field value
-func (o *CreateApplicationRequest) GetType() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Type
-}
-
-// GetTypeOk returns a tuple with the Type field value
-// and a boolean to check if the value has been set.
-func (o *CreateApplicationRequest) GetTypeOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.Type, true
-}
-
-// SetType sets field value
-func (o *CreateApplicationRequest) SetType(v string) {
-	o.Type = v
+// SetNonce sets field value
+func (o *AuthorizeSessionRequest) SetNonce(v string) {
+	o.Nonce = v
 }
 
 // GetExpiresAt returns the ExpiresAt field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *CreateApplicationRequest) GetExpiresAt() string {
+func (o *AuthorizeSessionRequest) GetExpiresAt() string {
 	if o == nil || isNil(o.ExpiresAt.Get()) {
 		var ret string
 		return ret
@@ -102,7 +76,7 @@ func (o *CreateApplicationRequest) GetExpiresAt() string {
 // GetExpiresAtOk returns a tuple with the ExpiresAt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *CreateApplicationRequest) GetExpiresAtOk() (*string, bool) {
+func (o *AuthorizeSessionRequest) GetExpiresAtOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -110,7 +84,7 @@ func (o *CreateApplicationRequest) GetExpiresAtOk() (*string, bool) {
 }
 
 // HasExpiresAt returns a boolean if a field has been set.
-func (o *CreateApplicationRequest) HasExpiresAt() bool {
+func (o *AuthorizeSessionRequest) HasExpiresAt() bool {
 	if o != nil && o.ExpiresAt.IsSet() {
 		return true
 	}
@@ -119,22 +93,22 @@ func (o *CreateApplicationRequest) HasExpiresAt() bool {
 }
 
 // SetExpiresAt gets a reference to the given NullableString and assigns it to the ExpiresAt field.
-func (o *CreateApplicationRequest) SetExpiresAt(v string) {
+func (o *AuthorizeSessionRequest) SetExpiresAt(v string) {
 	o.ExpiresAt.Set(&v)
 }
 
 // SetExpiresAtNil sets the value for ExpiresAt to be an explicit nil
-func (o *CreateApplicationRequest) SetExpiresAtNil() {
+func (o *AuthorizeSessionRequest) SetExpiresAtNil() {
 	o.ExpiresAt.Set(nil)
 }
 
 // UnsetExpiresAt ensures that no value is present for ExpiresAt, not even an explicit nil
-func (o *CreateApplicationRequest) UnsetExpiresAt() {
+func (o *AuthorizeSessionRequest) UnsetExpiresAt() {
 	o.ExpiresAt.Unset()
 }
 
 // GetPermissions returns the Permissions field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *CreateApplicationRequest) GetPermissions() []string {
+func (o *AuthorizeSessionRequest) GetPermissions() []string {
 	if o == nil {
 		var ret []string
 		return ret
@@ -145,7 +119,7 @@ func (o *CreateApplicationRequest) GetPermissions() []string {
 // GetPermissionsOk returns a tuple with the Permissions field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *CreateApplicationRequest) GetPermissionsOk() ([]string, bool) {
+func (o *AuthorizeSessionRequest) GetPermissionsOk() ([]string, bool) {
 	if o == nil || isNil(o.Permissions) {
 		return nil, false
 	}
@@ -153,7 +127,7 @@ func (o *CreateApplicationRequest) GetPermissionsOk() ([]string, bool) {
 }
 
 // HasPermissions returns a boolean if a field has been set.
-func (o *CreateApplicationRequest) HasPermissions() bool {
+func (o *AuthorizeSessionRequest) HasPermissions() bool {
 	if o != nil && isNil(o.Permissions) {
 		return true
 	}
@@ -162,12 +136,12 @@ func (o *CreateApplicationRequest) HasPermissions() bool {
 }
 
 // SetPermissions gets a reference to the given []string and assigns it to the Permissions field.
-func (o *CreateApplicationRequest) SetPermissions(v []string) {
+func (o *AuthorizeSessionRequest) SetPermissions(v []string) {
 	o.Permissions = v
 }
 
 // GetRules returns the Rules field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *CreateApplicationRequest) GetRules() []AccessRule {
+func (o *AuthorizeSessionRequest) GetRules() []AccessRule {
 	if o == nil {
 		var ret []AccessRule
 		return ret
@@ -178,7 +152,7 @@ func (o *CreateApplicationRequest) GetRules() []AccessRule {
 // GetRulesOk returns a tuple with the Rules field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *CreateApplicationRequest) GetRulesOk() ([]AccessRule, bool) {
+func (o *AuthorizeSessionRequest) GetRulesOk() ([]AccessRule, bool) {
 	if o == nil || isNil(o.Rules) {
 		return nil, false
 	}
@@ -186,7 +160,7 @@ func (o *CreateApplicationRequest) GetRulesOk() ([]AccessRule, bool) {
 }
 
 // HasRules returns a boolean if a field has been set.
-func (o *CreateApplicationRequest) HasRules() bool {
+func (o *AuthorizeSessionRequest) HasRules() bool {
 	if o != nil && isNil(o.Rules) {
 		return true
 	}
@@ -195,17 +169,14 @@ func (o *CreateApplicationRequest) HasRules() bool {
 }
 
 // SetRules gets a reference to the given []AccessRule and assigns it to the Rules field.
-func (o *CreateApplicationRequest) SetRules(v []AccessRule) {
+func (o *AuthorizeSessionRequest) SetRules(v []AccessRule) {
 	o.Rules = v
 }
 
-func (o CreateApplicationRequest) MarshalJSON() ([]byte, error) {
+func (o AuthorizeSessionRequest) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if true {
-		toSerialize["name"] = o.Name
-	}
-	if true {
-		toSerialize["type"] = o.Type
+		toSerialize["nonce"] = o.Nonce
 	}
 	if o.ExpiresAt.IsSet() {
 		toSerialize["expires_at"] = o.ExpiresAt.Get()
@@ -219,38 +190,38 @@ func (o CreateApplicationRequest) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
-type NullableCreateApplicationRequest struct {
-	value *CreateApplicationRequest
+type NullableAuthorizeSessionRequest struct {
+	value *AuthorizeSessionRequest
 	isSet bool
 }
 
-func (v NullableCreateApplicationRequest) Get() *CreateApplicationRequest {
+func (v NullableAuthorizeSessionRequest) Get() *AuthorizeSessionRequest {
 	return v.value
 }
 
-func (v *NullableCreateApplicationRequest) Set(val *CreateApplicationRequest) {
+func (v *NullableAuthorizeSessionRequest) Set(val *AuthorizeSessionRequest) {
 	v.value = val
 	v.isSet = true
 }
 
-func (v NullableCreateApplicationRequest) IsSet() bool {
+func (v NullableAuthorizeSessionRequest) IsSet() bool {
 	return v.isSet
 }
 
-func (v *NullableCreateApplicationRequest) Unset() {
+func (v *NullableAuthorizeSessionRequest) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
-func NewNullableCreateApplicationRequest(val *CreateApplicationRequest) *NullableCreateApplicationRequest {
-	return &NullableCreateApplicationRequest{value: val, isSet: true}
+func NewNullableAuthorizeSessionRequest(val *AuthorizeSessionRequest) *NullableAuthorizeSessionRequest {
+	return &NullableAuthorizeSessionRequest{value: val, isSet: true}
 }
 
-func (v NullableCreateApplicationRequest) MarshalJSON() ([]byte, error) {
+func (v NullableAuthorizeSessionRequest) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
-func (v *NullableCreateApplicationRequest) UnmarshalJSON(src []byte) error {
+func (v *NullableAuthorizeSessionRequest) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
