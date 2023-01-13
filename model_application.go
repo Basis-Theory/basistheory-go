@@ -17,19 +17,18 @@ import (
 
 // Application struct for Application
 type Application struct {
-	Id                            *string        `json:"id,omitempty"`
-	TenantId                      *string        `json:"tenant_id,omitempty"`
-	Name                          NullableString `json:"name,omitempty"`
-	Key                           NullableString `json:"key,omitempty"`
-	Type                          NullableString `json:"type,omitempty"`
-	CreatedBy                     NullableString `json:"created_by,omitempty"`
-	CreatedAt                     NullableTime   `json:"created_at,omitempty"`
-	ModifiedBy                    NullableString `json:"modified_by,omitempty"`
-	ModifiedAt                    NullableTime   `json:"modified_at,omitempty"`
-	CanCreateExpiringApplications NullableBool   `json:"can_create_expiring_applications,omitempty"`
-	ExpiresAt                     NullableTime   `json:"expires_at,omitempty"`
-	Permissions                   []string       `json:"permissions,omitempty"`
-	Rules                         []AccessRule   `json:"rules,omitempty"`
+	Id          *string        `json:"id,omitempty"`
+	TenantId    *string        `json:"tenant_id,omitempty"`
+	Name        NullableString `json:"name,omitempty"`
+	Key         NullableString `json:"key,omitempty"`
+	Type        NullableString `json:"type,omitempty"`
+	CreatedBy   NullableString `json:"created_by,omitempty"`
+	CreatedAt   NullableTime   `json:"created_at,omitempty"`
+	ModifiedBy  NullableString `json:"modified_by,omitempty"`
+	ModifiedAt  NullableTime   `json:"modified_at,omitempty"`
+	ExpiresAt   NullableTime   `json:"expires_at,omitempty"`
+	Permissions []string       `json:"permissions,omitempty"`
+	Rules       []AccessRule   `json:"rules,omitempty"`
 }
 
 // NewApplication instantiates a new Application object
@@ -414,49 +413,6 @@ func (o *Application) UnsetModifiedAt() {
 	o.ModifiedAt.Unset()
 }
 
-// GetCanCreateExpiringApplications returns the CanCreateExpiringApplications field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *Application) GetCanCreateExpiringApplications() bool {
-	if o == nil || isNil(o.CanCreateExpiringApplications.Get()) {
-		var ret bool
-		return ret
-	}
-	return *o.CanCreateExpiringApplications.Get()
-}
-
-// GetCanCreateExpiringApplicationsOk returns a tuple with the CanCreateExpiringApplications field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *Application) GetCanCreateExpiringApplicationsOk() (*bool, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.CanCreateExpiringApplications.Get(), o.CanCreateExpiringApplications.IsSet()
-}
-
-// HasCanCreateExpiringApplications returns a boolean if a field has been set.
-func (o *Application) HasCanCreateExpiringApplications() bool {
-	if o != nil && o.CanCreateExpiringApplications.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetCanCreateExpiringApplications gets a reference to the given NullableBool and assigns it to the CanCreateExpiringApplications field.
-func (o *Application) SetCanCreateExpiringApplications(v bool) {
-	o.CanCreateExpiringApplications.Set(&v)
-}
-
-// SetCanCreateExpiringApplicationsNil sets the value for CanCreateExpiringApplications to be an explicit nil
-func (o *Application) SetCanCreateExpiringApplicationsNil() {
-	o.CanCreateExpiringApplications.Set(nil)
-}
-
-// UnsetCanCreateExpiringApplications ensures that no value is present for CanCreateExpiringApplications, not even an explicit nil
-func (o *Application) UnsetCanCreateExpiringApplications() {
-	o.CanCreateExpiringApplications.Unset()
-}
-
 // GetExpiresAt returns the ExpiresAt field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *Application) GetExpiresAt() time.Time {
 	if o == nil || isNil(o.ExpiresAt.Get()) {
@@ -594,9 +550,6 @@ func (o Application) MarshalJSON() ([]byte, error) {
 	}
 	if o.ModifiedAt.IsSet() {
 		toSerialize["modified_at"] = o.ModifiedAt.Get()
-	}
-	if o.CanCreateExpiringApplications.IsSet() {
-		toSerialize["can_create_expiring_applications"] = o.CanCreateExpiringApplications.Get()
 	}
 	if o.ExpiresAt.IsSet() {
 		toSerialize["expires_at"] = o.ExpiresAt.Get()

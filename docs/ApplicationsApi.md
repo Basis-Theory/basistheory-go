@@ -33,7 +33,7 @@ import (
 )
 
 func main() {
-    createApplicationRequest := *openapiclient.NewCreateApplicationRequest("Type_example") // CreateApplicationRequest | 
+    createApplicationRequest := *openapiclient.NewCreateApplicationRequest("Name_example", "Type_example") // CreateApplicationRequest | 
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)

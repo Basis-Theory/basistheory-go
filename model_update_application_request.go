@@ -16,10 +16,9 @@ import (
 
 // UpdateApplicationRequest struct for UpdateApplicationRequest
 type UpdateApplicationRequest struct {
-	Name                          string       `json:"name"`
-	CanCreateExpiringApplications NullableBool `json:"can_create_expiring_applications,omitempty"`
-	Permissions                   []string     `json:"permissions,omitempty"`
-	Rules                         []AccessRule `json:"rules,omitempty"`
+	Name        string       `json:"name"`
+	Permissions []string     `json:"permissions,omitempty"`
+	Rules       []AccessRule `json:"rules,omitempty"`
 }
 
 // NewUpdateApplicationRequest instantiates a new UpdateApplicationRequest object
@@ -62,49 +61,6 @@ func (o *UpdateApplicationRequest) GetNameOk() (*string, bool) {
 // SetName sets field value
 func (o *UpdateApplicationRequest) SetName(v string) {
 	o.Name = v
-}
-
-// GetCanCreateExpiringApplications returns the CanCreateExpiringApplications field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *UpdateApplicationRequest) GetCanCreateExpiringApplications() bool {
-	if o == nil || isNil(o.CanCreateExpiringApplications.Get()) {
-		var ret bool
-		return ret
-	}
-	return *o.CanCreateExpiringApplications.Get()
-}
-
-// GetCanCreateExpiringApplicationsOk returns a tuple with the CanCreateExpiringApplications field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *UpdateApplicationRequest) GetCanCreateExpiringApplicationsOk() (*bool, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.CanCreateExpiringApplications.Get(), o.CanCreateExpiringApplications.IsSet()
-}
-
-// HasCanCreateExpiringApplications returns a boolean if a field has been set.
-func (o *UpdateApplicationRequest) HasCanCreateExpiringApplications() bool {
-	if o != nil && o.CanCreateExpiringApplications.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetCanCreateExpiringApplications gets a reference to the given NullableBool and assigns it to the CanCreateExpiringApplications field.
-func (o *UpdateApplicationRequest) SetCanCreateExpiringApplications(v bool) {
-	o.CanCreateExpiringApplications.Set(&v)
-}
-
-// SetCanCreateExpiringApplicationsNil sets the value for CanCreateExpiringApplications to be an explicit nil
-func (o *UpdateApplicationRequest) SetCanCreateExpiringApplicationsNil() {
-	o.CanCreateExpiringApplications.Set(nil)
-}
-
-// UnsetCanCreateExpiringApplications ensures that no value is present for CanCreateExpiringApplications, not even an explicit nil
-func (o *UpdateApplicationRequest) UnsetCanCreateExpiringApplications() {
-	o.CanCreateExpiringApplications.Unset()
 }
 
 // GetPermissions returns the Permissions field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -177,9 +133,6 @@ func (o UpdateApplicationRequest) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if true {
 		toSerialize["name"] = o.Name
-	}
-	if o.CanCreateExpiringApplications.IsSet() {
-		toSerialize["can_create_expiring_applications"] = o.CanCreateExpiringApplications.Get()
 	}
 	if o.Permissions != nil {
 		toSerialize["permissions"] = o.Permissions

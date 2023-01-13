@@ -1,177 +1,156 @@
-# CreateApplicationRequest
+# AuthorizeSessionRequest
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Name** | **string** |  | 
-**Type** | **string** |  | 
+**Nonce** | **string** |  | 
 **ExpiresAt** | Pointer to **NullableString** |  | [optional] 
 **Permissions** | Pointer to **[]string** |  | [optional] 
 **Rules** | Pointer to [**[]AccessRule**](AccessRule.md) |  | [optional] 
 
 ## Methods
 
-### NewCreateApplicationRequest
+### NewAuthorizeSessionRequest
 
-`func NewCreateApplicationRequest(name string, type_ string, ) *CreateApplicationRequest`
+`func NewAuthorizeSessionRequest(nonce string, ) *AuthorizeSessionRequest`
 
-NewCreateApplicationRequest instantiates a new CreateApplicationRequest object
+NewAuthorizeSessionRequest instantiates a new AuthorizeSessionRequest object
 This constructor will assign default values to properties that have it defined,
 and makes sure properties required by API are set, but the set of arguments
 will change when the set of required properties is changed
 
-### NewCreateApplicationRequestWithDefaults
+### NewAuthorizeSessionRequestWithDefaults
 
-`func NewCreateApplicationRequestWithDefaults() *CreateApplicationRequest`
+`func NewAuthorizeSessionRequestWithDefaults() *AuthorizeSessionRequest`
 
-NewCreateApplicationRequestWithDefaults instantiates a new CreateApplicationRequest object
+NewAuthorizeSessionRequestWithDefaults instantiates a new AuthorizeSessionRequest object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
-### GetName
+### GetNonce
 
-`func (o *CreateApplicationRequest) GetName() string`
+`func (o *AuthorizeSessionRequest) GetNonce() string`
 
-GetName returns the Name field if non-nil, zero value otherwise.
+GetNonce returns the Nonce field if non-nil, zero value otherwise.
 
-### GetNameOk
+### GetNonceOk
 
-`func (o *CreateApplicationRequest) GetNameOk() (*string, bool)`
+`func (o *AuthorizeSessionRequest) GetNonceOk() (*string, bool)`
 
-GetNameOk returns a tuple with the Name field if it's non-nil, zero value otherwise
+GetNonceOk returns a tuple with the Nonce field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetName
+### SetNonce
 
-`func (o *CreateApplicationRequest) SetName(v string)`
+`func (o *AuthorizeSessionRequest) SetNonce(v string)`
 
-SetName sets Name field to given value.
-
-
-### GetType
-
-`func (o *CreateApplicationRequest) GetType() string`
-
-GetType returns the Type field if non-nil, zero value otherwise.
-
-### GetTypeOk
-
-`func (o *CreateApplicationRequest) GetTypeOk() (*string, bool)`
-
-GetTypeOk returns a tuple with the Type field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetType
-
-`func (o *CreateApplicationRequest) SetType(v string)`
-
-SetType sets Type field to given value.
+SetNonce sets Nonce field to given value.
 
 
 ### GetExpiresAt
 
-`func (o *CreateApplicationRequest) GetExpiresAt() string`
+`func (o *AuthorizeSessionRequest) GetExpiresAt() string`
 
 GetExpiresAt returns the ExpiresAt field if non-nil, zero value otherwise.
 
 ### GetExpiresAtOk
 
-`func (o *CreateApplicationRequest) GetExpiresAtOk() (*string, bool)`
+`func (o *AuthorizeSessionRequest) GetExpiresAtOk() (*string, bool)`
 
 GetExpiresAtOk returns a tuple with the ExpiresAt field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetExpiresAt
 
-`func (o *CreateApplicationRequest) SetExpiresAt(v string)`
+`func (o *AuthorizeSessionRequest) SetExpiresAt(v string)`
 
 SetExpiresAt sets ExpiresAt field to given value.
 
 ### HasExpiresAt
 
-`func (o *CreateApplicationRequest) HasExpiresAt() bool`
+`func (o *AuthorizeSessionRequest) HasExpiresAt() bool`
 
 HasExpiresAt returns a boolean if a field has been set.
 
 ### SetExpiresAtNil
 
-`func (o *CreateApplicationRequest) SetExpiresAtNil(b bool)`
+`func (o *AuthorizeSessionRequest) SetExpiresAtNil(b bool)`
 
  SetExpiresAtNil sets the value for ExpiresAt to be an explicit nil
 
 ### UnsetExpiresAt
-`func (o *CreateApplicationRequest) UnsetExpiresAt()`
+`func (o *AuthorizeSessionRequest) UnsetExpiresAt()`
 
 UnsetExpiresAt ensures that no value is present for ExpiresAt, not even an explicit nil
 ### GetPermissions
 
-`func (o *CreateApplicationRequest) GetPermissions() []string`
+`func (o *AuthorizeSessionRequest) GetPermissions() []string`
 
 GetPermissions returns the Permissions field if non-nil, zero value otherwise.
 
 ### GetPermissionsOk
 
-`func (o *CreateApplicationRequest) GetPermissionsOk() (*[]string, bool)`
+`func (o *AuthorizeSessionRequest) GetPermissionsOk() (*[]string, bool)`
 
 GetPermissionsOk returns a tuple with the Permissions field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetPermissions
 
-`func (o *CreateApplicationRequest) SetPermissions(v []string)`
+`func (o *AuthorizeSessionRequest) SetPermissions(v []string)`
 
 SetPermissions sets Permissions field to given value.
 
 ### HasPermissions
 
-`func (o *CreateApplicationRequest) HasPermissions() bool`
+`func (o *AuthorizeSessionRequest) HasPermissions() bool`
 
 HasPermissions returns a boolean if a field has been set.
 
 ### SetPermissionsNil
 
-`func (o *CreateApplicationRequest) SetPermissionsNil(b bool)`
+`func (o *AuthorizeSessionRequest) SetPermissionsNil(b bool)`
 
  SetPermissionsNil sets the value for Permissions to be an explicit nil
 
 ### UnsetPermissions
-`func (o *CreateApplicationRequest) UnsetPermissions()`
+`func (o *AuthorizeSessionRequest) UnsetPermissions()`
 
 UnsetPermissions ensures that no value is present for Permissions, not even an explicit nil
 ### GetRules
 
-`func (o *CreateApplicationRequest) GetRules() []AccessRule`
+`func (o *AuthorizeSessionRequest) GetRules() []AccessRule`
 
 GetRules returns the Rules field if non-nil, zero value otherwise.
 
 ### GetRulesOk
 
-`func (o *CreateApplicationRequest) GetRulesOk() (*[]AccessRule, bool)`
+`func (o *AuthorizeSessionRequest) GetRulesOk() (*[]AccessRule, bool)`
 
 GetRulesOk returns a tuple with the Rules field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetRules
 
-`func (o *CreateApplicationRequest) SetRules(v []AccessRule)`
+`func (o *AuthorizeSessionRequest) SetRules(v []AccessRule)`
 
 SetRules sets Rules field to given value.
 
 ### HasRules
 
-`func (o *CreateApplicationRequest) HasRules() bool`
+`func (o *AuthorizeSessionRequest) HasRules() bool`
 
 HasRules returns a boolean if a field has been set.
 
 ### SetRulesNil
 
-`func (o *CreateApplicationRequest) SetRulesNil(b bool)`
+`func (o *AuthorizeSessionRequest) SetRulesNil(b bool)`
 
  SetRulesNil sets the value for Rules to be an explicit nil
 
 ### UnsetRules
-`func (o *CreateApplicationRequest) UnsetRules()`
+`func (o *AuthorizeSessionRequest) UnsetRules()`
 
 UnsetRules ensures that no value is present for Rules, not even an explicit nil
 

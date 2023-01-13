@@ -19,8 +19,7 @@ func TestApplicationCRUD(t *testing.T) {
 	applicationName, applicationType := getApplicationNameAndType()
 
 	applicationPermissions := []string{"token:create"}
-	createApplicationRequest := *basistheory.NewCreateApplicationRequest(applicationType)
-	createApplicationRequest.SetName(applicationName)
+	createApplicationRequest := *basistheory.NewCreateApplicationRequest(applicationName, applicationType)
 	createApplicationRequest.SetPermissions(applicationPermissions)
 
 	createdApplication, response, err := apiClient.ApplicationsApi.Create(contextWithAPIKey).CreateApplicationRequest(createApplicationRequest).Execute()
@@ -74,8 +73,7 @@ func TestApplicationRegenerate(t *testing.T) {
 	applicationName, applicationType := getApplicationNameAndType()
 
 	applicationPermissions := []string{"token:create"}
-	createApplicationRequest := *basistheory.NewCreateApplicationRequest(applicationType)
-	createApplicationRequest.SetName(applicationName)
+	createApplicationRequest := *basistheory.NewCreateApplicationRequest(applicationName, applicationType)
 	createApplicationRequest.SetPermissions(applicationPermissions)
 
 	createdApplication, response, err := apiClient.ApplicationsApi.Create(contextWithAPIKey).CreateApplicationRequest(createApplicationRequest).Execute()
@@ -96,8 +94,7 @@ func TestApplicationKey(t *testing.T) {
 	applicationName, applicationType := getApplicationNameAndType()
 
 	applicationPermissions := []string{"token:create"}
-	createApplicationRequest := *basistheory.NewCreateApplicationRequest(applicationType)
-	createApplicationRequest.SetName(applicationName)
+	createApplicationRequest := *basistheory.NewCreateApplicationRequest(applicationName, applicationType)
 	createApplicationRequest.SetPermissions(applicationPermissions)
 
 	createdApplication, response, err := apiClient.ApplicationsApi.Create(contextWithAPIKey).CreateApplicationRequest(createApplicationRequest).Execute()
