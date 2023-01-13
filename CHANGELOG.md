@@ -1,3 +1,10 @@
+# [3.10.0](https://github.com/Basis-Theory/basistheory-go/compare/v3.9.0...v3.10.0) (2023-01-13)
+
+
+### Features
+
+* supporting sessions and removing support for expiring apps ([#61](https://github.com/Basis-Theory/basistheory-go/issues/61)) ([c27f542](https://github.com/Basis-Theory/basistheory-go/commit/c27f54235192ad2a4b6fe29508e3ff389cdc4056))
+
 # [3.9.0](https://github.com/Basis-Theory/basistheory-go/compare/v3.8.1...v3.9.0) (2022-11-30)
 
 
