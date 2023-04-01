@@ -8,7 +8,7 @@ jobs:
     name: Build
     strategy:
       matrix:
-        go-version: [ '1.16', '1.17', '1.18', '1.19' ]
+        go-version: [ '1.16', '1.17', '1.18', '1.19' '1.20' ]
     runs-on: ubuntu-latest
     env:
       CI: 1
@@ -24,6 +24,6 @@ jobs:
       - name: Run acceptance tests
         run: make verify
         env:
-          BASISTHEORY_API_URL: "https://api-dev.basistheory.com"
+          BASISTHEORY_API_URL: "https://api.flock-dev.com"
           BASISTHEORY_MGMT_API_KEY: ${{ secrets.BASISTHEORY_MGMT_API_KEY }}
           BASISTHEORY_SRVR_API_KEY: ${{ secrets.BASISTHEORY_SRVR_API_KEY }}
