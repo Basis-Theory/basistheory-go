@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the UpdateProxyRequest type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &UpdateProxyRequest{}
+
 // UpdateProxyRequest struct for UpdateProxyRequest
 type UpdateProxyRequest struct {
 	Name              string            `json:"name"`
@@ -96,7 +99,7 @@ func (o *UpdateProxyRequest) SetDestinationUrl(v string) {
 
 // GetRequestReactorId returns the RequestReactorId field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *UpdateProxyRequest) GetRequestReactorId() string {
-	if o == nil || isNil(o.RequestReactorId.Get()) {
+	if o == nil || IsNil(o.RequestReactorId.Get()) {
 		var ret string
 		return ret
 	}
@@ -113,9 +116,9 @@ func (o *UpdateProxyRequest) GetRequestReactorIdOk() (*string, bool) {
 	return o.RequestReactorId.Get(), o.RequestReactorId.IsSet()
 }
 
-// HasRequestReactorId returns a boolean if a field has been set.
+// HasRequestReactorId returns a boolean if a field is not nil.
 func (o *UpdateProxyRequest) HasRequestReactorId() bool {
-	if o != nil && o.RequestReactorId.IsSet() {
+	if o != nil && !IsNil(o.RequestReactorId) {
 		return true
 	}
 
@@ -139,7 +142,7 @@ func (o *UpdateProxyRequest) UnsetRequestReactorId() {
 
 // GetResponseReactorId returns the ResponseReactorId field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *UpdateProxyRequest) GetResponseReactorId() string {
-	if o == nil || isNil(o.ResponseReactorId.Get()) {
+	if o == nil || IsNil(o.ResponseReactorId.Get()) {
 		var ret string
 		return ret
 	}
@@ -156,9 +159,9 @@ func (o *UpdateProxyRequest) GetResponseReactorIdOk() (*string, bool) {
 	return o.ResponseReactorId.Get(), o.ResponseReactorId.IsSet()
 }
 
-// HasResponseReactorId returns a boolean if a field has been set.
+// HasResponseReactorId returns a boolean if a field is not nil.
 func (o *UpdateProxyRequest) HasResponseReactorId() bool {
-	if o != nil && o.ResponseReactorId.IsSet() {
+	if o != nil && !IsNil(o.ResponseReactorId) {
 		return true
 	}
 
@@ -182,7 +185,7 @@ func (o *UpdateProxyRequest) UnsetResponseReactorId() {
 
 // GetRequestTransform returns the RequestTransform field value if set, zero value otherwise.
 func (o *UpdateProxyRequest) GetRequestTransform() ProxyTransform {
-	if o == nil || isNil(o.RequestTransform) {
+	if o == nil || IsNil(o.RequestTransform) {
 		var ret ProxyTransform
 		return ret
 	}
@@ -192,15 +195,15 @@ func (o *UpdateProxyRequest) GetRequestTransform() ProxyTransform {
 // GetRequestTransformOk returns a tuple with the RequestTransform field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateProxyRequest) GetRequestTransformOk() (*ProxyTransform, bool) {
-	if o == nil || isNil(o.RequestTransform) {
+	if o == nil || IsNil(o.RequestTransform) {
 		return nil, false
 	}
 	return o.RequestTransform, true
 }
 
-// HasRequestTransform returns a boolean if a field has been set.
+// HasRequestTransform returns a boolean if a field is not nil.
 func (o *UpdateProxyRequest) HasRequestTransform() bool {
-	if o != nil && !isNil(o.RequestTransform) {
+	if o != nil && !IsNil(o.RequestTransform) {
 		return true
 	}
 
@@ -214,7 +217,7 @@ func (o *UpdateProxyRequest) SetRequestTransform(v ProxyTransform) {
 
 // GetResponseTransform returns the ResponseTransform field value if set, zero value otherwise.
 func (o *UpdateProxyRequest) GetResponseTransform() ProxyTransform {
-	if o == nil || isNil(o.ResponseTransform) {
+	if o == nil || IsNil(o.ResponseTransform) {
 		var ret ProxyTransform
 		return ret
 	}
@@ -224,15 +227,15 @@ func (o *UpdateProxyRequest) GetResponseTransform() ProxyTransform {
 // GetResponseTransformOk returns a tuple with the ResponseTransform field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateProxyRequest) GetResponseTransformOk() (*ProxyTransform, bool) {
-	if o == nil || isNil(o.ResponseTransform) {
+	if o == nil || IsNil(o.ResponseTransform) {
 		return nil, false
 	}
 	return o.ResponseTransform, true
 }
 
-// HasResponseTransform returns a boolean if a field has been set.
+// HasResponseTransform returns a boolean if a field is not nil.
 func (o *UpdateProxyRequest) HasResponseTransform() bool {
-	if o != nil && !isNil(o.ResponseTransform) {
+	if o != nil && !IsNil(o.ResponseTransform) {
 		return true
 	}
 
@@ -246,7 +249,7 @@ func (o *UpdateProxyRequest) SetResponseTransform(v ProxyTransform) {
 
 // GetApplication returns the Application field value if set, zero value otherwise.
 func (o *UpdateProxyRequest) GetApplication() Application {
-	if o == nil || isNil(o.Application) {
+	if o == nil || IsNil(o.Application) {
 		var ret Application
 		return ret
 	}
@@ -256,15 +259,15 @@ func (o *UpdateProxyRequest) GetApplication() Application {
 // GetApplicationOk returns a tuple with the Application field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateProxyRequest) GetApplicationOk() (*Application, bool) {
-	if o == nil || isNil(o.Application) {
+	if o == nil || IsNil(o.Application) {
 		return nil, false
 	}
 	return o.Application, true
 }
 
-// HasApplication returns a boolean if a field has been set.
+// HasApplication returns a boolean if a field is not nil.
 func (o *UpdateProxyRequest) HasApplication() bool {
-	if o != nil && !isNil(o.Application) {
+	if o != nil && !IsNil(o.Application) {
 		return true
 	}
 
@@ -289,15 +292,15 @@ func (o *UpdateProxyRequest) GetConfiguration() map[string]string {
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *UpdateProxyRequest) GetConfigurationOk() (*map[string]string, bool) {
-	if o == nil || isNil(o.Configuration) {
+	if o == nil || IsNil(o.Configuration) {
 		return nil, false
 	}
 	return &o.Configuration, true
 }
 
-// HasConfiguration returns a boolean if a field has been set.
+// HasConfiguration returns a boolean if a field is not nil.
 func (o *UpdateProxyRequest) HasConfiguration() bool {
-	if o != nil && isNil(o.Configuration) {
+	if o != nil && !IsNil(o.Configuration) {
 		return true
 	}
 
@@ -311,7 +314,7 @@ func (o *UpdateProxyRequest) SetConfiguration(v map[string]string) {
 
 // GetRequireAuth returns the RequireAuth field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *UpdateProxyRequest) GetRequireAuth() bool {
-	if o == nil || isNil(o.RequireAuth.Get()) {
+	if o == nil || IsNil(o.RequireAuth.Get()) {
 		var ret bool
 		return ret
 	}
@@ -328,9 +331,9 @@ func (o *UpdateProxyRequest) GetRequireAuthOk() (*bool, bool) {
 	return o.RequireAuth.Get(), o.RequireAuth.IsSet()
 }
 
-// HasRequireAuth returns a boolean if a field has been set.
+// HasRequireAuth returns a boolean if a field is not nil.
 func (o *UpdateProxyRequest) HasRequireAuth() bool {
-	if o != nil && o.RequireAuth.IsSet() {
+	if o != nil && !IsNil(o.RequireAuth) {
 		return true
 	}
 
@@ -353,26 +356,30 @@ func (o *UpdateProxyRequest) UnsetRequireAuth() {
 }
 
 func (o UpdateProxyRequest) MarshalJSON() ([]byte, error) {
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
+func (o UpdateProxyRequest) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["name"] = o.Name
-	}
-	if true {
-		toSerialize["destination_url"] = o.DestinationUrl
-	}
+	toSerialize["name"] = o.Name
+	toSerialize["destination_url"] = o.DestinationUrl
 	if o.RequestReactorId.IsSet() {
 		toSerialize["request_reactor_id"] = o.RequestReactorId.Get()
 	}
 	if o.ResponseReactorId.IsSet() {
 		toSerialize["response_reactor_id"] = o.ResponseReactorId.Get()
 	}
-	if !isNil(o.RequestTransform) {
+	if !IsNil(o.RequestTransform) {
 		toSerialize["request_transform"] = o.RequestTransform
 	}
-	if !isNil(o.ResponseTransform) {
+	if !IsNil(o.ResponseTransform) {
 		toSerialize["response_transform"] = o.ResponseTransform
 	}
-	if !isNil(o.Application) {
+	if !IsNil(o.Application) {
 		toSerialize["application"] = o.Application
 	}
 	if o.Configuration != nil {
@@ -381,7 +388,7 @@ func (o UpdateProxyRequest) MarshalJSON() ([]byte, error) {
 	if o.RequireAuth.IsSet() {
 		toSerialize["require_auth"] = o.RequireAuth.Get()
 	}
-	return json.Marshal(toSerialize)
+	return toSerialize, nil
 }
 
 type NullableUpdateProxyRequest struct {

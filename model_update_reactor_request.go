@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the UpdateReactorRequest type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &UpdateReactorRequest{}
+
 // UpdateReactorRequest struct for UpdateReactorRequest
 type UpdateReactorRequest struct {
 	Name          string            `json:"name"`
@@ -65,7 +68,7 @@ func (o *UpdateReactorRequest) SetName(v string) {
 
 // GetApplication returns the Application field value if set, zero value otherwise.
 func (o *UpdateReactorRequest) GetApplication() Application {
-	if o == nil || isNil(o.Application) {
+	if o == nil || IsNil(o.Application) {
 		var ret Application
 		return ret
 	}
@@ -75,15 +78,15 @@ func (o *UpdateReactorRequest) GetApplication() Application {
 // GetApplicationOk returns a tuple with the Application field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateReactorRequest) GetApplicationOk() (*Application, bool) {
-	if o == nil || isNil(o.Application) {
+	if o == nil || IsNil(o.Application) {
 		return nil, false
 	}
 	return o.Application, true
 }
 
-// HasApplication returns a boolean if a field has been set.
+// HasApplication returns a boolean if a field is not nil.
 func (o *UpdateReactorRequest) HasApplication() bool {
-	if o != nil && !isNil(o.Application) {
+	if o != nil && !IsNil(o.Application) {
 		return true
 	}
 
@@ -108,15 +111,15 @@ func (o *UpdateReactorRequest) GetConfiguration() map[string]string {
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *UpdateReactorRequest) GetConfigurationOk() (*map[string]string, bool) {
-	if o == nil || isNil(o.Configuration) {
+	if o == nil || IsNil(o.Configuration) {
 		return nil, false
 	}
 	return &o.Configuration, true
 }
 
-// HasConfiguration returns a boolean if a field has been set.
+// HasConfiguration returns a boolean if a field is not nil.
 func (o *UpdateReactorRequest) HasConfiguration() bool {
-	if o != nil && isNil(o.Configuration) {
+	if o != nil && !IsNil(o.Configuration) {
 		return true
 	}
 
@@ -129,17 +132,23 @@ func (o *UpdateReactorRequest) SetConfiguration(v map[string]string) {
 }
 
 func (o UpdateReactorRequest) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["name"] = o.Name
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
-	if !isNil(o.Application) {
+	return json.Marshal(toSerialize)
+}
+
+func (o UpdateReactorRequest) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	toSerialize["name"] = o.Name
+	if !IsNil(o.Application) {
 		toSerialize["application"] = o.Application
 	}
 	if o.Configuration != nil {
 		toSerialize["configuration"] = o.Configuration
 	}
-	return json.Marshal(toSerialize)
+	return toSerialize, nil
 }
 
 type NullableUpdateReactorRequest struct {

@@ -15,6 +15,9 @@ import (
 	"time"
 )
 
+// checks if the ReactorFormula type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &ReactorFormula{}
+
 // ReactorFormula struct for ReactorFormula
 type ReactorFormula struct {
 	Id                *string                          `json:"id,omitempty"`
@@ -51,7 +54,7 @@ func NewReactorFormulaWithDefaults() *ReactorFormula {
 
 // GetId returns the Id field value if set, zero value otherwise.
 func (o *ReactorFormula) GetId() string {
-	if o == nil || isNil(o.Id) {
+	if o == nil || IsNil(o.Id) {
 		var ret string
 		return ret
 	}
@@ -61,15 +64,15 @@ func (o *ReactorFormula) GetId() string {
 // GetIdOk returns a tuple with the Id field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ReactorFormula) GetIdOk() (*string, bool) {
-	if o == nil || isNil(o.Id) {
+	if o == nil || IsNil(o.Id) {
 		return nil, false
 	}
 	return o.Id, true
 }
 
-// HasId returns a boolean if a field has been set.
+// HasId returns a boolean if a field is not nil.
 func (o *ReactorFormula) HasId() bool {
-	if o != nil && !isNil(o.Id) {
+	if o != nil && !IsNil(o.Id) {
 		return true
 	}
 
@@ -83,7 +86,7 @@ func (o *ReactorFormula) SetId(v string) {
 
 // GetType returns the Type field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *ReactorFormula) GetType() string {
-	if o == nil || isNil(o.Type.Get()) {
+	if o == nil || IsNil(o.Type.Get()) {
 		var ret string
 		return ret
 	}
@@ -100,9 +103,9 @@ func (o *ReactorFormula) GetTypeOk() (*string, bool) {
 	return o.Type.Get(), o.Type.IsSet()
 }
 
-// HasType returns a boolean if a field has been set.
+// HasType returns a boolean if a field is not nil.
 func (o *ReactorFormula) HasType() bool {
-	if o != nil && o.Type.IsSet() {
+	if o != nil && !IsNil(o.Type) {
 		return true
 	}
 
@@ -126,7 +129,7 @@ func (o *ReactorFormula) UnsetType() {
 
 // GetStatus returns the Status field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *ReactorFormula) GetStatus() string {
-	if o == nil || isNil(o.Status.Get()) {
+	if o == nil || IsNil(o.Status.Get()) {
 		var ret string
 		return ret
 	}
@@ -143,9 +146,9 @@ func (o *ReactorFormula) GetStatusOk() (*string, bool) {
 	return o.Status.Get(), o.Status.IsSet()
 }
 
-// HasStatus returns a boolean if a field has been set.
+// HasStatus returns a boolean if a field is not nil.
 func (o *ReactorFormula) HasStatus() bool {
-	if o != nil && o.Status.IsSet() {
+	if o != nil && !IsNil(o.Status) {
 		return true
 	}
 
@@ -169,7 +172,7 @@ func (o *ReactorFormula) UnsetStatus() {
 
 // GetName returns the Name field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *ReactorFormula) GetName() string {
-	if o == nil || isNil(o.Name.Get()) {
+	if o == nil || IsNil(o.Name.Get()) {
 		var ret string
 		return ret
 	}
@@ -186,9 +189,9 @@ func (o *ReactorFormula) GetNameOk() (*string, bool) {
 	return o.Name.Get(), o.Name.IsSet()
 }
 
-// HasName returns a boolean if a field has been set.
+// HasName returns a boolean if a field is not nil.
 func (o *ReactorFormula) HasName() bool {
-	if o != nil && o.Name.IsSet() {
+	if o != nil && !IsNil(o.Name) {
 		return true
 	}
 
@@ -212,7 +215,7 @@ func (o *ReactorFormula) UnsetName() {
 
 // GetDescription returns the Description field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *ReactorFormula) GetDescription() string {
-	if o == nil || isNil(o.Description.Get()) {
+	if o == nil || IsNil(o.Description.Get()) {
 		var ret string
 		return ret
 	}
@@ -229,9 +232,9 @@ func (o *ReactorFormula) GetDescriptionOk() (*string, bool) {
 	return o.Description.Get(), o.Description.IsSet()
 }
 
-// HasDescription returns a boolean if a field has been set.
+// HasDescription returns a boolean if a field is not nil.
 func (o *ReactorFormula) HasDescription() bool {
-	if o != nil && o.Description.IsSet() {
+	if o != nil && !IsNil(o.Description) {
 		return true
 	}
 
@@ -255,7 +258,7 @@ func (o *ReactorFormula) UnsetDescription() {
 
 // GetIcon returns the Icon field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *ReactorFormula) GetIcon() string {
-	if o == nil || isNil(o.Icon.Get()) {
+	if o == nil || IsNil(o.Icon.Get()) {
 		var ret string
 		return ret
 	}
@@ -272,9 +275,9 @@ func (o *ReactorFormula) GetIconOk() (*string, bool) {
 	return o.Icon.Get(), o.Icon.IsSet()
 }
 
-// HasIcon returns a boolean if a field has been set.
+// HasIcon returns a boolean if a field is not nil.
 func (o *ReactorFormula) HasIcon() bool {
-	if o != nil && o.Icon.IsSet() {
+	if o != nil && !IsNil(o.Icon) {
 		return true
 	}
 
@@ -298,7 +301,7 @@ func (o *ReactorFormula) UnsetIcon() {
 
 // GetCode returns the Code field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *ReactorFormula) GetCode() string {
-	if o == nil || isNil(o.Code.Get()) {
+	if o == nil || IsNil(o.Code.Get()) {
 		var ret string
 		return ret
 	}
@@ -315,9 +318,9 @@ func (o *ReactorFormula) GetCodeOk() (*string, bool) {
 	return o.Code.Get(), o.Code.IsSet()
 }
 
-// HasCode returns a boolean if a field has been set.
+// HasCode returns a boolean if a field is not nil.
 func (o *ReactorFormula) HasCode() bool {
-	if o != nil && o.Code.IsSet() {
+	if o != nil && !IsNil(o.Code) {
 		return true
 	}
 
@@ -341,7 +344,7 @@ func (o *ReactorFormula) UnsetCode() {
 
 // GetCreatedBy returns the CreatedBy field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *ReactorFormula) GetCreatedBy() string {
-	if o == nil || isNil(o.CreatedBy.Get()) {
+	if o == nil || IsNil(o.CreatedBy.Get()) {
 		var ret string
 		return ret
 	}
@@ -358,9 +361,9 @@ func (o *ReactorFormula) GetCreatedByOk() (*string, bool) {
 	return o.CreatedBy.Get(), o.CreatedBy.IsSet()
 }
 
-// HasCreatedBy returns a boolean if a field has been set.
+// HasCreatedBy returns a boolean if a field is not nil.
 func (o *ReactorFormula) HasCreatedBy() bool {
-	if o != nil && o.CreatedBy.IsSet() {
+	if o != nil && !IsNil(o.CreatedBy) {
 		return true
 	}
 
@@ -384,7 +387,7 @@ func (o *ReactorFormula) UnsetCreatedBy() {
 
 // GetCreatedAt returns the CreatedAt field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *ReactorFormula) GetCreatedAt() time.Time {
-	if o == nil || isNil(o.CreatedAt.Get()) {
+	if o == nil || IsNil(o.CreatedAt.Get()) {
 		var ret time.Time
 		return ret
 	}
@@ -401,9 +404,9 @@ func (o *ReactorFormula) GetCreatedAtOk() (*time.Time, bool) {
 	return o.CreatedAt.Get(), o.CreatedAt.IsSet()
 }
 
-// HasCreatedAt returns a boolean if a field has been set.
+// HasCreatedAt returns a boolean if a field is not nil.
 func (o *ReactorFormula) HasCreatedAt() bool {
-	if o != nil && o.CreatedAt.IsSet() {
+	if o != nil && !IsNil(o.CreatedAt) {
 		return true
 	}
 
@@ -427,7 +430,7 @@ func (o *ReactorFormula) UnsetCreatedAt() {
 
 // GetModifiedBy returns the ModifiedBy field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *ReactorFormula) GetModifiedBy() string {
-	if o == nil || isNil(o.ModifiedBy.Get()) {
+	if o == nil || IsNil(o.ModifiedBy.Get()) {
 		var ret string
 		return ret
 	}
@@ -444,9 +447,9 @@ func (o *ReactorFormula) GetModifiedByOk() (*string, bool) {
 	return o.ModifiedBy.Get(), o.ModifiedBy.IsSet()
 }
 
-// HasModifiedBy returns a boolean if a field has been set.
+// HasModifiedBy returns a boolean if a field is not nil.
 func (o *ReactorFormula) HasModifiedBy() bool {
-	if o != nil && o.ModifiedBy.IsSet() {
+	if o != nil && !IsNil(o.ModifiedBy) {
 		return true
 	}
 
@@ -470,7 +473,7 @@ func (o *ReactorFormula) UnsetModifiedBy() {
 
 // GetModifiedAt returns the ModifiedAt field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *ReactorFormula) GetModifiedAt() time.Time {
-	if o == nil || isNil(o.ModifiedAt.Get()) {
+	if o == nil || IsNil(o.ModifiedAt.Get()) {
 		var ret time.Time
 		return ret
 	}
@@ -487,9 +490,9 @@ func (o *ReactorFormula) GetModifiedAtOk() (*time.Time, bool) {
 	return o.ModifiedAt.Get(), o.ModifiedAt.IsSet()
 }
 
-// HasModifiedAt returns a boolean if a field has been set.
+// HasModifiedAt returns a boolean if a field is not nil.
 func (o *ReactorFormula) HasModifiedAt() bool {
-	if o != nil && o.ModifiedAt.IsSet() {
+	if o != nil && !IsNil(o.ModifiedAt) {
 		return true
 	}
 
@@ -524,15 +527,15 @@ func (o *ReactorFormula) GetConfiguration() []ReactorFormulaConfiguration {
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *ReactorFormula) GetConfigurationOk() ([]ReactorFormulaConfiguration, bool) {
-	if o == nil || isNil(o.Configuration) {
+	if o == nil || IsNil(o.Configuration) {
 		return nil, false
 	}
 	return o.Configuration, true
 }
 
-// HasConfiguration returns a boolean if a field has been set.
+// HasConfiguration returns a boolean if a field is not nil.
 func (o *ReactorFormula) HasConfiguration() bool {
-	if o != nil && isNil(o.Configuration) {
+	if o != nil && !IsNil(o.Configuration) {
 		return true
 	}
 
@@ -557,15 +560,15 @@ func (o *ReactorFormula) GetRequestParameters() []ReactorFormulaRequestParameter
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *ReactorFormula) GetRequestParametersOk() ([]ReactorFormulaRequestParameter, bool) {
-	if o == nil || isNil(o.RequestParameters) {
+	if o == nil || IsNil(o.RequestParameters) {
 		return nil, false
 	}
 	return o.RequestParameters, true
 }
 
-// HasRequestParameters returns a boolean if a field has been set.
+// HasRequestParameters returns a boolean if a field is not nil.
 func (o *ReactorFormula) HasRequestParameters() bool {
-	if o != nil && isNil(o.RequestParameters) {
+	if o != nil && !IsNil(o.RequestParameters) {
 		return true
 	}
 
@@ -578,8 +581,16 @@ func (o *ReactorFormula) SetRequestParameters(v []ReactorFormulaRequestParameter
 }
 
 func (o ReactorFormula) MarshalJSON() ([]byte, error) {
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
+func (o ReactorFormula) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !isNil(o.Id) {
+	if !IsNil(o.Id) {
 		toSerialize["id"] = o.Id
 	}
 	if o.Type.IsSet() {
@@ -618,7 +629,7 @@ func (o ReactorFormula) MarshalJSON() ([]byte, error) {
 	if o.RequestParameters != nil {
 		toSerialize["request_parameters"] = o.RequestParameters
 	}
-	return json.Marshal(toSerialize)
+	return toSerialize, nil
 }
 
 type NullableReactorFormula struct {

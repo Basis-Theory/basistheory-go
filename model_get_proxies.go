@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the GetProxies type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &GetProxies{}
+
 // GetProxies struct for GetProxies
 type GetProxies struct {
 	Id   []string       `json:"id,omitempty"`
@@ -52,15 +55,15 @@ func (o *GetProxies) GetId() []string {
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *GetProxies) GetIdOk() ([]string, bool) {
-	if o == nil || isNil(o.Id) {
+	if o == nil || IsNil(o.Id) {
 		return nil, false
 	}
 	return o.Id, true
 }
 
-// HasId returns a boolean if a field has been set.
+// HasId returns a boolean if a field is not nil.
 func (o *GetProxies) HasId() bool {
-	if o != nil && isNil(o.Id) {
+	if o != nil && !IsNil(o.Id) {
 		return true
 	}
 
@@ -74,7 +77,7 @@ func (o *GetProxies) SetId(v []string) {
 
 // GetName returns the Name field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *GetProxies) GetName() string {
-	if o == nil || isNil(o.Name.Get()) {
+	if o == nil || IsNil(o.Name.Get()) {
 		var ret string
 		return ret
 	}
@@ -91,9 +94,9 @@ func (o *GetProxies) GetNameOk() (*string, bool) {
 	return o.Name.Get(), o.Name.IsSet()
 }
 
-// HasName returns a boolean if a field has been set.
+// HasName returns a boolean if a field is not nil.
 func (o *GetProxies) HasName() bool {
-	if o != nil && o.Name.IsSet() {
+	if o != nil && !IsNil(o.Name) {
 		return true
 	}
 
@@ -117,7 +120,7 @@ func (o *GetProxies) UnsetName() {
 
 // GetPage returns the Page field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *GetProxies) GetPage() int32 {
-	if o == nil || isNil(o.Page.Get()) {
+	if o == nil || IsNil(o.Page.Get()) {
 		var ret int32
 		return ret
 	}
@@ -134,9 +137,9 @@ func (o *GetProxies) GetPageOk() (*int32, bool) {
 	return o.Page.Get(), o.Page.IsSet()
 }
 
-// HasPage returns a boolean if a field has been set.
+// HasPage returns a boolean if a field is not nil.
 func (o *GetProxies) HasPage() bool {
-	if o != nil && o.Page.IsSet() {
+	if o != nil && !IsNil(o.Page) {
 		return true
 	}
 
@@ -160,7 +163,7 @@ func (o *GetProxies) UnsetPage() {
 
 // GetSize returns the Size field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *GetProxies) GetSize() int32 {
-	if o == nil || isNil(o.Size.Get()) {
+	if o == nil || IsNil(o.Size.Get()) {
 		var ret int32
 		return ret
 	}
@@ -177,9 +180,9 @@ func (o *GetProxies) GetSizeOk() (*int32, bool) {
 	return o.Size.Get(), o.Size.IsSet()
 }
 
-// HasSize returns a boolean if a field has been set.
+// HasSize returns a boolean if a field is not nil.
 func (o *GetProxies) HasSize() bool {
-	if o != nil && o.Size.IsSet() {
+	if o != nil && !IsNil(o.Size) {
 		return true
 	}
 
@@ -202,6 +205,14 @@ func (o *GetProxies) UnsetSize() {
 }
 
 func (o GetProxies) MarshalJSON() ([]byte, error) {
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
+func (o GetProxies) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if o.Id != nil {
 		toSerialize["id"] = o.Id
@@ -215,7 +226,7 @@ func (o GetProxies) MarshalJSON() ([]byte, error) {
 	if o.Size.IsSet() {
 		toSerialize["size"] = o.Size.Get()
 	}
-	return json.Marshal(toSerialize)
+	return toSerialize, nil
 }
 
 type NullableGetProxies struct {

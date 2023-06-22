@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the LogEntityType type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &LogEntityType{}
+
 // LogEntityType struct for LogEntityType
 type LogEntityType struct {
 	DisplayName NullableString `json:"display_name,omitempty"`
@@ -39,7 +42,7 @@ func NewLogEntityTypeWithDefaults() *LogEntityType {
 
 // GetDisplayName returns the DisplayName field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *LogEntityType) GetDisplayName() string {
-	if o == nil || isNil(o.DisplayName.Get()) {
+	if o == nil || IsNil(o.DisplayName.Get()) {
 		var ret string
 		return ret
 	}
@@ -56,9 +59,9 @@ func (o *LogEntityType) GetDisplayNameOk() (*string, bool) {
 	return o.DisplayName.Get(), o.DisplayName.IsSet()
 }
 
-// HasDisplayName returns a boolean if a field has been set.
+// HasDisplayName returns a boolean if a field is not nil.
 func (o *LogEntityType) HasDisplayName() bool {
-	if o != nil && o.DisplayName.IsSet() {
+	if o != nil && !IsNil(o.DisplayName) {
 		return true
 	}
 
@@ -82,7 +85,7 @@ func (o *LogEntityType) UnsetDisplayName() {
 
 // GetValue returns the Value field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *LogEntityType) GetValue() string {
-	if o == nil || isNil(o.Value.Get()) {
+	if o == nil || IsNil(o.Value.Get()) {
 		var ret string
 		return ret
 	}
@@ -99,9 +102,9 @@ func (o *LogEntityType) GetValueOk() (*string, bool) {
 	return o.Value.Get(), o.Value.IsSet()
 }
 
-// HasValue returns a boolean if a field has been set.
+// HasValue returns a boolean if a field is not nil.
 func (o *LogEntityType) HasValue() bool {
-	if o != nil && o.Value.IsSet() {
+	if o != nil && !IsNil(o.Value) {
 		return true
 	}
 
@@ -124,6 +127,14 @@ func (o *LogEntityType) UnsetValue() {
 }
 
 func (o LogEntityType) MarshalJSON() ([]byte, error) {
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
+func (o LogEntityType) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if o.DisplayName.IsSet() {
 		toSerialize["display_name"] = o.DisplayName.Get()
@@ -131,7 +142,7 @@ func (o LogEntityType) MarshalJSON() ([]byte, error) {
 	if o.Value.IsSet() {
 		toSerialize["value"] = o.Value.Get()
 	}
-	return json.Marshal(toSerialize)
+	return toSerialize, nil
 }
 
 type NullableLogEntityType struct {

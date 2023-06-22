@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the ValidationProblemDetails type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &ValidationProblemDetails{}
+
 // ValidationProblemDetails struct for ValidationProblemDetails
 type ValidationProblemDetails struct {
 	Errors   map[string][]string `json:"errors,omitempty"`
@@ -54,15 +57,15 @@ func (o *ValidationProblemDetails) GetErrors() map[string][]string {
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *ValidationProblemDetails) GetErrorsOk() (*map[string][]string, bool) {
-	if o == nil || isNil(o.Errors) {
+	if o == nil || IsNil(o.Errors) {
 		return nil, false
 	}
 	return &o.Errors, true
 }
 
-// HasErrors returns a boolean if a field has been set.
+// HasErrors returns a boolean if a field is not nil.
 func (o *ValidationProblemDetails) HasErrors() bool {
-	if o != nil && isNil(o.Errors) {
+	if o != nil && !IsNil(o.Errors) {
 		return true
 	}
 
@@ -76,7 +79,7 @@ func (o *ValidationProblemDetails) SetErrors(v map[string][]string) {
 
 // GetType returns the Type field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *ValidationProblemDetails) GetType() string {
-	if o == nil || isNil(o.Type.Get()) {
+	if o == nil || IsNil(o.Type.Get()) {
 		var ret string
 		return ret
 	}
@@ -93,9 +96,9 @@ func (o *ValidationProblemDetails) GetTypeOk() (*string, bool) {
 	return o.Type.Get(), o.Type.IsSet()
 }
 
-// HasType returns a boolean if a field has been set.
+// HasType returns a boolean if a field is not nil.
 func (o *ValidationProblemDetails) HasType() bool {
-	if o != nil && o.Type.IsSet() {
+	if o != nil && !IsNil(o.Type) {
 		return true
 	}
 
@@ -119,7 +122,7 @@ func (o *ValidationProblemDetails) UnsetType() {
 
 // GetTitle returns the Title field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *ValidationProblemDetails) GetTitle() string {
-	if o == nil || isNil(o.Title.Get()) {
+	if o == nil || IsNil(o.Title.Get()) {
 		var ret string
 		return ret
 	}
@@ -136,9 +139,9 @@ func (o *ValidationProblemDetails) GetTitleOk() (*string, bool) {
 	return o.Title.Get(), o.Title.IsSet()
 }
 
-// HasTitle returns a boolean if a field has been set.
+// HasTitle returns a boolean if a field is not nil.
 func (o *ValidationProblemDetails) HasTitle() bool {
-	if o != nil && o.Title.IsSet() {
+	if o != nil && !IsNil(o.Title) {
 		return true
 	}
 
@@ -162,7 +165,7 @@ func (o *ValidationProblemDetails) UnsetTitle() {
 
 // GetStatus returns the Status field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *ValidationProblemDetails) GetStatus() int32 {
-	if o == nil || isNil(o.Status.Get()) {
+	if o == nil || IsNil(o.Status.Get()) {
 		var ret int32
 		return ret
 	}
@@ -179,9 +182,9 @@ func (o *ValidationProblemDetails) GetStatusOk() (*int32, bool) {
 	return o.Status.Get(), o.Status.IsSet()
 }
 
-// HasStatus returns a boolean if a field has been set.
+// HasStatus returns a boolean if a field is not nil.
 func (o *ValidationProblemDetails) HasStatus() bool {
-	if o != nil && o.Status.IsSet() {
+	if o != nil && !IsNil(o.Status) {
 		return true
 	}
 
@@ -205,7 +208,7 @@ func (o *ValidationProblemDetails) UnsetStatus() {
 
 // GetDetail returns the Detail field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *ValidationProblemDetails) GetDetail() string {
-	if o == nil || isNil(o.Detail.Get()) {
+	if o == nil || IsNil(o.Detail.Get()) {
 		var ret string
 		return ret
 	}
@@ -222,9 +225,9 @@ func (o *ValidationProblemDetails) GetDetailOk() (*string, bool) {
 	return o.Detail.Get(), o.Detail.IsSet()
 }
 
-// HasDetail returns a boolean if a field has been set.
+// HasDetail returns a boolean if a field is not nil.
 func (o *ValidationProblemDetails) HasDetail() bool {
-	if o != nil && o.Detail.IsSet() {
+	if o != nil && !IsNil(o.Detail) {
 		return true
 	}
 
@@ -248,7 +251,7 @@ func (o *ValidationProblemDetails) UnsetDetail() {
 
 // GetInstance returns the Instance field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *ValidationProblemDetails) GetInstance() string {
-	if o == nil || isNil(o.Instance.Get()) {
+	if o == nil || IsNil(o.Instance.Get()) {
 		var ret string
 		return ret
 	}
@@ -265,9 +268,9 @@ func (o *ValidationProblemDetails) GetInstanceOk() (*string, bool) {
 	return o.Instance.Get(), o.Instance.IsSet()
 }
 
-// HasInstance returns a boolean if a field has been set.
+// HasInstance returns a boolean if a field is not nil.
 func (o *ValidationProblemDetails) HasInstance() bool {
-	if o != nil && o.Instance.IsSet() {
+	if o != nil && !IsNil(o.Instance) {
 		return true
 	}
 
@@ -290,6 +293,14 @@ func (o *ValidationProblemDetails) UnsetInstance() {
 }
 
 func (o ValidationProblemDetails) MarshalJSON() ([]byte, error) {
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
+func (o ValidationProblemDetails) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if o.Errors != nil {
 		toSerialize["errors"] = o.Errors
@@ -309,7 +320,7 @@ func (o ValidationProblemDetails) MarshalJSON() ([]byte, error) {
 	if o.Instance.IsSet() {
 		toSerialize["instance"] = o.Instance.Get()
 	}
-	return json.Marshal(toSerialize)
+	return toSerialize, nil
 }
 
 type NullableValidationProblemDetails struct {

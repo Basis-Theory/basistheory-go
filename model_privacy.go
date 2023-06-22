@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the Privacy type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &Privacy{}
+
 // Privacy struct for Privacy
 type Privacy struct {
 	Classification    NullableString `json:"classification,omitempty"`
@@ -40,7 +43,7 @@ func NewPrivacyWithDefaults() *Privacy {
 
 // GetClassification returns the Classification field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *Privacy) GetClassification() string {
-	if o == nil || isNil(o.Classification.Get()) {
+	if o == nil || IsNil(o.Classification.Get()) {
 		var ret string
 		return ret
 	}
@@ -57,9 +60,9 @@ func (o *Privacy) GetClassificationOk() (*string, bool) {
 	return o.Classification.Get(), o.Classification.IsSet()
 }
 
-// HasClassification returns a boolean if a field has been set.
+// HasClassification returns a boolean if a field is not nil.
 func (o *Privacy) HasClassification() bool {
-	if o != nil && o.Classification.IsSet() {
+	if o != nil && !IsNil(o.Classification) {
 		return true
 	}
 
@@ -83,7 +86,7 @@ func (o *Privacy) UnsetClassification() {
 
 // GetImpactLevel returns the ImpactLevel field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *Privacy) GetImpactLevel() string {
-	if o == nil || isNil(o.ImpactLevel.Get()) {
+	if o == nil || IsNil(o.ImpactLevel.Get()) {
 		var ret string
 		return ret
 	}
@@ -100,9 +103,9 @@ func (o *Privacy) GetImpactLevelOk() (*string, bool) {
 	return o.ImpactLevel.Get(), o.ImpactLevel.IsSet()
 }
 
-// HasImpactLevel returns a boolean if a field has been set.
+// HasImpactLevel returns a boolean if a field is not nil.
 func (o *Privacy) HasImpactLevel() bool {
-	if o != nil && o.ImpactLevel.IsSet() {
+	if o != nil && !IsNil(o.ImpactLevel) {
 		return true
 	}
 
@@ -126,7 +129,7 @@ func (o *Privacy) UnsetImpactLevel() {
 
 // GetRestrictionPolicy returns the RestrictionPolicy field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *Privacy) GetRestrictionPolicy() string {
-	if o == nil || isNil(o.RestrictionPolicy.Get()) {
+	if o == nil || IsNil(o.RestrictionPolicy.Get()) {
 		var ret string
 		return ret
 	}
@@ -143,9 +146,9 @@ func (o *Privacy) GetRestrictionPolicyOk() (*string, bool) {
 	return o.RestrictionPolicy.Get(), o.RestrictionPolicy.IsSet()
 }
 
-// HasRestrictionPolicy returns a boolean if a field has been set.
+// HasRestrictionPolicy returns a boolean if a field is not nil.
 func (o *Privacy) HasRestrictionPolicy() bool {
-	if o != nil && o.RestrictionPolicy.IsSet() {
+	if o != nil && !IsNil(o.RestrictionPolicy) {
 		return true
 	}
 
@@ -168,6 +171,14 @@ func (o *Privacy) UnsetRestrictionPolicy() {
 }
 
 func (o Privacy) MarshalJSON() ([]byte, error) {
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
+func (o Privacy) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if o.Classification.IsSet() {
 		toSerialize["classification"] = o.Classification.Get()
@@ -178,7 +189,7 @@ func (o Privacy) MarshalJSON() ([]byte, error) {
 	if o.RestrictionPolicy.IsSet() {
 		toSerialize["restriction_policy"] = o.RestrictionPolicy.Get()
 	}
-	return json.Marshal(toSerialize)
+	return toSerialize, nil
 }
 
 type NullablePrivacy struct {

@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the EncryptionMetadata type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &EncryptionMetadata{}
+
 // EncryptionMetadata struct for EncryptionMetadata
 type EncryptionMetadata struct {
 	Cek *EncryptionKey `json:"cek,omitempty"`
@@ -39,7 +42,7 @@ func NewEncryptionMetadataWithDefaults() *EncryptionMetadata {
 
 // GetCek returns the Cek field value if set, zero value otherwise.
 func (o *EncryptionMetadata) GetCek() EncryptionKey {
-	if o == nil || isNil(o.Cek) {
+	if o == nil || IsNil(o.Cek) {
 		var ret EncryptionKey
 		return ret
 	}
@@ -49,15 +52,15 @@ func (o *EncryptionMetadata) GetCek() EncryptionKey {
 // GetCekOk returns a tuple with the Cek field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *EncryptionMetadata) GetCekOk() (*EncryptionKey, bool) {
-	if o == nil || isNil(o.Cek) {
+	if o == nil || IsNil(o.Cek) {
 		return nil, false
 	}
 	return o.Cek, true
 }
 
-// HasCek returns a boolean if a field has been set.
+// HasCek returns a boolean if a field is not nil.
 func (o *EncryptionMetadata) HasCek() bool {
-	if o != nil && !isNil(o.Cek) {
+	if o != nil && !IsNil(o.Cek) {
 		return true
 	}
 
@@ -71,7 +74,7 @@ func (o *EncryptionMetadata) SetCek(v EncryptionKey) {
 
 // GetKek returns the Kek field value if set, zero value otherwise.
 func (o *EncryptionMetadata) GetKek() EncryptionKey {
-	if o == nil || isNil(o.Kek) {
+	if o == nil || IsNil(o.Kek) {
 		var ret EncryptionKey
 		return ret
 	}
@@ -81,15 +84,15 @@ func (o *EncryptionMetadata) GetKek() EncryptionKey {
 // GetKekOk returns a tuple with the Kek field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *EncryptionMetadata) GetKekOk() (*EncryptionKey, bool) {
-	if o == nil || isNil(o.Kek) {
+	if o == nil || IsNil(o.Kek) {
 		return nil, false
 	}
 	return o.Kek, true
 }
 
-// HasKek returns a boolean if a field has been set.
+// HasKek returns a boolean if a field is not nil.
 func (o *EncryptionMetadata) HasKek() bool {
-	if o != nil && !isNil(o.Kek) {
+	if o != nil && !IsNil(o.Kek) {
 		return true
 	}
 
@@ -102,14 +105,22 @@ func (o *EncryptionMetadata) SetKek(v EncryptionKey) {
 }
 
 func (o EncryptionMetadata) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.Cek) {
-		toSerialize["cek"] = o.Cek
-	}
-	if !isNil(o.Kek) {
-		toSerialize["kek"] = o.Kek
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o EncryptionMetadata) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Cek) {
+		toSerialize["cek"] = o.Cek
+	}
+	if !IsNil(o.Kek) {
+		toSerialize["kek"] = o.Kek
+	}
+	return toSerialize, nil
 }
 
 type NullableEncryptionMetadata struct {

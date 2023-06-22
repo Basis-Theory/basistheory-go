@@ -11,6 +11,7 @@ api_sessions.go
 api_tenants.go
 api_tokenize.go
 api_tokens.go
+api_transactions.go
 client.go
 configuration.go
 docs/AccessRule.md
@@ -29,6 +30,7 @@ docs/CreateSessionResponse.md
 docs/CreateTenantInvitationRequest.md
 docs/CreateTokenRequest.md
 docs/CreateTokenResponse.md
+docs/CreateTransactionResponse.md
 docs/EncryptionKey.md
 docs/EncryptionMetadata.md
 docs/GetApplications.md
@@ -81,6 +83,7 @@ docs/TokenPaginatedList.md
 docs/TokenReport.md
 docs/TokenizeApi.md
 docs/TokensApi.md
+docs/TransactionsApi.md
 docs/UpdateApplicationRequest.md
 docs/UpdatePrivacy.md
 docs/UpdateProxyRequest.md
@@ -104,6 +107,7 @@ model_create_session_response.go
 model_create_tenant_invitation_request.go
 model_create_token_request.go
 model_create_token_response.go
+model_create_transaction_response.go
 model_encryption_key.go
 model_encryption_metadata.go
 model_get_applications.go

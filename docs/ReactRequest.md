@@ -5,6 +5,8 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Args** | Pointer to **interface{}** |  | [optional] 
+**CallbackUrl** | Pointer to **NullableString** |  | [optional] 
+**TimeoutMs** | Pointer to **NullableInt32** |  | [optional] 
 
 ## Methods
 
@@ -60,6 +62,76 @@ HasArgs returns a boolean if a field has been set.
 `func (o *ReactRequest) UnsetArgs()`
 
 UnsetArgs ensures that no value is present for Args, not even an explicit nil
+### GetCallbackUrl
+
+`func (o *ReactRequest) GetCallbackUrl() string`
+
+GetCallbackUrl returns the CallbackUrl field if non-nil, zero value otherwise.
+
+### GetCallbackUrlOk
+
+`func (o *ReactRequest) GetCallbackUrlOk() (*string, bool)`
+
+GetCallbackUrlOk returns a tuple with the CallbackUrl field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetCallbackUrl
+
+`func (o *ReactRequest) SetCallbackUrl(v string)`
+
+SetCallbackUrl sets CallbackUrl field to given value.
+
+### HasCallbackUrl
+
+`func (o *ReactRequest) HasCallbackUrl() bool`
+
+HasCallbackUrl returns a boolean if a field has been set.
+
+### SetCallbackUrlNil
+
+`func (o *ReactRequest) SetCallbackUrlNil(b bool)`
+
+ SetCallbackUrlNil sets the value for CallbackUrl to be an explicit nil
+
+### UnsetCallbackUrl
+`func (o *ReactRequest) UnsetCallbackUrl()`
+
+UnsetCallbackUrl ensures that no value is present for CallbackUrl, not even an explicit nil
+### GetTimeoutMs
+
+`func (o *ReactRequest) GetTimeoutMs() int32`
+
+GetTimeoutMs returns the TimeoutMs field if non-nil, zero value otherwise.
+
+### GetTimeoutMsOk
+
+`func (o *ReactRequest) GetTimeoutMsOk() (*int32, bool)`
+
+GetTimeoutMsOk returns a tuple with the TimeoutMs field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetTimeoutMs
+
+`func (o *ReactRequest) SetTimeoutMs(v int32)`
+
+SetTimeoutMs sets TimeoutMs field to given value.
+
+### HasTimeoutMs
+
+`func (o *ReactRequest) HasTimeoutMs() bool`
+
+HasTimeoutMs returns a boolean if a field has been set.
+
+### SetTimeoutMsNil
+
+`func (o *ReactRequest) SetTimeoutMsNil(b bool)`
+
+ SetTimeoutMsNil sets the value for TimeoutMs to be an explicit nil
+
+### UnsetTimeoutMs
+`func (o *ReactRequest) UnsetTimeoutMs()`
+
+UnsetTimeoutMs ensures that no value is present for TimeoutMs, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

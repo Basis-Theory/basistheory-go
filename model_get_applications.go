@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the GetApplications type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &GetApplications{}
+
 // GetApplications struct for GetApplications
 type GetApplications struct {
 	Id   []string      `json:"id,omitempty"`
@@ -52,15 +55,15 @@ func (o *GetApplications) GetId() []string {
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *GetApplications) GetIdOk() ([]string, bool) {
-	if o == nil || isNil(o.Id) {
+	if o == nil || IsNil(o.Id) {
 		return nil, false
 	}
 	return o.Id, true
 }
 
-// HasId returns a boolean if a field has been set.
+// HasId returns a boolean if a field is not nil.
 func (o *GetApplications) HasId() bool {
-	if o != nil && isNil(o.Id) {
+	if o != nil && !IsNil(o.Id) {
 		return true
 	}
 
@@ -85,15 +88,15 @@ func (o *GetApplications) GetType() []string {
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *GetApplications) GetTypeOk() ([]string, bool) {
-	if o == nil || isNil(o.Type) {
+	if o == nil || IsNil(o.Type) {
 		return nil, false
 	}
 	return o.Type, true
 }
 
-// HasType returns a boolean if a field has been set.
+// HasType returns a boolean if a field is not nil.
 func (o *GetApplications) HasType() bool {
-	if o != nil && isNil(o.Type) {
+	if o != nil && !IsNil(o.Type) {
 		return true
 	}
 
@@ -107,7 +110,7 @@ func (o *GetApplications) SetType(v []string) {
 
 // GetPage returns the Page field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *GetApplications) GetPage() int32 {
-	if o == nil || isNil(o.Page.Get()) {
+	if o == nil || IsNil(o.Page.Get()) {
 		var ret int32
 		return ret
 	}
@@ -124,9 +127,9 @@ func (o *GetApplications) GetPageOk() (*int32, bool) {
 	return o.Page.Get(), o.Page.IsSet()
 }
 
-// HasPage returns a boolean if a field has been set.
+// HasPage returns a boolean if a field is not nil.
 func (o *GetApplications) HasPage() bool {
-	if o != nil && o.Page.IsSet() {
+	if o != nil && !IsNil(o.Page) {
 		return true
 	}
 
@@ -150,7 +153,7 @@ func (o *GetApplications) UnsetPage() {
 
 // GetSize returns the Size field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *GetApplications) GetSize() int32 {
-	if o == nil || isNil(o.Size.Get()) {
+	if o == nil || IsNil(o.Size.Get()) {
 		var ret int32
 		return ret
 	}
@@ -167,9 +170,9 @@ func (o *GetApplications) GetSizeOk() (*int32, bool) {
 	return o.Size.Get(), o.Size.IsSet()
 }
 
-// HasSize returns a boolean if a field has been set.
+// HasSize returns a boolean if a field is not nil.
 func (o *GetApplications) HasSize() bool {
-	if o != nil && o.Size.IsSet() {
+	if o != nil && !IsNil(o.Size) {
 		return true
 	}
 
@@ -192,6 +195,14 @@ func (o *GetApplications) UnsetSize() {
 }
 
 func (o GetApplications) MarshalJSON() ([]byte, error) {
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
+func (o GetApplications) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if o.Id != nil {
 		toSerialize["id"] = o.Id
@@ -205,7 +216,7 @@ func (o GetApplications) MarshalJSON() ([]byte, error) {
 	if o.Size.IsSet() {
 		toSerialize["size"] = o.Size.Get()
 	}
-	return json.Marshal(toSerialize)
+	return toSerialize, nil
 }
 
 type NullableGetApplications struct {

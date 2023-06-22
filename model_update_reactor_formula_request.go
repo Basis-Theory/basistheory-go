@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the UpdateReactorFormulaRequest type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &UpdateReactorFormulaRequest{}
+
 // UpdateReactorFormulaRequest struct for UpdateReactorFormulaRequest
 type UpdateReactorFormulaRequest struct {
 	Type              string                           `json:"type"`
@@ -94,7 +97,7 @@ func (o *UpdateReactorFormulaRequest) SetName(v string) {
 
 // GetDescription returns the Description field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *UpdateReactorFormulaRequest) GetDescription() string {
-	if o == nil || isNil(o.Description.Get()) {
+	if o == nil || IsNil(o.Description.Get()) {
 		var ret string
 		return ret
 	}
@@ -111,9 +114,9 @@ func (o *UpdateReactorFormulaRequest) GetDescriptionOk() (*string, bool) {
 	return o.Description.Get(), o.Description.IsSet()
 }
 
-// HasDescription returns a boolean if a field has been set.
+// HasDescription returns a boolean if a field is not nil.
 func (o *UpdateReactorFormulaRequest) HasDescription() bool {
-	if o != nil && o.Description.IsSet() {
+	if o != nil && !IsNil(o.Description) {
 		return true
 	}
 
@@ -137,7 +140,7 @@ func (o *UpdateReactorFormulaRequest) UnsetDescription() {
 
 // GetIcon returns the Icon field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *UpdateReactorFormulaRequest) GetIcon() string {
-	if o == nil || isNil(o.Icon.Get()) {
+	if o == nil || IsNil(o.Icon.Get()) {
 		var ret string
 		return ret
 	}
@@ -154,9 +157,9 @@ func (o *UpdateReactorFormulaRequest) GetIconOk() (*string, bool) {
 	return o.Icon.Get(), o.Icon.IsSet()
 }
 
-// HasIcon returns a boolean if a field has been set.
+// HasIcon returns a boolean if a field is not nil.
 func (o *UpdateReactorFormulaRequest) HasIcon() bool {
-	if o != nil && o.Icon.IsSet() {
+	if o != nil && !IsNil(o.Icon) {
 		return true
 	}
 
@@ -180,7 +183,7 @@ func (o *UpdateReactorFormulaRequest) UnsetIcon() {
 
 // GetCode returns the Code field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *UpdateReactorFormulaRequest) GetCode() string {
-	if o == nil || isNil(o.Code.Get()) {
+	if o == nil || IsNil(o.Code.Get()) {
 		var ret string
 		return ret
 	}
@@ -197,9 +200,9 @@ func (o *UpdateReactorFormulaRequest) GetCodeOk() (*string, bool) {
 	return o.Code.Get(), o.Code.IsSet()
 }
 
-// HasCode returns a boolean if a field has been set.
+// HasCode returns a boolean if a field is not nil.
 func (o *UpdateReactorFormulaRequest) HasCode() bool {
-	if o != nil && o.Code.IsSet() {
+	if o != nil && !IsNil(o.Code) {
 		return true
 	}
 
@@ -234,15 +237,15 @@ func (o *UpdateReactorFormulaRequest) GetConfiguration() []ReactorFormulaConfigu
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *UpdateReactorFormulaRequest) GetConfigurationOk() ([]ReactorFormulaConfiguration, bool) {
-	if o == nil || isNil(o.Configuration) {
+	if o == nil || IsNil(o.Configuration) {
 		return nil, false
 	}
 	return o.Configuration, true
 }
 
-// HasConfiguration returns a boolean if a field has been set.
+// HasConfiguration returns a boolean if a field is not nil.
 func (o *UpdateReactorFormulaRequest) HasConfiguration() bool {
-	if o != nil && isNil(o.Configuration) {
+	if o != nil && !IsNil(o.Configuration) {
 		return true
 	}
 
@@ -267,15 +270,15 @@ func (o *UpdateReactorFormulaRequest) GetRequestParameters() []ReactorFormulaReq
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *UpdateReactorFormulaRequest) GetRequestParametersOk() ([]ReactorFormulaRequestParameter, bool) {
-	if o == nil || isNil(o.RequestParameters) {
+	if o == nil || IsNil(o.RequestParameters) {
 		return nil, false
 	}
 	return o.RequestParameters, true
 }
 
-// HasRequestParameters returns a boolean if a field has been set.
+// HasRequestParameters returns a boolean if a field is not nil.
 func (o *UpdateReactorFormulaRequest) HasRequestParameters() bool {
-	if o != nil && isNil(o.RequestParameters) {
+	if o != nil && !IsNil(o.RequestParameters) {
 		return true
 	}
 
@@ -288,13 +291,17 @@ func (o *UpdateReactorFormulaRequest) SetRequestParameters(v []ReactorFormulaReq
 }
 
 func (o UpdateReactorFormulaRequest) MarshalJSON() ([]byte, error) {
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
+func (o UpdateReactorFormulaRequest) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["type"] = o.Type
-	}
-	if true {
-		toSerialize["name"] = o.Name
-	}
+	toSerialize["type"] = o.Type
+	toSerialize["name"] = o.Name
 	if o.Description.IsSet() {
 		toSerialize["description"] = o.Description.Get()
 	}
@@ -310,7 +317,7 @@ func (o UpdateReactorFormulaRequest) MarshalJSON() ([]byte, error) {
 	if o.RequestParameters != nil {
 		toSerialize["request_parameters"] = o.RequestParameters
 	}
-	return json.Marshal(toSerialize)
+	return toSerialize, nil
 }
 
 type NullableUpdateReactorFormulaRequest struct {

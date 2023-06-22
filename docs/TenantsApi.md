@@ -104,7 +104,7 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.TenantsApi.Delete(context.Background()).Execute()
+    r, err := apiClient.TenantsApi.Delete(context.Background()).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `TenantsApi.Delete``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -162,7 +162,7 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.TenantsApi.DeleteInvitation(context.Background(), invitationId).Execute()
+    r, err := apiClient.TenantsApi.DeleteInvitation(context.Background(), invitationId).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `TenantsApi.DeleteInvitation``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -228,7 +228,7 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.TenantsApi.DeleteMember(context.Background(), memberId).Execute()
+    r, err := apiClient.TenantsApi.DeleteMember(context.Background(), memberId).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `TenantsApi.DeleteMember``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)

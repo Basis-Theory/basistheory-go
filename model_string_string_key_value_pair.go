@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the StringStringKeyValuePair type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &StringStringKeyValuePair{}
+
 // StringStringKeyValuePair struct for StringStringKeyValuePair
 type StringStringKeyValuePair struct {
 	Key   string `json:"key"`
@@ -88,14 +91,18 @@ func (o *StringStringKeyValuePair) SetValue(v string) {
 }
 
 func (o StringStringKeyValuePair) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["key"] = o.Key
-	}
-	if true {
-		toSerialize["value"] = o.Value
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o StringStringKeyValuePair) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	toSerialize["key"] = o.Key
+	toSerialize["value"] = o.Value
+	return toSerialize, nil
 }
 
 type NullableStringStringKeyValuePair struct {

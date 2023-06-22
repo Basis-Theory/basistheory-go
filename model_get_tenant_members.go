@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the GetTenantMembers type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &GetTenantMembers{}
+
 // GetTenantMembers struct for GetTenantMembers
 type GetTenantMembers struct {
 	UserId []string      `json:"user_id,omitempty"`
@@ -51,15 +54,15 @@ func (o *GetTenantMembers) GetUserId() []string {
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *GetTenantMembers) GetUserIdOk() ([]string, bool) {
-	if o == nil || isNil(o.UserId) {
+	if o == nil || IsNil(o.UserId) {
 		return nil, false
 	}
 	return o.UserId, true
 }
 
-// HasUserId returns a boolean if a field has been set.
+// HasUserId returns a boolean if a field is not nil.
 func (o *GetTenantMembers) HasUserId() bool {
-	if o != nil && isNil(o.UserId) {
+	if o != nil && !IsNil(o.UserId) {
 		return true
 	}
 
@@ -73,7 +76,7 @@ func (o *GetTenantMembers) SetUserId(v []string) {
 
 // GetPage returns the Page field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *GetTenantMembers) GetPage() int32 {
-	if o == nil || isNil(o.Page.Get()) {
+	if o == nil || IsNil(o.Page.Get()) {
 		var ret int32
 		return ret
 	}
@@ -90,9 +93,9 @@ func (o *GetTenantMembers) GetPageOk() (*int32, bool) {
 	return o.Page.Get(), o.Page.IsSet()
 }
 
-// HasPage returns a boolean if a field has been set.
+// HasPage returns a boolean if a field is not nil.
 func (o *GetTenantMembers) HasPage() bool {
-	if o != nil && o.Page.IsSet() {
+	if o != nil && !IsNil(o.Page) {
 		return true
 	}
 
@@ -116,7 +119,7 @@ func (o *GetTenantMembers) UnsetPage() {
 
 // GetSize returns the Size field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *GetTenantMembers) GetSize() int32 {
-	if o == nil || isNil(o.Size.Get()) {
+	if o == nil || IsNil(o.Size.Get()) {
 		var ret int32
 		return ret
 	}
@@ -133,9 +136,9 @@ func (o *GetTenantMembers) GetSizeOk() (*int32, bool) {
 	return o.Size.Get(), o.Size.IsSet()
 }
 
-// HasSize returns a boolean if a field has been set.
+// HasSize returns a boolean if a field is not nil.
 func (o *GetTenantMembers) HasSize() bool {
-	if o != nil && o.Size.IsSet() {
+	if o != nil && !IsNil(o.Size) {
 		return true
 	}
 
@@ -158,6 +161,14 @@ func (o *GetTenantMembers) UnsetSize() {
 }
 
 func (o GetTenantMembers) MarshalJSON() ([]byte, error) {
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
+func (o GetTenantMembers) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UserId != nil {
 		toSerialize["user_id"] = o.UserId
@@ -168,7 +179,7 @@ func (o GetTenantMembers) MarshalJSON() ([]byte, error) {
 	if o.Size.IsSet() {
 		toSerialize["size"] = o.Size.Get()
 	}
-	return json.Marshal(toSerialize)
+	return toSerialize, nil
 }
 
 type NullableGetTenantMembers struct {

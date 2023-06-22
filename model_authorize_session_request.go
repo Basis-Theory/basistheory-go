@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the AuthorizeSessionRequest type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &AuthorizeSessionRequest{}
+
 // AuthorizeSessionRequest struct for AuthorizeSessionRequest
 type AuthorizeSessionRequest struct {
 	Nonce       string         `json:"nonce"`
@@ -66,7 +69,7 @@ func (o *AuthorizeSessionRequest) SetNonce(v string) {
 
 // GetExpiresAt returns the ExpiresAt field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *AuthorizeSessionRequest) GetExpiresAt() string {
-	if o == nil || isNil(o.ExpiresAt.Get()) {
+	if o == nil || IsNil(o.ExpiresAt.Get()) {
 		var ret string
 		return ret
 	}
@@ -83,9 +86,9 @@ func (o *AuthorizeSessionRequest) GetExpiresAtOk() (*string, bool) {
 	return o.ExpiresAt.Get(), o.ExpiresAt.IsSet()
 }
 
-// HasExpiresAt returns a boolean if a field has been set.
+// HasExpiresAt returns a boolean if a field is not nil.
 func (o *AuthorizeSessionRequest) HasExpiresAt() bool {
-	if o != nil && o.ExpiresAt.IsSet() {
+	if o != nil && !IsNil(o.ExpiresAt) {
 		return true
 	}
 
@@ -120,15 +123,15 @@ func (o *AuthorizeSessionRequest) GetPermissions() []string {
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *AuthorizeSessionRequest) GetPermissionsOk() ([]string, bool) {
-	if o == nil || isNil(o.Permissions) {
+	if o == nil || IsNil(o.Permissions) {
 		return nil, false
 	}
 	return o.Permissions, true
 }
 
-// HasPermissions returns a boolean if a field has been set.
+// HasPermissions returns a boolean if a field is not nil.
 func (o *AuthorizeSessionRequest) HasPermissions() bool {
-	if o != nil && isNil(o.Permissions) {
+	if o != nil && !IsNil(o.Permissions) {
 		return true
 	}
 
@@ -153,15 +156,15 @@ func (o *AuthorizeSessionRequest) GetRules() []AccessRule {
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *AuthorizeSessionRequest) GetRulesOk() ([]AccessRule, bool) {
-	if o == nil || isNil(o.Rules) {
+	if o == nil || IsNil(o.Rules) {
 		return nil, false
 	}
 	return o.Rules, true
 }
 
-// HasRules returns a boolean if a field has been set.
+// HasRules returns a boolean if a field is not nil.
 func (o *AuthorizeSessionRequest) HasRules() bool {
-	if o != nil && isNil(o.Rules) {
+	if o != nil && !IsNil(o.Rules) {
 		return true
 	}
 
@@ -174,10 +177,16 @@ func (o *AuthorizeSessionRequest) SetRules(v []AccessRule) {
 }
 
 func (o AuthorizeSessionRequest) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["nonce"] = o.Nonce
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
+	return json.Marshal(toSerialize)
+}
+
+func (o AuthorizeSessionRequest) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	toSerialize["nonce"] = o.Nonce
 	if o.ExpiresAt.IsSet() {
 		toSerialize["expires_at"] = o.ExpiresAt.Get()
 	}
@@ -187,7 +196,7 @@ func (o AuthorizeSessionRequest) MarshalJSON() ([]byte, error) {
 	if o.Rules != nil {
 		toSerialize["rules"] = o.Rules
 	}
-	return json.Marshal(toSerialize)
+	return toSerialize, nil
 }
 
 type NullableAuthorizeSessionRequest struct {

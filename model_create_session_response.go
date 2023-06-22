@@ -15,6 +15,9 @@ import (
 	"time"
 )
 
+// checks if the CreateSessionResponse type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &CreateSessionResponse{}
+
 // CreateSessionResponse struct for CreateSessionResponse
 type CreateSessionResponse struct {
 	SessionKey NullableString `json:"session_key,omitempty"`
@@ -41,7 +44,7 @@ func NewCreateSessionResponseWithDefaults() *CreateSessionResponse {
 
 // GetSessionKey returns the SessionKey field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *CreateSessionResponse) GetSessionKey() string {
-	if o == nil || isNil(o.SessionKey.Get()) {
+	if o == nil || IsNil(o.SessionKey.Get()) {
 		var ret string
 		return ret
 	}
@@ -58,9 +61,9 @@ func (o *CreateSessionResponse) GetSessionKeyOk() (*string, bool) {
 	return o.SessionKey.Get(), o.SessionKey.IsSet()
 }
 
-// HasSessionKey returns a boolean if a field has been set.
+// HasSessionKey returns a boolean if a field is not nil.
 func (o *CreateSessionResponse) HasSessionKey() bool {
-	if o != nil && o.SessionKey.IsSet() {
+	if o != nil && !IsNil(o.SessionKey) {
 		return true
 	}
 
@@ -84,7 +87,7 @@ func (o *CreateSessionResponse) UnsetSessionKey() {
 
 // GetNonce returns the Nonce field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *CreateSessionResponse) GetNonce() string {
-	if o == nil || isNil(o.Nonce.Get()) {
+	if o == nil || IsNil(o.Nonce.Get()) {
 		var ret string
 		return ret
 	}
@@ -101,9 +104,9 @@ func (o *CreateSessionResponse) GetNonceOk() (*string, bool) {
 	return o.Nonce.Get(), o.Nonce.IsSet()
 }
 
-// HasNonce returns a boolean if a field has been set.
+// HasNonce returns a boolean if a field is not nil.
 func (o *CreateSessionResponse) HasNonce() bool {
-	if o != nil && o.Nonce.IsSet() {
+	if o != nil && !IsNil(o.Nonce) {
 		return true
 	}
 
@@ -127,7 +130,7 @@ func (o *CreateSessionResponse) UnsetNonce() {
 
 // GetExpiresAt returns the ExpiresAt field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *CreateSessionResponse) GetExpiresAt() time.Time {
-	if o == nil || isNil(o.ExpiresAt.Get()) {
+	if o == nil || IsNil(o.ExpiresAt.Get()) {
 		var ret time.Time
 		return ret
 	}
@@ -144,9 +147,9 @@ func (o *CreateSessionResponse) GetExpiresAtOk() (*time.Time, bool) {
 	return o.ExpiresAt.Get(), o.ExpiresAt.IsSet()
 }
 
-// HasExpiresAt returns a boolean if a field has been set.
+// HasExpiresAt returns a boolean if a field is not nil.
 func (o *CreateSessionResponse) HasExpiresAt() bool {
-	if o != nil && o.ExpiresAt.IsSet() {
+	if o != nil && !IsNil(o.ExpiresAt) {
 		return true
 	}
 
@@ -169,6 +172,14 @@ func (o *CreateSessionResponse) UnsetExpiresAt() {
 }
 
 func (o CreateSessionResponse) MarshalJSON() ([]byte, error) {
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
+func (o CreateSessionResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if o.SessionKey.IsSet() {
 		toSerialize["session_key"] = o.SessionKey.Get()
@@ -179,7 +190,7 @@ func (o CreateSessionResponse) MarshalJSON() ([]byte, error) {
 	if o.ExpiresAt.IsSet() {
 		toSerialize["expires_at"] = o.ExpiresAt.Get()
 	}
-	return json.Marshal(toSerialize)
+	return toSerialize, nil
 }
 
 type NullableCreateSessionResponse struct {

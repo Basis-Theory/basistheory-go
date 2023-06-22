@@ -15,6 +15,9 @@ import (
 	"time"
 )
 
+// checks if the Log type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &Log{}
+
 // Log struct for Log
 type Log struct {
 	TenantId   *string        `json:"tenant_id,omitempty"`
@@ -46,7 +49,7 @@ func NewLogWithDefaults() *Log {
 
 // GetTenantId returns the TenantId field value if set, zero value otherwise.
 func (o *Log) GetTenantId() string {
-	if o == nil || isNil(o.TenantId) {
+	if o == nil || IsNil(o.TenantId) {
 		var ret string
 		return ret
 	}
@@ -56,15 +59,15 @@ func (o *Log) GetTenantId() string {
 // GetTenantIdOk returns a tuple with the TenantId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Log) GetTenantIdOk() (*string, bool) {
-	if o == nil || isNil(o.TenantId) {
+	if o == nil || IsNil(o.TenantId) {
 		return nil, false
 	}
 	return o.TenantId, true
 }
 
-// HasTenantId returns a boolean if a field has been set.
+// HasTenantId returns a boolean if a field is not nil.
 func (o *Log) HasTenantId() bool {
-	if o != nil && !isNil(o.TenantId) {
+	if o != nil && !IsNil(o.TenantId) {
 		return true
 	}
 
@@ -78,7 +81,7 @@ func (o *Log) SetTenantId(v string) {
 
 // GetActorId returns the ActorId field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *Log) GetActorId() string {
-	if o == nil || isNil(o.ActorId.Get()) {
+	if o == nil || IsNil(o.ActorId.Get()) {
 		var ret string
 		return ret
 	}
@@ -95,9 +98,9 @@ func (o *Log) GetActorIdOk() (*string, bool) {
 	return o.ActorId.Get(), o.ActorId.IsSet()
 }
 
-// HasActorId returns a boolean if a field has been set.
+// HasActorId returns a boolean if a field is not nil.
 func (o *Log) HasActorId() bool {
-	if o != nil && o.ActorId.IsSet() {
+	if o != nil && !IsNil(o.ActorId) {
 		return true
 	}
 
@@ -121,7 +124,7 @@ func (o *Log) UnsetActorId() {
 
 // GetActorType returns the ActorType field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *Log) GetActorType() string {
-	if o == nil || isNil(o.ActorType.Get()) {
+	if o == nil || IsNil(o.ActorType.Get()) {
 		var ret string
 		return ret
 	}
@@ -138,9 +141,9 @@ func (o *Log) GetActorTypeOk() (*string, bool) {
 	return o.ActorType.Get(), o.ActorType.IsSet()
 }
 
-// HasActorType returns a boolean if a field has been set.
+// HasActorType returns a boolean if a field is not nil.
 func (o *Log) HasActorType() bool {
-	if o != nil && o.ActorType.IsSet() {
+	if o != nil && !IsNil(o.ActorType) {
 		return true
 	}
 
@@ -164,7 +167,7 @@ func (o *Log) UnsetActorType() {
 
 // GetEntityType returns the EntityType field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *Log) GetEntityType() string {
-	if o == nil || isNil(o.EntityType.Get()) {
+	if o == nil || IsNil(o.EntityType.Get()) {
 		var ret string
 		return ret
 	}
@@ -181,9 +184,9 @@ func (o *Log) GetEntityTypeOk() (*string, bool) {
 	return o.EntityType.Get(), o.EntityType.IsSet()
 }
 
-// HasEntityType returns a boolean if a field has been set.
+// HasEntityType returns a boolean if a field is not nil.
 func (o *Log) HasEntityType() bool {
-	if o != nil && o.EntityType.IsSet() {
+	if o != nil && !IsNil(o.EntityType) {
 		return true
 	}
 
@@ -207,7 +210,7 @@ func (o *Log) UnsetEntityType() {
 
 // GetEntityId returns the EntityId field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *Log) GetEntityId() string {
-	if o == nil || isNil(o.EntityId.Get()) {
+	if o == nil || IsNil(o.EntityId.Get()) {
 		var ret string
 		return ret
 	}
@@ -224,9 +227,9 @@ func (o *Log) GetEntityIdOk() (*string, bool) {
 	return o.EntityId.Get(), o.EntityId.IsSet()
 }
 
-// HasEntityId returns a boolean if a field has been set.
+// HasEntityId returns a boolean if a field is not nil.
 func (o *Log) HasEntityId() bool {
-	if o != nil && o.EntityId.IsSet() {
+	if o != nil && !IsNil(o.EntityId) {
 		return true
 	}
 
@@ -250,7 +253,7 @@ func (o *Log) UnsetEntityId() {
 
 // GetOperation returns the Operation field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *Log) GetOperation() string {
-	if o == nil || isNil(o.Operation.Get()) {
+	if o == nil || IsNil(o.Operation.Get()) {
 		var ret string
 		return ret
 	}
@@ -267,9 +270,9 @@ func (o *Log) GetOperationOk() (*string, bool) {
 	return o.Operation.Get(), o.Operation.IsSet()
 }
 
-// HasOperation returns a boolean if a field has been set.
+// HasOperation returns a boolean if a field is not nil.
 func (o *Log) HasOperation() bool {
-	if o != nil && o.Operation.IsSet() {
+	if o != nil && !IsNil(o.Operation) {
 		return true
 	}
 
@@ -293,7 +296,7 @@ func (o *Log) UnsetOperation() {
 
 // GetMessage returns the Message field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *Log) GetMessage() string {
-	if o == nil || isNil(o.Message.Get()) {
+	if o == nil || IsNil(o.Message.Get()) {
 		var ret string
 		return ret
 	}
@@ -310,9 +313,9 @@ func (o *Log) GetMessageOk() (*string, bool) {
 	return o.Message.Get(), o.Message.IsSet()
 }
 
-// HasMessage returns a boolean if a field has been set.
+// HasMessage returns a boolean if a field is not nil.
 func (o *Log) HasMessage() bool {
-	if o != nil && o.Message.IsSet() {
+	if o != nil && !IsNil(o.Message) {
 		return true
 	}
 
@@ -336,7 +339,7 @@ func (o *Log) UnsetMessage() {
 
 // GetCreatedAt returns the CreatedAt field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *Log) GetCreatedAt() time.Time {
-	if o == nil || isNil(o.CreatedAt.Get()) {
+	if o == nil || IsNil(o.CreatedAt.Get()) {
 		var ret time.Time
 		return ret
 	}
@@ -353,9 +356,9 @@ func (o *Log) GetCreatedAtOk() (*time.Time, bool) {
 	return o.CreatedAt.Get(), o.CreatedAt.IsSet()
 }
 
-// HasCreatedAt returns a boolean if a field has been set.
+// HasCreatedAt returns a boolean if a field is not nil.
 func (o *Log) HasCreatedAt() bool {
-	if o != nil && o.CreatedAt.IsSet() {
+	if o != nil && !IsNil(o.CreatedAt) {
 		return true
 	}
 
@@ -378,8 +381,16 @@ func (o *Log) UnsetCreatedAt() {
 }
 
 func (o Log) MarshalJSON() ([]byte, error) {
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
+func (o Log) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !isNil(o.TenantId) {
+	if !IsNil(o.TenantId) {
 		toSerialize["tenant_id"] = o.TenantId
 	}
 	if o.ActorId.IsSet() {
@@ -403,7 +414,7 @@ func (o Log) MarshalJSON() ([]byte, error) {
 	if o.CreatedAt.IsSet() {
 		toSerialize["created_at"] = o.CreatedAt.Get()
 	}
-	return json.Marshal(toSerialize)
+	return toSerialize, nil
 }
 
 type NullableLog struct {

@@ -14,9 +14,14 @@ import (
 	"encoding/json"
 )
 
+// checks if the ReactRequest type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &ReactRequest{}
+
 // ReactRequest struct for ReactRequest
 type ReactRequest struct {
-	Args interface{} `json:"args,omitempty"`
+	Args        interface{}    `json:"args,omitempty"`
+	CallbackUrl NullableString `json:"callback_url,omitempty"`
+	TimeoutMs   NullableInt32  `json:"timeout_ms,omitempty"`
 }
 
 // NewReactRequest instantiates a new ReactRequest object
@@ -49,15 +54,15 @@ func (o *ReactRequest) GetArgs() interface{} {
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *ReactRequest) GetArgsOk() (*interface{}, bool) {
-	if o == nil || isNil(o.Args) {
+	if o == nil || IsNil(o.Args) {
 		return nil, false
 	}
 	return &o.Args, true
 }
 
-// HasArgs returns a boolean if a field has been set.
+// HasArgs returns a boolean if a field is not nil.
 func (o *ReactRequest) HasArgs() bool {
-	if o != nil && isNil(o.Args) {
+	if o != nil && !IsNil(o.Args) {
 		return true
 	}
 
@@ -69,12 +74,112 @@ func (o *ReactRequest) SetArgs(v interface{}) {
 	o.Args = v
 }
 
+// GetCallbackUrl returns the CallbackUrl field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ReactRequest) GetCallbackUrl() string {
+	if o == nil || IsNil(o.CallbackUrl.Get()) {
+		var ret string
+		return ret
+	}
+	return *o.CallbackUrl.Get()
+}
+
+// GetCallbackUrlOk returns a tuple with the CallbackUrl field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ReactRequest) GetCallbackUrlOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.CallbackUrl.Get(), o.CallbackUrl.IsSet()
+}
+
+// HasCallbackUrl returns a boolean if a field is not nil.
+func (o *ReactRequest) HasCallbackUrl() bool {
+	if o != nil && !IsNil(o.CallbackUrl) {
+		return true
+	}
+
+	return false
+}
+
+// SetCallbackUrl gets a reference to the given NullableString and assigns it to the CallbackUrl field.
+func (o *ReactRequest) SetCallbackUrl(v string) {
+	o.CallbackUrl.Set(&v)
+}
+
+// SetCallbackUrlNil sets the value for CallbackUrl to be an explicit nil
+func (o *ReactRequest) SetCallbackUrlNil() {
+	o.CallbackUrl.Set(nil)
+}
+
+// UnsetCallbackUrl ensures that no value is present for CallbackUrl, not even an explicit nil
+func (o *ReactRequest) UnsetCallbackUrl() {
+	o.CallbackUrl.Unset()
+}
+
+// GetTimeoutMs returns the TimeoutMs field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ReactRequest) GetTimeoutMs() int32 {
+	if o == nil || IsNil(o.TimeoutMs.Get()) {
+		var ret int32
+		return ret
+	}
+	return *o.TimeoutMs.Get()
+}
+
+// GetTimeoutMsOk returns a tuple with the TimeoutMs field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ReactRequest) GetTimeoutMsOk() (*int32, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.TimeoutMs.Get(), o.TimeoutMs.IsSet()
+}
+
+// HasTimeoutMs returns a boolean if a field is not nil.
+func (o *ReactRequest) HasTimeoutMs() bool {
+	if o != nil && !IsNil(o.TimeoutMs) {
+		return true
+	}
+
+	return false
+}
+
+// SetTimeoutMs gets a reference to the given NullableInt32 and assigns it to the TimeoutMs field.
+func (o *ReactRequest) SetTimeoutMs(v int32) {
+	o.TimeoutMs.Set(&v)
+}
+
+// SetTimeoutMsNil sets the value for TimeoutMs to be an explicit nil
+func (o *ReactRequest) SetTimeoutMsNil() {
+	o.TimeoutMs.Set(nil)
+}
+
+// UnsetTimeoutMs ensures that no value is present for TimeoutMs, not even an explicit nil
+func (o *ReactRequest) UnsetTimeoutMs() {
+	o.TimeoutMs.Unset()
+}
+
 func (o ReactRequest) MarshalJSON() ([]byte, error) {
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
+func (o ReactRequest) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if o.Args != nil {
 		toSerialize["args"] = o.Args
 	}
-	return json.Marshal(toSerialize)
+	if o.CallbackUrl.IsSet() {
+		toSerialize["callback_url"] = o.CallbackUrl.Get()
+	}
+	if o.TimeoutMs.IsSet() {
+		toSerialize["timeout_ms"] = o.TimeoutMs.Get()
+	}
+	return toSerialize, nil
 }
 
 type NullableReactRequest struct {

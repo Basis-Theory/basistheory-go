@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the TokenReport type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &TokenReport{}
+
 // TokenReport struct for TokenReport
 type TokenReport struct {
 	IncludedMonthlyActiveTokens *int64                      `json:"included_monthly_active_tokens,omitempty"`
@@ -41,7 +44,7 @@ func NewTokenReportWithDefaults() *TokenReport {
 
 // GetIncludedMonthlyActiveTokens returns the IncludedMonthlyActiveTokens field value if set, zero value otherwise.
 func (o *TokenReport) GetIncludedMonthlyActiveTokens() int64 {
-	if o == nil || isNil(o.IncludedMonthlyActiveTokens) {
+	if o == nil || IsNil(o.IncludedMonthlyActiveTokens) {
 		var ret int64
 		return ret
 	}
@@ -51,15 +54,15 @@ func (o *TokenReport) GetIncludedMonthlyActiveTokens() int64 {
 // GetIncludedMonthlyActiveTokensOk returns a tuple with the IncludedMonthlyActiveTokens field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *TokenReport) GetIncludedMonthlyActiveTokensOk() (*int64, bool) {
-	if o == nil || isNil(o.IncludedMonthlyActiveTokens) {
+	if o == nil || IsNil(o.IncludedMonthlyActiveTokens) {
 		return nil, false
 	}
 	return o.IncludedMonthlyActiveTokens, true
 }
 
-// HasIncludedMonthlyActiveTokens returns a boolean if a field has been set.
+// HasIncludedMonthlyActiveTokens returns a boolean if a field is not nil.
 func (o *TokenReport) HasIncludedMonthlyActiveTokens() bool {
-	if o != nil && !isNil(o.IncludedMonthlyActiveTokens) {
+	if o != nil && !IsNil(o.IncludedMonthlyActiveTokens) {
 		return true
 	}
 
@@ -73,7 +76,7 @@ func (o *TokenReport) SetIncludedMonthlyActiveTokens(v int64) {
 
 // GetMonthlyActiveTokens returns the MonthlyActiveTokens field value if set, zero value otherwise.
 func (o *TokenReport) GetMonthlyActiveTokens() int64 {
-	if o == nil || isNil(o.MonthlyActiveTokens) {
+	if o == nil || IsNil(o.MonthlyActiveTokens) {
 		var ret int64
 		return ret
 	}
@@ -83,15 +86,15 @@ func (o *TokenReport) GetMonthlyActiveTokens() int64 {
 // GetMonthlyActiveTokensOk returns a tuple with the MonthlyActiveTokens field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *TokenReport) GetMonthlyActiveTokensOk() (*int64, bool) {
-	if o == nil || isNil(o.MonthlyActiveTokens) {
+	if o == nil || IsNil(o.MonthlyActiveTokens) {
 		return nil, false
 	}
 	return o.MonthlyActiveTokens, true
 }
 
-// HasMonthlyActiveTokens returns a boolean if a field has been set.
+// HasMonthlyActiveTokens returns a boolean if a field is not nil.
 func (o *TokenReport) HasMonthlyActiveTokens() bool {
-	if o != nil && !isNil(o.MonthlyActiveTokens) {
+	if o != nil && !IsNil(o.MonthlyActiveTokens) {
 		return true
 	}
 
@@ -116,15 +119,15 @@ func (o *TokenReport) GetMetricsByType() map[string]TokenMetrics {
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *TokenReport) GetMetricsByTypeOk() (*map[string]TokenMetrics, bool) {
-	if o == nil || isNil(o.MetricsByType) {
+	if o == nil || IsNil(o.MetricsByType) {
 		return nil, false
 	}
 	return &o.MetricsByType, true
 }
 
-// HasMetricsByType returns a boolean if a field has been set.
+// HasMetricsByType returns a boolean if a field is not nil.
 func (o *TokenReport) HasMetricsByType() bool {
-	if o != nil && isNil(o.MetricsByType) {
+	if o != nil && !IsNil(o.MetricsByType) {
 		return true
 	}
 
@@ -149,15 +152,15 @@ func (o *TokenReport) GetMonthlyActiveTokenHistory() []MonthlyActiveTokenHistory
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *TokenReport) GetMonthlyActiveTokenHistoryOk() ([]MonthlyActiveTokenHistory, bool) {
-	if o == nil || isNil(o.MonthlyActiveTokenHistory) {
+	if o == nil || IsNil(o.MonthlyActiveTokenHistory) {
 		return nil, false
 	}
 	return o.MonthlyActiveTokenHistory, true
 }
 
-// HasMonthlyActiveTokenHistory returns a boolean if a field has been set.
+// HasMonthlyActiveTokenHistory returns a boolean if a field is not nil.
 func (o *TokenReport) HasMonthlyActiveTokenHistory() bool {
-	if o != nil && isNil(o.MonthlyActiveTokenHistory) {
+	if o != nil && !IsNil(o.MonthlyActiveTokenHistory) {
 		return true
 	}
 
@@ -170,11 +173,19 @@ func (o *TokenReport) SetMonthlyActiveTokenHistory(v []MonthlyActiveTokenHistory
 }
 
 func (o TokenReport) MarshalJSON() ([]byte, error) {
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
+func (o TokenReport) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !isNil(o.IncludedMonthlyActiveTokens) {
+	if !IsNil(o.IncludedMonthlyActiveTokens) {
 		toSerialize["included_monthly_active_tokens"] = o.IncludedMonthlyActiveTokens
 	}
-	if !isNil(o.MonthlyActiveTokens) {
+	if !IsNil(o.MonthlyActiveTokens) {
 		toSerialize["monthly_active_tokens"] = o.MonthlyActiveTokens
 	}
 	if o.MetricsByType != nil {
@@ -183,7 +194,7 @@ func (o TokenReport) MarshalJSON() ([]byte, error) {
 	if o.MonthlyActiveTokenHistory != nil {
 		toSerialize["monthly_active_token_history"] = o.MonthlyActiveTokenHistory
 	}
-	return json.Marshal(toSerialize)
+	return toSerialize, nil
 }
 
 type NullableTokenReport struct {

@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the ReactorFormulaConfiguration type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &ReactorFormulaConfiguration{}
+
 // ReactorFormulaConfiguration struct for ReactorFormulaConfiguration
 type ReactorFormulaConfiguration struct {
 	Name        string         `json:"name"`
@@ -66,7 +69,7 @@ func (o *ReactorFormulaConfiguration) SetName(v string) {
 
 // GetDescription returns the Description field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *ReactorFormulaConfiguration) GetDescription() string {
-	if o == nil || isNil(o.Description.Get()) {
+	if o == nil || IsNil(o.Description.Get()) {
 		var ret string
 		return ret
 	}
@@ -83,9 +86,9 @@ func (o *ReactorFormulaConfiguration) GetDescriptionOk() (*string, bool) {
 	return o.Description.Get(), o.Description.IsSet()
 }
 
-// HasDescription returns a boolean if a field has been set.
+// HasDescription returns a boolean if a field is not nil.
 func (o *ReactorFormulaConfiguration) HasDescription() bool {
-	if o != nil && o.Description.IsSet() {
+	if o != nil && !IsNil(o.Description) {
 		return true
 	}
 
@@ -132,17 +135,21 @@ func (o *ReactorFormulaConfiguration) SetType(v string) {
 }
 
 func (o ReactorFormulaConfiguration) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["name"] = o.Name
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
+	return json.Marshal(toSerialize)
+}
+
+func (o ReactorFormulaConfiguration) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	toSerialize["name"] = o.Name
 	if o.Description.IsSet() {
 		toSerialize["description"] = o.Description.Get()
 	}
-	if true {
-		toSerialize["type"] = o.Type
-	}
-	return json.Marshal(toSerialize)
+	toSerialize["type"] = o.Type
+	return toSerialize, nil
 }
 
 type NullableReactorFormulaConfiguration struct {

@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the CreateApplicationRequest type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &CreateApplicationRequest{}
+
 // CreateApplicationRequest struct for CreateApplicationRequest
 type CreateApplicationRequest struct {
 	Name        string         `json:"name"`
@@ -92,7 +95,7 @@ func (o *CreateApplicationRequest) SetType(v string) {
 
 // GetExpiresAt returns the ExpiresAt field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *CreateApplicationRequest) GetExpiresAt() string {
-	if o == nil || isNil(o.ExpiresAt.Get()) {
+	if o == nil || IsNil(o.ExpiresAt.Get()) {
 		var ret string
 		return ret
 	}
@@ -109,9 +112,9 @@ func (o *CreateApplicationRequest) GetExpiresAtOk() (*string, bool) {
 	return o.ExpiresAt.Get(), o.ExpiresAt.IsSet()
 }
 
-// HasExpiresAt returns a boolean if a field has been set.
+// HasExpiresAt returns a boolean if a field is not nil.
 func (o *CreateApplicationRequest) HasExpiresAt() bool {
-	if o != nil && o.ExpiresAt.IsSet() {
+	if o != nil && !IsNil(o.ExpiresAt) {
 		return true
 	}
 
@@ -146,15 +149,15 @@ func (o *CreateApplicationRequest) GetPermissions() []string {
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *CreateApplicationRequest) GetPermissionsOk() ([]string, bool) {
-	if o == nil || isNil(o.Permissions) {
+	if o == nil || IsNil(o.Permissions) {
 		return nil, false
 	}
 	return o.Permissions, true
 }
 
-// HasPermissions returns a boolean if a field has been set.
+// HasPermissions returns a boolean if a field is not nil.
 func (o *CreateApplicationRequest) HasPermissions() bool {
-	if o != nil && isNil(o.Permissions) {
+	if o != nil && !IsNil(o.Permissions) {
 		return true
 	}
 
@@ -179,15 +182,15 @@ func (o *CreateApplicationRequest) GetRules() []AccessRule {
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *CreateApplicationRequest) GetRulesOk() ([]AccessRule, bool) {
-	if o == nil || isNil(o.Rules) {
+	if o == nil || IsNil(o.Rules) {
 		return nil, false
 	}
 	return o.Rules, true
 }
 
-// HasRules returns a boolean if a field has been set.
+// HasRules returns a boolean if a field is not nil.
 func (o *CreateApplicationRequest) HasRules() bool {
-	if o != nil && isNil(o.Rules) {
+	if o != nil && !IsNil(o.Rules) {
 		return true
 	}
 
@@ -200,13 +203,17 @@ func (o *CreateApplicationRequest) SetRules(v []AccessRule) {
 }
 
 func (o CreateApplicationRequest) MarshalJSON() ([]byte, error) {
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
+func (o CreateApplicationRequest) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["name"] = o.Name
-	}
-	if true {
-		toSerialize["type"] = o.Type
-	}
+	toSerialize["name"] = o.Name
+	toSerialize["type"] = o.Type
 	if o.ExpiresAt.IsSet() {
 		toSerialize["expires_at"] = o.ExpiresAt.Get()
 	}
@@ -216,7 +223,7 @@ func (o CreateApplicationRequest) MarshalJSON() ([]byte, error) {
 	if o.Rules != nil {
 		toSerialize["rules"] = o.Rules
 	}
-	return json.Marshal(toSerialize)
+	return toSerialize, nil
 }
 
 type NullableCreateApplicationRequest struct {

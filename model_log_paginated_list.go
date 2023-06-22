@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the LogPaginatedList type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &LogPaginatedList{}
+
 // LogPaginatedList struct for LogPaginatedList
 type LogPaginatedList struct {
 	Pagination *Pagination `json:"pagination,omitempty"`
@@ -39,7 +42,7 @@ func NewLogPaginatedListWithDefaults() *LogPaginatedList {
 
 // GetPagination returns the Pagination field value if set, zero value otherwise.
 func (o *LogPaginatedList) GetPagination() Pagination {
-	if o == nil || isNil(o.Pagination) {
+	if o == nil || IsNil(o.Pagination) {
 		var ret Pagination
 		return ret
 	}
@@ -49,15 +52,15 @@ func (o *LogPaginatedList) GetPagination() Pagination {
 // GetPaginationOk returns a tuple with the Pagination field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *LogPaginatedList) GetPaginationOk() (*Pagination, bool) {
-	if o == nil || isNil(o.Pagination) {
+	if o == nil || IsNil(o.Pagination) {
 		return nil, false
 	}
 	return o.Pagination, true
 }
 
-// HasPagination returns a boolean if a field has been set.
+// HasPagination returns a boolean if a field is not nil.
 func (o *LogPaginatedList) HasPagination() bool {
-	if o != nil && !isNil(o.Pagination) {
+	if o != nil && !IsNil(o.Pagination) {
 		return true
 	}
 
@@ -82,15 +85,15 @@ func (o *LogPaginatedList) GetData() []Log {
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *LogPaginatedList) GetDataOk() ([]Log, bool) {
-	if o == nil || isNil(o.Data) {
+	if o == nil || IsNil(o.Data) {
 		return nil, false
 	}
 	return o.Data, true
 }
 
-// HasData returns a boolean if a field has been set.
+// HasData returns a boolean if a field is not nil.
 func (o *LogPaginatedList) HasData() bool {
-	if o != nil && isNil(o.Data) {
+	if o != nil && !IsNil(o.Data) {
 		return true
 	}
 
@@ -103,14 +106,22 @@ func (o *LogPaginatedList) SetData(v []Log) {
 }
 
 func (o LogPaginatedList) MarshalJSON() ([]byte, error) {
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
+func (o LogPaginatedList) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !isNil(o.Pagination) {
+	if !IsNil(o.Pagination) {
 		toSerialize["pagination"] = o.Pagination
 	}
 	if o.Data != nil {
 		toSerialize["data"] = o.Data
 	}
-	return json.Marshal(toSerialize)
+	return toSerialize, nil
 }
 
 type NullableLogPaginatedList struct {

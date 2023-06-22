@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the GetReactorFormulas type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &GetReactorFormulas{}
+
 // GetReactorFormulas struct for GetReactorFormulas
 type GetReactorFormulas struct {
 	Name NullableString `json:"name,omitempty"`
@@ -40,7 +43,7 @@ func NewGetReactorFormulasWithDefaults() *GetReactorFormulas {
 
 // GetName returns the Name field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *GetReactorFormulas) GetName() string {
-	if o == nil || isNil(o.Name.Get()) {
+	if o == nil || IsNil(o.Name.Get()) {
 		var ret string
 		return ret
 	}
@@ -57,9 +60,9 @@ func (o *GetReactorFormulas) GetNameOk() (*string, bool) {
 	return o.Name.Get(), o.Name.IsSet()
 }
 
-// HasName returns a boolean if a field has been set.
+// HasName returns a boolean if a field is not nil.
 func (o *GetReactorFormulas) HasName() bool {
-	if o != nil && o.Name.IsSet() {
+	if o != nil && !IsNil(o.Name) {
 		return true
 	}
 
@@ -83,7 +86,7 @@ func (o *GetReactorFormulas) UnsetName() {
 
 // GetPage returns the Page field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *GetReactorFormulas) GetPage() int32 {
-	if o == nil || isNil(o.Page.Get()) {
+	if o == nil || IsNil(o.Page.Get()) {
 		var ret int32
 		return ret
 	}
@@ -100,9 +103,9 @@ func (o *GetReactorFormulas) GetPageOk() (*int32, bool) {
 	return o.Page.Get(), o.Page.IsSet()
 }
 
-// HasPage returns a boolean if a field has been set.
+// HasPage returns a boolean if a field is not nil.
 func (o *GetReactorFormulas) HasPage() bool {
-	if o != nil && o.Page.IsSet() {
+	if o != nil && !IsNil(o.Page) {
 		return true
 	}
 
@@ -126,7 +129,7 @@ func (o *GetReactorFormulas) UnsetPage() {
 
 // GetSize returns the Size field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *GetReactorFormulas) GetSize() int32 {
-	if o == nil || isNil(o.Size.Get()) {
+	if o == nil || IsNil(o.Size.Get()) {
 		var ret int32
 		return ret
 	}
@@ -143,9 +146,9 @@ func (o *GetReactorFormulas) GetSizeOk() (*int32, bool) {
 	return o.Size.Get(), o.Size.IsSet()
 }
 
-// HasSize returns a boolean if a field has been set.
+// HasSize returns a boolean if a field is not nil.
 func (o *GetReactorFormulas) HasSize() bool {
-	if o != nil && o.Size.IsSet() {
+	if o != nil && !IsNil(o.Size) {
 		return true
 	}
 
@@ -168,6 +171,14 @@ func (o *GetReactorFormulas) UnsetSize() {
 }
 
 func (o GetReactorFormulas) MarshalJSON() ([]byte, error) {
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
+func (o GetReactorFormulas) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if o.Name.IsSet() {
 		toSerialize["name"] = o.Name.Get()
@@ -178,7 +189,7 @@ func (o GetReactorFormulas) MarshalJSON() ([]byte, error) {
 	if o.Size.IsSet() {
 		toSerialize["size"] = o.Size.Get()
 	}
-	return json.Marshal(toSerialize)
+	return toSerialize, nil
 }
 
 type NullableGetReactorFormulas struct {

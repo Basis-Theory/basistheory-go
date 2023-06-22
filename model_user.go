@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the User type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &User{}
+
 // User struct for User
 type User struct {
 	Id        *string        `json:"id,omitempty"`
@@ -42,7 +45,7 @@ func NewUserWithDefaults() *User {
 
 // GetId returns the Id field value if set, zero value otherwise.
 func (o *User) GetId() string {
-	if o == nil || isNil(o.Id) {
+	if o == nil || IsNil(o.Id) {
 		var ret string
 		return ret
 	}
@@ -52,15 +55,15 @@ func (o *User) GetId() string {
 // GetIdOk returns a tuple with the Id field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *User) GetIdOk() (*string, bool) {
-	if o == nil || isNil(o.Id) {
+	if o == nil || IsNil(o.Id) {
 		return nil, false
 	}
 	return o.Id, true
 }
 
-// HasId returns a boolean if a field has been set.
+// HasId returns a boolean if a field is not nil.
 func (o *User) HasId() bool {
-	if o != nil && !isNil(o.Id) {
+	if o != nil && !IsNil(o.Id) {
 		return true
 	}
 
@@ -74,7 +77,7 @@ func (o *User) SetId(v string) {
 
 // GetEmail returns the Email field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *User) GetEmail() string {
-	if o == nil || isNil(o.Email.Get()) {
+	if o == nil || IsNil(o.Email.Get()) {
 		var ret string
 		return ret
 	}
@@ -91,9 +94,9 @@ func (o *User) GetEmailOk() (*string, bool) {
 	return o.Email.Get(), o.Email.IsSet()
 }
 
-// HasEmail returns a boolean if a field has been set.
+// HasEmail returns a boolean if a field is not nil.
 func (o *User) HasEmail() bool {
-	if o != nil && o.Email.IsSet() {
+	if o != nil && !IsNil(o.Email) {
 		return true
 	}
 
@@ -117,7 +120,7 @@ func (o *User) UnsetEmail() {
 
 // GetFirstName returns the FirstName field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *User) GetFirstName() string {
-	if o == nil || isNil(o.FirstName.Get()) {
+	if o == nil || IsNil(o.FirstName.Get()) {
 		var ret string
 		return ret
 	}
@@ -134,9 +137,9 @@ func (o *User) GetFirstNameOk() (*string, bool) {
 	return o.FirstName.Get(), o.FirstName.IsSet()
 }
 
-// HasFirstName returns a boolean if a field has been set.
+// HasFirstName returns a boolean if a field is not nil.
 func (o *User) HasFirstName() bool {
-	if o != nil && o.FirstName.IsSet() {
+	if o != nil && !IsNil(o.FirstName) {
 		return true
 	}
 
@@ -160,7 +163,7 @@ func (o *User) UnsetFirstName() {
 
 // GetLastName returns the LastName field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *User) GetLastName() string {
-	if o == nil || isNil(o.LastName.Get()) {
+	if o == nil || IsNil(o.LastName.Get()) {
 		var ret string
 		return ret
 	}
@@ -177,9 +180,9 @@ func (o *User) GetLastNameOk() (*string, bool) {
 	return o.LastName.Get(), o.LastName.IsSet()
 }
 
-// HasLastName returns a boolean if a field has been set.
+// HasLastName returns a boolean if a field is not nil.
 func (o *User) HasLastName() bool {
-	if o != nil && o.LastName.IsSet() {
+	if o != nil && !IsNil(o.LastName) {
 		return true
 	}
 
@@ -203,7 +206,7 @@ func (o *User) UnsetLastName() {
 
 // GetPicture returns the Picture field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *User) GetPicture() string {
-	if o == nil || isNil(o.Picture.Get()) {
+	if o == nil || IsNil(o.Picture.Get()) {
 		var ret string
 		return ret
 	}
@@ -220,9 +223,9 @@ func (o *User) GetPictureOk() (*string, bool) {
 	return o.Picture.Get(), o.Picture.IsSet()
 }
 
-// HasPicture returns a boolean if a field has been set.
+// HasPicture returns a boolean if a field is not nil.
 func (o *User) HasPicture() bool {
-	if o != nil && o.Picture.IsSet() {
+	if o != nil && !IsNil(o.Picture) {
 		return true
 	}
 
@@ -245,8 +248,16 @@ func (o *User) UnsetPicture() {
 }
 
 func (o User) MarshalJSON() ([]byte, error) {
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
+func (o User) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !isNil(o.Id) {
+	if !IsNil(o.Id) {
 		toSerialize["id"] = o.Id
 	}
 	if o.Email.IsSet() {
@@ -261,7 +272,7 @@ func (o User) MarshalJSON() ([]byte, error) {
 	if o.Picture.IsSet() {
 		toSerialize["picture"] = o.Picture.Get()
 	}
-	return json.Marshal(toSerialize)
+	return toSerialize, nil
 }
 
 type NullableUser struct {

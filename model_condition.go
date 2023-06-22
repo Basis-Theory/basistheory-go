@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the Condition type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &Condition{}
+
 // Condition struct for Condition
 type Condition struct {
 	Attribute NullableString `json:"attribute,omitempty"`
@@ -40,7 +43,7 @@ func NewConditionWithDefaults() *Condition {
 
 // GetAttribute returns the Attribute field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *Condition) GetAttribute() string {
-	if o == nil || isNil(o.Attribute.Get()) {
+	if o == nil || IsNil(o.Attribute.Get()) {
 		var ret string
 		return ret
 	}
@@ -57,9 +60,9 @@ func (o *Condition) GetAttributeOk() (*string, bool) {
 	return o.Attribute.Get(), o.Attribute.IsSet()
 }
 
-// HasAttribute returns a boolean if a field has been set.
+// HasAttribute returns a boolean if a field is not nil.
 func (o *Condition) HasAttribute() bool {
-	if o != nil && o.Attribute.IsSet() {
+	if o != nil && !IsNil(o.Attribute) {
 		return true
 	}
 
@@ -83,7 +86,7 @@ func (o *Condition) UnsetAttribute() {
 
 // GetOperator returns the Operator field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *Condition) GetOperator() string {
-	if o == nil || isNil(o.Operator.Get()) {
+	if o == nil || IsNil(o.Operator.Get()) {
 		var ret string
 		return ret
 	}
@@ -100,9 +103,9 @@ func (o *Condition) GetOperatorOk() (*string, bool) {
 	return o.Operator.Get(), o.Operator.IsSet()
 }
 
-// HasOperator returns a boolean if a field has been set.
+// HasOperator returns a boolean if a field is not nil.
 func (o *Condition) HasOperator() bool {
-	if o != nil && o.Operator.IsSet() {
+	if o != nil && !IsNil(o.Operator) {
 		return true
 	}
 
@@ -126,7 +129,7 @@ func (o *Condition) UnsetOperator() {
 
 // GetValue returns the Value field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *Condition) GetValue() string {
-	if o == nil || isNil(o.Value.Get()) {
+	if o == nil || IsNil(o.Value.Get()) {
 		var ret string
 		return ret
 	}
@@ -143,9 +146,9 @@ func (o *Condition) GetValueOk() (*string, bool) {
 	return o.Value.Get(), o.Value.IsSet()
 }
 
-// HasValue returns a boolean if a field has been set.
+// HasValue returns a boolean if a field is not nil.
 func (o *Condition) HasValue() bool {
-	if o != nil && o.Value.IsSet() {
+	if o != nil && !IsNil(o.Value) {
 		return true
 	}
 
@@ -168,6 +171,14 @@ func (o *Condition) UnsetValue() {
 }
 
 func (o Condition) MarshalJSON() ([]byte, error) {
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
+func (o Condition) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if o.Attribute.IsSet() {
 		toSerialize["attribute"] = o.Attribute.Get()
@@ -178,7 +189,7 @@ func (o Condition) MarshalJSON() ([]byte, error) {
 	if o.Value.IsSet() {
 		toSerialize["value"] = o.Value.Get()
 	}
-	return json.Marshal(toSerialize)
+	return toSerialize, nil
 }
 
 type NullableCondition struct {

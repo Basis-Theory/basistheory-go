@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the EncryptionKey type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &EncryptionKey{}
+
 // EncryptionKey struct for EncryptionKey
 type EncryptionKey struct {
 	Key  string         `json:"key"`
@@ -65,7 +68,7 @@ func (o *EncryptionKey) SetKey(v string) {
 
 // GetProv returns the Prov field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *EncryptionKey) GetProv() string {
-	if o == nil || isNil(o.Prov.Get()) {
+	if o == nil || IsNil(o.Prov.Get()) {
 		var ret string
 		return ret
 	}
@@ -82,9 +85,9 @@ func (o *EncryptionKey) GetProvOk() (*string, bool) {
 	return o.Prov.Get(), o.Prov.IsSet()
 }
 
-// HasProv returns a boolean if a field has been set.
+// HasProv returns a boolean if a field is not nil.
 func (o *EncryptionKey) HasProv() bool {
-	if o != nil && o.Prov.IsSet() {
+	if o != nil && !IsNil(o.Prov) {
 		return true
 	}
 
@@ -108,7 +111,7 @@ func (o *EncryptionKey) UnsetProv() {
 
 // GetAlg returns the Alg field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *EncryptionKey) GetAlg() string {
-	if o == nil || isNil(o.Alg.Get()) {
+	if o == nil || IsNil(o.Alg.Get()) {
 		var ret string
 		return ret
 	}
@@ -125,9 +128,9 @@ func (o *EncryptionKey) GetAlgOk() (*string, bool) {
 	return o.Alg.Get(), o.Alg.IsSet()
 }
 
-// HasAlg returns a boolean if a field has been set.
+// HasAlg returns a boolean if a field is not nil.
 func (o *EncryptionKey) HasAlg() bool {
-	if o != nil && o.Alg.IsSet() {
+	if o != nil && !IsNil(o.Alg) {
 		return true
 	}
 
@@ -150,17 +153,23 @@ func (o *EncryptionKey) UnsetAlg() {
 }
 
 func (o EncryptionKey) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["key"] = o.Key
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
+	return json.Marshal(toSerialize)
+}
+
+func (o EncryptionKey) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	toSerialize["key"] = o.Key
 	if o.Prov.IsSet() {
 		toSerialize["prov"] = o.Prov.Get()
 	}
 	if o.Alg.IsSet() {
 		toSerialize["alg"] = o.Alg.Get()
 	}
-	return json.Marshal(toSerialize)
+	return toSerialize, nil
 }
 
 type NullableEncryptionKey struct {

@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the MonthlyActiveTokenHistory type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &MonthlyActiveTokenHistory{}
+
 // MonthlyActiveTokenHistory struct for MonthlyActiveTokenHistory
 type MonthlyActiveTokenHistory struct {
 	Year  *int32 `json:"year,omitempty"`
@@ -40,7 +43,7 @@ func NewMonthlyActiveTokenHistoryWithDefaults() *MonthlyActiveTokenHistory {
 
 // GetYear returns the Year field value if set, zero value otherwise.
 func (o *MonthlyActiveTokenHistory) GetYear() int32 {
-	if o == nil || isNil(o.Year) {
+	if o == nil || IsNil(o.Year) {
 		var ret int32
 		return ret
 	}
@@ -50,15 +53,15 @@ func (o *MonthlyActiveTokenHistory) GetYear() int32 {
 // GetYearOk returns a tuple with the Year field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *MonthlyActiveTokenHistory) GetYearOk() (*int32, bool) {
-	if o == nil || isNil(o.Year) {
+	if o == nil || IsNil(o.Year) {
 		return nil, false
 	}
 	return o.Year, true
 }
 
-// HasYear returns a boolean if a field has been set.
+// HasYear returns a boolean if a field is not nil.
 func (o *MonthlyActiveTokenHistory) HasYear() bool {
-	if o != nil && !isNil(o.Year) {
+	if o != nil && !IsNil(o.Year) {
 		return true
 	}
 
@@ -72,7 +75,7 @@ func (o *MonthlyActiveTokenHistory) SetYear(v int32) {
 
 // GetMonth returns the Month field value if set, zero value otherwise.
 func (o *MonthlyActiveTokenHistory) GetMonth() int32 {
-	if o == nil || isNil(o.Month) {
+	if o == nil || IsNil(o.Month) {
 		var ret int32
 		return ret
 	}
@@ -82,15 +85,15 @@ func (o *MonthlyActiveTokenHistory) GetMonth() int32 {
 // GetMonthOk returns a tuple with the Month field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *MonthlyActiveTokenHistory) GetMonthOk() (*int32, bool) {
-	if o == nil || isNil(o.Month) {
+	if o == nil || IsNil(o.Month) {
 		return nil, false
 	}
 	return o.Month, true
 }
 
-// HasMonth returns a boolean if a field has been set.
+// HasMonth returns a boolean if a field is not nil.
 func (o *MonthlyActiveTokenHistory) HasMonth() bool {
-	if o != nil && !isNil(o.Month) {
+	if o != nil && !IsNil(o.Month) {
 		return true
 	}
 
@@ -104,7 +107,7 @@ func (o *MonthlyActiveTokenHistory) SetMonth(v int32) {
 
 // GetCount returns the Count field value if set, zero value otherwise.
 func (o *MonthlyActiveTokenHistory) GetCount() int64 {
-	if o == nil || isNil(o.Count) {
+	if o == nil || IsNil(o.Count) {
 		var ret int64
 		return ret
 	}
@@ -114,15 +117,15 @@ func (o *MonthlyActiveTokenHistory) GetCount() int64 {
 // GetCountOk returns a tuple with the Count field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *MonthlyActiveTokenHistory) GetCountOk() (*int64, bool) {
-	if o == nil || isNil(o.Count) {
+	if o == nil || IsNil(o.Count) {
 		return nil, false
 	}
 	return o.Count, true
 }
 
-// HasCount returns a boolean if a field has been set.
+// HasCount returns a boolean if a field is not nil.
 func (o *MonthlyActiveTokenHistory) HasCount() bool {
-	if o != nil && !isNil(o.Count) {
+	if o != nil && !IsNil(o.Count) {
 		return true
 	}
 
@@ -135,17 +138,25 @@ func (o *MonthlyActiveTokenHistory) SetCount(v int64) {
 }
 
 func (o MonthlyActiveTokenHistory) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.Year) {
-		toSerialize["year"] = o.Year
-	}
-	if !isNil(o.Month) {
-		toSerialize["month"] = o.Month
-	}
-	if !isNil(o.Count) {
-		toSerialize["count"] = o.Count
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o MonthlyActiveTokenHistory) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Year) {
+		toSerialize["year"] = o.Year
+	}
+	if !IsNil(o.Month) {
+		toSerialize["month"] = o.Month
+	}
+	if !IsNil(o.Count) {
+		toSerialize["count"] = o.Count
+	}
+	return toSerialize, nil
 }
 
 type NullableMonthlyActiveTokenHistory struct {

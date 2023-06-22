@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the Permission type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &Permission{}
+
 // Permission struct for Permission
 type Permission struct {
 	Type             NullableString `json:"type,omitempty"`
@@ -40,7 +43,7 @@ func NewPermissionWithDefaults() *Permission {
 
 // GetType returns the Type field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *Permission) GetType() string {
-	if o == nil || isNil(o.Type.Get()) {
+	if o == nil || IsNil(o.Type.Get()) {
 		var ret string
 		return ret
 	}
@@ -57,9 +60,9 @@ func (o *Permission) GetTypeOk() (*string, bool) {
 	return o.Type.Get(), o.Type.IsSet()
 }
 
-// HasType returns a boolean if a field has been set.
+// HasType returns a boolean if a field is not nil.
 func (o *Permission) HasType() bool {
-	if o != nil && o.Type.IsSet() {
+	if o != nil && !IsNil(o.Type) {
 		return true
 	}
 
@@ -83,7 +86,7 @@ func (o *Permission) UnsetType() {
 
 // GetDescription returns the Description field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *Permission) GetDescription() string {
-	if o == nil || isNil(o.Description.Get()) {
+	if o == nil || IsNil(o.Description.Get()) {
 		var ret string
 		return ret
 	}
@@ -100,9 +103,9 @@ func (o *Permission) GetDescriptionOk() (*string, bool) {
 	return o.Description.Get(), o.Description.IsSet()
 }
 
-// HasDescription returns a boolean if a field has been set.
+// HasDescription returns a boolean if a field is not nil.
 func (o *Permission) HasDescription() bool {
-	if o != nil && o.Description.IsSet() {
+	if o != nil && !IsNil(o.Description) {
 		return true
 	}
 
@@ -137,15 +140,15 @@ func (o *Permission) GetApplicationTypes() []string {
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *Permission) GetApplicationTypesOk() ([]string, bool) {
-	if o == nil || isNil(o.ApplicationTypes) {
+	if o == nil || IsNil(o.ApplicationTypes) {
 		return nil, false
 	}
 	return o.ApplicationTypes, true
 }
 
-// HasApplicationTypes returns a boolean if a field has been set.
+// HasApplicationTypes returns a boolean if a field is not nil.
 func (o *Permission) HasApplicationTypes() bool {
-	if o != nil && isNil(o.ApplicationTypes) {
+	if o != nil && !IsNil(o.ApplicationTypes) {
 		return true
 	}
 
@@ -158,6 +161,14 @@ func (o *Permission) SetApplicationTypes(v []string) {
 }
 
 func (o Permission) MarshalJSON() ([]byte, error) {
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
+func (o Permission) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if o.Type.IsSet() {
 		toSerialize["type"] = o.Type.Get()
@@ -168,7 +179,7 @@ func (o Permission) MarshalJSON() ([]byte, error) {
 	if o.ApplicationTypes != nil {
 		toSerialize["application_types"] = o.ApplicationTypes
 	}
-	return json.Marshal(toSerialize)
+	return toSerialize, nil
 }
 
 type NullablePermission struct {

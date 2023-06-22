@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the UpdateApplicationRequest type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &UpdateApplicationRequest{}
+
 // UpdateApplicationRequest struct for UpdateApplicationRequest
 type UpdateApplicationRequest struct {
 	Name        string       `json:"name"`
@@ -76,15 +79,15 @@ func (o *UpdateApplicationRequest) GetPermissions() []string {
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *UpdateApplicationRequest) GetPermissionsOk() ([]string, bool) {
-	if o == nil || isNil(o.Permissions) {
+	if o == nil || IsNil(o.Permissions) {
 		return nil, false
 	}
 	return o.Permissions, true
 }
 
-// HasPermissions returns a boolean if a field has been set.
+// HasPermissions returns a boolean if a field is not nil.
 func (o *UpdateApplicationRequest) HasPermissions() bool {
-	if o != nil && isNil(o.Permissions) {
+	if o != nil && !IsNil(o.Permissions) {
 		return true
 	}
 
@@ -109,15 +112,15 @@ func (o *UpdateApplicationRequest) GetRules() []AccessRule {
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *UpdateApplicationRequest) GetRulesOk() ([]AccessRule, bool) {
-	if o == nil || isNil(o.Rules) {
+	if o == nil || IsNil(o.Rules) {
 		return nil, false
 	}
 	return o.Rules, true
 }
 
-// HasRules returns a boolean if a field has been set.
+// HasRules returns a boolean if a field is not nil.
 func (o *UpdateApplicationRequest) HasRules() bool {
-	if o != nil && isNil(o.Rules) {
+	if o != nil && !IsNil(o.Rules) {
 		return true
 	}
 
@@ -130,17 +133,23 @@ func (o *UpdateApplicationRequest) SetRules(v []AccessRule) {
 }
 
 func (o UpdateApplicationRequest) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["name"] = o.Name
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
+	return json.Marshal(toSerialize)
+}
+
+func (o UpdateApplicationRequest) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	toSerialize["name"] = o.Name
 	if o.Permissions != nil {
 		toSerialize["permissions"] = o.Permissions
 	}
 	if o.Rules != nil {
 		toSerialize["rules"] = o.Rules
 	}
-	return json.Marshal(toSerialize)
+	return toSerialize, nil
 }
 
 type NullableUpdateApplicationRequest struct {

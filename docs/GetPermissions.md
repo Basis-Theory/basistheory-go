@@ -5,7 +5,6 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **ApplicationType** | Pointer to **NullableString** |  | [optional] 
-**Version** | Pointer to **NullableInt32** |  | [optional] 
 
 ## Methods
 
@@ -61,41 +60,6 @@ HasApplicationType returns a boolean if a field has been set.
 `func (o *GetPermissions) UnsetApplicationType()`
 
 UnsetApplicationType ensures that no value is present for ApplicationType, not even an explicit nil
-### GetVersion
-
-`func (o *GetPermissions) GetVersion() int32`
-
-GetVersion returns the Version field if non-nil, zero value otherwise.
-
-### GetVersionOk
-
-`func (o *GetPermissions) GetVersionOk() (*int32, bool)`
-
-GetVersionOk returns a tuple with the Version field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetVersion
-
-`func (o *GetPermissions) SetVersion(v int32)`
-
-SetVersion sets Version field to given value.
-
-### HasVersion
-
-`func (o *GetPermissions) HasVersion() bool`
-
-HasVersion returns a boolean if a field has been set.
-
-### SetVersionNil
-
-`func (o *GetPermissions) SetVersionNil(b bool)`
-
- SetVersionNil sets the value for Version to be an explicit nil
-
-### UnsetVersion
-`func (o *GetPermissions) UnsetVersion()`
-
-UnsetVersion ensures that no value is present for Version, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

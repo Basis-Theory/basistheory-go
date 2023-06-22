@@ -15,6 +15,9 @@ import (
 	"time"
 )
 
+// checks if the CreateTokenResponse type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &CreateTokenResponse{}
+
 // CreateTokenResponse struct for CreateTokenResponse
 type CreateTokenResponse struct {
 	Id                    NullableString    `json:"id,omitempty"`
@@ -33,6 +36,7 @@ type CreateTokenResponse struct {
 	ModifiedAt            NullableTime      `json:"modified_at,omitempty"`
 	ExpiresAt             NullableTime      `json:"expires_at,omitempty"`
 	Containers            []string          `json:"containers,omitempty"`
+	Aliases               []string          `json:"aliases,omitempty"`
 }
 
 // NewCreateTokenResponse instantiates a new CreateTokenResponse object
@@ -54,7 +58,7 @@ func NewCreateTokenResponseWithDefaults() *CreateTokenResponse {
 
 // GetId returns the Id field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *CreateTokenResponse) GetId() string {
-	if o == nil || isNil(o.Id.Get()) {
+	if o == nil || IsNil(o.Id.Get()) {
 		var ret string
 		return ret
 	}
@@ -71,9 +75,9 @@ func (o *CreateTokenResponse) GetIdOk() (*string, bool) {
 	return o.Id.Get(), o.Id.IsSet()
 }
 
-// HasId returns a boolean if a field has been set.
+// HasId returns a boolean if a field is not nil.
 func (o *CreateTokenResponse) HasId() bool {
-	if o != nil && o.Id.IsSet() {
+	if o != nil && !IsNil(o.Id) {
 		return true
 	}
 
@@ -97,7 +101,7 @@ func (o *CreateTokenResponse) UnsetId() {
 
 // GetTenantId returns the TenantId field value if set, zero value otherwise.
 func (o *CreateTokenResponse) GetTenantId() string {
-	if o == nil || isNil(o.TenantId) {
+	if o == nil || IsNil(o.TenantId) {
 		var ret string
 		return ret
 	}
@@ -107,15 +111,15 @@ func (o *CreateTokenResponse) GetTenantId() string {
 // GetTenantIdOk returns a tuple with the TenantId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CreateTokenResponse) GetTenantIdOk() (*string, bool) {
-	if o == nil || isNil(o.TenantId) {
+	if o == nil || IsNil(o.TenantId) {
 		return nil, false
 	}
 	return o.TenantId, true
 }
 
-// HasTenantId returns a boolean if a field has been set.
+// HasTenantId returns a boolean if a field is not nil.
 func (o *CreateTokenResponse) HasTenantId() bool {
-	if o != nil && !isNil(o.TenantId) {
+	if o != nil && !IsNil(o.TenantId) {
 		return true
 	}
 
@@ -129,7 +133,7 @@ func (o *CreateTokenResponse) SetTenantId(v string) {
 
 // GetType returns the Type field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *CreateTokenResponse) GetType() string {
-	if o == nil || isNil(o.Type.Get()) {
+	if o == nil || IsNil(o.Type.Get()) {
 		var ret string
 		return ret
 	}
@@ -146,9 +150,9 @@ func (o *CreateTokenResponse) GetTypeOk() (*string, bool) {
 	return o.Type.Get(), o.Type.IsSet()
 }
 
-// HasType returns a boolean if a field has been set.
+// HasType returns a boolean if a field is not nil.
 func (o *CreateTokenResponse) HasType() bool {
-	if o != nil && o.Type.IsSet() {
+	if o != nil && !IsNil(o.Type) {
 		return true
 	}
 
@@ -172,7 +176,7 @@ func (o *CreateTokenResponse) UnsetType() {
 
 // GetFingerprint returns the Fingerprint field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *CreateTokenResponse) GetFingerprint() string {
-	if o == nil || isNil(o.Fingerprint.Get()) {
+	if o == nil || IsNil(o.Fingerprint.Get()) {
 		var ret string
 		return ret
 	}
@@ -189,9 +193,9 @@ func (o *CreateTokenResponse) GetFingerprintOk() (*string, bool) {
 	return o.Fingerprint.Get(), o.Fingerprint.IsSet()
 }
 
-// HasFingerprint returns a boolean if a field has been set.
+// HasFingerprint returns a boolean if a field is not nil.
 func (o *CreateTokenResponse) HasFingerprint() bool {
-	if o != nil && o.Fingerprint.IsSet() {
+	if o != nil && !IsNil(o.Fingerprint) {
 		return true
 	}
 
@@ -215,7 +219,7 @@ func (o *CreateTokenResponse) UnsetFingerprint() {
 
 // GetFingerprintExpression returns the FingerprintExpression field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *CreateTokenResponse) GetFingerprintExpression() string {
-	if o == nil || isNil(o.FingerprintExpression.Get()) {
+	if o == nil || IsNil(o.FingerprintExpression.Get()) {
 		var ret string
 		return ret
 	}
@@ -232,9 +236,9 @@ func (o *CreateTokenResponse) GetFingerprintExpressionOk() (*string, bool) {
 	return o.FingerprintExpression.Get(), o.FingerprintExpression.IsSet()
 }
 
-// HasFingerprintExpression returns a boolean if a field has been set.
+// HasFingerprintExpression returns a boolean if a field is not nil.
 func (o *CreateTokenResponse) HasFingerprintExpression() bool {
-	if o != nil && o.FingerprintExpression.IsSet() {
+	if o != nil && !IsNil(o.FingerprintExpression) {
 		return true
 	}
 
@@ -269,15 +273,15 @@ func (o *CreateTokenResponse) GetMask() interface{} {
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *CreateTokenResponse) GetMaskOk() (*interface{}, bool) {
-	if o == nil || isNil(o.Mask) {
+	if o == nil || IsNil(o.Mask) {
 		return nil, false
 	}
 	return &o.Mask, true
 }
 
-// HasMask returns a boolean if a field has been set.
+// HasMask returns a boolean if a field is not nil.
 func (o *CreateTokenResponse) HasMask() bool {
-	if o != nil && isNil(o.Mask) {
+	if o != nil && !IsNil(o.Mask) {
 		return true
 	}
 
@@ -302,15 +306,15 @@ func (o *CreateTokenResponse) GetData() interface{} {
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *CreateTokenResponse) GetDataOk() (*interface{}, bool) {
-	if o == nil || isNil(o.Data) {
+	if o == nil || IsNil(o.Data) {
 		return nil, false
 	}
 	return &o.Data, true
 }
 
-// HasData returns a boolean if a field has been set.
+// HasData returns a boolean if a field is not nil.
 func (o *CreateTokenResponse) HasData() bool {
-	if o != nil && isNil(o.Data) {
+	if o != nil && !IsNil(o.Data) {
 		return true
 	}
 
@@ -335,15 +339,15 @@ func (o *CreateTokenResponse) GetMetadata() map[string]string {
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *CreateTokenResponse) GetMetadataOk() (*map[string]string, bool) {
-	if o == nil || isNil(o.Metadata) {
+	if o == nil || IsNil(o.Metadata) {
 		return nil, false
 	}
 	return &o.Metadata, true
 }
 
-// HasMetadata returns a boolean if a field has been set.
+// HasMetadata returns a boolean if a field is not nil.
 func (o *CreateTokenResponse) HasMetadata() bool {
-	if o != nil && isNil(o.Metadata) {
+	if o != nil && !IsNil(o.Metadata) {
 		return true
 	}
 
@@ -357,7 +361,7 @@ func (o *CreateTokenResponse) SetMetadata(v map[string]string) {
 
 // GetPrivacy returns the Privacy field value if set, zero value otherwise.
 func (o *CreateTokenResponse) GetPrivacy() Privacy {
-	if o == nil || isNil(o.Privacy) {
+	if o == nil || IsNil(o.Privacy) {
 		var ret Privacy
 		return ret
 	}
@@ -367,15 +371,15 @@ func (o *CreateTokenResponse) GetPrivacy() Privacy {
 // GetPrivacyOk returns a tuple with the Privacy field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CreateTokenResponse) GetPrivacyOk() (*Privacy, bool) {
-	if o == nil || isNil(o.Privacy) {
+	if o == nil || IsNil(o.Privacy) {
 		return nil, false
 	}
 	return o.Privacy, true
 }
 
-// HasPrivacy returns a boolean if a field has been set.
+// HasPrivacy returns a boolean if a field is not nil.
 func (o *CreateTokenResponse) HasPrivacy() bool {
-	if o != nil && !isNil(o.Privacy) {
+	if o != nil && !IsNil(o.Privacy) {
 		return true
 	}
 
@@ -400,15 +404,15 @@ func (o *CreateTokenResponse) GetSearchIndexes() []string {
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *CreateTokenResponse) GetSearchIndexesOk() ([]string, bool) {
-	if o == nil || isNil(o.SearchIndexes) {
+	if o == nil || IsNil(o.SearchIndexes) {
 		return nil, false
 	}
 	return o.SearchIndexes, true
 }
 
-// HasSearchIndexes returns a boolean if a field has been set.
+// HasSearchIndexes returns a boolean if a field is not nil.
 func (o *CreateTokenResponse) HasSearchIndexes() bool {
-	if o != nil && isNil(o.SearchIndexes) {
+	if o != nil && !IsNil(o.SearchIndexes) {
 		return true
 	}
 
@@ -422,7 +426,7 @@ func (o *CreateTokenResponse) SetSearchIndexes(v []string) {
 
 // GetCreatedBy returns the CreatedBy field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *CreateTokenResponse) GetCreatedBy() string {
-	if o == nil || isNil(o.CreatedBy.Get()) {
+	if o == nil || IsNil(o.CreatedBy.Get()) {
 		var ret string
 		return ret
 	}
@@ -439,9 +443,9 @@ func (o *CreateTokenResponse) GetCreatedByOk() (*string, bool) {
 	return o.CreatedBy.Get(), o.CreatedBy.IsSet()
 }
 
-// HasCreatedBy returns a boolean if a field has been set.
+// HasCreatedBy returns a boolean if a field is not nil.
 func (o *CreateTokenResponse) HasCreatedBy() bool {
-	if o != nil && o.CreatedBy.IsSet() {
+	if o != nil && !IsNil(o.CreatedBy) {
 		return true
 	}
 
@@ -465,7 +469,7 @@ func (o *CreateTokenResponse) UnsetCreatedBy() {
 
 // GetCreatedAt returns the CreatedAt field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *CreateTokenResponse) GetCreatedAt() time.Time {
-	if o == nil || isNil(o.CreatedAt.Get()) {
+	if o == nil || IsNil(o.CreatedAt.Get()) {
 		var ret time.Time
 		return ret
 	}
@@ -482,9 +486,9 @@ func (o *CreateTokenResponse) GetCreatedAtOk() (*time.Time, bool) {
 	return o.CreatedAt.Get(), o.CreatedAt.IsSet()
 }
 
-// HasCreatedAt returns a boolean if a field has been set.
+// HasCreatedAt returns a boolean if a field is not nil.
 func (o *CreateTokenResponse) HasCreatedAt() bool {
-	if o != nil && o.CreatedAt.IsSet() {
+	if o != nil && !IsNil(o.CreatedAt) {
 		return true
 	}
 
@@ -508,7 +512,7 @@ func (o *CreateTokenResponse) UnsetCreatedAt() {
 
 // GetModifiedBy returns the ModifiedBy field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *CreateTokenResponse) GetModifiedBy() string {
-	if o == nil || isNil(o.ModifiedBy.Get()) {
+	if o == nil || IsNil(o.ModifiedBy.Get()) {
 		var ret string
 		return ret
 	}
@@ -525,9 +529,9 @@ func (o *CreateTokenResponse) GetModifiedByOk() (*string, bool) {
 	return o.ModifiedBy.Get(), o.ModifiedBy.IsSet()
 }
 
-// HasModifiedBy returns a boolean if a field has been set.
+// HasModifiedBy returns a boolean if a field is not nil.
 func (o *CreateTokenResponse) HasModifiedBy() bool {
-	if o != nil && o.ModifiedBy.IsSet() {
+	if o != nil && !IsNil(o.ModifiedBy) {
 		return true
 	}
 
@@ -551,7 +555,7 @@ func (o *CreateTokenResponse) UnsetModifiedBy() {
 
 // GetModifiedAt returns the ModifiedAt field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *CreateTokenResponse) GetModifiedAt() time.Time {
-	if o == nil || isNil(o.ModifiedAt.Get()) {
+	if o == nil || IsNil(o.ModifiedAt.Get()) {
 		var ret time.Time
 		return ret
 	}
@@ -568,9 +572,9 @@ func (o *CreateTokenResponse) GetModifiedAtOk() (*time.Time, bool) {
 	return o.ModifiedAt.Get(), o.ModifiedAt.IsSet()
 }
 
-// HasModifiedAt returns a boolean if a field has been set.
+// HasModifiedAt returns a boolean if a field is not nil.
 func (o *CreateTokenResponse) HasModifiedAt() bool {
-	if o != nil && o.ModifiedAt.IsSet() {
+	if o != nil && !IsNil(o.ModifiedAt) {
 		return true
 	}
 
@@ -594,7 +598,7 @@ func (o *CreateTokenResponse) UnsetModifiedAt() {
 
 // GetExpiresAt returns the ExpiresAt field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *CreateTokenResponse) GetExpiresAt() time.Time {
-	if o == nil || isNil(o.ExpiresAt.Get()) {
+	if o == nil || IsNil(o.ExpiresAt.Get()) {
 		var ret time.Time
 		return ret
 	}
@@ -611,9 +615,9 @@ func (o *CreateTokenResponse) GetExpiresAtOk() (*time.Time, bool) {
 	return o.ExpiresAt.Get(), o.ExpiresAt.IsSet()
 }
 
-// HasExpiresAt returns a boolean if a field has been set.
+// HasExpiresAt returns a boolean if a field is not nil.
 func (o *CreateTokenResponse) HasExpiresAt() bool {
-	if o != nil && o.ExpiresAt.IsSet() {
+	if o != nil && !IsNil(o.ExpiresAt) {
 		return true
 	}
 
@@ -648,15 +652,15 @@ func (o *CreateTokenResponse) GetContainers() []string {
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *CreateTokenResponse) GetContainersOk() ([]string, bool) {
-	if o == nil || isNil(o.Containers) {
+	if o == nil || IsNil(o.Containers) {
 		return nil, false
 	}
 	return o.Containers, true
 }
 
-// HasContainers returns a boolean if a field has been set.
+// HasContainers returns a boolean if a field is not nil.
 func (o *CreateTokenResponse) HasContainers() bool {
-	if o != nil && isNil(o.Containers) {
+	if o != nil && !IsNil(o.Containers) {
 		return true
 	}
 
@@ -668,12 +672,53 @@ func (o *CreateTokenResponse) SetContainers(v []string) {
 	o.Containers = v
 }
 
+// GetAliases returns the Aliases field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *CreateTokenResponse) GetAliases() []string {
+	if o == nil {
+		var ret []string
+		return ret
+	}
+	return o.Aliases
+}
+
+// GetAliasesOk returns a tuple with the Aliases field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *CreateTokenResponse) GetAliasesOk() ([]string, bool) {
+	if o == nil || IsNil(o.Aliases) {
+		return nil, false
+	}
+	return o.Aliases, true
+}
+
+// HasAliases returns a boolean if a field is not nil.
+func (o *CreateTokenResponse) HasAliases() bool {
+	if o != nil && !IsNil(o.Aliases) {
+		return true
+	}
+
+	return false
+}
+
+// SetAliases gets a reference to the given []string and assigns it to the Aliases field.
+func (o *CreateTokenResponse) SetAliases(v []string) {
+	o.Aliases = v
+}
+
 func (o CreateTokenResponse) MarshalJSON() ([]byte, error) {
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
+func (o CreateTokenResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if o.Id.IsSet() {
 		toSerialize["id"] = o.Id.Get()
 	}
-	if !isNil(o.TenantId) {
+	if !IsNil(o.TenantId) {
 		toSerialize["tenant_id"] = o.TenantId
 	}
 	if o.Type.IsSet() {
@@ -694,7 +739,7 @@ func (o CreateTokenResponse) MarshalJSON() ([]byte, error) {
 	if o.Metadata != nil {
 		toSerialize["metadata"] = o.Metadata
 	}
-	if !isNil(o.Privacy) {
+	if !IsNil(o.Privacy) {
 		toSerialize["privacy"] = o.Privacy
 	}
 	if o.SearchIndexes != nil {
@@ -718,7 +763,10 @@ func (o CreateTokenResponse) MarshalJSON() ([]byte, error) {
 	if o.Containers != nil {
 		toSerialize["containers"] = o.Containers
 	}
-	return json.Marshal(toSerialize)
+	if o.Aliases != nil {
+		toSerialize["aliases"] = o.Aliases
+	}
+	return toSerialize, nil
 }
 
 type NullableCreateTokenResponse struct {

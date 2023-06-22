@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the CreateTenantInvitationRequest type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &CreateTenantInvitationRequest{}
+
 // CreateTenantInvitationRequest struct for CreateTenantInvitationRequest
 type CreateTenantInvitationRequest struct {
 	Email string `json:"email"`
@@ -62,11 +65,17 @@ func (o *CreateTenantInvitationRequest) SetEmail(v string) {
 }
 
 func (o CreateTenantInvitationRequest) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["email"] = o.Email
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o CreateTenantInvitationRequest) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	toSerialize["email"] = o.Email
+	return toSerialize, nil
 }
 
 type NullableCreateTenantInvitationRequest struct {

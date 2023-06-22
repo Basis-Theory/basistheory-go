@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the GetTenantInvitations type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &GetTenantInvitations{}
+
 // GetTenantInvitations struct for GetTenantInvitations
 type GetTenantInvitations struct {
 	Status *TenantInvitationStatus `json:"status,omitempty"`
@@ -40,7 +43,7 @@ func NewGetTenantInvitationsWithDefaults() *GetTenantInvitations {
 
 // GetStatus returns the Status field value if set, zero value otherwise.
 func (o *GetTenantInvitations) GetStatus() TenantInvitationStatus {
-	if o == nil || isNil(o.Status) {
+	if o == nil || IsNil(o.Status) {
 		var ret TenantInvitationStatus
 		return ret
 	}
@@ -50,15 +53,15 @@ func (o *GetTenantInvitations) GetStatus() TenantInvitationStatus {
 // GetStatusOk returns a tuple with the Status field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetTenantInvitations) GetStatusOk() (*TenantInvitationStatus, bool) {
-	if o == nil || isNil(o.Status) {
+	if o == nil || IsNil(o.Status) {
 		return nil, false
 	}
 	return o.Status, true
 }
 
-// HasStatus returns a boolean if a field has been set.
+// HasStatus returns a boolean if a field is not nil.
 func (o *GetTenantInvitations) HasStatus() bool {
-	if o != nil && !isNil(o.Status) {
+	if o != nil && !IsNil(o.Status) {
 		return true
 	}
 
@@ -72,7 +75,7 @@ func (o *GetTenantInvitations) SetStatus(v TenantInvitationStatus) {
 
 // GetPage returns the Page field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *GetTenantInvitations) GetPage() int32 {
-	if o == nil || isNil(o.Page.Get()) {
+	if o == nil || IsNil(o.Page.Get()) {
 		var ret int32
 		return ret
 	}
@@ -89,9 +92,9 @@ func (o *GetTenantInvitations) GetPageOk() (*int32, bool) {
 	return o.Page.Get(), o.Page.IsSet()
 }
 
-// HasPage returns a boolean if a field has been set.
+// HasPage returns a boolean if a field is not nil.
 func (o *GetTenantInvitations) HasPage() bool {
-	if o != nil && o.Page.IsSet() {
+	if o != nil && !IsNil(o.Page) {
 		return true
 	}
 
@@ -115,7 +118,7 @@ func (o *GetTenantInvitations) UnsetPage() {
 
 // GetSize returns the Size field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *GetTenantInvitations) GetSize() int32 {
-	if o == nil || isNil(o.Size.Get()) {
+	if o == nil || IsNil(o.Size.Get()) {
 		var ret int32
 		return ret
 	}
@@ -132,9 +135,9 @@ func (o *GetTenantInvitations) GetSizeOk() (*int32, bool) {
 	return o.Size.Get(), o.Size.IsSet()
 }
 
-// HasSize returns a boolean if a field has been set.
+// HasSize returns a boolean if a field is not nil.
 func (o *GetTenantInvitations) HasSize() bool {
-	if o != nil && o.Size.IsSet() {
+	if o != nil && !IsNil(o.Size) {
 		return true
 	}
 
@@ -157,8 +160,16 @@ func (o *GetTenantInvitations) UnsetSize() {
 }
 
 func (o GetTenantInvitations) MarshalJSON() ([]byte, error) {
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
+func (o GetTenantInvitations) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !isNil(o.Status) {
+	if !IsNil(o.Status) {
 		toSerialize["status"] = o.Status
 	}
 	if o.Page.IsSet() {
@@ -167,7 +178,7 @@ func (o GetTenantInvitations) MarshalJSON() ([]byte, error) {
 	if o.Size.IsSet() {
 		toSerialize["size"] = o.Size.Get()
 	}
-	return json.Marshal(toSerialize)
+	return toSerialize, nil
 }
 
 type NullableGetTenantInvitations struct {

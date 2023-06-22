@@ -16,6 +16,7 @@ Name | Type | Description | Notes
 **ResponseTransform** | Pointer to [**ProxyTransform**](ProxyTransform.md) |  | [optional] 
 **ApplicationId** | Pointer to **NullableString** |  | [optional] 
 **Configuration** | Pointer to **map[string]string** |  | [optional] 
+**ProxyHost** | Pointer to **NullableString** |  | [optional] 
 **CreatedBy** | Pointer to **NullableString** |  | [optional] 
 **CreatedAt** | Pointer to **NullableTime** |  | [optional] 
 **ModifiedBy** | Pointer to **NullableString** |  | [optional] 
@@ -410,6 +411,41 @@ HasConfiguration returns a boolean if a field has been set.
 `func (o *Proxy) UnsetConfiguration()`
 
 UnsetConfiguration ensures that no value is present for Configuration, not even an explicit nil
+### GetProxyHost
+
+`func (o *Proxy) GetProxyHost() string`
+
+GetProxyHost returns the ProxyHost field if non-nil, zero value otherwise.
+
+### GetProxyHostOk
+
+`func (o *Proxy) GetProxyHostOk() (*string, bool)`
+
+GetProxyHostOk returns a tuple with the ProxyHost field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetProxyHost
+
+`func (o *Proxy) SetProxyHost(v string)`
+
+SetProxyHost sets ProxyHost field to given value.
+
+### HasProxyHost
+
+`func (o *Proxy) HasProxyHost() bool`
+
+HasProxyHost returns a boolean if a field has been set.
+
+### SetProxyHostNil
+
+`func (o *Proxy) SetProxyHostNil(b bool)`
+
+ SetProxyHostNil sets the value for ProxyHost to be an explicit nil
+
+### UnsetProxyHost
+`func (o *Proxy) UnsetProxyHost()`
+
+UnsetProxyHost ensures that no value is present for ProxyHost, not even an explicit nil
 ### GetCreatedBy
 
 `func (o *Proxy) GetCreatedBy() string`

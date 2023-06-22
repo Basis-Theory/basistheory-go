@@ -21,6 +21,7 @@ Name | Type | Description | Notes
 **SearchIndexes** | Pointer to **[]string** |  | [optional] 
 **ExpiresAt** | Pointer to **NullableTime** |  | [optional] 
 **Containers** | Pointer to **[]string** |  | [optional] 
+**Aliases** | Pointer to **[]string** |  | [optional] 
 
 ## Methods
 
@@ -586,6 +587,41 @@ HasContainers returns a boolean if a field has been set.
 `func (o *Token) UnsetContainers()`
 
 UnsetContainers ensures that no value is present for Containers, not even an explicit nil
+### GetAliases
+
+`func (o *Token) GetAliases() []string`
+
+GetAliases returns the Aliases field if non-nil, zero value otherwise.
+
+### GetAliasesOk
+
+`func (o *Token) GetAliasesOk() (*[]string, bool)`
+
+GetAliasesOk returns a tuple with the Aliases field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetAliases
+
+`func (o *Token) SetAliases(v []string)`
+
+SetAliases sets Aliases field to given value.
+
+### HasAliases
+
+`func (o *Token) HasAliases() bool`
+
+HasAliases returns a boolean if a field has been set.
+
+### SetAliasesNil
+
+`func (o *Token) SetAliasesNil(b bool)`
+
+ SetAliasesNil sets the value for Aliases to be an explicit nil
+
+### UnsetAliases
+`func (o *Token) UnsetAliases()`
+
+UnsetAliases ensures that no value is present for Aliases, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

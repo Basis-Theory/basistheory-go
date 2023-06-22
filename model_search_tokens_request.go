@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the SearchTokensRequest type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &SearchTokensRequest{}
+
 // SearchTokensRequest struct for SearchTokensRequest
 type SearchTokensRequest struct {
 	Query NullableString `json:"query,omitempty"`
@@ -40,7 +43,7 @@ func NewSearchTokensRequestWithDefaults() *SearchTokensRequest {
 
 // GetQuery returns the Query field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *SearchTokensRequest) GetQuery() string {
-	if o == nil || isNil(o.Query.Get()) {
+	if o == nil || IsNil(o.Query.Get()) {
 		var ret string
 		return ret
 	}
@@ -57,9 +60,9 @@ func (o *SearchTokensRequest) GetQueryOk() (*string, bool) {
 	return o.Query.Get(), o.Query.IsSet()
 }
 
-// HasQuery returns a boolean if a field has been set.
+// HasQuery returns a boolean if a field is not nil.
 func (o *SearchTokensRequest) HasQuery() bool {
-	if o != nil && o.Query.IsSet() {
+	if o != nil && !IsNil(o.Query) {
 		return true
 	}
 
@@ -83,7 +86,7 @@ func (o *SearchTokensRequest) UnsetQuery() {
 
 // GetPage returns the Page field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *SearchTokensRequest) GetPage() int32 {
-	if o == nil || isNil(o.Page.Get()) {
+	if o == nil || IsNil(o.Page.Get()) {
 		var ret int32
 		return ret
 	}
@@ -100,9 +103,9 @@ func (o *SearchTokensRequest) GetPageOk() (*int32, bool) {
 	return o.Page.Get(), o.Page.IsSet()
 }
 
-// HasPage returns a boolean if a field has been set.
+// HasPage returns a boolean if a field is not nil.
 func (o *SearchTokensRequest) HasPage() bool {
-	if o != nil && o.Page.IsSet() {
+	if o != nil && !IsNil(o.Page) {
 		return true
 	}
 
@@ -126,7 +129,7 @@ func (o *SearchTokensRequest) UnsetPage() {
 
 // GetSize returns the Size field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *SearchTokensRequest) GetSize() int32 {
-	if o == nil || isNil(o.Size.Get()) {
+	if o == nil || IsNil(o.Size.Get()) {
 		var ret int32
 		return ret
 	}
@@ -143,9 +146,9 @@ func (o *SearchTokensRequest) GetSizeOk() (*int32, bool) {
 	return o.Size.Get(), o.Size.IsSet()
 }
 
-// HasSize returns a boolean if a field has been set.
+// HasSize returns a boolean if a field is not nil.
 func (o *SearchTokensRequest) HasSize() bool {
-	if o != nil && o.Size.IsSet() {
+	if o != nil && !IsNil(o.Size) {
 		return true
 	}
 
@@ -168,6 +171,14 @@ func (o *SearchTokensRequest) UnsetSize() {
 }
 
 func (o SearchTokensRequest) MarshalJSON() ([]byte, error) {
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
+func (o SearchTokensRequest) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if o.Query.IsSet() {
 		toSerialize["query"] = o.Query.Get()
@@ -178,7 +189,7 @@ func (o SearchTokensRequest) MarshalJSON() ([]byte, error) {
 	if o.Size.IsSet() {
 		toSerialize["size"] = o.Size.Get()
 	}
-	return json.Marshal(toSerialize)
+	return toSerialize, nil
 }
 
 type NullableSearchTokensRequest struct {
