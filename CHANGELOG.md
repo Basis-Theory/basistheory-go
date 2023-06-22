@@ -1,3 +1,10 @@
+# [3.11.0](https://github.com/Basis-Theory/basistheory-go/compare/v3.10.0...v3.11.0) (2023-06-22)
+
+
+### Features
+
+* adding transactions and fixing HasData issue ([#70](https://github.com/Basis-Theory/basistheory-go/issues/70)) ([b53588b](https://github.com/Basis-Theory/basistheory-go/commit/b53588bbdfa0ffa632503f756a8c0a260b3494e6))
+
 # [3.10.0](https://github.com/Basis-Theory/basistheory-go/compare/v3.9.0...v3.10.0) (2023-01-13)
 
 
