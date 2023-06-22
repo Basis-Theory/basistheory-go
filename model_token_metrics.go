@@ -15,6 +15,9 @@ import (
 	"time"
 )
 
+// checks if the TokenMetrics type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &TokenMetrics{}
+
 // TokenMetrics struct for TokenMetrics
 type TokenMetrics struct {
 	Count         *int64       `json:"count,omitempty"`
@@ -40,7 +43,7 @@ func NewTokenMetricsWithDefaults() *TokenMetrics {
 
 // GetCount returns the Count field value if set, zero value otherwise.
 func (o *TokenMetrics) GetCount() int64 {
-	if o == nil || isNil(o.Count) {
+	if o == nil || IsNil(o.Count) {
 		var ret int64
 		return ret
 	}
@@ -50,15 +53,15 @@ func (o *TokenMetrics) GetCount() int64 {
 // GetCountOk returns a tuple with the Count field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *TokenMetrics) GetCountOk() (*int64, bool) {
-	if o == nil || isNil(o.Count) {
+	if o == nil || IsNil(o.Count) {
 		return nil, false
 	}
 	return o.Count, true
 }
 
-// HasCount returns a boolean if a field has been set.
+// HasCount returns a boolean if a field is not nil.
 func (o *TokenMetrics) HasCount() bool {
-	if o != nil && !isNil(o.Count) {
+	if o != nil && !IsNil(o.Count) {
 		return true
 	}
 
@@ -72,7 +75,7 @@ func (o *TokenMetrics) SetCount(v int64) {
 
 // GetLastCreatedAt returns the LastCreatedAt field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *TokenMetrics) GetLastCreatedAt() time.Time {
-	if o == nil || isNil(o.LastCreatedAt.Get()) {
+	if o == nil || IsNil(o.LastCreatedAt.Get()) {
 		var ret time.Time
 		return ret
 	}
@@ -89,9 +92,9 @@ func (o *TokenMetrics) GetLastCreatedAtOk() (*time.Time, bool) {
 	return o.LastCreatedAt.Get(), o.LastCreatedAt.IsSet()
 }
 
-// HasLastCreatedAt returns a boolean if a field has been set.
+// HasLastCreatedAt returns a boolean if a field is not nil.
 func (o *TokenMetrics) HasLastCreatedAt() bool {
-	if o != nil && o.LastCreatedAt.IsSet() {
+	if o != nil && !IsNil(o.LastCreatedAt) {
 		return true
 	}
 
@@ -114,14 +117,22 @@ func (o *TokenMetrics) UnsetLastCreatedAt() {
 }
 
 func (o TokenMetrics) MarshalJSON() ([]byte, error) {
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
+func (o TokenMetrics) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !isNil(o.Count) {
+	if !IsNil(o.Count) {
 		toSerialize["count"] = o.Count
 	}
 	if o.LastCreatedAt.IsSet() {
 		toSerialize["last_created_at"] = o.LastCreatedAt.Get()
 	}
-	return json.Marshal(toSerialize)
+	return toSerialize, nil
 }
 
 type NullableTokenMetrics struct {

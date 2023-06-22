@@ -15,6 +15,9 @@ import (
 	"time"
 )
 
+// checks if the GetLogs type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &GetLogs{}
+
 // GetLogs struct for GetLogs
 type GetLogs struct {
 	EntityType NullableString `json:"entity_type,omitempty"`
@@ -44,7 +47,7 @@ func NewGetLogsWithDefaults() *GetLogs {
 
 // GetEntityType returns the EntityType field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *GetLogs) GetEntityType() string {
-	if o == nil || isNil(o.EntityType.Get()) {
+	if o == nil || IsNil(o.EntityType.Get()) {
 		var ret string
 		return ret
 	}
@@ -61,9 +64,9 @@ func (o *GetLogs) GetEntityTypeOk() (*string, bool) {
 	return o.EntityType.Get(), o.EntityType.IsSet()
 }
 
-// HasEntityType returns a boolean if a field has been set.
+// HasEntityType returns a boolean if a field is not nil.
 func (o *GetLogs) HasEntityType() bool {
-	if o != nil && o.EntityType.IsSet() {
+	if o != nil && !IsNil(o.EntityType) {
 		return true
 	}
 
@@ -87,7 +90,7 @@ func (o *GetLogs) UnsetEntityType() {
 
 // GetEntityId returns the EntityId field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *GetLogs) GetEntityId() string {
-	if o == nil || isNil(o.EntityId.Get()) {
+	if o == nil || IsNil(o.EntityId.Get()) {
 		var ret string
 		return ret
 	}
@@ -104,9 +107,9 @@ func (o *GetLogs) GetEntityIdOk() (*string, bool) {
 	return o.EntityId.Get(), o.EntityId.IsSet()
 }
 
-// HasEntityId returns a boolean if a field has been set.
+// HasEntityId returns a boolean if a field is not nil.
 func (o *GetLogs) HasEntityId() bool {
-	if o != nil && o.EntityId.IsSet() {
+	if o != nil && !IsNil(o.EntityId) {
 		return true
 	}
 
@@ -130,7 +133,7 @@ func (o *GetLogs) UnsetEntityId() {
 
 // GetStartDate returns the StartDate field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *GetLogs) GetStartDate() time.Time {
-	if o == nil || isNil(o.StartDate.Get()) {
+	if o == nil || IsNil(o.StartDate.Get()) {
 		var ret time.Time
 		return ret
 	}
@@ -147,9 +150,9 @@ func (o *GetLogs) GetStartDateOk() (*time.Time, bool) {
 	return o.StartDate.Get(), o.StartDate.IsSet()
 }
 
-// HasStartDate returns a boolean if a field has been set.
+// HasStartDate returns a boolean if a field is not nil.
 func (o *GetLogs) HasStartDate() bool {
-	if o != nil && o.StartDate.IsSet() {
+	if o != nil && !IsNil(o.StartDate) {
 		return true
 	}
 
@@ -173,7 +176,7 @@ func (o *GetLogs) UnsetStartDate() {
 
 // GetEndDate returns the EndDate field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *GetLogs) GetEndDate() time.Time {
-	if o == nil || isNil(o.EndDate.Get()) {
+	if o == nil || IsNil(o.EndDate.Get()) {
 		var ret time.Time
 		return ret
 	}
@@ -190,9 +193,9 @@ func (o *GetLogs) GetEndDateOk() (*time.Time, bool) {
 	return o.EndDate.Get(), o.EndDate.IsSet()
 }
 
-// HasEndDate returns a boolean if a field has been set.
+// HasEndDate returns a boolean if a field is not nil.
 func (o *GetLogs) HasEndDate() bool {
-	if o != nil && o.EndDate.IsSet() {
+	if o != nil && !IsNil(o.EndDate) {
 		return true
 	}
 
@@ -216,7 +219,7 @@ func (o *GetLogs) UnsetEndDate() {
 
 // GetPage returns the Page field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *GetLogs) GetPage() int32 {
-	if o == nil || isNil(o.Page.Get()) {
+	if o == nil || IsNil(o.Page.Get()) {
 		var ret int32
 		return ret
 	}
@@ -233,9 +236,9 @@ func (o *GetLogs) GetPageOk() (*int32, bool) {
 	return o.Page.Get(), o.Page.IsSet()
 }
 
-// HasPage returns a boolean if a field has been set.
+// HasPage returns a boolean if a field is not nil.
 func (o *GetLogs) HasPage() bool {
-	if o != nil && o.Page.IsSet() {
+	if o != nil && !IsNil(o.Page) {
 		return true
 	}
 
@@ -259,7 +262,7 @@ func (o *GetLogs) UnsetPage() {
 
 // GetSize returns the Size field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *GetLogs) GetSize() int32 {
-	if o == nil || isNil(o.Size.Get()) {
+	if o == nil || IsNil(o.Size.Get()) {
 		var ret int32
 		return ret
 	}
@@ -276,9 +279,9 @@ func (o *GetLogs) GetSizeOk() (*int32, bool) {
 	return o.Size.Get(), o.Size.IsSet()
 }
 
-// HasSize returns a boolean if a field has been set.
+// HasSize returns a boolean if a field is not nil.
 func (o *GetLogs) HasSize() bool {
-	if o != nil && o.Size.IsSet() {
+	if o != nil && !IsNil(o.Size) {
 		return true
 	}
 
@@ -301,6 +304,14 @@ func (o *GetLogs) UnsetSize() {
 }
 
 func (o GetLogs) MarshalJSON() ([]byte, error) {
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
+func (o GetLogs) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if o.EntityType.IsSet() {
 		toSerialize["entity_type"] = o.EntityType.Get()
@@ -320,7 +331,7 @@ func (o GetLogs) MarshalJSON() ([]byte, error) {
 	if o.Size.IsSet() {
 		toSerialize["size"] = o.Size.Get()
 	}
-	return json.Marshal(toSerialize)
+	return toSerialize, nil
 }
 
 type NullableGetLogs struct {

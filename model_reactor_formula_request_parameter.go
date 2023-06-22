@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the ReactorFormulaRequestParameter type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &ReactorFormulaRequestParameter{}
+
 // ReactorFormulaRequestParameter struct for ReactorFormulaRequestParameter
 type ReactorFormulaRequestParameter struct {
 	Name        string         `json:"name"`
@@ -67,7 +70,7 @@ func (o *ReactorFormulaRequestParameter) SetName(v string) {
 
 // GetDescription returns the Description field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *ReactorFormulaRequestParameter) GetDescription() string {
-	if o == nil || isNil(o.Description.Get()) {
+	if o == nil || IsNil(o.Description.Get()) {
 		var ret string
 		return ret
 	}
@@ -84,9 +87,9 @@ func (o *ReactorFormulaRequestParameter) GetDescriptionOk() (*string, bool) {
 	return o.Description.Get(), o.Description.IsSet()
 }
 
-// HasDescription returns a boolean if a field has been set.
+// HasDescription returns a boolean if a field is not nil.
 func (o *ReactorFormulaRequestParameter) HasDescription() bool {
-	if o != nil && o.Description.IsSet() {
+	if o != nil && !IsNil(o.Description) {
 		return true
 	}
 
@@ -134,7 +137,7 @@ func (o *ReactorFormulaRequestParameter) SetType(v string) {
 
 // GetOptional returns the Optional field value if set, zero value otherwise.
 func (o *ReactorFormulaRequestParameter) GetOptional() bool {
-	if o == nil || isNil(o.Optional) {
+	if o == nil || IsNil(o.Optional) {
 		var ret bool
 		return ret
 	}
@@ -144,15 +147,15 @@ func (o *ReactorFormulaRequestParameter) GetOptional() bool {
 // GetOptionalOk returns a tuple with the Optional field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ReactorFormulaRequestParameter) GetOptionalOk() (*bool, bool) {
-	if o == nil || isNil(o.Optional) {
+	if o == nil || IsNil(o.Optional) {
 		return nil, false
 	}
 	return o.Optional, true
 }
 
-// HasOptional returns a boolean if a field has been set.
+// HasOptional returns a boolean if a field is not nil.
 func (o *ReactorFormulaRequestParameter) HasOptional() bool {
-	if o != nil && !isNil(o.Optional) {
+	if o != nil && !IsNil(o.Optional) {
 		return true
 	}
 
@@ -165,20 +168,24 @@ func (o *ReactorFormulaRequestParameter) SetOptional(v bool) {
 }
 
 func (o ReactorFormulaRequestParameter) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["name"] = o.Name
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
+	return json.Marshal(toSerialize)
+}
+
+func (o ReactorFormulaRequestParameter) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	toSerialize["name"] = o.Name
 	if o.Description.IsSet() {
 		toSerialize["description"] = o.Description.Get()
 	}
-	if true {
-		toSerialize["type"] = o.Type
-	}
-	if !isNil(o.Optional) {
+	toSerialize["type"] = o.Type
+	if !IsNil(o.Optional) {
 		toSerialize["optional"] = o.Optional
 	}
-	return json.Marshal(toSerialize)
+	return toSerialize, nil
 }
 
 type NullableReactorFormulaRequestParameter struct {

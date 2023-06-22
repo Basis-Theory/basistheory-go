@@ -514,17 +514,6 @@ paths:
           pattern: "^[A-z_]+$"
           type: string
         style: form
-      - explode: true
-        in: query
-        name: version
-        required: false
-        schema:
-          format: int32
-          maximum: 2147483647
-          minimum: 0
-          nullable: true
-          type: integer
-        style: form
       responses:
         "200":
           content:
@@ -1291,6 +1280,12 @@ paths:
               schema:
                 $ref: '#/components/schemas/ReactResponse'
           description: Success
+        "202":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ReactResponse'
+          description: Accepted
         "400":
           content:
             application/json:
@@ -2195,6 +2190,15 @@ paths:
       - Tokens
     post:
       operationId: Tokens_Create
+      parameters:
+      - explode: true
+        in: query
+        name: persistTokenDataInCloudStorage
+        required: false
+        schema:
+          default: false
+          type: boolean
+        style: form
       requestBody:
         content:
           application/json:
@@ -2408,6 +2412,74 @@ paths:
           description: Conflict
       tags:
       - Tokens
+  /transactions:
+    post:
+      operationId: Transactions_Create
+      responses:
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CreateTransactionResponse'
+          description: Created
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Unauthorized
+      tags:
+      - Transactions
+  /transactions/{id}/commit:
+    post:
+      operationId: Transactions_Commit
+      parameters:
+      - explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          format: uuid
+          maxLength: 36
+          pattern: "^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$"
+          type: string
+        style: simple
+      responses:
+        "200":
+          description: Success
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Unauthorized
+      tags:
+      - Transactions
+  /transactions/{id}/rollback:
+    post:
+      operationId: Transactions_Rollback
+      parameters:
+      - explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          format: uuid
+          maxLength: 36
+          pattern: "^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$"
+          type: string
+        style: simple
+      responses:
+        "200":
+          description: Success
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Unauthorized
+      tags:
+      - Transactions
 components:
   schemas:
     AccessRule:
@@ -3457,6 +3529,8 @@ components:
         fingerprint_expression: fingerprint_expression
         metadata:
           key: metadata
+        aliases:
+        - aliases
         data: ""
         privacy:
           restriction_policy: restriction_policy
@@ -3557,6 +3631,41 @@ components:
           nullable: true
           pattern: "^(?!.*\\/\\/)(?=.*\\/$)\\/[A-z0-9_\\-\\/]*$"
           type: array
+        aliases:
+          items:
+            type: string
+          maxItems: 1
+          nullable: true
+          type: array
+      type: object
+    CreateTransactionResponse:
+      additionalProperties: false
+      example:
+        expires_at: 2000-01-23T04:56:07.000+00:00
+        created_at: 2000-01-23T04:56:07.000+00:00
+        id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        created_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+      properties:
+        id:
+          format: uuid
+          maxLength: 36
+          pattern: "^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$"
+          type: string
+        created_by:
+          format: uuid
+          maxLength: 36
+          nullable: true
+          pattern: "^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$"
+          type: string
+        created_at:
+          format: date-time
+          maxLength: 40
+          nullable: true
+          type: string
+        expires_at:
+          format: date-time
+          maxLength: 40
+          type: string
       type: object
     EncryptionKey:
       additionalProperties: false
@@ -3668,12 +3777,6 @@ components:
           nullable: true
           pattern: "^[A-z_]+$"
           type: string
-        version:
-          format: int32
-          maximum: 2147483647
-          minimum: 0
-          nullable: true
-          type: integer
       type: object
     GetProxies:
       additionalProperties: false
@@ -4093,6 +4196,7 @@ components:
         response_transform:
           code: code
         response_reactor_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        proxy_host: proxy_host
         name: name
         modified_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
         request_reactor_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
@@ -4158,6 +4262,9 @@ components:
             type: string
           nullable: true
           type: object
+        proxy_host:
+          nullable: true
+          type: string
         created_by:
           format: uuid
           maxLength: 36
@@ -4201,6 +4308,7 @@ components:
           response_transform:
             code: code
           response_reactor_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          proxy_host: proxy_host
           name: name
           modified_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           request_reactor_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
@@ -4220,6 +4328,7 @@ components:
           response_transform:
             code: code
           response_reactor_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          proxy_host: proxy_host
           name: name
           modified_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           request_reactor_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
@@ -4239,6 +4348,7 @@ components:
           response_transform:
             code: code
           response_reactor_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          proxy_host: proxy_host
           name: name
           modified_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           request_reactor_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
@@ -4258,6 +4368,7 @@ components:
           response_transform:
             code: code
           response_reactor_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          proxy_host: proxy_host
           name: name
           modified_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           request_reactor_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
@@ -4277,6 +4388,7 @@ components:
           response_transform:
             code: code
           response_reactor_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          proxy_host: proxy_host
           name: name
           modified_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           request_reactor_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
@@ -4309,9 +4421,20 @@ components:
       additionalProperties: false
       example:
         args: ""
+        callback_url: callback_url
+        timeout_ms: 26016
       properties:
         args:
           nullable: true
+        callback_url:
+          nullable: true
+          type: string
+        timeout_ms:
+          format: int32
+          maximum: 210000
+          minimum: 10000
+          nullable: true
+          type: integer
       type: object
     ReactResponse:
       additionalProperties: false
@@ -5859,6 +5982,8 @@ components:
         fingerprint_expression: fingerprint_expression
         metadata:
           key: metadata
+        aliases:
+        - aliases
         data: ""
         created_at: 2000-01-23T04:56:07.000+00:00
         privacy:
@@ -5968,6 +6093,12 @@ components:
           nullable: true
           pattern: "^(?!.*\\/\\/)(?=.*\\/$)\\/[A-z0-9_\\-\\/]*$"
           type: array
+        aliases:
+          items:
+            type: string
+          maxItems: 1
+          nullable: true
+          type: array
       type: object
     TokenMetrics:
       additionalProperties: false
@@ -5999,6 +6130,8 @@ components:
           fingerprint_expression: fingerprint_expression
           metadata:
             key: metadata
+          aliases:
+          - aliases
           data: ""
           created_at: 2000-01-23T04:56:07.000+00:00
           privacy:
@@ -6034,6 +6167,8 @@ components:
           fingerprint_expression: fingerprint_expression
           metadata:
             key: metadata
+          aliases:
+          - aliases
           data: ""
           created_at: 2000-01-23T04:56:07.000+00:00
           privacy:
@@ -6069,6 +6204,8 @@ components:
           fingerprint_expression: fingerprint_expression
           metadata:
             key: metadata
+          aliases:
+          - aliases
           data: ""
           created_at: 2000-01-23T04:56:07.000+00:00
           privacy:
@@ -6104,6 +6241,8 @@ components:
           fingerprint_expression: fingerprint_expression
           metadata:
             key: metadata
+          aliases:
+          - aliases
           data: ""
           created_at: 2000-01-23T04:56:07.000+00:00
           privacy:
@@ -6139,6 +6278,8 @@ components:
           fingerprint_expression: fingerprint_expression
           metadata:
             key: metadata
+          aliases:
+          - aliases
           data: ""
           created_at: 2000-01-23T04:56:07.000+00:00
           privacy:

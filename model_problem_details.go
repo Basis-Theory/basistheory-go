@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the ProblemDetails type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &ProblemDetails{}
+
 // ProblemDetails struct for ProblemDetails
 type ProblemDetails struct {
 	Type     NullableString `json:"type,omitempty"`
@@ -42,7 +45,7 @@ func NewProblemDetailsWithDefaults() *ProblemDetails {
 
 // GetType returns the Type field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *ProblemDetails) GetType() string {
-	if o == nil || isNil(o.Type.Get()) {
+	if o == nil || IsNil(o.Type.Get()) {
 		var ret string
 		return ret
 	}
@@ -59,9 +62,9 @@ func (o *ProblemDetails) GetTypeOk() (*string, bool) {
 	return o.Type.Get(), o.Type.IsSet()
 }
 
-// HasType returns a boolean if a field has been set.
+// HasType returns a boolean if a field is not nil.
 func (o *ProblemDetails) HasType() bool {
-	if o != nil && o.Type.IsSet() {
+	if o != nil && !IsNil(o.Type) {
 		return true
 	}
 
@@ -85,7 +88,7 @@ func (o *ProblemDetails) UnsetType() {
 
 // GetTitle returns the Title field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *ProblemDetails) GetTitle() string {
-	if o == nil || isNil(o.Title.Get()) {
+	if o == nil || IsNil(o.Title.Get()) {
 		var ret string
 		return ret
 	}
@@ -102,9 +105,9 @@ func (o *ProblemDetails) GetTitleOk() (*string, bool) {
 	return o.Title.Get(), o.Title.IsSet()
 }
 
-// HasTitle returns a boolean if a field has been set.
+// HasTitle returns a boolean if a field is not nil.
 func (o *ProblemDetails) HasTitle() bool {
-	if o != nil && o.Title.IsSet() {
+	if o != nil && !IsNil(o.Title) {
 		return true
 	}
 
@@ -128,7 +131,7 @@ func (o *ProblemDetails) UnsetTitle() {
 
 // GetStatus returns the Status field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *ProblemDetails) GetStatus() int32 {
-	if o == nil || isNil(o.Status.Get()) {
+	if o == nil || IsNil(o.Status.Get()) {
 		var ret int32
 		return ret
 	}
@@ -145,9 +148,9 @@ func (o *ProblemDetails) GetStatusOk() (*int32, bool) {
 	return o.Status.Get(), o.Status.IsSet()
 }
 
-// HasStatus returns a boolean if a field has been set.
+// HasStatus returns a boolean if a field is not nil.
 func (o *ProblemDetails) HasStatus() bool {
-	if o != nil && o.Status.IsSet() {
+	if o != nil && !IsNil(o.Status) {
 		return true
 	}
 
@@ -171,7 +174,7 @@ func (o *ProblemDetails) UnsetStatus() {
 
 // GetDetail returns the Detail field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *ProblemDetails) GetDetail() string {
-	if o == nil || isNil(o.Detail.Get()) {
+	if o == nil || IsNil(o.Detail.Get()) {
 		var ret string
 		return ret
 	}
@@ -188,9 +191,9 @@ func (o *ProblemDetails) GetDetailOk() (*string, bool) {
 	return o.Detail.Get(), o.Detail.IsSet()
 }
 
-// HasDetail returns a boolean if a field has been set.
+// HasDetail returns a boolean if a field is not nil.
 func (o *ProblemDetails) HasDetail() bool {
-	if o != nil && o.Detail.IsSet() {
+	if o != nil && !IsNil(o.Detail) {
 		return true
 	}
 
@@ -214,7 +217,7 @@ func (o *ProblemDetails) UnsetDetail() {
 
 // GetInstance returns the Instance field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *ProblemDetails) GetInstance() string {
-	if o == nil || isNil(o.Instance.Get()) {
+	if o == nil || IsNil(o.Instance.Get()) {
 		var ret string
 		return ret
 	}
@@ -231,9 +234,9 @@ func (o *ProblemDetails) GetInstanceOk() (*string, bool) {
 	return o.Instance.Get(), o.Instance.IsSet()
 }
 
-// HasInstance returns a boolean if a field has been set.
+// HasInstance returns a boolean if a field is not nil.
 func (o *ProblemDetails) HasInstance() bool {
-	if o != nil && o.Instance.IsSet() {
+	if o != nil && !IsNil(o.Instance) {
 		return true
 	}
 
@@ -256,6 +259,14 @@ func (o *ProblemDetails) UnsetInstance() {
 }
 
 func (o ProblemDetails) MarshalJSON() ([]byte, error) {
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
+func (o ProblemDetails) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if o.Type.IsSet() {
 		toSerialize["type"] = o.Type.Get()
@@ -272,7 +283,7 @@ func (o ProblemDetails) MarshalJSON() ([]byte, error) {
 	if o.Instance.IsSet() {
 		toSerialize["instance"] = o.Instance.Get()
 	}
-	return json.Marshal(toSerialize)
+	return toSerialize, nil
 }
 
 type NullableProblemDetails struct {

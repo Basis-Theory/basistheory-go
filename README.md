@@ -1,7 +1,5 @@
 # Go API client for basistheory
 
-[![Release](https://github.com/Basis-Theory/basistheory-go/actions/workflows/release.yml/badge.svg)](https://github.com/Basis-Theory/basistheory-go/actions/workflows/release.yml)
-
 ## Getting Started
 * Sign-in to [Basis Theory](https://basistheory.com) and go to [Applications](https://portal.basistheory.com/applications)
 * Create a Basis Theory Private Application
@@ -21,14 +19,13 @@ Install the following dependencies:
 
 ```shell
 go get github.com/stretchr/testify/assert
-go get golang.org/x/oauth2
 go get golang.org/x/net/context
 ```
 
 Put the package under your project folder and add the following in import:
 
 ```golang
-import basistheory "github.com/Basis-Theory/basistheory-go/v3"
+import basistheory "github.com/GIT_USER_ID/GIT_REPO_ID"
 ```
 
 To use a proxy, set the environment variable `HTTP_PROXY`:
@@ -36,12 +33,6 @@ To use a proxy, set the environment variable `HTTP_PROXY`:
 ```golang
 os.Setenv("HTTP_PROXY", "http://proxy_name:proxy_port")
 ```
-
-## Running tests locally
-
-To run tests locally, you'll need to create a server and management BT Application with all permissions and add those `key`'s
-to a `.env.local`. You'll want to follow the same format as outlined on `.env.example`. Then you can run `make verify` from
-the root to run all tests.
 
 ## Configuration of Server URL
 
@@ -142,6 +133,9 @@ Class | Method | HTTP request | Description
 *TokensApi* | [**GetChildren**](docs/TokensApi.md#getchildren) | **Get** /tokens/{parentId}/children | 
 *TokensApi* | [**Search**](docs/TokensApi.md#search) | **Post** /tokens/search | 
 *TokensApi* | [**Update**](docs/TokensApi.md#update) | **Patch** /tokens/{id} | 
+*TransactionsApi* | [**Commit**](docs/TransactionsApi.md#commit) | **Post** /transactions/{id}/commit | 
+*TransactionsApi* | [**Create**](docs/TransactionsApi.md#create) | **Post** /transactions | 
+*TransactionsApi* | [**Rollback**](docs/TransactionsApi.md#rollback) | **Post** /transactions/{id}/rollback | 
 
 
 ## Documentation For Models
@@ -160,6 +154,7 @@ Class | Method | HTTP request | Description
  - [CreateTenantInvitationRequest](docs/CreateTenantInvitationRequest.md)
  - [CreateTokenRequest](docs/CreateTokenRequest.md)
  - [CreateTokenResponse](docs/CreateTokenResponse.md)
+ - [CreateTransactionResponse](docs/CreateTransactionResponse.md)
  - [EncryptionKey](docs/EncryptionKey.md)
  - [EncryptionMetadata](docs/EncryptionMetadata.md)
  - [GetApplications](docs/GetApplications.md)
@@ -217,7 +212,7 @@ Class | Method | HTTP request | Description
 ## Documentation For Authorization
 
 
-
+Authentication schemes defined for the API:
 ### ApiKey
 
 - **Type**: API key
@@ -245,4 +240,5 @@ Each of these functions takes a value of the given basic type and returns a poin
 
 ## Author
 
-[Basis Theory](mailto:support@basistheory.com)
+
+

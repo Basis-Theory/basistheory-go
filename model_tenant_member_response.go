@@ -15,6 +15,9 @@ import (
 	"time"
 )
 
+// checks if the TenantMemberResponse type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &TenantMemberResponse{}
+
 // TenantMemberResponse struct for TenantMemberResponse
 type TenantMemberResponse struct {
 	Id          *string        `json:"id,omitempty"`
@@ -46,7 +49,7 @@ func NewTenantMemberResponseWithDefaults() *TenantMemberResponse {
 
 // GetId returns the Id field value if set, zero value otherwise.
 func (o *TenantMemberResponse) GetId() string {
-	if o == nil || isNil(o.Id) {
+	if o == nil || IsNil(o.Id) {
 		var ret string
 		return ret
 	}
@@ -56,15 +59,15 @@ func (o *TenantMemberResponse) GetId() string {
 // GetIdOk returns a tuple with the Id field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *TenantMemberResponse) GetIdOk() (*string, bool) {
-	if o == nil || isNil(o.Id) {
+	if o == nil || IsNil(o.Id) {
 		return nil, false
 	}
 	return o.Id, true
 }
 
-// HasId returns a boolean if a field has been set.
+// HasId returns a boolean if a field is not nil.
 func (o *TenantMemberResponse) HasId() bool {
-	if o != nil && !isNil(o.Id) {
+	if o != nil && !IsNil(o.Id) {
 		return true
 	}
 
@@ -78,7 +81,7 @@ func (o *TenantMemberResponse) SetId(v string) {
 
 // GetTenantId returns the TenantId field value if set, zero value otherwise.
 func (o *TenantMemberResponse) GetTenantId() string {
-	if o == nil || isNil(o.TenantId) {
+	if o == nil || IsNil(o.TenantId) {
 		var ret string
 		return ret
 	}
@@ -88,15 +91,15 @@ func (o *TenantMemberResponse) GetTenantId() string {
 // GetTenantIdOk returns a tuple with the TenantId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *TenantMemberResponse) GetTenantIdOk() (*string, bool) {
-	if o == nil || isNil(o.TenantId) {
+	if o == nil || IsNil(o.TenantId) {
 		return nil, false
 	}
 	return o.TenantId, true
 }
 
-// HasTenantId returns a boolean if a field has been set.
+// HasTenantId returns a boolean if a field is not nil.
 func (o *TenantMemberResponse) HasTenantId() bool {
-	if o != nil && !isNil(o.TenantId) {
+	if o != nil && !IsNil(o.TenantId) {
 		return true
 	}
 
@@ -110,7 +113,7 @@ func (o *TenantMemberResponse) SetTenantId(v string) {
 
 // GetUser returns the User field value if set, zero value otherwise.
 func (o *TenantMemberResponse) GetUser() User {
-	if o == nil || isNil(o.User) {
+	if o == nil || IsNil(o.User) {
 		var ret User
 		return ret
 	}
@@ -120,15 +123,15 @@ func (o *TenantMemberResponse) GetUser() User {
 // GetUserOk returns a tuple with the User field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *TenantMemberResponse) GetUserOk() (*User, bool) {
-	if o == nil || isNil(o.User) {
+	if o == nil || IsNil(o.User) {
 		return nil, false
 	}
 	return o.User, true
 }
 
-// HasUser returns a boolean if a field has been set.
+// HasUser returns a boolean if a field is not nil.
 func (o *TenantMemberResponse) HasUser() bool {
-	if o != nil && !isNil(o.User) {
+	if o != nil && !IsNil(o.User) {
 		return true
 	}
 
@@ -142,7 +145,7 @@ func (o *TenantMemberResponse) SetUser(v User) {
 
 // GetRole returns the Role field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *TenantMemberResponse) GetRole() string {
-	if o == nil || isNil(o.Role.Get()) {
+	if o == nil || IsNil(o.Role.Get()) {
 		var ret string
 		return ret
 	}
@@ -159,9 +162,9 @@ func (o *TenantMemberResponse) GetRoleOk() (*string, bool) {
 	return o.Role.Get(), o.Role.IsSet()
 }
 
-// HasRole returns a boolean if a field has been set.
+// HasRole returns a boolean if a field is not nil.
 func (o *TenantMemberResponse) HasRole() bool {
-	if o != nil && o.Role.IsSet() {
+	if o != nil && !IsNil(o.Role) {
 		return true
 	}
 
@@ -185,7 +188,7 @@ func (o *TenantMemberResponse) UnsetRole() {
 
 // GetCreatedBy returns the CreatedBy field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *TenantMemberResponse) GetCreatedBy() string {
-	if o == nil || isNil(o.CreatedBy.Get()) {
+	if o == nil || IsNil(o.CreatedBy.Get()) {
 		var ret string
 		return ret
 	}
@@ -202,9 +205,9 @@ func (o *TenantMemberResponse) GetCreatedByOk() (*string, bool) {
 	return o.CreatedBy.Get(), o.CreatedBy.IsSet()
 }
 
-// HasCreatedBy returns a boolean if a field has been set.
+// HasCreatedBy returns a boolean if a field is not nil.
 func (o *TenantMemberResponse) HasCreatedBy() bool {
-	if o != nil && o.CreatedBy.IsSet() {
+	if o != nil && !IsNil(o.CreatedBy) {
 		return true
 	}
 
@@ -228,7 +231,7 @@ func (o *TenantMemberResponse) UnsetCreatedBy() {
 
 // GetCreatedDate returns the CreatedDate field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *TenantMemberResponse) GetCreatedDate() time.Time {
-	if o == nil || isNil(o.CreatedDate.Get()) {
+	if o == nil || IsNil(o.CreatedDate.Get()) {
 		var ret time.Time
 		return ret
 	}
@@ -245,9 +248,9 @@ func (o *TenantMemberResponse) GetCreatedDateOk() (*time.Time, bool) {
 	return o.CreatedDate.Get(), o.CreatedDate.IsSet()
 }
 
-// HasCreatedDate returns a boolean if a field has been set.
+// HasCreatedDate returns a boolean if a field is not nil.
 func (o *TenantMemberResponse) HasCreatedDate() bool {
-	if o != nil && o.CreatedDate.IsSet() {
+	if o != nil && !IsNil(o.CreatedDate) {
 		return true
 	}
 
@@ -271,7 +274,7 @@ func (o *TenantMemberResponse) UnsetCreatedDate() {
 
 // GetModifiedBy returns the ModifiedBy field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *TenantMemberResponse) GetModifiedBy() string {
-	if o == nil || isNil(o.ModifiedBy.Get()) {
+	if o == nil || IsNil(o.ModifiedBy.Get()) {
 		var ret string
 		return ret
 	}
@@ -288,9 +291,9 @@ func (o *TenantMemberResponse) GetModifiedByOk() (*string, bool) {
 	return o.ModifiedBy.Get(), o.ModifiedBy.IsSet()
 }
 
-// HasModifiedBy returns a boolean if a field has been set.
+// HasModifiedBy returns a boolean if a field is not nil.
 func (o *TenantMemberResponse) HasModifiedBy() bool {
-	if o != nil && o.ModifiedBy.IsSet() {
+	if o != nil && !IsNil(o.ModifiedBy) {
 		return true
 	}
 
@@ -314,7 +317,7 @@ func (o *TenantMemberResponse) UnsetModifiedBy() {
 
 // GetModifiedAt returns the ModifiedAt field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *TenantMemberResponse) GetModifiedAt() time.Time {
-	if o == nil || isNil(o.ModifiedAt.Get()) {
+	if o == nil || IsNil(o.ModifiedAt.Get()) {
 		var ret time.Time
 		return ret
 	}
@@ -331,9 +334,9 @@ func (o *TenantMemberResponse) GetModifiedAtOk() (*time.Time, bool) {
 	return o.ModifiedAt.Get(), o.ModifiedAt.IsSet()
 }
 
-// HasModifiedAt returns a boolean if a field has been set.
+// HasModifiedAt returns a boolean if a field is not nil.
 func (o *TenantMemberResponse) HasModifiedAt() bool {
-	if o != nil && o.ModifiedAt.IsSet() {
+	if o != nil && !IsNil(o.ModifiedAt) {
 		return true
 	}
 
@@ -356,14 +359,22 @@ func (o *TenantMemberResponse) UnsetModifiedAt() {
 }
 
 func (o TenantMemberResponse) MarshalJSON() ([]byte, error) {
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
+func (o TenantMemberResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !isNil(o.Id) {
+	if !IsNil(o.Id) {
 		toSerialize["id"] = o.Id
 	}
-	if !isNil(o.TenantId) {
+	if !IsNil(o.TenantId) {
 		toSerialize["tenant_id"] = o.TenantId
 	}
-	if !isNil(o.User) {
+	if !IsNil(o.User) {
 		toSerialize["user"] = o.User
 	}
 	if o.Role.IsSet() {
@@ -381,7 +392,7 @@ func (o TenantMemberResponse) MarshalJSON() ([]byte, error) {
 	if o.ModifiedAt.IsSet() {
 		toSerialize["modified_at"] = o.ModifiedAt.Get()
 	}
-	return json.Marshal(toSerialize)
+	return toSerialize, nil
 }
 
 type NullableTenantMemberResponse struct {

@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the TenantUsageReport type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &TenantUsageReport{}
+
 // TenantUsageReport struct for TenantUsageReport
 type TenantUsageReport struct {
 	TokenReport *TokenReport `json:"token_report,omitempty"`
@@ -38,7 +41,7 @@ func NewTenantUsageReportWithDefaults() *TenantUsageReport {
 
 // GetTokenReport returns the TokenReport field value if set, zero value otherwise.
 func (o *TenantUsageReport) GetTokenReport() TokenReport {
-	if o == nil || isNil(o.TokenReport) {
+	if o == nil || IsNil(o.TokenReport) {
 		var ret TokenReport
 		return ret
 	}
@@ -48,15 +51,15 @@ func (o *TenantUsageReport) GetTokenReport() TokenReport {
 // GetTokenReportOk returns a tuple with the TokenReport field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *TenantUsageReport) GetTokenReportOk() (*TokenReport, bool) {
-	if o == nil || isNil(o.TokenReport) {
+	if o == nil || IsNil(o.TokenReport) {
 		return nil, false
 	}
 	return o.TokenReport, true
 }
 
-// HasTokenReport returns a boolean if a field has been set.
+// HasTokenReport returns a boolean if a field is not nil.
 func (o *TenantUsageReport) HasTokenReport() bool {
-	if o != nil && !isNil(o.TokenReport) {
+	if o != nil && !IsNil(o.TokenReport) {
 		return true
 	}
 
@@ -69,11 +72,19 @@ func (o *TenantUsageReport) SetTokenReport(v TokenReport) {
 }
 
 func (o TenantUsageReport) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.TokenReport) {
-		toSerialize["token_report"] = o.TokenReport
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o TenantUsageReport) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.TokenReport) {
+		toSerialize["token_report"] = o.TokenReport
+	}
+	return toSerialize, nil
 }
 
 type NullableTenantUsageReport struct {

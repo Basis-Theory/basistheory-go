@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the CreateReactorRequest type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &CreateReactorRequest{}
+
 // CreateReactorRequest struct for CreateReactorRequest
 type CreateReactorRequest struct {
 	Name          string            `json:"name"`
@@ -66,7 +69,7 @@ func (o *CreateReactorRequest) SetName(v string) {
 
 // GetFormula returns the Formula field value if set, zero value otherwise.
 func (o *CreateReactorRequest) GetFormula() ReactorFormula {
-	if o == nil || isNil(o.Formula) {
+	if o == nil || IsNil(o.Formula) {
 		var ret ReactorFormula
 		return ret
 	}
@@ -76,15 +79,15 @@ func (o *CreateReactorRequest) GetFormula() ReactorFormula {
 // GetFormulaOk returns a tuple with the Formula field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CreateReactorRequest) GetFormulaOk() (*ReactorFormula, bool) {
-	if o == nil || isNil(o.Formula) {
+	if o == nil || IsNil(o.Formula) {
 		return nil, false
 	}
 	return o.Formula, true
 }
 
-// HasFormula returns a boolean if a field has been set.
+// HasFormula returns a boolean if a field is not nil.
 func (o *CreateReactorRequest) HasFormula() bool {
-	if o != nil && !isNil(o.Formula) {
+	if o != nil && !IsNil(o.Formula) {
 		return true
 	}
 
@@ -98,7 +101,7 @@ func (o *CreateReactorRequest) SetFormula(v ReactorFormula) {
 
 // GetApplication returns the Application field value if set, zero value otherwise.
 func (o *CreateReactorRequest) GetApplication() Application {
-	if o == nil || isNil(o.Application) {
+	if o == nil || IsNil(o.Application) {
 		var ret Application
 		return ret
 	}
@@ -108,15 +111,15 @@ func (o *CreateReactorRequest) GetApplication() Application {
 // GetApplicationOk returns a tuple with the Application field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CreateReactorRequest) GetApplicationOk() (*Application, bool) {
-	if o == nil || isNil(o.Application) {
+	if o == nil || IsNil(o.Application) {
 		return nil, false
 	}
 	return o.Application, true
 }
 
-// HasApplication returns a boolean if a field has been set.
+// HasApplication returns a boolean if a field is not nil.
 func (o *CreateReactorRequest) HasApplication() bool {
-	if o != nil && !isNil(o.Application) {
+	if o != nil && !IsNil(o.Application) {
 		return true
 	}
 
@@ -141,15 +144,15 @@ func (o *CreateReactorRequest) GetConfiguration() map[string]string {
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *CreateReactorRequest) GetConfigurationOk() (*map[string]string, bool) {
-	if o == nil || isNil(o.Configuration) {
+	if o == nil || IsNil(o.Configuration) {
 		return nil, false
 	}
 	return &o.Configuration, true
 }
 
-// HasConfiguration returns a boolean if a field has been set.
+// HasConfiguration returns a boolean if a field is not nil.
 func (o *CreateReactorRequest) HasConfiguration() bool {
-	if o != nil && isNil(o.Configuration) {
+	if o != nil && !IsNil(o.Configuration) {
 		return true
 	}
 
@@ -162,20 +165,26 @@ func (o *CreateReactorRequest) SetConfiguration(v map[string]string) {
 }
 
 func (o CreateReactorRequest) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["name"] = o.Name
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
-	if !isNil(o.Formula) {
+	return json.Marshal(toSerialize)
+}
+
+func (o CreateReactorRequest) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	toSerialize["name"] = o.Name
+	if !IsNil(o.Formula) {
 		toSerialize["formula"] = o.Formula
 	}
-	if !isNil(o.Application) {
+	if !IsNil(o.Application) {
 		toSerialize["application"] = o.Application
 	}
 	if o.Configuration != nil {
 		toSerialize["configuration"] = o.Configuration
 	}
-	return json.Marshal(toSerialize)
+	return toSerialize, nil
 }
 
 type NullableCreateReactorRequest struct {

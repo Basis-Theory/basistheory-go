@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the ReactResponse type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &ReactResponse{}
+
 // ReactResponse struct for ReactResponse
 type ReactResponse struct {
 	Tokens  interface{} `json:"tokens,omitempty"`
@@ -52,15 +55,15 @@ func (o *ReactResponse) GetTokens() interface{} {
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *ReactResponse) GetTokensOk() (*interface{}, bool) {
-	if o == nil || isNil(o.Tokens) {
+	if o == nil || IsNil(o.Tokens) {
 		return nil, false
 	}
 	return &o.Tokens, true
 }
 
-// HasTokens returns a boolean if a field has been set.
+// HasTokens returns a boolean if a field is not nil.
 func (o *ReactResponse) HasTokens() bool {
-	if o != nil && isNil(o.Tokens) {
+	if o != nil && !IsNil(o.Tokens) {
 		return true
 	}
 
@@ -85,15 +88,15 @@ func (o *ReactResponse) GetRaw() interface{} {
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *ReactResponse) GetRawOk() (*interface{}, bool) {
-	if o == nil || isNil(o.Raw) {
+	if o == nil || IsNil(o.Raw) {
 		return nil, false
 	}
 	return &o.Raw, true
 }
 
-// HasRaw returns a boolean if a field has been set.
+// HasRaw returns a boolean if a field is not nil.
 func (o *ReactResponse) HasRaw() bool {
-	if o != nil && isNil(o.Raw) {
+	if o != nil && !IsNil(o.Raw) {
 		return true
 	}
 
@@ -118,15 +121,15 @@ func (o *ReactResponse) GetBody() interface{} {
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *ReactResponse) GetBodyOk() (*interface{}, bool) {
-	if o == nil || isNil(o.Body) {
+	if o == nil || IsNil(o.Body) {
 		return nil, false
 	}
 	return &o.Body, true
 }
 
-// HasBody returns a boolean if a field has been set.
+// HasBody returns a boolean if a field is not nil.
 func (o *ReactResponse) HasBody() bool {
-	if o != nil && isNil(o.Body) {
+	if o != nil && !IsNil(o.Body) {
 		return true
 	}
 
@@ -151,15 +154,15 @@ func (o *ReactResponse) GetHeaders() interface{} {
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *ReactResponse) GetHeadersOk() (*interface{}, bool) {
-	if o == nil || isNil(o.Headers) {
+	if o == nil || IsNil(o.Headers) {
 		return nil, false
 	}
 	return &o.Headers, true
 }
 
-// HasHeaders returns a boolean if a field has been set.
+// HasHeaders returns a boolean if a field is not nil.
 func (o *ReactResponse) HasHeaders() bool {
-	if o != nil && isNil(o.Headers) {
+	if o != nil && !IsNil(o.Headers) {
 		return true
 	}
 
@@ -172,6 +175,14 @@ func (o *ReactResponse) SetHeaders(v interface{}) {
 }
 
 func (o ReactResponse) MarshalJSON() ([]byte, error) {
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
+func (o ReactResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if o.Tokens != nil {
 		toSerialize["tokens"] = o.Tokens
@@ -185,7 +196,7 @@ func (o ReactResponse) MarshalJSON() ([]byte, error) {
 	if o.Headers != nil {
 		toSerialize["headers"] = o.Headers
 	}
-	return json.Marshal(toSerialize)
+	return toSerialize, nil
 }
 
 type NullableReactResponse struct {

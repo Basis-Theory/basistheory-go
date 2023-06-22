@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the UpdateTenantRequest type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &UpdateTenantRequest{}
+
 // UpdateTenantRequest struct for UpdateTenantRequest
 type UpdateTenantRequest struct {
 	Name     string            `json:"name"`
@@ -75,15 +78,15 @@ func (o *UpdateTenantRequest) GetSettings() map[string]string {
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *UpdateTenantRequest) GetSettingsOk() (*map[string]string, bool) {
-	if o == nil || isNil(o.Settings) {
+	if o == nil || IsNil(o.Settings) {
 		return nil, false
 	}
 	return &o.Settings, true
 }
 
-// HasSettings returns a boolean if a field has been set.
+// HasSettings returns a boolean if a field is not nil.
 func (o *UpdateTenantRequest) HasSettings() bool {
-	if o != nil && isNil(o.Settings) {
+	if o != nil && !IsNil(o.Settings) {
 		return true
 	}
 
@@ -96,14 +99,20 @@ func (o *UpdateTenantRequest) SetSettings(v map[string]string) {
 }
 
 func (o UpdateTenantRequest) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["name"] = o.Name
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
+	return json.Marshal(toSerialize)
+}
+
+func (o UpdateTenantRequest) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	toSerialize["name"] = o.Name
 	if o.Settings != nil {
 		toSerialize["settings"] = o.Settings
 	}
-	return json.Marshal(toSerialize)
+	return toSerialize, nil
 }
 
 type NullableUpdateTenantRequest struct {

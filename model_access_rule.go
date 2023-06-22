@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the AccessRule type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &AccessRule{}
+
 // AccessRule struct for AccessRule
 type AccessRule struct {
 	Description NullableString `json:"description,omitempty"`
@@ -43,7 +46,7 @@ func NewAccessRuleWithDefaults() *AccessRule {
 
 // GetDescription returns the Description field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *AccessRule) GetDescription() string {
-	if o == nil || isNil(o.Description.Get()) {
+	if o == nil || IsNil(o.Description.Get()) {
 		var ret string
 		return ret
 	}
@@ -60,9 +63,9 @@ func (o *AccessRule) GetDescriptionOk() (*string, bool) {
 	return o.Description.Get(), o.Description.IsSet()
 }
 
-// HasDescription returns a boolean if a field has been set.
+// HasDescription returns a boolean if a field is not nil.
 func (o *AccessRule) HasDescription() bool {
-	if o != nil && o.Description.IsSet() {
+	if o != nil && !IsNil(o.Description) {
 		return true
 	}
 
@@ -86,7 +89,7 @@ func (o *AccessRule) UnsetDescription() {
 
 // GetPriority returns the Priority field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *AccessRule) GetPriority() int32 {
-	if o == nil || isNil(o.Priority.Get()) {
+	if o == nil || IsNil(o.Priority.Get()) {
 		var ret int32
 		return ret
 	}
@@ -103,9 +106,9 @@ func (o *AccessRule) GetPriorityOk() (*int32, bool) {
 	return o.Priority.Get(), o.Priority.IsSet()
 }
 
-// HasPriority returns a boolean if a field has been set.
+// HasPriority returns a boolean if a field is not nil.
 func (o *AccessRule) HasPriority() bool {
-	if o != nil && o.Priority.IsSet() {
+	if o != nil && !IsNil(o.Priority) {
 		return true
 	}
 
@@ -129,7 +132,7 @@ func (o *AccessRule) UnsetPriority() {
 
 // GetContainer returns the Container field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *AccessRule) GetContainer() string {
-	if o == nil || isNil(o.Container.Get()) {
+	if o == nil || IsNil(o.Container.Get()) {
 		var ret string
 		return ret
 	}
@@ -146,9 +149,9 @@ func (o *AccessRule) GetContainerOk() (*string, bool) {
 	return o.Container.Get(), o.Container.IsSet()
 }
 
-// HasContainer returns a boolean if a field has been set.
+// HasContainer returns a boolean if a field is not nil.
 func (o *AccessRule) HasContainer() bool {
-	if o != nil && o.Container.IsSet() {
+	if o != nil && !IsNil(o.Container) {
 		return true
 	}
 
@@ -172,7 +175,7 @@ func (o *AccessRule) UnsetContainer() {
 
 // GetTransform returns the Transform field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *AccessRule) GetTransform() string {
-	if o == nil || isNil(o.Transform.Get()) {
+	if o == nil || IsNil(o.Transform.Get()) {
 		var ret string
 		return ret
 	}
@@ -189,9 +192,9 @@ func (o *AccessRule) GetTransformOk() (*string, bool) {
 	return o.Transform.Get(), o.Transform.IsSet()
 }
 
-// HasTransform returns a boolean if a field has been set.
+// HasTransform returns a boolean if a field is not nil.
 func (o *AccessRule) HasTransform() bool {
-	if o != nil && o.Transform.IsSet() {
+	if o != nil && !IsNil(o.Transform) {
 		return true
 	}
 
@@ -226,15 +229,15 @@ func (o *AccessRule) GetConditions() []Condition {
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *AccessRule) GetConditionsOk() ([]Condition, bool) {
-	if o == nil || isNil(o.Conditions) {
+	if o == nil || IsNil(o.Conditions) {
 		return nil, false
 	}
 	return o.Conditions, true
 }
 
-// HasConditions returns a boolean if a field has been set.
+// HasConditions returns a boolean if a field is not nil.
 func (o *AccessRule) HasConditions() bool {
-	if o != nil && isNil(o.Conditions) {
+	if o != nil && !IsNil(o.Conditions) {
 		return true
 	}
 
@@ -259,15 +262,15 @@ func (o *AccessRule) GetPermissions() []string {
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *AccessRule) GetPermissionsOk() ([]string, bool) {
-	if o == nil || isNil(o.Permissions) {
+	if o == nil || IsNil(o.Permissions) {
 		return nil, false
 	}
 	return o.Permissions, true
 }
 
-// HasPermissions returns a boolean if a field has been set.
+// HasPermissions returns a boolean if a field is not nil.
 func (o *AccessRule) HasPermissions() bool {
-	if o != nil && isNil(o.Permissions) {
+	if o != nil && !IsNil(o.Permissions) {
 		return true
 	}
 
@@ -280,6 +283,14 @@ func (o *AccessRule) SetPermissions(v []string) {
 }
 
 func (o AccessRule) MarshalJSON() ([]byte, error) {
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
+func (o AccessRule) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if o.Description.IsSet() {
 		toSerialize["description"] = o.Description.Get()
@@ -299,7 +310,7 @@ func (o AccessRule) MarshalJSON() ([]byte, error) {
 	if o.Permissions != nil {
 		toSerialize["permissions"] = o.Permissions
 	}
-	return json.Marshal(toSerialize)
+	return toSerialize, nil
 }
 
 type NullableAccessRule struct {

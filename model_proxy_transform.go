@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the ProxyTransform type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &ProxyTransform{}
+
 // ProxyTransform struct for ProxyTransform
 type ProxyTransform struct {
 	Code NullableString `json:"code,omitempty"`
@@ -38,7 +41,7 @@ func NewProxyTransformWithDefaults() *ProxyTransform {
 
 // GetCode returns the Code field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *ProxyTransform) GetCode() string {
-	if o == nil || isNil(o.Code.Get()) {
+	if o == nil || IsNil(o.Code.Get()) {
 		var ret string
 		return ret
 	}
@@ -55,9 +58,9 @@ func (o *ProxyTransform) GetCodeOk() (*string, bool) {
 	return o.Code.Get(), o.Code.IsSet()
 }
 
-// HasCode returns a boolean if a field has been set.
+// HasCode returns a boolean if a field is not nil.
 func (o *ProxyTransform) HasCode() bool {
-	if o != nil && o.Code.IsSet() {
+	if o != nil && !IsNil(o.Code) {
 		return true
 	}
 
@@ -80,11 +83,19 @@ func (o *ProxyTransform) UnsetCode() {
 }
 
 func (o ProxyTransform) MarshalJSON() ([]byte, error) {
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
+func (o ProxyTransform) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if o.Code.IsSet() {
 		toSerialize["code"] = o.Code.Get()
 	}
-	return json.Marshal(toSerialize)
+	return toSerialize, nil
 }
 
 type NullableProxyTransform struct {

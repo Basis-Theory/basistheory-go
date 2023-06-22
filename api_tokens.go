@@ -24,13 +24,19 @@ import (
 type TokensApiService service
 
 type TokensApiCreateRequest struct {
-	ctx                context.Context
-	ApiService         *TokensApiService
-	createTokenRequest *CreateTokenRequest
+	ctx                            context.Context
+	ApiService                     *TokensApiService
+	createTokenRequest             *CreateTokenRequest
+	persistTokenDataInCloudStorage *bool
 }
 
 func (r TokensApiCreateRequest) CreateTokenRequest(createTokenRequest CreateTokenRequest) TokensApiCreateRequest {
 	r.createTokenRequest = &createTokenRequest
+	return r
+}
+
+func (r TokensApiCreateRequest) PersistTokenDataInCloudStorage(persistTokenDataInCloudStorage bool) TokensApiCreateRequest {
+	r.persistTokenDataInCloudStorage = &persistTokenDataInCloudStorage
 	return r
 }
 
@@ -75,6 +81,9 @@ func (a *TokensApiService) CreateExecute(r TokensApiCreateRequest) (*CreateToken
 		return localVarReturnValue, nil, reportError("createTokenRequest is required and must be specified")
 	}
 
+	if r.persistTokenDataInCloudStorage != nil {
+		localVarQueryParams.Add("persistTokenDataInCloudStorage", parameterToString(*r.persistTokenDataInCloudStorage, ""))
+	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{"application/json"}
 
