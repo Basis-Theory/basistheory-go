@@ -20,7 +20,7 @@ func getDevConfiguration() *basistheory.Configuration {
 		configuration.Host = urlArray[1]
 	} else {
 		configuration.Scheme = "https"
-		configuration.Host = "api-dev.basistheory.com"
+		configuration.Host = "api.flock-dev.com"
 	}
 
 	return configuration

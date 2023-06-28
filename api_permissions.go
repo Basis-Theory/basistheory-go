@@ -13,7 +13,7 @@ package basistheory
 import (
 	"bytes"
 	"context"
-	"io/ioutil"
+	"io"
 	"net/http"
 	"net/url"
 )
@@ -71,7 +71,7 @@ func (a *PermissionsApiService) GetExecute(r PermissionsApiGetRequest) ([]Permis
 	localVarFormParams := url.Values{}
 
 	if r.applicationType != nil {
-		localVarQueryParams.Add("application_type", parameterToString(*r.applicationType, ""))
+		parameterAddToHeaderOrQuery(localVarQueryParams, "application_type", r.applicationType, "")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -114,9 +114,9 @@ func (a *PermissionsApiService) GetExecute(r PermissionsApiGetRequest) ([]Permis
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -133,6 +133,7 @@ func (a *PermissionsApiService) GetExecute(r PermissionsApiGetRequest) ([]Permis
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
@@ -143,6 +144,7 @@ func (a *PermissionsApiService) GetExecute(r PermissionsApiGetRequest) ([]Permis
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
@@ -153,6 +155,7 @@ func (a *PermissionsApiService) GetExecute(r PermissionsApiGetRequest) ([]Permis
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.model = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
