@@ -1,3 +1,10 @@
+## [3.11.1](https://github.com/Basis-Theory/basistheory-go/compare/v3.11.0...v3.11.1) (2023-06-29)
+
+
+### Bug Fixes
+
+* fixing compilation issue ([#71](https://github.com/Basis-Theory/basistheory-go/issues/71)) ([631c08d](https://github.com/Basis-Theory/basistheory-go/commit/631c08d0a7c15fb32d8d5283929ccb191c2f7e92))
+
 # [3.11.0](https://github.com/Basis-Theory/basistheory-go/compare/v3.10.0...v3.11.0) (2023-06-22)
 
 
