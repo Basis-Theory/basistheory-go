@@ -787,13 +787,13 @@ func (a *TenantsApiService) GetInvitationsExecute(r TenantsApiGetInvitationsRequ
 	localVarFormParams := url.Values{}
 
 	if r.status != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "status", r.status, "")
+		localVarQueryParams.Add("status", parameterToString(*r.status, ""))
 	}
 	if r.page != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "page", r.page, "")
+		localVarQueryParams.Add("page", parameterToString(*r.page, ""))
 	}
 	if r.size != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "size", r.size, "")
+		localVarQueryParams.Add("size", parameterToString(*r.size, ""))
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -948,17 +948,17 @@ func (a *TenantsApiService) GetMembersExecute(r TenantsApiGetMembersRequest) (*T
 		if reflect.TypeOf(t).Kind() == reflect.Slice {
 			s := reflect.ValueOf(t)
 			for i := 0; i < s.Len(); i++ {
-				parameterAddToHeaderOrQuery(localVarQueryParams, "user_id", s.Index(i), "multi")
+				localVarQueryParams.Add("user_id", parameterToString(s.Index(i), "multi"))
 			}
 		} else {
-			parameterAddToHeaderOrQuery(localVarQueryParams, "user_id", t, "multi")
+			localVarQueryParams.Add("user_id", parameterToString(t, "multi"))
 		}
 	}
 	if r.page != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "page", r.page, "")
+		localVarQueryParams.Add("page", parameterToString(*r.page, ""))
 	}
 	if r.size != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "size", r.size, "")
+		localVarQueryParams.Add("size", parameterToString(*r.size, ""))
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}

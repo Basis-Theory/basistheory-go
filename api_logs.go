@@ -102,22 +102,22 @@ func (a *LogsApiService) GetExecute(r LogsApiGetRequest) (*LogPaginatedList, *ht
 	localVarFormParams := url.Values{}
 
 	if r.entityType != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "entity_type", r.entityType, "")
+		localVarQueryParams.Add("entity_type", parameterToString(*r.entityType, ""))
 	}
 	if r.entityId != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "entity_id", r.entityId, "")
+		localVarQueryParams.Add("entity_id", parameterToString(*r.entityId, ""))
 	}
 	if r.startDate != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "start_date", r.startDate, "")
+		localVarQueryParams.Add("start_date", parameterToString(*r.startDate, ""))
 	}
 	if r.endDate != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "end_date", r.endDate, "")
+		localVarQueryParams.Add("end_date", parameterToString(*r.endDate, ""))
 	}
 	if r.page != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "page", r.page, "")
+		localVarQueryParams.Add("page", parameterToString(*r.page, ""))
 	}
 	if r.size != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "size", r.size, "")
+		localVarQueryParams.Add("size", parameterToString(*r.size, ""))
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}

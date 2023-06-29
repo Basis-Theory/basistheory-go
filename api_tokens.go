@@ -82,7 +82,7 @@ func (a *TokensApiService) CreateExecute(r TokensApiCreateRequest) (*CreateToken
 	}
 
 	if r.persistTokenDataInCloudStorage != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "persistTokenDataInCloudStorage", r.persistTokenDataInCloudStorage, "")
+		localVarQueryParams.Add("persistTokenDataInCloudStorage", parameterToString(*r.persistTokenDataInCloudStorage, ""))
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{"application/json"}
@@ -901,10 +901,10 @@ func (a *TokensApiService) GetExecute(r TokensApiGetRequest) (*TokenPaginatedLis
 		if reflect.TypeOf(t).Kind() == reflect.Slice {
 			s := reflect.ValueOf(t)
 			for i := 0; i < s.Len(); i++ {
-				parameterAddToHeaderOrQuery(localVarQueryParams, "type", s.Index(i), "multi")
+				localVarQueryParams.Add("type", parameterToString(s.Index(i), "multi"))
 			}
 		} else {
-			parameterAddToHeaderOrQuery(localVarQueryParams, "type", t, "multi")
+			localVarQueryParams.Add("type", parameterToString(t, "multi"))
 		}
 	}
 	if r.id != nil {
@@ -912,20 +912,20 @@ func (a *TokensApiService) GetExecute(r TokensApiGetRequest) (*TokenPaginatedLis
 		if reflect.TypeOf(t).Kind() == reflect.Slice {
 			s := reflect.ValueOf(t)
 			for i := 0; i < s.Len(); i++ {
-				parameterAddToHeaderOrQuery(localVarQueryParams, "id", s.Index(i), "multi")
+				localVarQueryParams.Add("id", parameterToString(s.Index(i), "multi"))
 			}
 		} else {
-			parameterAddToHeaderOrQuery(localVarQueryParams, "id", t, "multi")
+			localVarQueryParams.Add("id", parameterToString(t, "multi"))
 		}
 	}
 	if r.metadata != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "metadata", r.metadata, "")
+		localVarQueryParams.Add("metadata", parameterToString(*r.metadata, ""))
 	}
 	if r.page != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "page", r.page, "")
+		localVarQueryParams.Add("page", parameterToString(*r.page, ""))
 	}
 	if r.size != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "size", r.size, "")
+		localVarQueryParams.Add("size", parameterToString(*r.size, ""))
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -1246,10 +1246,10 @@ func (a *TokensApiService) GetChildrenExecute(r TokensApiGetChildrenRequest) (*T
 		if reflect.TypeOf(t).Kind() == reflect.Slice {
 			s := reflect.ValueOf(t)
 			for i := 0; i < s.Len(); i++ {
-				parameterAddToHeaderOrQuery(localVarQueryParams, "type", s.Index(i), "multi")
+				localVarQueryParams.Add("type", parameterToString(s.Index(i), "multi"))
 			}
 		} else {
-			parameterAddToHeaderOrQuery(localVarQueryParams, "type", t, "multi")
+			localVarQueryParams.Add("type", parameterToString(t, "multi"))
 		}
 	}
 	if r.id != nil {
@@ -1257,20 +1257,20 @@ func (a *TokensApiService) GetChildrenExecute(r TokensApiGetChildrenRequest) (*T
 		if reflect.TypeOf(t).Kind() == reflect.Slice {
 			s := reflect.ValueOf(t)
 			for i := 0; i < s.Len(); i++ {
-				parameterAddToHeaderOrQuery(localVarQueryParams, "id", s.Index(i), "multi")
+				localVarQueryParams.Add("id", parameterToString(s.Index(i), "multi"))
 			}
 		} else {
-			parameterAddToHeaderOrQuery(localVarQueryParams, "id", t, "multi")
+			localVarQueryParams.Add("id", parameterToString(t, "multi"))
 		}
 	}
 	if r.metadata != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "metadata", r.metadata, "")
+		localVarQueryParams.Add("metadata", parameterToString(*r.metadata, ""))
 	}
 	if r.page != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "page", r.page, "")
+		localVarQueryParams.Add("page", parameterToString(*r.page, ""))
 	}
 	if r.size != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "size", r.size, "")
+		localVarQueryParams.Add("size", parameterToString(*r.size, ""))
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}

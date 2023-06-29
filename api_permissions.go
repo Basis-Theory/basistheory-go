@@ -71,7 +71,7 @@ func (a *PermissionsApiService) GetExecute(r PermissionsApiGetRequest) ([]Permis
 	localVarFormParams := url.Values{}
 
 	if r.applicationType != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "application_type", r.applicationType, "")
+		localVarQueryParams.Add("application_type", parameterToString(*r.applicationType, ""))
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}

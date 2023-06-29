@@ -371,13 +371,13 @@ func (a *ReactorFormulasApiService) GetExecute(r ReactorFormulasApiGetRequest) (
 	localVarFormParams := url.Values{}
 
 	if r.name != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "name", r.name, "")
+		localVarQueryParams.Add("name", parameterToString(*r.name, ""))
 	}
 	if r.page != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "page", r.page, "")
+		localVarQueryParams.Add("page", parameterToString(*r.page, ""))
 	}
 	if r.size != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "size", r.size, "")
+		localVarQueryParams.Add("size", parameterToString(*r.size, ""))
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
