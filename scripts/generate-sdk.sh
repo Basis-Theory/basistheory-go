@@ -7,8 +7,7 @@ docker run --rm -v ${PWD}:/local openapitools/openapi-generator-cli:v6.6.0 gener
   -o /local \
   -c /local/openapi-config.yml \
   --remove-operation-id-prefix \
-  apiTests=false \
-  modelTests=false
+  --global-property apiTests=false,modelTests=false
 
 cd $(dirname $0)
 cd ../
