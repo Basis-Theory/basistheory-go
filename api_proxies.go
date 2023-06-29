@@ -137,7 +137,6 @@ func (a *ProxiesApiService) CreateExecute(r ProxiesApiCreateRequest) (*Proxy, *h
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
@@ -148,7 +147,6 @@ func (a *ProxiesApiService) CreateExecute(r ProxiesApiCreateRequest) (*Proxy, *h
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
@@ -159,7 +157,6 @@ func (a *ProxiesApiService) CreateExecute(r ProxiesApiCreateRequest) (*Proxy, *h
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.model = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
@@ -285,7 +282,6 @@ func (a *ProxiesApiService) DeleteExecute(r ProxiesApiDeleteRequest) (*http.Resp
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
@@ -296,7 +292,6 @@ func (a *ProxiesApiService) DeleteExecute(r ProxiesApiDeleteRequest) (*http.Resp
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
@@ -307,7 +302,6 @@ func (a *ProxiesApiService) DeleteExecute(r ProxiesApiDeleteRequest) (*http.Resp
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.model = v
 		}
 		return localVarHTTPResponse, newErr
@@ -463,7 +457,6 @@ func (a *ProxiesApiService) GetExecute(r ProxiesApiGetRequest) (*ProxyPaginatedL
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
@@ -474,7 +467,6 @@ func (a *ProxiesApiService) GetExecute(r ProxiesApiGetRequest) (*ProxyPaginatedL
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
@@ -485,7 +477,6 @@ func (a *ProxiesApiService) GetExecute(r ProxiesApiGetRequest) (*ProxyPaginatedL
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.model = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
@@ -613,7 +604,6 @@ func (a *ProxiesApiService) GetByIdExecute(r ProxiesApiGetByIdRequest) (*Proxy, 
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
@@ -624,7 +614,6 @@ func (a *ProxiesApiService) GetByIdExecute(r ProxiesApiGetByIdRequest) (*Proxy, 
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
@@ -635,7 +624,6 @@ func (a *ProxiesApiService) GetByIdExecute(r ProxiesApiGetByIdRequest) (*Proxy, 
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.model = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
@@ -774,7 +762,6 @@ func (a *ProxiesApiService) UpdateExecute(r ProxiesApiUpdateRequest) (*Proxy, *h
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
@@ -785,7 +772,6 @@ func (a *ProxiesApiService) UpdateExecute(r ProxiesApiUpdateRequest) (*Proxy, *h
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
@@ -796,7 +782,6 @@ func (a *ProxiesApiService) UpdateExecute(r ProxiesApiUpdateRequest) (*Proxy, *h
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
@@ -807,7 +792,6 @@ func (a *ProxiesApiService) UpdateExecute(r ProxiesApiUpdateRequest) (*Proxy, *h
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.model = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
