@@ -8,6 +8,7 @@ Method | HTTP request | Description
 [**Delete**](ReactorsApi.md#Delete) | **Delete** /reactors/{id} | 
 [**Get**](ReactorsApi.md#Get) | **Get** /reactors | 
 [**GetById**](ReactorsApi.md#GetById) | **Get** /reactors/{id} | 
+[**Patch**](ReactorsApi.md#Patch) | **Patch** /reactors/{id} | 
 [**React**](ReactorsApi.md#React) | **Post** /reactors/{id}/react | 
 [**Update**](ReactorsApi.md#Update) | **Put** /reactors/{id} | 
 
@@ -274,6 +275,74 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## Patch
+
+> Patch(ctx, id).PatchReactorRequest(patchReactorRequest).Execute()
+
+
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    id := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | 
+    patchReactorRequest := *openapiclient.NewPatchReactorRequest() // PatchReactorRequest | 
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    r, err := apiClient.ReactorsApi.Patch(context.Background(), id).PatchReactorRequest(patchReactorRequest).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `ReactorsApi.Patch``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**id** | **string** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiPatchRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **patchReactorRequest** | [**PatchReactorRequest**](PatchReactorRequest.md) |  | 
+
+### Return type
+
+ (empty response body)
+
+### Authorization
+
+[ApiKey](../README.md#ApiKey)
+
+### HTTP request headers
+
+- **Content-Type**: application/merge-patch+json
 - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)

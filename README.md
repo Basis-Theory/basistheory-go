@@ -1,7 +1,5 @@
 # Go API client for basistheory
 
-[![Release](https://github.com/Basis-Theory/basistheory-go/actions/workflows/release.yml/badge.svg)](https://github.com/Basis-Theory/basistheory-go/actions/workflows/release.yml)
-
 ## Getting Started
 * Sign-in to [Basis Theory](https://basistheory.com) and go to [Applications](https://portal.basistheory.com/applications)
 * Create a Basis Theory Private Application
@@ -27,7 +25,7 @@ go get golang.org/x/net/context
 Put the package under your project folder and add the following in import:
 
 ```golang
-import basistheory "github.com/Basis-Theory/basistheory-go/v3"
+import basistheory "github.com/GIT_USER_ID/GIT_REPO_ID"
 ```
 
 To use a proxy, set the environment variable `HTTP_PROXY`:
@@ -35,12 +33,6 @@ To use a proxy, set the environment variable `HTTP_PROXY`:
 ```golang
 os.Setenv("HTTP_PROXY", "http://proxy_name:proxy_port")
 ```
-
-## Running tests locally
-
-To run tests locally, you'll need to create a server and management BT Application with all permissions and add those `key`'s
-to a `.env.local`. You'll want to follow the same format as outlined on `.env.example`. Then you can run `make verify` from
-the root to run all tests.
 
 ## Configuration of Server URL
 
@@ -105,6 +97,7 @@ Class | Method | HTTP request | Description
 *ProxiesApi* | [**Delete**](docs/ProxiesApi.md#delete) | **Delete** /proxies/{id} | 
 *ProxiesApi* | [**Get**](docs/ProxiesApi.md#get) | **Get** /proxies | 
 *ProxiesApi* | [**GetById**](docs/ProxiesApi.md#getbyid) | **Get** /proxies/{id} | 
+*ProxiesApi* | [**Patch**](docs/ProxiesApi.md#patch) | **Patch** /proxies/{id} | 
 *ProxiesApi* | [**Update**](docs/ProxiesApi.md#update) | **Put** /proxies/{id} | 
 *ReactorFormulasApi* | [**Create**](docs/ReactorFormulasApi.md#create) | **Post** /reactor-formulas | 
 *ReactorFormulasApi* | [**Delete**](docs/ReactorFormulasApi.md#delete) | **Delete** /reactor-formulas/{id} | 
@@ -115,6 +108,7 @@ Class | Method | HTTP request | Description
 *ReactorsApi* | [**Delete**](docs/ReactorsApi.md#delete) | **Delete** /reactors/{id} | 
 *ReactorsApi* | [**Get**](docs/ReactorsApi.md#get) | **Get** /reactors | 
 *ReactorsApi* | [**GetById**](docs/ReactorsApi.md#getbyid) | **Get** /reactors/{id} | 
+*ReactorsApi* | [**Patch**](docs/ReactorsApi.md#patch) | **Patch** /reactors/{id} | 
 *ReactorsApi* | [**React**](docs/ReactorsApi.md#react) | **Post** /reactors/{id}/react | 
 *ReactorsApi* | [**Update**](docs/ReactorsApi.md#update) | **Put** /reactors/{id} | 
 *SessionsApi* | [**Authorize**](docs/SessionsApi.md#authorize) | **Post** /sessions/authorize | 
@@ -132,13 +126,9 @@ Class | Method | HTTP request | Description
 *TenantsApi* | [**Update**](docs/TenantsApi.md#update) | **Put** /tenants/self | 
 *TokenizeApi* | [**Tokenize**](docs/TokenizeApi.md#tokenize) | **Post** /tokenize | 
 *TokensApi* | [**Create**](docs/TokensApi.md#create) | **Post** /tokens | 
-*TokensApi* | [**CreateAssociation**](docs/TokensApi.md#createassociation) | **Post** /tokens/{parentId}/children/{childId} | 
-*TokensApi* | [**CreateChild**](docs/TokensApi.md#createchild) | **Post** /tokens/{parentId}/children | 
 *TokensApi* | [**Delete**](docs/TokensApi.md#delete) | **Delete** /tokens/{id} | 
-*TokensApi* | [**DeleteAssociation**](docs/TokensApi.md#deleteassociation) | **Delete** /tokens/{parentId}/children/{childId} | 
 *TokensApi* | [**Get**](docs/TokensApi.md#get) | **Get** /tokens | 
 *TokensApi* | [**GetById**](docs/TokensApi.md#getbyid) | **Get** /tokens/{id} | 
-*TokensApi* | [**GetChildren**](docs/TokensApi.md#getchildren) | **Get** /tokens/{parentId}/children | 
 *TokensApi* | [**Search**](docs/TokensApi.md#search) | **Post** /tokens/search | 
 *TokensApi* | [**Update**](docs/TokensApi.md#update) | **Patch** /tokens/{id} | 
 *TransactionsApi* | [**Commit**](docs/TransactionsApi.md#commit) | **Post** /transactions/{id}/commit | 
@@ -153,6 +143,10 @@ Class | Method | HTTP request | Description
  - [ApplicationPaginatedList](docs/ApplicationPaginatedList.md)
  - [ApplicationTemplate](docs/ApplicationTemplate.md)
  - [AuthorizeSessionRequest](docs/AuthorizeSessionRequest.md)
+ - [BinDetails](docs/BinDetails.md)
+ - [BinDetailsBank](docs/BinDetailsBank.md)
+ - [BinDetailsCountry](docs/BinDetailsCountry.md)
+ - [BinDetailsProduct](docs/BinDetailsProduct.md)
  - [Condition](docs/Condition.md)
  - [CreateApplicationRequest](docs/CreateApplicationRequest.md)
  - [CreateProxyRequest](docs/CreateProxyRequest.md)
@@ -179,6 +173,8 @@ Class | Method | HTTP request | Description
  - [LogPaginatedList](docs/LogPaginatedList.md)
  - [MonthlyActiveTokenHistory](docs/MonthlyActiveTokenHistory.md)
  - [Pagination](docs/Pagination.md)
+ - [PatchProxyRequest](docs/PatchProxyRequest.md)
+ - [PatchReactorRequest](docs/PatchReactorRequest.md)
  - [Permission](docs/Permission.md)
  - [Privacy](docs/Privacy.md)
  - [ProblemDetails](docs/ProblemDetails.md)
@@ -203,6 +199,7 @@ Class | Method | HTTP request | Description
  - [TenantMemberResponsePaginatedList](docs/TenantMemberResponsePaginatedList.md)
  - [TenantUsageReport](docs/TenantUsageReport.md)
  - [Token](docs/Token.md)
+ - [TokenEnrichments](docs/TokenEnrichments.md)
  - [TokenMetrics](docs/TokenMetrics.md)
  - [TokenPaginatedList](docs/TokenPaginatedList.md)
  - [TokenReport](docs/TokenReport.md)
@@ -248,4 +245,5 @@ Each of these functions takes a value of the given basic type and returns a poin
 
 ## Author
 
-[Basis Theory](mailto:support@basistheory.com)
+
+

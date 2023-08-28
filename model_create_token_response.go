@@ -28,6 +28,7 @@ type CreateTokenResponse struct {
 	Mask                  interface{}       `json:"mask,omitempty"`
 	Data                  interface{}       `json:"data,omitempty"`
 	Metadata              map[string]string `json:"metadata,omitempty"`
+	Enrichments           *TokenEnrichments `json:"enrichments,omitempty"`
 	Privacy               *Privacy          `json:"privacy,omitempty"`
 	SearchIndexes         []string          `json:"search_indexes,omitempty"`
 	CreatedBy             NullableString    `json:"created_by,omitempty"`
@@ -357,6 +358,38 @@ func (o *CreateTokenResponse) HasMetadata() bool {
 // SetMetadata gets a reference to the given map[string]string and assigns it to the Metadata field.
 func (o *CreateTokenResponse) SetMetadata(v map[string]string) {
 	o.Metadata = v
+}
+
+// GetEnrichments returns the Enrichments field value if set, zero value otherwise.
+func (o *CreateTokenResponse) GetEnrichments() TokenEnrichments {
+	if o == nil || IsNil(o.Enrichments) {
+		var ret TokenEnrichments
+		return ret
+	}
+	return *o.Enrichments
+}
+
+// GetEnrichmentsOk returns a tuple with the Enrichments field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CreateTokenResponse) GetEnrichmentsOk() (*TokenEnrichments, bool) {
+	if o == nil || IsNil(o.Enrichments) {
+		return nil, false
+	}
+	return o.Enrichments, true
+}
+
+// HasEnrichments returns a boolean if a field is not nil.
+func (o *CreateTokenResponse) HasEnrichments() bool {
+	if o != nil && !IsNil(o.Enrichments) {
+		return true
+	}
+
+	return false
+}
+
+// SetEnrichments gets a reference to the given TokenEnrichments and assigns it to the Enrichments field.
+func (o *CreateTokenResponse) SetEnrichments(v TokenEnrichments) {
+	o.Enrichments = &v
 }
 
 // GetPrivacy returns the Privacy field value if set, zero value otherwise.
@@ -738,6 +771,9 @@ func (o CreateTokenResponse) ToMap() (map[string]interface{}, error) {
 	}
 	if o.Metadata != nil {
 		toSerialize["metadata"] = o.Metadata
+	}
+	if !IsNil(o.Enrichments) {
+		toSerialize["enrichments"] = o.Enrichments
 	}
 	if !IsNil(o.Privacy) {
 		toSerialize["privacy"] = o.Privacy

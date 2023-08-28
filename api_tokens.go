@@ -24,19 +24,13 @@ import (
 type TokensApiService service
 
 type TokensApiCreateRequest struct {
-	ctx                            context.Context
-	ApiService                     *TokensApiService
-	createTokenRequest             *CreateTokenRequest
-	persistTokenDataInCloudStorage *bool
+	ctx                context.Context
+	ApiService         *TokensApiService
+	createTokenRequest *CreateTokenRequest
 }
 
 func (r TokensApiCreateRequest) CreateTokenRequest(createTokenRequest CreateTokenRequest) TokensApiCreateRequest {
 	r.createTokenRequest = &createTokenRequest
-	return r
-}
-
-func (r TokensApiCreateRequest) PersistTokenDataInCloudStorage(persistTokenDataInCloudStorage bool) TokensApiCreateRequest {
-	r.persistTokenDataInCloudStorage = &persistTokenDataInCloudStorage
 	return r
 }
 
@@ -47,8 +41,8 @@ func (r TokensApiCreateRequest) Execute() (*CreateTokenResponse, *http.Response,
 /*
 Create Method for Create
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return TokensApiCreateRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return TokensApiCreateRequest
 */
 func (a *TokensApiService) Create(ctx context.Context) TokensApiCreateRequest {
 	return TokensApiCreateRequest{
@@ -58,7 +52,8 @@ func (a *TokensApiService) Create(ctx context.Context) TokensApiCreateRequest {
 }
 
 // Execute executes the request
-//  @return CreateTokenResponse
+//
+//	@return CreateTokenResponse
 func (a *TokensApiService) CreateExecute(r TokensApiCreateRequest) (*CreateTokenResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodPost
@@ -81,9 +76,6 @@ func (a *TokensApiService) CreateExecute(r TokensApiCreateRequest) (*CreateToken
 		return localVarReturnValue, nil, reportError("createTokenRequest is required and must be specified")
 	}
 
-	if r.persistTokenDataInCloudStorage != nil {
-		localVarQueryParams.Add("persistTokenDataInCloudStorage", parameterToString(*r.persistTokenDataInCloudStorage, ""))
-	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{"application/json"}
 
@@ -170,337 +162,6 @@ func (a *TokensApiService) CreateExecute(r TokensApiCreateRequest) (*CreateToken
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 409 {
-			var v ProblemDetails
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-	if err != nil {
-		newErr := &GenericOpenAPIError{
-			body:  localVarBody,
-			error: err.Error(),
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	return localVarReturnValue, localVarHTTPResponse, nil
-}
-
-type TokensApiCreateAssociationRequest struct {
-	ctx        context.Context
-	ApiService *TokensApiService
-	parentId   string
-	childId    string
-}
-
-func (r TokensApiCreateAssociationRequest) Execute() (*http.Response, error) {
-	return r.ApiService.CreateAssociationExecute(r)
-}
-
-/*
-CreateAssociation Method for CreateAssociation
-
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param parentId
- @param childId
- @return TokensApiCreateAssociationRequest
-*/
-func (a *TokensApiService) CreateAssociation(ctx context.Context, parentId string, childId string) TokensApiCreateAssociationRequest {
-	return TokensApiCreateAssociationRequest{
-		ApiService: a,
-		ctx:        ctx,
-		parentId:   parentId,
-		childId:    childId,
-	}
-}
-
-// Execute executes the request
-func (a *TokensApiService) CreateAssociationExecute(r TokensApiCreateAssociationRequest) (*http.Response, error) {
-	var (
-		localVarHTTPMethod = http.MethodPost
-		localVarPostBody   interface{}
-		formFiles          []formFile
-	)
-
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "TokensApiService.CreateAssociation")
-	if err != nil {
-		return nil, &GenericOpenAPIError{error: err.Error()}
-	}
-
-	localVarPath := localBasePath + "/tokens/{parentId}/children/{childId}"
-	localVarPath = strings.Replace(localVarPath, "{"+"parentId"+"}", url.PathEscape(parameterValueToString(r.parentId, "parentId")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"childId"+"}", url.PathEscape(parameterValueToString(r.childId, "childId")), -1)
-
-	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := url.Values{}
-	localVarFormParams := url.Values{}
-	if strlen(r.parentId) > 200 {
-		return nil, reportError("parentId must have less than 200 elements")
-	}
-	if strlen(r.childId) > 200 {
-		return nil, reportError("childId must have less than 200 elements")
-	}
-
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
-
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
-	if r.ctx != nil {
-		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
-			if apiKey, ok := auth["ApiKey"]; ok {
-				var key string
-				if apiKey.Prefix != "" {
-					key = apiKey.Prefix + " " + apiKey.Key
-				} else {
-					key = apiKey.Key
-				}
-				localVarHeaderParams["BT-API-KEY"] = key
-			}
-		}
-	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
-	if err != nil {
-		return nil, err
-	}
-
-	localVarHTTPResponse, err := a.client.callAPI(req)
-	if err != nil || localVarHTTPResponse == nil {
-		return localVarHTTPResponse, err
-	}
-
-	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
-	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
-	if err != nil {
-		return localVarHTTPResponse, err
-	}
-
-	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := &GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
-		}
-		if localVarHTTPResponse.StatusCode == 400 {
-			var v ValidationProblemDetails
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 401 {
-			var v ProblemDetails
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 403 {
-			var v ProblemDetails
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 404 {
-			var v ProblemDetails
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 409 {
-			var v ProblemDetails
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-		}
-		return localVarHTTPResponse, newErr
-	}
-
-	return localVarHTTPResponse, nil
-}
-
-type TokensApiCreateChildRequest struct {
-	ctx                context.Context
-	ApiService         *TokensApiService
-	parentId           string
-	createTokenRequest *CreateTokenRequest
-}
-
-func (r TokensApiCreateChildRequest) CreateTokenRequest(createTokenRequest CreateTokenRequest) TokensApiCreateChildRequest {
-	r.createTokenRequest = &createTokenRequest
-	return r
-}
-
-func (r TokensApiCreateChildRequest) Execute() (*CreateTokenResponse, *http.Response, error) {
-	return r.ApiService.CreateChildExecute(r)
-}
-
-/*
-CreateChild Method for CreateChild
-
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param parentId
- @return TokensApiCreateChildRequest
-*/
-func (a *TokensApiService) CreateChild(ctx context.Context, parentId string) TokensApiCreateChildRequest {
-	return TokensApiCreateChildRequest{
-		ApiService: a,
-		ctx:        ctx,
-		parentId:   parentId,
-	}
-}
-
-// Execute executes the request
-//  @return CreateTokenResponse
-func (a *TokensApiService) CreateChildExecute(r TokensApiCreateChildRequest) (*CreateTokenResponse, *http.Response, error) {
-	var (
-		localVarHTTPMethod  = http.MethodPost
-		localVarPostBody    interface{}
-		formFiles           []formFile
-		localVarReturnValue *CreateTokenResponse
-	)
-
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "TokensApiService.CreateChild")
-	if err != nil {
-		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
-	}
-
-	localVarPath := localBasePath + "/tokens/{parentId}/children"
-	localVarPath = strings.Replace(localVarPath, "{"+"parentId"+"}", url.PathEscape(parameterValueToString(r.parentId, "parentId")), -1)
-
-	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := url.Values{}
-	localVarFormParams := url.Values{}
-	if strlen(r.parentId) > 200 {
-		return localVarReturnValue, nil, reportError("parentId must have less than 200 elements")
-	}
-	if r.createTokenRequest == nil {
-		return localVarReturnValue, nil, reportError("createTokenRequest is required and must be specified")
-	}
-
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{"application/json"}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
-
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
-	// body params
-	localVarPostBody = r.createTokenRequest
-	if r.ctx != nil {
-		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
-			if apiKey, ok := auth["ApiKey"]; ok {
-				var key string
-				if apiKey.Prefix != "" {
-					key = apiKey.Prefix + " " + apiKey.Key
-				} else {
-					key = apiKey.Key
-				}
-				localVarHeaderParams["BT-API-KEY"] = key
-			}
-		}
-	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
-	if err != nil {
-		return localVarReturnValue, nil, err
-	}
-
-	localVarHTTPResponse, err := a.client.callAPI(req)
-	if err != nil || localVarHTTPResponse == nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
-	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
-	if err != nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := &GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
-		}
-		if localVarHTTPResponse.StatusCode == 400 {
-			var v ValidationProblemDetails
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 401 {
-			var v ProblemDetails
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 403 {
-			var v ProblemDetails
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 404 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -537,9 +198,9 @@ func (r TokensApiDeleteRequest) Execute() (*http.Response, error) {
 /*
 Delete Method for Delete
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param id
- @return TokensApiDeleteRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param id
+	@return TokensApiDeleteRequest
 */
 func (a *TokensApiService) Delete(ctx context.Context, id string) TokensApiDeleteRequest {
 	return TokensApiDeleteRequest{
@@ -570,159 +231,6 @@ func (a *TokensApiService) DeleteExecute(r TokensApiDeleteRequest) (*http.Respon
 	localVarFormParams := url.Values{}
 	if strlen(r.id) > 200 {
 		return nil, reportError("id must have less than 200 elements")
-	}
-
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
-
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
-	if r.ctx != nil {
-		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
-			if apiKey, ok := auth["ApiKey"]; ok {
-				var key string
-				if apiKey.Prefix != "" {
-					key = apiKey.Prefix + " " + apiKey.Key
-				} else {
-					key = apiKey.Key
-				}
-				localVarHeaderParams["BT-API-KEY"] = key
-			}
-		}
-	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
-	if err != nil {
-		return nil, err
-	}
-
-	localVarHTTPResponse, err := a.client.callAPI(req)
-	if err != nil || localVarHTTPResponse == nil {
-		return localVarHTTPResponse, err
-	}
-
-	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
-	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
-	if err != nil {
-		return localVarHTTPResponse, err
-	}
-
-	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := &GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
-		}
-		if localVarHTTPResponse.StatusCode == 400 {
-			var v ValidationProblemDetails
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 401 {
-			var v ProblemDetails
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 403 {
-			var v ProblemDetails
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 404 {
-			var v ProblemDetails
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-		}
-		return localVarHTTPResponse, newErr
-	}
-
-	return localVarHTTPResponse, nil
-}
-
-type TokensApiDeleteAssociationRequest struct {
-	ctx        context.Context
-	ApiService *TokensApiService
-	parentId   string
-	childId    string
-}
-
-func (r TokensApiDeleteAssociationRequest) Execute() (*http.Response, error) {
-	return r.ApiService.DeleteAssociationExecute(r)
-}
-
-/*
-DeleteAssociation Method for DeleteAssociation
-
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param parentId
- @param childId
- @return TokensApiDeleteAssociationRequest
-*/
-func (a *TokensApiService) DeleteAssociation(ctx context.Context, parentId string, childId string) TokensApiDeleteAssociationRequest {
-	return TokensApiDeleteAssociationRequest{
-		ApiService: a,
-		ctx:        ctx,
-		parentId:   parentId,
-		childId:    childId,
-	}
-}
-
-// Execute executes the request
-func (a *TokensApiService) DeleteAssociationExecute(r TokensApiDeleteAssociationRequest) (*http.Response, error) {
-	var (
-		localVarHTTPMethod = http.MethodDelete
-		localVarPostBody   interface{}
-		formFiles          []formFile
-	)
-
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "TokensApiService.DeleteAssociation")
-	if err != nil {
-		return nil, &GenericOpenAPIError{error: err.Error()}
-	}
-
-	localVarPath := localBasePath + "/tokens/{parentId}/children/{childId}"
-	localVarPath = strings.Replace(localVarPath, "{"+"parentId"+"}", url.PathEscape(parameterValueToString(r.parentId, "parentId")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"childId"+"}", url.PathEscape(parameterValueToString(r.childId, "childId")), -1)
-
-	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := url.Values{}
-	localVarFormParams := url.Values{}
-	if strlen(r.parentId) > 200 {
-		return nil, reportError("parentId must have less than 200 elements")
-	}
-	if strlen(r.childId) > 200 {
-		return nil, reportError("childId must have less than 200 elements")
 	}
 
 	// to determine the Content-Type header
@@ -865,8 +373,8 @@ func (r TokensApiGetRequest) Execute() (*TokenPaginatedList, *http.Response, err
 /*
 Get Method for Get
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return TokensApiGetRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return TokensApiGetRequest
 */
 func (a *TokensApiService) Get(ctx context.Context) TokensApiGetRequest {
 	return TokensApiGetRequest{
@@ -876,7 +384,8 @@ func (a *TokensApiService) Get(ctx context.Context) TokensApiGetRequest {
 }
 
 // Execute executes the request
-//  @return TokenPaginatedList
+//
+//	@return TokenPaginatedList
 func (a *TokensApiService) GetExecute(r TokensApiGetRequest) (*TokenPaginatedList, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
@@ -1027,9 +536,9 @@ func (r TokensApiGetByIdRequest) Execute() (*Token, *http.Response, error) {
 /*
 GetById Method for GetById
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param id
- @return TokensApiGetByIdRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param id
+	@return TokensApiGetByIdRequest
 */
 func (a *TokensApiService) GetById(ctx context.Context, id string) TokensApiGetByIdRequest {
 	return TokensApiGetByIdRequest{
@@ -1040,7 +549,8 @@ func (a *TokensApiService) GetById(ctx context.Context, id string) TokensApiGetB
 }
 
 // Execute executes the request
-//  @return Token
+//
+//	@return Token
 func (a *TokensApiService) GetByIdExecute(r TokensApiGetByIdRequest) (*Token, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
@@ -1161,224 +671,6 @@ func (a *TokensApiService) GetByIdExecute(r TokensApiGetByIdRequest) (*Token, *h
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type TokensApiGetChildrenRequest struct {
-	ctx        context.Context
-	ApiService *TokensApiService
-	parentId   string
-	type_      *[]string
-	id         *[]string
-	metadata   *map[string]string
-	page       *int32
-	size       *int32
-}
-
-func (r TokensApiGetChildrenRequest) Type_(type_ []string) TokensApiGetChildrenRequest {
-	r.type_ = &type_
-	return r
-}
-
-func (r TokensApiGetChildrenRequest) Id(id []string) TokensApiGetChildrenRequest {
-	r.id = &id
-	return r
-}
-
-func (r TokensApiGetChildrenRequest) Metadata(metadata map[string]string) TokensApiGetChildrenRequest {
-	r.metadata = &metadata
-	return r
-}
-
-func (r TokensApiGetChildrenRequest) Page(page int32) TokensApiGetChildrenRequest {
-	r.page = &page
-	return r
-}
-
-func (r TokensApiGetChildrenRequest) Size(size int32) TokensApiGetChildrenRequest {
-	r.size = &size
-	return r
-}
-
-func (r TokensApiGetChildrenRequest) Execute() (*TokenPaginatedList, *http.Response, error) {
-	return r.ApiService.GetChildrenExecute(r)
-}
-
-/*
-GetChildren Method for GetChildren
-
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param parentId
- @return TokensApiGetChildrenRequest
-*/
-func (a *TokensApiService) GetChildren(ctx context.Context, parentId string) TokensApiGetChildrenRequest {
-	return TokensApiGetChildrenRequest{
-		ApiService: a,
-		ctx:        ctx,
-		parentId:   parentId,
-	}
-}
-
-// Execute executes the request
-//  @return TokenPaginatedList
-func (a *TokensApiService) GetChildrenExecute(r TokensApiGetChildrenRequest) (*TokenPaginatedList, *http.Response, error) {
-	var (
-		localVarHTTPMethod  = http.MethodGet
-		localVarPostBody    interface{}
-		formFiles           []formFile
-		localVarReturnValue *TokenPaginatedList
-	)
-
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "TokensApiService.GetChildren")
-	if err != nil {
-		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
-	}
-
-	localVarPath := localBasePath + "/tokens/{parentId}/children"
-	localVarPath = strings.Replace(localVarPath, "{"+"parentId"+"}", url.PathEscape(parameterValueToString(r.parentId, "parentId")), -1)
-
-	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := url.Values{}
-	localVarFormParams := url.Values{}
-	if strlen(r.parentId) > 200 {
-		return localVarReturnValue, nil, reportError("parentId must have less than 200 elements")
-	}
-
-	if r.type_ != nil {
-		t := *r.type_
-		if reflect.TypeOf(t).Kind() == reflect.Slice {
-			s := reflect.ValueOf(t)
-			for i := 0; i < s.Len(); i++ {
-				localVarQueryParams.Add("type", parameterToString(s.Index(i), "multi"))
-			}
-		} else {
-			localVarQueryParams.Add("type", parameterToString(t, "multi"))
-		}
-	}
-	if r.id != nil {
-		t := *r.id
-		if reflect.TypeOf(t).Kind() == reflect.Slice {
-			s := reflect.ValueOf(t)
-			for i := 0; i < s.Len(); i++ {
-				localVarQueryParams.Add("id", parameterToString(s.Index(i), "multi"))
-			}
-		} else {
-			localVarQueryParams.Add("id", parameterToString(t, "multi"))
-		}
-	}
-	if r.metadata != nil {
-		localVarQueryParams.Add("metadata", parameterToString(*r.metadata, ""))
-	}
-	if r.page != nil {
-		localVarQueryParams.Add("page", parameterToString(*r.page, ""))
-	}
-	if r.size != nil {
-		localVarQueryParams.Add("size", parameterToString(*r.size, ""))
-	}
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
-
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
-	if r.ctx != nil {
-		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
-			if apiKey, ok := auth["ApiKey"]; ok {
-				var key string
-				if apiKey.Prefix != "" {
-					key = apiKey.Prefix + " " + apiKey.Key
-				} else {
-					key = apiKey.Key
-				}
-				localVarHeaderParams["BT-API-KEY"] = key
-			}
-		}
-	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
-	if err != nil {
-		return localVarReturnValue, nil, err
-	}
-
-	localVarHTTPResponse, err := a.client.callAPI(req)
-	if err != nil || localVarHTTPResponse == nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
-	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
-	if err != nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := &GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
-		}
-		if localVarHTTPResponse.StatusCode == 400 {
-			var v ValidationProblemDetails
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 401 {
-			var v ProblemDetails
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 403 {
-			var v ProblemDetails
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 404 {
-			var v ProblemDetails
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-	if err != nil {
-		newErr := &GenericOpenAPIError{
-			body:  localVarBody,
-			error: err.Error(),
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	return localVarReturnValue, localVarHTTPResponse, nil
-}
-
 type TokensApiSearchRequest struct {
 	ctx                 context.Context
 	ApiService          *TokensApiService
@@ -1397,8 +689,8 @@ func (r TokensApiSearchRequest) Execute() (*TokenPaginatedList, *http.Response, 
 /*
 Search Method for Search
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return TokensApiSearchRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return TokensApiSearchRequest
 */
 func (a *TokensApiService) Search(ctx context.Context) TokensApiSearchRequest {
 	return TokensApiSearchRequest{
@@ -1408,7 +700,8 @@ func (a *TokensApiService) Search(ctx context.Context) TokensApiSearchRequest {
 }
 
 // Execute executes the request
-//  @return TokenPaginatedList
+//
+//	@return TokenPaginatedList
 func (a *TokensApiService) SearchExecute(r TokensApiSearchRequest) (*TokenPaginatedList, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodPost
@@ -1549,9 +842,9 @@ func (r TokensApiUpdateRequest) Execute() (*Token, *http.Response, error) {
 /*
 Update Method for Update
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param id
- @return TokensApiUpdateRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param id
+	@return TokensApiUpdateRequest
 */
 func (a *TokensApiService) Update(ctx context.Context, id string) TokensApiUpdateRequest {
 	return TokensApiUpdateRequest{
@@ -1562,7 +855,8 @@ func (a *TokensApiService) Update(ctx context.Context, id string) TokensApiUpdat
 }
 
 // Execute executes the request
-//  @return Token
+//
+//	@return Token
 func (a *TokensApiService) UpdateExecute(r TokensApiUpdateRequest) (*Token, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodPatch
