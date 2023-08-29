@@ -1,3 +1,10 @@
+# [3.12.0](https://github.com/Basis-Theory/basistheory-go/compare/v3.11.1...v3.12.0) (2023-08-29)
+
+
+### Features
+
+* adds bin details and removes token associations ([#73](https://github.com/Basis-Theory/basistheory-go/issues/73)) ([e3f9640](https://github.com/Basis-Theory/basistheory-go/commit/e3f96409d3840e6cbc678d474f8cc0e6968924db))
+
 ## [3.11.1](https://github.com/Basis-Theory/basistheory-go/compare/v3.11.0...v3.11.1) (2023-06-29)
 
 
