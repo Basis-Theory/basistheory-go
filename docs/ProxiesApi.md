@@ -8,6 +8,7 @@ Method | HTTP request | Description
 [**Delete**](ProxiesApi.md#Delete) | **Delete** /proxies/{id} | 
 [**Get**](ProxiesApi.md#Get) | **Get** /proxies | 
 [**GetById**](ProxiesApi.md#GetById) | **Get** /proxies/{id} | 
+[**Patch**](ProxiesApi.md#Patch) | **Patch** /proxies/{id} | 
 [**Update**](ProxiesApi.md#Update) | **Put** /proxies/{id} | 
 
 
@@ -273,6 +274,74 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## Patch
+
+> Patch(ctx, id).PatchProxyRequest(patchProxyRequest).Execute()
+
+
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    id := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | 
+    patchProxyRequest := *openapiclient.NewPatchProxyRequest() // PatchProxyRequest | 
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    r, err := apiClient.ProxiesApi.Patch(context.Background(), id).PatchProxyRequest(patchProxyRequest).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `ProxiesApi.Patch``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**id** | **string** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiPatchRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **patchProxyRequest** | [**PatchProxyRequest**](PatchProxyRequest.md) |  | 
+
+### Return type
+
+ (empty response body)
+
+### Authorization
+
+[ApiKey](../README.md#ApiKey)
+
+### HTTP request headers
+
+- **Content-Type**: application/merge-patch+json
 - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)

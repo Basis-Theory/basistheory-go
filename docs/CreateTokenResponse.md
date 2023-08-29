@@ -12,6 +12,7 @@ Name | Type | Description | Notes
 **Mask** | Pointer to **interface{}** |  | [optional] 
 **Data** | Pointer to **interface{}** |  | [optional] 
 **Metadata** | Pointer to **map[string]string** |  | [optional] 
+**Enrichments** | Pointer to [**TokenEnrichments**](TokenEnrichments.md) |  | [optional] 
 **Privacy** | Pointer to [**Privacy**](Privacy.md) |  | [optional] 
 **SearchIndexes** | Pointer to **[]string** |  | [optional] 
 **CreatedBy** | Pointer to **NullableString** |  | [optional] 
@@ -311,6 +312,31 @@ HasMetadata returns a boolean if a field has been set.
 `func (o *CreateTokenResponse) UnsetMetadata()`
 
 UnsetMetadata ensures that no value is present for Metadata, not even an explicit nil
+### GetEnrichments
+
+`func (o *CreateTokenResponse) GetEnrichments() TokenEnrichments`
+
+GetEnrichments returns the Enrichments field if non-nil, zero value otherwise.
+
+### GetEnrichmentsOk
+
+`func (o *CreateTokenResponse) GetEnrichmentsOk() (*TokenEnrichments, bool)`
+
+GetEnrichmentsOk returns a tuple with the Enrichments field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetEnrichments
+
+`func (o *CreateTokenResponse) SetEnrichments(v TokenEnrichments)`
+
+SetEnrichments sets Enrichments field to given value.
+
+### HasEnrichments
+
+`func (o *CreateTokenResponse) HasEnrichments() bool`
+
+HasEnrichments returns a boolean if a field has been set.
+
 ### GetPrivacy
 
 `func (o *CreateTokenResponse) GetPrivacy() Privacy`

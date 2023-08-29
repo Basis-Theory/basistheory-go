@@ -21,6 +21,10 @@ docs/ApplicationTemplate.md
 docs/ApplicationTemplatesApi.md
 docs/ApplicationsApi.md
 docs/AuthorizeSessionRequest.md
+docs/BinDetails.md
+docs/BinDetailsBank.md
+docs/BinDetailsCountry.md
+docs/BinDetailsProduct.md
 docs/Condition.md
 docs/CreateApplicationRequest.md
 docs/CreateProxyRequest.md
@@ -48,6 +52,8 @@ docs/LogPaginatedList.md
 docs/LogsApi.md
 docs/MonthlyActiveTokenHistory.md
 docs/Pagination.md
+docs/PatchProxyRequest.md
+docs/PatchReactorRequest.md
 docs/Permission.md
 docs/PermissionsApi.md
 docs/Privacy.md
@@ -78,6 +84,7 @@ docs/TenantMemberResponsePaginatedList.md
 docs/TenantUsageReport.md
 docs/TenantsApi.md
 docs/Token.md
+docs/TokenEnrichments.md
 docs/TokenMetrics.md
 docs/TokenPaginatedList.md
 docs/TokenReport.md
@@ -98,6 +105,10 @@ model_application.go
 model_application_paginated_list.go
 model_application_template.go
 model_authorize_session_request.go
+model_bin_details.go
+model_bin_details_bank.go
+model_bin_details_country.go
+model_bin_details_product.go
 model_condition.go
 model_create_application_request.go
 model_create_proxy_request.go
@@ -124,6 +135,8 @@ model_log_entity_type.go
 model_log_paginated_list.go
 model_monthly_active_token_history.go
 model_pagination.go
+model_patch_proxy_request.go
+model_patch_reactor_request.go
 model_permission.go
 model_privacy.go
 model_problem_details.go
@@ -148,6 +161,7 @@ model_tenant_member_response.go
 model_tenant_member_response_paginated_list.go
 model_tenant_usage_report.go
 model_token.go
+model_token_enrichments.go
 model_token_metrics.go
 model_token_paginated_list.go
 model_token_report.go

@@ -41,8 +41,8 @@ func (r ReactorsApiCreateRequest) Execute() (*Reactor, *http.Response, error) {
 /*
 Create Method for Create
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ReactorsApiCreateRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ReactorsApiCreateRequest
 */
 func (a *ReactorsApiService) Create(ctx context.Context) ReactorsApiCreateRequest {
 	return ReactorsApiCreateRequest{
@@ -52,7 +52,8 @@ func (a *ReactorsApiService) Create(ctx context.Context) ReactorsApiCreateReques
 }
 
 // Execute executes the request
-//  @return Reactor
+//
+//	@return Reactor
 func (a *ReactorsApiService) CreateExecute(r ReactorsApiCreateRequest) (*Reactor, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodPost
@@ -187,9 +188,9 @@ func (r ReactorsApiDeleteRequest) Execute() (*http.Response, error) {
 /*
 Delete Method for Delete
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param id
- @return ReactorsApiDeleteRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param id
+	@return ReactorsApiDeleteRequest
 */
 func (a *ReactorsApiService) Delete(ctx context.Context, id string) ReactorsApiDeleteRequest {
 	return ReactorsApiDeleteRequest{
@@ -346,8 +347,8 @@ func (r ReactorsApiGetRequest) Execute() (*ReactorPaginatedList, *http.Response,
 /*
 Get Method for Get
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ReactorsApiGetRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ReactorsApiGetRequest
 */
 func (a *ReactorsApiService) Get(ctx context.Context) ReactorsApiGetRequest {
 	return ReactorsApiGetRequest{
@@ -357,7 +358,8 @@ func (a *ReactorsApiService) Get(ctx context.Context) ReactorsApiGetRequest {
 }
 
 // Execute executes the request
-//  @return ReactorPaginatedList
+//
+//	@return ReactorPaginatedList
 func (a *ReactorsApiService) GetExecute(r ReactorsApiGetRequest) (*ReactorPaginatedList, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
@@ -507,9 +509,9 @@ func (r ReactorsApiGetByIdRequest) Execute() (*Reactor, *http.Response, error) {
 /*
 GetById Method for GetById
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param id
- @return ReactorsApiGetByIdRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param id
+	@return ReactorsApiGetByIdRequest
 */
 func (a *ReactorsApiService) GetById(ctx context.Context, id string) ReactorsApiGetByIdRequest {
 	return ReactorsApiGetByIdRequest{
@@ -520,7 +522,8 @@ func (a *ReactorsApiService) GetById(ctx context.Context, id string) ReactorsApi
 }
 
 // Execute executes the request
-//  @return Reactor
+//
+//	@return Reactor
 func (a *ReactorsApiService) GetByIdExecute(r ReactorsApiGetByIdRequest) (*Reactor, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
@@ -641,6 +644,163 @@ func (a *ReactorsApiService) GetByIdExecute(r ReactorsApiGetByIdRequest) (*React
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
+type ReactorsApiPatchRequest struct {
+	ctx                 context.Context
+	ApiService          *ReactorsApiService
+	id                  string
+	patchReactorRequest *PatchReactorRequest
+}
+
+func (r ReactorsApiPatchRequest) PatchReactorRequest(patchReactorRequest PatchReactorRequest) ReactorsApiPatchRequest {
+	r.patchReactorRequest = &patchReactorRequest
+	return r
+}
+
+func (r ReactorsApiPatchRequest) Execute() (*http.Response, error) {
+	return r.ApiService.PatchExecute(r)
+}
+
+/*
+Patch Method for Patch
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param id
+	@return ReactorsApiPatchRequest
+*/
+func (a *ReactorsApiService) Patch(ctx context.Context, id string) ReactorsApiPatchRequest {
+	return ReactorsApiPatchRequest{
+		ApiService: a,
+		ctx:        ctx,
+		id:         id,
+	}
+}
+
+// Execute executes the request
+func (a *ReactorsApiService) PatchExecute(r ReactorsApiPatchRequest) (*http.Response, error) {
+	var (
+		localVarHTTPMethod = http.MethodPatch
+		localVarPostBody   interface{}
+		formFiles          []formFile
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ReactorsApiService.Patch")
+	if err != nil {
+		return nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/reactors/{id}"
+	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterValueToString(r.id, "id")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if strlen(r.id) > 36 {
+		return nil, reportError("id must have less than 36 elements")
+	}
+	if r.patchReactorRequest == nil {
+		return nil, reportError("patchReactorRequest is required and must be specified")
+	}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{"application/merge-patch+json"}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	// body params
+	localVarPostBody = r.patchReactorRequest
+	if r.ctx != nil {
+		// API Key Authentication
+		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+			if apiKey, ok := auth["ApiKey"]; ok {
+				var key string
+				if apiKey.Prefix != "" {
+					key = apiKey.Prefix + " " + apiKey.Key
+				} else {
+					key = apiKey.Key
+				}
+				localVarHeaderParams["BT-API-KEY"] = key
+			}
+		}
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v ValidationProblemDetails
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 404 {
+			var v ProblemDetails
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 401 {
+			var v ProblemDetails
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 403 {
+			var v ProblemDetails
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+		}
+		return localVarHTTPResponse, newErr
+	}
+
+	return localVarHTTPResponse, nil
+}
+
 type ReactorsApiReactRequest struct {
 	ctx          context.Context
 	ApiService   *ReactorsApiService
@@ -660,9 +820,9 @@ func (r ReactorsApiReactRequest) Execute() (*ReactResponse, *http.Response, erro
 /*
 React Method for React
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param id
- @return ReactorsApiReactRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param id
+	@return ReactorsApiReactRequest
 */
 func (a *ReactorsApiService) React(ctx context.Context, id string) ReactorsApiReactRequest {
 	return ReactorsApiReactRequest{
@@ -673,7 +833,8 @@ func (a *ReactorsApiService) React(ctx context.Context, id string) ReactorsApiRe
 }
 
 // Execute executes the request
-//  @return ReactResponse
+//
+//	@return ReactResponse
 func (a *ReactorsApiService) ReactExecute(r ReactorsApiReactRequest) (*ReactResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodPost
@@ -838,9 +999,9 @@ func (r ReactorsApiUpdateRequest) Execute() (*Reactor, *http.Response, error) {
 /*
 Update Method for Update
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param id
- @return ReactorsApiUpdateRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param id
+	@return ReactorsApiUpdateRequest
 */
 func (a *ReactorsApiService) Update(ctx context.Context, id string) ReactorsApiUpdateRequest {
 	return ReactorsApiUpdateRequest{
@@ -851,7 +1012,8 @@ func (a *ReactorsApiService) Update(ctx context.Context, id string) ReactorsApiU
 }
 
 // Execute executes the request
-//  @return Reactor
+//
+//	@return Reactor
 func (a *ReactorsApiService) UpdateExecute(r ReactorsApiUpdateRequest) (*Reactor, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodPut

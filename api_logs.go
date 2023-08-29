@@ -70,8 +70,8 @@ func (r LogsApiGetRequest) Execute() (*LogPaginatedList, *http.Response, error) 
 /*
 Get Method for Get
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return LogsApiGetRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return LogsApiGetRequest
 */
 func (a *LogsApiService) Get(ctx context.Context) LogsApiGetRequest {
 	return LogsApiGetRequest{
@@ -81,7 +81,8 @@ func (a *LogsApiService) Get(ctx context.Context) LogsApiGetRequest {
 }
 
 // Execute executes the request
-//  @return LogPaginatedList
+//
+//	@return LogPaginatedList
 func (a *LogsApiService) GetExecute(r LogsApiGetRequest) (*LogPaginatedList, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
@@ -228,8 +229,8 @@ func (r LogsApiGetEntityTypesRequest) Execute() ([]LogEntityType, *http.Response
 /*
 GetEntityTypes Method for GetEntityTypes
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return LogsApiGetEntityTypesRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return LogsApiGetEntityTypesRequest
 */
 func (a *LogsApiService) GetEntityTypes(ctx context.Context) LogsApiGetEntityTypesRequest {
 	return LogsApiGetEntityTypesRequest{
@@ -239,7 +240,8 @@ func (a *LogsApiService) GetEntityTypes(ctx context.Context) LogsApiGetEntityTyp
 }
 
 // Execute executes the request
-//  @return []LogEntityType
+//
+//	@return []LogEntityType
 func (a *LogsApiService) GetEntityTypesExecute(r LogsApiGetEntityTypesRequest) ([]LogEntityType, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet

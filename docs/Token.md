@@ -9,6 +9,7 @@ Name | Type | Description | Notes
 **TenantId** | Pointer to **string** |  | [optional] 
 **Data** | Pointer to **interface{}** |  | [optional] 
 **Metadata** | Pointer to **map[string]string** |  | [optional] 
+**Enrichments** | Pointer to [**TokenEnrichments**](TokenEnrichments.md) |  | [optional] 
 **Encryption** | Pointer to [**EncryptionMetadata**](EncryptionMetadata.md) |  | [optional] 
 **CreatedBy** | Pointer to **NullableString** |  | [optional] 
 **CreatedAt** | Pointer to **NullableTime** |  | [optional] 
@@ -187,6 +188,31 @@ HasMetadata returns a boolean if a field has been set.
 `func (o *Token) UnsetMetadata()`
 
 UnsetMetadata ensures that no value is present for Metadata, not even an explicit nil
+### GetEnrichments
+
+`func (o *Token) GetEnrichments() TokenEnrichments`
+
+GetEnrichments returns the Enrichments field if non-nil, zero value otherwise.
+
+### GetEnrichmentsOk
+
+`func (o *Token) GetEnrichmentsOk() (*TokenEnrichments, bool)`
+
+GetEnrichmentsOk returns a tuple with the Enrichments field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetEnrichments
+
+`func (o *Token) SetEnrichments(v TokenEnrichments)`
+
+SetEnrichments sets Enrichments field to given value.
+
+### HasEnrichments
+
+`func (o *Token) HasEnrichments() bool`
+
+HasEnrichments returns a boolean if a field has been set.
+
 ### GetEncryption
 
 `func (o *Token) GetEncryption() EncryptionMetadata`
