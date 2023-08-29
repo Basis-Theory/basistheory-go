@@ -1,5 +1,7 @@
 # Basis Theory Go SDK
 
+[![Release](https://github.com/Basis-Theory/basistheory-go/actions/workflows/release.yml/badge.svg)](https://github.com/Basis-Theory/basistheory-go/actions/workflows/release.yml)
+
 ## Getting Started
 * Sign-in to [Basis Theory](https://basistheory.com) and go to [Applications](https://portal.basistheory.com/applications)
 * Create a Basis Theory Private Application
