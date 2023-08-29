@@ -1,4 +1,4 @@
-# Go API client for basistheory
+# Basis Theory Go SDK
 
 ## Getting Started
 * Sign-in to [Basis Theory](https://basistheory.com) and go to [Applications](https://portal.basistheory.com/applications)
@@ -25,7 +25,7 @@ go get golang.org/x/net/context
 Put the package under your project folder and add the following in import:
 
 ```golang
-import basistheory "github.com/GIT_USER_ID/GIT_REPO_ID"
+import basistheory "github.com/Basis-Theory/basistheory-go/v3"
 ```
 
 To use a proxy, set the environment variable `HTTP_PROXY`:
@@ -33,6 +33,13 @@ To use a proxy, set the environment variable `HTTP_PROXY`:
 ```golang
 os.Setenv("HTTP_PROXY", "http://proxy_name:proxy_port")
 ```
+
+## Running tests locally
+
+To run tests locally, you'll need to create a Basis Theory tenant with private and management applications 
+that are granted all permissions, then add the API keys for these applications to a `.env.local` file. 
+You'll want to follow the same format as defined in the `.env.example` file. Then you can run `make verify` from
+the root of this repository to run all tests.
 
 ## Configuration of Server URL
 
