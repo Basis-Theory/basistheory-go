@@ -21,6 +21,7 @@ var _ MappedNullable = &UpdateReactorRequest{}
 type UpdateReactorRequest struct {
 	Name          string            `json:"name"`
 	Application   *Application      `json:"application,omitempty"`
+	Code          NullableString    `json:"code,omitempty"`
 	Configuration map[string]string `json:"configuration,omitempty"`
 }
 
@@ -98,6 +99,49 @@ func (o *UpdateReactorRequest) SetApplication(v Application) {
 	o.Application = &v
 }
 
+// GetCode returns the Code field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *UpdateReactorRequest) GetCode() string {
+	if o == nil || IsNil(o.Code.Get()) {
+		var ret string
+		return ret
+	}
+	return *o.Code.Get()
+}
+
+// GetCodeOk returns a tuple with the Code field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *UpdateReactorRequest) GetCodeOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.Code.Get(), o.Code.IsSet()
+}
+
+// HasCode returns a boolean if a field is not nil.
+func (o *UpdateReactorRequest) HasCode() bool {
+	if o != nil && !IsNil(o.Code) {
+		return true
+	}
+
+	return false
+}
+
+// SetCode gets a reference to the given NullableString and assigns it to the Code field.
+func (o *UpdateReactorRequest) SetCode(v string) {
+	o.Code.Set(&v)
+}
+
+// SetCodeNil sets the value for Code to be an explicit nil
+func (o *UpdateReactorRequest) SetCodeNil() {
+	o.Code.Set(nil)
+}
+
+// UnsetCode ensures that no value is present for Code, not even an explicit nil
+func (o *UpdateReactorRequest) UnsetCode() {
+	o.Code.Unset()
+}
+
 // GetConfiguration returns the Configuration field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *UpdateReactorRequest) GetConfiguration() map[string]string {
 	if o == nil {
@@ -144,6 +188,9 @@ func (o UpdateReactorRequest) ToMap() (map[string]interface{}, error) {
 	toSerialize["name"] = o.Name
 	if !IsNil(o.Application) {
 		toSerialize["application"] = o.Application
+	}
+	if o.Code.IsSet() {
+		toSerialize["code"] = o.Code.Get()
 	}
 	if o.Configuration != nil {
 		toSerialize["configuration"] = o.Configuration

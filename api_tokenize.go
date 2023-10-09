@@ -39,8 +39,8 @@ func (r TokenizeApiTokenizeRequest) Execute() (interface{}, *http.Response, erro
 /*
 Tokenize Method for Tokenize
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@return TokenizeApiTokenizeRequest
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @return TokenizeApiTokenizeRequest
 */
 func (a *TokenizeApiService) Tokenize(ctx context.Context) TokenizeApiTokenizeRequest {
 	return TokenizeApiTokenizeRequest{
@@ -50,8 +50,7 @@ func (a *TokenizeApiService) Tokenize(ctx context.Context) TokenizeApiTokenizeRe
 }
 
 // Execute executes the request
-//
-//	@return interface{}
+//  @return interface{}
 func (a *TokenizeApiService) TokenizeExecute(r TokenizeApiTokenizeRequest) (interface{}, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodPost

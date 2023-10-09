@@ -20,10 +20,12 @@ var _ MappedNullable = &Reactor{}
 
 // Reactor struct for Reactor
 type Reactor struct {
-	Id            *string           `json:"id,omitempty"`
-	TenantId      *string           `json:"tenant_id,omitempty"`
-	Name          NullableString    `json:"name,omitempty"`
+	Id       *string        `json:"id,omitempty"`
+	TenantId *string        `json:"tenant_id,omitempty"`
+	Name     NullableString `json:"name,omitempty"`
+	// Deprecated
 	Formula       *ReactorFormula   `json:"formula,omitempty"`
+	Code          NullableString    `json:"code,omitempty"`
 	Application   *Application      `json:"application,omitempty"`
 	CreatedBy     NullableString    `json:"created_by,omitempty"`
 	CreatedAt     NullableTime      `json:"created_at,omitempty"`
@@ -157,6 +159,7 @@ func (o *Reactor) UnsetName() {
 }
 
 // GetFormula returns the Formula field value if set, zero value otherwise.
+// Deprecated
 func (o *Reactor) GetFormula() ReactorFormula {
 	if o == nil || IsNil(o.Formula) {
 		var ret ReactorFormula
@@ -167,6 +170,7 @@ func (o *Reactor) GetFormula() ReactorFormula {
 
 // GetFormulaOk returns a tuple with the Formula field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// Deprecated
 func (o *Reactor) GetFormulaOk() (*ReactorFormula, bool) {
 	if o == nil || IsNil(o.Formula) {
 		return nil, false
@@ -184,8 +188,52 @@ func (o *Reactor) HasFormula() bool {
 }
 
 // SetFormula gets a reference to the given ReactorFormula and assigns it to the Formula field.
+// Deprecated
 func (o *Reactor) SetFormula(v ReactorFormula) {
 	o.Formula = &v
+}
+
+// GetCode returns the Code field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *Reactor) GetCode() string {
+	if o == nil || IsNil(o.Code.Get()) {
+		var ret string
+		return ret
+	}
+	return *o.Code.Get()
+}
+
+// GetCodeOk returns a tuple with the Code field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *Reactor) GetCodeOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.Code.Get(), o.Code.IsSet()
+}
+
+// HasCode returns a boolean if a field is not nil.
+func (o *Reactor) HasCode() bool {
+	if o != nil && !IsNil(o.Code) {
+		return true
+	}
+
+	return false
+}
+
+// SetCode gets a reference to the given NullableString and assigns it to the Code field.
+func (o *Reactor) SetCode(v string) {
+	o.Code.Set(&v)
+}
+
+// SetCodeNil sets the value for Code to be an explicit nil
+func (o *Reactor) SetCodeNil() {
+	o.Code.Set(nil)
+}
+
+// UnsetCode ensures that no value is present for Code, not even an explicit nil
+func (o *Reactor) UnsetCode() {
+	o.Code.Unset()
 }
 
 // GetApplication returns the Application field value if set, zero value otherwise.
@@ -446,6 +494,9 @@ func (o Reactor) ToMap() (map[string]interface{}, error) {
 	}
 	if !IsNil(o.Formula) {
 		toSerialize["formula"] = o.Formula
+	}
+	if o.Code.IsSet() {
+		toSerialize["code"] = o.Code.Get()
 	}
 	if !IsNil(o.Application) {
 		toSerialize["application"] = o.Application

@@ -7,7 +7,6 @@ Name | Type | Description | Notes
 **IncludedMonthlyActiveTokens** | Pointer to **int64** |  | [optional] 
 **MonthlyActiveTokens** | Pointer to **int64** |  | [optional] 
 **MetricsByType** | Pointer to [**map[string]TokenMetrics**](TokenMetrics.md) |  | [optional] 
-**MonthlyActiveTokenHistory** | Pointer to [**[]MonthlyActiveTokenHistory**](MonthlyActiveTokenHistory.md) |  | [optional] 
 
 ## Methods
 
@@ -113,41 +112,6 @@ HasMetricsByType returns a boolean if a field has been set.
 `func (o *TokenReport) UnsetMetricsByType()`
 
 UnsetMetricsByType ensures that no value is present for MetricsByType, not even an explicit nil
-### GetMonthlyActiveTokenHistory
-
-`func (o *TokenReport) GetMonthlyActiveTokenHistory() []MonthlyActiveTokenHistory`
-
-GetMonthlyActiveTokenHistory returns the MonthlyActiveTokenHistory field if non-nil, zero value otherwise.
-
-### GetMonthlyActiveTokenHistoryOk
-
-`func (o *TokenReport) GetMonthlyActiveTokenHistoryOk() (*[]MonthlyActiveTokenHistory, bool)`
-
-GetMonthlyActiveTokenHistoryOk returns a tuple with the MonthlyActiveTokenHistory field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetMonthlyActiveTokenHistory
-
-`func (o *TokenReport) SetMonthlyActiveTokenHistory(v []MonthlyActiveTokenHistory)`
-
-SetMonthlyActiveTokenHistory sets MonthlyActiveTokenHistory field to given value.
-
-### HasMonthlyActiveTokenHistory
-
-`func (o *TokenReport) HasMonthlyActiveTokenHistory() bool`
-
-HasMonthlyActiveTokenHistory returns a boolean if a field has been set.
-
-### SetMonthlyActiveTokenHistoryNil
-
-`func (o *TokenReport) SetMonthlyActiveTokenHistoryNil(b bool)`
-
- SetMonthlyActiveTokenHistoryNil sets the value for MonthlyActiveTokenHistory to be an explicit nil
-
-### UnsetMonthlyActiveTokenHistory
-`func (o *TokenReport) UnsetMonthlyActiveTokenHistory()`
-
-UnsetMonthlyActiveTokenHistory ensures that no value is present for MonthlyActiveTokenHistory, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

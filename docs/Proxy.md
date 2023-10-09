@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Id** | Pointer to **string** |  | [optional] 
-**Key** | Pointer to **NullableString** |  | [optional] [readonly] 
+**Key** | Pointer to **NullableString** |  | [optional] 
 **TenantId** | Pointer to **string** |  | [optional] 
 **Name** | Pointer to **NullableString** |  | [optional] 
 **DestinationUrl** | Pointer to **NullableString** |  | [optional] 

@@ -41,8 +41,8 @@ func (r ReactorsApiCreateRequest) Execute() (*Reactor, *http.Response, error) {
 /*
 Create Method for Create
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@return ReactorsApiCreateRequest
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @return ReactorsApiCreateRequest
 */
 func (a *ReactorsApiService) Create(ctx context.Context) ReactorsApiCreateRequest {
 	return ReactorsApiCreateRequest{
@@ -52,8 +52,7 @@ func (a *ReactorsApiService) Create(ctx context.Context) ReactorsApiCreateReques
 }
 
 // Execute executes the request
-//
-//	@return Reactor
+//  @return Reactor
 func (a *ReactorsApiService) CreateExecute(r ReactorsApiCreateRequest) (*Reactor, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodPost
@@ -188,9 +187,9 @@ func (r ReactorsApiDeleteRequest) Execute() (*http.Response, error) {
 /*
 Delete Method for Delete
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param id
-	@return ReactorsApiDeleteRequest
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param id
+ @return ReactorsApiDeleteRequest
 */
 func (a *ReactorsApiService) Delete(ctx context.Context, id string) ReactorsApiDeleteRequest {
 	return ReactorsApiDeleteRequest{
@@ -347,8 +346,8 @@ func (r ReactorsApiGetRequest) Execute() (*ReactorPaginatedList, *http.Response,
 /*
 Get Method for Get
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@return ReactorsApiGetRequest
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @return ReactorsApiGetRequest
 */
 func (a *ReactorsApiService) Get(ctx context.Context) ReactorsApiGetRequest {
 	return ReactorsApiGetRequest{
@@ -358,8 +357,7 @@ func (a *ReactorsApiService) Get(ctx context.Context) ReactorsApiGetRequest {
 }
 
 // Execute executes the request
-//
-//	@return ReactorPaginatedList
+//  @return ReactorPaginatedList
 func (a *ReactorsApiService) GetExecute(r ReactorsApiGetRequest) (*ReactorPaginatedList, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
@@ -509,9 +507,9 @@ func (r ReactorsApiGetByIdRequest) Execute() (*Reactor, *http.Response, error) {
 /*
 GetById Method for GetById
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param id
-	@return ReactorsApiGetByIdRequest
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param id
+ @return ReactorsApiGetByIdRequest
 */
 func (a *ReactorsApiService) GetById(ctx context.Context, id string) ReactorsApiGetByIdRequest {
 	return ReactorsApiGetByIdRequest{
@@ -522,8 +520,7 @@ func (a *ReactorsApiService) GetById(ctx context.Context, id string) ReactorsApi
 }
 
 // Execute executes the request
-//
-//	@return Reactor
+//  @return Reactor
 func (a *ReactorsApiService) GetByIdExecute(r ReactorsApiGetByIdRequest) (*Reactor, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
@@ -663,9 +660,9 @@ func (r ReactorsApiPatchRequest) Execute() (*http.Response, error) {
 /*
 Patch Method for Patch
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param id
-	@return ReactorsApiPatchRequest
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param id
+ @return ReactorsApiPatchRequest
 */
 func (a *ReactorsApiService) Patch(ctx context.Context, id string) ReactorsApiPatchRequest {
 	return ReactorsApiPatchRequest{
@@ -820,9 +817,9 @@ func (r ReactorsApiReactRequest) Execute() (*ReactResponse, *http.Response, erro
 /*
 React Method for React
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param id
-	@return ReactorsApiReactRequest
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param id
+ @return ReactorsApiReactRequest
 */
 func (a *ReactorsApiService) React(ctx context.Context, id string) ReactorsApiReactRequest {
 	return ReactorsApiReactRequest{
@@ -833,8 +830,7 @@ func (a *ReactorsApiService) React(ctx context.Context, id string) ReactorsApiRe
 }
 
 // Execute executes the request
-//
-//	@return ReactResponse
+//  @return ReactResponse
 func (a *ReactorsApiService) ReactExecute(r ReactorsApiReactRequest) (*ReactResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodPost
@@ -999,9 +995,9 @@ func (r ReactorsApiUpdateRequest) Execute() (*Reactor, *http.Response, error) {
 /*
 Update Method for Update
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param id
-	@return ReactorsApiUpdateRequest
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param id
+ @return ReactorsApiUpdateRequest
 */
 func (a *ReactorsApiService) Update(ctx context.Context, id string) ReactorsApiUpdateRequest {
 	return ReactorsApiUpdateRequest{
@@ -1012,8 +1008,7 @@ func (a *ReactorsApiService) Update(ctx context.Context, id string) ReactorsApiU
 }
 
 // Execute executes the request
-//
-//	@return Reactor
+//  @return Reactor
 func (a *ReactorsApiService) UpdateExecute(r ReactorsApiUpdateRequest) (*Reactor, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodPut

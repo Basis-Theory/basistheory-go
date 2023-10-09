@@ -6,6 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Name** | **string** |  | 
 **Formula** | Pointer to [**ReactorFormula**](ReactorFormula.md) |  | [optional] 
+**Code** | Pointer to **NullableString** |  | [optional] 
 **Application** | Pointer to [**Application**](Application.md) |  | [optional] 
 **Configuration** | Pointer to **map[string]string** |  | [optional] 
 
@@ -73,6 +74,41 @@ SetFormula sets Formula field to given value.
 
 HasFormula returns a boolean if a field has been set.
 
+### GetCode
+
+`func (o *CreateReactorRequest) GetCode() string`
+
+GetCode returns the Code field if non-nil, zero value otherwise.
+
+### GetCodeOk
+
+`func (o *CreateReactorRequest) GetCodeOk() (*string, bool)`
+
+GetCodeOk returns a tuple with the Code field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetCode
+
+`func (o *CreateReactorRequest) SetCode(v string)`
+
+SetCode sets Code field to given value.
+
+### HasCode
+
+`func (o *CreateReactorRequest) HasCode() bool`
+
+HasCode returns a boolean if a field has been set.
+
+### SetCodeNil
+
+`func (o *CreateReactorRequest) SetCodeNil(b bool)`
+
+ SetCodeNil sets the value for Code to be an explicit nil
+
+### UnsetCode
+`func (o *CreateReactorRequest) UnsetCode()`
+
+UnsetCode ensures that no value is present for Code, not even an explicit nil
 ### GetApplication
 
 `func (o *CreateReactorRequest) GetApplication() Application`

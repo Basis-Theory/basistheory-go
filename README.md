@@ -180,7 +180,6 @@ Class | Method | HTTP request | Description
  - [Log](docs/Log.md)
  - [LogEntityType](docs/LogEntityType.md)
  - [LogPaginatedList](docs/LogPaginatedList.md)
- - [MonthlyActiveTokenHistory](docs/MonthlyActiveTokenHistory.md)
  - [Pagination](docs/Pagination.md)
  - [PatchProxyRequest](docs/PatchProxyRequest.md)
  - [PatchReactorRequest](docs/PatchReactorRequest.md)
