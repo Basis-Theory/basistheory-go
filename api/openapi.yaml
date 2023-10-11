@@ -3177,6 +3177,7 @@ components:
       type: object
     CreateReactorFormulaRequest:
       additionalProperties: false
+      deprecated: true
       example:
         code: code
         configuration:
@@ -3269,6 +3270,7 @@ components:
     CreateReactorRequest:
       additionalProperties: false
       example:
+        code: code
         application:
           tenant_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           expires_at: 2000-01-23T04:56:07.000+00:00
@@ -3375,6 +3377,11 @@ components:
           type: string
         formula:
           $ref: '#/components/schemas/ReactorFormula'
+        code:
+          maxLength: 50000
+          nullable: true
+          pattern: "^[\\S\\s]*$"
+          type: string
         application:
           $ref: '#/components/schemas/Application'
         configuration:
@@ -4070,28 +4077,6 @@ components:
           nullable: true
           type: array
       type: object
-    MonthlyActiveTokenHistory:
-      additionalProperties: false
-      example:
-        month: 7
-        year: 6365
-        count: 0
-      properties:
-        year:
-          format: int32
-          maximum: 9999
-          minimum: 1000
-          type: integer
-        month:
-          format: int32
-          maximum: 12
-          minimum: 1
-          type: integer
-        count:
-          format: int64
-          minimum: 0
-          type: integer
-      type: object
     Pagination:
       additionalProperties: false
       example:
@@ -4151,6 +4136,11 @@ components:
           type: string
         application:
           $ref: '#/components/schemas/Application'
+        code:
+          maxLength: 50000
+          nullable: true
+          pattern: "^[\\S\\s]*$"
+          type: string
         configuration:
           additionalProperties:
             nullable: true
@@ -4264,7 +4254,6 @@ components:
           maxLength: 100
           nullable: true
           pattern: "^[A-z0-9]+$"
-          readOnly: true
           type: string
         tenant_id:
           format: uuid
@@ -4506,6 +4495,7 @@ components:
       additionalProperties: false
       example:
         tenant_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        code: code
         application:
           tenant_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           expires_at: 2000-01-23T04:56:07.000+00:00
@@ -4627,6 +4617,9 @@ components:
           type: string
         formula:
           $ref: '#/components/schemas/ReactorFormula'
+        code:
+          nullable: true
+          type: string
         application:
           $ref: '#/components/schemas/Application'
         created_by:
@@ -4660,6 +4653,7 @@ components:
       type: object
     ReactorFormula:
       additionalProperties: false
+      deprecated: true
       example:
         code: code
         configuration:
@@ -5108,6 +5102,7 @@ components:
           page_size: 1
         data:
         - tenant_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          code: code
           application:
             tenant_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
             expires_at: 2000-01-23T04:56:07.000+00:00
@@ -5212,6 +5207,7 @@ components:
           modified_at: 2000-01-23T04:56:07.000+00:00
           created_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
         - tenant_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          code: code
           application:
             tenant_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
             expires_at: 2000-01-23T04:56:07.000+00:00
@@ -5316,6 +5312,7 @@ components:
           modified_at: 2000-01-23T04:56:07.000+00:00
           created_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
         - tenant_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          code: code
           application:
             tenant_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
             expires_at: 2000-01-23T04:56:07.000+00:00
@@ -5420,6 +5417,7 @@ components:
           modified_at: 2000-01-23T04:56:07.000+00:00
           created_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
         - tenant_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          code: code
           application:
             tenant_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
             expires_at: 2000-01-23T04:56:07.000+00:00
@@ -5524,6 +5522,7 @@ components:
           modified_at: 2000-01-23T04:56:07.000+00:00
           created_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
         - tenant_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          code: code
           application:
             tenant_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
             expires_at: 2000-01-23T04:56:07.000+00:00
@@ -6011,13 +6010,6 @@ components:
             key:
               last_created_at: 2000-01-23T04:56:07.000+00:00
               count: 314780940
-          monthly_active_token_history:
-          - month: 7
-            year: 6365
-            count: 0
-          - month: 7
-            year: 6365
-            count: 0
           monthly_active_tokens: 0
           included_monthly_active_tokens: 171976544
       properties:
@@ -6602,13 +6594,6 @@ components:
           key:
             last_created_at: 2000-01-23T04:56:07.000+00:00
             count: 314780940
-        monthly_active_token_history:
-        - month: 7
-          year: 6365
-          count: 0
-        - month: 7
-          year: 6365
-          count: 0
         monthly_active_tokens: 0
         included_monthly_active_tokens: 171976544
       properties:
@@ -6626,11 +6611,6 @@ components:
             $ref: '#/components/schemas/TokenMetrics'
           nullable: true
           type: object
-        monthly_active_token_history:
-          items:
-            $ref: '#/components/schemas/MonthlyActiveTokenHistory'
-          nullable: true
-          type: array
       type: object
     UpdateApplicationRequest:
       additionalProperties: false
@@ -6806,6 +6786,7 @@ components:
       type: object
     UpdateReactorFormulaRequest:
       additionalProperties: false
+      deprecated: true
       example:
         code: code
         configuration:
@@ -6892,6 +6873,7 @@ components:
     UpdateReactorRequest:
       additionalProperties: false
       example:
+        code: code
         application:
           tenant_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           expires_at: 2000-01-23T04:56:07.000+00:00
@@ -6949,6 +6931,11 @@ components:
           type: string
         application:
           $ref: '#/components/schemas/Application'
+        code:
+          maxLength: 50000
+          nullable: true
+          pattern: "^[\\S\\s]*$"
+          type: string
         configuration:
           additionalProperties:
             nullable: true

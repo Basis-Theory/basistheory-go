@@ -41,8 +41,8 @@ func (r ProxiesApiCreateRequest) Execute() (*Proxy, *http.Response, error) {
 /*
 Create Method for Create
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@return ProxiesApiCreateRequest
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @return ProxiesApiCreateRequest
 */
 func (a *ProxiesApiService) Create(ctx context.Context) ProxiesApiCreateRequest {
 	return ProxiesApiCreateRequest{
@@ -52,8 +52,7 @@ func (a *ProxiesApiService) Create(ctx context.Context) ProxiesApiCreateRequest 
 }
 
 // Execute executes the request
-//
-//	@return Proxy
+//  @return Proxy
 func (a *ProxiesApiService) CreateExecute(r ProxiesApiCreateRequest) (*Proxy, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodPost
@@ -188,9 +187,9 @@ func (r ProxiesApiDeleteRequest) Execute() (*http.Response, error) {
 /*
 Delete Method for Delete
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param id
-	@return ProxiesApiDeleteRequest
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param id
+ @return ProxiesApiDeleteRequest
 */
 func (a *ProxiesApiService) Delete(ctx context.Context, id string) ProxiesApiDeleteRequest {
 	return ProxiesApiDeleteRequest{
@@ -347,8 +346,8 @@ func (r ProxiesApiGetRequest) Execute() (*ProxyPaginatedList, *http.Response, er
 /*
 Get Method for Get
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@return ProxiesApiGetRequest
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @return ProxiesApiGetRequest
 */
 func (a *ProxiesApiService) Get(ctx context.Context) ProxiesApiGetRequest {
 	return ProxiesApiGetRequest{
@@ -358,8 +357,7 @@ func (a *ProxiesApiService) Get(ctx context.Context) ProxiesApiGetRequest {
 }
 
 // Execute executes the request
-//
-//	@return ProxyPaginatedList
+//  @return ProxyPaginatedList
 func (a *ProxiesApiService) GetExecute(r ProxiesApiGetRequest) (*ProxyPaginatedList, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
@@ -509,9 +507,9 @@ func (r ProxiesApiGetByIdRequest) Execute() (*Proxy, *http.Response, error) {
 /*
 GetById Method for GetById
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param id
-	@return ProxiesApiGetByIdRequest
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param id
+ @return ProxiesApiGetByIdRequest
 */
 func (a *ProxiesApiService) GetById(ctx context.Context, id string) ProxiesApiGetByIdRequest {
 	return ProxiesApiGetByIdRequest{
@@ -522,8 +520,7 @@ func (a *ProxiesApiService) GetById(ctx context.Context, id string) ProxiesApiGe
 }
 
 // Execute executes the request
-//
-//	@return Proxy
+//  @return Proxy
 func (a *ProxiesApiService) GetByIdExecute(r ProxiesApiGetByIdRequest) (*Proxy, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
@@ -663,9 +660,9 @@ func (r ProxiesApiPatchRequest) Execute() (*http.Response, error) {
 /*
 Patch Method for Patch
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param id
-	@return ProxiesApiPatchRequest
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param id
+ @return ProxiesApiPatchRequest
 */
 func (a *ProxiesApiService) Patch(ctx context.Context, id string) ProxiesApiPatchRequest {
 	return ProxiesApiPatchRequest{
@@ -820,9 +817,9 @@ func (r ProxiesApiUpdateRequest) Execute() (*Proxy, *http.Response, error) {
 /*
 Update Method for Update
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param id
-	@return ProxiesApiUpdateRequest
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param id
+ @return ProxiesApiUpdateRequest
 */
 func (a *ProxiesApiService) Update(ctx context.Context, id string) ProxiesApiUpdateRequest {
 	return ProxiesApiUpdateRequest{
@@ -833,8 +830,7 @@ func (a *ProxiesApiService) Update(ctx context.Context, id string) ProxiesApiUpd
 }
 
 // Execute executes the request
-//
-//	@return Proxy
+//  @return Proxy
 func (a *ProxiesApiService) UpdateExecute(r ProxiesApiUpdateRequest) (*Proxy, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodPut

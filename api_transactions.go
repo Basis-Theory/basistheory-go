@@ -35,9 +35,9 @@ func (r TransactionsApiCommitRequest) Execute() (*http.Response, error) {
 /*
 Commit Method for Commit
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param id
-	@return TransactionsApiCommitRequest
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param id
+ @return TransactionsApiCommitRequest
 */
 func (a *TransactionsApiService) Commit(ctx context.Context, id string) TransactionsApiCommitRequest {
 	return TransactionsApiCommitRequest{
@@ -150,8 +150,8 @@ func (r TransactionsApiCreateRequest) Execute() (*CreateTransactionResponse, *ht
 /*
 Create Method for Create
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@return TransactionsApiCreateRequest
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @return TransactionsApiCreateRequest
 */
 func (a *TransactionsApiService) Create(ctx context.Context) TransactionsApiCreateRequest {
 	return TransactionsApiCreateRequest{
@@ -161,8 +161,7 @@ func (a *TransactionsApiService) Create(ctx context.Context) TransactionsApiCrea
 }
 
 // Execute executes the request
-//
-//	@return CreateTransactionResponse
+//  @return CreateTransactionResponse
 func (a *TransactionsApiService) CreateExecute(r TransactionsApiCreateRequest) (*CreateTransactionResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodPost
@@ -272,9 +271,9 @@ func (r TransactionsApiRollbackRequest) Execute() (*http.Response, error) {
 /*
 Rollback Method for Rollback
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param id
-	@return TransactionsApiRollbackRequest
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param id
+ @return TransactionsApiRollbackRequest
 */
 func (a *TransactionsApiService) Rollback(ctx context.Context, id string) TransactionsApiRollbackRequest {
 	return TransactionsApiRollbackRequest{

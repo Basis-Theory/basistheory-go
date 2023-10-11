@@ -41,8 +41,8 @@ func (r TokensApiCreateRequest) Execute() (*CreateTokenResponse, *http.Response,
 /*
 Create Method for Create
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@return TokensApiCreateRequest
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @return TokensApiCreateRequest
 */
 func (a *TokensApiService) Create(ctx context.Context) TokensApiCreateRequest {
 	return TokensApiCreateRequest{
@@ -52,8 +52,7 @@ func (a *TokensApiService) Create(ctx context.Context) TokensApiCreateRequest {
 }
 
 // Execute executes the request
-//
-//	@return CreateTokenResponse
+//  @return CreateTokenResponse
 func (a *TokensApiService) CreateExecute(r TokensApiCreateRequest) (*CreateTokenResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodPost
@@ -198,9 +197,9 @@ func (r TokensApiDeleteRequest) Execute() (*http.Response, error) {
 /*
 Delete Method for Delete
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param id
-	@return TokensApiDeleteRequest
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param id
+ @return TokensApiDeleteRequest
 */
 func (a *TokensApiService) Delete(ctx context.Context, id string) TokensApiDeleteRequest {
 	return TokensApiDeleteRequest{
@@ -373,8 +372,8 @@ func (r TokensApiGetRequest) Execute() (*TokenPaginatedList, *http.Response, err
 /*
 Get Method for Get
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@return TokensApiGetRequest
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @return TokensApiGetRequest
 */
 func (a *TokensApiService) Get(ctx context.Context) TokensApiGetRequest {
 	return TokensApiGetRequest{
@@ -384,8 +383,7 @@ func (a *TokensApiService) Get(ctx context.Context) TokensApiGetRequest {
 }
 
 // Execute executes the request
-//
-//	@return TokenPaginatedList
+//  @return TokenPaginatedList
 func (a *TokensApiService) GetExecute(r TokensApiGetRequest) (*TokenPaginatedList, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
@@ -536,9 +534,9 @@ func (r TokensApiGetByIdRequest) Execute() (*Token, *http.Response, error) {
 /*
 GetById Method for GetById
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param id
-	@return TokensApiGetByIdRequest
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param id
+ @return TokensApiGetByIdRequest
 */
 func (a *TokensApiService) GetById(ctx context.Context, id string) TokensApiGetByIdRequest {
 	return TokensApiGetByIdRequest{
@@ -549,8 +547,7 @@ func (a *TokensApiService) GetById(ctx context.Context, id string) TokensApiGetB
 }
 
 // Execute executes the request
-//
-//	@return Token
+//  @return Token
 func (a *TokensApiService) GetByIdExecute(r TokensApiGetByIdRequest) (*Token, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
@@ -689,8 +686,8 @@ func (r TokensApiSearchRequest) Execute() (*TokenPaginatedList, *http.Response, 
 /*
 Search Method for Search
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@return TokensApiSearchRequest
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @return TokensApiSearchRequest
 */
 func (a *TokensApiService) Search(ctx context.Context) TokensApiSearchRequest {
 	return TokensApiSearchRequest{
@@ -700,8 +697,7 @@ func (a *TokensApiService) Search(ctx context.Context) TokensApiSearchRequest {
 }
 
 // Execute executes the request
-//
-//	@return TokenPaginatedList
+//  @return TokenPaginatedList
 func (a *TokensApiService) SearchExecute(r TokensApiSearchRequest) (*TokenPaginatedList, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodPost
@@ -842,9 +838,9 @@ func (r TokensApiUpdateRequest) Execute() (*Token, *http.Response, error) {
 /*
 Update Method for Update
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param id
-	@return TokensApiUpdateRequest
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param id
+ @return TokensApiUpdateRequest
 */
 func (a *TokensApiService) Update(ctx context.Context, id string) TokensApiUpdateRequest {
 	return TokensApiUpdateRequest{
@@ -855,8 +851,7 @@ func (a *TokensApiService) Update(ctx context.Context, id string) TokensApiUpdat
 }
 
 // Execute executes the request
-//
-//	@return Token
+//  @return Token
 func (a *TokensApiService) UpdateExecute(r TokensApiUpdateRequest) (*Token, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodPatch

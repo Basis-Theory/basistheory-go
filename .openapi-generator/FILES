@@ -50,7 +50,6 @@ docs/Log.md
 docs/LogEntityType.md
 docs/LogPaginatedList.md
 docs/LogsApi.md
-docs/MonthlyActiveTokenHistory.md
 docs/Pagination.md
 docs/PatchProxyRequest.md
 docs/PatchReactorRequest.md
@@ -133,7 +132,6 @@ model_get_tokens.go
 model_log.go
 model_log_entity_type.go
 model_log_paginated_list.go
-model_monthly_active_token_history.go
 model_pagination.go
 model_patch_proxy_request.go
 model_patch_reactor_request.go

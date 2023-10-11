@@ -6,6 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Name** | **string** |  | 
 **Application** | Pointer to [**Application**](Application.md) |  | [optional] 
+**Code** | Pointer to **NullableString** |  | [optional] 
 **Configuration** | Pointer to **map[string]string** |  | [optional] 
 
 ## Methods
@@ -72,6 +73,41 @@ SetApplication sets Application field to given value.
 
 HasApplication returns a boolean if a field has been set.
 
+### GetCode
+
+`func (o *UpdateReactorRequest) GetCode() string`
+
+GetCode returns the Code field if non-nil, zero value otherwise.
+
+### GetCodeOk
+
+`func (o *UpdateReactorRequest) GetCodeOk() (*string, bool)`
+
+GetCodeOk returns a tuple with the Code field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetCode
+
+`func (o *UpdateReactorRequest) SetCode(v string)`
+
+SetCode sets Code field to given value.
+
+### HasCode
+
+`func (o *UpdateReactorRequest) HasCode() bool`
+
+HasCode returns a boolean if a field has been set.
+
+### SetCodeNil
+
+`func (o *UpdateReactorRequest) SetCodeNil(b bool)`
+
+ SetCodeNil sets the value for Code to be an explicit nil
+
+### UnsetCode
+`func (o *UpdateReactorRequest) UnsetCode()`
+
+UnsetCode ensures that no value is present for Code, not even an explicit nil
 ### GetConfiguration
 
 `func (o *UpdateReactorRequest) GetConfiguration() map[string]string`
