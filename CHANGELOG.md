@@ -1,3 +1,10 @@
+# [3.13.0](https://github.com/Basis-Theory/basistheory-go/compare/v3.12.0...v3.13.0) (2023-10-11)
+
+
+### Features
+
+* remove MATs, add code to reactors, deprecate formulas ([#74](https://github.com/Basis-Theory/basistheory-go/issues/74)) ([09135a5](https://github.com/Basis-Theory/basistheory-go/commit/09135a59db6a77f6f3f405a63b34c4ba2b2b09ff))
+
 # [3.12.0](https://github.com/Basis-Theory/basistheory-go/compare/v3.11.1...v3.12.0) (2023-08-29)
 
 
