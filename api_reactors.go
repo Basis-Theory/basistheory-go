@@ -316,6 +316,7 @@ type ReactorsApiGetRequest struct {
 	id         *[]string
 	name       *string
 	page       *int32
+	start      *string
 	size       *int32
 }
 
@@ -331,6 +332,11 @@ func (r ReactorsApiGetRequest) Name(name string) ReactorsApiGetRequest {
 
 func (r ReactorsApiGetRequest) Page(page int32) ReactorsApiGetRequest {
 	r.page = &page
+	return r
+}
+
+func (r ReactorsApiGetRequest) Start(start string) ReactorsApiGetRequest {
+	r.start = &start
 	return r
 }
 
@@ -393,6 +399,9 @@ func (a *ReactorsApiService) GetExecute(r ReactorsApiGetRequest) (*ReactorPagina
 	}
 	if r.page != nil {
 		localVarQueryParams.Add("page", parameterToString(*r.page, ""))
+	}
+	if r.start != nil {
+		localVarQueryParams.Add("start", parameterToString(*r.start, ""))
 	}
 	if r.size != nil {
 		localVarQueryParams.Add("size", parameterToString(*r.size, ""))

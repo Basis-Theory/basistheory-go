@@ -316,6 +316,7 @@ type ApplicationsApiGetRequest struct {
 	id         *[]string
 	type_      *[]string
 	page       *int32
+	start      *string
 	size       *int32
 }
 
@@ -331,6 +332,11 @@ func (r ApplicationsApiGetRequest) Type_(type_ []string) ApplicationsApiGetReque
 
 func (r ApplicationsApiGetRequest) Page(page int32) ApplicationsApiGetRequest {
 	r.page = &page
+	return r
+}
+
+func (r ApplicationsApiGetRequest) Start(start string) ApplicationsApiGetRequest {
+	r.start = &start
 	return r
 }
 
@@ -401,6 +407,9 @@ func (a *ApplicationsApiService) GetExecute(r ApplicationsApiGetRequest) (*Appli
 	}
 	if r.page != nil {
 		localVarQueryParams.Add("page", parameterToString(*r.page, ""))
+	}
+	if r.start != nil {
+		localVarQueryParams.Add("start", parameterToString(*r.start, ""))
 	}
 	if r.size != nil {
 		localVarQueryParams.Add("size", parameterToString(*r.size, ""))

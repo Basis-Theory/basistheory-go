@@ -6,6 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **UserId** | Pointer to **[]string** |  | [optional] 
 **Page** | Pointer to **NullableInt32** |  | [optional] 
+**Start** | Pointer to **NullableString** |  | [optional] 
 **Size** | Pointer to **NullableInt32** |  | [optional] 
 
 ## Methods
@@ -97,6 +98,41 @@ HasPage returns a boolean if a field has been set.
 `func (o *GetTenantMembers) UnsetPage()`
 
 UnsetPage ensures that no value is present for Page, not even an explicit nil
+### GetStart
+
+`func (o *GetTenantMembers) GetStart() string`
+
+GetStart returns the Start field if non-nil, zero value otherwise.
+
+### GetStartOk
+
+`func (o *GetTenantMembers) GetStartOk() (*string, bool)`
+
+GetStartOk returns a tuple with the Start field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetStart
+
+`func (o *GetTenantMembers) SetStart(v string)`
+
+SetStart sets Start field to given value.
+
+### HasStart
+
+`func (o *GetTenantMembers) HasStart() bool`
+
+HasStart returns a boolean if a field has been set.
+
+### SetStartNil
+
+`func (o *GetTenantMembers) SetStartNil(b bool)`
+
+ SetStartNil sets the value for Start to be an explicit nil
+
+### UnsetStart
+`func (o *GetTenantMembers) UnsetStart()`
+
+UnsetStart ensures that no value is present for Start, not even an explicit nil
 ### GetSize
 
 `func (o *GetTenantMembers) GetSize() int32`

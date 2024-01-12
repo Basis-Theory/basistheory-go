@@ -11,7 +11,7 @@ Method | HTTP request | Description
 
 ## Get
 
-> LogPaginatedList Get(ctx).EntityType(entityType).EntityId(entityId).StartDate(startDate).EndDate(endDate).Page(page).Size(size).Execute()
+> LogPaginatedList Get(ctx).EntityType(entityType).EntityId(entityId).StartDate(startDate).EndDate(endDate).Page(page).Start(start).Size(size).Execute()
 
 
 
@@ -34,11 +34,12 @@ func main() {
     startDate := time.Now() // time.Time |  (optional)
     endDate := time.Now() // time.Time |  (optional)
     page := int32(56) // int32 |  (optional)
+    start := "start_example" // string |  (optional)
     size := int32(56) // int32 |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.LogsApi.Get(context.Background()).EntityType(entityType).EntityId(entityId).StartDate(startDate).EndDate(endDate).Page(page).Size(size).Execute()
+    resp, r, err := apiClient.LogsApi.Get(context.Background()).EntityType(entityType).EntityId(entityId).StartDate(startDate).EndDate(endDate).Page(page).Start(start).Size(size).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `LogsApi.Get``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -64,6 +65,7 @@ Name | Type | Description  | Notes
  **startDate** | **time.Time** |  | 
  **endDate** | **time.Time** |  | 
  **page** | **int32** |  | 
+ **start** | **string** |  | 
  **size** | **int32** |  | 
 
 ### Return type

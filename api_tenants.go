@@ -730,6 +730,7 @@ type TenantsApiGetInvitationsRequest struct {
 	ApiService *TenantsApiService
 	status     *TenantInvitationStatus
 	page       *int32
+	start      *string
 	size       *int32
 }
 
@@ -740,6 +741,11 @@ func (r TenantsApiGetInvitationsRequest) Status(status TenantInvitationStatus) T
 
 func (r TenantsApiGetInvitationsRequest) Page(page int32) TenantsApiGetInvitationsRequest {
 	r.page = &page
+	return r
+}
+
+func (r TenantsApiGetInvitationsRequest) Start(start string) TenantsApiGetInvitationsRequest {
+	r.start = &start
 	return r
 }
 
@@ -791,6 +797,9 @@ func (a *TenantsApiService) GetInvitationsExecute(r TenantsApiGetInvitationsRequ
 	}
 	if r.page != nil {
 		localVarQueryParams.Add("page", parameterToString(*r.page, ""))
+	}
+	if r.start != nil {
+		localVarQueryParams.Add("start", parameterToString(*r.start, ""))
 	}
 	if r.size != nil {
 		localVarQueryParams.Add("size", parameterToString(*r.size, ""))
@@ -887,6 +896,7 @@ type TenantsApiGetMembersRequest struct {
 	ApiService *TenantsApiService
 	userId     *[]string
 	page       *int32
+	start      *string
 	size       *int32
 }
 
@@ -897,6 +907,11 @@ func (r TenantsApiGetMembersRequest) UserId(userId []string) TenantsApiGetMember
 
 func (r TenantsApiGetMembersRequest) Page(page int32) TenantsApiGetMembersRequest {
 	r.page = &page
+	return r
+}
+
+func (r TenantsApiGetMembersRequest) Start(start string) TenantsApiGetMembersRequest {
+	r.start = &start
 	return r
 }
 
@@ -956,6 +971,9 @@ func (a *TenantsApiService) GetMembersExecute(r TenantsApiGetMembersRequest) (*T
 	}
 	if r.page != nil {
 		localVarQueryParams.Add("page", parameterToString(*r.page, ""))
+	}
+	if r.start != nil {
+		localVarQueryParams.Add("start", parameterToString(*r.start, ""))
 	}
 	if r.size != nil {
 		localVarQueryParams.Add("size", parameterToString(*r.size, ""))

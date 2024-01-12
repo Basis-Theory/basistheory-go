@@ -19,10 +19,11 @@ var _ MappedNullable = &Pagination{}
 
 // Pagination struct for Pagination
 type Pagination struct {
-	TotalItems *int32 `json:"total_items,omitempty"`
-	PageNumber *int32 `json:"page_number,omitempty"`
-	PageSize   *int32 `json:"page_size,omitempty"`
-	TotalPages *int32 `json:"total_pages,omitempty"`
+	TotalItems NullableInt32  `json:"total_items,omitempty"`
+	PageNumber NullableInt32  `json:"page_number,omitempty"`
+	PageSize   NullableInt32  `json:"page_size,omitempty"`
+	TotalPages NullableInt32  `json:"total_pages,omitempty"`
+	After      NullableString `json:"after,omitempty"`
 }
 
 // NewPagination instantiates a new Pagination object
@@ -42,22 +43,23 @@ func NewPaginationWithDefaults() *Pagination {
 	return &this
 }
 
-// GetTotalItems returns the TotalItems field value if set, zero value otherwise.
+// GetTotalItems returns the TotalItems field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *Pagination) GetTotalItems() int32 {
-	if o == nil || IsNil(o.TotalItems) {
+	if o == nil || IsNil(o.TotalItems.Get()) {
 		var ret int32
 		return ret
 	}
-	return *o.TotalItems
+	return *o.TotalItems.Get()
 }
 
 // GetTotalItemsOk returns a tuple with the TotalItems field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *Pagination) GetTotalItemsOk() (*int32, bool) {
-	if o == nil || IsNil(o.TotalItems) {
+	if o == nil {
 		return nil, false
 	}
-	return o.TotalItems, true
+	return o.TotalItems.Get(), o.TotalItems.IsSet()
 }
 
 // HasTotalItems returns a boolean if a field is not nil.
@@ -69,27 +71,38 @@ func (o *Pagination) HasTotalItems() bool {
 	return false
 }
 
-// SetTotalItems gets a reference to the given int32 and assigns it to the TotalItems field.
+// SetTotalItems gets a reference to the given NullableInt32 and assigns it to the TotalItems field.
 func (o *Pagination) SetTotalItems(v int32) {
-	o.TotalItems = &v
+	o.TotalItems.Set(&v)
 }
 
-// GetPageNumber returns the PageNumber field value if set, zero value otherwise.
+// SetTotalItemsNil sets the value for TotalItems to be an explicit nil
+func (o *Pagination) SetTotalItemsNil() {
+	o.TotalItems.Set(nil)
+}
+
+// UnsetTotalItems ensures that no value is present for TotalItems, not even an explicit nil
+func (o *Pagination) UnsetTotalItems() {
+	o.TotalItems.Unset()
+}
+
+// GetPageNumber returns the PageNumber field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *Pagination) GetPageNumber() int32 {
-	if o == nil || IsNil(o.PageNumber) {
+	if o == nil || IsNil(o.PageNumber.Get()) {
 		var ret int32
 		return ret
 	}
-	return *o.PageNumber
+	return *o.PageNumber.Get()
 }
 
 // GetPageNumberOk returns a tuple with the PageNumber field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *Pagination) GetPageNumberOk() (*int32, bool) {
-	if o == nil || IsNil(o.PageNumber) {
+	if o == nil {
 		return nil, false
 	}
-	return o.PageNumber, true
+	return o.PageNumber.Get(), o.PageNumber.IsSet()
 }
 
 // HasPageNumber returns a boolean if a field is not nil.
@@ -101,27 +114,38 @@ func (o *Pagination) HasPageNumber() bool {
 	return false
 }
 
-// SetPageNumber gets a reference to the given int32 and assigns it to the PageNumber field.
+// SetPageNumber gets a reference to the given NullableInt32 and assigns it to the PageNumber field.
 func (o *Pagination) SetPageNumber(v int32) {
-	o.PageNumber = &v
+	o.PageNumber.Set(&v)
 }
 
-// GetPageSize returns the PageSize field value if set, zero value otherwise.
+// SetPageNumberNil sets the value for PageNumber to be an explicit nil
+func (o *Pagination) SetPageNumberNil() {
+	o.PageNumber.Set(nil)
+}
+
+// UnsetPageNumber ensures that no value is present for PageNumber, not even an explicit nil
+func (o *Pagination) UnsetPageNumber() {
+	o.PageNumber.Unset()
+}
+
+// GetPageSize returns the PageSize field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *Pagination) GetPageSize() int32 {
-	if o == nil || IsNil(o.PageSize) {
+	if o == nil || IsNil(o.PageSize.Get()) {
 		var ret int32
 		return ret
 	}
-	return *o.PageSize
+	return *o.PageSize.Get()
 }
 
 // GetPageSizeOk returns a tuple with the PageSize field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *Pagination) GetPageSizeOk() (*int32, bool) {
-	if o == nil || IsNil(o.PageSize) {
+	if o == nil {
 		return nil, false
 	}
-	return o.PageSize, true
+	return o.PageSize.Get(), o.PageSize.IsSet()
 }
 
 // HasPageSize returns a boolean if a field is not nil.
@@ -133,27 +157,38 @@ func (o *Pagination) HasPageSize() bool {
 	return false
 }
 
-// SetPageSize gets a reference to the given int32 and assigns it to the PageSize field.
+// SetPageSize gets a reference to the given NullableInt32 and assigns it to the PageSize field.
 func (o *Pagination) SetPageSize(v int32) {
-	o.PageSize = &v
+	o.PageSize.Set(&v)
 }
 
-// GetTotalPages returns the TotalPages field value if set, zero value otherwise.
+// SetPageSizeNil sets the value for PageSize to be an explicit nil
+func (o *Pagination) SetPageSizeNil() {
+	o.PageSize.Set(nil)
+}
+
+// UnsetPageSize ensures that no value is present for PageSize, not even an explicit nil
+func (o *Pagination) UnsetPageSize() {
+	o.PageSize.Unset()
+}
+
+// GetTotalPages returns the TotalPages field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *Pagination) GetTotalPages() int32 {
-	if o == nil || IsNil(o.TotalPages) {
+	if o == nil || IsNil(o.TotalPages.Get()) {
 		var ret int32
 		return ret
 	}
-	return *o.TotalPages
+	return *o.TotalPages.Get()
 }
 
 // GetTotalPagesOk returns a tuple with the TotalPages field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *Pagination) GetTotalPagesOk() (*int32, bool) {
-	if o == nil || IsNil(o.TotalPages) {
+	if o == nil {
 		return nil, false
 	}
-	return o.TotalPages, true
+	return o.TotalPages.Get(), o.TotalPages.IsSet()
 }
 
 // HasTotalPages returns a boolean if a field is not nil.
@@ -165,9 +200,62 @@ func (o *Pagination) HasTotalPages() bool {
 	return false
 }
 
-// SetTotalPages gets a reference to the given int32 and assigns it to the TotalPages field.
+// SetTotalPages gets a reference to the given NullableInt32 and assigns it to the TotalPages field.
 func (o *Pagination) SetTotalPages(v int32) {
-	o.TotalPages = &v
+	o.TotalPages.Set(&v)
+}
+
+// SetTotalPagesNil sets the value for TotalPages to be an explicit nil
+func (o *Pagination) SetTotalPagesNil() {
+	o.TotalPages.Set(nil)
+}
+
+// UnsetTotalPages ensures that no value is present for TotalPages, not even an explicit nil
+func (o *Pagination) UnsetTotalPages() {
+	o.TotalPages.Unset()
+}
+
+// GetAfter returns the After field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *Pagination) GetAfter() string {
+	if o == nil || IsNil(o.After.Get()) {
+		var ret string
+		return ret
+	}
+	return *o.After.Get()
+}
+
+// GetAfterOk returns a tuple with the After field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *Pagination) GetAfterOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.After.Get(), o.After.IsSet()
+}
+
+// HasAfter returns a boolean if a field is not nil.
+func (o *Pagination) HasAfter() bool {
+	if o != nil && !IsNil(o.After) {
+		return true
+	}
+
+	return false
+}
+
+// SetAfter gets a reference to the given NullableString and assigns it to the After field.
+func (o *Pagination) SetAfter(v string) {
+	o.After.Set(&v)
+}
+
+// SetAfterNil sets the value for After to be an explicit nil
+func (o *Pagination) SetAfterNil() {
+	o.After.Set(nil)
+}
+
+// UnsetAfter ensures that no value is present for After, not even an explicit nil
+func (o *Pagination) UnsetAfter() {
+	o.After.Unset()
 }
 
 func (o Pagination) MarshalJSON() ([]byte, error) {
@@ -180,17 +268,20 @@ func (o Pagination) MarshalJSON() ([]byte, error) {
 
 func (o Pagination) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !IsNil(o.TotalItems) {
-		toSerialize["total_items"] = o.TotalItems
+	if o.TotalItems.IsSet() {
+		toSerialize["total_items"] = o.TotalItems.Get()
 	}
-	if !IsNil(o.PageNumber) {
-		toSerialize["page_number"] = o.PageNumber
+	if o.PageNumber.IsSet() {
+		toSerialize["page_number"] = o.PageNumber.Get()
 	}
-	if !IsNil(o.PageSize) {
-		toSerialize["page_size"] = o.PageSize
+	if o.PageSize.IsSet() {
+		toSerialize["page_size"] = o.PageSize.Get()
 	}
-	if !IsNil(o.TotalPages) {
-		toSerialize["total_pages"] = o.TotalPages
+	if o.TotalPages.IsSet() {
+		toSerialize["total_pages"] = o.TotalPages.Get()
+	}
+	if o.After.IsSet() {
+		toSerialize["after"] = o.After.Get()
 	}
 	return toSerialize, nil
 }

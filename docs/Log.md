@@ -4,6 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**Id** | Pointer to **NullableString** |  | [optional] 
 **TenantId** | Pointer to **string** |  | [optional] 
 **ActorId** | Pointer to **NullableString** |  | [optional] 
 **ActorType** | Pointer to **NullableString** |  | [optional] 
@@ -32,6 +33,41 @@ NewLogWithDefaults instantiates a new Log object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
+### GetId
+
+`func (o *Log) GetId() string`
+
+GetId returns the Id field if non-nil, zero value otherwise.
+
+### GetIdOk
+
+`func (o *Log) GetIdOk() (*string, bool)`
+
+GetIdOk returns a tuple with the Id field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetId
+
+`func (o *Log) SetId(v string)`
+
+SetId sets Id field to given value.
+
+### HasId
+
+`func (o *Log) HasId() bool`
+
+HasId returns a boolean if a field has been set.
+
+### SetIdNil
+
+`func (o *Log) SetIdNil(b bool)`
+
+ SetIdNil sets the value for Id to be an explicit nil
+
+### UnsetId
+`func (o *Log) UnsetId()`
+
+UnsetId ensures that no value is present for Id, not even an explicit nil
 ### GetTenantId
 
 `func (o *Log) GetTenantId() string`

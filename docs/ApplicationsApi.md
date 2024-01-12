@@ -146,7 +146,7 @@ Name | Type | Description  | Notes
 
 ## Get
 
-> ApplicationPaginatedList Get(ctx).Id(id).Type_(type_).Page(page).Size(size).Execute()
+> ApplicationPaginatedList Get(ctx).Id(id).Type_(type_).Page(page).Start(start).Size(size).Execute()
 
 
 
@@ -166,11 +166,12 @@ func main() {
     id := []string{"Inner_example"} // []string |  (optional)
     type_ := []string{"Inner_example"} // []string |  (optional)
     page := int32(56) // int32 |  (optional)
+    start := "start_example" // string |  (optional)
     size := int32(56) // int32 |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ApplicationsApi.Get(context.Background()).Id(id).Type_(type_).Page(page).Size(size).Execute()
+    resp, r, err := apiClient.ApplicationsApi.Get(context.Background()).Id(id).Type_(type_).Page(page).Start(start).Size(size).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ApplicationsApi.Get``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -194,6 +195,7 @@ Name | Type | Description  | Notes
  **id** | **[]string** |  | 
  **type_** | **[]string** |  | 
  **page** | **int32** |  | 
+ **start** | **string** |  | 
  **size** | **int32** |  | 
 
 ### Return type

@@ -316,6 +316,7 @@ type ProxiesApiGetRequest struct {
 	id         *[]string
 	name       *string
 	page       *int32
+	start      *string
 	size       *int32
 }
 
@@ -331,6 +332,11 @@ func (r ProxiesApiGetRequest) Name(name string) ProxiesApiGetRequest {
 
 func (r ProxiesApiGetRequest) Page(page int32) ProxiesApiGetRequest {
 	r.page = &page
+	return r
+}
+
+func (r ProxiesApiGetRequest) Start(start string) ProxiesApiGetRequest {
+	r.start = &start
 	return r
 }
 
@@ -393,6 +399,9 @@ func (a *ProxiesApiService) GetExecute(r ProxiesApiGetRequest) (*ProxyPaginatedL
 	}
 	if r.page != nil {
 		localVarQueryParams.Add("page", parameterToString(*r.page, ""))
+	}
+	if r.start != nil {
+		localVarQueryParams.Add("start", parameterToString(*r.start, ""))
 	}
 	if r.size != nil {
 		localVarQueryParams.Add("size", parameterToString(*r.size, ""))
