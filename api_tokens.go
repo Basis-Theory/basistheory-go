@@ -34,7 +34,7 @@ func (r TokensApiCreateRequest) CreateTokenRequest(createTokenRequest CreateToke
 	return r
 }
 
-func (r TokensApiCreateRequest) Execute() (*CreateTokenResponse, *http.Response, error) {
+func (r TokensApiCreateRequest) Execute() (*Token, *http.Response, error) {
 	return r.ApiService.CreateExecute(r)
 }
 
@@ -52,13 +52,13 @@ func (a *TokensApiService) Create(ctx context.Context) TokensApiCreateRequest {
 }
 
 // Execute executes the request
-//  @return CreateTokenResponse
-func (a *TokensApiService) CreateExecute(r TokensApiCreateRequest) (*CreateTokenResponse, *http.Response, error) {
+//  @return Token
+func (a *TokensApiService) CreateExecute(r TokensApiCreateRequest) (*Token, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodPost
 		localVarPostBody    interface{}
 		formFiles           []formFile
-		localVarReturnValue *CreateTokenResponse
+		localVarReturnValue *Token
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "TokensApiService.Create")
@@ -337,6 +337,7 @@ type TokensApiGetRequest struct {
 	id         *[]string
 	metadata   *map[string]string
 	page       *int32
+	start      *string
 	size       *int32
 }
 
@@ -357,6 +358,11 @@ func (r TokensApiGetRequest) Metadata(metadata map[string]string) TokensApiGetRe
 
 func (r TokensApiGetRequest) Page(page int32) TokensApiGetRequest {
 	r.page = &page
+	return r
+}
+
+func (r TokensApiGetRequest) Start(start string) TokensApiGetRequest {
+	r.start = &start
 	return r
 }
 
@@ -430,6 +436,9 @@ func (a *TokensApiService) GetExecute(r TokensApiGetRequest) (*TokenPaginatedLis
 	}
 	if r.page != nil {
 		localVarQueryParams.Add("page", parameterToString(*r.page, ""))
+	}
+	if r.start != nil {
+		localVarQueryParams.Add("start", parameterToString(*r.start, ""))
 	}
 	if r.size != nil {
 		localVarQueryParams.Add("size", parameterToString(*r.size, ""))

@@ -15,7 +15,7 @@ Method | HTTP request | Description
 
 ## Create
 
-> CreateTokenResponse Create(ctx).CreateTokenRequest(createTokenRequest).Execute()
+> Token Create(ctx).CreateTokenRequest(createTokenRequest).Execute()
 
 
 
@@ -41,7 +41,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `TokensApi.Create``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `Create`: CreateTokenResponse
+    // response from `Create`: Token
     fmt.Fprintf(os.Stdout, "Response from `TokensApi.Create`: %v\n", resp)
 }
 ```
@@ -61,7 +61,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**CreateTokenResponse**](CreateTokenResponse.md)
+[**Token**](Token.md)
 
 ### Authorization
 
@@ -145,7 +145,7 @@ Name | Type | Description  | Notes
 
 ## Get
 
-> TokenPaginatedList Get(ctx).Type_(type_).Id(id).Metadata(metadata).Page(page).Size(size).Execute()
+> TokenPaginatedList Get(ctx).Type_(type_).Id(id).Metadata(metadata).Page(page).Start(start).Size(size).Execute()
 
 
 
@@ -166,11 +166,12 @@ func main() {
     id := []string{"Inner_example"} // []string |  (optional)
     metadata := map[string]string{"key": map[string]string{"key": "Inner_example"}} // map[string]string |  (optional)
     page := int32(56) // int32 |  (optional)
+    start := "start_example" // string |  (optional)
     size := int32(56) // int32 |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.TokensApi.Get(context.Background()).Type_(type_).Id(id).Metadata(metadata).Page(page).Size(size).Execute()
+    resp, r, err := apiClient.TokensApi.Get(context.Background()).Type_(type_).Id(id).Metadata(metadata).Page(page).Start(start).Size(size).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `TokensApi.Get``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -195,6 +196,7 @@ Name | Type | Description  | Notes
  **id** | **[]string** |  | 
  **metadata** | **map[string]map[string]string** |  | 
  **page** | **int32** |  | 
+ **start** | **string** |  | 
  **size** | **int32** |  | 
 
 ### Return type

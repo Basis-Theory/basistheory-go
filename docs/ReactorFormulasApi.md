@@ -144,7 +144,7 @@ Name | Type | Description  | Notes
 
 ## Get
 
-> ReactorFormulaPaginatedList Get(ctx).Name(name).Page(page).Size(size).Execute()
+> ReactorFormulaPaginatedList Get(ctx).Name(name).Page(page).Start(start).Size(size).Execute()
 
 
 
@@ -163,11 +163,12 @@ import (
 func main() {
     name := "name_example" // string |  (optional)
     page := int32(56) // int32 |  (optional)
+    start := "start_example" // string |  (optional)
     size := int32(56) // int32 |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ReactorFormulasApi.Get(context.Background()).Name(name).Page(page).Size(size).Execute()
+    resp, r, err := apiClient.ReactorFormulasApi.Get(context.Background()).Name(name).Page(page).Start(start).Size(size).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ReactorFormulasApi.Get``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -190,6 +191,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **name** | **string** |  | 
  **page** | **int32** |  | 
+ **start** | **string** |  | 
  **size** | **int32** |  | 
 
 ### Return type

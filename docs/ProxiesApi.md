@@ -145,7 +145,7 @@ Name | Type | Description  | Notes
 
 ## Get
 
-> ProxyPaginatedList Get(ctx).Id(id).Name(name).Page(page).Size(size).Execute()
+> ProxyPaginatedList Get(ctx).Id(id).Name(name).Page(page).Start(start).Size(size).Execute()
 
 
 
@@ -165,11 +165,12 @@ func main() {
     id := []string{"Inner_example"} // []string |  (optional)
     name := "name_example" // string |  (optional)
     page := int32(56) // int32 |  (optional)
+    start := "start_example" // string |  (optional)
     size := int32(56) // int32 |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ProxiesApi.Get(context.Background()).Id(id).Name(name).Page(page).Size(size).Execute()
+    resp, r, err := apiClient.ProxiesApi.Get(context.Background()).Id(id).Name(name).Page(page).Start(start).Size(size).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ProxiesApi.Get``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -193,6 +194,7 @@ Name | Type | Description  | Notes
  **id** | **[]string** |  | 
  **name** | **string** |  | 
  **page** | **int32** |  | 
+ **start** | **string** |  | 
  **size** | **int32** |  | 
 
 ### Return type

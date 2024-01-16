@@ -164,7 +164,6 @@ Class | Method | HTTP request | Description
  - [CreateSessionResponse](docs/CreateSessionResponse.md)
  - [CreateTenantInvitationRequest](docs/CreateTenantInvitationRequest.md)
  - [CreateTokenRequest](docs/CreateTokenRequest.md)
- - [CreateTokenResponse](docs/CreateTokenResponse.md)
  - [CreateTransactionResponse](docs/CreateTransactionResponse.md)
  - [EncryptionKey](docs/EncryptionKey.md)
  - [EncryptionMetadata](docs/EncryptionMetadata.md)

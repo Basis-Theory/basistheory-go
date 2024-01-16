@@ -8,6 +8,7 @@ Name | Type | Description | Notes
 **Id** | Pointer to **[]string** |  | [optional] 
 **Metadata** | Pointer to **map[string]string** |  | [optional] 
 **Page** | Pointer to **NullableInt32** |  | [optional] 
+**Start** | Pointer to **NullableString** |  | [optional] 
 **Size** | Pointer to **NullableInt32** |  | [optional] 
 
 ## Methods
@@ -169,6 +170,41 @@ HasPage returns a boolean if a field has been set.
 `func (o *GetTokens) UnsetPage()`
 
 UnsetPage ensures that no value is present for Page, not even an explicit nil
+### GetStart
+
+`func (o *GetTokens) GetStart() string`
+
+GetStart returns the Start field if non-nil, zero value otherwise.
+
+### GetStartOk
+
+`func (o *GetTokens) GetStartOk() (*string, bool)`
+
+GetStartOk returns a tuple with the Start field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetStart
+
+`func (o *GetTokens) SetStart(v string)`
+
+SetStart sets Start field to given value.
+
+### HasStart
+
+`func (o *GetTokens) HasStart() bool`
+
+HasStart returns a boolean if a field has been set.
+
+### SetStartNil
+
+`func (o *GetTokens) SetStartNil(b bool)`
+
+ SetStartNil sets the value for Start to be an explicit nil
+
+### UnsetStart
+`func (o *GetTokens) UnsetStart()`
+
+UnsetStart ensures that no value is present for Start, not even an explicit nil
 ### GetSize
 
 `func (o *GetTokens) GetSize() int32`

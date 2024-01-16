@@ -332,7 +332,7 @@ Other parameters are passed through a pointer to a apiGetRequest struct via the 
 
 ## GetInvitations
 
-> TenantInvitationResponsePaginatedList GetInvitations(ctx).Status(status).Page(page).Size(size).Execute()
+> TenantInvitationResponsePaginatedList GetInvitations(ctx).Status(status).Page(page).Start(start).Size(size).Execute()
 
 
 
@@ -351,11 +351,12 @@ import (
 func main() {
     status := openapiclient.TenantInvitationStatus("PENDING") // TenantInvitationStatus |  (optional)
     page := int32(56) // int32 |  (optional)
+    start := "start_example" // string |  (optional)
     size := int32(56) // int32 |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.TenantsApi.GetInvitations(context.Background()).Status(status).Page(page).Size(size).Execute()
+    resp, r, err := apiClient.TenantsApi.GetInvitations(context.Background()).Status(status).Page(page).Start(start).Size(size).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `TenantsApi.GetInvitations``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -378,6 +379,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **status** | [**TenantInvitationStatus**](TenantInvitationStatus.md) |  | 
  **page** | **int32** |  | 
+ **start** | **string** |  | 
  **size** | **int32** |  | 
 
 ### Return type
@@ -400,7 +402,7 @@ Name | Type | Description  | Notes
 
 ## GetMembers
 
-> TenantMemberResponsePaginatedList GetMembers(ctx).UserId(userId).Page(page).Size(size).Execute()
+> TenantMemberResponsePaginatedList GetMembers(ctx).UserId(userId).Page(page).Start(start).Size(size).Execute()
 
 
 
@@ -419,11 +421,12 @@ import (
 func main() {
     userId := []string{"Inner_example"} // []string |  (optional)
     page := int32(56) // int32 |  (optional)
+    start := "start_example" // string |  (optional)
     size := int32(56) // int32 |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.TenantsApi.GetMembers(context.Background()).UserId(userId).Page(page).Size(size).Execute()
+    resp, r, err := apiClient.TenantsApi.GetMembers(context.Background()).UserId(userId).Page(page).Start(start).Size(size).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `TenantsApi.GetMembers``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -446,6 +449,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **userId** | **[]string** |  | 
  **page** | **int32** |  | 
+ **start** | **string** |  | 
  **size** | **int32** |  | 
 
 ### Return type

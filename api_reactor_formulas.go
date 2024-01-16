@@ -314,6 +314,7 @@ type ReactorFormulasApiGetRequest struct {
 	ApiService *ReactorFormulasApiService
 	name       *string
 	page       *int32
+	start      *string
 	size       *int32
 }
 
@@ -324,6 +325,11 @@ func (r ReactorFormulasApiGetRequest) Name(name string) ReactorFormulasApiGetReq
 
 func (r ReactorFormulasApiGetRequest) Page(page int32) ReactorFormulasApiGetRequest {
 	r.page = &page
+	return r
+}
+
+func (r ReactorFormulasApiGetRequest) Start(start string) ReactorFormulasApiGetRequest {
+	r.start = &start
 	return r
 }
 
@@ -375,6 +381,9 @@ func (a *ReactorFormulasApiService) GetExecute(r ReactorFormulasApiGetRequest) (
 	}
 	if r.page != nil {
 		localVarQueryParams.Add("page", parameterToString(*r.page, ""))
+	}
+	if r.start != nil {
+		localVarQueryParams.Add("start", parameterToString(*r.start, ""))
 	}
 	if r.size != nil {
 		localVarQueryParams.Add("size", parameterToString(*r.size, ""))

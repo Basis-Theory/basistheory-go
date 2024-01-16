@@ -25,6 +25,7 @@ type GetLogs struct {
 	StartDate  NullableTime   `json:"start_date,omitempty"`
 	EndDate    NullableTime   `json:"end_date,omitempty"`
 	Page       NullableInt32  `json:"page,omitempty"`
+	Start      NullableString `json:"start,omitempty"`
 	Size       NullableInt32  `json:"size,omitempty"`
 }
 
@@ -260,6 +261,49 @@ func (o *GetLogs) UnsetPage() {
 	o.Page.Unset()
 }
 
+// GetStart returns the Start field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *GetLogs) GetStart() string {
+	if o == nil || IsNil(o.Start.Get()) {
+		var ret string
+		return ret
+	}
+	return *o.Start.Get()
+}
+
+// GetStartOk returns a tuple with the Start field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *GetLogs) GetStartOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.Start.Get(), o.Start.IsSet()
+}
+
+// HasStart returns a boolean if a field is not nil.
+func (o *GetLogs) HasStart() bool {
+	if o != nil && !IsNil(o.Start) {
+		return true
+	}
+
+	return false
+}
+
+// SetStart gets a reference to the given NullableString and assigns it to the Start field.
+func (o *GetLogs) SetStart(v string) {
+	o.Start.Set(&v)
+}
+
+// SetStartNil sets the value for Start to be an explicit nil
+func (o *GetLogs) SetStartNil() {
+	o.Start.Set(nil)
+}
+
+// UnsetStart ensures that no value is present for Start, not even an explicit nil
+func (o *GetLogs) UnsetStart() {
+	o.Start.Unset()
+}
+
 // GetSize returns the Size field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *GetLogs) GetSize() int32 {
 	if o == nil || IsNil(o.Size.Get()) {
@@ -327,6 +371,9 @@ func (o GetLogs) ToMap() (map[string]interface{}, error) {
 	}
 	if o.Page.IsSet() {
 		toSerialize["page"] = o.Page.Get()
+	}
+	if o.Start.IsSet() {
+		toSerialize["start"] = o.Start.Get()
 	}
 	if o.Size.IsSet() {
 		toSerialize["size"] = o.Size.Get()
