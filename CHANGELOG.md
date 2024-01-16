@@ -1,3 +1,13 @@
+# [4.0.0](https://github.com/Basis-Theory/basistheory-go/compare/v3.13.0...v4.0.0) (2024-01-16)
+
+
+* feat!: support logs cursor pagination (#75) ([5556740](https://github.com/Basis-Theory/basistheory-go/commit/5556740caad3474acdd755e652d67dbe819628b5)), closes [#75](https://github.com/Basis-Theory/basistheory-go/issues/75)
+
+
+### BREAKING CHANGES
+
+* logs api changed from using offset pagination to cursor pagination
+
 # [3.13.0](https://github.com/Basis-Theory/basistheory-go/compare/v3.12.0...v3.13.0) (2023-10-11)
 
 
