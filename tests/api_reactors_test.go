@@ -9,15 +9,6 @@ import (
 func TestReactorCRUD(t *testing.T) {
 	// SETUP
 	apiClient, contextWithAPIKey := testutils.CreateApiAndMgmtContext(t)
-	reactorFormulaName := "Go Test Reactor Formula"
-	reactorFormulaCode := "module.exports = function (req) {return {raw: \"Goodbye World\"}}"
-
-	createReactorFormulaRequest := *basistheory.NewCreateReactorFormulaRequest("private", reactorFormulaName)
-	createReactorFormulaRequest.SetCode(reactorFormulaCode)
-
-	createdReactorFormula, response, err := apiClient.ReactorFormulasApi.Create(contextWithAPIKey).CreateReactorFormulaRequest(createReactorFormulaRequest).Execute()
-
-	testutils.AssertMethodDidNotError(err, response, "ReactorFormulasApi Create", t)
 
 	applicationPermissions := []string{"token:create"}
 	createApplicationRequest := *basistheory.NewCreateApplicationRequest("Go Test App", "private")
@@ -31,14 +22,14 @@ func TestReactorCRUD(t *testing.T) {
 	reactorName := "Go Test Reactor"
 
 	createReactorRequest := *basistheory.NewCreateReactorRequest(reactorName)
-	createReactorRequest.SetFormula(*createdReactorFormula)
+	createReactorRequest.SetCode("module.exports = function (req) {return {raw: \"Goodbye World\"}}")
 	createReactorRequest.SetApplication(*createdApplication)
 	var createdReactor *basistheory.Reactor
 	createdReactor, response, err = apiClient.ReactorsApi.Create(contextWithAPIKey).CreateReactorRequest(createReactorRequest).Execute()
 
 	testutils.AssertMethodDidNotError(err, response, "ReactorsApi Create", t)
 	testutils.AssertPropertiesMatch(createdReactor.GetName(), reactorName, t)
-	testutils.AssertPropertiesMatch(createdReactor.Formula, createdReactorFormula, t, basistheory.NullableString{}, basistheory.NullableTime{})
+	testutils.AssertPropertiesMatch(createdReactor.GetCode(), createReactorRequest.GetCode(), t)
 
 	// GET BY ID
 	var reactor *basistheory.Reactor
@@ -46,7 +37,7 @@ func TestReactorCRUD(t *testing.T) {
 
 	testutils.AssertMethodDidNotError(err, response, "ReactorsApi GetById", t)
 	testutils.AssertPropertiesMatch(reactor.GetName(), reactorName, t)
-	testutils.AssertPropertiesMatch(reactor.Formula, createdReactorFormula, t, basistheory.NullableString{}, basistheory.NullableTime{})
+	testutils.AssertPropertiesMatch(reactor.GetCode(), createReactorRequest.GetCode(), t)
 
 	// GET LIST
 	var reactors *basistheory.ReactorPaginatedList
@@ -54,18 +45,20 @@ func TestReactorCRUD(t *testing.T) {
 
 	testutils.AssertMethodDidNotError(err, response, "ReactorsApi sGet", t)
 	testutils.AssertPropertiesMatch(reactors.Data[0].GetName(), reactorName, t)
-	testutils.AssertPropertiesMatch(reactors.Data[0].Formula, createdReactorFormula, t, basistheory.NullableString{}, basistheory.NullableTime{})
+	testutils.AssertPropertiesMatch(reactors.Data[0].GetCode(), createReactorRequest.GetCode(), t)
 
 	// UPDATE
 	updatedReactorName := "Go Test Reactor Update"
 	updateReactorRequest := *basistheory.NewUpdateReactorRequest(updatedReactorName)
 	updateReactorRequest.SetConfiguration(map[string]string{})
+	updateReactorRequest.SetCode("module.exports = function (req) {return {raw: \"Goodbye World\"}}")
 
 	var updatedReactor *basistheory.Reactor
 	updatedReactor, response, err = apiClient.ReactorsApi.Update(contextWithAPIKey, createdReactor.GetId()).UpdateReactorRequest(updateReactorRequest).Execute()
 	testutils.AssertMethodDidNotError(err, response, "ReactorsApi Update", t)
 
 	testutils.AssertPropertiesMatch(updatedReactor.GetName(), updatedReactorName, t)
+	testutils.AssertPropertiesMatch(updatedReactor.GetCode(), updateReactorRequest.GetCode(), t)
 
 	// DELETE
 	response, err = apiClient.ReactorsApi.Delete(contextWithAPIKey, createdReactor.GetId()).Execute()
@@ -76,28 +69,18 @@ func TestReactorCRUD(t *testing.T) {
 
 	testutils.AssertNotFound(err, t)
 
-	_, _ = apiClient.ReactorFormulasApi.Delete(contextWithAPIKey, createdReactorFormula.GetId()).Execute()
 	_, _ = apiClient.ApplicationsApi.Delete(contextWithAPIKey, createdApplication.GetId()).Execute()
 }
 
 func TestReactorReact(t *testing.T) {
 	apiClient, contextWithAPIKey := testutils.CreateApiAndMgmtContext(t)
-	reactorFormulaName := "Go Test Reactor Formula"
-	reactorFormulaCode := "module.exports = function (req) {return {raw: \"Goodbye World\"}}"
-
-	createReactorFormulaRequest := *basistheory.NewCreateReactorFormulaRequest("private", reactorFormulaName)
-	createReactorFormulaRequest.SetCode(reactorFormulaCode)
-
-	createdReactorFormula, response, err := apiClient.ReactorFormulasApi.Create(contextWithAPIKey).CreateReactorFormulaRequest(createReactorFormulaRequest).Execute()
-
-	testutils.AssertMethodDidNotError(err, response, "ReactorsApi FormulasApi Create", t)
 
 	reactorName := "Go Test Reactor"
 
 	createReactorRequest := *basistheory.NewCreateReactorRequest(reactorName)
-	createReactorRequest.SetFormula(*createdReactorFormula)
+	createReactorRequest.SetCode("module.exports = function (req) {return {raw: \"Goodbye World\"}}")
 	var createdReactor *basistheory.Reactor
-	createdReactor, response, err = apiClient.ReactorsApi.Create(contextWithAPIKey).CreateReactorRequest(createReactorRequest).Execute()
+	createdReactor, response, err := apiClient.ReactorsApi.Create(contextWithAPIKey).CreateReactorRequest(createReactorRequest).Execute()
 
 	testutils.AssertMethodDidNotError(err, response, "ReactorsApi Create", t)
 
@@ -114,5 +97,4 @@ func TestReactorReact(t *testing.T) {
 
 	apiClient, contextWithAPIKey = testutils.CreateApiAndMgmtContext(t)
 	response, err = apiClient.ReactorsApi.Delete(contextWithAPIKey, createdReactor.GetId()).Execute()
-	_, _ = apiClient.ReactorFormulasApi.Delete(contextWithAPIKey, createdReactorFormula.GetId()).Execute()
 }

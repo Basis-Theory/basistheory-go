@@ -10,16 +10,6 @@ func TestProxiesCRUD(t *testing.T) {
 	// SETUP
 	apiClient, contextWithAPIKey := testutils.CreateApiAndMgmtContext(t)
 
-	reactorFormulaName := "Go Test Reactor Formula"
-	reactorFormulaCode := "module.exports = function (req) {return {raw: \"Goodbye World\"}}"
-
-	createReactorFormulaRequest := *basistheory.NewCreateReactorFormulaRequest("private", reactorFormulaName)
-	createReactorFormulaRequest.SetCode(reactorFormulaCode)
-
-	createdReactorFormula, response, err := apiClient.ReactorFormulasApi.Create(contextWithAPIKey).CreateReactorFormulaRequest(createReactorFormulaRequest).Execute()
-
-	testutils.AssertMethodDidNotError(err, response, "ReactorFormulasApi Create", t)
-
 	applicationPermissions := []string{"token:create"}
 	createApplicationRequest := *basistheory.NewCreateApplicationRequest("Go Test App", "private")
 	createApplicationRequest.SetPermissions(applicationPermissions)
@@ -30,7 +20,7 @@ func TestProxiesCRUD(t *testing.T) {
 
 	reactorName := "Go Test Reactor"
 	createReactorRequest := *basistheory.NewCreateReactorRequest(reactorName)
-	createReactorRequest.SetFormula(*createdReactorFormula)
+	createReactorRequest.SetCode("module.exports = function (req) {return {raw: \"Goodbye World\"}}")
 	createReactorRequest.SetApplication(*createdApplication)
 	var createdReactor *basistheory.Reactor
 	createdReactor, response, err = apiClient.ReactorsApi.Create(contextWithAPIKey).CreateReactorRequest(createReactorRequest).Execute()
@@ -99,6 +89,5 @@ func TestProxiesCRUD(t *testing.T) {
 	testutils.AssertNotFound(err, t)
 
 	_, _ = apiClient.ReactorsApi.Delete(contextWithAPIKey, createdReactor.GetId()).Execute()
-	_, _ = apiClient.ReactorFormulasApi.Delete(contextWithAPIKey, createdReactorFormula.GetId()).Execute()
 	_, _ = apiClient.ApplicationsApi.Delete(contextWithAPIKey, createdApplication.GetId()).Execute()
 }
