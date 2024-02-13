@@ -1,3 +1,13 @@
+# [5.0.0](https://github.com/Basis-Theory/basistheory-go/compare/v4.0.0...v5.0.0) (2024-02-13)
+
+
+* feat!: removing transactions (#77) ([2f63569](https://github.com/Basis-Theory/basistheory-go/commit/2f63569198cac93ed014d535b27e9e2f26e0311a)), closes [#77](https://github.com/Basis-Theory/basistheory-go/issues/77)
+
+
+### BREAKING CHANGES
+
+* removing transactions
+
 # [4.0.0](https://github.com/Basis-Theory/basistheory-go/compare/v3.13.0...v4.0.0) (2024-01-16)
 
 
