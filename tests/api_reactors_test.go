@@ -20,9 +20,9 @@ func TestReactorCRUD(t *testing.T) {
 
 	// CREATE
 	reactorName := "Go Test Reactor"
+	code := "module.exports = function (req) {return {raw: \"Goodbye World\"}}"
 
-	createReactorRequest := *basistheory.NewCreateReactorRequest(reactorName)
-	createReactorRequest.SetCode("module.exports = function (req) {return {raw: \"Goodbye World\"}}")
+	createReactorRequest := *basistheory.NewCreateReactorRequest(reactorName, code)
 	createReactorRequest.SetApplication(*createdApplication)
 	var createdReactor *basistheory.Reactor
 	createdReactor, response, err = apiClient.ReactorsApi.Create(contextWithAPIKey).CreateReactorRequest(createReactorRequest).Execute()
@@ -49,9 +49,8 @@ func TestReactorCRUD(t *testing.T) {
 
 	// UPDATE
 	updatedReactorName := "Go Test Reactor Update"
-	updateReactorRequest := *basistheory.NewUpdateReactorRequest(updatedReactorName)
+	updateReactorRequest := *basistheory.NewUpdateReactorRequest(updatedReactorName, code)
 	updateReactorRequest.SetConfiguration(map[string]string{})
-	updateReactorRequest.SetCode("module.exports = function (req) {return {raw: \"Goodbye World\"}}")
 
 	var updatedReactor *basistheory.Reactor
 	updatedReactor, response, err = apiClient.ReactorsApi.Update(contextWithAPIKey, createdReactor.GetId()).UpdateReactorRequest(updateReactorRequest).Execute()
@@ -77,8 +76,7 @@ func TestReactorReact(t *testing.T) {
 
 	reactorName := "Go Test Reactor"
 
-	createReactorRequest := *basistheory.NewCreateReactorRequest(reactorName)
-	createReactorRequest.SetCode("module.exports = function (req) {return {raw: \"Goodbye World\"}}")
+	createReactorRequest := *basistheory.NewCreateReactorRequest(reactorName, "module.exports = function (req) {return {raw: \"Goodbye World\"}}")
 	var createdReactor *basistheory.Reactor
 	createdReactor, response, err := apiClient.ReactorsApi.Create(contextWithAPIKey).CreateReactorRequest(createReactorRequest).Execute()
 
