@@ -11,7 +11,6 @@ Method | HTTP request | Description
 [**Get**](TenantsApi.md#Get) | **Get** /tenants/self | 
 [**GetInvitations**](TenantsApi.md#GetInvitations) | **Get** /tenants/self/invitations | 
 [**GetMembers**](TenantsApi.md#GetMembers) | **Get** /tenants/self/members | 
-[**GetTenantOperationReport**](TenantsApi.md#GetTenantOperationReport) | **Get** /tenants/self/reports/operations | 
 [**GetTenantUsageReport**](TenantsApi.md#GetTenantUsageReport) | **Get** /tenants/self/reports/usage | 
 [**ResendInvitation**](TenantsApi.md#ResendInvitation) | **Post** /tenants/self/invitations/{invitationId}/resend | 
 [**Update**](TenantsApi.md#Update) | **Put** /tenants/self | 
@@ -455,65 +454,6 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**TenantMemberResponsePaginatedList**](TenantMemberResponsePaginatedList.md)
-
-### Authorization
-
-[ApiKey](../README.md#ApiKey)
-
-### HTTP request headers
-
-- **Content-Type**: Not defined
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
-
-
-## GetTenantOperationReport
-
-> TenantUsageReport GetTenantOperationReport(ctx).Execute()
-
-
-
-### Example
-
-```go
-package main
-
-import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "./openapi"
-)
-
-func main() {
-
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.TenantsApi.GetTenantOperationReport(context.Background()).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `TenantsApi.GetTenantOperationReport``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `GetTenantOperationReport`: TenantUsageReport
-    fmt.Fprintf(os.Stdout, "Response from `TenantsApi.GetTenantOperationReport`: %v\n", resp)
-}
-```
-
-### Path Parameters
-
-This endpoint does not need any parameter.
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiGetTenantOperationReportRequest struct via the builder pattern
-
-
-### Return type
-
-[**TenantUsageReport**](TenantUsageReport.md)
 
 ### Authorization
 

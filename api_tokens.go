@@ -333,17 +333,11 @@ func (a *TokensApiService) DeleteExecute(r TokensApiDeleteRequest) (*http.Respon
 type TokensApiGetRequest struct {
 	ctx        context.Context
 	ApiService *TokensApiService
-	type_      *[]string
 	id         *[]string
 	metadata   *map[string]string
 	page       *int32
 	start      *string
 	size       *int32
-}
-
-func (r TokensApiGetRequest) Type_(type_ []string) TokensApiGetRequest {
-	r.type_ = &type_
-	return r
 }
 
 func (r TokensApiGetRequest) Id(id []string) TokensApiGetRequest {
@@ -409,17 +403,6 @@ func (a *TokensApiService) GetExecute(r TokensApiGetRequest) (*TokenPaginatedLis
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 
-	if r.type_ != nil {
-		t := *r.type_
-		if reflect.TypeOf(t).Kind() == reflect.Slice {
-			s := reflect.ValueOf(t)
-			for i := 0; i < s.Len(); i++ {
-				localVarQueryParams.Add("type", parameterToString(s.Index(i), "multi"))
-			}
-		} else {
-			localVarQueryParams.Add("type", parameterToString(t, "multi"))
-		}
-	}
 	if r.id != nil {
 		t := *r.id
 		if reflect.TypeOf(t).Kind() == reflect.Slice {

@@ -21,7 +21,7 @@ var _ MappedNullable = &UpdateReactorRequest{}
 type UpdateReactorRequest struct {
 	Name          string            `json:"name"`
 	Application   *Application      `json:"application,omitempty"`
-	Code          NullableString    `json:"code,omitempty"`
+	Code          string            `json:"code"`
 	Configuration map[string]string `json:"configuration,omitempty"`
 }
 
@@ -29,9 +29,10 @@ type UpdateReactorRequest struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewUpdateReactorRequest(name string) *UpdateReactorRequest {
+func NewUpdateReactorRequest(name string, code string) *UpdateReactorRequest {
 	this := UpdateReactorRequest{}
 	this.Name = name
+	this.Code = code
 	return &this
 }
 
@@ -99,47 +100,28 @@ func (o *UpdateReactorRequest) SetApplication(v Application) {
 	o.Application = &v
 }
 
-// GetCode returns the Code field value if set, zero value otherwise (both if not set or set to explicit null).
+// GetCode returns the Code field value
 func (o *UpdateReactorRequest) GetCode() string {
-	if o == nil || IsNil(o.Code.Get()) {
+	if o == nil {
 		var ret string
 		return ret
 	}
-	return *o.Code.Get()
+
+	return o.Code
 }
 
-// GetCodeOk returns a tuple with the Code field value if set, nil otherwise
+// GetCodeOk returns a tuple with the Code field value
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *UpdateReactorRequest) GetCodeOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return o.Code.Get(), o.Code.IsSet()
+	return &o.Code, true
 }
 
-// HasCode returns a boolean if a field is not nil.
-func (o *UpdateReactorRequest) HasCode() bool {
-	if o != nil && !IsNil(o.Code) {
-		return true
-	}
-
-	return false
-}
-
-// SetCode gets a reference to the given NullableString and assigns it to the Code field.
+// SetCode sets field value
 func (o *UpdateReactorRequest) SetCode(v string) {
-	o.Code.Set(&v)
-}
-
-// SetCodeNil sets the value for Code to be an explicit nil
-func (o *UpdateReactorRequest) SetCodeNil() {
-	o.Code.Set(nil)
-}
-
-// UnsetCode ensures that no value is present for Code, not even an explicit nil
-func (o *UpdateReactorRequest) UnsetCode() {
-	o.Code.Unset()
+	o.Code = v
 }
 
 // GetConfiguration returns the Configuration field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -189,9 +171,7 @@ func (o UpdateReactorRequest) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Application) {
 		toSerialize["application"] = o.Application
 	}
-	if o.Code.IsSet() {
-		toSerialize["code"] = o.Code.Get()
-	}
+	toSerialize["code"] = o.Code
 	if o.Configuration != nil {
 		toSerialize["configuration"] = o.Configuration
 	}

@@ -145,7 +145,7 @@ Name | Type | Description  | Notes
 
 ## Get
 
-> TokenPaginatedList Get(ctx).Type_(type_).Id(id).Metadata(metadata).Page(page).Start(start).Size(size).Execute()
+> TokenPaginatedList Get(ctx).Id(id).Metadata(metadata).Page(page).Start(start).Size(size).Execute()
 
 
 
@@ -162,7 +162,6 @@ import (
 )
 
 func main() {
-    type_ := []string{"Inner_example"} // []string |  (optional)
     id := []string{"Inner_example"} // []string |  (optional)
     metadata := map[string]string{"key": map[string]string{"key": "Inner_example"}} // map[string]string |  (optional)
     page := int32(56) // int32 |  (optional)
@@ -171,7 +170,7 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.TokensApi.Get(context.Background()).Type_(type_).Id(id).Metadata(metadata).Page(page).Start(start).Size(size).Execute()
+    resp, r, err := apiClient.TokensApi.Get(context.Background()).Id(id).Metadata(metadata).Page(page).Start(start).Size(size).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `TokensApi.Get``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -192,7 +191,6 @@ Other parameters are passed through a pointer to a apiGetRequest struct via the 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **type_** | **[]string** |  | 
  **id** | **[]string** |  | 
  **metadata** | **map[string]map[string]string** |  | 
  **page** | **int32** |  | 

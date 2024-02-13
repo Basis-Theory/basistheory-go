@@ -6,14 +6,14 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Name** | **string** |  | 
 **Application** | Pointer to [**Application**](Application.md) |  | [optional] 
-**Code** | Pointer to **NullableString** |  | [optional] 
+**Code** | **string** |  | 
 **Configuration** | Pointer to **map[string]string** |  | [optional] 
 
 ## Methods
 
 ### NewUpdateReactorRequest
 
-`func NewUpdateReactorRequest(name string, ) *UpdateReactorRequest`
+`func NewUpdateReactorRequest(name string, code string, ) *UpdateReactorRequest`
 
 NewUpdateReactorRequest instantiates a new UpdateReactorRequest object
 This constructor will assign default values to properties that have it defined,
@@ -92,22 +92,7 @@ and a boolean to check if the value has been set.
 
 SetCode sets Code field to given value.
 
-### HasCode
 
-`func (o *UpdateReactorRequest) HasCode() bool`
-
-HasCode returns a boolean if a field has been set.
-
-### SetCodeNil
-
-`func (o *UpdateReactorRequest) SetCodeNil(b bool)`
-
- SetCodeNil sets the value for Code to be an explicit nil
-
-### UnsetCode
-`func (o *UpdateReactorRequest) UnsetCode()`
-
-UnsetCode ensures that no value is present for Code, not even an explicit nil
 ### GetConfiguration
 
 `func (o *UpdateReactorRequest) GetConfiguration() map[string]string`

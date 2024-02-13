@@ -5,8 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Name** | **string** |  | 
-**Formula** | Pointer to [**ReactorFormula**](ReactorFormula.md) |  | [optional] 
-**Code** | Pointer to **NullableString** |  | [optional] 
+**Code** | **string** |  | 
 **Application** | Pointer to [**Application**](Application.md) |  | [optional] 
 **Configuration** | Pointer to **map[string]string** |  | [optional] 
 
@@ -14,7 +13,7 @@ Name | Type | Description | Notes
 
 ### NewCreateReactorRequest
 
-`func NewCreateReactorRequest(name string, ) *CreateReactorRequest`
+`func NewCreateReactorRequest(name string, code string, ) *CreateReactorRequest`
 
 NewCreateReactorRequest instantiates a new CreateReactorRequest object
 This constructor will assign default values to properties that have it defined,
@@ -49,31 +48,6 @@ and a boolean to check if the value has been set.
 SetName sets Name field to given value.
 
 
-### GetFormula
-
-`func (o *CreateReactorRequest) GetFormula() ReactorFormula`
-
-GetFormula returns the Formula field if non-nil, zero value otherwise.
-
-### GetFormulaOk
-
-`func (o *CreateReactorRequest) GetFormulaOk() (*ReactorFormula, bool)`
-
-GetFormulaOk returns a tuple with the Formula field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetFormula
-
-`func (o *CreateReactorRequest) SetFormula(v ReactorFormula)`
-
-SetFormula sets Formula field to given value.
-
-### HasFormula
-
-`func (o *CreateReactorRequest) HasFormula() bool`
-
-HasFormula returns a boolean if a field has been set.
-
 ### GetCode
 
 `func (o *CreateReactorRequest) GetCode() string`
@@ -93,22 +67,7 @@ and a boolean to check if the value has been set.
 
 SetCode sets Code field to given value.
 
-### HasCode
 
-`func (o *CreateReactorRequest) HasCode() bool`
-
-HasCode returns a boolean if a field has been set.
-
-### SetCodeNil
-
-`func (o *CreateReactorRequest) SetCodeNil(b bool)`
-
- SetCodeNil sets the value for Code to be an explicit nil
-
-### UnsetCode
-`func (o *CreateReactorRequest) UnsetCode()`
-
-UnsetCode ensures that no value is present for Code, not even an explicit nil
 ### GetApplication
 
 `func (o *CreateReactorRequest) GetApplication() Application`

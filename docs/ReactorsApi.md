@@ -33,7 +33,7 @@ import (
 )
 
 func main() {
-    createReactorRequest := *openapiclient.NewCreateReactorRequest("Name_example") // CreateReactorRequest | 
+    createReactorRequest := *openapiclient.NewCreateReactorRequest("Name_example", "Code_example") // CreateReactorRequest | 
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
@@ -442,7 +442,7 @@ import (
 
 func main() {
     id := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | 
-    updateReactorRequest := *openapiclient.NewUpdateReactorRequest("Name_example") // UpdateReactorRequest | 
+    updateReactorRequest := *openapiclient.NewUpdateReactorRequest("Name_example", "Code_example") // UpdateReactorRequest | 
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)

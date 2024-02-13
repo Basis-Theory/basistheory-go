@@ -1845,30 +1845,6 @@ paths:
           description: Forbidden
       tags:
       - Tenants
-  /tenants/self/reports/operations:
-    get:
-      operationId: TenantReports_GetTenantOperationReport
-      responses:
-        "200":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/TenantUsageReport'
-          description: Success
-        "401":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ProblemDetails'
-          description: Unauthorized
-        "403":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ProblemDetails'
-          description: Forbidden
-      tags:
-      - Tenants
   /tenants/self:
     delete:
       operationId: Tenants_Delete
@@ -2008,16 +1984,6 @@ paths:
     get:
       operationId: Tokens_Get
       parameters:
-      - explode: true
-        in: query
-        name: type
-        required: false
-        schema:
-          items:
-            type: string
-          nullable: true
-          type: array
-        style: form
       - explode: true
         in: query
         name: id
@@ -2305,74 +2271,6 @@ paths:
           description: Conflict
       tags:
       - Tokens
-  /transactions:
-    post:
-      operationId: Transactions_Create
-      responses:
-        "201":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/CreateTransactionResponse'
-          description: Created
-        "401":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ProblemDetails'
-          description: Unauthorized
-      tags:
-      - Transactions
-  /transactions/{id}/commit:
-    post:
-      operationId: Transactions_Commit
-      parameters:
-      - explode: false
-        in: path
-        name: id
-        required: true
-        schema:
-          format: uuid
-          maxLength: 36
-          pattern: "^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$"
-          type: string
-        style: simple
-      responses:
-        "200":
-          description: Success
-        "401":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ProblemDetails'
-          description: Unauthorized
-      tags:
-      - Transactions
-  /transactions/{id}/rollback:
-    post:
-      operationId: Transactions_Rollback
-      parameters:
-      - explode: false
-        in: path
-        name: id
-        required: true
-        schema:
-          format: uuid
-          maxLength: 36
-          pattern: "^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$"
-          type: string
-        style: simple
-      responses:
-        "200":
-          description: Success
-        "401":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ProblemDetails'
-          description: Unauthorized
-      tags:
-      - Transactions
 components:
   schemas:
     AccessRule:
@@ -3384,66 +3282,15 @@ components:
         configuration:
           key: configuration
         name: name
-        formula:
-          code: code
-          configuration:
-          - name: name
-            description: description
-            type: type
-          - name: name
-            description: description
-            type: type
-          - name: name
-            description: description
-            type: type
-          - name: name
-            description: description
-            type: type
-          - name: name
-            description: description
-            type: type
-          icon: icon
-          description: description
-          created_at: 2000-01-23T04:56:07.000+00:00
-          type: type
-          created_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-          request_parameters:
-          - name: name
-            description: description
-            optional: true
-            type: type
-          - name: name
-            description: description
-            optional: true
-            type: type
-          - name: name
-            description: description
-            optional: true
-            type: type
-          - name: name
-            description: description
-            optional: true
-            type: type
-          - name: name
-            description: description
-            optional: true
-            type: type
-          name: name
-          modified_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-          id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-          modified_at: 2000-01-23T04:56:07.000+00:00
-          status: status
       properties:
         name:
           maxLength: 200
           minLength: 1
           pattern: ^.+$
           type: string
-        formula:
-          $ref: '#/components/schemas/ReactorFormula'
         code:
           maxLength: 50000
-          nullable: true
+          minLength: 1
           pattern: "^[\\S\\s]*$"
           type: string
         application:
@@ -3456,6 +3303,7 @@ components:
           nullable: true
           type: object
       required:
+      - code
       - name
       type: object
     CreateSessionResponse:
@@ -3562,35 +3410,6 @@ components:
           type: array
       required:
       - data
-      type: object
-    CreateTransactionResponse:
-      additionalProperties: false
-      example:
-        expires_at: 2000-01-23T04:56:07.000+00:00
-        created_at: 2000-01-23T04:56:07.000+00:00
-        id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-        created_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-      properties:
-        id:
-          format: uuid
-          maxLength: 36
-          pattern: "^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$"
-          type: string
-        created_by:
-          format: uuid
-          maxLength: 36
-          nullable: true
-          pattern: "^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$"
-          type: string
-        created_at:
-          format: date-time
-          maxLength: 40
-          nullable: true
-          type: string
-        expires_at:
-          format: date-time
-          maxLength: 40
-          type: string
       type: object
     EncryptionKey:
       additionalProperties: false
@@ -3852,11 +3671,6 @@ components:
     GetTokens:
       additionalProperties: false
       properties:
-        type:
-          items:
-            type: string
-          nullable: true
-          type: array
         id:
           items:
             type: string
@@ -4689,9 +4503,11 @@ components:
         icon:
           maxLength: 50000
           nullable: true
-          pattern: "(^data:(image/png|image/jpg|image/jpeg|image/svg\\+xml);\\s*base64,\\\
-            s*(?:[A-Za-z0-9+/]{4})*(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=|[A-Za-z0-9+/]{4})$)|(^data:(image/png|image/jpg|image/jpeg);\\\
-            s*base64,\\s*(?:[A-Za-z0-9+/]{4})*(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=|[A-Za-z0-9+/]{4})$)"
+          pattern: "(^data:(image\\/png|image\\/jpg|image\\/jpeg|image\\/svg\\+xml);\\\
+            s*base64,\\s*(?:[A-Za-z0-9+\\/]{4})*(?:[A-Za-z0-9+\\/]{2}==|[A-Za-z0-9+\\\
+            /]{3}=|[A-Za-z0-9+\\/]{4})$)|(^data:(image\\/png|image\\/jpg|image\\/jpeg);\\\
+            s*base64,\\s*(?:[A-Za-z0-9+\\/]{4})*(?:[A-Za-z0-9+\\/]{2}==|[A-Za-z0-9+\\\
+            /]{3}=|[A-Za-z0-9+\\/]{4})$)"
           type: string
         code:
           maxLength: 4000
@@ -6128,7 +5944,7 @@ components:
             type: string
           maxItems: 1
           nullable: true
-          pattern: "^(?!.*//)(?=.*/$)/[A-z0-9_\\-/]*$"
+          pattern: "^(?!.*\\/\\/)(?=.*\\/$)\\/[A-z0-9_\\-\\/]*$"
           type: array
         aliases:
           items:
@@ -6897,7 +6713,7 @@ components:
           $ref: '#/components/schemas/Application'
         code:
           maxLength: 50000
-          nullable: true
+          minLength: 1
           pattern: "^[\\S\\s]*$"
           type: string
         configuration:
@@ -6908,6 +6724,7 @@ components:
           nullable: true
           type: object
       required:
+      - code
       - name
       type: object
     UpdateTenantRequest:

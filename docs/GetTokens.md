@@ -4,7 +4,6 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Type** | Pointer to **[]string** |  | [optional] 
 **Id** | Pointer to **[]string** |  | [optional] 
 **Metadata** | Pointer to **map[string]string** |  | [optional] 
 **Page** | Pointer to **NullableInt32** |  | [optional] 
@@ -30,41 +29,6 @@ NewGetTokensWithDefaults instantiates a new GetTokens object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
-### GetType
-
-`func (o *GetTokens) GetType() []string`
-
-GetType returns the Type field if non-nil, zero value otherwise.
-
-### GetTypeOk
-
-`func (o *GetTokens) GetTypeOk() (*[]string, bool)`
-
-GetTypeOk returns a tuple with the Type field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetType
-
-`func (o *GetTokens) SetType(v []string)`
-
-SetType sets Type field to given value.
-
-### HasType
-
-`func (o *GetTokens) HasType() bool`
-
-HasType returns a boolean if a field has been set.
-
-### SetTypeNil
-
-`func (o *GetTokens) SetTypeNil(b bool)`
-
- SetTypeNil sets the value for Type to be an explicit nil
-
-### UnsetType
-`func (o *GetTokens) UnsetType()`
-
-UnsetType ensures that no value is present for Type, not even an explicit nil
 ### GetId
 
 `func (o *GetTokens) GetId() []string`

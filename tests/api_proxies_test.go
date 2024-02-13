@@ -19,8 +19,7 @@ func TestProxiesCRUD(t *testing.T) {
 	testutils.AssertMethodDidNotError(err, response, "ApplicationsApi Create", t)
 
 	reactorName := "Go Test Reactor"
-	createReactorRequest := *basistheory.NewCreateReactorRequest(reactorName)
-	createReactorRequest.SetCode("module.exports = function (req) {return {raw: \"Goodbye World\"}}")
+	createReactorRequest := *basistheory.NewCreateReactorRequest(reactorName, "module.exports = function (req) {return {raw: \"Goodbye World\"}}")
 	createReactorRequest.SetApplication(*createdApplication)
 	var createdReactor *basistheory.Reactor
 	createdReactor, response, err = apiClient.ReactorsApi.Create(contextWithAPIKey).CreateReactorRequest(createReactorRequest).Execute()
