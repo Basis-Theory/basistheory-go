@@ -129,7 +129,6 @@ Class | Method | HTTP request | Description
 *TenantsApi* | [**Get**](docs/TenantsApi.md#get) | **Get** /tenants/self | 
 *TenantsApi* | [**GetInvitations**](docs/TenantsApi.md#getinvitations) | **Get** /tenants/self/invitations | 
 *TenantsApi* | [**GetMembers**](docs/TenantsApi.md#getmembers) | **Get** /tenants/self/members | 
-*TenantsApi* | [**GetTenantOperationReport**](docs/TenantsApi.md#gettenantoperationreport) | **Get** /tenants/self/reports/operations | 
 *TenantsApi* | [**GetTenantUsageReport**](docs/TenantsApi.md#gettenantusagereport) | **Get** /tenants/self/reports/usage | 
 *TenantsApi* | [**ResendInvitation**](docs/TenantsApi.md#resendinvitation) | **Post** /tenants/self/invitations/{invitationId}/resend | 
 *TenantsApi* | [**Update**](docs/TenantsApi.md#update) | **Put** /tenants/self | 
@@ -140,9 +139,6 @@ Class | Method | HTTP request | Description
 *TokensApi* | [**GetById**](docs/TokensApi.md#getbyid) | **Get** /tokens/{id} | 
 *TokensApi* | [**Search**](docs/TokensApi.md#search) | **Post** /tokens/search | 
 *TokensApi* | [**Update**](docs/TokensApi.md#update) | **Patch** /tokens/{id} | 
-*TransactionsApi* | [**Commit**](docs/TransactionsApi.md#commit) | **Post** /transactions/{id}/commit | 
-*TransactionsApi* | [**Create**](docs/TransactionsApi.md#create) | **Post** /transactions | 
-*TransactionsApi* | [**Rollback**](docs/TransactionsApi.md#rollback) | **Post** /transactions/{id}/rollback | 
 
 
 ## Documentation For Models
@@ -164,7 +160,6 @@ Class | Method | HTTP request | Description
  - [CreateSessionResponse](docs/CreateSessionResponse.md)
  - [CreateTenantInvitationRequest](docs/CreateTenantInvitationRequest.md)
  - [CreateTokenRequest](docs/CreateTokenRequest.md)
- - [CreateTransactionResponse](docs/CreateTransactionResponse.md)
  - [EncryptionKey](docs/EncryptionKey.md)
  - [EncryptionMetadata](docs/EncryptionMetadata.md)
  - [GetApplications](docs/GetApplications.md)

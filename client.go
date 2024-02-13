@@ -69,8 +69,6 @@ type APIClient struct {
 	TokenizeApi *TokenizeApiService
 
 	TokensApi *TokensApiService
-
-	TransactionsApi *TransactionsApiService
 }
 
 type service struct {
@@ -100,7 +98,6 @@ func NewAPIClient(cfg *Configuration) *APIClient {
 	c.TenantsApi = (*TenantsApiService)(&c.common)
 	c.TokenizeApi = (*TokenizeApiService)(&c.common)
 	c.TokensApi = (*TokensApiService)(&c.common)
-	c.TransactionsApi = (*TransactionsApiService)(&c.common)
 
 	return c
 }

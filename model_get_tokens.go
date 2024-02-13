@@ -19,7 +19,6 @@ var _ MappedNullable = &GetTokens{}
 
 // GetTokens struct for GetTokens
 type GetTokens struct {
-	Type     []string          `json:"type,omitempty"`
 	Id       []string          `json:"id,omitempty"`
 	Metadata map[string]string `json:"metadata,omitempty"`
 	Page     NullableInt32     `json:"page,omitempty"`
@@ -42,39 +41,6 @@ func NewGetTokens() *GetTokens {
 func NewGetTokensWithDefaults() *GetTokens {
 	this := GetTokens{}
 	return &this
-}
-
-// GetType returns the Type field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *GetTokens) GetType() []string {
-	if o == nil {
-		var ret []string
-		return ret
-	}
-	return o.Type
-}
-
-// GetTypeOk returns a tuple with the Type field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *GetTokens) GetTypeOk() ([]string, bool) {
-	if o == nil || IsNil(o.Type) {
-		return nil, false
-	}
-	return o.Type, true
-}
-
-// HasType returns a boolean if a field is not nil.
-func (o *GetTokens) HasType() bool {
-	if o != nil && !IsNil(o.Type) {
-		return true
-	}
-
-	return false
-}
-
-// SetType gets a reference to the given []string and assigns it to the Type field.
-func (o *GetTokens) SetType(v []string) {
-	o.Type = v
 }
 
 // GetId returns the Id field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -282,9 +248,6 @@ func (o GetTokens) MarshalJSON() ([]byte, error) {
 
 func (o GetTokens) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if o.Type != nil {
-		toSerialize["type"] = o.Type
-	}
 	if o.Id != nil {
 		toSerialize["id"] = o.Id
 	}
