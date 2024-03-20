@@ -7,6 +7,7 @@ Name | Type | Description | Notes
 **Id** | Pointer to **string** |  | [optional] 
 **OwnerId** | Pointer to **string** |  | [optional] 
 **Name** | Pointer to **NullableString** |  | [optional] 
+**Type** | Pointer to **NullableString** |  | [optional] 
 **CreatedBy** | Pointer to **NullableString** |  | [optional] 
 **CreatedAt** | Pointer to **NullableTime** |  | [optional] 
 **ModifiedBy** | Pointer to **NullableString** |  | [optional] 
@@ -117,6 +118,41 @@ HasName returns a boolean if a field has been set.
 `func (o *Tenant) UnsetName()`
 
 UnsetName ensures that no value is present for Name, not even an explicit nil
+### GetType
+
+`func (o *Tenant) GetType() string`
+
+GetType returns the Type field if non-nil, zero value otherwise.
+
+### GetTypeOk
+
+`func (o *Tenant) GetTypeOk() (*string, bool)`
+
+GetTypeOk returns a tuple with the Type field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetType
+
+`func (o *Tenant) SetType(v string)`
+
+SetType sets Type field to given value.
+
+### HasType
+
+`func (o *Tenant) HasType() bool`
+
+HasType returns a boolean if a field has been set.
+
+### SetTypeNil
+
+`func (o *Tenant) SetTypeNil(b bool)`
+
+ SetTypeNil sets the value for Type to be an explicit nil
+
+### UnsetType
+`func (o *Tenant) UnsetType()`
+
+UnsetType ensures that no value is present for Type, not even an explicit nil
 ### GetCreatedBy
 
 `func (o *Tenant) GetCreatedBy() string`

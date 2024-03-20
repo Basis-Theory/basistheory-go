@@ -2872,6 +2872,141 @@
         }
       }
     },
+    "/3ds/sessions/{sessionId}/authenticate": {
+      "post": {
+        "tags": [
+          "ThreeDS"
+        ],
+        "operationId": "ThreeDS.AuthenticateSession",
+        "parameters": [
+          {
+            "name": "sessionId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "maxLength": 36,
+              "pattern": "^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$",
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AuthenticateThreeDSSessionRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ThreeDSAuthentication"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/3ds/sessions/{sessionId}/challenge-result": {
+      "get": {
+        "tags": [
+          "ThreeDS"
+        ],
+        "operationId": "ThreeDS.GetChallengeResult",
+        "parameters": [
+          {
+            "name": "sessionId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "maxLength": 36,
+              "pattern": "^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$",
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ThreeDSAuthentication"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/tokenize": {
       "post": {
         "tags": [
@@ -3555,6 +3690,51 @@
             "type": "array",
             "items": {
               "type": "string"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "AuthenticateThreeDSSessionRequest": {
+        "required": [
+          "authentication_category",
+          "authentication_type",
+          "requestor_info"
+        ],
+        "type": "object",
+        "properties": {
+          "authentication_category": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "authentication_type": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "challenge_preference": {
+            "type": "string",
+            "nullable": true
+          },
+          "purchase_info": {
+            "$ref": "#/components/schemas/ThreeDSPurchaseInfo"
+          },
+          "merchant_info": {
+            "$ref": "#/components/schemas/ThreeDSMerchantInfo"
+          },
+          "requestor_info": {
+            "$ref": "#/components/schemas/ThreeDSRequestorInfo"
+          },
+          "cardholder_info": {
+            "$ref": "#/components/schemas/ThreeDSCardholderInfo"
+          },
+          "broadcast_info": {
+            "nullable": true
+          },
+          "message_extensions": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ThreeDSMessageExtension"
             },
             "nullable": true
           }
@@ -4798,13 +4978,6 @@
           "callback_url": {
             "type": "string",
             "nullable": true
-          },
-          "timeout_ms": {
-            "maximum": 210000,
-            "minimum": 10000,
-            "type": "integer",
-            "format": "int32",
-            "nullable": true
           }
         },
         "additionalProperties": false
@@ -5124,7 +5297,7 @@
             "type": "string"
           },
           "value": {
-            "maxLength": 50000,
+            "maxLength": 1000,
             "minLength": 1,
             "type": "string"
           }
@@ -5149,6 +5322,12 @@
           "name": {
             "maxLength": 200,
             "pattern": "^.+$",
+            "type": "string",
+            "nullable": true
+          },
+          "type": {
+            "maxLength": 50,
+            "pattern": "^(?:test|production)$",
             "type": "string",
             "nullable": true
           },
@@ -5346,6 +5525,477 @@
         "properties": {
           "token_report": {
             "$ref": "#/components/schemas/TokenReport"
+          }
+        },
+        "additionalProperties": false
+      },
+      "ThreeDSAcsRenderingType": {
+        "type": "object",
+        "properties": {
+          "acsInterface": {
+            "type": "string",
+            "nullable": true
+          },
+          "acsUiTemplate": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "ThreeDSAddress": {
+        "type": "object",
+        "properties": {
+          "line1": {
+            "type": "string",
+            "nullable": true
+          },
+          "line2": {
+            "type": "string",
+            "nullable": true
+          },
+          "line3": {
+            "type": "string",
+            "nullable": true
+          },
+          "postal_code": {
+            "type": "string",
+            "nullable": true
+          },
+          "city": {
+            "type": "string",
+            "nullable": true
+          },
+          "state_code": {
+            "type": "string",
+            "nullable": true
+          },
+          "country_code": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "ThreeDSAuthentication": {
+        "type": "object",
+        "properties": {
+          "threeds_version": {
+            "type": "string",
+            "nullable": true
+          },
+          "acs_transaction_id": {
+            "maxLength": 36,
+            "pattern": "^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$",
+            "type": "string",
+            "format": "uuid",
+            "nullable": true
+          },
+          "ds_transaction_id": {
+            "maxLength": 36,
+            "pattern": "^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$",
+            "type": "string",
+            "format": "uuid",
+            "nullable": true
+          },
+          "sdk_transaction_id": {
+            "maxLength": 36,
+            "pattern": "^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$",
+            "type": "string",
+            "format": "uuid",
+            "nullable": true
+          },
+          "acs_reference_number": {
+            "type": "string",
+            "nullable": true
+          },
+          "ds_reference_number": {
+            "type": "string",
+            "nullable": true
+          },
+          "authentication_value": {
+            "type": "string",
+            "nullable": true
+          },
+          "authentication_status": {
+            "type": "string",
+            "nullable": true
+          },
+          "authentication_status_reason": {
+            "type": "string",
+            "nullable": true
+          },
+          "eci": {
+            "type": "string",
+            "nullable": true
+          },
+          "acs_challenge_mandated": {
+            "type": "string",
+            "nullable": true
+          },
+          "acs_decoupled_authentication": {
+            "type": "string",
+            "nullable": true
+          },
+          "authentication_challenge_type": {
+            "type": "string",
+            "nullable": true
+          },
+          "acs_rendering_type": {
+            "$ref": "#/components/schemas/ThreeDSAcsRenderingType"
+          },
+          "acs_signed_content": {
+            "type": "string",
+            "nullable": true
+          },
+          "acs_challenge_url": {
+            "type": "string",
+            "nullable": true
+          },
+          "challenge_attempts": {
+            "type": "string",
+            "nullable": true
+          },
+          "challenge_cancel_reason": {
+            "type": "string",
+            "nullable": true
+          },
+          "cardholder_info": {
+            "type": "string",
+            "nullable": true
+          },
+          "whitelist_status": {
+            "type": "string",
+            "nullable": true
+          },
+          "whitelist_status_source": {
+            "type": "string",
+            "nullable": true
+          },
+          "message_extensions": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ThreeDSMessageExtension"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "ThreeDSCardholderAccountInfo": {
+        "type": "object",
+        "properties": {
+          "account_age": {
+            "type": "string",
+            "nullable": true
+          },
+          "account_last_changed": {
+            "type": "string",
+            "nullable": true
+          },
+          "account_change_date": {
+            "type": "string",
+            "nullable": true
+          },
+          "account_created_date": {
+            "type": "string",
+            "nullable": true
+          },
+          "account_pwd_last_changed": {
+            "type": "string",
+            "nullable": true
+          },
+          "account_pwd_change_date": {
+            "type": "string",
+            "nullable": true
+          },
+          "purchase_count_half_year": {
+            "type": "string",
+            "nullable": true
+          },
+          "transaction_count_day": {
+            "type": "string",
+            "nullable": true
+          },
+          "payment_account_age": {
+            "type": "string",
+            "nullable": true
+          },
+          "transaction_count_year": {
+            "type": "string",
+            "nullable": true
+          },
+          "payment_account_created": {
+            "type": "string",
+            "nullable": true
+          },
+          "shipping_address_first_used": {
+            "type": "string",
+            "nullable": true
+          },
+          "shipping_address_usage_date": {
+            "type": "string",
+            "nullable": true
+          },
+          "shipping_account_name_match": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "suspicious_activity_observed": {
+            "type": "boolean",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "ThreeDSCardholderAuthenticationInfo": {
+        "type": "object",
+        "properties": {
+          "method": {
+            "type": "string",
+            "nullable": true
+          },
+          "timestamp": {
+            "type": "string",
+            "nullable": true
+          },
+          "data": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "ThreeDSCardholderInfo": {
+        "type": "object",
+        "properties": {
+          "account_id": {
+            "type": "string",
+            "nullable": true
+          },
+          "account_type": {
+            "type": "string",
+            "nullable": true
+          },
+          "account_info": {
+            "$ref": "#/components/schemas/ThreeDSCardholderAccountInfo"
+          },
+          "authentication_info": {
+            "$ref": "#/components/schemas/ThreeDSCardholderAuthenticationInfo"
+          },
+          "prior_authentication_info": {
+            "$ref": "#/components/schemas/ThreeDSPriorAuthenticationInfo"
+          },
+          "name": {
+            "type": "string",
+            "nullable": true
+          },
+          "email": {
+            "type": "string",
+            "nullable": true
+          },
+          "phone_number": {
+            "$ref": "#/components/schemas/ThreeDSCardholderPhoneNumber"
+          },
+          "mobile_phone_number": {
+            "$ref": "#/components/schemas/ThreeDSCardholderPhoneNumber"
+          },
+          "work_phone_number": {
+            "$ref": "#/components/schemas/ThreeDSCardholderPhoneNumber"
+          },
+          "billing_shipping_address_match": {
+            "type": "string",
+            "nullable": true
+          },
+          "billing_address": {
+            "$ref": "#/components/schemas/ThreeDSAddress"
+          },
+          "shipping_address": {
+            "$ref": "#/components/schemas/ThreeDSAddress"
+          }
+        },
+        "additionalProperties": false
+      },
+      "ThreeDSCardholderPhoneNumber": {
+        "type": "object",
+        "properties": {
+          "country_code": {
+            "type": "string",
+            "nullable": true
+          },
+          "number": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "ThreeDSMerchantInfo": {
+        "type": "object",
+        "properties": {
+          "mid": {
+            "type": "string",
+            "nullable": true
+          },
+          "acquirer_bin": {
+            "type": "string",
+            "nullable": true
+          },
+          "name": {
+            "type": "string",
+            "nullable": true
+          },
+          "country_code": {
+            "type": "string",
+            "nullable": true
+          },
+          "category_code": {
+            "type": "string",
+            "nullable": true
+          },
+          "risk_info": {
+            "$ref": "#/components/schemas/ThreeDSMerchantRiskInfo"
+          }
+        },
+        "additionalProperties": false
+      },
+      "ThreeDSMerchantRiskInfo": {
+        "type": "object",
+        "properties": {
+          "delivery_email": {
+            "type": "string",
+            "nullable": true
+          },
+          "delivery_time_frame": {
+            "type": "string",
+            "nullable": true
+          },
+          "gift_card_amount": {
+            "type": "string",
+            "nullable": true
+          },
+          "gift_card_count": {
+            "type": "string",
+            "nullable": true
+          },
+          "gift_card_currency": {
+            "type": "string",
+            "nullable": true
+          },
+          "pre_order_purchase": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "pre_order_date": {
+            "type": "string",
+            "nullable": true
+          },
+          "reordered_purchase": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "shipping_method": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "ThreeDSMessageExtension": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "nullable": true
+          },
+          "name": {
+            "type": "string",
+            "nullable": true
+          },
+          "critical": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "data": {
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "ThreeDSPriorAuthenticationInfo": {
+        "type": "object",
+        "properties": {
+          "method": {
+            "type": "string",
+            "nullable": true
+          },
+          "timestamp": {
+            "type": "string",
+            "nullable": true
+          },
+          "reference_id": {
+            "type": "string",
+            "nullable": true
+          },
+          "data": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "ThreeDSPurchaseInfo": {
+        "type": "object",
+        "properties": {
+          "amount": {
+            "type": "string",
+            "nullable": true
+          },
+          "currency": {
+            "type": "string",
+            "nullable": true
+          },
+          "exponent": {
+            "type": "string",
+            "nullable": true
+          },
+          "date": {
+            "type": "string",
+            "nullable": true
+          },
+          "transaction_type": {
+            "type": "string",
+            "nullable": true
+          },
+          "installment_count": {
+            "type": "string",
+            "nullable": true
+          },
+          "recurring_expiration": {
+            "type": "string",
+            "nullable": true
+          },
+          "recurring_frequency": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "ThreeDSRequestorInfo": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "nullable": true
+          },
+          "name": {
+            "type": "string",
+            "nullable": true
+          },
+          "url": {
+            "type": "string",
+            "nullable": true
           }
         },
         "additionalProperties": false

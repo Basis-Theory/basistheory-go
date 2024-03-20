@@ -16,121 +16,71 @@ import (
 	"io"
 	"net/http"
 	"net/url"
-	"time"
+	"strings"
 )
 
-// LogsApiService LogsApi service
-type LogsApiService service
+// ThreeDSApiService ThreeDSApi service
+type ThreeDSApiService service
 
-type LogsApiGetRequest struct {
-	ctx        context.Context
-	ApiService *LogsApiService
-	entityType *string
-	entityId   *string
-	startDate  *time.Time
-	endDate    *time.Time
-	page       *int32
-	start      *string
-	size       *int32
+type ThreeDSApiThreeDSAuthenticateSessionRequest struct {
+	ctx                               context.Context
+	ApiService                        *ThreeDSApiService
+	sessionId                         string
+	authenticateThreeDSSessionRequest *AuthenticateThreeDSSessionRequest
 }
 
-func (r LogsApiGetRequest) EntityType(entityType string) LogsApiGetRequest {
-	r.entityType = &entityType
+func (r ThreeDSApiThreeDSAuthenticateSessionRequest) AuthenticateThreeDSSessionRequest(authenticateThreeDSSessionRequest AuthenticateThreeDSSessionRequest) ThreeDSApiThreeDSAuthenticateSessionRequest {
+	r.authenticateThreeDSSessionRequest = &authenticateThreeDSSessionRequest
 	return r
 }
 
-func (r LogsApiGetRequest) EntityId(entityId string) LogsApiGetRequest {
-	r.entityId = &entityId
-	return r
-}
-
-func (r LogsApiGetRequest) StartDate(startDate time.Time) LogsApiGetRequest {
-	r.startDate = &startDate
-	return r
-}
-
-func (r LogsApiGetRequest) EndDate(endDate time.Time) LogsApiGetRequest {
-	r.endDate = &endDate
-	return r
-}
-
-func (r LogsApiGetRequest) Page(page int32) LogsApiGetRequest {
-	r.page = &page
-	return r
-}
-
-func (r LogsApiGetRequest) Start(start string) LogsApiGetRequest {
-	r.start = &start
-	return r
-}
-
-func (r LogsApiGetRequest) Size(size int32) LogsApiGetRequest {
-	r.size = &size
-	return r
-}
-
-func (r LogsApiGetRequest) Execute() (*LogPaginatedList, *http.Response, error) {
-	return r.ApiService.GetExecute(r)
+func (r ThreeDSApiThreeDSAuthenticateSessionRequest) Execute() (*ThreeDSAuthentication, *http.Response, error) {
+	return r.ApiService.ThreeDSAuthenticateSessionExecute(r)
 }
 
 /*
-Get Method for Get
+ThreeDSAuthenticateSession Method for ThreeDSAuthenticateSession
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@return LogsApiGetRequest
+	@param sessionId
+	@return ThreeDSApiThreeDSAuthenticateSessionRequest
 */
-func (a *LogsApiService) Get(ctx context.Context) LogsApiGetRequest {
-	return LogsApiGetRequest{
+func (a *ThreeDSApiService) ThreeDSAuthenticateSession(ctx context.Context, sessionId string) ThreeDSApiThreeDSAuthenticateSessionRequest {
+	return ThreeDSApiThreeDSAuthenticateSessionRequest{
 		ApiService: a,
 		ctx:        ctx,
+		sessionId:  sessionId,
 	}
 }
 
 // Execute executes the request
 //
-//	@return LogPaginatedList
-func (a *LogsApiService) GetExecute(r LogsApiGetRequest) (*LogPaginatedList, *http.Response, error) {
+//	@return ThreeDSAuthentication
+func (a *ThreeDSApiService) ThreeDSAuthenticateSessionExecute(r ThreeDSApiThreeDSAuthenticateSessionRequest) (*ThreeDSAuthentication, *http.Response, error) {
 	var (
-		localVarHTTPMethod  = http.MethodGet
+		localVarHTTPMethod  = http.MethodPost
 		localVarPostBody    interface{}
 		formFiles           []formFile
-		localVarReturnValue *LogPaginatedList
+		localVarReturnValue *ThreeDSAuthentication
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "LogsApiService.Get")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ThreeDSApiService.ThreeDSAuthenticateSession")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/logs"
+	localVarPath := localBasePath + "/3ds/sessions/{sessionId}/authenticate"
+	localVarPath = strings.Replace(localVarPath, "{"+"sessionId"+"}", url.PathEscape(parameterValueToString(r.sessionId, "sessionId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
+	if strlen(r.sessionId) > 36 {
+		return localVarReturnValue, nil, reportError("sessionId must have less than 36 elements")
+	}
 
-	if r.entityType != nil {
-		localVarQueryParams.Add("entity_type", parameterToString(*r.entityType, ""))
-	}
-	if r.entityId != nil {
-		localVarQueryParams.Add("entity_id", parameterToString(*r.entityId, ""))
-	}
-	if r.startDate != nil {
-		localVarQueryParams.Add("start_date", parameterToString(*r.startDate, ""))
-	}
-	if r.endDate != nil {
-		localVarQueryParams.Add("end_date", parameterToString(*r.endDate, ""))
-	}
-	if r.page != nil {
-		localVarQueryParams.Add("page", parameterToString(*r.page, ""))
-	}
-	if r.start != nil {
-		localVarQueryParams.Add("start", parameterToString(*r.start, ""))
-	}
-	if r.size != nil {
-		localVarQueryParams.Add("size", parameterToString(*r.size, ""))
-	}
 	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{}
+	localVarHTTPContentTypes := []string{"application/json"}
 
 	// set Content-Type header
 	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
@@ -146,6 +96,8 @@ func (a *LogsApiService) GetExecute(r LogsApiGetRequest) (*LogPaginatedList, *ht
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
+	// body params
+	localVarPostBody = r.authenticateThreeDSSessionRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -182,16 +134,6 @@ func (a *LogsApiService) GetExecute(r LogsApiGetRequest) (*LogPaginatedList, *ht
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 400 {
-			var v ValidationProblemDetails
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
@@ -203,6 +145,16 @@ func (a *LogsApiService) GetExecute(r LogsApiGetRequest) (*LogPaginatedList, *ht
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
+			var v ProblemDetails
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 404 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -226,49 +178,56 @@ func (a *LogsApiService) GetExecute(r LogsApiGetRequest) (*LogPaginatedList, *ht
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type LogsApiGetEntityTypesRequest struct {
+type ThreeDSApiThreeDSGetChallengeResultRequest struct {
 	ctx        context.Context
-	ApiService *LogsApiService
+	ApiService *ThreeDSApiService
+	sessionId  string
 }
 
-func (r LogsApiGetEntityTypesRequest) Execute() ([]LogEntityType, *http.Response, error) {
-	return r.ApiService.GetEntityTypesExecute(r)
+func (r ThreeDSApiThreeDSGetChallengeResultRequest) Execute() (*ThreeDSAuthentication, *http.Response, error) {
+	return r.ApiService.ThreeDSGetChallengeResultExecute(r)
 }
 
 /*
-GetEntityTypes Method for GetEntityTypes
+ThreeDSGetChallengeResult Method for ThreeDSGetChallengeResult
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@return LogsApiGetEntityTypesRequest
+	@param sessionId
+	@return ThreeDSApiThreeDSGetChallengeResultRequest
 */
-func (a *LogsApiService) GetEntityTypes(ctx context.Context) LogsApiGetEntityTypesRequest {
-	return LogsApiGetEntityTypesRequest{
+func (a *ThreeDSApiService) ThreeDSGetChallengeResult(ctx context.Context, sessionId string) ThreeDSApiThreeDSGetChallengeResultRequest {
+	return ThreeDSApiThreeDSGetChallengeResultRequest{
 		ApiService: a,
 		ctx:        ctx,
+		sessionId:  sessionId,
 	}
 }
 
 // Execute executes the request
 //
-//	@return []LogEntityType
-func (a *LogsApiService) GetEntityTypesExecute(r LogsApiGetEntityTypesRequest) ([]LogEntityType, *http.Response, error) {
+//	@return ThreeDSAuthentication
+func (a *ThreeDSApiService) ThreeDSGetChallengeResultExecute(r ThreeDSApiThreeDSGetChallengeResultRequest) (*ThreeDSAuthentication, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
 		localVarPostBody    interface{}
 		formFiles           []formFile
-		localVarReturnValue []LogEntityType
+		localVarReturnValue *ThreeDSAuthentication
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "LogsApiService.GetEntityTypes")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ThreeDSApiService.ThreeDSGetChallengeResult")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/logs/entity-types"
+	localVarPath := localBasePath + "/3ds/sessions/{sessionId}/challenge-result"
+	localVarPath = strings.Replace(localVarPath, "{"+"sessionId"+"}", url.PathEscape(parameterValueToString(r.sessionId, "sessionId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
+	if strlen(r.sessionId) > 36 {
+		return localVarReturnValue, nil, reportError("sessionId must have less than 36 elements")
+	}
 
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -334,6 +293,16 @@ func (a *LogsApiService) GetEntityTypesExecute(r LogsApiGetEntityTypesRequest) (
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
+			var v ProblemDetails
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 404 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
