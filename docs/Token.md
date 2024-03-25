@@ -10,7 +10,6 @@ Name | Type | Description | Notes
 **Data** | Pointer to **interface{}** |  | [optional] 
 **Metadata** | Pointer to **map[string]string** |  | [optional] 
 **Enrichments** | Pointer to [**TokenEnrichments**](TokenEnrichments.md) |  | [optional] 
-**Encryption** | Pointer to [**EncryptionMetadata**](EncryptionMetadata.md) |  | [optional] 
 **CreatedBy** | Pointer to **NullableString** |  | [optional] 
 **CreatedAt** | Pointer to **NullableTime** |  | [optional] 
 **ModifiedBy** | Pointer to **NullableString** |  | [optional] 
@@ -212,31 +211,6 @@ SetEnrichments sets Enrichments field to given value.
 `func (o *Token) HasEnrichments() bool`
 
 HasEnrichments returns a boolean if a field has been set.
-
-### GetEncryption
-
-`func (o *Token) GetEncryption() EncryptionMetadata`
-
-GetEncryption returns the Encryption field if non-nil, zero value otherwise.
-
-### GetEncryptionOk
-
-`func (o *Token) GetEncryptionOk() (*EncryptionMetadata, bool)`
-
-GetEncryptionOk returns a tuple with the Encryption field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetEncryption
-
-`func (o *Token) SetEncryption(v EncryptionMetadata)`
-
-SetEncryption sets Encryption field to given value.
-
-### HasEncryption
-
-`func (o *Token) HasEncryption() bool`
-
-HasEncryption returns a boolean if a field has been set.
 
 ### GetCreatedBy
 

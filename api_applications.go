@@ -804,6 +804,8 @@ RegenerateKey Method for RegenerateKey
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param id
  @return ApplicationsApiRegenerateKeyRequest
+
+Deprecated
 */
 func (a *ApplicationsApiService) RegenerateKey(ctx context.Context, id string) ApplicationsApiRegenerateKeyRequest {
 	return ApplicationsApiRegenerateKeyRequest{
@@ -815,6 +817,7 @@ func (a *ApplicationsApiService) RegenerateKey(ctx context.Context, id string) A
 
 // Execute executes the request
 //  @return Application
+// Deprecated
 func (a *ApplicationsApiService) RegenerateKeyExecute(r ApplicationsApiRegenerateKeyRequest) (*Application, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodPost
@@ -912,6 +915,16 @@ func (a *ApplicationsApiService) RegenerateKeyExecute(r ApplicationsApiRegenerat
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
+			var v ProblemDetails
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 422 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {

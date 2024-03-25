@@ -24,6 +24,7 @@ type CreateApplicationRequest struct {
 	ExpiresAt   NullableString `json:"expires_at,omitempty"`
 	Permissions []string       `json:"permissions,omitempty"`
 	Rules       []AccessRule   `json:"rules,omitempty"`
+	CreateKey   NullableBool   `json:"create_key,omitempty"`
 }
 
 // NewCreateApplicationRequest instantiates a new CreateApplicationRequest object
@@ -202,6 +203,49 @@ func (o *CreateApplicationRequest) SetRules(v []AccessRule) {
 	o.Rules = v
 }
 
+// GetCreateKey returns the CreateKey field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *CreateApplicationRequest) GetCreateKey() bool {
+	if o == nil || IsNil(o.CreateKey.Get()) {
+		var ret bool
+		return ret
+	}
+	return *o.CreateKey.Get()
+}
+
+// GetCreateKeyOk returns a tuple with the CreateKey field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *CreateApplicationRequest) GetCreateKeyOk() (*bool, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.CreateKey.Get(), o.CreateKey.IsSet()
+}
+
+// HasCreateKey returns a boolean if a field is not nil.
+func (o *CreateApplicationRequest) HasCreateKey() bool {
+	if o != nil && !IsNil(o.CreateKey) {
+		return true
+	}
+
+	return false
+}
+
+// SetCreateKey gets a reference to the given NullableBool and assigns it to the CreateKey field.
+func (o *CreateApplicationRequest) SetCreateKey(v bool) {
+	o.CreateKey.Set(&v)
+}
+
+// SetCreateKeyNil sets the value for CreateKey to be an explicit nil
+func (o *CreateApplicationRequest) SetCreateKeyNil() {
+	o.CreateKey.Set(nil)
+}
+
+// UnsetCreateKey ensures that no value is present for CreateKey, not even an explicit nil
+func (o *CreateApplicationRequest) UnsetCreateKey() {
+	o.CreateKey.Unset()
+}
+
 func (o CreateApplicationRequest) MarshalJSON() ([]byte, error) {
 	toSerialize, err := o.ToMap()
 	if err != nil {
@@ -222,6 +266,9 @@ func (o CreateApplicationRequest) ToMap() (map[string]interface{}, error) {
 	}
 	if o.Rules != nil {
 		toSerialize["rules"] = o.Rules
+	}
+	if o.CreateKey.IsSet() {
+		toSerialize["create_key"] = o.CreateKey.Get()
 	}
 	return toSerialize, nil
 }

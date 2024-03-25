@@ -90,6 +90,10 @@ All URIs are relative to *https://api.basistheory.com*
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
+*ApplicationKeysApi* | [**Create**](docs/ApplicationKeysApi.md#create) | **Post** /applications/{id}/keys | 
+*ApplicationKeysApi* | [**Delete**](docs/ApplicationKeysApi.md#delete) | **Delete** /applications/{id}/keys/{keyId} | 
+*ApplicationKeysApi* | [**Get**](docs/ApplicationKeysApi.md#get) | **Get** /applications/{id}/keys | 
+*ApplicationKeysApi* | [**GetById**](docs/ApplicationKeysApi.md#getbyid) | **Get** /applications/{id}/keys/{keyId} | 
 *ApplicationTemplatesApi* | [**Get**](docs/ApplicationTemplatesApi.md#get) | **Get** /application-templates | 
 *ApplicationTemplatesApi* | [**GetById**](docs/ApplicationTemplatesApi.md#getbyid) | **Get** /application-templates/{id} | 
 *ApplicationsApi* | [**Create**](docs/ApplicationsApi.md#create) | **Post** /applications | 
@@ -132,6 +136,9 @@ Class | Method | HTTP request | Description
 *TenantsApi* | [**GetTenantUsageReport**](docs/TenantsApi.md#gettenantusagereport) | **Get** /tenants/self/reports/usage | 
 *TenantsApi* | [**ResendInvitation**](docs/TenantsApi.md#resendinvitation) | **Post** /tenants/self/invitations/{invitationId}/resend | 
 *TenantsApi* | [**Update**](docs/TenantsApi.md#update) | **Put** /tenants/self | 
+*ThreeDSApi* | [**Call3dsSessionsIdGet**](docs/ThreeDSApi.md#call3dssessionsidget) | **Get** /3ds/sessions/{id} | 
+*ThreeDSApi* | [**ThreeDSAuthenticateSession**](docs/ThreeDSApi.md#threedsauthenticatesession) | **Post** /3ds/sessions/{sessionId}/authenticate | 
+*ThreeDSApi* | [**ThreeDSGetChallengeResult**](docs/ThreeDSApi.md#threedsgetchallengeresult) | **Get** /3ds/sessions/{sessionId}/challenge-result | 
 *TokenizeApi* | [**Tokenize**](docs/TokenizeApi.md#tokenize) | **Post** /tokenize | 
 *TokensApi* | [**Create**](docs/TokensApi.md#create) | **Post** /tokens | 
 *TokensApi* | [**Delete**](docs/TokensApi.md#delete) | **Delete** /tokens/{id} | 
@@ -145,8 +152,10 @@ Class | Method | HTTP request | Description
 
  - [AccessRule](docs/AccessRule.md)
  - [Application](docs/Application.md)
+ - [ApplicationKey](docs/ApplicationKey.md)
  - [ApplicationPaginatedList](docs/ApplicationPaginatedList.md)
  - [ApplicationTemplate](docs/ApplicationTemplate.md)
+ - [AuthenticateThreeDSSessionRequest](docs/AuthenticateThreeDSSessionRequest.md)
  - [AuthorizeSessionRequest](docs/AuthorizeSessionRequest.md)
  - [BinDetails](docs/BinDetails.md)
  - [BinDetailsBank](docs/BinDetailsBank.md)
@@ -200,6 +209,24 @@ Class | Method | HTTP request | Description
  - [TenantMemberResponse](docs/TenantMemberResponse.md)
  - [TenantMemberResponsePaginatedList](docs/TenantMemberResponsePaginatedList.md)
  - [TenantUsageReport](docs/TenantUsageReport.md)
+ - [ThreeDSAcsRenderingType](docs/ThreeDSAcsRenderingType.md)
+ - [ThreeDSAddress](docs/ThreeDSAddress.md)
+ - [ThreeDSAuthentication](docs/ThreeDSAuthentication.md)
+ - [ThreeDSCardholderAccountInfo](docs/ThreeDSCardholderAccountInfo.md)
+ - [ThreeDSCardholderAuthenticationInfo](docs/ThreeDSCardholderAuthenticationInfo.md)
+ - [ThreeDSCardholderInfo](docs/ThreeDSCardholderInfo.md)
+ - [ThreeDSCardholderPhoneNumber](docs/ThreeDSCardholderPhoneNumber.md)
+ - [ThreeDSDeviceInfo](docs/ThreeDSDeviceInfo.md)
+ - [ThreeDSMerchantInfo](docs/ThreeDSMerchantInfo.md)
+ - [ThreeDSMerchantRiskInfo](docs/ThreeDSMerchantRiskInfo.md)
+ - [ThreeDSMessageExtension](docs/ThreeDSMessageExtension.md)
+ - [ThreeDSMethod](docs/ThreeDSMethod.md)
+ - [ThreeDSMobileSdkRenderOptions](docs/ThreeDSMobileSdkRenderOptions.md)
+ - [ThreeDSPriorAuthenticationInfo](docs/ThreeDSPriorAuthenticationInfo.md)
+ - [ThreeDSPurchaseInfo](docs/ThreeDSPurchaseInfo.md)
+ - [ThreeDSRequestorInfo](docs/ThreeDSRequestorInfo.md)
+ - [ThreeDSSession](docs/ThreeDSSession.md)
+ - [ThreeDSVersion](docs/ThreeDSVersion.md)
  - [Token](docs/Token.md)
  - [TokenEnrichments](docs/TokenEnrichments.md)
  - [TokenMetrics](docs/TokenMetrics.md)

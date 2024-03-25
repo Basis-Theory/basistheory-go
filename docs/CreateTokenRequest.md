@@ -7,7 +7,6 @@ Name | Type | Description | Notes
 **Id** | Pointer to **NullableString** |  | [optional] 
 **Type** | Pointer to **NullableString** |  | [optional] 
 **Data** | **interface{}** |  | 
-**Encryption** | Pointer to [**EncryptionMetadata**](EncryptionMetadata.md) |  | [optional] 
 **Privacy** | Pointer to [**Privacy**](Privacy.md) |  | [optional] 
 **Metadata** | Pointer to **map[string]string** |  | [optional] 
 **SearchIndexes** | Pointer to **[]string** |  | [optional] 
@@ -136,31 +135,6 @@ SetData sets Data field to given value.
 `func (o *CreateTokenRequest) UnsetData()`
 
 UnsetData ensures that no value is present for Data, not even an explicit nil
-### GetEncryption
-
-`func (o *CreateTokenRequest) GetEncryption() EncryptionMetadata`
-
-GetEncryption returns the Encryption field if non-nil, zero value otherwise.
-
-### GetEncryptionOk
-
-`func (o *CreateTokenRequest) GetEncryptionOk() (*EncryptionMetadata, bool)`
-
-GetEncryptionOk returns a tuple with the Encryption field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetEncryption
-
-`func (o *CreateTokenRequest) SetEncryption(v EncryptionMetadata)`
-
-SetEncryption sets Encryption field to given value.
-
-### HasEncryption
-
-`func (o *CreateTokenRequest) HasEncryption() bool`
-
-HasEncryption returns a boolean if a field has been set.
-
 ### GetPrivacy
 
 `func (o *CreateTokenRequest) GetPrivacy() Privacy`

@@ -288,6 +288,7 @@ paths:
       - Applications
   /applications/{id}/regenerate:
     post:
+      deprecated: true
       operationId: Applications_RegenerateKey
       parameters:
       - explode: false
@@ -325,8 +326,215 @@ paths:
               schema:
                 $ref: '#/components/schemas/ProblemDetails'
           description: Forbidden
+        "422":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Client Error
       tags:
       - Applications
+  /applications/{id}/keys:
+    get:
+      operationId: ApplicationKeys_Get
+      parameters:
+      - explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          format: uuid
+          maxLength: 36
+          pattern: "^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$"
+          type: string
+        style: simple
+      - explode: true
+        in: query
+        name: id
+        required: false
+        schema:
+          items:
+            format: uuid
+            maxLength: 36
+            pattern: "^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$"
+            type: string
+          type: array
+        style: form
+      - explode: true
+        in: query
+        name: type
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/ApplicationKey'
+                type: array
+          description: Success
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Not Found
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Unauthorized
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Forbidden
+      tags:
+      - ApplicationKeys
+    post:
+      operationId: ApplicationKeys_Create
+      parameters:
+      - explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          format: uuid
+          maxLength: 36
+          pattern: "^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$"
+          type: string
+        style: simple
+      responses:
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApplicationKey'
+          description: Created
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Unauthorized
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Forbidden
+        "422":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Client Error
+      tags:
+      - ApplicationKeys
+  /applications/{id}/keys/{keyId}:
+    delete:
+      operationId: ApplicationKeys_Delete
+      parameters:
+      - explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          format: uuid
+          maxLength: 36
+          pattern: "^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$"
+          type: string
+        style: simple
+      - explode: false
+        in: path
+        name: keyId
+        required: true
+        schema:
+          format: uuid
+          maxLength: 36
+          pattern: "^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$"
+          type: string
+        style: simple
+      responses:
+        "204":
+          description: No Content
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Unauthorized
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Forbidden
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Not Found
+      tags:
+      - ApplicationKeys
+    get:
+      operationId: ApplicationKeys_GetById
+      parameters:
+      - explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          format: uuid
+          maxLength: 36
+          pattern: "^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$"
+          type: string
+        style: simple
+      - explode: false
+        in: path
+        name: keyId
+        required: true
+        schema:
+          format: uuid
+          maxLength: 36
+          pattern: "^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$"
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApplicationKey'
+          description: Success
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Unauthorized
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Forbidden
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Not Found
+      tags:
+      - ApplicationKeys
   /application-templates:
     get:
       operationId: ApplicationTemplates_Get
@@ -1941,6 +2149,127 @@ paths:
           description: Forbidden
       tags:
       - Tenants
+  /3ds/sessions/{sessionId}/authenticate:
+    post:
+      operationId: ThreeDS.AuthenticateSession
+      parameters:
+      - explode: false
+        in: path
+        name: sessionId
+        required: true
+        schema:
+          format: uuid
+          maxLength: 36
+          pattern: "^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$"
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AuthenticateThreeDSSessionRequest'
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ThreeDSAuthentication'
+          description: Success
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Unauthorized
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Forbidden
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Not Found
+      tags:
+      - ThreeDS
+  /3ds/sessions/{sessionId}/challenge-result:
+    get:
+      operationId: ThreeDS.GetChallengeResult
+      parameters:
+      - explode: false
+        in: path
+        name: sessionId
+        required: true
+        schema:
+          format: uuid
+          maxLength: 36
+          pattern: "^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$"
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ThreeDSAuthentication'
+          description: Success
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Unauthorized
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Forbidden
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Not Found
+      tags:
+      - ThreeDS
+  /3ds/sessions/{id}:
+    get:
+      parameters:
+      - explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          format: uuid
+          maxLength: 36
+          pattern: "^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$"
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ThreeDSSession'
+          description: Success
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Not Found
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Unauthorized
+      tags:
+      - ThreeDS
   /tokenize:
     post:
       operationId: Tokenize_Tokenize
@@ -2319,15 +2648,19 @@ components:
       additionalProperties: false
       example:
         tenant_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-        expires_at: 2000-01-23T04:56:07.000+00:00
-        permissions:
-        - permissions
-        - permissions
-        - permissions
-        - permissions
-        - permissions
-        name: name
-        modified_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        keys:
+        - created_at: 2000-01-23T04:56:07.000+00:00
+          id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          created_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          key: key
+        - created_at: 2000-01-23T04:56:07.000+00:00
+          id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          created_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          key: key
+        - created_at: 2000-01-23T04:56:07.000+00:00
+          id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          created_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          key: key
         created_at: 2000-01-23T04:56:07.000+00:00
         rules:
         - container: container
@@ -2358,10 +2691,19 @@ components:
           - attribute: attribute
             value: value
             operator: operator
-        id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
         type: type
-        modified_at: 2000-01-23T04:56:07.000+00:00
         created_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        expires_at: 2000-01-23T04:56:07.000+00:00
+        permissions:
+        - permissions
+        - permissions
+        - permissions
+        - permissions
+        - permissions
+        name: name
+        modified_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        modified_at: 2000-01-23T04:56:07.000+00:00
         key: key
       properties:
         id:
@@ -2380,10 +2722,17 @@ components:
           pattern: ^.+$
           type: string
         key:
+          deprecated: true
           maxLength: 100
           nullable: true
           pattern: "^[A-z0-9_]*$"
           type: string
+        keys:
+          items:
+            $ref: '#/components/schemas/ApplicationKey'
+          maxItems: 3
+          nullable: true
+          type: array
         type:
           maxLength: 50
           nullable: true
@@ -2428,6 +2777,34 @@ components:
           nullable: true
           type: array
       type: object
+    ApplicationKey:
+      additionalProperties: false
+      example:
+        created_at: 2000-01-23T04:56:07.000+00:00
+        id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        created_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        key: key
+      properties:
+        id:
+          format: uuid
+          maxLength: 36
+          pattern: "^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$"
+          type: string
+        key:
+          nullable: true
+          type: string
+        created_by:
+          format: uuid
+          maxLength: 36
+          nullable: true
+          pattern: "^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$"
+          type: string
+        created_at:
+          format: date-time
+          maxLength: 40
+          nullable: true
+          type: string
+      type: object
     ApplicationPaginatedList:
       additionalProperties: false
       example:
@@ -2439,15 +2816,19 @@ components:
           page_size: 1
         data:
         - tenant_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-          expires_at: 2000-01-23T04:56:07.000+00:00
-          permissions:
-          - permissions
-          - permissions
-          - permissions
-          - permissions
-          - permissions
-          name: name
-          modified_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          keys:
+          - created_at: 2000-01-23T04:56:07.000+00:00
+            id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+            created_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+            key: key
+          - created_at: 2000-01-23T04:56:07.000+00:00
+            id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+            created_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+            key: key
+          - created_at: 2000-01-23T04:56:07.000+00:00
+            id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+            created_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+            key: key
           created_at: 2000-01-23T04:56:07.000+00:00
           rules:
           - container: container
@@ -2478,21 +2859,34 @@ components:
             - attribute: attribute
               value: value
               operator: operator
-          id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           type: type
-          modified_at: 2000-01-23T04:56:07.000+00:00
           created_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          expires_at: 2000-01-23T04:56:07.000+00:00
+          permissions:
+          - permissions
+          - permissions
+          - permissions
+          - permissions
+          - permissions
+          name: name
+          modified_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          modified_at: 2000-01-23T04:56:07.000+00:00
           key: key
         - tenant_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-          expires_at: 2000-01-23T04:56:07.000+00:00
-          permissions:
-          - permissions
-          - permissions
-          - permissions
-          - permissions
-          - permissions
-          name: name
-          modified_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          keys:
+          - created_at: 2000-01-23T04:56:07.000+00:00
+            id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+            created_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+            key: key
+          - created_at: 2000-01-23T04:56:07.000+00:00
+            id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+            created_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+            key: key
+          - created_at: 2000-01-23T04:56:07.000+00:00
+            id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+            created_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+            key: key
           created_at: 2000-01-23T04:56:07.000+00:00
           rules:
           - container: container
@@ -2523,21 +2917,34 @@ components:
             - attribute: attribute
               value: value
               operator: operator
-          id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           type: type
-          modified_at: 2000-01-23T04:56:07.000+00:00
           created_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          expires_at: 2000-01-23T04:56:07.000+00:00
+          permissions:
+          - permissions
+          - permissions
+          - permissions
+          - permissions
+          - permissions
+          name: name
+          modified_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          modified_at: 2000-01-23T04:56:07.000+00:00
           key: key
         - tenant_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-          expires_at: 2000-01-23T04:56:07.000+00:00
-          permissions:
-          - permissions
-          - permissions
-          - permissions
-          - permissions
-          - permissions
-          name: name
-          modified_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          keys:
+          - created_at: 2000-01-23T04:56:07.000+00:00
+            id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+            created_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+            key: key
+          - created_at: 2000-01-23T04:56:07.000+00:00
+            id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+            created_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+            key: key
+          - created_at: 2000-01-23T04:56:07.000+00:00
+            id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+            created_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+            key: key
           created_at: 2000-01-23T04:56:07.000+00:00
           rules:
           - container: container
@@ -2568,21 +2975,34 @@ components:
             - attribute: attribute
               value: value
               operator: operator
-          id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           type: type
-          modified_at: 2000-01-23T04:56:07.000+00:00
           created_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          expires_at: 2000-01-23T04:56:07.000+00:00
+          permissions:
+          - permissions
+          - permissions
+          - permissions
+          - permissions
+          - permissions
+          name: name
+          modified_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          modified_at: 2000-01-23T04:56:07.000+00:00
           key: key
         - tenant_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-          expires_at: 2000-01-23T04:56:07.000+00:00
-          permissions:
-          - permissions
-          - permissions
-          - permissions
-          - permissions
-          - permissions
-          name: name
-          modified_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          keys:
+          - created_at: 2000-01-23T04:56:07.000+00:00
+            id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+            created_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+            key: key
+          - created_at: 2000-01-23T04:56:07.000+00:00
+            id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+            created_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+            key: key
+          - created_at: 2000-01-23T04:56:07.000+00:00
+            id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+            created_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+            key: key
           created_at: 2000-01-23T04:56:07.000+00:00
           rules:
           - container: container
@@ -2613,21 +3033,34 @@ components:
             - attribute: attribute
               value: value
               operator: operator
-          id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           type: type
-          modified_at: 2000-01-23T04:56:07.000+00:00
           created_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          expires_at: 2000-01-23T04:56:07.000+00:00
+          permissions:
+          - permissions
+          - permissions
+          - permissions
+          - permissions
+          - permissions
+          name: name
+          modified_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          modified_at: 2000-01-23T04:56:07.000+00:00
           key: key
         - tenant_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-          expires_at: 2000-01-23T04:56:07.000+00:00
-          permissions:
-          - permissions
-          - permissions
-          - permissions
-          - permissions
-          - permissions
-          name: name
-          modified_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          keys:
+          - created_at: 2000-01-23T04:56:07.000+00:00
+            id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+            created_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+            key: key
+          - created_at: 2000-01-23T04:56:07.000+00:00
+            id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+            created_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+            key: key
+          - created_at: 2000-01-23T04:56:07.000+00:00
+            id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+            created_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+            key: key
           created_at: 2000-01-23T04:56:07.000+00:00
           rules:
           - container: container
@@ -2658,10 +3091,19 @@ components:
             - attribute: attribute
               value: value
               operator: operator
-          id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           type: type
-          modified_at: 2000-01-23T04:56:07.000+00:00
           created_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          expires_at: 2000-01-23T04:56:07.000+00:00
+          permissions:
+          - permissions
+          - permissions
+          - permissions
+          - permissions
+          - permissions
+          name: name
+          modified_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          modified_at: 2000-01-23T04:56:07.000+00:00
           key: key
       properties:
         pagination:
@@ -2744,6 +3186,137 @@ components:
             type: string
           nullable: true
           type: array
+      type: object
+    AuthenticateThreeDSSessionRequest:
+      additionalProperties: false
+      example:
+        requestor_info:
+          name: name
+          id: id
+          url: url
+        challenge_preference: challenge_preference
+        message_extensions:
+        - critical: true
+          data: ""
+          name: name
+          id: id
+        - critical: true
+          data: ""
+          name: name
+          id: id
+        merchant_info:
+          country_code: country_code
+          acquirer_bin: acquirer_bin
+          category_code: category_code
+          name: name
+          mid: mid
+          risk_info:
+            gift_card_count: gift_card_count
+            delivery_email: delivery_email
+            shipping_method: shipping_method
+            gift_card_currency: gift_card_currency
+            pre_order_purchase: true
+            gift_card_amount: gift_card_amount
+            reordered_purchase: true
+            delivery_time_frame: delivery_time_frame
+            pre_order_date: pre_order_date
+        authentication_type: authentication_type
+        authentication_category: authentication_category
+        cardholder_info:
+          account_type: account_type
+          account_info:
+            account_created_date: account_created_date
+            shipping_account_name_match: true
+            account_pwd_change_date: account_pwd_change_date
+            transaction_count_day: transaction_count_day
+            shipping_address_usage_date: shipping_address_usage_date
+            account_age: account_age
+            transaction_count_year: transaction_count_year
+            account_change_date: account_change_date
+            account_last_changed: account_last_changed
+            suspicious_activity_observed: true
+            payment_account_age: payment_account_age
+            purchase_count_half_year: purchase_count_half_year
+            account_pwd_last_changed: account_pwd_last_changed
+            shipping_address_first_used: shipping_address_first_used
+            payment_account_created: payment_account_created
+          billing_address:
+            country_code: country_code
+            city: city
+            line3: line3
+            postal_code: postal_code
+            state_code: state_code
+            line2: line2
+            line1: line1
+          billing_shipping_address_match: billing_shipping_address_match
+          mobile_phone_number:
+            country_code: country_code
+            number: number
+          authentication_info:
+            method: method
+            data: data
+            timestamp: timestamp
+          account_id: account_id
+          work_phone_number:
+            country_code: country_code
+            number: number
+          name: name
+          prior_authentication_info:
+            method: method
+            reference_id: reference_id
+            data: data
+            timestamp: timestamp
+          phone_number:
+            country_code: country_code
+            number: number
+          shipping_address:
+            country_code: country_code
+            city: city
+            line3: line3
+            postal_code: postal_code
+            state_code: state_code
+            line2: line2
+            line1: line1
+          email: email
+        broadcast_info: ""
+        purchase_info:
+          date: date
+          installment_count: installment_count
+          amount: amount
+          recurring_expiration: recurring_expiration
+          recurring_frequency: recurring_frequency
+          currency: currency
+          transaction_type: transaction_type
+          exponent: exponent
+      properties:
+        authentication_category:
+          minLength: 1
+          type: string
+        authentication_type:
+          minLength: 1
+          type: string
+        challenge_preference:
+          nullable: true
+          type: string
+        purchase_info:
+          $ref: '#/components/schemas/ThreeDSPurchaseInfo'
+        merchant_info:
+          $ref: '#/components/schemas/ThreeDSMerchantInfo'
+        requestor_info:
+          $ref: '#/components/schemas/ThreeDSRequestorInfo'
+        cardholder_info:
+          $ref: '#/components/schemas/ThreeDSCardholderInfo'
+        broadcast_info:
+          nullable: true
+        message_extensions:
+          items:
+            $ref: '#/components/schemas/ThreeDSMessageExtension'
+          nullable: true
+          type: array
+      required:
+      - authentication_category
+      - authentication_type
+      - requestor_info
       type: object
     AuthorizeSessionRequest:
       additionalProperties: false
@@ -3005,6 +3578,7 @@ components:
             value: value
             operator: operator
         type: type
+        create_key: true
       properties:
         name:
           maxLength: 200
@@ -3030,6 +3604,9 @@ components:
             $ref: '#/components/schemas/AccessRule'
           nullable: true
           type: array
+        create_key:
+          nullable: true
+          type: boolean
       required:
       - name
       - type
@@ -3041,15 +3618,19 @@ components:
           code: code
         application:
           tenant_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-          expires_at: 2000-01-23T04:56:07.000+00:00
-          permissions:
-          - permissions
-          - permissions
-          - permissions
-          - permissions
-          - permissions
-          name: name
-          modified_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          keys:
+          - created_at: 2000-01-23T04:56:07.000+00:00
+            id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+            created_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+            key: key
+          - created_at: 2000-01-23T04:56:07.000+00:00
+            id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+            created_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+            key: key
+          - created_at: 2000-01-23T04:56:07.000+00:00
+            id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+            created_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+            key: key
           created_at: 2000-01-23T04:56:07.000+00:00
           rules:
           - container: container
@@ -3080,10 +3661,19 @@ components:
             - attribute: attribute
               value: value
               operator: operator
-          id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           type: type
-          modified_at: 2000-01-23T04:56:07.000+00:00
           created_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          expires_at: 2000-01-23T04:56:07.000+00:00
+          permissions:
+          - permissions
+          - permissions
+          - permissions
+          - permissions
+          - permissions
+          name: name
+          modified_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          modified_at: 2000-01-23T04:56:07.000+00:00
           key: key
         configuration:
           key: configuration
@@ -3235,15 +3825,19 @@ components:
         code: code
         application:
           tenant_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-          expires_at: 2000-01-23T04:56:07.000+00:00
-          permissions:
-          - permissions
-          - permissions
-          - permissions
-          - permissions
-          - permissions
-          name: name
-          modified_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          keys:
+          - created_at: 2000-01-23T04:56:07.000+00:00
+            id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+            created_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+            key: key
+          - created_at: 2000-01-23T04:56:07.000+00:00
+            id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+            created_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+            key: key
+          - created_at: 2000-01-23T04:56:07.000+00:00
+            id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+            created_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+            key: key
           created_at: 2000-01-23T04:56:07.000+00:00
           rules:
           - container: container
@@ -3274,10 +3868,19 @@ components:
             - attribute: attribute
               value: value
               operator: operator
-          id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           type: type
-          modified_at: 2000-01-23T04:56:07.000+00:00
           created_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          expires_at: 2000-01-23T04:56:07.000+00:00
+          permissions:
+          - permissions
+          - permissions
+          - permissions
+          - permissions
+          - permissions
+          name: name
+          modified_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          modified_at: 2000-01-23T04:56:07.000+00:00
           key: key
         configuration:
           key: configuration
@@ -3346,15 +3949,6 @@ components:
           key: metadata
         expires_at: expires_at
         data: ""
-        encryption:
-          kek:
-            prov: prov
-            alg: alg
-            key: key
-          cek:
-            prov: prov
-            alg: alg
-            key: key
         deduplicate_token: true
         privacy:
           restriction_policy: restriction_policy
@@ -3376,8 +3970,6 @@ components:
           nullable: true
           type: string
         data: {}
-        encryption:
-          $ref: '#/components/schemas/EncryptionMetadata'
         privacy:
           $ref: '#/components/schemas/Privacy'
         metadata:
@@ -3413,10 +4005,6 @@ components:
       type: object
     EncryptionKey:
       additionalProperties: false
-      example:
-        prov: prov
-        alg: alg
-        key: key
       properties:
         key:
           type: string
@@ -3431,15 +4019,6 @@ components:
       type: object
     EncryptionMetadata:
       additionalProperties: false
-      example:
-        kek:
-          prov: prov
-          alg: alg
-          key: key
-        cek:
-          prov: prov
-          alg: alg
-          key: key
       properties:
         cek:
           $ref: '#/components/schemas/EncryptionKey'
@@ -4231,19 +4810,12 @@ components:
       example:
         args: ""
         callback_url: callback_url
-        timeout_ms: 26016
       properties:
         args:
           nullable: true
         callback_url:
           nullable: true
           type: string
-        timeout_ms:
-          format: int32
-          maximum: 210000
-          minimum: 10000
-          nullable: true
-          type: integer
       type: object
     ReactResponse:
       additionalProperties: false
@@ -4269,15 +4841,19 @@ components:
         code: code
         application:
           tenant_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-          expires_at: 2000-01-23T04:56:07.000+00:00
-          permissions:
-          - permissions
-          - permissions
-          - permissions
-          - permissions
-          - permissions
-          name: name
-          modified_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          keys:
+          - created_at: 2000-01-23T04:56:07.000+00:00
+            id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+            created_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+            key: key
+          - created_at: 2000-01-23T04:56:07.000+00:00
+            id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+            created_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+            key: key
+          - created_at: 2000-01-23T04:56:07.000+00:00
+            id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+            created_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+            key: key
           created_at: 2000-01-23T04:56:07.000+00:00
           rules:
           - container: container
@@ -4308,10 +4884,19 @@ components:
             - attribute: attribute
               value: value
               operator: operator
-          id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           type: type
-          modified_at: 2000-01-23T04:56:07.000+00:00
           created_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          expires_at: 2000-01-23T04:56:07.000+00:00
+          permissions:
+          - permissions
+          - permissions
+          - permissions
+          - permissions
+          - permissions
+          name: name
+          modified_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          modified_at: 2000-01-23T04:56:07.000+00:00
           key: key
         configuration:
           key: configuration
@@ -4878,15 +5463,19 @@ components:
           code: code
           application:
             tenant_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-            expires_at: 2000-01-23T04:56:07.000+00:00
-            permissions:
-            - permissions
-            - permissions
-            - permissions
-            - permissions
-            - permissions
-            name: name
-            modified_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+            keys:
+            - created_at: 2000-01-23T04:56:07.000+00:00
+              id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+              created_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+              key: key
+            - created_at: 2000-01-23T04:56:07.000+00:00
+              id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+              created_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+              key: key
+            - created_at: 2000-01-23T04:56:07.000+00:00
+              id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+              created_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+              key: key
             created_at: 2000-01-23T04:56:07.000+00:00
             rules:
             - container: container
@@ -4917,10 +5506,19 @@ components:
               - attribute: attribute
                 value: value
                 operator: operator
-            id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
             type: type
-            modified_at: 2000-01-23T04:56:07.000+00:00
             created_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+            expires_at: 2000-01-23T04:56:07.000+00:00
+            permissions:
+            - permissions
+            - permissions
+            - permissions
+            - permissions
+            - permissions
+            name: name
+            modified_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+            id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+            modified_at: 2000-01-23T04:56:07.000+00:00
             key: key
           configuration:
             key: configuration
@@ -4983,15 +5581,19 @@ components:
           code: code
           application:
             tenant_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-            expires_at: 2000-01-23T04:56:07.000+00:00
-            permissions:
-            - permissions
-            - permissions
-            - permissions
-            - permissions
-            - permissions
-            name: name
-            modified_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+            keys:
+            - created_at: 2000-01-23T04:56:07.000+00:00
+              id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+              created_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+              key: key
+            - created_at: 2000-01-23T04:56:07.000+00:00
+              id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+              created_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+              key: key
+            - created_at: 2000-01-23T04:56:07.000+00:00
+              id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+              created_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+              key: key
             created_at: 2000-01-23T04:56:07.000+00:00
             rules:
             - container: container
@@ -5022,10 +5624,19 @@ components:
               - attribute: attribute
                 value: value
                 operator: operator
-            id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
             type: type
-            modified_at: 2000-01-23T04:56:07.000+00:00
             created_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+            expires_at: 2000-01-23T04:56:07.000+00:00
+            permissions:
+            - permissions
+            - permissions
+            - permissions
+            - permissions
+            - permissions
+            name: name
+            modified_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+            id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+            modified_at: 2000-01-23T04:56:07.000+00:00
             key: key
           configuration:
             key: configuration
@@ -5088,15 +5699,19 @@ components:
           code: code
           application:
             tenant_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-            expires_at: 2000-01-23T04:56:07.000+00:00
-            permissions:
-            - permissions
-            - permissions
-            - permissions
-            - permissions
-            - permissions
-            name: name
-            modified_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+            keys:
+            - created_at: 2000-01-23T04:56:07.000+00:00
+              id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+              created_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+              key: key
+            - created_at: 2000-01-23T04:56:07.000+00:00
+              id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+              created_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+              key: key
+            - created_at: 2000-01-23T04:56:07.000+00:00
+              id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+              created_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+              key: key
             created_at: 2000-01-23T04:56:07.000+00:00
             rules:
             - container: container
@@ -5127,10 +5742,19 @@ components:
               - attribute: attribute
                 value: value
                 operator: operator
-            id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
             type: type
-            modified_at: 2000-01-23T04:56:07.000+00:00
             created_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+            expires_at: 2000-01-23T04:56:07.000+00:00
+            permissions:
+            - permissions
+            - permissions
+            - permissions
+            - permissions
+            - permissions
+            name: name
+            modified_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+            id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+            modified_at: 2000-01-23T04:56:07.000+00:00
             key: key
           configuration:
             key: configuration
@@ -5193,15 +5817,19 @@ components:
           code: code
           application:
             tenant_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-            expires_at: 2000-01-23T04:56:07.000+00:00
-            permissions:
-            - permissions
-            - permissions
-            - permissions
-            - permissions
-            - permissions
-            name: name
-            modified_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+            keys:
+            - created_at: 2000-01-23T04:56:07.000+00:00
+              id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+              created_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+              key: key
+            - created_at: 2000-01-23T04:56:07.000+00:00
+              id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+              created_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+              key: key
+            - created_at: 2000-01-23T04:56:07.000+00:00
+              id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+              created_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+              key: key
             created_at: 2000-01-23T04:56:07.000+00:00
             rules:
             - container: container
@@ -5232,10 +5860,19 @@ components:
               - attribute: attribute
                 value: value
                 operator: operator
-            id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
             type: type
-            modified_at: 2000-01-23T04:56:07.000+00:00
             created_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+            expires_at: 2000-01-23T04:56:07.000+00:00
+            permissions:
+            - permissions
+            - permissions
+            - permissions
+            - permissions
+            - permissions
+            name: name
+            modified_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+            id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+            modified_at: 2000-01-23T04:56:07.000+00:00
             key: key
           configuration:
             key: configuration
@@ -5298,15 +5935,19 @@ components:
           code: code
           application:
             tenant_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-            expires_at: 2000-01-23T04:56:07.000+00:00
-            permissions:
-            - permissions
-            - permissions
-            - permissions
-            - permissions
-            - permissions
-            name: name
-            modified_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+            keys:
+            - created_at: 2000-01-23T04:56:07.000+00:00
+              id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+              created_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+              key: key
+            - created_at: 2000-01-23T04:56:07.000+00:00
+              id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+              created_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+              key: key
+            - created_at: 2000-01-23T04:56:07.000+00:00
+              id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+              created_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+              key: key
             created_at: 2000-01-23T04:56:07.000+00:00
             rules:
             - container: container
@@ -5337,10 +5978,19 @@ components:
               - attribute: attribute
                 value: value
                 operator: operator
-            id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
             type: type
-            modified_at: 2000-01-23T04:56:07.000+00:00
             created_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+            expires_at: 2000-01-23T04:56:07.000+00:00
+            permissions:
+            - permissions
+            - permissions
+            - permissions
+            - permissions
+            - permissions
+            name: name
+            modified_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+            id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+            modified_at: 2000-01-23T04:56:07.000+00:00
             key: key
           configuration:
             key: configuration
@@ -5448,7 +6098,7 @@ components:
           pattern: "^[\\w-]+$"
           type: string
         value:
-          maxLength: 50000
+          maxLength: 1000
           minLength: 1
           type: string
       required:
@@ -5465,6 +6115,7 @@ components:
         modified_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
         created_at: 2000-01-23T04:56:07.000+00:00
         id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        type: type
         modified_at: 2000-01-23T04:56:07.000+00:00
         created_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
       properties:
@@ -5482,6 +6133,11 @@ components:
           maxLength: 200
           nullable: true
           pattern: ^.+$
+          type: string
+        type:
+          maxLength: 50
+          nullable: true
+          pattern: ^(?:test|production)$
           type: string
         created_by:
           format: uuid
@@ -5795,6 +6451,809 @@ components:
         token_report:
           $ref: '#/components/schemas/TokenReport'
       type: object
+    ThreeDSAcsRenderingType:
+      additionalProperties: false
+      example:
+        acsUiTemplate: acsUiTemplate
+        acsInterface: acsInterface
+      properties:
+        acsInterface:
+          nullable: true
+          type: string
+        acsUiTemplate:
+          nullable: true
+          type: string
+      type: object
+    ThreeDSAddress:
+      additionalProperties: false
+      example:
+        country_code: country_code
+        city: city
+        line3: line3
+        postal_code: postal_code
+        state_code: state_code
+        line2: line2
+        line1: line1
+      properties:
+        line1:
+          nullable: true
+          type: string
+        line2:
+          nullable: true
+          type: string
+        line3:
+          nullable: true
+          type: string
+        postal_code:
+          nullable: true
+          type: string
+        city:
+          nullable: true
+          type: string
+        state_code:
+          nullable: true
+          type: string
+        country_code:
+          nullable: true
+          type: string
+      type: object
+    ThreeDSAuthentication:
+      additionalProperties: false
+      example:
+        acs_rendering_type:
+          acsUiTemplate: acsUiTemplate
+          acsInterface: acsInterface
+        acs_signed_content: acs_signed_content
+        authentication_value: authentication_value
+        sdk_transaction_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        authentication_status_reason: authentication_status_reason
+        threeds_version: threeds_version
+        acs_challenge_url: acs_challenge_url
+        authentication_challenge_type: authentication_challenge_type
+        ds_transaction_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        eci: eci
+        acs_transaction_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        whitelist_status_source: whitelist_status_source
+        cardholder_info: cardholder_info
+        acs_reference_number: acs_reference_number
+        acs_decoupled_authentication: acs_decoupled_authentication
+        challenge_attempts: challenge_attempts
+        whitelist_status: whitelist_status
+        authentication_status: authentication_status
+        challenge_cancel_reason: challenge_cancel_reason
+        message_extensions:
+        - critical: true
+          data: ""
+          name: name
+          id: id
+        - critical: true
+          data: ""
+          name: name
+          id: id
+        acs_challenge_mandated: acs_challenge_mandated
+        ds_reference_number: ds_reference_number
+      properties:
+        threeds_version:
+          nullable: true
+          type: string
+        acs_transaction_id:
+          format: uuid
+          maxLength: 36
+          nullable: true
+          pattern: "^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$"
+          type: string
+        ds_transaction_id:
+          format: uuid
+          maxLength: 36
+          nullable: true
+          pattern: "^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$"
+          type: string
+        sdk_transaction_id:
+          format: uuid
+          maxLength: 36
+          nullable: true
+          pattern: "^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$"
+          type: string
+        acs_reference_number:
+          nullable: true
+          type: string
+        ds_reference_number:
+          nullable: true
+          type: string
+        authentication_value:
+          nullable: true
+          type: string
+        authentication_status:
+          nullable: true
+          type: string
+        authentication_status_reason:
+          nullable: true
+          type: string
+        eci:
+          nullable: true
+          type: string
+        acs_challenge_mandated:
+          nullable: true
+          type: string
+        acs_decoupled_authentication:
+          nullable: true
+          type: string
+        authentication_challenge_type:
+          nullable: true
+          type: string
+        acs_rendering_type:
+          $ref: '#/components/schemas/ThreeDSAcsRenderingType'
+        acs_signed_content:
+          nullable: true
+          type: string
+        acs_challenge_url:
+          nullable: true
+          type: string
+        challenge_attempts:
+          nullable: true
+          type: string
+        challenge_cancel_reason:
+          nullable: true
+          type: string
+        cardholder_info:
+          nullable: true
+          type: string
+        whitelist_status:
+          nullable: true
+          type: string
+        whitelist_status_source:
+          nullable: true
+          type: string
+        message_extensions:
+          items:
+            $ref: '#/components/schemas/ThreeDSMessageExtension'
+          nullable: true
+          type: array
+      type: object
+    ThreeDSCardholderAccountInfo:
+      additionalProperties: false
+      example:
+        account_created_date: account_created_date
+        shipping_account_name_match: true
+        account_pwd_change_date: account_pwd_change_date
+        transaction_count_day: transaction_count_day
+        shipping_address_usage_date: shipping_address_usage_date
+        account_age: account_age
+        transaction_count_year: transaction_count_year
+        account_change_date: account_change_date
+        account_last_changed: account_last_changed
+        suspicious_activity_observed: true
+        payment_account_age: payment_account_age
+        purchase_count_half_year: purchase_count_half_year
+        account_pwd_last_changed: account_pwd_last_changed
+        shipping_address_first_used: shipping_address_first_used
+        payment_account_created: payment_account_created
+      properties:
+        account_age:
+          nullable: true
+          type: string
+        account_last_changed:
+          nullable: true
+          type: string
+        account_change_date:
+          nullable: true
+          type: string
+        account_created_date:
+          nullable: true
+          type: string
+        account_pwd_last_changed:
+          nullable: true
+          type: string
+        account_pwd_change_date:
+          nullable: true
+          type: string
+        purchase_count_half_year:
+          nullable: true
+          type: string
+        transaction_count_day:
+          nullable: true
+          type: string
+        payment_account_age:
+          nullable: true
+          type: string
+        transaction_count_year:
+          nullable: true
+          type: string
+        payment_account_created:
+          nullable: true
+          type: string
+        shipping_address_first_used:
+          nullable: true
+          type: string
+        shipping_address_usage_date:
+          nullable: true
+          type: string
+        shipping_account_name_match:
+          nullable: true
+          type: boolean
+        suspicious_activity_observed:
+          nullable: true
+          type: boolean
+      type: object
+    ThreeDSCardholderAuthenticationInfo:
+      additionalProperties: false
+      example:
+        method: method
+        data: data
+        timestamp: timestamp
+      properties:
+        method:
+          nullable: true
+          type: string
+        timestamp:
+          nullable: true
+          type: string
+        data:
+          nullable: true
+          type: string
+      type: object
+    ThreeDSCardholderInfo:
+      additionalProperties: false
+      example:
+        account_type: account_type
+        account_info:
+          account_created_date: account_created_date
+          shipping_account_name_match: true
+          account_pwd_change_date: account_pwd_change_date
+          transaction_count_day: transaction_count_day
+          shipping_address_usage_date: shipping_address_usage_date
+          account_age: account_age
+          transaction_count_year: transaction_count_year
+          account_change_date: account_change_date
+          account_last_changed: account_last_changed
+          suspicious_activity_observed: true
+          payment_account_age: payment_account_age
+          purchase_count_half_year: purchase_count_half_year
+          account_pwd_last_changed: account_pwd_last_changed
+          shipping_address_first_used: shipping_address_first_used
+          payment_account_created: payment_account_created
+        billing_address:
+          country_code: country_code
+          city: city
+          line3: line3
+          postal_code: postal_code
+          state_code: state_code
+          line2: line2
+          line1: line1
+        billing_shipping_address_match: billing_shipping_address_match
+        mobile_phone_number:
+          country_code: country_code
+          number: number
+        authentication_info:
+          method: method
+          data: data
+          timestamp: timestamp
+        account_id: account_id
+        work_phone_number:
+          country_code: country_code
+          number: number
+        name: name
+        prior_authentication_info:
+          method: method
+          reference_id: reference_id
+          data: data
+          timestamp: timestamp
+        phone_number:
+          country_code: country_code
+          number: number
+        shipping_address:
+          country_code: country_code
+          city: city
+          line3: line3
+          postal_code: postal_code
+          state_code: state_code
+          line2: line2
+          line1: line1
+        email: email
+      properties:
+        account_id:
+          nullable: true
+          type: string
+        account_type:
+          nullable: true
+          type: string
+        account_info:
+          $ref: '#/components/schemas/ThreeDSCardholderAccountInfo'
+        authentication_info:
+          $ref: '#/components/schemas/ThreeDSCardholderAuthenticationInfo'
+        prior_authentication_info:
+          $ref: '#/components/schemas/ThreeDSPriorAuthenticationInfo'
+        name:
+          nullable: true
+          type: string
+        email:
+          nullable: true
+          type: string
+        phone_number:
+          $ref: '#/components/schemas/ThreeDSCardholderPhoneNumber'
+        mobile_phone_number:
+          $ref: '#/components/schemas/ThreeDSCardholderPhoneNumber'
+        work_phone_number:
+          $ref: '#/components/schemas/ThreeDSCardholderPhoneNumber'
+        billing_shipping_address_match:
+          nullable: true
+          type: string
+        billing_address:
+          $ref: '#/components/schemas/ThreeDSAddress'
+        shipping_address:
+          $ref: '#/components/schemas/ThreeDSAddress'
+      type: object
+    ThreeDSCardholderPhoneNumber:
+      additionalProperties: false
+      example:
+        country_code: country_code
+        number: number
+      properties:
+        country_code:
+          nullable: true
+          type: string
+        number:
+          nullable: true
+          type: string
+      type: object
+    ThreeDSDeviceInfo:
+      additionalProperties: false
+      example:
+        sdk_application_id: sdk_application_id
+        browser_accept_header: browser_accept_header
+        browser_javascript_enabled: true
+        sdk_transaction_id: sdk_transaction_id
+        sdk_ephemeral_public_key: sdk_ephemeral_public_key
+        browser_color_depth: browser_color_depth
+        sdk_render_options:
+          sdk_interface: sdk_interface
+          sdk_ui_type:
+          - sdk_ui_type
+          - sdk_ui_type
+        sdk_max_timeout: sdk_max_timeout
+        sdk_encryption_data: sdk_encryption_data
+        sdk_reference_number: sdk_reference_number
+        browser_java_enabled: true
+        browser_screen_height: browser_screen_height
+        browser_screen_width: browser_screen_width
+        browser_language: browser_language
+        browser_tz: browser_tz
+        browser_ip: browser_ip
+        browser_user_agent: browser_user_agent
+      properties:
+        browser_accept_header:
+          nullable: true
+          type: string
+        browser_ip:
+          nullable: true
+          type: string
+        browser_javascript_enabled:
+          nullable: true
+          type: boolean
+        browser_java_enabled:
+          nullable: true
+          type: boolean
+        browser_language:
+          nullable: true
+          type: string
+        browser_color_depth:
+          nullable: true
+          type: string
+        browser_screen_height:
+          nullable: true
+          type: string
+        browser_screen_width:
+          nullable: true
+          type: string
+        browser_tz:
+          nullable: true
+          type: string
+        browser_user_agent:
+          nullable: true
+          type: string
+        sdk_transaction_id:
+          nullable: true
+          type: string
+        sdk_application_id:
+          nullable: true
+          type: string
+        sdk_encryption_data:
+          nullable: true
+          type: string
+        sdk_ephemeral_public_key:
+          nullable: true
+          type: string
+        sdk_max_timeout:
+          nullable: true
+          type: string
+        sdk_reference_number:
+          nullable: true
+          type: string
+        sdk_render_options:
+          $ref: '#/components/schemas/ThreeDSMobileSdkRenderOptions'
+      type: object
+    ThreeDSMerchantInfo:
+      additionalProperties: false
+      example:
+        country_code: country_code
+        acquirer_bin: acquirer_bin
+        category_code: category_code
+        name: name
+        mid: mid
+        risk_info:
+          gift_card_count: gift_card_count
+          delivery_email: delivery_email
+          shipping_method: shipping_method
+          gift_card_currency: gift_card_currency
+          pre_order_purchase: true
+          gift_card_amount: gift_card_amount
+          reordered_purchase: true
+          delivery_time_frame: delivery_time_frame
+          pre_order_date: pre_order_date
+      properties:
+        mid:
+          nullable: true
+          type: string
+        acquirer_bin:
+          nullable: true
+          type: string
+        name:
+          nullable: true
+          type: string
+        country_code:
+          nullable: true
+          type: string
+        category_code:
+          nullable: true
+          type: string
+        risk_info:
+          $ref: '#/components/schemas/ThreeDSMerchantRiskInfo'
+      type: object
+    ThreeDSMerchantRiskInfo:
+      additionalProperties: false
+      example:
+        gift_card_count: gift_card_count
+        delivery_email: delivery_email
+        shipping_method: shipping_method
+        gift_card_currency: gift_card_currency
+        pre_order_purchase: true
+        gift_card_amount: gift_card_amount
+        reordered_purchase: true
+        delivery_time_frame: delivery_time_frame
+        pre_order_date: pre_order_date
+      properties:
+        delivery_email:
+          nullable: true
+          type: string
+        delivery_time_frame:
+          nullable: true
+          type: string
+        gift_card_amount:
+          nullable: true
+          type: string
+        gift_card_count:
+          nullable: true
+          type: string
+        gift_card_currency:
+          nullable: true
+          type: string
+        pre_order_purchase:
+          nullable: true
+          type: boolean
+        pre_order_date:
+          nullable: true
+          type: string
+        reordered_purchase:
+          nullable: true
+          type: boolean
+        shipping_method:
+          nullable: true
+          type: string
+      type: object
+    ThreeDSMessageExtension:
+      additionalProperties: false
+      example:
+        critical: true
+        data: ""
+        name: name
+        id: id
+      properties:
+        id:
+          nullable: true
+          type: string
+        name:
+          nullable: true
+          type: string
+        critical:
+          nullable: true
+          type: boolean
+        data:
+          nullable: true
+      type: object
+    ThreeDSMethod:
+      additionalProperties: false
+      example:
+        method_completion_indicator: method_completion_indicator
+        method_url: method_url
+      properties:
+        method_url:
+          nullable: true
+          type: string
+        method_completion_indicator:
+          nullable: true
+          type: string
+      type: object
+    ThreeDSMobileSdkRenderOptions:
+      additionalProperties: false
+      example:
+        sdk_interface: sdk_interface
+        sdk_ui_type:
+        - sdk_ui_type
+        - sdk_ui_type
+      properties:
+        sdk_interface:
+          nullable: true
+          type: string
+        sdk_ui_type:
+          items:
+            type: string
+          nullable: true
+          type: array
+      type: object
+    ThreeDSPriorAuthenticationInfo:
+      additionalProperties: false
+      example:
+        method: method
+        reference_id: reference_id
+        data: data
+        timestamp: timestamp
+      properties:
+        method:
+          nullable: true
+          type: string
+        timestamp:
+          nullable: true
+          type: string
+        reference_id:
+          nullable: true
+          type: string
+        data:
+          nullable: true
+          type: string
+      type: object
+    ThreeDSPurchaseInfo:
+      additionalProperties: false
+      example:
+        date: date
+        installment_count: installment_count
+        amount: amount
+        recurring_expiration: recurring_expiration
+        recurring_frequency: recurring_frequency
+        currency: currency
+        transaction_type: transaction_type
+        exponent: exponent
+      properties:
+        amount:
+          nullable: true
+          type: string
+        currency:
+          nullable: true
+          type: string
+        exponent:
+          nullable: true
+          type: string
+        date:
+          nullable: true
+          type: string
+        transaction_type:
+          nullable: true
+          type: string
+        installment_count:
+          nullable: true
+          type: string
+        recurring_expiration:
+          nullable: true
+          type: string
+        recurring_frequency:
+          nullable: true
+          type: string
+      type: object
+    ThreeDSRequestorInfo:
+      additionalProperties: false
+      example:
+        name: name
+        id: id
+        url: url
+      properties:
+        id:
+          nullable: true
+          type: string
+        name:
+          nullable: true
+          type: string
+        url:
+          nullable: true
+          type: string
+      type: object
+    ThreeDSSession:
+      additionalProperties: false
+      example:
+        tenant_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        method:
+          method_completion_indicator: method_completion_indicator
+          method_url: method_url
+        pan_token_id: pan_token_id
+        expiration_date: 2000-01-23T04:56:07.000+00:00
+        modified_date: 2000-01-23T04:56:07.000+00:00
+        created_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        version:
+          earliest_acs_supported_version: earliest_acs_supported_version
+          available_version:
+          - available_version
+          - available_version
+          latest_ds_supported_version: latest_ds_supported_version
+          latest_acs_supported_version: latest_acs_supported_version
+          acs_information:
+          - acs_information
+          - acs_information
+          recommended_version: recommended_version
+          earliest_ds_supported_version: earliest_ds_supported_version
+        device_info:
+          sdk_application_id: sdk_application_id
+          browser_accept_header: browser_accept_header
+          browser_javascript_enabled: true
+          sdk_transaction_id: sdk_transaction_id
+          sdk_ephemeral_public_key: sdk_ephemeral_public_key
+          browser_color_depth: browser_color_depth
+          sdk_render_options:
+            sdk_interface: sdk_interface
+            sdk_ui_type:
+            - sdk_ui_type
+            - sdk_ui_type
+          sdk_max_timeout: sdk_max_timeout
+          sdk_encryption_data: sdk_encryption_data
+          sdk_reference_number: sdk_reference_number
+          browser_java_enabled: true
+          browser_screen_height: browser_screen_height
+          browser_screen_width: browser_screen_width
+          browser_language: browser_language
+          browser_tz: browser_tz
+          browser_ip: browser_ip
+          browser_user_agent: browser_user_agent
+        card_brand: card_brand
+        modified_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        created_date: 2000-01-23T04:56:07.000+00:00
+        device: device
+        authentication:
+          acs_rendering_type:
+            acsUiTemplate: acsUiTemplate
+            acsInterface: acsInterface
+          acs_signed_content: acs_signed_content
+          authentication_value: authentication_value
+          sdk_transaction_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          authentication_status_reason: authentication_status_reason
+          threeds_version: threeds_version
+          acs_challenge_url: acs_challenge_url
+          authentication_challenge_type: authentication_challenge_type
+          ds_transaction_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          eci: eci
+          acs_transaction_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          whitelist_status_source: whitelist_status_source
+          cardholder_info: cardholder_info
+          acs_reference_number: acs_reference_number
+          acs_decoupled_authentication: acs_decoupled_authentication
+          challenge_attempts: challenge_attempts
+          whitelist_status: whitelist_status
+          authentication_status: authentication_status
+          challenge_cancel_reason: challenge_cancel_reason
+          message_extensions:
+          - critical: true
+            data: ""
+            name: name
+            id: id
+          - critical: true
+            data: ""
+            name: name
+            id: id
+          acs_challenge_mandated: acs_challenge_mandated
+          ds_reference_number: ds_reference_number
+      properties:
+        id:
+          format: uuid
+          maxLength: 36
+          pattern: "^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$"
+          type: string
+        tenant_id:
+          format: uuid
+          maxLength: 36
+          pattern: "^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$"
+          type: string
+        pan_token_id:
+          nullable: true
+          type: string
+        card_brand:
+          nullable: true
+          type: string
+        expiration_date:
+          format: date-time
+          maxLength: 40
+          type: string
+        created_date:
+          format: date-time
+          maxLength: 40
+          nullable: true
+          type: string
+        created_by:
+          format: uuid
+          maxLength: 36
+          nullable: true
+          pattern: "^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$"
+          type: string
+        modified_date:
+          format: date-time
+          maxLength: 40
+          nullable: true
+          type: string
+        modified_by:
+          format: uuid
+          maxLength: 36
+          nullable: true
+          pattern: "^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$"
+          type: string
+        device:
+          nullable: true
+          type: string
+        device_info:
+          $ref: '#/components/schemas/ThreeDSDeviceInfo'
+        version:
+          $ref: '#/components/schemas/ThreeDSVersion'
+        method:
+          $ref: '#/components/schemas/ThreeDSMethod'
+        authentication:
+          $ref: '#/components/schemas/ThreeDSAuthentication'
+      type: object
+    ThreeDSVersion:
+      additionalProperties: false
+      example:
+        earliest_acs_supported_version: earliest_acs_supported_version
+        available_version:
+        - available_version
+        - available_version
+        latest_ds_supported_version: latest_ds_supported_version
+        latest_acs_supported_version: latest_acs_supported_version
+        acs_information:
+        - acs_information
+        - acs_information
+        recommended_version: recommended_version
+        earliest_ds_supported_version: earliest_ds_supported_version
+      properties:
+        recommended_version:
+          nullable: true
+          type: string
+        available_version:
+          items:
+            type: string
+          nullable: true
+          type: array
+        earliest_acs_supported_version:
+          nullable: true
+          type: string
+        earliest_ds_supported_version:
+          nullable: true
+          type: string
+        latest_acs_supported_version:
+          nullable: true
+          type: string
+        latest_ds_supported_version:
+          nullable: true
+          type: string
+        acs_information:
+          items:
+            type: string
+          nullable: true
+          type: array
+      type: object
     Token:
       additionalProperties: false
       example:
@@ -5813,15 +7272,6 @@ components:
         type: type
         created_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
         expires_at: 2000-01-23T04:56:07.000+00:00
-        encryption:
-          kek:
-            prov: prov
-            alg: alg
-            key: key
-          cek:
-            prov: prov
-            alg: alg
-            key: key
         modified_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
         fingerprint: fingerprint
         containers:
@@ -5890,8 +7340,6 @@ components:
           type: object
         enrichments:
           $ref: '#/components/schemas/TokenEnrichments'
-        encryption:
-          $ref: '#/components/schemas/EncryptionMetadata'
         created_by:
           format: uuid
           maxLength: 36
@@ -6032,15 +7480,6 @@ components:
           type: type
           created_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           expires_at: 2000-01-23T04:56:07.000+00:00
-          encryption:
-            kek:
-              prov: prov
-              alg: alg
-              key: key
-            cek:
-              prov: prov
-              alg: alg
-              key: key
           modified_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           fingerprint: fingerprint
           containers:
@@ -6100,15 +7539,6 @@ components:
           type: type
           created_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           expires_at: 2000-01-23T04:56:07.000+00:00
-          encryption:
-            kek:
-              prov: prov
-              alg: alg
-              key: key
-            cek:
-              prov: prov
-              alg: alg
-              key: key
           modified_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           fingerprint: fingerprint
           containers:
@@ -6168,15 +7598,6 @@ components:
           type: type
           created_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           expires_at: 2000-01-23T04:56:07.000+00:00
-          encryption:
-            kek:
-              prov: prov
-              alg: alg
-              key: key
-            cek:
-              prov: prov
-              alg: alg
-              key: key
           modified_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           fingerprint: fingerprint
           containers:
@@ -6236,15 +7657,6 @@ components:
           type: type
           created_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           expires_at: 2000-01-23T04:56:07.000+00:00
-          encryption:
-            kek:
-              prov: prov
-              alg: alg
-              key: key
-            cek:
-              prov: prov
-              alg: alg
-              key: key
           modified_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           fingerprint: fingerprint
           containers:
@@ -6304,15 +7716,6 @@ components:
           type: type
           created_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           expires_at: 2000-01-23T04:56:07.000+00:00
-          encryption:
-            kek:
-              prov: prov
-              alg: alg
-              key: key
-            cek:
-              prov: prov
-              alg: alg
-              key: key
           modified_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           fingerprint: fingerprint
           containers:
@@ -6468,15 +7871,19 @@ components:
           code: code
         application:
           tenant_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-          expires_at: 2000-01-23T04:56:07.000+00:00
-          permissions:
-          - permissions
-          - permissions
-          - permissions
-          - permissions
-          - permissions
-          name: name
-          modified_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          keys:
+          - created_at: 2000-01-23T04:56:07.000+00:00
+            id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+            created_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+            key: key
+          - created_at: 2000-01-23T04:56:07.000+00:00
+            id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+            created_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+            key: key
+          - created_at: 2000-01-23T04:56:07.000+00:00
+            id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+            created_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+            key: key
           created_at: 2000-01-23T04:56:07.000+00:00
           rules:
           - container: container
@@ -6507,10 +7914,19 @@ components:
             - attribute: attribute
               value: value
               operator: operator
-          id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           type: type
-          modified_at: 2000-01-23T04:56:07.000+00:00
           created_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          expires_at: 2000-01-23T04:56:07.000+00:00
+          permissions:
+          - permissions
+          - permissions
+          - permissions
+          - permissions
+          - permissions
+          name: name
+          modified_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          modified_at: 2000-01-23T04:56:07.000+00:00
           key: key
         configuration:
           key: configuration
@@ -6656,15 +8072,19 @@ components:
         code: code
         application:
           tenant_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-          expires_at: 2000-01-23T04:56:07.000+00:00
-          permissions:
-          - permissions
-          - permissions
-          - permissions
-          - permissions
-          - permissions
-          name: name
-          modified_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          keys:
+          - created_at: 2000-01-23T04:56:07.000+00:00
+            id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+            created_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+            key: key
+          - created_at: 2000-01-23T04:56:07.000+00:00
+            id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+            created_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+            key: key
+          - created_at: 2000-01-23T04:56:07.000+00:00
+            id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+            created_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+            key: key
           created_at: 2000-01-23T04:56:07.000+00:00
           rules:
           - container: container
@@ -6695,10 +8115,19 @@ components:
             - attribute: attribute
               value: value
               operator: operator
-          id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           type: type
-          modified_at: 2000-01-23T04:56:07.000+00:00
           created_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          expires_at: 2000-01-23T04:56:07.000+00:00
+          permissions:
+          - permissions
+          - permissions
+          - permissions
+          - permissions
+          - permissions
+          name: name
+          modified_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          modified_at: 2000-01-23T04:56:07.000+00:00
           key: key
         configuration:
           key: configuration

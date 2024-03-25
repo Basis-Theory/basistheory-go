@@ -8,6 +8,7 @@ Name | Type | Description | Notes
 **TenantId** | Pointer to **string** |  | [optional] 
 **Name** | Pointer to **NullableString** |  | [optional] 
 **Key** | Pointer to **NullableString** |  | [optional] 
+**Keys** | Pointer to [**[]ApplicationKey**](ApplicationKey.md) |  | [optional] 
 **Type** | Pointer to **NullableString** |  | [optional] 
 **CreatedBy** | Pointer to **NullableString** |  | [optional] 
 **CreatedAt** | Pointer to **NullableTime** |  | [optional] 
@@ -156,6 +157,41 @@ HasKey returns a boolean if a field has been set.
 `func (o *Application) UnsetKey()`
 
 UnsetKey ensures that no value is present for Key, not even an explicit nil
+### GetKeys
+
+`func (o *Application) GetKeys() []ApplicationKey`
+
+GetKeys returns the Keys field if non-nil, zero value otherwise.
+
+### GetKeysOk
+
+`func (o *Application) GetKeysOk() (*[]ApplicationKey, bool)`
+
+GetKeysOk returns a tuple with the Keys field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetKeys
+
+`func (o *Application) SetKeys(v []ApplicationKey)`
+
+SetKeys sets Keys field to given value.
+
+### HasKeys
+
+`func (o *Application) HasKeys() bool`
+
+HasKeys returns a boolean if a field has been set.
+
+### SetKeysNil
+
+`func (o *Application) SetKeysNil(b bool)`
+
+ SetKeysNil sets the value for Keys to be an explicit nil
+
+### UnsetKeys
+`func (o *Application) UnsetKeys()`
+
+UnsetKeys ensures that no value is present for Keys, not even an explicit nil
 ### GetType
 
 `func (o *Application) GetType() string`
