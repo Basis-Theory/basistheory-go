@@ -1,3 +1,10 @@
+## [5.1.1](https://github.com/Basis-Theory/basistheory-go/compare/v5.1.0...v5.1.1) (2024-03-26)
+
+
+### Bug Fixes
+
+* fixes go.mod module for v5 ([#80](https://github.com/Basis-Theory/basistheory-go/issues/80)) ([c177e67](https://github.com/Basis-Theory/basistheory-go/commit/c177e67ce54a9c8e88b7d98c322d26ab192e1187))
+
 # [5.1.0](https://github.com/Basis-Theory/basistheory-go/compare/v5.0.0...v5.1.0) (2024-03-26)
 
 
