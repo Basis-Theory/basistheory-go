@@ -23,6 +23,7 @@ type Tenant struct {
 	Id         *string           `json:"id,omitempty"`
 	OwnerId    *string           `json:"owner_id,omitempty"`
 	Name       NullableString    `json:"name,omitempty"`
+	Type       NullableString    `json:"type,omitempty"`
 	CreatedBy  NullableString    `json:"created_by,omitempty"`
 	CreatedAt  NullableTime      `json:"created_at,omitempty"`
 	ModifiedBy NullableString    `json:"modified_by,omitempty"`
@@ -152,6 +153,49 @@ func (o *Tenant) SetNameNil() {
 // UnsetName ensures that no value is present for Name, not even an explicit nil
 func (o *Tenant) UnsetName() {
 	o.Name.Unset()
+}
+
+// GetType returns the Type field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *Tenant) GetType() string {
+	if o == nil || IsNil(o.Type.Get()) {
+		var ret string
+		return ret
+	}
+	return *o.Type.Get()
+}
+
+// GetTypeOk returns a tuple with the Type field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *Tenant) GetTypeOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.Type.Get(), o.Type.IsSet()
+}
+
+// HasType returns a boolean if a field is not nil.
+func (o *Tenant) HasType() bool {
+	if o != nil && !IsNil(o.Type) {
+		return true
+	}
+
+	return false
+}
+
+// SetType gets a reference to the given NullableString and assigns it to the Type field.
+func (o *Tenant) SetType(v string) {
+	o.Type.Set(&v)
+}
+
+// SetTypeNil sets the value for Type to be an explicit nil
+func (o *Tenant) SetTypeNil() {
+	o.Type.Set(nil)
+}
+
+// UnsetType ensures that no value is present for Type, not even an explicit nil
+func (o *Tenant) UnsetType() {
+	o.Type.Unset()
 }
 
 // GetCreatedBy returns the CreatedBy field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -377,6 +421,9 @@ func (o Tenant) ToMap() (map[string]interface{}, error) {
 	}
 	if o.Name.IsSet() {
 		toSerialize["name"] = o.Name.Get()
+	}
+	if o.Type.IsSet() {
+		toSerialize["type"] = o.Type.Get()
 	}
 	if o.CreatedBy.IsSet() {
 		toSerialize["created_by"] = o.CreatedBy.Get()

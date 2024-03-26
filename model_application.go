@@ -20,18 +20,20 @@ var _ MappedNullable = &Application{}
 
 // Application struct for Application
 type Application struct {
-	Id          *string        `json:"id,omitempty"`
-	TenantId    *string        `json:"tenant_id,omitempty"`
-	Name        NullableString `json:"name,omitempty"`
-	Key         NullableString `json:"key,omitempty"`
-	Type        NullableString `json:"type,omitempty"`
-	CreatedBy   NullableString `json:"created_by,omitempty"`
-	CreatedAt   NullableTime   `json:"created_at,omitempty"`
-	ModifiedBy  NullableString `json:"modified_by,omitempty"`
-	ModifiedAt  NullableTime   `json:"modified_at,omitempty"`
-	ExpiresAt   NullableTime   `json:"expires_at,omitempty"`
-	Permissions []string       `json:"permissions,omitempty"`
-	Rules       []AccessRule   `json:"rules,omitempty"`
+	Id       *string        `json:"id,omitempty"`
+	TenantId *string        `json:"tenant_id,omitempty"`
+	Name     NullableString `json:"name,omitempty"`
+	// Deprecated
+	Key         NullableString   `json:"key,omitempty"`
+	Keys        []ApplicationKey `json:"keys,omitempty"`
+	Type        NullableString   `json:"type,omitempty"`
+	CreatedBy   NullableString   `json:"created_by,omitempty"`
+	CreatedAt   NullableTime     `json:"created_at,omitempty"`
+	ModifiedBy  NullableString   `json:"modified_by,omitempty"`
+	ModifiedAt  NullableTime     `json:"modified_at,omitempty"`
+	ExpiresAt   NullableTime     `json:"expires_at,omitempty"`
+	Permissions []string         `json:"permissions,omitempty"`
+	Rules       []AccessRule     `json:"rules,omitempty"`
 }
 
 // NewApplication instantiates a new Application object
@@ -159,6 +161,7 @@ func (o *Application) UnsetName() {
 }
 
 // GetKey returns the Key field value if set, zero value otherwise (both if not set or set to explicit null).
+// Deprecated
 func (o *Application) GetKey() string {
 	if o == nil || IsNil(o.Key.Get()) {
 		var ret string
@@ -170,6 +173,7 @@ func (o *Application) GetKey() string {
 // GetKeyOk returns a tuple with the Key field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
+// Deprecated
 func (o *Application) GetKeyOk() (*string, bool) {
 	if o == nil {
 		return nil, false
@@ -187,6 +191,7 @@ func (o *Application) HasKey() bool {
 }
 
 // SetKey gets a reference to the given NullableString and assigns it to the Key field.
+// Deprecated
 func (o *Application) SetKey(v string) {
 	o.Key.Set(&v)
 }
@@ -199,6 +204,39 @@ func (o *Application) SetKeyNil() {
 // UnsetKey ensures that no value is present for Key, not even an explicit nil
 func (o *Application) UnsetKey() {
 	o.Key.Unset()
+}
+
+// GetKeys returns the Keys field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *Application) GetKeys() []ApplicationKey {
+	if o == nil {
+		var ret []ApplicationKey
+		return ret
+	}
+	return o.Keys
+}
+
+// GetKeysOk returns a tuple with the Keys field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *Application) GetKeysOk() ([]ApplicationKey, bool) {
+	if o == nil || IsNil(o.Keys) {
+		return nil, false
+	}
+	return o.Keys, true
+}
+
+// HasKeys returns a boolean if a field is not nil.
+func (o *Application) HasKeys() bool {
+	if o != nil && !IsNil(o.Keys) {
+		return true
+	}
+
+	return false
+}
+
+// SetKeys gets a reference to the given []ApplicationKey and assigns it to the Keys field.
+func (o *Application) SetKeys(v []ApplicationKey) {
+	o.Keys = v
 }
 
 // GetType returns the Type field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -546,6 +584,9 @@ func (o Application) ToMap() (map[string]interface{}, error) {
 	}
 	if o.Key.IsSet() {
 		toSerialize["key"] = o.Key.Get()
+	}
+	if o.Keys != nil {
+		toSerialize["keys"] = o.Keys
 	}
 	if o.Type.IsSet() {
 		toSerialize["type"] = o.Type.Get()

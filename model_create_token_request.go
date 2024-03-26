@@ -19,18 +19,17 @@ var _ MappedNullable = &CreateTokenRequest{}
 
 // CreateTokenRequest struct for CreateTokenRequest
 type CreateTokenRequest struct {
-	Id                    NullableString      `json:"id,omitempty"`
-	Type                  NullableString      `json:"type,omitempty"`
-	Data                  interface{}         `json:"data"`
-	Encryption            *EncryptionMetadata `json:"encryption,omitempty"`
-	Privacy               *Privacy            `json:"privacy,omitempty"`
-	Metadata              map[string]string   `json:"metadata,omitempty"`
-	SearchIndexes         []string            `json:"search_indexes,omitempty"`
-	FingerprintExpression NullableString      `json:"fingerprint_expression,omitempty"`
-	Mask                  interface{}         `json:"mask,omitempty"`
-	DeduplicateToken      NullableBool        `json:"deduplicate_token,omitempty"`
-	ExpiresAt             NullableString      `json:"expires_at,omitempty"`
-	Containers            []string            `json:"containers,omitempty"`
+	Id                    NullableString    `json:"id,omitempty"`
+	Type                  NullableString    `json:"type,omitempty"`
+	Data                  interface{}       `json:"data"`
+	Privacy               *Privacy          `json:"privacy,omitempty"`
+	Metadata              map[string]string `json:"metadata,omitempty"`
+	SearchIndexes         []string          `json:"search_indexes,omitempty"`
+	FingerprintExpression NullableString    `json:"fingerprint_expression,omitempty"`
+	Mask                  interface{}       `json:"mask,omitempty"`
+	DeduplicateToken      NullableBool      `json:"deduplicate_token,omitempty"`
+	ExpiresAt             NullableString    `json:"expires_at,omitempty"`
+	Containers            []string          `json:"containers,omitempty"`
 }
 
 // NewCreateTokenRequest instantiates a new CreateTokenRequest object
@@ -161,38 +160,6 @@ func (o *CreateTokenRequest) GetDataOk() (*interface{}, bool) {
 // SetData sets field value
 func (o *CreateTokenRequest) SetData(v interface{}) {
 	o.Data = v
-}
-
-// GetEncryption returns the Encryption field value if set, zero value otherwise.
-func (o *CreateTokenRequest) GetEncryption() EncryptionMetadata {
-	if o == nil || IsNil(o.Encryption) {
-		var ret EncryptionMetadata
-		return ret
-	}
-	return *o.Encryption
-}
-
-// GetEncryptionOk returns a tuple with the Encryption field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *CreateTokenRequest) GetEncryptionOk() (*EncryptionMetadata, bool) {
-	if o == nil || IsNil(o.Encryption) {
-		return nil, false
-	}
-	return o.Encryption, true
-}
-
-// HasEncryption returns a boolean if a field is not nil.
-func (o *CreateTokenRequest) HasEncryption() bool {
-	if o != nil && !IsNil(o.Encryption) {
-		return true
-	}
-
-	return false
-}
-
-// SetEncryption gets a reference to the given EncryptionMetadata and assigns it to the Encryption field.
-func (o *CreateTokenRequest) SetEncryption(v EncryptionMetadata) {
-	o.Encryption = &v
 }
 
 // GetPrivacy returns the Privacy field value if set, zero value otherwise.
@@ -506,9 +473,6 @@ func (o CreateTokenRequest) ToMap() (map[string]interface{}, error) {
 	}
 	if o.Data != nil {
 		toSerialize["data"] = o.Data
-	}
-	if !IsNil(o.Encryption) {
-		toSerialize["encryption"] = o.Encryption
 	}
 	if !IsNil(o.Privacy) {
 		toSerialize["privacy"] = o.Privacy

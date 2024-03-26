@@ -48,6 +48,8 @@ type APIClient struct {
 
 	// API Services
 
+	ApplicationKeysApi *ApplicationKeysApiService
+
 	ApplicationTemplatesApi *ApplicationTemplatesApiService
 
 	ApplicationsApi *ApplicationsApiService
@@ -65,6 +67,8 @@ type APIClient struct {
 	SessionsApi *SessionsApiService
 
 	TenantsApi *TenantsApiService
+
+	ThreeDSApi *ThreeDSApiService
 
 	TokenizeApi *TokenizeApiService
 
@@ -87,6 +91,7 @@ func NewAPIClient(cfg *Configuration) *APIClient {
 	c.common.client = c
 
 	// API Services
+	c.ApplicationKeysApi = (*ApplicationKeysApiService)(&c.common)
 	c.ApplicationTemplatesApi = (*ApplicationTemplatesApiService)(&c.common)
 	c.ApplicationsApi = (*ApplicationsApiService)(&c.common)
 	c.LogsApi = (*LogsApiService)(&c.common)
@@ -96,6 +101,7 @@ func NewAPIClient(cfg *Configuration) *APIClient {
 	c.ReactorsApi = (*ReactorsApiService)(&c.common)
 	c.SessionsApi = (*SessionsApiService)(&c.common)
 	c.TenantsApi = (*TenantsApiService)(&c.common)
+	c.ThreeDSApi = (*ThreeDSApiService)(&c.common)
 	c.TokenizeApi = (*TokenizeApiService)(&c.common)
 	c.TokensApi = (*TokensApiService)(&c.common)
 

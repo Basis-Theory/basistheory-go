@@ -20,25 +20,24 @@ var _ MappedNullable = &Token{}
 
 // Token struct for Token
 type Token struct {
-	Id                    *string             `json:"id,omitempty"`
-	Type                  *string             `json:"type,omitempty"`
-	TenantId              *string             `json:"tenant_id,omitempty"`
-	Data                  interface{}         `json:"data,omitempty"`
-	Metadata              map[string]string   `json:"metadata,omitempty"`
-	Enrichments           *TokenEnrichments   `json:"enrichments,omitempty"`
-	Encryption            *EncryptionMetadata `json:"encryption,omitempty"`
-	CreatedBy             NullableString      `json:"created_by,omitempty"`
-	CreatedAt             NullableTime        `json:"created_at,omitempty"`
-	ModifiedBy            NullableString      `json:"modified_by,omitempty"`
-	ModifiedAt            NullableTime        `json:"modified_at,omitempty"`
-	Fingerprint           NullableString      `json:"fingerprint,omitempty"`
-	FingerprintExpression NullableString      `json:"fingerprint_expression,omitempty"`
-	Mask                  interface{}         `json:"mask,omitempty"`
-	Privacy               *Privacy            `json:"privacy,omitempty"`
-	SearchIndexes         []string            `json:"search_indexes,omitempty"`
-	ExpiresAt             NullableTime        `json:"expires_at,omitempty"`
-	Containers            []string            `json:"containers,omitempty"`
-	Aliases               []string            `json:"aliases,omitempty"`
+	Id                    *string           `json:"id,omitempty"`
+	Type                  *string           `json:"type,omitempty"`
+	TenantId              *string           `json:"tenant_id,omitempty"`
+	Data                  interface{}       `json:"data,omitempty"`
+	Metadata              map[string]string `json:"metadata,omitempty"`
+	Enrichments           *TokenEnrichments `json:"enrichments,omitempty"`
+	CreatedBy             NullableString    `json:"created_by,omitempty"`
+	CreatedAt             NullableTime      `json:"created_at,omitempty"`
+	ModifiedBy            NullableString    `json:"modified_by,omitempty"`
+	ModifiedAt            NullableTime      `json:"modified_at,omitempty"`
+	Fingerprint           NullableString    `json:"fingerprint,omitempty"`
+	FingerprintExpression NullableString    `json:"fingerprint_expression,omitempty"`
+	Mask                  interface{}       `json:"mask,omitempty"`
+	Privacy               *Privacy          `json:"privacy,omitempty"`
+	SearchIndexes         []string          `json:"search_indexes,omitempty"`
+	ExpiresAt             NullableTime      `json:"expires_at,omitempty"`
+	Containers            []string          `json:"containers,omitempty"`
+	Aliases               []string          `json:"aliases,omitempty"`
 }
 
 // NewToken instantiates a new Token object
@@ -250,38 +249,6 @@ func (o *Token) HasEnrichments() bool {
 // SetEnrichments gets a reference to the given TokenEnrichments and assigns it to the Enrichments field.
 func (o *Token) SetEnrichments(v TokenEnrichments) {
 	o.Enrichments = &v
-}
-
-// GetEncryption returns the Encryption field value if set, zero value otherwise.
-func (o *Token) GetEncryption() EncryptionMetadata {
-	if o == nil || IsNil(o.Encryption) {
-		var ret EncryptionMetadata
-		return ret
-	}
-	return *o.Encryption
-}
-
-// GetEncryptionOk returns a tuple with the Encryption field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *Token) GetEncryptionOk() (*EncryptionMetadata, bool) {
-	if o == nil || IsNil(o.Encryption) {
-		return nil, false
-	}
-	return o.Encryption, true
-}
-
-// HasEncryption returns a boolean if a field is not nil.
-func (o *Token) HasEncryption() bool {
-	if o != nil && !IsNil(o.Encryption) {
-		return true
-	}
-
-	return false
-}
-
-// SetEncryption gets a reference to the given EncryptionMetadata and assigns it to the Encryption field.
-func (o *Token) SetEncryption(v EncryptionMetadata) {
-	o.Encryption = &v
 }
 
 // GetCreatedBy returns the CreatedBy field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -776,9 +743,6 @@ func (o Token) ToMap() (map[string]interface{}, error) {
 	}
 	if !IsNil(o.Enrichments) {
 		toSerialize["enrichments"] = o.Enrichments
-	}
-	if !IsNil(o.Encryption) {
-		toSerialize["encryption"] = o.Encryption
 	}
 	if o.CreatedBy.IsSet() {
 		toSerialize["created_by"] = o.CreatedBy.Get()

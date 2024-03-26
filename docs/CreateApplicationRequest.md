@@ -9,6 +9,7 @@ Name | Type | Description | Notes
 **ExpiresAt** | Pointer to **NullableString** |  | [optional] 
 **Permissions** | Pointer to **[]string** |  | [optional] 
 **Rules** | Pointer to [**[]AccessRule**](AccessRule.md) |  | [optional] 
+**CreateKey** | Pointer to **NullableBool** |  | [optional] 
 
 ## Methods
 
@@ -174,6 +175,41 @@ HasRules returns a boolean if a field has been set.
 `func (o *CreateApplicationRequest) UnsetRules()`
 
 UnsetRules ensures that no value is present for Rules, not even an explicit nil
+### GetCreateKey
+
+`func (o *CreateApplicationRequest) GetCreateKey() bool`
+
+GetCreateKey returns the CreateKey field if non-nil, zero value otherwise.
+
+### GetCreateKeyOk
+
+`func (o *CreateApplicationRequest) GetCreateKeyOk() (*bool, bool)`
+
+GetCreateKeyOk returns a tuple with the CreateKey field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetCreateKey
+
+`func (o *CreateApplicationRequest) SetCreateKey(v bool)`
+
+SetCreateKey sets CreateKey field to given value.
+
+### HasCreateKey
+
+`func (o *CreateApplicationRequest) HasCreateKey() bool`
+
+HasCreateKey returns a boolean if a field has been set.
+
+### SetCreateKeyNil
+
+`func (o *CreateApplicationRequest) SetCreateKeyNil(b bool)`
+
+ SetCreateKeyNil sets the value for CreateKey to be an explicit nil
+
+### UnsetCreateKey
+`func (o *CreateApplicationRequest) UnsetCreateKey()`
+
+UnsetCreateKey ensures that no value is present for CreateKey, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 
