@@ -136,9 +136,9 @@ Class | Method | HTTP request | Description
 *TenantsApi* | [**GetTenantUsageReport**](docs/TenantsApi.md#gettenantusagereport) | **Get** /tenants/self/reports/usage | 
 *TenantsApi* | [**ResendInvitation**](docs/TenantsApi.md#resendinvitation) | **Post** /tenants/self/invitations/{invitationId}/resend | 
 *TenantsApi* | [**Update**](docs/TenantsApi.md#update) | **Put** /tenants/self | 
-*ThreeDSApi* | [**Call3dsSessionsIdGet**](docs/ThreeDSApi.md#call3dssessionsidget) | **Get** /3ds/sessions/{id} | 
 *ThreeDSApi* | [**ThreeDSAuthenticateSession**](docs/ThreeDSApi.md#threedsauthenticatesession) | **Post** /3ds/sessions/{sessionId}/authenticate | 
 *ThreeDSApi* | [**ThreeDSGetChallengeResult**](docs/ThreeDSApi.md#threedsgetchallengeresult) | **Get** /3ds/sessions/{sessionId}/challenge-result | 
+*ThreeDSApi* | [**ThreeDSGetSessionById**](docs/ThreeDSApi.md#threedsgetsessionbyid) | **Get** /3ds/sessions/{id} | 
 *TokenizeApi* | [**Tokenize**](docs/TokenizeApi.md#tokenize) | **Post** /tokenize | 
 *TokensApi* | [**Create**](docs/TokensApi.md#create) | **Post** /tokens | 
 *TokensApi* | [**Delete**](docs/TokensApi.md#delete) | **Delete** /tokens/{id} | 

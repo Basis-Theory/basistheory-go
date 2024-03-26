@@ -22,143 +22,6 @@ import (
 // ThreeDSApiService ThreeDSApi service
 type ThreeDSApiService service
 
-type ThreeDSApiCall3dsSessionsIdGetRequest struct {
-	ctx        context.Context
-	ApiService *ThreeDSApiService
-	id         string
-}
-
-func (r ThreeDSApiCall3dsSessionsIdGetRequest) Execute() (*ThreeDSSession, *http.Response, error) {
-	return r.ApiService.Call3dsSessionsIdGetExecute(r)
-}
-
-/*
-Call3dsSessionsIdGet Method for Call3dsSessionsIdGet
-
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param id
- @return ThreeDSApiCall3dsSessionsIdGetRequest
-*/
-func (a *ThreeDSApiService) Call3dsSessionsIdGet(ctx context.Context, id string) ThreeDSApiCall3dsSessionsIdGetRequest {
-	return ThreeDSApiCall3dsSessionsIdGetRequest{
-		ApiService: a,
-		ctx:        ctx,
-		id:         id,
-	}
-}
-
-// Execute executes the request
-//  @return ThreeDSSession
-func (a *ThreeDSApiService) Call3dsSessionsIdGetExecute(r ThreeDSApiCall3dsSessionsIdGetRequest) (*ThreeDSSession, *http.Response, error) {
-	var (
-		localVarHTTPMethod  = http.MethodGet
-		localVarPostBody    interface{}
-		formFiles           []formFile
-		localVarReturnValue *ThreeDSSession
-	)
-
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ThreeDSApiService.Call3dsSessionsIdGet")
-	if err != nil {
-		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
-	}
-
-	localVarPath := localBasePath + "/3ds/sessions/{id}"
-	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterValueToString(r.id, "id")), -1)
-
-	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := url.Values{}
-	localVarFormParams := url.Values{}
-	if strlen(r.id) > 36 {
-		return localVarReturnValue, nil, reportError("id must have less than 36 elements")
-	}
-
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
-
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
-	if r.ctx != nil {
-		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
-			if apiKey, ok := auth["ApiKey"]; ok {
-				var key string
-				if apiKey.Prefix != "" {
-					key = apiKey.Prefix + " " + apiKey.Key
-				} else {
-					key = apiKey.Key
-				}
-				localVarHeaderParams["BT-API-KEY"] = key
-			}
-		}
-	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
-	if err != nil {
-		return localVarReturnValue, nil, err
-	}
-
-	localVarHTTPResponse, err := a.client.callAPI(req)
-	if err != nil || localVarHTTPResponse == nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
-	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
-	if err != nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := &GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
-		}
-		if localVarHTTPResponse.StatusCode == 404 {
-			var v ProblemDetails
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 401 {
-			var v ProblemDetails
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-	if err != nil {
-		newErr := &GenericOpenAPIError{
-			body:  localVarBody,
-			error: err.Error(),
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	return localVarReturnValue, localVarHTTPResponse, nil
-}
-
 type ThreeDSApiThreeDSAuthenticateSessionRequest struct {
 	ctx                               context.Context
 	ApiService                        *ThreeDSApiService
@@ -178,9 +41,9 @@ func (r ThreeDSApiThreeDSAuthenticateSessionRequest) Execute() (*ThreeDSAuthenti
 /*
 ThreeDSAuthenticateSession Method for ThreeDSAuthenticateSession
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param sessionId
- @return ThreeDSApiThreeDSAuthenticateSessionRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param sessionId
+	@return ThreeDSApiThreeDSAuthenticateSessionRequest
 */
 func (a *ThreeDSApiService) ThreeDSAuthenticateSession(ctx context.Context, sessionId string) ThreeDSApiThreeDSAuthenticateSessionRequest {
 	return ThreeDSApiThreeDSAuthenticateSessionRequest{
@@ -191,7 +54,8 @@ func (a *ThreeDSApiService) ThreeDSAuthenticateSession(ctx context.Context, sess
 }
 
 // Execute executes the request
-//  @return ThreeDSAuthentication
+//
+//	@return ThreeDSAuthentication
 func (a *ThreeDSApiService) ThreeDSAuthenticateSessionExecute(r ThreeDSApiThreeDSAuthenticateSessionRequest) (*ThreeDSAuthentication, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodPost
@@ -327,9 +191,9 @@ func (r ThreeDSApiThreeDSGetChallengeResultRequest) Execute() (*ThreeDSAuthentic
 /*
 ThreeDSGetChallengeResult Method for ThreeDSGetChallengeResult
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param sessionId
- @return ThreeDSApiThreeDSGetChallengeResultRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param sessionId
+	@return ThreeDSApiThreeDSGetChallengeResultRequest
 */
 func (a *ThreeDSApiService) ThreeDSGetChallengeResult(ctx context.Context, sessionId string) ThreeDSApiThreeDSGetChallengeResultRequest {
 	return ThreeDSApiThreeDSGetChallengeResultRequest{
@@ -340,7 +204,8 @@ func (a *ThreeDSApiService) ThreeDSGetChallengeResult(ctx context.Context, sessi
 }
 
 // Execute executes the request
-//  @return ThreeDSAuthentication
+//
+//	@return ThreeDSAuthentication
 func (a *ThreeDSApiService) ThreeDSGetChallengeResultExecute(r ThreeDSApiThreeDSGetChallengeResultRequest) (*ThreeDSAuthentication, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
@@ -438,6 +303,144 @@ func (a *ThreeDSApiService) ThreeDSGetChallengeResultExecute(r ThreeDSApiThreeDS
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
+			var v ProblemDetails
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type ThreeDSApiThreeDSGetSessionByIdRequest struct {
+	ctx        context.Context
+	ApiService *ThreeDSApiService
+	id         string
+}
+
+func (r ThreeDSApiThreeDSGetSessionByIdRequest) Execute() (*ThreeDSSession, *http.Response, error) {
+	return r.ApiService.ThreeDSGetSessionByIdExecute(r)
+}
+
+/*
+ThreeDSGetSessionById Method for ThreeDSGetSessionById
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param id
+	@return ThreeDSApiThreeDSGetSessionByIdRequest
+*/
+func (a *ThreeDSApiService) ThreeDSGetSessionById(ctx context.Context, id string) ThreeDSApiThreeDSGetSessionByIdRequest {
+	return ThreeDSApiThreeDSGetSessionByIdRequest{
+		ApiService: a,
+		ctx:        ctx,
+		id:         id,
+	}
+}
+
+// Execute executes the request
+//
+//	@return ThreeDSSession
+func (a *ThreeDSApiService) ThreeDSGetSessionByIdExecute(r ThreeDSApiThreeDSGetSessionByIdRequest) (*ThreeDSSession, *http.Response, error) {
+	var (
+		localVarHTTPMethod  = http.MethodGet
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *ThreeDSSession
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ThreeDSApiService.ThreeDSGetSessionById")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/3ds/sessions/{id}"
+	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterValueToString(r.id, "id")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if strlen(r.id) > 36 {
+		return localVarReturnValue, nil, reportError("id must have less than 36 elements")
+	}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.ctx != nil {
+		// API Key Authentication
+		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+			if apiKey, ok := auth["ApiKey"]; ok {
+				var key string
+				if apiKey.Prefix != "" {
+					key = apiKey.Prefix + " " + apiKey.Key
+				} else {
+					key = apiKey.Key
+				}
+				localVarHeaderParams["BT-API-KEY"] = key
+			}
+		}
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 404 {
+			var v ProblemDetails
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 401 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
