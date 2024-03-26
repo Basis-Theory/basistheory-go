@@ -1,3 +1,10 @@
+# [5.1.0](https://github.com/Basis-Theory/basistheory-go/compare/v5.0.0...v5.1.0) (2024-03-26)
+
+
+### Features
+
+* adds 3DS and application keys endpoints ([#79](https://github.com/Basis-Theory/basistheory-go/issues/79)) ([840ac62](https://github.com/Basis-Theory/basistheory-go/commit/840ac62eaab71f2cffaf4237427f451220227328))
+
 # [5.0.0](https://github.com/Basis-Theory/basistheory-go/compare/v4.0.0...v5.0.0) (2024-02-13)
 
 
