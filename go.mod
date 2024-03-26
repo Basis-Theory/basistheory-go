@@ -1,4 +1,4 @@
-module github.com/Basis-Theory/basistheory-go/v3
+module github.com/Basis-Theory/basistheory-go/v5
 
 go 1.19
 
