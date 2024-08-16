@@ -7,6 +7,7 @@ Name | Type | Description | Notes
 **Id** | Pointer to **string** |  | [optional] 
 **TenantId** | Pointer to **string** |  | [optional] 
 **Email** | Pointer to **NullableString** |  | [optional] 
+**Role** | Pointer to **NullableString** |  | [optional] 
 **Status** | Pointer to [**TenantInvitationStatus**](TenantInvitationStatus.md) |  | [optional] 
 **ExpiresAt** | Pointer to **time.Time** |  | [optional] 
 **CreatedBy** | Pointer to **NullableString** |  | [optional] 
@@ -118,6 +119,41 @@ HasEmail returns a boolean if a field has been set.
 `func (o *TenantInvitationResponse) UnsetEmail()`
 
 UnsetEmail ensures that no value is present for Email, not even an explicit nil
+### GetRole
+
+`func (o *TenantInvitationResponse) GetRole() string`
+
+GetRole returns the Role field if non-nil, zero value otherwise.
+
+### GetRoleOk
+
+`func (o *TenantInvitationResponse) GetRoleOk() (*string, bool)`
+
+GetRoleOk returns a tuple with the Role field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetRole
+
+`func (o *TenantInvitationResponse) SetRole(v string)`
+
+SetRole sets Role field to given value.
+
+### HasRole
+
+`func (o *TenantInvitationResponse) HasRole() bool`
+
+HasRole returns a boolean if a field has been set.
+
+### SetRoleNil
+
+`func (o *TenantInvitationResponse) SetRoleNil(b bool)`
+
+ SetRoleNil sets the value for Role to be an explicit nil
+
+### UnsetRole
+`func (o *TenantInvitationResponse) UnsetRole()`
+
+UnsetRole ensures that no value is present for Role, not even an explicit nil
 ### GetStatus
 
 `func (o *TenantInvitationResponse) GetStatus() TenantInvitationStatus`

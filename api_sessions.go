@@ -39,8 +39,8 @@ func (r SessionsApiAuthorizeRequest) Execute() (*http.Response, error) {
 /*
 Authorize Method for Authorize
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return SessionsApiAuthorizeRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return SessionsApiAuthorizeRequest
 */
 func (a *SessionsApiService) Authorize(ctx context.Context) SessionsApiAuthorizeRequest {
 	return SessionsApiAuthorizeRequest{
@@ -193,8 +193,8 @@ func (r SessionsApiCreateRequest) Execute() (*CreateSessionResponse, *http.Respo
 /*
 Create Method for Create
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return SessionsApiCreateRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return SessionsApiCreateRequest
 */
 func (a *SessionsApiService) Create(ctx context.Context) SessionsApiCreateRequest {
 	return SessionsApiCreateRequest{
@@ -204,7 +204,8 @@ func (a *SessionsApiService) Create(ctx context.Context) SessionsApiCreateReques
 }
 
 // Execute executes the request
-//  @return CreateSessionResponse
+//
+//	@return CreateSessionResponse
 func (a *SessionsApiService) CreateExecute(r SessionsApiCreateRequest) (*CreateSessionResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodPost

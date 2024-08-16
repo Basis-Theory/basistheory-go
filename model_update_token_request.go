@@ -19,16 +19,15 @@ var _ MappedNullable = &UpdateTokenRequest{}
 
 // UpdateTokenRequest struct for UpdateTokenRequest
 type UpdateTokenRequest struct {
-	Data                  interface{}         `json:"data,omitempty"`
-	Encryption            *EncryptionMetadata `json:"encryption,omitempty"`
-	Privacy               *UpdatePrivacy      `json:"privacy,omitempty"`
-	Metadata              map[string]string   `json:"metadata,omitempty"`
-	SearchIndexes         []string            `json:"search_indexes,omitempty"`
-	FingerprintExpression NullableString      `json:"fingerprint_expression,omitempty"`
-	Mask                  interface{}         `json:"mask,omitempty"`
-	ExpiresAt             NullableString      `json:"expires_at,omitempty"`
-	DeduplicateToken      NullableBool        `json:"deduplicate_token,omitempty"`
-	Containers            []string            `json:"containers,omitempty"`
+	Data                  interface{}       `json:"data,omitempty"`
+	Privacy               *UpdatePrivacy    `json:"privacy,omitempty"`
+	Metadata              map[string]string `json:"metadata,omitempty"`
+	SearchIndexes         []string          `json:"search_indexes,omitempty"`
+	FingerprintExpression NullableString    `json:"fingerprint_expression,omitempty"`
+	Mask                  interface{}       `json:"mask,omitempty"`
+	ExpiresAt             NullableString    `json:"expires_at,omitempty"`
+	DeduplicateToken      NullableBool      `json:"deduplicate_token,omitempty"`
+	Containers            []string          `json:"containers,omitempty"`
 }
 
 // NewUpdateTokenRequest instantiates a new UpdateTokenRequest object
@@ -79,38 +78,6 @@ func (o *UpdateTokenRequest) HasData() bool {
 // SetData gets a reference to the given interface{} and assigns it to the Data field.
 func (o *UpdateTokenRequest) SetData(v interface{}) {
 	o.Data = v
-}
-
-// GetEncryption returns the Encryption field value if set, zero value otherwise.
-func (o *UpdateTokenRequest) GetEncryption() EncryptionMetadata {
-	if o == nil || IsNil(o.Encryption) {
-		var ret EncryptionMetadata
-		return ret
-	}
-	return *o.Encryption
-}
-
-// GetEncryptionOk returns a tuple with the Encryption field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *UpdateTokenRequest) GetEncryptionOk() (*EncryptionMetadata, bool) {
-	if o == nil || IsNil(o.Encryption) {
-		return nil, false
-	}
-	return o.Encryption, true
-}
-
-// HasEncryption returns a boolean if a field is not nil.
-func (o *UpdateTokenRequest) HasEncryption() bool {
-	if o != nil && !IsNil(o.Encryption) {
-		return true
-	}
-
-	return false
-}
-
-// SetEncryption gets a reference to the given EncryptionMetadata and assigns it to the Encryption field.
-func (o *UpdateTokenRequest) SetEncryption(v EncryptionMetadata) {
-	o.Encryption = &v
 }
 
 // GetPrivacy returns the Privacy field value if set, zero value otherwise.
@@ -418,9 +385,6 @@ func (o UpdateTokenRequest) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if o.Data != nil {
 		toSerialize["data"] = o.Data
-	}
-	if !IsNil(o.Encryption) {
-		toSerialize["encryption"] = o.Encryption
 	}
 	if !IsNil(o.Privacy) {
 		toSerialize["privacy"] = o.Privacy

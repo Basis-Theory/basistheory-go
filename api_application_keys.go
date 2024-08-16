@@ -36,9 +36,9 @@ func (r ApplicationKeysApiCreateRequest) Execute() (*ApplicationKey, *http.Respo
 /*
 Create Method for Create
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param id
- @return ApplicationKeysApiCreateRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param id
+	@return ApplicationKeysApiCreateRequest
 */
 func (a *ApplicationKeysApiService) Create(ctx context.Context, id string) ApplicationKeysApiCreateRequest {
 	return ApplicationKeysApiCreateRequest{
@@ -49,7 +49,8 @@ func (a *ApplicationKeysApiService) Create(ctx context.Context, id string) Appli
 }
 
 // Execute executes the request
-//  @return ApplicationKey
+//
+//	@return ApplicationKey
 func (a *ApplicationKeysApiService) CreateExecute(r ApplicationKeysApiCreateRequest) (*ApplicationKey, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodPost
@@ -184,10 +185,10 @@ func (r ApplicationKeysApiDeleteRequest) Execute() (*http.Response, error) {
 /*
 Delete Method for Delete
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param id
- @param keyId
- @return ApplicationKeysApiDeleteRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param id
+	@param keyId
+	@return ApplicationKeysApiDeleteRequest
 */
 func (a *ApplicationKeysApiService) Delete(ctx context.Context, id string, keyId string) ApplicationKeysApiDeleteRequest {
 	return ApplicationKeysApiDeleteRequest{
@@ -338,9 +339,9 @@ func (r ApplicationKeysApiGetRequest) Execute() ([]ApplicationKey, *http.Respons
 /*
 Get Method for Get
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param id
- @return ApplicationKeysApiGetRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param id
+	@return ApplicationKeysApiGetRequest
 */
 func (a *ApplicationKeysApiService) Get(ctx context.Context, id string) ApplicationKeysApiGetRequest {
 	return ApplicationKeysApiGetRequest{
@@ -351,7 +352,8 @@ func (a *ApplicationKeysApiService) Get(ctx context.Context, id string) Applicat
 }
 
 // Execute executes the request
-//  @return []ApplicationKey
+//
+//	@return []ApplicationKey
 func (a *ApplicationKeysApiService) GetExecute(r ApplicationKeysApiGetRequest) ([]ApplicationKey, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
@@ -508,10 +510,10 @@ func (r ApplicationKeysApiGetByIdRequest) Execute() (*ApplicationKey, *http.Resp
 /*
 GetById Method for GetById
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param id
- @param keyId
- @return ApplicationKeysApiGetByIdRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param id
+	@param keyId
+	@return ApplicationKeysApiGetByIdRequest
 */
 func (a *ApplicationKeysApiService) GetById(ctx context.Context, id string, keyId string) ApplicationKeysApiGetByIdRequest {
 	return ApplicationKeysApiGetByIdRequest{
@@ -523,7 +525,8 @@ func (a *ApplicationKeysApiService) GetById(ctx context.Context, id string, keyI
 }
 
 // Execute executes the request
-//  @return ApplicationKey
+//
+//	@return ApplicationKey
 func (a *ApplicationKeysApiService) GetByIdExecute(r ApplicationKeysApiGetByIdRequest) (*ApplicationKey, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet

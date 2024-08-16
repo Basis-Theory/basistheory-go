@@ -22,6 +22,7 @@ type TokenReport struct {
 	IncludedMonthlyActiveTokens *int64                  `json:"included_monthly_active_tokens,omitempty"`
 	MonthlyActiveTokens         *int64                  `json:"monthly_active_tokens,omitempty"`
 	MetricsByType               map[string]TokenMetrics `json:"metrics_by_type,omitempty"`
+	TotalTokens                 *int64                  `json:"total_tokens,omitempty"`
 }
 
 // NewTokenReport instantiates a new TokenReport object
@@ -138,6 +139,38 @@ func (o *TokenReport) SetMetricsByType(v map[string]TokenMetrics) {
 	o.MetricsByType = v
 }
 
+// GetTotalTokens returns the TotalTokens field value if set, zero value otherwise.
+func (o *TokenReport) GetTotalTokens() int64 {
+	if o == nil || IsNil(o.TotalTokens) {
+		var ret int64
+		return ret
+	}
+	return *o.TotalTokens
+}
+
+// GetTotalTokensOk returns a tuple with the TotalTokens field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *TokenReport) GetTotalTokensOk() (*int64, bool) {
+	if o == nil || IsNil(o.TotalTokens) {
+		return nil, false
+	}
+	return o.TotalTokens, true
+}
+
+// HasTotalTokens returns a boolean if a field is not nil.
+func (o *TokenReport) HasTotalTokens() bool {
+	if o != nil && !IsNil(o.TotalTokens) {
+		return true
+	}
+
+	return false
+}
+
+// SetTotalTokens gets a reference to the given int64 and assigns it to the TotalTokens field.
+func (o *TokenReport) SetTotalTokens(v int64) {
+	o.TotalTokens = &v
+}
+
 func (o TokenReport) MarshalJSON() ([]byte, error) {
 	toSerialize, err := o.ToMap()
 	if err != nil {
@@ -156,6 +189,9 @@ func (o TokenReport) ToMap() (map[string]interface{}, error) {
 	}
 	if o.MetricsByType != nil {
 		toSerialize["metrics_by_type"] = o.MetricsByType
+	}
+	if !IsNil(o.TotalTokens) {
+		toSerialize["total_tokens"] = o.TotalTokens
 	}
 	return toSerialize, nil
 }

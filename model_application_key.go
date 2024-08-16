@@ -22,6 +22,7 @@ var _ MappedNullable = &ApplicationKey{}
 type ApplicationKey struct {
 	Id        *string        `json:"id,omitempty"`
 	Key       NullableString `json:"key,omitempty"`
+	Version   NullableString `json:"version,omitempty"`
 	CreatedBy NullableString `json:"created_by,omitempty"`
 	CreatedAt NullableTime   `json:"created_at,omitempty"`
 }
@@ -116,6 +117,49 @@ func (o *ApplicationKey) SetKeyNil() {
 // UnsetKey ensures that no value is present for Key, not even an explicit nil
 func (o *ApplicationKey) UnsetKey() {
 	o.Key.Unset()
+}
+
+// GetVersion returns the Version field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ApplicationKey) GetVersion() string {
+	if o == nil || IsNil(o.Version.Get()) {
+		var ret string
+		return ret
+	}
+	return *o.Version.Get()
+}
+
+// GetVersionOk returns a tuple with the Version field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ApplicationKey) GetVersionOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.Version.Get(), o.Version.IsSet()
+}
+
+// HasVersion returns a boolean if a field is not nil.
+func (o *ApplicationKey) HasVersion() bool {
+	if o != nil && !IsNil(o.Version) {
+		return true
+	}
+
+	return false
+}
+
+// SetVersion gets a reference to the given NullableString and assigns it to the Version field.
+func (o *ApplicationKey) SetVersion(v string) {
+	o.Version.Set(&v)
+}
+
+// SetVersionNil sets the value for Version to be an explicit nil
+func (o *ApplicationKey) SetVersionNil() {
+	o.Version.Set(nil)
+}
+
+// UnsetVersion ensures that no value is present for Version, not even an explicit nil
+func (o *ApplicationKey) UnsetVersion() {
+	o.Version.Unset()
 }
 
 // GetCreatedBy returns the CreatedBy field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -219,6 +263,9 @@ func (o ApplicationKey) ToMap() (map[string]interface{}, error) {
 	}
 	if o.Key.IsSet() {
 		toSerialize["key"] = o.Key.Get()
+	}
+	if o.Version.IsSet() {
+		toSerialize["version"] = o.Version.Get()
 	}
 	if o.CreatedBy.IsSet() {
 		toSerialize["created_by"] = o.CreatedBy.Get()

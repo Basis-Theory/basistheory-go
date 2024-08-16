@@ -19,11 +19,13 @@ var _ MappedNullable = &Pagination{}
 
 // Pagination struct for Pagination
 type Pagination struct {
-	TotalItems NullableInt32  `json:"total_items,omitempty"`
-	PageNumber NullableInt32  `json:"page_number,omitempty"`
-	PageSize   NullableInt32  `json:"page_size,omitempty"`
-	TotalPages NullableInt32  `json:"total_pages,omitempty"`
-	After      NullableString `json:"after,omitempty"`
+	TotalItems NullableInt32 `json:"total_items,omitempty"`
+	PageNumber NullableInt32 `json:"page_number,omitempty"`
+	PageSize   NullableInt32 `json:"page_size,omitempty"`
+	TotalPages NullableInt32 `json:"total_pages,omitempty"`
+	// Deprecated
+	After NullableString `json:"after,omitempty"`
+	Next  NullableString `json:"next,omitempty"`
 }
 
 // NewPagination instantiates a new Pagination object
@@ -216,6 +218,7 @@ func (o *Pagination) UnsetTotalPages() {
 }
 
 // GetAfter returns the After field value if set, zero value otherwise (both if not set or set to explicit null).
+// Deprecated
 func (o *Pagination) GetAfter() string {
 	if o == nil || IsNil(o.After.Get()) {
 		var ret string
@@ -227,6 +230,7 @@ func (o *Pagination) GetAfter() string {
 // GetAfterOk returns a tuple with the After field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
+// Deprecated
 func (o *Pagination) GetAfterOk() (*string, bool) {
 	if o == nil {
 		return nil, false
@@ -244,6 +248,7 @@ func (o *Pagination) HasAfter() bool {
 }
 
 // SetAfter gets a reference to the given NullableString and assigns it to the After field.
+// Deprecated
 func (o *Pagination) SetAfter(v string) {
 	o.After.Set(&v)
 }
@@ -256,6 +261,49 @@ func (o *Pagination) SetAfterNil() {
 // UnsetAfter ensures that no value is present for After, not even an explicit nil
 func (o *Pagination) UnsetAfter() {
 	o.After.Unset()
+}
+
+// GetNext returns the Next field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *Pagination) GetNext() string {
+	if o == nil || IsNil(o.Next.Get()) {
+		var ret string
+		return ret
+	}
+	return *o.Next.Get()
+}
+
+// GetNextOk returns a tuple with the Next field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *Pagination) GetNextOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.Next.Get(), o.Next.IsSet()
+}
+
+// HasNext returns a boolean if a field is not nil.
+func (o *Pagination) HasNext() bool {
+	if o != nil && !IsNil(o.Next) {
+		return true
+	}
+
+	return false
+}
+
+// SetNext gets a reference to the given NullableString and assigns it to the Next field.
+func (o *Pagination) SetNext(v string) {
+	o.Next.Set(&v)
+}
+
+// SetNextNil sets the value for Next to be an explicit nil
+func (o *Pagination) SetNextNil() {
+	o.Next.Set(nil)
+}
+
+// UnsetNext ensures that no value is present for Next, not even an explicit nil
+func (o *Pagination) UnsetNext() {
+	o.Next.Unset()
 }
 
 func (o Pagination) MarshalJSON() ([]byte, error) {
@@ -282,6 +330,9 @@ func (o Pagination) ToMap() (map[string]interface{}, error) {
 	}
 	if o.After.IsSet() {
 		toSerialize["after"] = o.After.Get()
+	}
+	if o.Next.IsSet() {
+		toSerialize["next"] = o.Next.Get()
 	}
 	return toSerialize, nil
 }

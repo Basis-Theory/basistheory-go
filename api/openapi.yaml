@@ -596,6 +596,42 @@ paths:
           description: Not Found
       tags:
       - ApplicationTemplates
+  /detokenize:
+    post:
+      operationId: Detokenize_Detokenize
+      requestBody:
+        content:
+          application/json:
+            schema: {}
+      responses:
+        "200":
+          description: Success
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationProblemDetails'
+          description: Bad Request
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Unauthorized
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Forbidden
+        "409":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Conflict
+      tags:
+      - Detokenize
   /logs:
     get:
       operationId: Logs_Get
@@ -1661,6 +1697,32 @@ paths:
           description: Forbidden
       tags:
       - Reactors
+  /roles:
+    get:
+      operationId: Roles_Get
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/Role'
+                type: array
+          description: Success
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Unauthorized
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Forbidden
+      tags:
+      - Roles
   /sessions:
     post:
       operationId: Sessions_Create
@@ -1735,6 +1797,71 @@ paths:
           description: Conflict
       tags:
       - Sessions
+  /tenants/self/connections:
+    delete:
+      operationId: TenantConnections_DeleteConnection
+      responses:
+        "204":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CreateTenantConnectionResponse'
+          description: No Content
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationProblemDetails'
+          description: Not Found
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Unauthorized
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Forbidden
+      tags:
+      - Tenants
+    post:
+      operationId: TenantConnections_CreateConnection
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateTenantConnectionRequest'
+        required: true
+      responses:
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CreateTenantConnectionResponse'
+          description: Created
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Bad Request
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Unauthorized
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Forbidden
+      tags:
+      - Tenants
   /tenants/self/invitations:
     get:
       operationId: TenantInvitations_GetInvitations
@@ -2021,6 +2148,69 @@ paths:
               schema:
                 $ref: '#/components/schemas/ProblemDetails'
           description: Client Error
+      tags:
+      - Tenants
+    put:
+      operationId: TenantMembers_UpdateMember
+      parameters:
+      - explode: false
+        in: path
+        name: memberId
+        required: true
+        schema:
+          format: uuid
+          maxLength: 36
+          pattern: "^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$"
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json-patch+json:
+            schema:
+              $ref: '#/components/schemas/UpdateTenantMemberRequest'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateTenantMemberRequest'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/UpdateTenantMemberRequest'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/UpdateTenantMemberRequest'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/UpdateTenantMemberRequest'
+          text/xml:
+            schema:
+              $ref: '#/components/schemas/UpdateTenantMemberRequest'
+          application/*+xml:
+            schema:
+              $ref: '#/components/schemas/UpdateTenantMemberRequest'
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TenantMemberResponse'
+          description: Success
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Unauthorized
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Forbidden
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Not Found
       tags:
       - Tenants
   /tenants/self/reports/usage:
@@ -2513,7 +2703,7 @@ paths:
         name: id
         required: true
         schema:
-          maxLength: 200
+          maxLength: 250
           pattern: ^.+$
           type: string
         style: simple
@@ -2601,6 +2791,88 @@ paths:
           description: Conflict
       tags:
       - Tokens
+  /v2/tokens:
+    get:
+      operationId: Tokens_Get_V2
+      parameters:
+      - explode: true
+        in: query
+        name: start
+        required: false
+        schema:
+          maxLength: 500
+          nullable: true
+          pattern: ^.+$
+          type: string
+        style: form
+      - explode: true
+        in: query
+        name: size
+        required: false
+        schema:
+          format: int32
+          maximum: 100
+          minimum: 0
+          nullable: true
+          type: integer
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TokenCursorPaginatedList'
+          description: Success
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Unauthorized
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Forbidden
+      tags:
+      - Tokens
+  /v2/tokens/search:
+    post:
+      operationId: Tokens_Search_V2
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SearchTokensRequestV2'
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TokenCursorPaginatedList'
+          description: Success
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationProblemDetails'
+          description: Bad Request
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Unauthorized
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Forbidden
+      tags:
+      - Tokens
 components:
   schemas:
     AccessRule:
@@ -2652,14 +2924,17 @@ components:
         keys:
         - created_at: 2000-01-23T04:56:07.000+00:00
           id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          version: version
           created_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           key: key
         - created_at: 2000-01-23T04:56:07.000+00:00
           id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          version: version
           created_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           key: key
         - created_at: 2000-01-23T04:56:07.000+00:00
           id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          version: version
           created_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           key: key
         created_at: 2000-01-23T04:56:07.000+00:00
@@ -2726,7 +3001,7 @@ components:
           deprecated: true
           maxLength: 100
           nullable: true
-          pattern: "^[A-z0-9_]*$"
+          pattern: "[A-z0-9_.]+"
           type: string
         keys:
           items:
@@ -2783,6 +3058,7 @@ components:
       example:
         created_at: 2000-01-23T04:56:07.000+00:00
         id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        version: version
         created_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
         key: key
       properties:
@@ -2792,6 +3068,9 @@ components:
           pattern: "^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$"
           type: string
         key:
+          nullable: true
+          type: string
+        version:
           nullable: true
           type: string
         created_by:
@@ -2810,6 +3089,7 @@ components:
       additionalProperties: false
       example:
         pagination:
+          next: next
           page_number: 6
           total_pages: 5
           after: after
@@ -2820,72 +3100,17 @@ components:
           keys:
           - created_at: 2000-01-23T04:56:07.000+00:00
             id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+            version: version
             created_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
             key: key
           - created_at: 2000-01-23T04:56:07.000+00:00
             id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+            version: version
             created_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
             key: key
           - created_at: 2000-01-23T04:56:07.000+00:00
             id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-            created_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-            key: key
-          created_at: 2000-01-23T04:56:07.000+00:00
-          rules:
-          - container: container
-            transform: transform
-            permissions:
-            - permissions
-            - permissions
-            description: description
-            priority: 5
-            conditions:
-            - attribute: attribute
-              value: value
-              operator: operator
-            - attribute: attribute
-              value: value
-              operator: operator
-          - container: container
-            transform: transform
-            permissions:
-            - permissions
-            - permissions
-            description: description
-            priority: 5
-            conditions:
-            - attribute: attribute
-              value: value
-              operator: operator
-            - attribute: attribute
-              value: value
-              operator: operator
-          type: type
-          created_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-          expires_at: 2000-01-23T04:56:07.000+00:00
-          permissions:
-          - permissions
-          - permissions
-          - permissions
-          - permissions
-          - permissions
-          name: name
-          modified_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-          id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-          modified_at: 2000-01-23T04:56:07.000+00:00
-          key: key
-        - tenant_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-          keys:
-          - created_at: 2000-01-23T04:56:07.000+00:00
-            id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-            created_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-            key: key
-          - created_at: 2000-01-23T04:56:07.000+00:00
-            id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-            created_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-            key: key
-          - created_at: 2000-01-23T04:56:07.000+00:00
-            id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+            version: version
             created_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
             key: key
           created_at: 2000-01-23T04:56:07.000+00:00
@@ -2936,72 +3161,17 @@ components:
           keys:
           - created_at: 2000-01-23T04:56:07.000+00:00
             id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+            version: version
             created_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
             key: key
           - created_at: 2000-01-23T04:56:07.000+00:00
             id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+            version: version
             created_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
             key: key
           - created_at: 2000-01-23T04:56:07.000+00:00
             id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-            created_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-            key: key
-          created_at: 2000-01-23T04:56:07.000+00:00
-          rules:
-          - container: container
-            transform: transform
-            permissions:
-            - permissions
-            - permissions
-            description: description
-            priority: 5
-            conditions:
-            - attribute: attribute
-              value: value
-              operator: operator
-            - attribute: attribute
-              value: value
-              operator: operator
-          - container: container
-            transform: transform
-            permissions:
-            - permissions
-            - permissions
-            description: description
-            priority: 5
-            conditions:
-            - attribute: attribute
-              value: value
-              operator: operator
-            - attribute: attribute
-              value: value
-              operator: operator
-          type: type
-          created_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-          expires_at: 2000-01-23T04:56:07.000+00:00
-          permissions:
-          - permissions
-          - permissions
-          - permissions
-          - permissions
-          - permissions
-          name: name
-          modified_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-          id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-          modified_at: 2000-01-23T04:56:07.000+00:00
-          key: key
-        - tenant_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-          keys:
-          - created_at: 2000-01-23T04:56:07.000+00:00
-            id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-            created_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-            key: key
-          - created_at: 2000-01-23T04:56:07.000+00:00
-            id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-            created_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-            key: key
-          - created_at: 2000-01-23T04:56:07.000+00:00
-            id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+            version: version
             created_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
             key: key
           created_at: 2000-01-23T04:56:07.000+00:00
@@ -3052,14 +3222,139 @@ components:
           keys:
           - created_at: 2000-01-23T04:56:07.000+00:00
             id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+            version: version
             created_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
             key: key
           - created_at: 2000-01-23T04:56:07.000+00:00
             id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+            version: version
             created_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
             key: key
           - created_at: 2000-01-23T04:56:07.000+00:00
             id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+            version: version
+            created_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+            key: key
+          created_at: 2000-01-23T04:56:07.000+00:00
+          rules:
+          - container: container
+            transform: transform
+            permissions:
+            - permissions
+            - permissions
+            description: description
+            priority: 5
+            conditions:
+            - attribute: attribute
+              value: value
+              operator: operator
+            - attribute: attribute
+              value: value
+              operator: operator
+          - container: container
+            transform: transform
+            permissions:
+            - permissions
+            - permissions
+            description: description
+            priority: 5
+            conditions:
+            - attribute: attribute
+              value: value
+              operator: operator
+            - attribute: attribute
+              value: value
+              operator: operator
+          type: type
+          created_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          expires_at: 2000-01-23T04:56:07.000+00:00
+          permissions:
+          - permissions
+          - permissions
+          - permissions
+          - permissions
+          - permissions
+          name: name
+          modified_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          modified_at: 2000-01-23T04:56:07.000+00:00
+          key: key
+        - tenant_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          keys:
+          - created_at: 2000-01-23T04:56:07.000+00:00
+            id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+            version: version
+            created_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+            key: key
+          - created_at: 2000-01-23T04:56:07.000+00:00
+            id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+            version: version
+            created_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+            key: key
+          - created_at: 2000-01-23T04:56:07.000+00:00
+            id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+            version: version
+            created_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+            key: key
+          created_at: 2000-01-23T04:56:07.000+00:00
+          rules:
+          - container: container
+            transform: transform
+            permissions:
+            - permissions
+            - permissions
+            description: description
+            priority: 5
+            conditions:
+            - attribute: attribute
+              value: value
+              operator: operator
+            - attribute: attribute
+              value: value
+              operator: operator
+          - container: container
+            transform: transform
+            permissions:
+            - permissions
+            - permissions
+            description: description
+            priority: 5
+            conditions:
+            - attribute: attribute
+              value: value
+              operator: operator
+            - attribute: attribute
+              value: value
+              operator: operator
+          type: type
+          created_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          expires_at: 2000-01-23T04:56:07.000+00:00
+          permissions:
+          - permissions
+          - permissions
+          - permissions
+          - permissions
+          - permissions
+          name: name
+          modified_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          modified_at: 2000-01-23T04:56:07.000+00:00
+          key: key
+        - tenant_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          keys:
+          - created_at: 2000-01-23T04:56:07.000+00:00
+            id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+            version: version
+            created_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+            key: key
+          - created_at: 2000-01-23T04:56:07.000+00:00
+            id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+            version: version
+            created_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+            key: key
+          - created_at: 2000-01-23T04:56:07.000+00:00
+            id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+            version: version
             created_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
             key: key
           created_at: 2000-01-23T04:56:07.000+00:00
@@ -3521,6 +3816,19 @@ components:
           nullable: true
           type: string
       type: object
+    CardDetails:
+      additionalProperties: false
+      example:
+        last4: last4
+        bin: bin
+      properties:
+        bin:
+          nullable: true
+          type: string
+        last4:
+          nullable: true
+          type: string
+      type: object
     Condition:
       additionalProperties: false
       example:
@@ -3617,19 +3925,26 @@ components:
       example:
         response_transform:
           code: code
+          expression: expression
+          type: null
+          matcher: null
+          replacement: replacement
         application:
           tenant_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           keys:
           - created_at: 2000-01-23T04:56:07.000+00:00
             id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+            version: version
             created_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
             key: key
           - created_at: 2000-01-23T04:56:07.000+00:00
             id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+            version: version
             created_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
             key: key
           - created_at: 2000-01-23T04:56:07.000+00:00
             id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+            version: version
             created_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
             key: key
           created_at: 2000-01-23T04:56:07.000+00:00
@@ -3685,6 +4000,10 @@ components:
         request_reactor_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
         request_transform:
           code: code
+          expression: expression
+          type: null
+          matcher: null
+          replacement: replacement
       properties:
         name:
           maxLength: 200
@@ -3829,14 +4148,17 @@ components:
           keys:
           - created_at: 2000-01-23T04:56:07.000+00:00
             id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+            version: version
             created_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
             key: key
           - created_at: 2000-01-23T04:56:07.000+00:00
             id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+            version: version
             created_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
             key: key
           - created_at: 2000-01-23T04:56:07.000+00:00
             id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+            version: version
             created_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
             key: key
           created_at: 2000-01-23T04:56:07.000+00:00
@@ -3929,15 +4251,46 @@ components:
           nullable: true
           type: string
       type: object
+    CreateTenantConnectionRequest:
+      additionalProperties: false
+      example:
+        options:
+          domain_aliases:
+          - domain_aliases
+          - domain_aliases
+        strategy: strategy
+      properties:
+        strategy:
+          minLength: 1
+          type: string
+        options:
+          $ref: '#/components/schemas/TenantConnectionOptions'
+      required:
+      - options
+      - strategy
+      type: object
+    CreateTenantConnectionResponse:
+      additionalProperties: false
+      example:
+        connection_id: connection_id
+      properties:
+        connection_id:
+          nullable: true
+          type: string
+      type: object
     CreateTenantInvitationRequest:
       additionalProperties: false
       example:
+        role: role
         email: email
       properties:
         email:
           format: email
           maxLength: 330
           minLength: 1
+          type: string
+        role:
+          nullable: true
           type: string
       required:
       - email
@@ -4004,27 +4357,19 @@ components:
       required:
       - data
       type: object
-    EncryptionKey:
+    CursorPagination:
       additionalProperties: false
+      example:
+        next: next
+        page_size: 0
       properties:
-        key:
-          type: string
-        prov:
+        page_size:
+          format: int32
+          nullable: true
+          type: integer
+        next:
           nullable: true
           type: string
-        alg:
-          nullable: true
-          type: string
-      required:
-      - key
-      type: object
-    EncryptionMetadata:
-      additionalProperties: false
-      properties:
-        cek:
-          $ref: '#/components/schemas/EncryptionKey'
-        kek:
-          $ref: '#/components/schemas/EncryptionKey'
       type: object
     GetApplications:
       additionalProperties: false
@@ -4279,6 +4624,21 @@ components:
           nullable: true
           type: integer
       type: object
+    GetTokensV2:
+      additionalProperties: false
+      properties:
+        start:
+          maxLength: 500
+          nullable: true
+          pattern: ^.+$
+          type: string
+        size:
+          format: int32
+          maximum: 100
+          minimum: 0
+          nullable: true
+          type: integer
+      type: object
     Log:
       additionalProperties: false
       example:
@@ -4358,6 +4718,7 @@ components:
       additionalProperties: false
       example:
         pagination:
+          next: next
           page_number: 6
           total_pages: 5
           after: after
@@ -4422,6 +4783,7 @@ components:
     Pagination:
       additionalProperties: false
       example:
+        next: next
         page_number: 6
         total_pages: 5
         after: after
@@ -4445,6 +4807,10 @@ components:
           nullable: true
           type: integer
         after:
+          deprecated: true
+          nullable: true
+          type: string
+        next:
           nullable: true
           type: string
       type: object
@@ -4584,6 +4950,10 @@ components:
         created_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
         response_transform:
           code: code
+          expression: expression
+          type: null
+          matcher: null
+          replacement: replacement
         response_reactor_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
         proxy_host: proxy_host
         name: name
@@ -4592,6 +4962,10 @@ components:
         id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
         request_transform:
           code: code
+          expression: expression
+          type: null
+          matcher: null
+          replacement: replacement
         modified_at: 2000-01-23T04:56:07.000+00:00
         key: key
       properties:
@@ -4680,6 +5054,7 @@ components:
       additionalProperties: false
       example:
         pagination:
+          next: next
           page_number: 6
           total_pages: 5
           after: after
@@ -4696,6 +5071,10 @@ components:
           created_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           response_transform:
             code: code
+            expression: expression
+            type: null
+            matcher: null
+            replacement: replacement
           response_reactor_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           proxy_host: proxy_host
           name: name
@@ -4704,6 +5083,10 @@ components:
           id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           request_transform:
             code: code
+            expression: expression
+            type: null
+            matcher: null
+            replacement: replacement
           modified_at: 2000-01-23T04:56:07.000+00:00
           key: key
         - tenant_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
@@ -4716,6 +5099,10 @@ components:
           created_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           response_transform:
             code: code
+            expression: expression
+            type: null
+            matcher: null
+            replacement: replacement
           response_reactor_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           proxy_host: proxy_host
           name: name
@@ -4724,6 +5111,10 @@ components:
           id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           request_transform:
             code: code
+            expression: expression
+            type: null
+            matcher: null
+            replacement: replacement
           modified_at: 2000-01-23T04:56:07.000+00:00
           key: key
         - tenant_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
@@ -4736,6 +5127,10 @@ components:
           created_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           response_transform:
             code: code
+            expression: expression
+            type: null
+            matcher: null
+            replacement: replacement
           response_reactor_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           proxy_host: proxy_host
           name: name
@@ -4744,6 +5139,10 @@ components:
           id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           request_transform:
             code: code
+            expression: expression
+            type: null
+            matcher: null
+            replacement: replacement
           modified_at: 2000-01-23T04:56:07.000+00:00
           key: key
         - tenant_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
@@ -4756,6 +5155,10 @@ components:
           created_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           response_transform:
             code: code
+            expression: expression
+            type: null
+            matcher: null
+            replacement: replacement
           response_reactor_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           proxy_host: proxy_host
           name: name
@@ -4764,6 +5167,10 @@ components:
           id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           request_transform:
             code: code
+            expression: expression
+            type: null
+            matcher: null
+            replacement: replacement
           modified_at: 2000-01-23T04:56:07.000+00:00
           key: key
         - tenant_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
@@ -4776,6 +5183,10 @@ components:
           created_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           response_transform:
             code: code
+            expression: expression
+            type: null
+            matcher: null
+            replacement: replacement
           response_reactor_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           proxy_host: proxy_host
           name: name
@@ -4784,6 +5195,10 @@ components:
           id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           request_transform:
             code: code
+            expression: expression
+            type: null
+            matcher: null
+            replacement: replacement
           modified_at: 2000-01-23T04:56:07.000+00:00
           key: key
       properties:
@@ -4800,12 +5215,36 @@ components:
       additionalProperties: false
       example:
         code: code
+        expression: expression
+        type: null
+        matcher: null
+        replacement: replacement
       properties:
+        type:
+          $ref: '#/components/schemas/ProxyTransformType'
         code:
           maxLength: 50000
           nullable: true
           type: string
+        matcher:
+          $ref: '#/components/schemas/ProxyTransformMatcher'
+        expression:
+          nullable: true
+          type: string
+        replacement:
+          nullable: true
+          type: string
       type: object
+    ProxyTransformMatcher:
+      enum:
+      - REGEX
+      - CHASE_STRATUS_PAN
+      type: string
+    ProxyTransformType:
+      enum:
+      - CODE
+      - MASK
+      type: string
     ReactRequest:
       additionalProperties: false
       example:
@@ -4845,14 +5284,17 @@ components:
           keys:
           - created_at: 2000-01-23T04:56:07.000+00:00
             id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+            version: version
             created_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
             key: key
           - created_at: 2000-01-23T04:56:07.000+00:00
             id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+            version: version
             created_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
             key: key
           - created_at: 2000-01-23T04:56:07.000+00:00
             id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+            version: version
             created_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
             key: key
           created_at: 2000-01-23T04:56:07.000+00:00
@@ -5165,6 +5607,7 @@ components:
       additionalProperties: false
       example:
         pagination:
+          next: next
           page_number: 6
           total_pages: 5
           after: after
@@ -5454,6 +5897,7 @@ components:
       additionalProperties: false
       example:
         pagination:
+          next: next
           page_number: 6
           total_pages: 5
           after: after
@@ -5467,132 +5911,17 @@ components:
             keys:
             - created_at: 2000-01-23T04:56:07.000+00:00
               id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+              version: version
               created_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
               key: key
             - created_at: 2000-01-23T04:56:07.000+00:00
               id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+              version: version
               created_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
               key: key
             - created_at: 2000-01-23T04:56:07.000+00:00
               id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-              created_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-              key: key
-            created_at: 2000-01-23T04:56:07.000+00:00
-            rules:
-            - container: container
-              transform: transform
-              permissions:
-              - permissions
-              - permissions
-              description: description
-              priority: 5
-              conditions:
-              - attribute: attribute
-                value: value
-                operator: operator
-              - attribute: attribute
-                value: value
-                operator: operator
-            - container: container
-              transform: transform
-              permissions:
-              - permissions
-              - permissions
-              description: description
-              priority: 5
-              conditions:
-              - attribute: attribute
-                value: value
-                operator: operator
-              - attribute: attribute
-                value: value
-                operator: operator
-            type: type
-            created_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-            expires_at: 2000-01-23T04:56:07.000+00:00
-            permissions:
-            - permissions
-            - permissions
-            - permissions
-            - permissions
-            - permissions
-            name: name
-            modified_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-            id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-            modified_at: 2000-01-23T04:56:07.000+00:00
-            key: key
-          configuration:
-            key: configuration
-          name: name
-          modified_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-          formula:
-            code: code
-            configuration:
-            - name: name
-              description: description
-              type: type
-            - name: name
-              description: description
-              type: type
-            - name: name
-              description: description
-              type: type
-            - name: name
-              description: description
-              type: type
-            - name: name
-              description: description
-              type: type
-            icon: icon
-            description: description
-            created_at: 2000-01-23T04:56:07.000+00:00
-            type: type
-            created_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-            request_parameters:
-            - name: name
-              description: description
-              optional: true
-              type: type
-            - name: name
-              description: description
-              optional: true
-              type: type
-            - name: name
-              description: description
-              optional: true
-              type: type
-            - name: name
-              description: description
-              optional: true
-              type: type
-            - name: name
-              description: description
-              optional: true
-              type: type
-            name: name
-            modified_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-            id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-            modified_at: 2000-01-23T04:56:07.000+00:00
-            status: status
-          created_at: 2000-01-23T04:56:07.000+00:00
-          id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-          modified_at: 2000-01-23T04:56:07.000+00:00
-          created_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-        - tenant_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-          code: code
-          application:
-            tenant_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-            keys:
-            - created_at: 2000-01-23T04:56:07.000+00:00
-              id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-              created_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-              key: key
-            - created_at: 2000-01-23T04:56:07.000+00:00
-              id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-              created_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-              key: key
-            - created_at: 2000-01-23T04:56:07.000+00:00
-              id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+              version: version
               created_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
               key: key
             created_at: 2000-01-23T04:56:07.000+00:00
@@ -5703,132 +6032,17 @@ components:
             keys:
             - created_at: 2000-01-23T04:56:07.000+00:00
               id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+              version: version
               created_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
               key: key
             - created_at: 2000-01-23T04:56:07.000+00:00
               id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+              version: version
               created_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
               key: key
             - created_at: 2000-01-23T04:56:07.000+00:00
               id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-              created_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-              key: key
-            created_at: 2000-01-23T04:56:07.000+00:00
-            rules:
-            - container: container
-              transform: transform
-              permissions:
-              - permissions
-              - permissions
-              description: description
-              priority: 5
-              conditions:
-              - attribute: attribute
-                value: value
-                operator: operator
-              - attribute: attribute
-                value: value
-                operator: operator
-            - container: container
-              transform: transform
-              permissions:
-              - permissions
-              - permissions
-              description: description
-              priority: 5
-              conditions:
-              - attribute: attribute
-                value: value
-                operator: operator
-              - attribute: attribute
-                value: value
-                operator: operator
-            type: type
-            created_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-            expires_at: 2000-01-23T04:56:07.000+00:00
-            permissions:
-            - permissions
-            - permissions
-            - permissions
-            - permissions
-            - permissions
-            name: name
-            modified_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-            id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-            modified_at: 2000-01-23T04:56:07.000+00:00
-            key: key
-          configuration:
-            key: configuration
-          name: name
-          modified_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-          formula:
-            code: code
-            configuration:
-            - name: name
-              description: description
-              type: type
-            - name: name
-              description: description
-              type: type
-            - name: name
-              description: description
-              type: type
-            - name: name
-              description: description
-              type: type
-            - name: name
-              description: description
-              type: type
-            icon: icon
-            description: description
-            created_at: 2000-01-23T04:56:07.000+00:00
-            type: type
-            created_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-            request_parameters:
-            - name: name
-              description: description
-              optional: true
-              type: type
-            - name: name
-              description: description
-              optional: true
-              type: type
-            - name: name
-              description: description
-              optional: true
-              type: type
-            - name: name
-              description: description
-              optional: true
-              type: type
-            - name: name
-              description: description
-              optional: true
-              type: type
-            name: name
-            modified_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-            id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-            modified_at: 2000-01-23T04:56:07.000+00:00
-            status: status
-          created_at: 2000-01-23T04:56:07.000+00:00
-          id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-          modified_at: 2000-01-23T04:56:07.000+00:00
-          created_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-        - tenant_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-          code: code
-          application:
-            tenant_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-            keys:
-            - created_at: 2000-01-23T04:56:07.000+00:00
-              id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-              created_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-              key: key
-            - created_at: 2000-01-23T04:56:07.000+00:00
-              id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-              created_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-              key: key
-            - created_at: 2000-01-23T04:56:07.000+00:00
-              id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+              version: version
               created_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
               key: key
             created_at: 2000-01-23T04:56:07.000+00:00
@@ -5939,14 +6153,259 @@ components:
             keys:
             - created_at: 2000-01-23T04:56:07.000+00:00
               id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+              version: version
               created_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
               key: key
             - created_at: 2000-01-23T04:56:07.000+00:00
               id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+              version: version
               created_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
               key: key
             - created_at: 2000-01-23T04:56:07.000+00:00
               id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+              version: version
+              created_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+              key: key
+            created_at: 2000-01-23T04:56:07.000+00:00
+            rules:
+            - container: container
+              transform: transform
+              permissions:
+              - permissions
+              - permissions
+              description: description
+              priority: 5
+              conditions:
+              - attribute: attribute
+                value: value
+                operator: operator
+              - attribute: attribute
+                value: value
+                operator: operator
+            - container: container
+              transform: transform
+              permissions:
+              - permissions
+              - permissions
+              description: description
+              priority: 5
+              conditions:
+              - attribute: attribute
+                value: value
+                operator: operator
+              - attribute: attribute
+                value: value
+                operator: operator
+            type: type
+            created_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+            expires_at: 2000-01-23T04:56:07.000+00:00
+            permissions:
+            - permissions
+            - permissions
+            - permissions
+            - permissions
+            - permissions
+            name: name
+            modified_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+            id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+            modified_at: 2000-01-23T04:56:07.000+00:00
+            key: key
+          configuration:
+            key: configuration
+          name: name
+          modified_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          formula:
+            code: code
+            configuration:
+            - name: name
+              description: description
+              type: type
+            - name: name
+              description: description
+              type: type
+            - name: name
+              description: description
+              type: type
+            - name: name
+              description: description
+              type: type
+            - name: name
+              description: description
+              type: type
+            icon: icon
+            description: description
+            created_at: 2000-01-23T04:56:07.000+00:00
+            type: type
+            created_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+            request_parameters:
+            - name: name
+              description: description
+              optional: true
+              type: type
+            - name: name
+              description: description
+              optional: true
+              type: type
+            - name: name
+              description: description
+              optional: true
+              type: type
+            - name: name
+              description: description
+              optional: true
+              type: type
+            - name: name
+              description: description
+              optional: true
+              type: type
+            name: name
+            modified_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+            id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+            modified_at: 2000-01-23T04:56:07.000+00:00
+            status: status
+          created_at: 2000-01-23T04:56:07.000+00:00
+          id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          modified_at: 2000-01-23T04:56:07.000+00:00
+          created_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        - tenant_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          code: code
+          application:
+            tenant_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+            keys:
+            - created_at: 2000-01-23T04:56:07.000+00:00
+              id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+              version: version
+              created_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+              key: key
+            - created_at: 2000-01-23T04:56:07.000+00:00
+              id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+              version: version
+              created_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+              key: key
+            - created_at: 2000-01-23T04:56:07.000+00:00
+              id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+              version: version
+              created_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+              key: key
+            created_at: 2000-01-23T04:56:07.000+00:00
+            rules:
+            - container: container
+              transform: transform
+              permissions:
+              - permissions
+              - permissions
+              description: description
+              priority: 5
+              conditions:
+              - attribute: attribute
+                value: value
+                operator: operator
+              - attribute: attribute
+                value: value
+                operator: operator
+            - container: container
+              transform: transform
+              permissions:
+              - permissions
+              - permissions
+              description: description
+              priority: 5
+              conditions:
+              - attribute: attribute
+                value: value
+                operator: operator
+              - attribute: attribute
+                value: value
+                operator: operator
+            type: type
+            created_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+            expires_at: 2000-01-23T04:56:07.000+00:00
+            permissions:
+            - permissions
+            - permissions
+            - permissions
+            - permissions
+            - permissions
+            name: name
+            modified_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+            id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+            modified_at: 2000-01-23T04:56:07.000+00:00
+            key: key
+          configuration:
+            key: configuration
+          name: name
+          modified_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          formula:
+            code: code
+            configuration:
+            - name: name
+              description: description
+              type: type
+            - name: name
+              description: description
+              type: type
+            - name: name
+              description: description
+              type: type
+            - name: name
+              description: description
+              type: type
+            - name: name
+              description: description
+              type: type
+            icon: icon
+            description: description
+            created_at: 2000-01-23T04:56:07.000+00:00
+            type: type
+            created_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+            request_parameters:
+            - name: name
+              description: description
+              optional: true
+              type: type
+            - name: name
+              description: description
+              optional: true
+              type: type
+            - name: name
+              description: description
+              optional: true
+              type: type
+            - name: name
+              description: description
+              optional: true
+              type: type
+            - name: name
+              description: description
+              optional: true
+              type: type
+            name: name
+            modified_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+            id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+            modified_at: 2000-01-23T04:56:07.000+00:00
+            status: status
+          created_at: 2000-01-23T04:56:07.000+00:00
+          id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          modified_at: 2000-01-23T04:56:07.000+00:00
+          created_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        - tenant_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          code: code
+          application:
+            tenant_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+            keys:
+            - created_at: 2000-01-23T04:56:07.000+00:00
+              id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+              version: version
+              created_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+              key: key
+            - created_at: 2000-01-23T04:56:07.000+00:00
+              id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+              version: version
+              created_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+              key: key
+            - created_at: 2000-01-23T04:56:07.000+00:00
+              id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+              version: version
               created_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
               key: key
             created_at: 2000-01-23T04:56:07.000+00:00
@@ -6060,6 +6519,15 @@ components:
           nullable: true
           type: array
       type: object
+    Role:
+      additionalProperties: false
+      example:
+        name: name
+      properties:
+        name:
+          nullable: true
+          type: string
+      type: object
     SearchTokensRequest:
       additionalProperties: false
       example:
@@ -6090,6 +6558,30 @@ components:
           nullable: true
           type: integer
       type: object
+    SearchTokensRequestV2:
+      additionalProperties: false
+      example:
+        size: 8
+        query: query
+        start: start
+      properties:
+        query:
+          maxLength: 200
+          nullable: true
+          pattern: ^.*$
+          type: string
+        start:
+          maxLength: 500
+          nullable: true
+          pattern: ^.+$
+          type: string
+        size:
+          format: int32
+          maximum: 100
+          minimum: 0
+          nullable: true
+          type: integer
+      type: object
     StringStringKeyValuePair:
       additionalProperties: false
       properties:
@@ -6099,7 +6591,7 @@ components:
           pattern: "^[\\w-]+$"
           type: string
         value:
-          maxLength: 1000
+          maxLength: 200
           minLength: 1
           type: string
       required:
@@ -6169,10 +6661,24 @@ components:
           nullable: true
           type: object
       type: object
+    TenantConnectionOptions:
+      additionalProperties: false
+      example:
+        domain_aliases:
+        - domain_aliases
+        - domain_aliases
+      properties:
+        domain_aliases:
+          items:
+            type: string
+          nullable: true
+          type: array
+      type: object
     TenantInvitationResponse:
       additionalProperties: false
       example:
         tenant_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        role: role
         expires_at: 2000-01-23T04:56:07.000+00:00
         modified_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
         created_at: 2000-01-23T04:56:07.000+00:00
@@ -6195,6 +6701,9 @@ components:
         email:
           format: email
           maxLength: 200
+          nullable: true
+          type: string
+        role:
           nullable: true
           type: string
         status:
@@ -6230,6 +6739,7 @@ components:
       additionalProperties: false
       example:
         pagination:
+          next: next
           page_number: 6
           total_pages: 5
           after: after
@@ -6237,6 +6747,7 @@ components:
           page_size: 1
         data:
         - tenant_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          role: role
           expires_at: 2000-01-23T04:56:07.000+00:00
           modified_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           created_at: 2000-01-23T04:56:07.000+00:00
@@ -6246,6 +6757,7 @@ components:
           email: email
           status: null
         - tenant_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          role: role
           expires_at: 2000-01-23T04:56:07.000+00:00
           modified_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           created_at: 2000-01-23T04:56:07.000+00:00
@@ -6255,6 +6767,7 @@ components:
           email: email
           status: null
         - tenant_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          role: role
           expires_at: 2000-01-23T04:56:07.000+00:00
           modified_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           created_at: 2000-01-23T04:56:07.000+00:00
@@ -6264,6 +6777,7 @@ components:
           email: email
           status: null
         - tenant_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          role: role
           expires_at: 2000-01-23T04:56:07.000+00:00
           modified_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           created_at: 2000-01-23T04:56:07.000+00:00
@@ -6273,6 +6787,7 @@ components:
           email: email
           status: null
         - tenant_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          role: role
           expires_at: 2000-01-23T04:56:07.000+00:00
           modified_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           created_at: 2000-01-23T04:56:07.000+00:00
@@ -6306,8 +6821,10 @@ components:
         created_date: 2000-01-23T04:56:07.000+00:00
         modified_at: 2000-01-23T04:56:07.000+00:00
         user:
+          provider: provider
           last_name: last_name
           id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          mfa_enrolled: true
           first_name: first_name
           email: email
           picture: picture
@@ -6357,6 +6874,7 @@ components:
       additionalProperties: false
       example:
         pagination:
+          next: next
           page_number: 6
           total_pages: 5
           after: after
@@ -6370,8 +6888,10 @@ components:
           created_date: 2000-01-23T04:56:07.000+00:00
           modified_at: 2000-01-23T04:56:07.000+00:00
           user:
+            provider: provider
             last_name: last_name
             id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+            mfa_enrolled: true
             first_name: first_name
             email: email
             picture: picture
@@ -6383,8 +6903,10 @@ components:
           created_date: 2000-01-23T04:56:07.000+00:00
           modified_at: 2000-01-23T04:56:07.000+00:00
           user:
+            provider: provider
             last_name: last_name
             id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+            mfa_enrolled: true
             first_name: first_name
             email: email
             picture: picture
@@ -6396,8 +6918,10 @@ components:
           created_date: 2000-01-23T04:56:07.000+00:00
           modified_at: 2000-01-23T04:56:07.000+00:00
           user:
+            provider: provider
             last_name: last_name
             id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+            mfa_enrolled: true
             first_name: first_name
             email: email
             picture: picture
@@ -6409,8 +6933,10 @@ components:
           created_date: 2000-01-23T04:56:07.000+00:00
           modified_at: 2000-01-23T04:56:07.000+00:00
           user:
+            provider: provider
             last_name: last_name
             id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+            mfa_enrolled: true
             first_name: first_name
             email: email
             picture: picture
@@ -6422,8 +6948,10 @@ components:
           created_date: 2000-01-23T04:56:07.000+00:00
           modified_at: 2000-01-23T04:56:07.000+00:00
           user:
+            provider: provider
             last_name: last_name
             id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+            mfa_enrolled: true
             first_name: first_name
             email: email
             picture: picture
@@ -6447,6 +6975,7 @@ components:
               last_created_at: 2000-01-23T04:56:07.000+00:00
               count: 314780940
           monthly_active_tokens: 0
+          total_tokens: 0
           included_monthly_active_tokens: 171976544
       properties:
         token_report:
@@ -6510,8 +7039,10 @@ components:
         authentication_status_reason: authentication_status_reason
         threeds_version: threeds_version
         acs_challenge_url: acs_challenge_url
+        authentication_status_code: authentication_status_code
         authentication_challenge_type: authentication_challenge_type
         ds_transaction_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        pan_token_id: pan_token_id
         eci: eci
         acs_transaction_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
         whitelist_status_source: whitelist_status_source
@@ -6534,6 +7065,9 @@ components:
         acs_challenge_mandated: acs_challenge_mandated
         ds_reference_number: ds_reference_number
       properties:
+        pan_token_id:
+          nullable: true
+          type: string
         threeds_version:
           nullable: true
           type: string
@@ -6565,6 +7099,9 @@ components:
           nullable: true
           type: string
         authentication_status:
+          nullable: true
+          type: string
+        authentication_status_code:
           nullable: true
           type: string
         authentication_status_reason:
@@ -7089,9 +7626,9 @@ components:
         created_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
         version:
           earliest_acs_supported_version: earliest_acs_supported_version
-          available_version:
-          - available_version
-          - available_version
+          available_versions:
+          - available_versions
+          - available_versions
           latest_ds_supported_version: latest_ds_supported_version
           latest_acs_supported_version: latest_acs_supported_version
           acs_information:
@@ -7136,8 +7673,10 @@ components:
           authentication_status_reason: authentication_status_reason
           threeds_version: threeds_version
           acs_challenge_url: acs_challenge_url
+          authentication_status_code: authentication_status_code
           authentication_challenge_type: authentication_challenge_type
           ds_transaction_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          pan_token_id: pan_token_id
           eci: eci
           acs_transaction_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           whitelist_status_source: whitelist_status_source
@@ -7218,9 +7757,9 @@ components:
       additionalProperties: false
       example:
         earliest_acs_supported_version: earliest_acs_supported_version
-        available_version:
-        - available_version
-        - available_version
+        available_versions:
+        - available_versions
+        - available_versions
         latest_ds_supported_version: latest_ds_supported_version
         latest_acs_supported_version: latest_acs_supported_version
         acs_information:
@@ -7232,7 +7771,7 @@ components:
         recommended_version:
           nullable: true
           type: string
-        available_version:
+        available_versions:
           items:
             type: string
           nullable: true
@@ -7286,6 +7825,9 @@ components:
         - search_indexes
         modified_at: 2000-01-23T04:56:07.000+00:00
         enrichments:
+          card_details:
+            last4: last4
+            bin: bin
           bin_details:
             country:
               alpha2: alpha2
@@ -7402,9 +7944,152 @@ components:
           nullable: true
           type: array
       type: object
+    TokenCursorPaginatedList:
+      additionalProperties: false
+      example:
+        pagination:
+          next: next
+          page_size: 0
+        data:
+        - tenant_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          fingerprint_expression: fingerprint_expression
+          metadata:
+            key: metadata
+          aliases:
+          - aliases
+          data: ""
+          created_at: 2000-01-23T04:56:07.000+00:00
+          privacy:
+            restriction_policy: restriction_policy
+            impact_level: impact_level
+            classification: classification
+          type: type
+          created_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          expires_at: 2000-01-23T04:56:07.000+00:00
+          modified_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          fingerprint: fingerprint
+          containers:
+          - containers
+          id: id
+          search_indexes:
+          - search_indexes
+          - search_indexes
+          - search_indexes
+          - search_indexes
+          - search_indexes
+          modified_at: 2000-01-23T04:56:07.000+00:00
+          enrichments:
+            card_details:
+              last4: last4
+              bin: bin
+            bin_details:
+              country:
+                alpha2: alpha2
+                name: name
+                numeric: numeric
+              product:
+                code: code
+                name: name
+              alm: true
+              cost: ""
+              reloadable: true
+              prepaid: true
+              combo_card: combo_card
+              type: type
+              domestic_only: true
+              pan_or_token: pan_or_token
+              account_updater: true
+              bin_length: 0
+              bank:
+                phone: phone
+                name: name
+                clean_name: clean_name
+                url: url
+              card_brand: card_brand
+              card_segment_type: card_segment_type
+              gambling_blocked: true
+              issuer_currency: issuer_currency
+              level3: true
+              level2: true
+              authentication: ""
+          mask: ""
+        - tenant_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          fingerprint_expression: fingerprint_expression
+          metadata:
+            key: metadata
+          aliases:
+          - aliases
+          data: ""
+          created_at: 2000-01-23T04:56:07.000+00:00
+          privacy:
+            restriction_policy: restriction_policy
+            impact_level: impact_level
+            classification: classification
+          type: type
+          created_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          expires_at: 2000-01-23T04:56:07.000+00:00
+          modified_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          fingerprint: fingerprint
+          containers:
+          - containers
+          id: id
+          search_indexes:
+          - search_indexes
+          - search_indexes
+          - search_indexes
+          - search_indexes
+          - search_indexes
+          modified_at: 2000-01-23T04:56:07.000+00:00
+          enrichments:
+            card_details:
+              last4: last4
+              bin: bin
+            bin_details:
+              country:
+                alpha2: alpha2
+                name: name
+                numeric: numeric
+              product:
+                code: code
+                name: name
+              alm: true
+              cost: ""
+              reloadable: true
+              prepaid: true
+              combo_card: combo_card
+              type: type
+              domestic_only: true
+              pan_or_token: pan_or_token
+              account_updater: true
+              bin_length: 0
+              bank:
+                phone: phone
+                name: name
+                clean_name: clean_name
+                url: url
+              card_brand: card_brand
+              card_segment_type: card_segment_type
+              gambling_blocked: true
+              issuer_currency: issuer_currency
+              level3: true
+              level2: true
+              authentication: ""
+          mask: ""
+      properties:
+        pagination:
+          $ref: '#/components/schemas/CursorPagination'
+        data:
+          items:
+            $ref: '#/components/schemas/Token'
+          nullable: true
+          type: array
+      type: object
     TokenEnrichments:
       additionalProperties: false
       example:
+        card_details:
+          last4: last4
+          bin: bin
         bin_details:
           country:
             alpha2: alpha2
@@ -7438,6 +8123,8 @@ components:
       properties:
         bin_details:
           $ref: '#/components/schemas/BinDetails'
+        card_details:
+          $ref: '#/components/schemas/CardDetails'
       type: object
     TokenMetrics:
       additionalProperties: false
@@ -7460,6 +8147,7 @@ components:
       additionalProperties: false
       example:
         pagination:
+          next: next
           page_number: 6
           total_pages: 5
           after: after
@@ -7494,6 +8182,9 @@ components:
           - search_indexes
           modified_at: 2000-01-23T04:56:07.000+00:00
           enrichments:
+            card_details:
+              last4: last4
+              bin: bin
             bin_details:
               country:
                 alpha2: alpha2
@@ -7553,6 +8244,9 @@ components:
           - search_indexes
           modified_at: 2000-01-23T04:56:07.000+00:00
           enrichments:
+            card_details:
+              last4: last4
+              bin: bin
             bin_details:
               country:
                 alpha2: alpha2
@@ -7612,6 +8306,9 @@ components:
           - search_indexes
           modified_at: 2000-01-23T04:56:07.000+00:00
           enrichments:
+            card_details:
+              last4: last4
+              bin: bin
             bin_details:
               country:
                 alpha2: alpha2
@@ -7671,6 +8368,9 @@ components:
           - search_indexes
           modified_at: 2000-01-23T04:56:07.000+00:00
           enrichments:
+            card_details:
+              last4: last4
+              bin: bin
             bin_details:
               country:
                 alpha2: alpha2
@@ -7730,6 +8430,9 @@ components:
           - search_indexes
           modified_at: 2000-01-23T04:56:07.000+00:00
           enrichments:
+            card_details:
+              last4: last4
+              bin: bin
             bin_details:
               country:
                 alpha2: alpha2
@@ -7779,6 +8482,7 @@ components:
             last_created_at: 2000-01-23T04:56:07.000+00:00
             count: 314780940
         monthly_active_tokens: 0
+        total_tokens: 0
         included_monthly_active_tokens: 171976544
       properties:
         included_monthly_active_tokens:
@@ -7795,6 +8499,10 @@ components:
             $ref: '#/components/schemas/TokenMetrics'
           nullable: true
           type: object
+        total_tokens:
+          format: int64
+          minimum: 0
+          type: integer
       type: object
     UpdateApplicationRequest:
       additionalProperties: false
@@ -7870,19 +8578,26 @@ components:
       example:
         response_transform:
           code: code
+          expression: expression
+          type: null
+          matcher: null
+          replacement: replacement
         application:
           tenant_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           keys:
           - created_at: 2000-01-23T04:56:07.000+00:00
             id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+            version: version
             created_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
             key: key
           - created_at: 2000-01-23T04:56:07.000+00:00
             id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+            version: version
             created_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
             key: key
           - created_at: 2000-01-23T04:56:07.000+00:00
             id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+            version: version
             created_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
             key: key
           created_at: 2000-01-23T04:56:07.000+00:00
@@ -7938,6 +8653,10 @@ components:
         request_reactor_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
         request_transform:
           code: code
+          expression: expression
+          type: null
+          matcher: null
+          replacement: replacement
       properties:
         name:
           maxLength: 200
@@ -8076,14 +8795,17 @@ components:
           keys:
           - created_at: 2000-01-23T04:56:07.000+00:00
             id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+            version: version
             created_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
             key: key
           - created_at: 2000-01-23T04:56:07.000+00:00
             id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+            version: version
             created_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
             key: key
           - created_at: 2000-01-23T04:56:07.000+00:00
             id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+            version: version
             created_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
             key: key
           created_at: 2000-01-23T04:56:07.000+00:00
@@ -8157,6 +8879,17 @@ components:
       - code
       - name
       type: object
+    UpdateTenantMemberRequest:
+      additionalProperties: false
+      example:
+        role: role
+      properties:
+        role:
+          minLength: 1
+          type: string
+      required:
+      - role
+      type: object
     UpdateTenantRequest:
       additionalProperties: false
       example:
@@ -8183,8 +8916,6 @@ components:
       properties:
         data:
           nullable: true
-        encryption:
-          $ref: '#/components/schemas/EncryptionMetadata'
         privacy:
           $ref: '#/components/schemas/UpdatePrivacy'
         metadata:
@@ -8222,8 +8953,10 @@ components:
     User:
       additionalProperties: false
       example:
+        provider: provider
         last_name: last_name
         id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        mfa_enrolled: true
         first_name: first_name
         email: email
         picture: picture
@@ -8238,6 +8971,11 @@ components:
           maxLength: 200
           nullable: true
           type: string
+        provider:
+          nullable: true
+          type: string
+        mfa_enrolled:
+          type: boolean
         first_name:
           maxLength: 200
           nullable: true

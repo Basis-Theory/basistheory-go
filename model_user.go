@@ -19,11 +19,13 @@ var _ MappedNullable = &User{}
 
 // User struct for User
 type User struct {
-	Id        *string        `json:"id,omitempty"`
-	Email     NullableString `json:"email,omitempty"`
-	FirstName NullableString `json:"first_name,omitempty"`
-	LastName  NullableString `json:"last_name,omitempty"`
-	Picture   NullableString `json:"picture,omitempty"`
+	Id          *string        `json:"id,omitempty"`
+	Email       NullableString `json:"email,omitempty"`
+	Provider    NullableString `json:"provider,omitempty"`
+	MfaEnrolled *bool          `json:"mfa_enrolled,omitempty"`
+	FirstName   NullableString `json:"first_name,omitempty"`
+	LastName    NullableString `json:"last_name,omitempty"`
+	Picture     NullableString `json:"picture,omitempty"`
 }
 
 // NewUser instantiates a new User object
@@ -116,6 +118,81 @@ func (o *User) SetEmailNil() {
 // UnsetEmail ensures that no value is present for Email, not even an explicit nil
 func (o *User) UnsetEmail() {
 	o.Email.Unset()
+}
+
+// GetProvider returns the Provider field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *User) GetProvider() string {
+	if o == nil || IsNil(o.Provider.Get()) {
+		var ret string
+		return ret
+	}
+	return *o.Provider.Get()
+}
+
+// GetProviderOk returns a tuple with the Provider field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *User) GetProviderOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.Provider.Get(), o.Provider.IsSet()
+}
+
+// HasProvider returns a boolean if a field is not nil.
+func (o *User) HasProvider() bool {
+	if o != nil && !IsNil(o.Provider) {
+		return true
+	}
+
+	return false
+}
+
+// SetProvider gets a reference to the given NullableString and assigns it to the Provider field.
+func (o *User) SetProvider(v string) {
+	o.Provider.Set(&v)
+}
+
+// SetProviderNil sets the value for Provider to be an explicit nil
+func (o *User) SetProviderNil() {
+	o.Provider.Set(nil)
+}
+
+// UnsetProvider ensures that no value is present for Provider, not even an explicit nil
+func (o *User) UnsetProvider() {
+	o.Provider.Unset()
+}
+
+// GetMfaEnrolled returns the MfaEnrolled field value if set, zero value otherwise.
+func (o *User) GetMfaEnrolled() bool {
+	if o == nil || IsNil(o.MfaEnrolled) {
+		var ret bool
+		return ret
+	}
+	return *o.MfaEnrolled
+}
+
+// GetMfaEnrolledOk returns a tuple with the MfaEnrolled field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *User) GetMfaEnrolledOk() (*bool, bool) {
+	if o == nil || IsNil(o.MfaEnrolled) {
+		return nil, false
+	}
+	return o.MfaEnrolled, true
+}
+
+// HasMfaEnrolled returns a boolean if a field is not nil.
+func (o *User) HasMfaEnrolled() bool {
+	if o != nil && !IsNil(o.MfaEnrolled) {
+		return true
+	}
+
+	return false
+}
+
+// SetMfaEnrolled gets a reference to the given bool and assigns it to the MfaEnrolled field.
+func (o *User) SetMfaEnrolled(v bool) {
+	o.MfaEnrolled = &v
 }
 
 // GetFirstName returns the FirstName field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -262,6 +339,12 @@ func (o User) ToMap() (map[string]interface{}, error) {
 	}
 	if o.Email.IsSet() {
 		toSerialize["email"] = o.Email.Get()
+	}
+	if o.Provider.IsSet() {
+		toSerialize["provider"] = o.Provider.Get()
+	}
+	if !IsNil(o.MfaEnrolled) {
+		toSerialize["mfa_enrolled"] = o.MfaEnrolled
 	}
 	if o.FirstName.IsSet() {
 		toSerialize["first_name"] = o.FirstName.Get()

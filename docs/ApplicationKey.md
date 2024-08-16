@@ -6,6 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Id** | Pointer to **string** |  | [optional] 
 **Key** | Pointer to **NullableString** |  | [optional] 
+**Version** | Pointer to **NullableString** |  | [optional] 
 **CreatedBy** | Pointer to **NullableString** |  | [optional] 
 **CreatedAt** | Pointer to **NullableTime** |  | [optional] 
 
@@ -88,6 +89,41 @@ HasKey returns a boolean if a field has been set.
 `func (o *ApplicationKey) UnsetKey()`
 
 UnsetKey ensures that no value is present for Key, not even an explicit nil
+### GetVersion
+
+`func (o *ApplicationKey) GetVersion() string`
+
+GetVersion returns the Version field if non-nil, zero value otherwise.
+
+### GetVersionOk
+
+`func (o *ApplicationKey) GetVersionOk() (*string, bool)`
+
+GetVersionOk returns a tuple with the Version field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetVersion
+
+`func (o *ApplicationKey) SetVersion(v string)`
+
+SetVersion sets Version field to given value.
+
+### HasVersion
+
+`func (o *ApplicationKey) HasVersion() bool`
+
+HasVersion returns a boolean if a field has been set.
+
+### SetVersionNil
+
+`func (o *ApplicationKey) SetVersionNil(b bool)`
+
+ SetVersionNil sets the value for Version to be an explicit nil
+
+### UnsetVersion
+`func (o *ApplicationKey) UnsetVersion()`
+
+UnsetVersion ensures that no value is present for Version, not even an explicit nil
 ### GetCreatedBy
 
 `func (o *ApplicationKey) GetCreatedBy() string`

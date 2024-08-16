@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **RecommendedVersion** | Pointer to **NullableString** |  | [optional] 
-**AvailableVersion** | Pointer to **[]string** |  | [optional] 
+**AvailableVersions** | Pointer to **[]string** |  | [optional] 
 **EarliestAcsSupportedVersion** | Pointer to **NullableString** |  | [optional] 
 **EarliestDsSupportedVersion** | Pointer to **NullableString** |  | [optional] 
 **LatestAcsSupportedVersion** | Pointer to **NullableString** |  | [optional] 
@@ -66,41 +66,41 @@ HasRecommendedVersion returns a boolean if a field has been set.
 `func (o *ThreeDSVersion) UnsetRecommendedVersion()`
 
 UnsetRecommendedVersion ensures that no value is present for RecommendedVersion, not even an explicit nil
-### GetAvailableVersion
+### GetAvailableVersions
 
-`func (o *ThreeDSVersion) GetAvailableVersion() []string`
+`func (o *ThreeDSVersion) GetAvailableVersions() []string`
 
-GetAvailableVersion returns the AvailableVersion field if non-nil, zero value otherwise.
+GetAvailableVersions returns the AvailableVersions field if non-nil, zero value otherwise.
 
-### GetAvailableVersionOk
+### GetAvailableVersionsOk
 
-`func (o *ThreeDSVersion) GetAvailableVersionOk() (*[]string, bool)`
+`func (o *ThreeDSVersion) GetAvailableVersionsOk() (*[]string, bool)`
 
-GetAvailableVersionOk returns a tuple with the AvailableVersion field if it's non-nil, zero value otherwise
+GetAvailableVersionsOk returns a tuple with the AvailableVersions field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetAvailableVersion
+### SetAvailableVersions
 
-`func (o *ThreeDSVersion) SetAvailableVersion(v []string)`
+`func (o *ThreeDSVersion) SetAvailableVersions(v []string)`
 
-SetAvailableVersion sets AvailableVersion field to given value.
+SetAvailableVersions sets AvailableVersions field to given value.
 
-### HasAvailableVersion
+### HasAvailableVersions
 
-`func (o *ThreeDSVersion) HasAvailableVersion() bool`
+`func (o *ThreeDSVersion) HasAvailableVersions() bool`
 
-HasAvailableVersion returns a boolean if a field has been set.
+HasAvailableVersions returns a boolean if a field has been set.
 
-### SetAvailableVersionNil
+### SetAvailableVersionsNil
 
-`func (o *ThreeDSVersion) SetAvailableVersionNil(b bool)`
+`func (o *ThreeDSVersion) SetAvailableVersionsNil(b bool)`
 
- SetAvailableVersionNil sets the value for AvailableVersion to be an explicit nil
+ SetAvailableVersionsNil sets the value for AvailableVersions to be an explicit nil
 
-### UnsetAvailableVersion
-`func (o *ThreeDSVersion) UnsetAvailableVersion()`
+### UnsetAvailableVersions
+`func (o *ThreeDSVersion) UnsetAvailableVersions()`
 
-UnsetAvailableVersion ensures that no value is present for AvailableVersion, not even an explicit nil
+UnsetAvailableVersions ensures that no value is present for AvailableVersions, not even an explicit nil
 ### GetEarliestAcsSupportedVersion
 
 `func (o *ThreeDSVersion) GetEarliestAcsSupportedVersion() string`

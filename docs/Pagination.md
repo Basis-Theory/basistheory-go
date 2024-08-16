@@ -9,6 +9,7 @@ Name | Type | Description | Notes
 **PageSize** | Pointer to **NullableInt32** |  | [optional] 
 **TotalPages** | Pointer to **NullableInt32** |  | [optional] 
 **After** | Pointer to **NullableString** |  | [optional] 
+**Next** | Pointer to **NullableString** |  | [optional] 
 
 ## Methods
 
@@ -204,6 +205,41 @@ HasAfter returns a boolean if a field has been set.
 `func (o *Pagination) UnsetAfter()`
 
 UnsetAfter ensures that no value is present for After, not even an explicit nil
+### GetNext
+
+`func (o *Pagination) GetNext() string`
+
+GetNext returns the Next field if non-nil, zero value otherwise.
+
+### GetNextOk
+
+`func (o *Pagination) GetNextOk() (*string, bool)`
+
+GetNextOk returns a tuple with the Next field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetNext
+
+`func (o *Pagination) SetNext(v string)`
+
+SetNext sets Next field to given value.
+
+### HasNext
+
+`func (o *Pagination) HasNext() bool`
+
+HasNext returns a boolean if a field has been set.
+
+### SetNextNil
+
+`func (o *Pagination) SetNextNil(b bool)`
+
+ SetNextNil sets the value for Next to be an explicit nil
+
+### UnsetNext
+`func (o *Pagination) UnsetNext()`
+
+UnsetNext ensures that no value is present for Next, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

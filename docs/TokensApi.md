@@ -8,7 +8,9 @@ Method | HTTP request | Description
 [**Delete**](TokensApi.md#Delete) | **Delete** /tokens/{id} | 
 [**Get**](TokensApi.md#Get) | **Get** /tokens | 
 [**GetById**](TokensApi.md#GetById) | **Get** /tokens/{id} | 
+[**GetV2**](TokensApi.md#GetV2) | **Get** /v2/tokens | 
 [**Search**](TokensApi.md#Search) | **Post** /tokens/search | 
+[**SearchV2**](TokensApi.md#SearchV2) | **Post** /v2/tokens/search | 
 [**Update**](TokensApi.md#Update) | **Patch** /tokens/{id} | 
 
 
@@ -283,6 +285,72 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
+## GetV2
+
+> TokenCursorPaginatedList GetV2(ctx).Start(start).Size(size).Execute()
+
+
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    start := "start_example" // string |  (optional)
+    size := int32(56) // int32 |  (optional)
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.TokensApi.GetV2(context.Background()).Start(start).Size(size).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `TokensApi.GetV2``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `GetV2`: TokenCursorPaginatedList
+    fmt.Fprintf(os.Stdout, "Response from `TokensApi.GetV2`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiGetV2Request struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **start** | **string** |  | 
+ **size** | **int32** |  | 
+
+### Return type
+
+[**TokenCursorPaginatedList**](TokenCursorPaginatedList.md)
+
+### Authorization
+
+[ApiKey](../README.md#ApiKey)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
 ## Search
 
 > TokenPaginatedList Search(ctx).SearchTokensRequest(searchTokensRequest).Execute()
@@ -332,6 +400,70 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**TokenPaginatedList**](TokenPaginatedList.md)
+
+### Authorization
+
+[ApiKey](../README.md#ApiKey)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## SearchV2
+
+> TokenCursorPaginatedList SearchV2(ctx).SearchTokensRequestV2(searchTokensRequestV2).Execute()
+
+
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    searchTokensRequestV2 := *openapiclient.NewSearchTokensRequestV2() // SearchTokensRequestV2 | 
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.TokensApi.SearchV2(context.Background()).SearchTokensRequestV2(searchTokensRequestV2).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `TokensApi.SearchV2``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `SearchV2`: TokenCursorPaginatedList
+    fmt.Fprintf(os.Stdout, "Response from `TokensApi.SearchV2`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiSearchV2Request struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **searchTokensRequestV2** | [**SearchTokensRequestV2**](SearchTokensRequestV2.md) |  | 
+
+### Return type
+
+[**TokenCursorPaginatedList**](TokenCursorPaginatedList.md)
 
 ### Authorization
 

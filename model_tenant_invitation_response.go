@@ -23,6 +23,7 @@ type TenantInvitationResponse struct {
 	Id         *string                 `json:"id,omitempty"`
 	TenantId   *string                 `json:"tenant_id,omitempty"`
 	Email      NullableString          `json:"email,omitempty"`
+	Role       NullableString          `json:"role,omitempty"`
 	Status     *TenantInvitationStatus `json:"status,omitempty"`
 	ExpiresAt  *time.Time              `json:"expires_at,omitempty"`
 	CreatedBy  NullableString          `json:"created_by,omitempty"`
@@ -153,6 +154,49 @@ func (o *TenantInvitationResponse) SetEmailNil() {
 // UnsetEmail ensures that no value is present for Email, not even an explicit nil
 func (o *TenantInvitationResponse) UnsetEmail() {
 	o.Email.Unset()
+}
+
+// GetRole returns the Role field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *TenantInvitationResponse) GetRole() string {
+	if o == nil || IsNil(o.Role.Get()) {
+		var ret string
+		return ret
+	}
+	return *o.Role.Get()
+}
+
+// GetRoleOk returns a tuple with the Role field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *TenantInvitationResponse) GetRoleOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.Role.Get(), o.Role.IsSet()
+}
+
+// HasRole returns a boolean if a field is not nil.
+func (o *TenantInvitationResponse) HasRole() bool {
+	if o != nil && !IsNil(o.Role) {
+		return true
+	}
+
+	return false
+}
+
+// SetRole gets a reference to the given NullableString and assigns it to the Role field.
+func (o *TenantInvitationResponse) SetRole(v string) {
+	o.Role.Set(&v)
+}
+
+// SetRoleNil sets the value for Role to be an explicit nil
+func (o *TenantInvitationResponse) SetRoleNil() {
+	o.Role.Set(nil)
+}
+
+// UnsetRole ensures that no value is present for Role, not even an explicit nil
+func (o *TenantInvitationResponse) UnsetRole() {
+	o.Role.Unset()
 }
 
 // GetStatus returns the Status field value if set, zero value otherwise.
@@ -409,6 +453,9 @@ func (o TenantInvitationResponse) ToMap() (map[string]interface{}, error) {
 	}
 	if o.Email.IsSet() {
 		toSerialize["email"] = o.Email.Get()
+	}
+	if o.Role.IsSet() {
+		toSerialize["role"] = o.Role.Get()
 	}
 	if !IsNil(o.Status) {
 		toSerialize["status"] = o.Status
