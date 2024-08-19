@@ -39,8 +39,8 @@ func (r PermissionsApiGetRequest) Execute() ([]Permission, *http.Response, error
 /*
 Get Method for Get
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return PermissionsApiGetRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return PermissionsApiGetRequest
 */
 func (a *PermissionsApiService) Get(ctx context.Context) PermissionsApiGetRequest {
 	return PermissionsApiGetRequest{
@@ -50,7 +50,8 @@ func (a *PermissionsApiService) Get(ctx context.Context) PermissionsApiGetReques
 }
 
 // Execute executes the request
-//  @return []Permission
+//
+//	@return []Permission
 func (a *PermissionsApiService) GetExecute(r PermissionsApiGetRequest) ([]Permission, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet

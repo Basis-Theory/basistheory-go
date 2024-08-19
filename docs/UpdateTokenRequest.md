@@ -5,7 +5,6 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Data** | Pointer to **interface{}** |  | [optional] 
-**Encryption** | Pointer to [**EncryptionMetadata**](EncryptionMetadata.md) |  | [optional] 
 **Privacy** | Pointer to [**UpdatePrivacy**](UpdatePrivacy.md) |  | [optional] 
 **Metadata** | Pointer to **map[string]string** |  | [optional] 
 **SearchIndexes** | Pointer to **[]string** |  | [optional] 
@@ -69,31 +68,6 @@ HasData returns a boolean if a field has been set.
 `func (o *UpdateTokenRequest) UnsetData()`
 
 UnsetData ensures that no value is present for Data, not even an explicit nil
-### GetEncryption
-
-`func (o *UpdateTokenRequest) GetEncryption() EncryptionMetadata`
-
-GetEncryption returns the Encryption field if non-nil, zero value otherwise.
-
-### GetEncryptionOk
-
-`func (o *UpdateTokenRequest) GetEncryptionOk() (*EncryptionMetadata, bool)`
-
-GetEncryptionOk returns a tuple with the Encryption field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetEncryption
-
-`func (o *UpdateTokenRequest) SetEncryption(v EncryptionMetadata)`
-
-SetEncryption sets Encryption field to given value.
-
-### HasEncryption
-
-`func (o *UpdateTokenRequest) HasEncryption() bool`
-
-HasEncryption returns a boolean if a field has been set.
-
 ### GetPrivacy
 
 `func (o *UpdateTokenRequest) GetPrivacy() UpdatePrivacy`

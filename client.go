@@ -54,6 +54,8 @@ type APIClient struct {
 
 	ApplicationsApi *ApplicationsApiService
 
+	DetokenizeApi *DetokenizeApiService
+
 	LogsApi *LogsApiService
 
 	PermissionsApi *PermissionsApiService
@@ -63,6 +65,8 @@ type APIClient struct {
 	ReactorFormulasApi *ReactorFormulasApiService
 
 	ReactorsApi *ReactorsApiService
+
+	RolesApi *RolesApiService
 
 	SessionsApi *SessionsApiService
 
@@ -94,11 +98,13 @@ func NewAPIClient(cfg *Configuration) *APIClient {
 	c.ApplicationKeysApi = (*ApplicationKeysApiService)(&c.common)
 	c.ApplicationTemplatesApi = (*ApplicationTemplatesApiService)(&c.common)
 	c.ApplicationsApi = (*ApplicationsApiService)(&c.common)
+	c.DetokenizeApi = (*DetokenizeApiService)(&c.common)
 	c.LogsApi = (*LogsApiService)(&c.common)
 	c.PermissionsApi = (*PermissionsApiService)(&c.common)
 	c.ProxiesApi = (*ProxiesApiService)(&c.common)
 	c.ReactorFormulasApi = (*ReactorFormulasApiService)(&c.common)
 	c.ReactorsApi = (*ReactorsApiService)(&c.common)
+	c.RolesApi = (*RolesApiService)(&c.common)
 	c.SessionsApi = (*SessionsApiService)(&c.common)
 	c.TenantsApi = (*TenantsApiService)(&c.common)
 	c.ThreeDSApi = (*ThreeDSApiService)(&c.common)

@@ -34,8 +34,8 @@ func (r ApplicationTemplatesApiGetRequest) Execute() ([]ApplicationTemplate, *ht
 /*
 Get Method for Get
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApplicationTemplatesApiGetRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApplicationTemplatesApiGetRequest
 */
 func (a *ApplicationTemplatesApiService) Get(ctx context.Context) ApplicationTemplatesApiGetRequest {
 	return ApplicationTemplatesApiGetRequest{
@@ -45,7 +45,8 @@ func (a *ApplicationTemplatesApiService) Get(ctx context.Context) ApplicationTem
 }
 
 // Execute executes the request
-//  @return []ApplicationTemplate
+//
+//	@return []ApplicationTemplate
 func (a *ApplicationTemplatesApiService) GetExecute(r ApplicationTemplatesApiGetRequest) ([]ApplicationTemplate, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
@@ -165,9 +166,9 @@ func (r ApplicationTemplatesApiGetByIdRequest) Execute() (*ApplicationTemplate, 
 /*
 GetById Method for GetById
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param id
- @return ApplicationTemplatesApiGetByIdRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param id
+	@return ApplicationTemplatesApiGetByIdRequest
 */
 func (a *ApplicationTemplatesApiService) GetById(ctx context.Context, id string) ApplicationTemplatesApiGetByIdRequest {
 	return ApplicationTemplatesApiGetByIdRequest{
@@ -178,7 +179,8 @@ func (a *ApplicationTemplatesApiService) GetById(ctx context.Context, id string)
 }
 
 // Execute executes the request
-//  @return ApplicationTemplate
+//
+//	@return ApplicationTemplate
 func (a *ApplicationTemplatesApiService) GetByIdExecute(r ApplicationTemplatesApiGetByIdRequest) (*ApplicationTemplate, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet

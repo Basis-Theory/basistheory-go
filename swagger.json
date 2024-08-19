@@ -874,6 +874,66 @@
         }
       }
     },
+    "/detokenize": {
+      "post": {
+        "tags": [
+          "Detokenize"
+        ],
+        "operationId": "Detokenize_Detokenize",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": { }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success"
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ValidationProblemDetails"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Conflict",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/logs": {
       "get": {
         "tags": [
@@ -2430,6 +2490,49 @@
         }
       }
     },
+    "/roles": {
+      "get": {
+        "tags": [
+          "Roles"
+        ],
+        "operationId": "Roles_Get",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Role"
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/sessions": {
       "post": {
         "tags": [
@@ -2542,6 +2645,114 @@
           },
           "409": {
             "description": "Conflict",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/tenants/self/connections": {
+      "post": {
+        "tags": [
+          "Tenants"
+        ],
+        "operationId": "TenantConnections_CreateConnection",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateTenantConnectionRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "description": "Created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CreateTenantConnectionResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Tenants"
+        ],
+        "operationId": "TenantConnections_DeleteConnection",
+        "responses": {
+          "204": {
+            "description": "No Content",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CreateTenantConnectionResponse"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ValidationProblemDetails"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
             "content": {
               "application/json": {
                 "schema": {
@@ -2898,6 +3109,106 @@
       }
     },
     "/tenants/self/members/{memberId}": {
+      "put": {
+        "tags": [
+          "Tenants"
+        ],
+        "operationId": "TenantMembers_UpdateMember",
+        "parameters": [
+          {
+            "name": "memberId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "maxLength": 36,
+              "pattern": "^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$",
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json-patch+json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateTenantMemberRequest"
+              }
+            },
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateTenantMemberRequest"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateTenantMemberRequest"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateTenantMemberRequest"
+              }
+            },
+            "application/xml": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateTenantMemberRequest"
+              }
+            },
+            "text/xml": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateTenantMemberRequest"
+              }
+            },
+            "application/*+xml": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateTenantMemberRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TenantMemberResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      },
       "delete": {
         "tags": [
           "Tenants"
@@ -3661,7 +3972,7 @@
             "in": "path",
             "required": true,
             "schema": {
-              "maxLength": 200,
+              "maxLength": 250,
               "pattern": "^.+$",
               "type": "string"
             }
@@ -3863,6 +4174,129 @@
           }
         }
       }
+    },
+    "/v2/tokens": {
+      "get": {
+        "tags": [
+          "Tokens"
+        ],
+        "operationId": "Tokens_Get_V2",
+        "parameters": [
+          {
+            "name": "start",
+            "in": "query",
+            "schema": {
+              "maxLength": 500,
+              "pattern": "^.+$",
+              "type": "string",
+              "nullable": true
+            }
+          },
+          {
+            "name": "size",
+            "in": "query",
+            "schema": {
+              "maximum": 100,
+              "minimum": 0,
+              "type": "integer",
+              "format": "int32",
+              "nullable": true
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TokenCursorPaginatedList"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v2/tokens/search": {
+      "post": {
+        "tags": [
+          "Tokens"
+        ],
+        "operationId": "Tokens_Search_V2",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SearchTokensRequestV2"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TokenCursorPaginatedList"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ValidationProblemDetails"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      }
     }
   },
   "components": {
@@ -3927,7 +4361,7 @@
           },
           "key": {
             "maxLength": 100,
-            "pattern": "^[A-z0-9_]*$",
+            "pattern": "[A-z0-9_.]+",
             "type": "string",
             "nullable": true,
             "deprecated": true
@@ -4006,6 +4440,10 @@
             "format": "uuid"
           },
           "key": {
+            "type": "string",
+            "nullable": true
+          },
+          "version": {
             "type": "string",
             "nullable": true
           },
@@ -4300,6 +4738,20 @@
         },
         "additionalProperties": false
       },
+      "CardDetails": {
+        "type": "object",
+        "properties": {
+          "bin": {
+            "type": "string",
+            "nullable": true
+          },
+          "last4": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
       "Condition": {
         "type": "object",
         "properties": {
@@ -4536,6 +4988,33 @@
         },
         "additionalProperties": false
       },
+      "CreateTenantConnectionRequest": {
+        "required": [
+          "options",
+          "strategy"
+        ],
+        "type": "object",
+        "properties": {
+          "strategy": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "options": {
+            "$ref": "#/components/schemas/TenantConnectionOptions"
+          }
+        },
+        "additionalProperties": false
+      },
+      "CreateTenantConnectionResponse": {
+        "type": "object",
+        "properties": {
+          "connection_id": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
       "CreateTenantInvitationRequest": {
         "required": [
           "email"
@@ -4547,6 +5026,10 @@
             "minLength": 1,
             "type": "string",
             "format": "email"
+          },
+          "role": {
+            "type": "string",
+            "nullable": true
           }
         },
         "additionalProperties": false
@@ -4610,34 +5093,17 @@
         },
         "additionalProperties": false
       },
-      "EncryptionKey": {
-        "required": [
-          "key"
-        ],
+      "CursorPagination": {
         "type": "object",
         "properties": {
-          "key": {
-            "type": "string"
-          },
-          "prov": {
-            "type": "string",
+          "page_size": {
+            "type": "integer",
+            "format": "int32",
             "nullable": true
           },
-          "alg": {
+          "next": {
             "type": "string",
             "nullable": true
-          }
-        },
-        "additionalProperties": false
-      },
-      "EncryptionMetadata": {
-        "type": "object",
-        "properties": {
-          "cek": {
-            "$ref": "#/components/schemas/EncryptionKey"
-          },
-          "kek": {
-            "$ref": "#/components/schemas/EncryptionKey"
           }
         },
         "additionalProperties": false
@@ -4960,6 +5426,25 @@
         },
         "additionalProperties": false
       },
+      "GetTokensV2": {
+        "type": "object",
+        "properties": {
+          "start": {
+            "maxLength": 500,
+            "pattern": "^.+$",
+            "type": "string",
+            "nullable": true
+          },
+          "size": {
+            "maximum": 100,
+            "minimum": 0,
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
       "Log": {
         "type": "object",
         "properties": {
@@ -5078,6 +5563,11 @@
             "nullable": true
           },
           "after": {
+            "type": "string",
+            "nullable": true,
+            "deprecated": true
+          },
+          "next": {
             "type": "string",
             "nullable": true
           }
@@ -5353,13 +5843,41 @@
       "ProxyTransform": {
         "type": "object",
         "properties": {
+          "type": {
+            "$ref": "#/components/schemas/ProxyTransformType"
+          },
           "code": {
             "maxLength": 50000,
+            "type": "string",
+            "nullable": true
+          },
+          "matcher": {
+            "$ref": "#/components/schemas/ProxyTransformMatcher"
+          },
+          "expression": {
+            "type": "string",
+            "nullable": true
+          },
+          "replacement": {
             "type": "string",
             "nullable": true
           }
         },
         "additionalProperties": false
+      },
+      "ProxyTransformMatcher": {
+        "enum": [
+          "REGEX",
+          "CHASE_STRATUS_PAN"
+        ],
+        "type": "string"
+      },
+      "ProxyTransformType": {
+        "enum": [
+          "CODE",
+          "MASK"
+        ],
+        "type": "string"
       },
       "ReactRequest": {
         "type": "object",
@@ -5644,6 +6162,16 @@
         },
         "additionalProperties": false
       },
+      "Role": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
       "SearchTokensRequest": {
         "type": "object",
         "properties": {
@@ -5675,6 +6203,31 @@
         },
         "additionalProperties": false
       },
+      "SearchTokensRequestV2": {
+        "type": "object",
+        "properties": {
+          "query": {
+            "maxLength": 200,
+            "pattern": "^.*$",
+            "type": "string",
+            "nullable": true
+          },
+          "start": {
+            "maxLength": 500,
+            "pattern": "^.+$",
+            "type": "string",
+            "nullable": true
+          },
+          "size": {
+            "maximum": 100,
+            "minimum": 0,
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
       "StringStringKeyValuePair": {
         "required": [
           "key",
@@ -5689,7 +6242,7 @@
             "type": "string"
           },
           "value": {
-            "maxLength": 1000,
+            "maxLength": 200,
             "minLength": 1,
             "type": "string"
           }
@@ -5760,6 +6313,19 @@
         },
         "additionalProperties": false
       },
+      "TenantConnectionOptions": {
+        "type": "object",
+        "properties": {
+          "domain_aliases": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
       "TenantInvitationResponse": {
         "type": "object",
         "properties": {
@@ -5779,6 +6345,10 @@
             "maxLength": 200,
             "type": "string",
             "format": "email",
+            "nullable": true
+          },
+          "role": {
+            "type": "string",
             "nullable": true
           },
           "status": {
@@ -5972,6 +6542,10 @@
       "ThreeDSAuthentication": {
         "type": "object",
         "properties": {
+          "pan_token_id": {
+            "type": "string",
+            "nullable": true
+          },
           "threeds_version": {
             "type": "string",
             "nullable": true
@@ -6010,6 +6584,10 @@
             "nullable": true
           },
           "authentication_status": {
+            "type": "string",
+            "nullable": true
+          },
+          "authentication_status_code": {
             "type": "string",
             "nullable": true
           },
@@ -6576,7 +7154,7 @@
             "type": "string",
             "nullable": true
           },
-          "available_version": {
+          "available_versions": {
             "type": "array",
             "items": {
               "type": "string"
@@ -6720,11 +7298,30 @@
         },
         "additionalProperties": false
       },
+      "TokenCursorPaginatedList": {
+        "type": "object",
+        "properties": {
+          "pagination": {
+            "$ref": "#/components/schemas/CursorPagination"
+          },
+          "data": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Token"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
       "TokenEnrichments": {
         "type": "object",
         "properties": {
           "bin_details": {
             "$ref": "#/components/schemas/BinDetails"
+          },
+          "card_details": {
+            "$ref": "#/components/schemas/CardDetails"
           }
         },
         "additionalProperties": false
@@ -6784,6 +7381,11 @@
               "$ref": "#/components/schemas/TokenMetrics"
             },
             "nullable": true
+          },
+          "total_tokens": {
+            "minimum": 0,
+            "type": "integer",
+            "format": "int64"
           }
         },
         "additionalProperties": false
@@ -6979,6 +7581,19 @@
         },
         "additionalProperties": false
       },
+      "UpdateTenantMemberRequest": {
+        "required": [
+          "role"
+        ],
+        "type": "object",
+        "properties": {
+          "role": {
+            "minLength": 1,
+            "type": "string"
+          }
+        },
+        "additionalProperties": false
+      },
       "UpdateTenantRequest": {
         "required": [
           "name"
@@ -7007,9 +7622,6 @@
         "properties": {
           "data": {
             "nullable": true
-          },
-          "encryption": {
-            "$ref": "#/components/schemas/EncryptionMetadata"
           },
           "privacy": {
             "$ref": "#/components/schemas/UpdatePrivacy"
@@ -7072,6 +7684,13 @@
             "type": "string",
             "format": "email",
             "nullable": true
+          },
+          "provider": {
+            "type": "string",
+            "nullable": true
+          },
+          "mfa_enrolled": {
+            "type": "boolean"
           },
           "first_name": {
             "maxLength": 200,

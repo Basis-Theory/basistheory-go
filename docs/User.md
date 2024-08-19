@@ -6,6 +6,8 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Id** | Pointer to **string** |  | [optional] 
 **Email** | Pointer to **NullableString** |  | [optional] 
+**Provider** | Pointer to **NullableString** |  | [optional] 
+**MfaEnrolled** | Pointer to **bool** |  | [optional] 
 **FirstName** | Pointer to **NullableString** |  | [optional] 
 **LastName** | Pointer to **NullableString** |  | [optional] 
 **Picture** | Pointer to **NullableString** |  | [optional] 
@@ -89,6 +91,66 @@ HasEmail returns a boolean if a field has been set.
 `func (o *User) UnsetEmail()`
 
 UnsetEmail ensures that no value is present for Email, not even an explicit nil
+### GetProvider
+
+`func (o *User) GetProvider() string`
+
+GetProvider returns the Provider field if non-nil, zero value otherwise.
+
+### GetProviderOk
+
+`func (o *User) GetProviderOk() (*string, bool)`
+
+GetProviderOk returns a tuple with the Provider field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetProvider
+
+`func (o *User) SetProvider(v string)`
+
+SetProvider sets Provider field to given value.
+
+### HasProvider
+
+`func (o *User) HasProvider() bool`
+
+HasProvider returns a boolean if a field has been set.
+
+### SetProviderNil
+
+`func (o *User) SetProviderNil(b bool)`
+
+ SetProviderNil sets the value for Provider to be an explicit nil
+
+### UnsetProvider
+`func (o *User) UnsetProvider()`
+
+UnsetProvider ensures that no value is present for Provider, not even an explicit nil
+### GetMfaEnrolled
+
+`func (o *User) GetMfaEnrolled() bool`
+
+GetMfaEnrolled returns the MfaEnrolled field if non-nil, zero value otherwise.
+
+### GetMfaEnrolledOk
+
+`func (o *User) GetMfaEnrolledOk() (*bool, bool)`
+
+GetMfaEnrolledOk returns a tuple with the MfaEnrolled field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetMfaEnrolled
+
+`func (o *User) SetMfaEnrolled(v bool)`
+
+SetMfaEnrolled sets MfaEnrolled field to given value.
+
+### HasMfaEnrolled
+
+`func (o *User) HasMfaEnrolled() bool`
+
+HasMfaEnrolled returns a boolean if a field has been set.
+
 ### GetFirstName
 
 `func (o *User) GetFirstName() string`

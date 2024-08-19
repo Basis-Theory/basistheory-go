@@ -19,6 +19,7 @@ var _ MappedNullable = &ThreeDSAuthentication{}
 
 // ThreeDSAuthentication struct for ThreeDSAuthentication
 type ThreeDSAuthentication struct {
+	PanTokenId                  NullableString            `json:"pan_token_id,omitempty"`
 	ThreedsVersion              NullableString            `json:"threeds_version,omitempty"`
 	AcsTransactionId            NullableString            `json:"acs_transaction_id,omitempty"`
 	DsTransactionId             NullableString            `json:"ds_transaction_id,omitempty"`
@@ -27,6 +28,7 @@ type ThreeDSAuthentication struct {
 	DsReferenceNumber           NullableString            `json:"ds_reference_number,omitempty"`
 	AuthenticationValue         NullableString            `json:"authentication_value,omitempty"`
 	AuthenticationStatus        NullableString            `json:"authentication_status,omitempty"`
+	AuthenticationStatusCode    NullableString            `json:"authentication_status_code,omitempty"`
 	AuthenticationStatusReason  NullableString            `json:"authentication_status_reason,omitempty"`
 	Eci                         NullableString            `json:"eci,omitempty"`
 	AcsChallengeMandated        NullableString            `json:"acs_challenge_mandated,omitempty"`
@@ -58,6 +60,49 @@ func NewThreeDSAuthentication() *ThreeDSAuthentication {
 func NewThreeDSAuthenticationWithDefaults() *ThreeDSAuthentication {
 	this := ThreeDSAuthentication{}
 	return &this
+}
+
+// GetPanTokenId returns the PanTokenId field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ThreeDSAuthentication) GetPanTokenId() string {
+	if o == nil || IsNil(o.PanTokenId.Get()) {
+		var ret string
+		return ret
+	}
+	return *o.PanTokenId.Get()
+}
+
+// GetPanTokenIdOk returns a tuple with the PanTokenId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ThreeDSAuthentication) GetPanTokenIdOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.PanTokenId.Get(), o.PanTokenId.IsSet()
+}
+
+// HasPanTokenId returns a boolean if a field is not nil.
+func (o *ThreeDSAuthentication) HasPanTokenId() bool {
+	if o != nil && !IsNil(o.PanTokenId) {
+		return true
+	}
+
+	return false
+}
+
+// SetPanTokenId gets a reference to the given NullableString and assigns it to the PanTokenId field.
+func (o *ThreeDSAuthentication) SetPanTokenId(v string) {
+	o.PanTokenId.Set(&v)
+}
+
+// SetPanTokenIdNil sets the value for PanTokenId to be an explicit nil
+func (o *ThreeDSAuthentication) SetPanTokenIdNil() {
+	o.PanTokenId.Set(nil)
+}
+
+// UnsetPanTokenId ensures that no value is present for PanTokenId, not even an explicit nil
+func (o *ThreeDSAuthentication) UnsetPanTokenId() {
+	o.PanTokenId.Unset()
 }
 
 // GetThreedsVersion returns the ThreedsVersion field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -402,6 +447,49 @@ func (o *ThreeDSAuthentication) SetAuthenticationStatusNil() {
 // UnsetAuthenticationStatus ensures that no value is present for AuthenticationStatus, not even an explicit nil
 func (o *ThreeDSAuthentication) UnsetAuthenticationStatus() {
 	o.AuthenticationStatus.Unset()
+}
+
+// GetAuthenticationStatusCode returns the AuthenticationStatusCode field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ThreeDSAuthentication) GetAuthenticationStatusCode() string {
+	if o == nil || IsNil(o.AuthenticationStatusCode.Get()) {
+		var ret string
+		return ret
+	}
+	return *o.AuthenticationStatusCode.Get()
+}
+
+// GetAuthenticationStatusCodeOk returns a tuple with the AuthenticationStatusCode field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ThreeDSAuthentication) GetAuthenticationStatusCodeOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.AuthenticationStatusCode.Get(), o.AuthenticationStatusCode.IsSet()
+}
+
+// HasAuthenticationStatusCode returns a boolean if a field is not nil.
+func (o *ThreeDSAuthentication) HasAuthenticationStatusCode() bool {
+	if o != nil && !IsNil(o.AuthenticationStatusCode) {
+		return true
+	}
+
+	return false
+}
+
+// SetAuthenticationStatusCode gets a reference to the given NullableString and assigns it to the AuthenticationStatusCode field.
+func (o *ThreeDSAuthentication) SetAuthenticationStatusCode(v string) {
+	o.AuthenticationStatusCode.Set(&v)
+}
+
+// SetAuthenticationStatusCodeNil sets the value for AuthenticationStatusCode to be an explicit nil
+func (o *ThreeDSAuthentication) SetAuthenticationStatusCodeNil() {
+	o.AuthenticationStatusCode.Set(nil)
+}
+
+// UnsetAuthenticationStatusCode ensures that no value is present for AuthenticationStatusCode, not even an explicit nil
+func (o *ThreeDSAuthentication) UnsetAuthenticationStatusCode() {
+	o.AuthenticationStatusCode.Unset()
 }
 
 // GetAuthenticationStatusReason returns the AuthenticationStatusReason field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -995,6 +1083,9 @@ func (o ThreeDSAuthentication) MarshalJSON() ([]byte, error) {
 
 func (o ThreeDSAuthentication) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
+	if o.PanTokenId.IsSet() {
+		toSerialize["pan_token_id"] = o.PanTokenId.Get()
+	}
 	if o.ThreedsVersion.IsSet() {
 		toSerialize["threeds_version"] = o.ThreedsVersion.Get()
 	}
@@ -1018,6 +1109,9 @@ func (o ThreeDSAuthentication) ToMap() (map[string]interface{}, error) {
 	}
 	if o.AuthenticationStatus.IsSet() {
 		toSerialize["authentication_status"] = o.AuthenticationStatus.Get()
+	}
+	if o.AuthenticationStatusCode.IsSet() {
+		toSerialize["authentication_status_code"] = o.AuthenticationStatusCode.Get()
 	}
 	if o.AuthenticationStatusReason.IsSet() {
 		toSerialize["authentication_status_reason"] = o.AuthenticationStatusReason.Get()

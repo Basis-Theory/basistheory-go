@@ -20,7 +20,7 @@ var _ MappedNullable = &ThreeDSVersion{}
 // ThreeDSVersion struct for ThreeDSVersion
 type ThreeDSVersion struct {
 	RecommendedVersion          NullableString `json:"recommended_version,omitempty"`
-	AvailableVersion            []string       `json:"available_version,omitempty"`
+	AvailableVersions           []string       `json:"available_versions,omitempty"`
 	EarliestAcsSupportedVersion NullableString `json:"earliest_acs_supported_version,omitempty"`
 	EarliestDsSupportedVersion  NullableString `json:"earliest_ds_supported_version,omitempty"`
 	LatestAcsSupportedVersion   NullableString `json:"latest_acs_supported_version,omitempty"`
@@ -88,37 +88,37 @@ func (o *ThreeDSVersion) UnsetRecommendedVersion() {
 	o.RecommendedVersion.Unset()
 }
 
-// GetAvailableVersion returns the AvailableVersion field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *ThreeDSVersion) GetAvailableVersion() []string {
+// GetAvailableVersions returns the AvailableVersions field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ThreeDSVersion) GetAvailableVersions() []string {
 	if o == nil {
 		var ret []string
 		return ret
 	}
-	return o.AvailableVersion
+	return o.AvailableVersions
 }
 
-// GetAvailableVersionOk returns a tuple with the AvailableVersion field value if set, nil otherwise
+// GetAvailableVersionsOk returns a tuple with the AvailableVersions field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *ThreeDSVersion) GetAvailableVersionOk() ([]string, bool) {
-	if o == nil || IsNil(o.AvailableVersion) {
+func (o *ThreeDSVersion) GetAvailableVersionsOk() ([]string, bool) {
+	if o == nil || IsNil(o.AvailableVersions) {
 		return nil, false
 	}
-	return o.AvailableVersion, true
+	return o.AvailableVersions, true
 }
 
-// HasAvailableVersion returns a boolean if a field is not nil.
-func (o *ThreeDSVersion) HasAvailableVersion() bool {
-	if o != nil && !IsNil(o.AvailableVersion) {
+// HasAvailableVersions returns a boolean if a field is not nil.
+func (o *ThreeDSVersion) HasAvailableVersions() bool {
+	if o != nil && !IsNil(o.AvailableVersions) {
 		return true
 	}
 
 	return false
 }
 
-// SetAvailableVersion gets a reference to the given []string and assigns it to the AvailableVersion field.
-func (o *ThreeDSVersion) SetAvailableVersion(v []string) {
-	o.AvailableVersion = v
+// SetAvailableVersions gets a reference to the given []string and assigns it to the AvailableVersions field.
+func (o *ThreeDSVersion) SetAvailableVersions(v []string) {
+	o.AvailableVersions = v
 }
 
 // GetEarliestAcsSupportedVersion returns the EarliestAcsSupportedVersion field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -339,8 +339,8 @@ func (o ThreeDSVersion) ToMap() (map[string]interface{}, error) {
 	if o.RecommendedVersion.IsSet() {
 		toSerialize["recommended_version"] = o.RecommendedVersion.Get()
 	}
-	if o.AvailableVersion != nil {
-		toSerialize["available_version"] = o.AvailableVersion
+	if o.AvailableVersions != nil {
+		toSerialize["available_versions"] = o.AvailableVersions
 	}
 	if o.EarliestAcsSupportedVersion.IsSet() {
 		toSerialize["earliest_acs_supported_version"] = o.EarliestAcsSupportedVersion.Get()

@@ -4,7 +4,11 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**Type** | Pointer to [**ProxyTransformType**](ProxyTransformType.md) |  | [optional] 
 **Code** | Pointer to **NullableString** |  | [optional] 
+**Matcher** | Pointer to [**ProxyTransformMatcher**](ProxyTransformMatcher.md) |  | [optional] 
+**Expression** | Pointer to **NullableString** |  | [optional] 
+**Replacement** | Pointer to **NullableString** |  | [optional] 
 
 ## Methods
 
@@ -24,6 +28,31 @@ will change when the set of required properties is changed
 NewProxyTransformWithDefaults instantiates a new ProxyTransform object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
+
+### GetType
+
+`func (o *ProxyTransform) GetType() ProxyTransformType`
+
+GetType returns the Type field if non-nil, zero value otherwise.
+
+### GetTypeOk
+
+`func (o *ProxyTransform) GetTypeOk() (*ProxyTransformType, bool)`
+
+GetTypeOk returns a tuple with the Type field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetType
+
+`func (o *ProxyTransform) SetType(v ProxyTransformType)`
+
+SetType sets Type field to given value.
+
+### HasType
+
+`func (o *ProxyTransform) HasType() bool`
+
+HasType returns a boolean if a field has been set.
 
 ### GetCode
 
@@ -60,6 +89,101 @@ HasCode returns a boolean if a field has been set.
 `func (o *ProxyTransform) UnsetCode()`
 
 UnsetCode ensures that no value is present for Code, not even an explicit nil
+### GetMatcher
+
+`func (o *ProxyTransform) GetMatcher() ProxyTransformMatcher`
+
+GetMatcher returns the Matcher field if non-nil, zero value otherwise.
+
+### GetMatcherOk
+
+`func (o *ProxyTransform) GetMatcherOk() (*ProxyTransformMatcher, bool)`
+
+GetMatcherOk returns a tuple with the Matcher field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetMatcher
+
+`func (o *ProxyTransform) SetMatcher(v ProxyTransformMatcher)`
+
+SetMatcher sets Matcher field to given value.
+
+### HasMatcher
+
+`func (o *ProxyTransform) HasMatcher() bool`
+
+HasMatcher returns a boolean if a field has been set.
+
+### GetExpression
+
+`func (o *ProxyTransform) GetExpression() string`
+
+GetExpression returns the Expression field if non-nil, zero value otherwise.
+
+### GetExpressionOk
+
+`func (o *ProxyTransform) GetExpressionOk() (*string, bool)`
+
+GetExpressionOk returns a tuple with the Expression field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetExpression
+
+`func (o *ProxyTransform) SetExpression(v string)`
+
+SetExpression sets Expression field to given value.
+
+### HasExpression
+
+`func (o *ProxyTransform) HasExpression() bool`
+
+HasExpression returns a boolean if a field has been set.
+
+### SetExpressionNil
+
+`func (o *ProxyTransform) SetExpressionNil(b bool)`
+
+ SetExpressionNil sets the value for Expression to be an explicit nil
+
+### UnsetExpression
+`func (o *ProxyTransform) UnsetExpression()`
+
+UnsetExpression ensures that no value is present for Expression, not even an explicit nil
+### GetReplacement
+
+`func (o *ProxyTransform) GetReplacement() string`
+
+GetReplacement returns the Replacement field if non-nil, zero value otherwise.
+
+### GetReplacementOk
+
+`func (o *ProxyTransform) GetReplacementOk() (*string, bool)`
+
+GetReplacementOk returns a tuple with the Replacement field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetReplacement
+
+`func (o *ProxyTransform) SetReplacement(v string)`
+
+SetReplacement sets Replacement field to given value.
+
+### HasReplacement
+
+`func (o *ProxyTransform) HasReplacement() bool`
+
+HasReplacement returns a boolean if a field has been set.
+
+### SetReplacementNil
+
+`func (o *ProxyTransform) SetReplacementNil(b bool)`
+
+ SetReplacementNil sets the value for Replacement to be an explicit nil
+
+### UnsetReplacement
+`func (o *ProxyTransform) UnsetReplacement()`
+
+UnsetReplacement ensures that no value is present for Replacement, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

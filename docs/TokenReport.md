@@ -7,6 +7,7 @@ Name | Type | Description | Notes
 **IncludedMonthlyActiveTokens** | Pointer to **int64** |  | [optional] 
 **MonthlyActiveTokens** | Pointer to **int64** |  | [optional] 
 **MetricsByType** | Pointer to [**map[string]TokenMetrics**](TokenMetrics.md) |  | [optional] 
+**TotalTokens** | Pointer to **int64** |  | [optional] 
 
 ## Methods
 
@@ -112,6 +113,31 @@ HasMetricsByType returns a boolean if a field has been set.
 `func (o *TokenReport) UnsetMetricsByType()`
 
 UnsetMetricsByType ensures that no value is present for MetricsByType, not even an explicit nil
+### GetTotalTokens
+
+`func (o *TokenReport) GetTotalTokens() int64`
+
+GetTotalTokens returns the TotalTokens field if non-nil, zero value otherwise.
+
+### GetTotalTokensOk
+
+`func (o *TokenReport) GetTotalTokensOk() (*int64, bool)`
+
+GetTotalTokensOk returns a tuple with the TotalTokens field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetTotalTokens
+
+`func (o *TokenReport) SetTotalTokens(v int64)`
+
+SetTotalTokens sets TotalTokens field to given value.
+
+### HasTotalTokens
+
+`func (o *TokenReport) HasTotalTokens() bool`
+
+HasTotalTokens returns a boolean if a field has been set.
+
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

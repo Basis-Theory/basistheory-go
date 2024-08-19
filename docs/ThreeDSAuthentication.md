@@ -4,6 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**PanTokenId** | Pointer to **NullableString** |  | [optional] 
 **ThreedsVersion** | Pointer to **NullableString** |  | [optional] 
 **AcsTransactionId** | Pointer to **NullableString** |  | [optional] 
 **DsTransactionId** | Pointer to **NullableString** |  | [optional] 
@@ -12,6 +13,7 @@ Name | Type | Description | Notes
 **DsReferenceNumber** | Pointer to **NullableString** |  | [optional] 
 **AuthenticationValue** | Pointer to **NullableString** |  | [optional] 
 **AuthenticationStatus** | Pointer to **NullableString** |  | [optional] 
+**AuthenticationStatusCode** | Pointer to **NullableString** |  | [optional] 
 **AuthenticationStatusReason** | Pointer to **NullableString** |  | [optional] 
 **Eci** | Pointer to **NullableString** |  | [optional] 
 **AcsChallengeMandated** | Pointer to **NullableString** |  | [optional] 
@@ -46,6 +48,41 @@ NewThreeDSAuthenticationWithDefaults instantiates a new ThreeDSAuthentication ob
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
+### GetPanTokenId
+
+`func (o *ThreeDSAuthentication) GetPanTokenId() string`
+
+GetPanTokenId returns the PanTokenId field if non-nil, zero value otherwise.
+
+### GetPanTokenIdOk
+
+`func (o *ThreeDSAuthentication) GetPanTokenIdOk() (*string, bool)`
+
+GetPanTokenIdOk returns a tuple with the PanTokenId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetPanTokenId
+
+`func (o *ThreeDSAuthentication) SetPanTokenId(v string)`
+
+SetPanTokenId sets PanTokenId field to given value.
+
+### HasPanTokenId
+
+`func (o *ThreeDSAuthentication) HasPanTokenId() bool`
+
+HasPanTokenId returns a boolean if a field has been set.
+
+### SetPanTokenIdNil
+
+`func (o *ThreeDSAuthentication) SetPanTokenIdNil(b bool)`
+
+ SetPanTokenIdNil sets the value for PanTokenId to be an explicit nil
+
+### UnsetPanTokenId
+`func (o *ThreeDSAuthentication) UnsetPanTokenId()`
+
+UnsetPanTokenId ensures that no value is present for PanTokenId, not even an explicit nil
 ### GetThreedsVersion
 
 `func (o *ThreeDSAuthentication) GetThreedsVersion() string`
@@ -326,6 +363,41 @@ HasAuthenticationStatus returns a boolean if a field has been set.
 `func (o *ThreeDSAuthentication) UnsetAuthenticationStatus()`
 
 UnsetAuthenticationStatus ensures that no value is present for AuthenticationStatus, not even an explicit nil
+### GetAuthenticationStatusCode
+
+`func (o *ThreeDSAuthentication) GetAuthenticationStatusCode() string`
+
+GetAuthenticationStatusCode returns the AuthenticationStatusCode field if non-nil, zero value otherwise.
+
+### GetAuthenticationStatusCodeOk
+
+`func (o *ThreeDSAuthentication) GetAuthenticationStatusCodeOk() (*string, bool)`
+
+GetAuthenticationStatusCodeOk returns a tuple with the AuthenticationStatusCode field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetAuthenticationStatusCode
+
+`func (o *ThreeDSAuthentication) SetAuthenticationStatusCode(v string)`
+
+SetAuthenticationStatusCode sets AuthenticationStatusCode field to given value.
+
+### HasAuthenticationStatusCode
+
+`func (o *ThreeDSAuthentication) HasAuthenticationStatusCode() bool`
+
+HasAuthenticationStatusCode returns a boolean if a field has been set.
+
+### SetAuthenticationStatusCodeNil
+
+`func (o *ThreeDSAuthentication) SetAuthenticationStatusCodeNil(b bool)`
+
+ SetAuthenticationStatusCodeNil sets the value for AuthenticationStatusCode to be an explicit nil
+
+### UnsetAuthenticationStatusCode
+`func (o *ThreeDSAuthentication) UnsetAuthenticationStatusCode()`
+
+UnsetAuthenticationStatusCode ensures that no value is present for AuthenticationStatusCode, not even an explicit nil
 ### GetAuthenticationStatusReason
 
 `func (o *ThreeDSAuthentication) GetAuthenticationStatusReason() string`

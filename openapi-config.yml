@@ -2,4 +2,4 @@ packageName: basistheory
 templateDir: /local/templates
 gitUserId: Basis-Theory
 gitRepoId: basistheory-go
-gitTag: v3
+gitTag: v5

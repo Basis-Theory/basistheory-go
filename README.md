@@ -103,6 +103,7 @@ Class | Method | HTTP request | Description
 *ApplicationsApi* | [**GetByKey**](docs/ApplicationsApi.md#getbykey) | **Get** /applications/key | 
 *ApplicationsApi* | [**RegenerateKey**](docs/ApplicationsApi.md#regeneratekey) | **Post** /applications/{id}/regenerate | 
 *ApplicationsApi* | [**Update**](docs/ApplicationsApi.md#update) | **Put** /applications/{id} | 
+*DetokenizeApi* | [**Detokenize**](docs/DetokenizeApi.md#detokenize) | **Post** /detokenize | 
 *LogsApi* | [**Get**](docs/LogsApi.md#get) | **Get** /logs | 
 *LogsApi* | [**GetEntityTypes**](docs/LogsApi.md#getentitytypes) | **Get** /logs/entity-types | 
 *PermissionsApi* | [**Get**](docs/PermissionsApi.md#get) | **Get** /permissions | 
@@ -124,10 +125,13 @@ Class | Method | HTTP request | Description
 *ReactorsApi* | [**Patch**](docs/ReactorsApi.md#patch) | **Patch** /reactors/{id} | 
 *ReactorsApi* | [**React**](docs/ReactorsApi.md#react) | **Post** /reactors/{id}/react | 
 *ReactorsApi* | [**Update**](docs/ReactorsApi.md#update) | **Put** /reactors/{id} | 
+*RolesApi* | [**Get**](docs/RolesApi.md#get) | **Get** /roles | 
 *SessionsApi* | [**Authorize**](docs/SessionsApi.md#authorize) | **Post** /sessions/authorize | 
 *SessionsApi* | [**Create**](docs/SessionsApi.md#create) | **Post** /sessions | 
+*TenantsApi* | [**CreateConnection**](docs/TenantsApi.md#createconnection) | **Post** /tenants/self/connections | 
 *TenantsApi* | [**CreateInvitation**](docs/TenantsApi.md#createinvitation) | **Post** /tenants/self/invitations | 
 *TenantsApi* | [**Delete**](docs/TenantsApi.md#delete) | **Delete** /tenants/self | 
+*TenantsApi* | [**DeleteConnection**](docs/TenantsApi.md#deleteconnection) | **Delete** /tenants/self/connections | 
 *TenantsApi* | [**DeleteInvitation**](docs/TenantsApi.md#deleteinvitation) | **Delete** /tenants/self/invitations/{invitationId} | 
 *TenantsApi* | [**DeleteMember**](docs/TenantsApi.md#deletemember) | **Delete** /tenants/self/members/{memberId} | 
 *TenantsApi* | [**Get**](docs/TenantsApi.md#get) | **Get** /tenants/self | 
@@ -136,6 +140,7 @@ Class | Method | HTTP request | Description
 *TenantsApi* | [**GetTenantUsageReport**](docs/TenantsApi.md#gettenantusagereport) | **Get** /tenants/self/reports/usage | 
 *TenantsApi* | [**ResendInvitation**](docs/TenantsApi.md#resendinvitation) | **Post** /tenants/self/invitations/{invitationId}/resend | 
 *TenantsApi* | [**Update**](docs/TenantsApi.md#update) | **Put** /tenants/self | 
+*TenantsApi* | [**UpdateMember**](docs/TenantsApi.md#updatemember) | **Put** /tenants/self/members/{memberId} | 
 *ThreeDSApi* | [**ThreeDSAuthenticateSession**](docs/ThreeDSApi.md#threedsauthenticatesession) | **Post** /3ds/sessions/{sessionId}/authenticate | 
 *ThreeDSApi* | [**ThreeDSGetChallengeResult**](docs/ThreeDSApi.md#threedsgetchallengeresult) | **Get** /3ds/sessions/{sessionId}/challenge-result | 
 *ThreeDSApi* | [**ThreeDSGetSessionById**](docs/ThreeDSApi.md#threedsgetsessionbyid) | **Get** /3ds/sessions/{id} | 
@@ -144,7 +149,9 @@ Class | Method | HTTP request | Description
 *TokensApi* | [**Delete**](docs/TokensApi.md#delete) | **Delete** /tokens/{id} | 
 *TokensApi* | [**Get**](docs/TokensApi.md#get) | **Get** /tokens | 
 *TokensApi* | [**GetById**](docs/TokensApi.md#getbyid) | **Get** /tokens/{id} | 
+*TokensApi* | [**GetV2**](docs/TokensApi.md#getv2) | **Get** /v2/tokens | 
 *TokensApi* | [**Search**](docs/TokensApi.md#search) | **Post** /tokens/search | 
+*TokensApi* | [**SearchV2**](docs/TokensApi.md#searchv2) | **Post** /v2/tokens/search | 
 *TokensApi* | [**Update**](docs/TokensApi.md#update) | **Patch** /tokens/{id} | 
 
 
@@ -161,16 +168,18 @@ Class | Method | HTTP request | Description
  - [BinDetailsBank](docs/BinDetailsBank.md)
  - [BinDetailsCountry](docs/BinDetailsCountry.md)
  - [BinDetailsProduct](docs/BinDetailsProduct.md)
+ - [CardDetails](docs/CardDetails.md)
  - [Condition](docs/Condition.md)
  - [CreateApplicationRequest](docs/CreateApplicationRequest.md)
  - [CreateProxyRequest](docs/CreateProxyRequest.md)
  - [CreateReactorFormulaRequest](docs/CreateReactorFormulaRequest.md)
  - [CreateReactorRequest](docs/CreateReactorRequest.md)
  - [CreateSessionResponse](docs/CreateSessionResponse.md)
+ - [CreateTenantConnectionRequest](docs/CreateTenantConnectionRequest.md)
+ - [CreateTenantConnectionResponse](docs/CreateTenantConnectionResponse.md)
  - [CreateTenantInvitationRequest](docs/CreateTenantInvitationRequest.md)
  - [CreateTokenRequest](docs/CreateTokenRequest.md)
- - [EncryptionKey](docs/EncryptionKey.md)
- - [EncryptionMetadata](docs/EncryptionMetadata.md)
+ - [CursorPagination](docs/CursorPagination.md)
  - [GetApplications](docs/GetApplications.md)
  - [GetLogs](docs/GetLogs.md)
  - [GetPermissions](docs/GetPermissions.md)
@@ -180,6 +189,7 @@ Class | Method | HTTP request | Description
  - [GetTenantInvitations](docs/GetTenantInvitations.md)
  - [GetTenantMembers](docs/GetTenantMembers.md)
  - [GetTokens](docs/GetTokens.md)
+ - [GetTokensV2](docs/GetTokensV2.md)
  - [Log](docs/Log.md)
  - [LogEntityType](docs/LogEntityType.md)
  - [LogPaginatedList](docs/LogPaginatedList.md)
@@ -192,6 +202,8 @@ Class | Method | HTTP request | Description
  - [Proxy](docs/Proxy.md)
  - [ProxyPaginatedList](docs/ProxyPaginatedList.md)
  - [ProxyTransform](docs/ProxyTransform.md)
+ - [ProxyTransformMatcher](docs/ProxyTransformMatcher.md)
+ - [ProxyTransformType](docs/ProxyTransformType.md)
  - [ReactRequest](docs/ReactRequest.md)
  - [ReactResponse](docs/ReactResponse.md)
  - [Reactor](docs/Reactor.md)
@@ -200,9 +212,12 @@ Class | Method | HTTP request | Description
  - [ReactorFormulaPaginatedList](docs/ReactorFormulaPaginatedList.md)
  - [ReactorFormulaRequestParameter](docs/ReactorFormulaRequestParameter.md)
  - [ReactorPaginatedList](docs/ReactorPaginatedList.md)
+ - [Role](docs/Role.md)
  - [SearchTokensRequest](docs/SearchTokensRequest.md)
+ - [SearchTokensRequestV2](docs/SearchTokensRequestV2.md)
  - [StringStringKeyValuePair](docs/StringStringKeyValuePair.md)
  - [Tenant](docs/Tenant.md)
+ - [TenantConnectionOptions](docs/TenantConnectionOptions.md)
  - [TenantInvitationResponse](docs/TenantInvitationResponse.md)
  - [TenantInvitationResponsePaginatedList](docs/TenantInvitationResponsePaginatedList.md)
  - [TenantInvitationStatus](docs/TenantInvitationStatus.md)
@@ -228,6 +243,7 @@ Class | Method | HTTP request | Description
  - [ThreeDSSession](docs/ThreeDSSession.md)
  - [ThreeDSVersion](docs/ThreeDSVersion.md)
  - [Token](docs/Token.md)
+ - [TokenCursorPaginatedList](docs/TokenCursorPaginatedList.md)
  - [TokenEnrichments](docs/TokenEnrichments.md)
  - [TokenMetrics](docs/TokenMetrics.md)
  - [TokenPaginatedList](docs/TokenPaginatedList.md)
@@ -237,6 +253,7 @@ Class | Method | HTTP request | Description
  - [UpdateProxyRequest](docs/UpdateProxyRequest.md)
  - [UpdateReactorFormulaRequest](docs/UpdateReactorFormulaRequest.md)
  - [UpdateReactorRequest](docs/UpdateReactorRequest.md)
+ - [UpdateTenantMemberRequest](docs/UpdateTenantMemberRequest.md)
  - [UpdateTenantRequest](docs/UpdateTenantRequest.md)
  - [UpdateTokenRequest](docs/UpdateTokenRequest.md)
  - [User](docs/User.md)

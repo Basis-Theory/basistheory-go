@@ -19,7 +19,8 @@ var _ MappedNullable = &CreateTenantInvitationRequest{}
 
 // CreateTenantInvitationRequest struct for CreateTenantInvitationRequest
 type CreateTenantInvitationRequest struct {
-	Email string `json:"email"`
+	Email string         `json:"email"`
+	Role  NullableString `json:"role,omitempty"`
 }
 
 // NewCreateTenantInvitationRequest instantiates a new CreateTenantInvitationRequest object
@@ -64,6 +65,49 @@ func (o *CreateTenantInvitationRequest) SetEmail(v string) {
 	o.Email = v
 }
 
+// GetRole returns the Role field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *CreateTenantInvitationRequest) GetRole() string {
+	if o == nil || IsNil(o.Role.Get()) {
+		var ret string
+		return ret
+	}
+	return *o.Role.Get()
+}
+
+// GetRoleOk returns a tuple with the Role field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *CreateTenantInvitationRequest) GetRoleOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.Role.Get(), o.Role.IsSet()
+}
+
+// HasRole returns a boolean if a field is not nil.
+func (o *CreateTenantInvitationRequest) HasRole() bool {
+	if o != nil && !IsNil(o.Role) {
+		return true
+	}
+
+	return false
+}
+
+// SetRole gets a reference to the given NullableString and assigns it to the Role field.
+func (o *CreateTenantInvitationRequest) SetRole(v string) {
+	o.Role.Set(&v)
+}
+
+// SetRoleNil sets the value for Role to be an explicit nil
+func (o *CreateTenantInvitationRequest) SetRoleNil() {
+	o.Role.Set(nil)
+}
+
+// UnsetRole ensures that no value is present for Role, not even an explicit nil
+func (o *CreateTenantInvitationRequest) UnsetRole() {
+	o.Role.Unset()
+}
+
 func (o CreateTenantInvitationRequest) MarshalJSON() ([]byte, error) {
 	toSerialize, err := o.ToMap()
 	if err != nil {
@@ -75,6 +119,9 @@ func (o CreateTenantInvitationRequest) MarshalJSON() ([]byte, error) {
 func (o CreateTenantInvitationRequest) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["email"] = o.Email
+	if o.Role.IsSet() {
+		toSerialize["role"] = o.Role.Get()
+	}
 	return toSerialize, nil
 }
 

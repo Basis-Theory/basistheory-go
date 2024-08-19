@@ -4,8 +4,10 @@ All URIs are relative to *https://api.basistheory.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
+[**CreateConnection**](TenantsApi.md#CreateConnection) | **Post** /tenants/self/connections | 
 [**CreateInvitation**](TenantsApi.md#CreateInvitation) | **Post** /tenants/self/invitations | 
 [**Delete**](TenantsApi.md#Delete) | **Delete** /tenants/self | 
+[**DeleteConnection**](TenantsApi.md#DeleteConnection) | **Delete** /tenants/self/connections | 
 [**DeleteInvitation**](TenantsApi.md#DeleteInvitation) | **Delete** /tenants/self/invitations/{invitationId} | 
 [**DeleteMember**](TenantsApi.md#DeleteMember) | **Delete** /tenants/self/members/{memberId} | 
 [**Get**](TenantsApi.md#Get) | **Get** /tenants/self | 
@@ -14,7 +16,72 @@ Method | HTTP request | Description
 [**GetTenantUsageReport**](TenantsApi.md#GetTenantUsageReport) | **Get** /tenants/self/reports/usage | 
 [**ResendInvitation**](TenantsApi.md#ResendInvitation) | **Post** /tenants/self/invitations/{invitationId}/resend | 
 [**Update**](TenantsApi.md#Update) | **Put** /tenants/self | 
+[**UpdateMember**](TenantsApi.md#UpdateMember) | **Put** /tenants/self/members/{memberId} | 
 
+
+
+## CreateConnection
+
+> CreateTenantConnectionResponse CreateConnection(ctx).CreateTenantConnectionRequest(createTenantConnectionRequest).Execute()
+
+
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    createTenantConnectionRequest := *openapiclient.NewCreateTenantConnectionRequest("Strategy_example", *openapiclient.NewTenantConnectionOptions()) // CreateTenantConnectionRequest | 
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.TenantsApi.CreateConnection(context.Background()).CreateTenantConnectionRequest(createTenantConnectionRequest).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `TenantsApi.CreateConnection``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `CreateConnection`: CreateTenantConnectionResponse
+    fmt.Fprintf(os.Stdout, "Response from `TenantsApi.CreateConnection`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiCreateConnectionRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **createTenantConnectionRequest** | [**CreateTenantConnectionRequest**](CreateTenantConnectionRequest.md) |  | 
+
+### Return type
+
+[**CreateTenantConnectionResponse**](CreateTenantConnectionResponse.md)
+
+### Authorization
+
+[ApiKey](../README.md#ApiKey)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
 
 
 ## CreateInvitation
@@ -123,6 +190,65 @@ Other parameters are passed through a pointer to a apiDeleteRequest struct via t
 ### Return type
 
  (empty response body)
+
+### Authorization
+
+[ApiKey](../README.md#ApiKey)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## DeleteConnection
+
+> CreateTenantConnectionResponse DeleteConnection(ctx).Execute()
+
+
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.TenantsApi.DeleteConnection(context.Background()).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `TenantsApi.DeleteConnection``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `DeleteConnection`: CreateTenantConnectionResponse
+    fmt.Fprintf(os.Stdout, "Response from `TenantsApi.DeleteConnection`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+This endpoint does not need any parameter.
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiDeleteConnectionRequest struct via the builder pattern
+
+
+### Return type
+
+[**CreateTenantConnectionResponse**](CreateTenantConnectionResponse.md)
 
 ### Authorization
 
@@ -653,6 +779,76 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: application/json
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## UpdateMember
+
+> TenantMemberResponse UpdateMember(ctx, memberId).UpdateTenantMemberRequest(updateTenantMemberRequest).Execute()
+
+
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    memberId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | 
+    updateTenantMemberRequest := *openapiclient.NewUpdateTenantMemberRequest("Role_example") // UpdateTenantMemberRequest |  (optional)
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.TenantsApi.UpdateMember(context.Background(), memberId).UpdateTenantMemberRequest(updateTenantMemberRequest).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `TenantsApi.UpdateMember``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `UpdateMember`: TenantMemberResponse
+    fmt.Fprintf(os.Stdout, "Response from `TenantsApi.UpdateMember`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**memberId** | **string** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiUpdateMemberRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **updateTenantMemberRequest** | [**UpdateTenantMemberRequest**](UpdateTenantMemberRequest.md) |  | 
+
+### Return type
+
+[**TenantMemberResponse**](TenantMemberResponse.md)
+
+### Authorization
+
+[ApiKey](../README.md#ApiKey)
+
+### HTTP request headers
+
+- **Content-Type**: application/json-patch+json, application/json, text/json, application/*+json, application/xml, text/xml, application/*+xml
 - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)

@@ -19,7 +19,8 @@ var _ MappedNullable = &TokenEnrichments{}
 
 // TokenEnrichments struct for TokenEnrichments
 type TokenEnrichments struct {
-	BinDetails *BinDetails `json:"bin_details,omitempty"`
+	BinDetails  *BinDetails  `json:"bin_details,omitempty"`
+	CardDetails *CardDetails `json:"card_details,omitempty"`
 }
 
 // NewTokenEnrichments instantiates a new TokenEnrichments object
@@ -71,6 +72,38 @@ func (o *TokenEnrichments) SetBinDetails(v BinDetails) {
 	o.BinDetails = &v
 }
 
+// GetCardDetails returns the CardDetails field value if set, zero value otherwise.
+func (o *TokenEnrichments) GetCardDetails() CardDetails {
+	if o == nil || IsNil(o.CardDetails) {
+		var ret CardDetails
+		return ret
+	}
+	return *o.CardDetails
+}
+
+// GetCardDetailsOk returns a tuple with the CardDetails field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *TokenEnrichments) GetCardDetailsOk() (*CardDetails, bool) {
+	if o == nil || IsNil(o.CardDetails) {
+		return nil, false
+	}
+	return o.CardDetails, true
+}
+
+// HasCardDetails returns a boolean if a field is not nil.
+func (o *TokenEnrichments) HasCardDetails() bool {
+	if o != nil && !IsNil(o.CardDetails) {
+		return true
+	}
+
+	return false
+}
+
+// SetCardDetails gets a reference to the given CardDetails and assigns it to the CardDetails field.
+func (o *TokenEnrichments) SetCardDetails(v CardDetails) {
+	o.CardDetails = &v
+}
+
 func (o TokenEnrichments) MarshalJSON() ([]byte, error) {
 	toSerialize, err := o.ToMap()
 	if err != nil {
@@ -83,6 +116,9 @@ func (o TokenEnrichments) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !IsNil(o.BinDetails) {
 		toSerialize["bin_details"] = o.BinDetails
+	}
+	if !IsNil(o.CardDetails) {
+		toSerialize["card_details"] = o.CardDetails
 	}
 	return toSerialize, nil
 }

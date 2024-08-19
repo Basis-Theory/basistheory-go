@@ -41,8 +41,8 @@ func (r TokensApiCreateRequest) Execute() (*Token, *http.Response, error) {
 /*
 Create Method for Create
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return TokensApiCreateRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return TokensApiCreateRequest
 */
 func (a *TokensApiService) Create(ctx context.Context) TokensApiCreateRequest {
 	return TokensApiCreateRequest{
@@ -52,7 +52,8 @@ func (a *TokensApiService) Create(ctx context.Context) TokensApiCreateRequest {
 }
 
 // Execute executes the request
-//  @return Token
+//
+//	@return Token
 func (a *TokensApiService) CreateExecute(r TokensApiCreateRequest) (*Token, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodPost
@@ -197,9 +198,9 @@ func (r TokensApiDeleteRequest) Execute() (*http.Response, error) {
 /*
 Delete Method for Delete
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param id
- @return TokensApiDeleteRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param id
+	@return TokensApiDeleteRequest
 */
 func (a *TokensApiService) Delete(ctx context.Context, id string) TokensApiDeleteRequest {
 	return TokensApiDeleteRequest{
@@ -372,8 +373,8 @@ func (r TokensApiGetRequest) Execute() (*TokenPaginatedList, *http.Response, err
 /*
 Get Method for Get
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return TokensApiGetRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return TokensApiGetRequest
 */
 func (a *TokensApiService) Get(ctx context.Context) TokensApiGetRequest {
 	return TokensApiGetRequest{
@@ -383,7 +384,8 @@ func (a *TokensApiService) Get(ctx context.Context) TokensApiGetRequest {
 }
 
 // Execute executes the request
-//  @return TokenPaginatedList
+//
+//	@return TokenPaginatedList
 func (a *TokensApiService) GetExecute(r TokensApiGetRequest) (*TokenPaginatedList, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
@@ -526,9 +528,9 @@ func (r TokensApiGetByIdRequest) Execute() (*Token, *http.Response, error) {
 /*
 GetById Method for GetById
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param id
- @return TokensApiGetByIdRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param id
+	@return TokensApiGetByIdRequest
 */
 func (a *TokensApiService) GetById(ctx context.Context, id string) TokensApiGetByIdRequest {
 	return TokensApiGetByIdRequest{
@@ -539,7 +541,8 @@ func (a *TokensApiService) GetById(ctx context.Context, id string) TokensApiGetB
 }
 
 // Execute executes the request
-//  @return Token
+//
+//	@return Token
 func (a *TokensApiService) GetByIdExecute(r TokensApiGetByIdRequest) (*Token, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
@@ -559,8 +562,8 @@ func (a *TokensApiService) GetByIdExecute(r TokensApiGetByIdRequest) (*Token, *h
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if strlen(r.id) > 200 {
-		return localVarReturnValue, nil, reportError("id must have less than 200 elements")
+	if strlen(r.id) > 250 {
+		return localVarReturnValue, nil, reportError("id must have less than 250 elements")
 	}
 
 	// to determine the Content-Type header
@@ -660,6 +663,155 @@ func (a *TokensApiService) GetByIdExecute(r TokensApiGetByIdRequest) (*Token, *h
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
+type TokensApiGetV2Request struct {
+	ctx        context.Context
+	ApiService *TokensApiService
+	start      *string
+	size       *int32
+}
+
+func (r TokensApiGetV2Request) Start(start string) TokensApiGetV2Request {
+	r.start = &start
+	return r
+}
+
+func (r TokensApiGetV2Request) Size(size int32) TokensApiGetV2Request {
+	r.size = &size
+	return r
+}
+
+func (r TokensApiGetV2Request) Execute() (*TokenCursorPaginatedList, *http.Response, error) {
+	return r.ApiService.GetV2Execute(r)
+}
+
+/*
+GetV2 Method for GetV2
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return TokensApiGetV2Request
+*/
+func (a *TokensApiService) GetV2(ctx context.Context) TokensApiGetV2Request {
+	return TokensApiGetV2Request{
+		ApiService: a,
+		ctx:        ctx,
+	}
+}
+
+// Execute executes the request
+//
+//	@return TokenCursorPaginatedList
+func (a *TokensApiService) GetV2Execute(r TokensApiGetV2Request) (*TokenCursorPaginatedList, *http.Response, error) {
+	var (
+		localVarHTTPMethod  = http.MethodGet
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *TokenCursorPaginatedList
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "TokensApiService.GetV2")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/v2/tokens"
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	if r.start != nil {
+		localVarQueryParams.Add("start", parameterToString(*r.start, ""))
+	}
+	if r.size != nil {
+		localVarQueryParams.Add("size", parameterToString(*r.size, ""))
+	}
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.ctx != nil {
+		// API Key Authentication
+		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+			if apiKey, ok := auth["ApiKey"]; ok {
+				var key string
+				if apiKey.Prefix != "" {
+					key = apiKey.Prefix + " " + apiKey.Key
+				} else {
+					key = apiKey.Key
+				}
+				localVarHeaderParams["BT-API-KEY"] = key
+			}
+		}
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 401 {
+			var v ProblemDetails
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 403 {
+			var v ProblemDetails
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
 type TokensApiSearchRequest struct {
 	ctx                 context.Context
 	ApiService          *TokensApiService
@@ -678,8 +830,8 @@ func (r TokensApiSearchRequest) Execute() (*TokenPaginatedList, *http.Response, 
 /*
 Search Method for Search
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return TokensApiSearchRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return TokensApiSearchRequest
 */
 func (a *TokensApiService) Search(ctx context.Context) TokensApiSearchRequest {
 	return TokensApiSearchRequest{
@@ -689,7 +841,8 @@ func (a *TokensApiService) Search(ctx context.Context) TokensApiSearchRequest {
 }
 
 // Execute executes the request
-//  @return TokenPaginatedList
+//
+//	@return TokenPaginatedList
 func (a *TokensApiService) SearchExecute(r TokensApiSearchRequest) (*TokenPaginatedList, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodPost
@@ -811,6 +964,158 @@ func (a *TokensApiService) SearchExecute(r TokensApiSearchRequest) (*TokenPagina
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
+type TokensApiSearchV2Request struct {
+	ctx                   context.Context
+	ApiService            *TokensApiService
+	searchTokensRequestV2 *SearchTokensRequestV2
+}
+
+func (r TokensApiSearchV2Request) SearchTokensRequestV2(searchTokensRequestV2 SearchTokensRequestV2) TokensApiSearchV2Request {
+	r.searchTokensRequestV2 = &searchTokensRequestV2
+	return r
+}
+
+func (r TokensApiSearchV2Request) Execute() (*TokenCursorPaginatedList, *http.Response, error) {
+	return r.ApiService.SearchV2Execute(r)
+}
+
+/*
+SearchV2 Method for SearchV2
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return TokensApiSearchV2Request
+*/
+func (a *TokensApiService) SearchV2(ctx context.Context) TokensApiSearchV2Request {
+	return TokensApiSearchV2Request{
+		ApiService: a,
+		ctx:        ctx,
+	}
+}
+
+// Execute executes the request
+//
+//	@return TokenCursorPaginatedList
+func (a *TokensApiService) SearchV2Execute(r TokensApiSearchV2Request) (*TokenCursorPaginatedList, *http.Response, error) {
+	var (
+		localVarHTTPMethod  = http.MethodPost
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *TokenCursorPaginatedList
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "TokensApiService.SearchV2")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/v2/tokens/search"
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if r.searchTokensRequestV2 == nil {
+		return localVarReturnValue, nil, reportError("searchTokensRequestV2 is required and must be specified")
+	}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{"application/json"}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	// body params
+	localVarPostBody = r.searchTokensRequestV2
+	if r.ctx != nil {
+		// API Key Authentication
+		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+			if apiKey, ok := auth["ApiKey"]; ok {
+				var key string
+				if apiKey.Prefix != "" {
+					key = apiKey.Prefix + " " + apiKey.Key
+				} else {
+					key = apiKey.Key
+				}
+				localVarHeaderParams["BT-API-KEY"] = key
+			}
+		}
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v ValidationProblemDetails
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 401 {
+			var v ProblemDetails
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 403 {
+			var v ProblemDetails
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
 type TokensApiUpdateRequest struct {
 	ctx                context.Context
 	ApiService         *TokensApiService
@@ -830,9 +1135,9 @@ func (r TokensApiUpdateRequest) Execute() (*Token, *http.Response, error) {
 /*
 Update Method for Update
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param id
- @return TokensApiUpdateRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param id
+	@return TokensApiUpdateRequest
 */
 func (a *TokensApiService) Update(ctx context.Context, id string) TokensApiUpdateRequest {
 	return TokensApiUpdateRequest{
@@ -843,7 +1148,8 @@ func (a *TokensApiService) Update(ctx context.Context, id string) TokensApiUpdat
 }
 
 // Execute executes the request
-//  @return Token
+//
+//	@return Token
 func (a *TokensApiService) UpdateExecute(r TokensApiUpdateRequest) (*Token, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodPatch
