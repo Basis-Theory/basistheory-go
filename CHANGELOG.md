@@ -1,3 +1,10 @@
+# [5.2.0](https://github.com/Basis-Theory/basistheory-go/compare/v5.1.1...v5.2.0) (2024-08-19)
+
+
+### Features
+
+* Regenerate SDK ([#81](https://github.com/Basis-Theory/basistheory-go/issues/81)) ([bc8cd7c](https://github.com/Basis-Theory/basistheory-go/commit/bc8cd7c38153d7ccace452ee3b91c6aafb77810d))
+
 ## [5.1.1](https://github.com/Basis-Theory/basistheory-go/compare/v5.1.0...v5.1.1) (2024-03-26)
 
 
