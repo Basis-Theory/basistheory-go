@@ -19,11 +19,11 @@ var _ MappedNullable = &ProxyTransform{}
 
 // ProxyTransform struct for ProxyTransform
 type ProxyTransform struct {
-	Type        *ProxyTransformType    `json:"type,omitempty"`
-	Code        NullableString         `json:"code,omitempty"`
-	Matcher     *ProxyTransformMatcher `json:"matcher,omitempty"`
-	Expression  NullableString         `json:"expression,omitempty"`
-	Replacement NullableString         `json:"replacement,omitempty"`
+	Type        NullableString `json:"type,omitempty"`
+	Code        NullableString `json:"code,omitempty"`
+	Matcher     NullableString `json:"matcher,omitempty"`
+	Expression  NullableString `json:"expression,omitempty"`
+	Replacement NullableString `json:"replacement,omitempty"`
 }
 
 // NewProxyTransform instantiates a new ProxyTransform object
@@ -43,22 +43,23 @@ func NewProxyTransformWithDefaults() *ProxyTransform {
 	return &this
 }
 
-// GetType returns the Type field value if set, zero value otherwise.
-func (o *ProxyTransform) GetType() ProxyTransformType {
-	if o == nil || IsNil(o.Type) {
-		var ret ProxyTransformType
+// GetType returns the Type field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ProxyTransform) GetType() string {
+	if o == nil || IsNil(o.Type.Get()) {
+		var ret string
 		return ret
 	}
-	return *o.Type
+	return *o.Type.Get()
 }
 
 // GetTypeOk returns a tuple with the Type field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ProxyTransform) GetTypeOk() (*ProxyTransformType, bool) {
-	if o == nil || IsNil(o.Type) {
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ProxyTransform) GetTypeOk() (*string, bool) {
+	if o == nil {
 		return nil, false
 	}
-	return o.Type, true
+	return o.Type.Get(), o.Type.IsSet()
 }
 
 // HasType returns a boolean if a field is not nil.
@@ -70,9 +71,19 @@ func (o *ProxyTransform) HasType() bool {
 	return false
 }
 
-// SetType gets a reference to the given ProxyTransformType and assigns it to the Type field.
-func (o *ProxyTransform) SetType(v ProxyTransformType) {
-	o.Type = &v
+// SetType gets a reference to the given NullableString and assigns it to the Type field.
+func (o *ProxyTransform) SetType(v string) {
+	o.Type.Set(&v)
+}
+
+// SetTypeNil sets the value for Type to be an explicit nil
+func (o *ProxyTransform) SetTypeNil() {
+	o.Type.Set(nil)
+}
+
+// UnsetType ensures that no value is present for Type, not even an explicit nil
+func (o *ProxyTransform) UnsetType() {
+	o.Type.Unset()
 }
 
 // GetCode returns the Code field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -118,22 +129,23 @@ func (o *ProxyTransform) UnsetCode() {
 	o.Code.Unset()
 }
 
-// GetMatcher returns the Matcher field value if set, zero value otherwise.
-func (o *ProxyTransform) GetMatcher() ProxyTransformMatcher {
-	if o == nil || IsNil(o.Matcher) {
-		var ret ProxyTransformMatcher
+// GetMatcher returns the Matcher field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ProxyTransform) GetMatcher() string {
+	if o == nil || IsNil(o.Matcher.Get()) {
+		var ret string
 		return ret
 	}
-	return *o.Matcher
+	return *o.Matcher.Get()
 }
 
 // GetMatcherOk returns a tuple with the Matcher field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ProxyTransform) GetMatcherOk() (*ProxyTransformMatcher, bool) {
-	if o == nil || IsNil(o.Matcher) {
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ProxyTransform) GetMatcherOk() (*string, bool) {
+	if o == nil {
 		return nil, false
 	}
-	return o.Matcher, true
+	return o.Matcher.Get(), o.Matcher.IsSet()
 }
 
 // HasMatcher returns a boolean if a field is not nil.
@@ -145,9 +157,19 @@ func (o *ProxyTransform) HasMatcher() bool {
 	return false
 }
 
-// SetMatcher gets a reference to the given ProxyTransformMatcher and assigns it to the Matcher field.
-func (o *ProxyTransform) SetMatcher(v ProxyTransformMatcher) {
-	o.Matcher = &v
+// SetMatcher gets a reference to the given NullableString and assigns it to the Matcher field.
+func (o *ProxyTransform) SetMatcher(v string) {
+	o.Matcher.Set(&v)
+}
+
+// SetMatcherNil sets the value for Matcher to be an explicit nil
+func (o *ProxyTransform) SetMatcherNil() {
+	o.Matcher.Set(nil)
+}
+
+// UnsetMatcher ensures that no value is present for Matcher, not even an explicit nil
+func (o *ProxyTransform) UnsetMatcher() {
+	o.Matcher.Unset()
 }
 
 // GetExpression returns the Expression field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -246,14 +268,14 @@ func (o ProxyTransform) MarshalJSON() ([]byte, error) {
 
 func (o ProxyTransform) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !IsNil(o.Type) {
-		toSerialize["type"] = o.Type
+	if o.Type.IsSet() {
+		toSerialize["type"] = o.Type.Get()
 	}
 	if o.Code.IsSet() {
 		toSerialize["code"] = o.Code.Get()
 	}
-	if !IsNil(o.Matcher) {
-		toSerialize["matcher"] = o.Matcher
+	if o.Matcher.IsSet() {
+		toSerialize["matcher"] = o.Matcher.Get()
 	}
 	if o.Expression.IsSet() {
 		toSerialize["expression"] = o.Expression.Get()

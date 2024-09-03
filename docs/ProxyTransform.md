@@ -4,9 +4,9 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Type** | Pointer to [**ProxyTransformType**](ProxyTransformType.md) |  | [optional] 
+**Type** | Pointer to **NullableString** |  | [optional] 
 **Code** | Pointer to **NullableString** |  | [optional] 
-**Matcher** | Pointer to [**ProxyTransformMatcher**](ProxyTransformMatcher.md) |  | [optional] 
+**Matcher** | Pointer to **NullableString** |  | [optional] 
 **Expression** | Pointer to **NullableString** |  | [optional] 
 **Replacement** | Pointer to **NullableString** |  | [optional] 
 
@@ -31,20 +31,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetType
 
-`func (o *ProxyTransform) GetType() ProxyTransformType`
+`func (o *ProxyTransform) GetType() string`
 
 GetType returns the Type field if non-nil, zero value otherwise.
 
 ### GetTypeOk
 
-`func (o *ProxyTransform) GetTypeOk() (*ProxyTransformType, bool)`
+`func (o *ProxyTransform) GetTypeOk() (*string, bool)`
 
 GetTypeOk returns a tuple with the Type field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetType
 
-`func (o *ProxyTransform) SetType(v ProxyTransformType)`
+`func (o *ProxyTransform) SetType(v string)`
 
 SetType sets Type field to given value.
 
@@ -54,6 +54,16 @@ SetType sets Type field to given value.
 
 HasType returns a boolean if a field has been set.
 
+### SetTypeNil
+
+`func (o *ProxyTransform) SetTypeNil(b bool)`
+
+ SetTypeNil sets the value for Type to be an explicit nil
+
+### UnsetType
+`func (o *ProxyTransform) UnsetType()`
+
+UnsetType ensures that no value is present for Type, not even an explicit nil
 ### GetCode
 
 `func (o *ProxyTransform) GetCode() string`
@@ -91,20 +101,20 @@ HasCode returns a boolean if a field has been set.
 UnsetCode ensures that no value is present for Code, not even an explicit nil
 ### GetMatcher
 
-`func (o *ProxyTransform) GetMatcher() ProxyTransformMatcher`
+`func (o *ProxyTransform) GetMatcher() string`
 
 GetMatcher returns the Matcher field if non-nil, zero value otherwise.
 
 ### GetMatcherOk
 
-`func (o *ProxyTransform) GetMatcherOk() (*ProxyTransformMatcher, bool)`
+`func (o *ProxyTransform) GetMatcherOk() (*string, bool)`
 
 GetMatcherOk returns a tuple with the Matcher field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetMatcher
 
-`func (o *ProxyTransform) SetMatcher(v ProxyTransformMatcher)`
+`func (o *ProxyTransform) SetMatcher(v string)`
 
 SetMatcher sets Matcher field to given value.
 
@@ -114,6 +124,16 @@ SetMatcher sets Matcher field to given value.
 
 HasMatcher returns a boolean if a field has been set.
 
+### SetMatcherNil
+
+`func (o *ProxyTransform) SetMatcherNil(b bool)`
+
+ SetMatcherNil sets the value for Matcher to be an explicit nil
+
+### UnsetMatcher
+`func (o *ProxyTransform) UnsetMatcher()`
+
+UnsetMatcher ensures that no value is present for Matcher, not even an explicit nil
 ### GetExpression
 
 `func (o *ProxyTransform) GetExpression() string`

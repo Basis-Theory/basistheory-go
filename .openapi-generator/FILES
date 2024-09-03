@@ -69,8 +69,6 @@ docs/ProxiesApi.md
 docs/Proxy.md
 docs/ProxyPaginatedList.md
 docs/ProxyTransform.md
-docs/ProxyTransformMatcher.md
-docs/ProxyTransformType.md
 docs/ReactRequest.md
 docs/ReactResponse.md
 docs/Reactor.md
@@ -178,8 +176,6 @@ model_problem_details.go
 model_proxy.go
 model_proxy_paginated_list.go
 model_proxy_transform.go
-model_proxy_transform_matcher.go
-model_proxy_transform_type.go
 model_react_request.go
 model_react_response.go
 model_reactor.go

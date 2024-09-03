@@ -3926,8 +3926,8 @@ components:
         response_transform:
           code: code
           expression: expression
-          type: null
-          matcher: null
+          type: type
+          matcher: matcher
           replacement: replacement
         application:
           tenant_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
@@ -4001,8 +4001,8 @@ components:
         request_transform:
           code: code
           expression: expression
-          type: null
-          matcher: null
+          type: type
+          matcher: matcher
           replacement: replacement
       properties:
         name:
@@ -4951,8 +4951,8 @@ components:
         response_transform:
           code: code
           expression: expression
-          type: null
-          matcher: null
+          type: type
+          matcher: matcher
           replacement: replacement
         response_reactor_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
         proxy_host: proxy_host
@@ -4963,8 +4963,8 @@ components:
         request_transform:
           code: code
           expression: expression
-          type: null
-          matcher: null
+          type: type
+          matcher: matcher
           replacement: replacement
         modified_at: 2000-01-23T04:56:07.000+00:00
         key: key
@@ -5072,8 +5072,8 @@ components:
           response_transform:
             code: code
             expression: expression
-            type: null
-            matcher: null
+            type: type
+            matcher: matcher
             replacement: replacement
           response_reactor_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           proxy_host: proxy_host
@@ -5084,8 +5084,8 @@ components:
           request_transform:
             code: code
             expression: expression
-            type: null
-            matcher: null
+            type: type
+            matcher: matcher
             replacement: replacement
           modified_at: 2000-01-23T04:56:07.000+00:00
           key: key
@@ -5100,8 +5100,8 @@ components:
           response_transform:
             code: code
             expression: expression
-            type: null
-            matcher: null
+            type: type
+            matcher: matcher
             replacement: replacement
           response_reactor_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           proxy_host: proxy_host
@@ -5112,8 +5112,8 @@ components:
           request_transform:
             code: code
             expression: expression
-            type: null
-            matcher: null
+            type: type
+            matcher: matcher
             replacement: replacement
           modified_at: 2000-01-23T04:56:07.000+00:00
           key: key
@@ -5128,8 +5128,8 @@ components:
           response_transform:
             code: code
             expression: expression
-            type: null
-            matcher: null
+            type: type
+            matcher: matcher
             replacement: replacement
           response_reactor_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           proxy_host: proxy_host
@@ -5140,8 +5140,8 @@ components:
           request_transform:
             code: code
             expression: expression
-            type: null
-            matcher: null
+            type: type
+            matcher: matcher
             replacement: replacement
           modified_at: 2000-01-23T04:56:07.000+00:00
           key: key
@@ -5156,8 +5156,8 @@ components:
           response_transform:
             code: code
             expression: expression
-            type: null
-            matcher: null
+            type: type
+            matcher: matcher
             replacement: replacement
           response_reactor_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           proxy_host: proxy_host
@@ -5168,8 +5168,8 @@ components:
           request_transform:
             code: code
             expression: expression
-            type: null
-            matcher: null
+            type: type
+            matcher: matcher
             replacement: replacement
           modified_at: 2000-01-23T04:56:07.000+00:00
           key: key
@@ -5184,8 +5184,8 @@ components:
           response_transform:
             code: code
             expression: expression
-            type: null
-            matcher: null
+            type: type
+            matcher: matcher
             replacement: replacement
           response_reactor_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           proxy_host: proxy_host
@@ -5196,8 +5196,8 @@ components:
           request_transform:
             code: code
             expression: expression
-            type: null
-            matcher: null
+            type: type
+            matcher: matcher
             replacement: replacement
           modified_at: 2000-01-23T04:56:07.000+00:00
           key: key
@@ -5216,18 +5216,20 @@ components:
       example:
         code: code
         expression: expression
-        type: null
-        matcher: null
+        type: type
+        matcher: matcher
         replacement: replacement
       properties:
         type:
-          $ref: '#/components/schemas/ProxyTransformType'
+          nullable: true
+          type: string
         code:
           maxLength: 50000
           nullable: true
           type: string
         matcher:
-          $ref: '#/components/schemas/ProxyTransformMatcher'
+          nullable: true
+          type: string
         expression:
           nullable: true
           type: string
@@ -5235,16 +5237,6 @@ components:
           nullable: true
           type: string
       type: object
-    ProxyTransformMatcher:
-      enum:
-      - REGEX
-      - CHASE_STRATUS_PAN
-      type: string
-    ProxyTransformType:
-      enum:
-      - CODE
-      - MASK
-      type: string
     ReactRequest:
       additionalProperties: false
       example:
@@ -8579,8 +8571,8 @@ components:
         response_transform:
           code: code
           expression: expression
-          type: null
-          matcher: null
+          type: type
+          matcher: matcher
           replacement: replacement
         application:
           tenant_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
@@ -8654,8 +8646,8 @@ components:
         request_transform:
           code: code
           expression: expression
-          type: null
-          matcher: null
+          type: type
+          matcher: matcher
           replacement: replacement
       properties:
         name:

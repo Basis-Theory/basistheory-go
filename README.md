@@ -202,8 +202,6 @@ Class | Method | HTTP request | Description
  - [Proxy](docs/Proxy.md)
  - [ProxyPaginatedList](docs/ProxyPaginatedList.md)
  - [ProxyTransform](docs/ProxyTransform.md)
- - [ProxyTransformMatcher](docs/ProxyTransformMatcher.md)
- - [ProxyTransformType](docs/ProxyTransformType.md)
  - [ReactRequest](docs/ReactRequest.md)
  - [ReactResponse](docs/ReactResponse.md)
  - [Reactor](docs/Reactor.md)
