@@ -1,7 +1,7 @@
 package basistheory_test
 
 import (
-	"github.com/Basis-Theory/basistheory-go/v5/internal/testutils"
+	"github.com/Basis-Theory/basistheory-go/v6/internal/testutils"
 	"testing"
 )
 
