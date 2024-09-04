@@ -1,3 +1,13 @@
+# [6.0.0](https://github.com/Basis-Theory/basistheory-go/compare/v5.2.0...v6.0.0) (2024-09-04)
+
+
+* fix!: Update spec to use string instead of enum for ProxyResponseTransform attributes (#82) ([351a82d](https://github.com/Basis-Theory/basistheory-go/commit/351a82d714e23e9ac3ebdc2977efe67c832f8ce6)), closes [#82](https://github.com/Basis-Theory/basistheory-go/issues/82)
+
+
+### BREAKING CHANGES
+
+* Changes the ProxyTransform type and matcher attributes to string types
+
 # [5.2.0](https://github.com/Basis-Theory/basistheory-go/compare/v5.1.1...v5.2.0) (2024-08-19)
 
 
