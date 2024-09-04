@@ -27,7 +27,7 @@ go get golang.org/x/net/context
 Put the package under your project folder and add the following in import:
 
 ```golang
-import basistheory "github.com/Basis-Theory/basistheory-go/v5"
+import basistheory "github.com/Basis-Theory/basistheory-go/v6"
 ```
 
 To use a proxy, set the environment variable `HTTP_PROXY`:
@@ -202,8 +202,6 @@ Class | Method | HTTP request | Description
  - [Proxy](docs/Proxy.md)
  - [ProxyPaginatedList](docs/ProxyPaginatedList.md)
  - [ProxyTransform](docs/ProxyTransform.md)
- - [ProxyTransformMatcher](docs/ProxyTransformMatcher.md)
- - [ProxyTransformType](docs/ProxyTransformType.md)
  - [ReactRequest](docs/ReactRequest.md)
  - [ReactResponse](docs/ReactResponse.md)
  - [Reactor](docs/Reactor.md)

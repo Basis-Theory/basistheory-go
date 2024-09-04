@@ -5844,7 +5844,8 @@
         "type": "object",
         "properties": {
           "type": {
-            "$ref": "#/components/schemas/ProxyTransformType"
+            "type": "string",
+            "nullable": true
           },
           "code": {
             "maxLength": 50000,
@@ -5852,7 +5853,8 @@
             "nullable": true
           },
           "matcher": {
-            "$ref": "#/components/schemas/ProxyTransformMatcher"
+            "type": "string",
+            "nullable": true
           },
           "expression": {
             "type": "string",
@@ -5864,20 +5866,6 @@
           }
         },
         "additionalProperties": false
-      },
-      "ProxyTransformMatcher": {
-        "enum": [
-          "REGEX",
-          "CHASE_STRATUS_PAN"
-        ],
-        "type": "string"
-      },
-      "ProxyTransformType": {
-        "enum": [
-          "CODE",
-          "MASK"
-        ],
-        "type": "string"
       },
       "ReactRequest": {
         "type": "object",
