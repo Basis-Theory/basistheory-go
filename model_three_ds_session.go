@@ -21,6 +21,7 @@ var _ MappedNullable = &ThreeDSSession{}
 // ThreeDSSession struct for ThreeDSSession
 type ThreeDSSession struct {
 	Id             *string                `json:"id,omitempty"`
+	Type           NullableString         `json:"type,omitempty"`
 	TenantId       *string                `json:"tenant_id,omitempty"`
 	PanTokenId     NullableString         `json:"pan_token_id,omitempty"`
 	CardBrand      NullableString         `json:"card_brand,omitempty"`
@@ -83,6 +84,49 @@ func (o *ThreeDSSession) HasId() bool {
 // SetId gets a reference to the given string and assigns it to the Id field.
 func (o *ThreeDSSession) SetId(v string) {
 	o.Id = &v
+}
+
+// GetType returns the Type field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ThreeDSSession) GetType() string {
+	if o == nil || IsNil(o.Type.Get()) {
+		var ret string
+		return ret
+	}
+	return *o.Type.Get()
+}
+
+// GetTypeOk returns a tuple with the Type field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ThreeDSSession) GetTypeOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.Type.Get(), o.Type.IsSet()
+}
+
+// HasType returns a boolean if a field is not nil.
+func (o *ThreeDSSession) HasType() bool {
+	if o != nil && !IsNil(o.Type) {
+		return true
+	}
+
+	return false
+}
+
+// SetType gets a reference to the given NullableString and assigns it to the Type field.
+func (o *ThreeDSSession) SetType(v string) {
+	o.Type.Set(&v)
+}
+
+// SetTypeNil sets the value for Type to be an explicit nil
+func (o *ThreeDSSession) SetTypeNil() {
+	o.Type.Set(nil)
+}
+
+// UnsetType ensures that no value is present for Type, not even an explicit nil
+func (o *ThreeDSSession) UnsetType() {
+	o.Type.Unset()
 }
 
 // GetTenantId returns the TenantId field value if set, zero value otherwise.
@@ -590,6 +634,9 @@ func (o ThreeDSSession) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !IsNil(o.Id) {
 		toSerialize["id"] = o.Id
+	}
+	if o.Type.IsSet() {
+		toSerialize["type"] = o.Type.Get()
 	}
 	if !IsNil(o.TenantId) {
 		toSerialize["tenant_id"] = o.TenantId

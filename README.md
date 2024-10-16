@@ -27,7 +27,7 @@ go get golang.org/x/net/context
 Put the package under your project folder and add the following in import:
 
 ```golang
-import basistheory "github.com/Basis-Theory/basistheory-go/v6"
+import basistheory "github.com/Basis-Theory/basistheory-go/v5"
 ```
 
 To use a proxy, set the environment variable `HTTP_PROXY`:
@@ -124,6 +124,8 @@ Class | Method | HTTP request | Description
 *ReactorsApi* | [**GetById**](docs/ReactorsApi.md#getbyid) | **Get** /reactors/{id} | 
 *ReactorsApi* | [**Patch**](docs/ReactorsApi.md#patch) | **Patch** /reactors/{id} | 
 *ReactorsApi* | [**React**](docs/ReactorsApi.md#react) | **Post** /reactors/{id}/react | 
+*ReactorsApi* | [**ReactAsync**](docs/ReactorsApi.md#reactasync) | **Post** /reactors/{id}/react-async | 
+*ReactorsApi* | [**ResultGetById**](docs/ReactorsApi.md#resultgetbyid) | **Get** /reactors/{id}/results/{requestId} | 
 *ReactorsApi* | [**Update**](docs/ReactorsApi.md#update) | **Put** /reactors/{id} | 
 *RolesApi* | [**Get**](docs/RolesApi.md#get) | **Get** /roles | 
 *SessionsApi* | [**Authorize**](docs/SessionsApi.md#authorize) | **Post** /sessions/authorize | 
@@ -138,10 +140,12 @@ Class | Method | HTTP request | Description
 *TenantsApi* | [**GetInvitations**](docs/TenantsApi.md#getinvitations) | **Get** /tenants/self/invitations | 
 *TenantsApi* | [**GetMembers**](docs/TenantsApi.md#getmembers) | **Get** /tenants/self/members | 
 *TenantsApi* | [**GetTenantUsageReport**](docs/TenantsApi.md#gettenantusagereport) | **Get** /tenants/self/reports/usage | 
+*TenantsApi* | [**OwnerGet**](docs/TenantsApi.md#ownerget) | **Get** /tenants/self/owner | 
 *TenantsApi* | [**ResendInvitation**](docs/TenantsApi.md#resendinvitation) | **Post** /tenants/self/invitations/{invitationId}/resend | 
 *TenantsApi* | [**Update**](docs/TenantsApi.md#update) | **Put** /tenants/self | 
 *TenantsApi* | [**UpdateMember**](docs/TenantsApi.md#updatemember) | **Put** /tenants/self/members/{memberId} | 
 *ThreeDSApi* | [**ThreeDSAuthenticateSession**](docs/ThreeDSApi.md#threedsauthenticatesession) | **Post** /3ds/sessions/{sessionId}/authenticate | 
+*ThreeDSApi* | [**ThreeDSCreateSession**](docs/ThreeDSApi.md#threedscreatesession) | **Post** /3ds/sessions | 
 *ThreeDSApi* | [**ThreeDSGetChallengeResult**](docs/ThreeDSApi.md#threedsgetchallengeresult) | **Get** /3ds/sessions/{sessionId}/challenge-result | 
 *ThreeDSApi* | [**ThreeDSGetSessionById**](docs/ThreeDSApi.md#threedsgetsessionbyid) | **Get** /3ds/sessions/{id} | 
 *TokenizeApi* | [**Tokenize**](docs/TokenizeApi.md#tokenize) | **Post** /tokenize | 
@@ -178,6 +182,8 @@ Class | Method | HTTP request | Description
  - [CreateTenantConnectionRequest](docs/CreateTenantConnectionRequest.md)
  - [CreateTenantConnectionResponse](docs/CreateTenantConnectionResponse.md)
  - [CreateTenantInvitationRequest](docs/CreateTenantInvitationRequest.md)
+ - [CreateThreeDSSessionRequest](docs/CreateThreeDSSessionRequest.md)
+ - [CreateThreeDSSessionResponse](docs/CreateThreeDSSessionResponse.md)
  - [CreateTokenRequest](docs/CreateTokenRequest.md)
  - [CursorPagination](docs/CursorPagination.md)
  - [GetApplications](docs/GetApplications.md)
@@ -203,6 +209,7 @@ Class | Method | HTTP request | Description
  - [ProxyPaginatedList](docs/ProxyPaginatedList.md)
  - [ProxyTransform](docs/ProxyTransform.md)
  - [ReactRequest](docs/ReactRequest.md)
+ - [ReactRequestAsync](docs/ReactRequestAsync.md)
  - [ReactResponse](docs/ReactResponse.md)
  - [Reactor](docs/Reactor.md)
  - [ReactorFormula](docs/ReactorFormula.md)
@@ -243,6 +250,7 @@ Class | Method | HTTP request | Description
  - [Token](docs/Token.md)
  - [TokenCursorPaginatedList](docs/TokenCursorPaginatedList.md)
  - [TokenEnrichments](docs/TokenEnrichments.md)
+ - [TokenExtras](docs/TokenExtras.md)
  - [TokenMetrics](docs/TokenMetrics.md)
  - [TokenPaginatedList](docs/TokenPaginatedList.md)
  - [TokenReport](docs/TokenReport.md)

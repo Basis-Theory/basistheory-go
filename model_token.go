@@ -38,6 +38,7 @@ type Token struct {
 	ExpiresAt             NullableTime      `json:"expires_at,omitempty"`
 	Containers            []string          `json:"containers,omitempty"`
 	Aliases               []string          `json:"aliases,omitempty"`
+	Extras                *TokenExtras      `json:"_extras,omitempty"`
 }
 
 // NewToken instantiates a new Token object
@@ -716,6 +717,38 @@ func (o *Token) SetAliases(v []string) {
 	o.Aliases = v
 }
 
+// GetExtras returns the Extras field value if set, zero value otherwise.
+func (o *Token) GetExtras() TokenExtras {
+	if o == nil || IsNil(o.Extras) {
+		var ret TokenExtras
+		return ret
+	}
+	return *o.Extras
+}
+
+// GetExtrasOk returns a tuple with the Extras field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Token) GetExtrasOk() (*TokenExtras, bool) {
+	if o == nil || IsNil(o.Extras) {
+		return nil, false
+	}
+	return o.Extras, true
+}
+
+// HasExtras returns a boolean if a field is not nil.
+func (o *Token) HasExtras() bool {
+	if o != nil && !IsNil(o.Extras) {
+		return true
+	}
+
+	return false
+}
+
+// SetExtras gets a reference to the given TokenExtras and assigns it to the Extras field.
+func (o *Token) SetExtras(v TokenExtras) {
+	o.Extras = &v
+}
+
 func (o Token) MarshalJSON() ([]byte, error) {
 	toSerialize, err := o.ToMap()
 	if err != nil {
@@ -779,6 +812,9 @@ func (o Token) ToMap() (map[string]interface{}, error) {
 	}
 	if o.Aliases != nil {
 		toSerialize["aliases"] = o.Aliases
+	}
+	if !IsNil(o.Extras) {
+		toSerialize["_extras"] = o.Extras
 	}
 	return toSerialize, nil
 }

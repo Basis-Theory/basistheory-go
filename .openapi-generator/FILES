@@ -41,6 +41,8 @@ docs/CreateSessionResponse.md
 docs/CreateTenantConnectionRequest.md
 docs/CreateTenantConnectionResponse.md
 docs/CreateTenantInvitationRequest.md
+docs/CreateThreeDSSessionRequest.md
+docs/CreateThreeDSSessionResponse.md
 docs/CreateTokenRequest.md
 docs/CursorPagination.md
 docs/DetokenizeApi.md
@@ -70,6 +72,7 @@ docs/Proxy.md
 docs/ProxyPaginatedList.md
 docs/ProxyTransform.md
 docs/ReactRequest.md
+docs/ReactRequestAsync.md
 docs/ReactResponse.md
 docs/Reactor.md
 docs/ReactorFormula.md
@@ -116,6 +119,7 @@ docs/ThreeDSVersion.md
 docs/Token.md
 docs/TokenCursorPaginatedList.md
 docs/TokenEnrichments.md
+docs/TokenExtras.md
 docs/TokenMetrics.md
 docs/TokenPaginatedList.md
 docs/TokenReport.md
@@ -152,6 +156,8 @@ model_create_session_response.go
 model_create_tenant_connection_request.go
 model_create_tenant_connection_response.go
 model_create_tenant_invitation_request.go
+model_create_three_ds_session_request.go
+model_create_three_ds_session_response.go
 model_create_token_request.go
 model_cursor_pagination.go
 model_get_applications.go
@@ -177,6 +183,7 @@ model_proxy.go
 model_proxy_paginated_list.go
 model_proxy_transform.go
 model_react_request.go
+model_react_request_async.go
 model_react_response.go
 model_reactor.go
 model_reactor_formula.go
@@ -217,6 +224,7 @@ model_three_ds_version.go
 model_token.go
 model_token_cursor_paginated_list.go
 model_token_enrichments.go
+model_token_extras.go
 model_token_metrics.go
 model_token_paginated_list.go
 model_token_report.go

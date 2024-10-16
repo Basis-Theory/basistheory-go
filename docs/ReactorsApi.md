@@ -10,6 +10,8 @@ Method | HTTP request | Description
 [**GetById**](ReactorsApi.md#GetById) | **Get** /reactors/{id} | 
 [**Patch**](ReactorsApi.md#Patch) | **Patch** /reactors/{id} | 
 [**React**](ReactorsApi.md#React) | **Post** /reactors/{id}/react | 
+[**ReactAsync**](ReactorsApi.md#ReactAsync) | **Post** /reactors/{id}/react-async | 
+[**ResultGetById**](ReactorsApi.md#ResultGetById) | **Get** /reactors/{id}/results/{requestId} | 
 [**Update**](ReactorsApi.md#Update) | **Put** /reactors/{id} | 
 
 
@@ -415,6 +417,147 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: application/json
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## ReactAsync
+
+> ReactResponse ReactAsync(ctx, id).ReactRequestAsync(reactRequestAsync).Execute()
+
+
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    id := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | 
+    reactRequestAsync := *openapiclient.NewReactRequestAsync() // ReactRequestAsync | 
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.ReactorsApi.ReactAsync(context.Background(), id).ReactRequestAsync(reactRequestAsync).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `ReactorsApi.ReactAsync``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `ReactAsync`: ReactResponse
+    fmt.Fprintf(os.Stdout, "Response from `ReactorsApi.ReactAsync`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**id** | **string** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiReactAsyncRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **reactRequestAsync** | [**ReactRequestAsync**](ReactRequestAsync.md) |  | 
+
+### Return type
+
+[**ReactResponse**](ReactResponse.md)
+
+### Authorization
+
+[ApiKey](../README.md#ApiKey)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## ResultGetById
+
+> interface{} ResultGetById(ctx, id, requestId).Execute()
+
+
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    id := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | 
+    requestId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | 
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.ReactorsApi.ResultGetById(context.Background(), id, requestId).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `ReactorsApi.ResultGetById``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `ResultGetById`: interface{}
+    fmt.Fprintf(os.Stdout, "Response from `ReactorsApi.ResultGetById`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**id** | **string** |  | 
+**requestId** | **string** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiResultGetByIdRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+
+### Return type
+
+**interface{}**
+
+### Authorization
+
+[ApiKey](../README.md#ApiKey)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
 - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)

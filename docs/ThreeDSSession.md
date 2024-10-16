@@ -5,6 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Id** | Pointer to **string** |  | [optional] 
+**Type** | Pointer to **NullableString** |  | [optional] 
 **TenantId** | Pointer to **string** |  | [optional] 
 **PanTokenId** | Pointer to **NullableString** |  | [optional] 
 **CardBrand** | Pointer to **NullableString** |  | [optional] 
@@ -63,6 +64,41 @@ SetId sets Id field to given value.
 
 HasId returns a boolean if a field has been set.
 
+### GetType
+
+`func (o *ThreeDSSession) GetType() string`
+
+GetType returns the Type field if non-nil, zero value otherwise.
+
+### GetTypeOk
+
+`func (o *ThreeDSSession) GetTypeOk() (*string, bool)`
+
+GetTypeOk returns a tuple with the Type field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetType
+
+`func (o *ThreeDSSession) SetType(v string)`
+
+SetType sets Type field to given value.
+
+### HasType
+
+`func (o *ThreeDSSession) HasType() bool`
+
+HasType returns a boolean if a field has been set.
+
+### SetTypeNil
+
+`func (o *ThreeDSSession) SetTypeNil(b bool)`
+
+ SetTypeNil sets the value for Type to be an explicit nil
+
+### UnsetType
+`func (o *ThreeDSSession) UnsetType()`
+
+UnsetType ensures that no value is present for Type, not even an explicit nil
 ### GetTenantId
 
 `func (o *ThreeDSSession) GetTenantId() string`
