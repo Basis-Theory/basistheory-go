@@ -1697,6 +1697,121 @@ paths:
           description: Forbidden
       tags:
       - Reactors
+  /reactors/{id}/react-async:
+    post:
+      operationId: Reactors_React_Async
+      parameters:
+      - explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          format: uuid
+          maxLength: 36
+          pattern: "^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$"
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ReactRequestAsync'
+        required: true
+      responses:
+        "202":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ReactResponse'
+          description: Accepted
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationProblemDetails'
+          description: Bad Request
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Not Found
+        "422":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Client Error
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Unauthorized
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Forbidden
+      tags:
+      - Reactors
+  /reactors/{id}/results/{requestId}:
+    get:
+      operationId: Reactors_Result_GetById
+      parameters:
+      - explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          format: uuid
+          maxLength: 36
+          pattern: "^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$"
+          type: string
+        style: simple
+      - explode: false
+        in: path
+        name: requestId
+        required: true
+        schema:
+          format: uuid
+          maxLength: 36
+          pattern: "^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$"
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema: {}
+          description: Success
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Not Found
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Unauthorized
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Forbidden
+        "422":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Client Error
+      tags:
+      - Reactors
   /roles:
     get:
       operationId: Roles_Get
@@ -1846,7 +1961,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ProblemDetails'
+                $ref: '#/components/schemas/ValidationProblemDetails'
           description: Bad Request
         "401":
           content:
@@ -2213,6 +2328,36 @@ paths:
           description: Not Found
       tags:
       - Tenants
+  /tenants/self/owner:
+    get:
+      operationId: Tenants_Owner_Get
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TenantMemberResponse'
+          description: Success
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Not Found
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Unauthorized
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Forbidden
+      tags:
+      - Tenants
   /tenants/self/reports/usage:
     get:
       operationId: TenantReports_GetTenantUsageReport
@@ -2339,6 +2484,41 @@ paths:
           description: Forbidden
       tags:
       - Tenants
+  /3ds/sessions:
+    post:
+      operationId: ThreeDS.CreateSession
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateThreeDSSessionRequest'
+      responses:
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CreateThreeDSSessionResponse'
+          description: Created
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationProblemDetails'
+          description: Bad Request
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Unauthorized
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Forbidden
+      tags:
+      - ThreeDS
   /3ds/sessions/{sessionId}/authenticate:
     post:
       operationId: ThreeDS.AuthenticateSession
@@ -4295,6 +4475,85 @@ components:
       required:
       - email
       type: object
+    CreateThreeDSSessionRequest:
+      additionalProperties: false
+      example:
+        device_info:
+          sdk_application_id: sdk_application_id
+          browser_accept_header: browser_accept_header
+          browser_javascript_enabled: true
+          sdk_transaction_id: sdk_transaction_id
+          sdk_ephemeral_public_key: sdk_ephemeral_public_key
+          browser_color_depth: browser_color_depth
+          sdk_render_options:
+            sdk_interface: sdk_interface
+            sdk_ui_type:
+            - sdk_ui_type
+            - sdk_ui_type
+          sdk_max_timeout: sdk_max_timeout
+          sdk_encryption_data: sdk_encryption_data
+          sdk_reference_number: sdk_reference_number
+          browser_java_enabled: true
+          browser_screen_height: browser_screen_height
+          browser_screen_width: browser_screen_width
+          browser_language: browser_language
+          browser_tz: browser_tz
+          browser_ip: browser_ip
+          browser_user_agent: browser_user_agent
+        pan: pan
+        type: type
+        device: device
+      properties:
+        pan:
+          maxLength: 36
+          minLength: 1
+          type: string
+        type:
+          nullable: true
+          type: string
+        device:
+          nullable: true
+          type: string
+        device_info:
+          $ref: '#/components/schemas/ThreeDSDeviceInfo'
+      required:
+      - pan
+      type: object
+    CreateThreeDSSessionResponse:
+      additionalProperties: false
+      example:
+        method_notification_url: method_notification_url
+        directory_server_id: directory_server_id
+        id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        recommended_version: recommended_version
+        type: type
+        cardBrand: cardBrand
+        method_url: method_url
+      properties:
+        id:
+          format: uuid
+          maxLength: 36
+          pattern: "^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$"
+          type: string
+        type:
+          nullable: true
+          type: string
+        cardBrand:
+          nullable: true
+          type: string
+        method_url:
+          nullable: true
+          type: string
+        method_notification_url:
+          nullable: true
+          type: string
+        directory_server_id:
+          nullable: true
+          type: string
+        recommended_version:
+          nullable: true
+          type: string
+      type: object
     CreateTokenRequest:
       additionalProperties: false
       example:
@@ -5248,6 +5507,14 @@ components:
         callback_url:
           nullable: true
           type: string
+      type: object
+    ReactRequestAsync:
+      additionalProperties: false
+      example:
+        args: ""
+      properties:
+        args:
+          nullable: true
       type: object
     ReactResponse:
       additionalProperties: false
@@ -7613,6 +7880,7 @@ components:
           method_completion_indicator: method_completion_indicator
           method_url: method_url
         pan_token_id: pan_token_id
+        type: type
         expiration_date: 2000-01-23T04:56:07.000+00:00
         modified_date: 2000-01-23T04:56:07.000+00:00
         created_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
@@ -7695,6 +7963,9 @@ components:
           format: uuid
           maxLength: 36
           pattern: "^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$"
+          type: string
+        type:
+          nullable: true
           type: string
         tenant_id:
           format: uuid
@@ -7806,6 +8077,8 @@ components:
         expires_at: 2000-01-23T04:56:07.000+00:00
         modified_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
         fingerprint: fingerprint
+        _extras:
+          deduplicated: true
         containers:
         - containers
         id: id
@@ -7935,6 +8208,8 @@ components:
           maxItems: 1
           nullable: true
           type: array
+        _extras:
+          $ref: '#/components/schemas/TokenExtras'
       type: object
     TokenCursorPaginatedList:
       additionalProperties: false
@@ -7960,6 +8235,8 @@ components:
           expires_at: 2000-01-23T04:56:07.000+00:00
           modified_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           fingerprint: fingerprint
+          _extras:
+            deduplicated: true
           containers:
           - containers
           id: id
@@ -8022,6 +8299,8 @@ components:
           expires_at: 2000-01-23T04:56:07.000+00:00
           modified_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           fingerprint: fingerprint
+          _extras:
+            deduplicated: true
           containers:
           - containers
           id: id
@@ -8118,6 +8397,14 @@ components:
         card_details:
           $ref: '#/components/schemas/CardDetails'
       type: object
+    TokenExtras:
+      additionalProperties: false
+      example:
+        deduplicated: true
+      properties:
+        deduplicated:
+          type: boolean
+      type: object
     TokenMetrics:
       additionalProperties: false
       example:
@@ -8163,6 +8450,8 @@ components:
           expires_at: 2000-01-23T04:56:07.000+00:00
           modified_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           fingerprint: fingerprint
+          _extras:
+            deduplicated: true
           containers:
           - containers
           id: id
@@ -8225,6 +8514,8 @@ components:
           expires_at: 2000-01-23T04:56:07.000+00:00
           modified_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           fingerprint: fingerprint
+          _extras:
+            deduplicated: true
           containers:
           - containers
           id: id
@@ -8287,6 +8578,8 @@ components:
           expires_at: 2000-01-23T04:56:07.000+00:00
           modified_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           fingerprint: fingerprint
+          _extras:
+            deduplicated: true
           containers:
           - containers
           id: id
@@ -8349,6 +8642,8 @@ components:
           expires_at: 2000-01-23T04:56:07.000+00:00
           modified_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           fingerprint: fingerprint
+          _extras:
+            deduplicated: true
           containers:
           - containers
           id: id
@@ -8411,6 +8706,8 @@ components:
           expires_at: 2000-01-23T04:56:07.000+00:00
           modified_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           fingerprint: fingerprint
+          _extras:
+            deduplicated: true
           containers:
           - containers
           id: id
@@ -8919,7 +9216,7 @@ components:
         search_indexes:
           items:
             type: string
-          maxItems: 10
+          maxItems: 5
           nullable: true
           type: array
         fingerprint_expression:

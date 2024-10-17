@@ -5,6 +5,7 @@ All URIs are relative to *https://api.basistheory.com*
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**ThreeDSAuthenticateSession**](ThreeDSApi.md#ThreeDSAuthenticateSession) | **Post** /3ds/sessions/{sessionId}/authenticate | 
+[**ThreeDSCreateSession**](ThreeDSApi.md#ThreeDSCreateSession) | **Post** /3ds/sessions | 
 [**ThreeDSGetChallengeResult**](ThreeDSApi.md#ThreeDSGetChallengeResult) | **Get** /3ds/sessions/{sessionId}/challenge-result | 
 [**ThreeDSGetSessionById**](ThreeDSApi.md#ThreeDSGetSessionById) | **Get** /3ds/sessions/{id} | 
 
@@ -65,6 +66,70 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**ThreeDSAuthentication**](ThreeDSAuthentication.md)
+
+### Authorization
+
+[ApiKey](../README.md#ApiKey)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## ThreeDSCreateSession
+
+> CreateThreeDSSessionResponse ThreeDSCreateSession(ctx).CreateThreeDSSessionRequest(createThreeDSSessionRequest).Execute()
+
+
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    createThreeDSSessionRequest := *openapiclient.NewCreateThreeDSSessionRequest("Pan_example") // CreateThreeDSSessionRequest |  (optional)
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.ThreeDSApi.ThreeDSCreateSession(context.Background()).CreateThreeDSSessionRequest(createThreeDSSessionRequest).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `ThreeDSApi.ThreeDSCreateSession``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `ThreeDSCreateSession`: CreateThreeDSSessionResponse
+    fmt.Fprintf(os.Stdout, "Response from `ThreeDSApi.ThreeDSCreateSession`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiThreeDSCreateSessionRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **createThreeDSSessionRequest** | [**CreateThreeDSSessionRequest**](CreateThreeDSSessionRequest.md) |  | 
+
+### Return type
+
+[**CreateThreeDSSessionResponse**](CreateThreeDSSessionResponse.md)
 
 ### Authorization
 

@@ -14,6 +14,7 @@ Method | HTTP request | Description
 [**GetInvitations**](TenantsApi.md#GetInvitations) | **Get** /tenants/self/invitations | 
 [**GetMembers**](TenantsApi.md#GetMembers) | **Get** /tenants/self/members | 
 [**GetTenantUsageReport**](TenantsApi.md#GetTenantUsageReport) | **Get** /tenants/self/reports/usage | 
+[**OwnerGet**](TenantsApi.md#OwnerGet) | **Get** /tenants/self/owner | 
 [**ResendInvitation**](TenantsApi.md#ResendInvitation) | **Post** /tenants/self/invitations/{invitationId}/resend | 
 [**Update**](TenantsApi.md#Update) | **Put** /tenants/self | 
 [**UpdateMember**](TenantsApi.md#UpdateMember) | **Put** /tenants/self/members/{memberId} | 
@@ -639,6 +640,65 @@ Other parameters are passed through a pointer to a apiGetTenantUsageReportReques
 ### Return type
 
 [**TenantUsageReport**](TenantUsageReport.md)
+
+### Authorization
+
+[ApiKey](../README.md#ApiKey)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## OwnerGet
+
+> TenantMemberResponse OwnerGet(ctx).Execute()
+
+
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.TenantsApi.OwnerGet(context.Background()).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `TenantsApi.OwnerGet``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `OwnerGet`: TenantMemberResponse
+    fmt.Fprintf(os.Stdout, "Response from `TenantsApi.OwnerGet`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+This endpoint does not need any parameter.
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiOwnerGetRequest struct via the builder pattern
+
+
+### Return type
+
+[**TenantMemberResponse**](TenantMemberResponse.md)
 
 ### Authorization
 

@@ -22,6 +22,7 @@ Name | Type | Description | Notes
 **ExpiresAt** | Pointer to **NullableTime** |  | [optional] 
 **Containers** | Pointer to **[]string** |  | [optional] 
 **Aliases** | Pointer to **[]string** |  | [optional] 
+**Extras** | Pointer to [**TokenExtras**](TokenExtras.md) |  | [optional] 
 
 ## Methods
 
@@ -622,6 +623,31 @@ HasAliases returns a boolean if a field has been set.
 `func (o *Token) UnsetAliases()`
 
 UnsetAliases ensures that no value is present for Aliases, not even an explicit nil
+### GetExtras
+
+`func (o *Token) GetExtras() TokenExtras`
+
+GetExtras returns the Extras field if non-nil, zero value otherwise.
+
+### GetExtrasOk
+
+`func (o *Token) GetExtrasOk() (*TokenExtras, bool)`
+
+GetExtrasOk returns a tuple with the Extras field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetExtras
+
+`func (o *Token) SetExtras(v TokenExtras)`
+
+SetExtras sets Extras field to given value.
+
+### HasExtras
+
+`func (o *Token) HasExtras() bool`
+
+HasExtras returns a boolean if a field has been set.
+
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 
