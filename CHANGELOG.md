@@ -1,3 +1,10 @@
+# [6.1.0](https://github.com/Basis-Theory/basistheory-go/compare/v6.0.0...v6.1.0) (2024-10-17)
+
+
+### Features
+
+* add updates to reactors, tenants, 3ds, tokens ([#83](https://github.com/Basis-Theory/basistheory-go/issues/83)) ([0480d0d](https://github.com/Basis-Theory/basistheory-go/commit/0480d0d158570b9f9aae9583fc755a8db0aa7b8d))
+
 # [6.0.0](https://github.com/Basis-Theory/basistheory-go/compare/v5.2.0...v6.0.0) (2024-09-04)
 
 
