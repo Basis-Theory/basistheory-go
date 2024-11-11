@@ -19,15 +19,17 @@ var _ MappedNullable = &AuthenticateThreeDSSessionRequest{}
 
 // AuthenticateThreeDSSessionRequest struct for AuthenticateThreeDSSessionRequest
 type AuthenticateThreeDSSessionRequest struct {
-	AuthenticationCategory string                    `json:"authentication_category"`
-	AuthenticationType     string                    `json:"authentication_type"`
-	ChallengePreference    NullableString            `json:"challenge_preference,omitempty"`
-	PurchaseInfo           *ThreeDSPurchaseInfo      `json:"purchase_info,omitempty"`
-	MerchantInfo           *ThreeDSMerchantInfo      `json:"merchant_info,omitempty"`
-	RequestorInfo          ThreeDSRequestorInfo      `json:"requestor_info"`
-	CardholderInfo         *ThreeDSCardholderInfo    `json:"cardholder_info,omitempty"`
-	BroadcastInfo          interface{}               `json:"broadcast_info,omitempty"`
-	MessageExtensions      []ThreeDSMessageExtension `json:"message_extensions,omitempty"`
+	AuthenticationCategory    string                    `json:"authentication_category"`
+	AuthenticationType        string                    `json:"authentication_type"`
+	ChallengePreference       NullableString            `json:"challenge_preference,omitempty"`
+	RequestDecoupledChallenge *bool                     `json:"request_decoupled_challenge,omitempty"`
+	DecoupledChallengeMaxTime NullableInt32             `json:"decoupled_challenge_max_time,omitempty"`
+	PurchaseInfo              *ThreeDSPurchaseInfo      `json:"purchase_info,omitempty"`
+	MerchantInfo              *ThreeDSMerchantInfo      `json:"merchant_info,omitempty"`
+	RequestorInfo             ThreeDSRequestorInfo      `json:"requestor_info"`
+	CardholderInfo            *ThreeDSCardholderInfo    `json:"cardholder_info,omitempty"`
+	BroadcastInfo             interface{}               `json:"broadcast_info,omitempty"`
+	MessageExtensions         []ThreeDSMessageExtension `json:"message_extensions,omitempty"`
 }
 
 // NewAuthenticateThreeDSSessionRequest instantiates a new AuthenticateThreeDSSessionRequest object
@@ -139,6 +141,81 @@ func (o *AuthenticateThreeDSSessionRequest) SetChallengePreferenceNil() {
 // UnsetChallengePreference ensures that no value is present for ChallengePreference, not even an explicit nil
 func (o *AuthenticateThreeDSSessionRequest) UnsetChallengePreference() {
 	o.ChallengePreference.Unset()
+}
+
+// GetRequestDecoupledChallenge returns the RequestDecoupledChallenge field value if set, zero value otherwise.
+func (o *AuthenticateThreeDSSessionRequest) GetRequestDecoupledChallenge() bool {
+	if o == nil || IsNil(o.RequestDecoupledChallenge) {
+		var ret bool
+		return ret
+	}
+	return *o.RequestDecoupledChallenge
+}
+
+// GetRequestDecoupledChallengeOk returns a tuple with the RequestDecoupledChallenge field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *AuthenticateThreeDSSessionRequest) GetRequestDecoupledChallengeOk() (*bool, bool) {
+	if o == nil || IsNil(o.RequestDecoupledChallenge) {
+		return nil, false
+	}
+	return o.RequestDecoupledChallenge, true
+}
+
+// HasRequestDecoupledChallenge returns a boolean if a field is not nil.
+func (o *AuthenticateThreeDSSessionRequest) HasRequestDecoupledChallenge() bool {
+	if o != nil && !IsNil(o.RequestDecoupledChallenge) {
+		return true
+	}
+
+	return false
+}
+
+// SetRequestDecoupledChallenge gets a reference to the given bool and assigns it to the RequestDecoupledChallenge field.
+func (o *AuthenticateThreeDSSessionRequest) SetRequestDecoupledChallenge(v bool) {
+	o.RequestDecoupledChallenge = &v
+}
+
+// GetDecoupledChallengeMaxTime returns the DecoupledChallengeMaxTime field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *AuthenticateThreeDSSessionRequest) GetDecoupledChallengeMaxTime() int32 {
+	if o == nil || IsNil(o.DecoupledChallengeMaxTime.Get()) {
+		var ret int32
+		return ret
+	}
+	return *o.DecoupledChallengeMaxTime.Get()
+}
+
+// GetDecoupledChallengeMaxTimeOk returns a tuple with the DecoupledChallengeMaxTime field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *AuthenticateThreeDSSessionRequest) GetDecoupledChallengeMaxTimeOk() (*int32, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.DecoupledChallengeMaxTime.Get(), o.DecoupledChallengeMaxTime.IsSet()
+}
+
+// HasDecoupledChallengeMaxTime returns a boolean if a field is not nil.
+func (o *AuthenticateThreeDSSessionRequest) HasDecoupledChallengeMaxTime() bool {
+	if o != nil && !IsNil(o.DecoupledChallengeMaxTime) {
+		return true
+	}
+
+	return false
+}
+
+// SetDecoupledChallengeMaxTime gets a reference to the given NullableInt32 and assigns it to the DecoupledChallengeMaxTime field.
+func (o *AuthenticateThreeDSSessionRequest) SetDecoupledChallengeMaxTime(v int32) {
+	o.DecoupledChallengeMaxTime.Set(&v)
+}
+
+// SetDecoupledChallengeMaxTimeNil sets the value for DecoupledChallengeMaxTime to be an explicit nil
+func (o *AuthenticateThreeDSSessionRequest) SetDecoupledChallengeMaxTimeNil() {
+	o.DecoupledChallengeMaxTime.Set(nil)
+}
+
+// UnsetDecoupledChallengeMaxTime ensures that no value is present for DecoupledChallengeMaxTime, not even an explicit nil
+func (o *AuthenticateThreeDSSessionRequest) UnsetDecoupledChallengeMaxTime() {
+	o.DecoupledChallengeMaxTime.Unset()
 }
 
 // GetPurchaseInfo returns the PurchaseInfo field value if set, zero value otherwise.
@@ -341,6 +418,12 @@ func (o AuthenticateThreeDSSessionRequest) ToMap() (map[string]interface{}, erro
 	toSerialize["authentication_type"] = o.AuthenticationType
 	if o.ChallengePreference.IsSet() {
 		toSerialize["challenge_preference"] = o.ChallengePreference.Get()
+	}
+	if !IsNil(o.RequestDecoupledChallenge) {
+		toSerialize["request_decoupled_challenge"] = o.RequestDecoupledChallenge
+	}
+	if o.DecoupledChallengeMaxTime.IsSet() {
+		toSerialize["decoupled_challenge_max_time"] = o.DecoupledChallengeMaxTime.Get()
 	}
 	if !IsNil(o.PurchaseInfo) {
 		toSerialize["purchase_info"] = o.PurchaseInfo

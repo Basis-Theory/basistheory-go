@@ -100,7 +100,7 @@ import (
 )
 
 func main() {
-    createThreeDSSessionRequest := *openapiclient.NewCreateThreeDSSessionRequest("Pan_example") // CreateThreeDSSessionRequest |  (optional)
+    createThreeDSSessionRequest := *openapiclient.NewCreateThreeDSSessionRequest() // CreateThreeDSSessionRequest |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)

@@ -7,6 +7,8 @@ Name | Type | Description | Notes
 **AuthenticationCategory** | **string** |  | 
 **AuthenticationType** | **string** |  | 
 **ChallengePreference** | Pointer to **NullableString** |  | [optional] 
+**RequestDecoupledChallenge** | Pointer to **bool** |  | [optional] 
+**DecoupledChallengeMaxTime** | Pointer to **NullableInt32** |  | [optional] 
 **PurchaseInfo** | Pointer to [**ThreeDSPurchaseInfo**](ThreeDSPurchaseInfo.md) |  | [optional] 
 **MerchantInfo** | Pointer to [**ThreeDSMerchantInfo**](ThreeDSMerchantInfo.md) |  | [optional] 
 **RequestorInfo** | [**ThreeDSRequestorInfo**](ThreeDSRequestorInfo.md) |  | 
@@ -108,6 +110,66 @@ HasChallengePreference returns a boolean if a field has been set.
 `func (o *AuthenticateThreeDSSessionRequest) UnsetChallengePreference()`
 
 UnsetChallengePreference ensures that no value is present for ChallengePreference, not even an explicit nil
+### GetRequestDecoupledChallenge
+
+`func (o *AuthenticateThreeDSSessionRequest) GetRequestDecoupledChallenge() bool`
+
+GetRequestDecoupledChallenge returns the RequestDecoupledChallenge field if non-nil, zero value otherwise.
+
+### GetRequestDecoupledChallengeOk
+
+`func (o *AuthenticateThreeDSSessionRequest) GetRequestDecoupledChallengeOk() (*bool, bool)`
+
+GetRequestDecoupledChallengeOk returns a tuple with the RequestDecoupledChallenge field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetRequestDecoupledChallenge
+
+`func (o *AuthenticateThreeDSSessionRequest) SetRequestDecoupledChallenge(v bool)`
+
+SetRequestDecoupledChallenge sets RequestDecoupledChallenge field to given value.
+
+### HasRequestDecoupledChallenge
+
+`func (o *AuthenticateThreeDSSessionRequest) HasRequestDecoupledChallenge() bool`
+
+HasRequestDecoupledChallenge returns a boolean if a field has been set.
+
+### GetDecoupledChallengeMaxTime
+
+`func (o *AuthenticateThreeDSSessionRequest) GetDecoupledChallengeMaxTime() int32`
+
+GetDecoupledChallengeMaxTime returns the DecoupledChallengeMaxTime field if non-nil, zero value otherwise.
+
+### GetDecoupledChallengeMaxTimeOk
+
+`func (o *AuthenticateThreeDSSessionRequest) GetDecoupledChallengeMaxTimeOk() (*int32, bool)`
+
+GetDecoupledChallengeMaxTimeOk returns a tuple with the DecoupledChallengeMaxTime field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetDecoupledChallengeMaxTime
+
+`func (o *AuthenticateThreeDSSessionRequest) SetDecoupledChallengeMaxTime(v int32)`
+
+SetDecoupledChallengeMaxTime sets DecoupledChallengeMaxTime field to given value.
+
+### HasDecoupledChallengeMaxTime
+
+`func (o *AuthenticateThreeDSSessionRequest) HasDecoupledChallengeMaxTime() bool`
+
+HasDecoupledChallengeMaxTime returns a boolean if a field has been set.
+
+### SetDecoupledChallengeMaxTimeNil
+
+`func (o *AuthenticateThreeDSSessionRequest) SetDecoupledChallengeMaxTimeNil(b bool)`
+
+ SetDecoupledChallengeMaxTimeNil sets the value for DecoupledChallengeMaxTime to be an explicit nil
+
+### UnsetDecoupledChallengeMaxTime
+`func (o *AuthenticateThreeDSSessionRequest) UnsetDecoupledChallengeMaxTime()`
+
+UnsetDecoupledChallengeMaxTime ensures that no value is present for DecoupledChallengeMaxTime, not even an explicit nil
 ### GetPurchaseInfo
 
 `func (o *AuthenticateThreeDSSessionRequest) GetPurchaseInfo() ThreeDSPurchaseInfo`

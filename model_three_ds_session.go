@@ -20,10 +20,13 @@ var _ MappedNullable = &ThreeDSSession{}
 
 // ThreeDSSession struct for ThreeDSSession
 type ThreeDSSession struct {
-	Id             *string                `json:"id,omitempty"`
-	Type           NullableString         `json:"type,omitempty"`
-	TenantId       *string                `json:"tenant_id,omitempty"`
+	Id       *string        `json:"id,omitempty"`
+	Type     NullableString `json:"type,omitempty"`
+	TenantId *string        `json:"tenant_id,omitempty"`
+	// Deprecated
 	PanTokenId     NullableString         `json:"pan_token_id,omitempty"`
+	TokenId        NullableString         `json:"token_id,omitempty"`
+	TokenIntentId  NullableString         `json:"token_intent_id,omitempty"`
 	CardBrand      NullableString         `json:"card_brand,omitempty"`
 	ExpirationDate *time.Time             `json:"expiration_date,omitempty"`
 	CreatedDate    NullableTime           `json:"created_date,omitempty"`
@@ -162,6 +165,7 @@ func (o *ThreeDSSession) SetTenantId(v string) {
 }
 
 // GetPanTokenId returns the PanTokenId field value if set, zero value otherwise (both if not set or set to explicit null).
+// Deprecated
 func (o *ThreeDSSession) GetPanTokenId() string {
 	if o == nil || IsNil(o.PanTokenId.Get()) {
 		var ret string
@@ -173,6 +177,7 @@ func (o *ThreeDSSession) GetPanTokenId() string {
 // GetPanTokenIdOk returns a tuple with the PanTokenId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
+// Deprecated
 func (o *ThreeDSSession) GetPanTokenIdOk() (*string, bool) {
 	if o == nil {
 		return nil, false
@@ -190,6 +195,7 @@ func (o *ThreeDSSession) HasPanTokenId() bool {
 }
 
 // SetPanTokenId gets a reference to the given NullableString and assigns it to the PanTokenId field.
+// Deprecated
 func (o *ThreeDSSession) SetPanTokenId(v string) {
 	o.PanTokenId.Set(&v)
 }
@@ -202,6 +208,92 @@ func (o *ThreeDSSession) SetPanTokenIdNil() {
 // UnsetPanTokenId ensures that no value is present for PanTokenId, not even an explicit nil
 func (o *ThreeDSSession) UnsetPanTokenId() {
 	o.PanTokenId.Unset()
+}
+
+// GetTokenId returns the TokenId field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ThreeDSSession) GetTokenId() string {
+	if o == nil || IsNil(o.TokenId.Get()) {
+		var ret string
+		return ret
+	}
+	return *o.TokenId.Get()
+}
+
+// GetTokenIdOk returns a tuple with the TokenId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ThreeDSSession) GetTokenIdOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.TokenId.Get(), o.TokenId.IsSet()
+}
+
+// HasTokenId returns a boolean if a field is not nil.
+func (o *ThreeDSSession) HasTokenId() bool {
+	if o != nil && !IsNil(o.TokenId) {
+		return true
+	}
+
+	return false
+}
+
+// SetTokenId gets a reference to the given NullableString and assigns it to the TokenId field.
+func (o *ThreeDSSession) SetTokenId(v string) {
+	o.TokenId.Set(&v)
+}
+
+// SetTokenIdNil sets the value for TokenId to be an explicit nil
+func (o *ThreeDSSession) SetTokenIdNil() {
+	o.TokenId.Set(nil)
+}
+
+// UnsetTokenId ensures that no value is present for TokenId, not even an explicit nil
+func (o *ThreeDSSession) UnsetTokenId() {
+	o.TokenId.Unset()
+}
+
+// GetTokenIntentId returns the TokenIntentId field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ThreeDSSession) GetTokenIntentId() string {
+	if o == nil || IsNil(o.TokenIntentId.Get()) {
+		var ret string
+		return ret
+	}
+	return *o.TokenIntentId.Get()
+}
+
+// GetTokenIntentIdOk returns a tuple with the TokenIntentId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ThreeDSSession) GetTokenIntentIdOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.TokenIntentId.Get(), o.TokenIntentId.IsSet()
+}
+
+// HasTokenIntentId returns a boolean if a field is not nil.
+func (o *ThreeDSSession) HasTokenIntentId() bool {
+	if o != nil && !IsNil(o.TokenIntentId) {
+		return true
+	}
+
+	return false
+}
+
+// SetTokenIntentId gets a reference to the given NullableString and assigns it to the TokenIntentId field.
+func (o *ThreeDSSession) SetTokenIntentId(v string) {
+	o.TokenIntentId.Set(&v)
+}
+
+// SetTokenIntentIdNil sets the value for TokenIntentId to be an explicit nil
+func (o *ThreeDSSession) SetTokenIntentIdNil() {
+	o.TokenIntentId.Set(nil)
+}
+
+// UnsetTokenIntentId ensures that no value is present for TokenIntentId, not even an explicit nil
+func (o *ThreeDSSession) UnsetTokenIntentId() {
+	o.TokenIntentId.Unset()
 }
 
 // GetCardBrand returns the CardBrand field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -643,6 +735,12 @@ func (o ThreeDSSession) ToMap() (map[string]interface{}, error) {
 	}
 	if o.PanTokenId.IsSet() {
 		toSerialize["pan_token_id"] = o.PanTokenId.Get()
+	}
+	if o.TokenId.IsSet() {
+		toSerialize["token_id"] = o.TokenId.Get()
+	}
+	if o.TokenIntentId.IsSet() {
+		toSerialize["token_intent_id"] = o.TokenIntentId.Get()
 	}
 	if o.CardBrand.IsSet() {
 		toSerialize["card_brand"] = o.CardBrand.Get()
