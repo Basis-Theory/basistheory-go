@@ -8,6 +8,8 @@ Name | Type | Description | Notes
 **Type** | Pointer to **NullableString** |  | [optional] 
 **TenantId** | Pointer to **string** |  | [optional] 
 **PanTokenId** | Pointer to **NullableString** |  | [optional] 
+**TokenId** | Pointer to **NullableString** |  | [optional] 
+**TokenIntentId** | Pointer to **NullableString** |  | [optional] 
 **CardBrand** | Pointer to **NullableString** |  | [optional] 
 **ExpirationDate** | Pointer to **time.Time** |  | [optional] 
 **CreatedDate** | Pointer to **NullableTime** |  | [optional] 
@@ -159,6 +161,76 @@ HasPanTokenId returns a boolean if a field has been set.
 `func (o *ThreeDSSession) UnsetPanTokenId()`
 
 UnsetPanTokenId ensures that no value is present for PanTokenId, not even an explicit nil
+### GetTokenId
+
+`func (o *ThreeDSSession) GetTokenId() string`
+
+GetTokenId returns the TokenId field if non-nil, zero value otherwise.
+
+### GetTokenIdOk
+
+`func (o *ThreeDSSession) GetTokenIdOk() (*string, bool)`
+
+GetTokenIdOk returns a tuple with the TokenId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetTokenId
+
+`func (o *ThreeDSSession) SetTokenId(v string)`
+
+SetTokenId sets TokenId field to given value.
+
+### HasTokenId
+
+`func (o *ThreeDSSession) HasTokenId() bool`
+
+HasTokenId returns a boolean if a field has been set.
+
+### SetTokenIdNil
+
+`func (o *ThreeDSSession) SetTokenIdNil(b bool)`
+
+ SetTokenIdNil sets the value for TokenId to be an explicit nil
+
+### UnsetTokenId
+`func (o *ThreeDSSession) UnsetTokenId()`
+
+UnsetTokenId ensures that no value is present for TokenId, not even an explicit nil
+### GetTokenIntentId
+
+`func (o *ThreeDSSession) GetTokenIntentId() string`
+
+GetTokenIntentId returns the TokenIntentId field if non-nil, zero value otherwise.
+
+### GetTokenIntentIdOk
+
+`func (o *ThreeDSSession) GetTokenIntentIdOk() (*string, bool)`
+
+GetTokenIntentIdOk returns a tuple with the TokenIntentId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetTokenIntentId
+
+`func (o *ThreeDSSession) SetTokenIntentId(v string)`
+
+SetTokenIntentId sets TokenIntentId field to given value.
+
+### HasTokenIntentId
+
+`func (o *ThreeDSSession) HasTokenIntentId() bool`
+
+HasTokenIntentId returns a boolean if a field has been set.
+
+### SetTokenIntentIdNil
+
+`func (o *ThreeDSSession) SetTokenIntentIdNil(b bool)`
+
+ SetTokenIntentIdNil sets the value for TokenIntentId to be an explicit nil
+
+### UnsetTokenIntentId
+`func (o *ThreeDSSession) UnsetTokenIntentId()`
+
+UnsetTokenIntentId ensures that no value is present for TokenIntentId, not even an explicit nil
 ### GetCardBrand
 
 `func (o *ThreeDSSession) GetCardBrand() string`

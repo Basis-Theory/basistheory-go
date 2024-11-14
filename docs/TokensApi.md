@@ -34,7 +34,7 @@ import (
 )
 
 func main() {
-    createTokenRequest := *openapiclient.NewCreateTokenRequest(interface{}(123)) // CreateTokenRequest | 
+    createTokenRequest := *openapiclient.NewCreateTokenRequest() // CreateTokenRequest | 
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)

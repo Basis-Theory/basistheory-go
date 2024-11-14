@@ -5,6 +5,8 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **PanTokenId** | Pointer to **NullableString** |  | [optional] 
+**TokenId** | Pointer to **NullableString** |  | [optional] 
+**TokenIntentId** | Pointer to **NullableString** |  | [optional] 
 **ThreedsVersion** | Pointer to **NullableString** |  | [optional] 
 **AcsTransactionId** | Pointer to **NullableString** |  | [optional] 
 **DsTransactionId** | Pointer to **NullableString** |  | [optional] 
@@ -83,6 +85,76 @@ HasPanTokenId returns a boolean if a field has been set.
 `func (o *ThreeDSAuthentication) UnsetPanTokenId()`
 
 UnsetPanTokenId ensures that no value is present for PanTokenId, not even an explicit nil
+### GetTokenId
+
+`func (o *ThreeDSAuthentication) GetTokenId() string`
+
+GetTokenId returns the TokenId field if non-nil, zero value otherwise.
+
+### GetTokenIdOk
+
+`func (o *ThreeDSAuthentication) GetTokenIdOk() (*string, bool)`
+
+GetTokenIdOk returns a tuple with the TokenId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetTokenId
+
+`func (o *ThreeDSAuthentication) SetTokenId(v string)`
+
+SetTokenId sets TokenId field to given value.
+
+### HasTokenId
+
+`func (o *ThreeDSAuthentication) HasTokenId() bool`
+
+HasTokenId returns a boolean if a field has been set.
+
+### SetTokenIdNil
+
+`func (o *ThreeDSAuthentication) SetTokenIdNil(b bool)`
+
+ SetTokenIdNil sets the value for TokenId to be an explicit nil
+
+### UnsetTokenId
+`func (o *ThreeDSAuthentication) UnsetTokenId()`
+
+UnsetTokenId ensures that no value is present for TokenId, not even an explicit nil
+### GetTokenIntentId
+
+`func (o *ThreeDSAuthentication) GetTokenIntentId() string`
+
+GetTokenIntentId returns the TokenIntentId field if non-nil, zero value otherwise.
+
+### GetTokenIntentIdOk
+
+`func (o *ThreeDSAuthentication) GetTokenIntentIdOk() (*string, bool)`
+
+GetTokenIntentIdOk returns a tuple with the TokenIntentId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetTokenIntentId
+
+`func (o *ThreeDSAuthentication) SetTokenIntentId(v string)`
+
+SetTokenIntentId sets TokenIntentId field to given value.
+
+### HasTokenIntentId
+
+`func (o *ThreeDSAuthentication) HasTokenIntentId() bool`
+
+HasTokenIntentId returns a boolean if a field has been set.
+
+### SetTokenIntentIdNil
+
+`func (o *ThreeDSAuthentication) SetTokenIntentIdNil(b bool)`
+
+ SetTokenIntentIdNil sets the value for TokenIntentId to be an explicit nil
+
+### UnsetTokenIntentId
+`func (o *ThreeDSAuthentication) UnsetTokenIntentId()`
+
+UnsetTokenIntentId ensures that no value is present for TokenIntentId, not even an explicit nil
 ### GetThreedsVersion
 
 `func (o *ThreeDSAuthentication) GetThreedsVersion() string`

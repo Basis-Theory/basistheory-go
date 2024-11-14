@@ -2,9 +2,10 @@ package basistheory_test
 
 import (
 	"fmt"
+	"testing"
+
 	"github.com/Basis-Theory/basistheory-go/v6"
 	"github.com/Basis-Theory/basistheory-go/v6/internal/testutils"
-	"testing"
 )
 
 func TestTokenCRUD(t *testing.T) {
@@ -20,7 +21,8 @@ func TestTokenCRUD(t *testing.T) {
 	}
 	tokenType := "token"
 	tokenSearchIndexes := []string{"{{ data.myData }}"}
-	createTokenRequest := *basistheory.NewCreateTokenRequest(tokenData)
+	createTokenRequest := *basistheory.NewCreateTokenRequest()
+	createTokenRequest.SetData(tokenData)
 	createTokenRequest.SetId("{{ data.myData | alias_preserve_length: 0, 4 }}")
 	createTokenRequest.SetType(tokenType)
 	createTokenRequest.SetSearchIndexes(tokenSearchIndexes)

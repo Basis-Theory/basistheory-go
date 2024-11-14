@@ -19,19 +19,21 @@ var _ MappedNullable = &CreateThreeDSSessionRequest{}
 
 // CreateThreeDSSessionRequest struct for CreateThreeDSSessionRequest
 type CreateThreeDSSessionRequest struct {
-	Pan        string             `json:"pan"`
-	Type       NullableString     `json:"type,omitempty"`
-	Device     NullableString     `json:"device,omitempty"`
-	DeviceInfo *ThreeDSDeviceInfo `json:"device_info,omitempty"`
+	// Deprecated
+	Pan           NullableString     `json:"pan,omitempty"`
+	TokenId       NullableString     `json:"token_id,omitempty"`
+	TokenIntentId NullableString     `json:"token_intent_id,omitempty"`
+	Type          NullableString     `json:"type,omitempty"`
+	Device        NullableString     `json:"device,omitempty"`
+	DeviceInfo    *ThreeDSDeviceInfo `json:"device_info,omitempty"`
 }
 
 // NewCreateThreeDSSessionRequest instantiates a new CreateThreeDSSessionRequest object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewCreateThreeDSSessionRequest(pan string) *CreateThreeDSSessionRequest {
+func NewCreateThreeDSSessionRequest() *CreateThreeDSSessionRequest {
 	this := CreateThreeDSSessionRequest{}
-	this.Pan = pan
 	return &this
 }
 
@@ -43,28 +45,136 @@ func NewCreateThreeDSSessionRequestWithDefaults() *CreateThreeDSSessionRequest {
 	return &this
 }
 
-// GetPan returns the Pan field value
+// GetPan returns the Pan field value if set, zero value otherwise (both if not set or set to explicit null).
+// Deprecated
 func (o *CreateThreeDSSessionRequest) GetPan() string {
-	if o == nil {
+	if o == nil || IsNil(o.Pan.Get()) {
 		var ret string
 		return ret
 	}
-
-	return o.Pan
+	return *o.Pan.Get()
 }
 
-// GetPanOk returns a tuple with the Pan field value
+// GetPanOk returns a tuple with the Pan field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+// Deprecated
 func (o *CreateThreeDSSessionRequest) GetPanOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.Pan, true
+	return o.Pan.Get(), o.Pan.IsSet()
 }
 
-// SetPan sets field value
+// HasPan returns a boolean if a field is not nil.
+func (o *CreateThreeDSSessionRequest) HasPan() bool {
+	if o != nil && !IsNil(o.Pan) {
+		return true
+	}
+
+	return false
+}
+
+// SetPan gets a reference to the given NullableString and assigns it to the Pan field.
+// Deprecated
 func (o *CreateThreeDSSessionRequest) SetPan(v string) {
-	o.Pan = v
+	o.Pan.Set(&v)
+}
+
+// SetPanNil sets the value for Pan to be an explicit nil
+func (o *CreateThreeDSSessionRequest) SetPanNil() {
+	o.Pan.Set(nil)
+}
+
+// UnsetPan ensures that no value is present for Pan, not even an explicit nil
+func (o *CreateThreeDSSessionRequest) UnsetPan() {
+	o.Pan.Unset()
+}
+
+// GetTokenId returns the TokenId field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *CreateThreeDSSessionRequest) GetTokenId() string {
+	if o == nil || IsNil(o.TokenId.Get()) {
+		var ret string
+		return ret
+	}
+	return *o.TokenId.Get()
+}
+
+// GetTokenIdOk returns a tuple with the TokenId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *CreateThreeDSSessionRequest) GetTokenIdOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.TokenId.Get(), o.TokenId.IsSet()
+}
+
+// HasTokenId returns a boolean if a field is not nil.
+func (o *CreateThreeDSSessionRequest) HasTokenId() bool {
+	if o != nil && !IsNil(o.TokenId) {
+		return true
+	}
+
+	return false
+}
+
+// SetTokenId gets a reference to the given NullableString and assigns it to the TokenId field.
+func (o *CreateThreeDSSessionRequest) SetTokenId(v string) {
+	o.TokenId.Set(&v)
+}
+
+// SetTokenIdNil sets the value for TokenId to be an explicit nil
+func (o *CreateThreeDSSessionRequest) SetTokenIdNil() {
+	o.TokenId.Set(nil)
+}
+
+// UnsetTokenId ensures that no value is present for TokenId, not even an explicit nil
+func (o *CreateThreeDSSessionRequest) UnsetTokenId() {
+	o.TokenId.Unset()
+}
+
+// GetTokenIntentId returns the TokenIntentId field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *CreateThreeDSSessionRequest) GetTokenIntentId() string {
+	if o == nil || IsNil(o.TokenIntentId.Get()) {
+		var ret string
+		return ret
+	}
+	return *o.TokenIntentId.Get()
+}
+
+// GetTokenIntentIdOk returns a tuple with the TokenIntentId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *CreateThreeDSSessionRequest) GetTokenIntentIdOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.TokenIntentId.Get(), o.TokenIntentId.IsSet()
+}
+
+// HasTokenIntentId returns a boolean if a field is not nil.
+func (o *CreateThreeDSSessionRequest) HasTokenIntentId() bool {
+	if o != nil && !IsNil(o.TokenIntentId) {
+		return true
+	}
+
+	return false
+}
+
+// SetTokenIntentId gets a reference to the given NullableString and assigns it to the TokenIntentId field.
+func (o *CreateThreeDSSessionRequest) SetTokenIntentId(v string) {
+	o.TokenIntentId.Set(&v)
+}
+
+// SetTokenIntentIdNil sets the value for TokenIntentId to be an explicit nil
+func (o *CreateThreeDSSessionRequest) SetTokenIntentIdNil() {
+	o.TokenIntentId.Set(nil)
+}
+
+// UnsetTokenIntentId ensures that no value is present for TokenIntentId, not even an explicit nil
+func (o *CreateThreeDSSessionRequest) UnsetTokenIntentId() {
+	o.TokenIntentId.Unset()
 }
 
 // GetType returns the Type field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -195,7 +305,15 @@ func (o CreateThreeDSSessionRequest) MarshalJSON() ([]byte, error) {
 
 func (o CreateThreeDSSessionRequest) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["pan"] = o.Pan
+	if o.Pan.IsSet() {
+		toSerialize["pan"] = o.Pan.Get()
+	}
+	if o.TokenId.IsSet() {
+		toSerialize["token_id"] = o.TokenId.Get()
+	}
+	if o.TokenIntentId.IsSet() {
+		toSerialize["token_intent_id"] = o.TokenIntentId.Get()
+	}
 	if o.Type.IsSet() {
 		toSerialize["type"] = o.Type.Get()
 	}

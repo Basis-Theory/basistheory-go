@@ -4,6 +4,7 @@ api_application_keys.go
 api_application_templates.go
 api_applications.go
 api_detokenize.go
+api_enrichments.go
 api_logs.go
 api_permissions.go
 api_proxies.go
@@ -27,6 +28,7 @@ docs/ApplicationTemplatesApi.md
 docs/ApplicationsApi.md
 docs/AuthenticateThreeDSSessionRequest.md
 docs/AuthorizeSessionRequest.md
+docs/BankVerificationRequest.md
 docs/BinDetails.md
 docs/BinDetailsBank.md
 docs/BinDetailsCountry.md
@@ -46,6 +48,7 @@ docs/CreateThreeDSSessionResponse.md
 docs/CreateTokenRequest.md
 docs/CursorPagination.md
 docs/DetokenizeApi.md
+docs/EnrichmentsApi.md
 docs/GetApplications.md
 docs/GetLogs.md
 docs/GetPermissions.md
@@ -142,6 +145,7 @@ model_application_paginated_list.go
 model_application_template.go
 model_authenticate_three_ds_session_request.go
 model_authorize_session_request.go
+model_bank_verification_request.go
 model_bin_details.go
 model_bin_details_bank.go
 model_bin_details_country.go

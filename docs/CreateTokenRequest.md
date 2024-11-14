@@ -6,7 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Id** | Pointer to **NullableString** |  | [optional] 
 **Type** | Pointer to **NullableString** |  | [optional] 
-**Data** | **interface{}** |  | 
+**Data** | Pointer to **interface{}** |  | [optional] 
 **Privacy** | Pointer to [**Privacy**](Privacy.md) |  | [optional] 
 **Metadata** | Pointer to **map[string]string** |  | [optional] 
 **SearchIndexes** | Pointer to **[]string** |  | [optional] 
@@ -15,12 +15,13 @@ Name | Type | Description | Notes
 **DeduplicateToken** | Pointer to **NullableBool** |  | [optional] 
 **ExpiresAt** | Pointer to **NullableString** |  | [optional] 
 **Containers** | Pointer to **[]string** |  | [optional] 
+**TokenIntentId** | Pointer to **NullableString** |  | [optional] 
 
 ## Methods
 
 ### NewCreateTokenRequest
 
-`func NewCreateTokenRequest(data interface{}, ) *CreateTokenRequest`
+`func NewCreateTokenRequest() *CreateTokenRequest`
 
 NewCreateTokenRequest instantiates a new CreateTokenRequest object
 This constructor will assign default values to properties that have it defined,
@@ -124,6 +125,11 @@ and a boolean to check if the value has been set.
 
 SetData sets Data field to given value.
 
+### HasData
+
+`func (o *CreateTokenRequest) HasData() bool`
+
+HasData returns a boolean if a field has been set.
 
 ### SetDataNil
 
@@ -405,6 +411,41 @@ HasContainers returns a boolean if a field has been set.
 `func (o *CreateTokenRequest) UnsetContainers()`
 
 UnsetContainers ensures that no value is present for Containers, not even an explicit nil
+### GetTokenIntentId
+
+`func (o *CreateTokenRequest) GetTokenIntentId() string`
+
+GetTokenIntentId returns the TokenIntentId field if non-nil, zero value otherwise.
+
+### GetTokenIntentIdOk
+
+`func (o *CreateTokenRequest) GetTokenIntentIdOk() (*string, bool)`
+
+GetTokenIntentIdOk returns a tuple with the TokenIntentId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetTokenIntentId
+
+`func (o *CreateTokenRequest) SetTokenIntentId(v string)`
+
+SetTokenIntentId sets TokenIntentId field to given value.
+
+### HasTokenIntentId
+
+`func (o *CreateTokenRequest) HasTokenIntentId() bool`
+
+HasTokenIntentId returns a boolean if a field has been set.
+
+### SetTokenIntentIdNil
+
+`func (o *CreateTokenRequest) SetTokenIntentIdNil(b bool)`
+
+ SetTokenIntentIdNil sets the value for TokenIntentId to be an explicit nil
+
+### UnsetTokenIntentId
+`func (o *CreateTokenRequest) UnsetTokenIntentId()`
+
+UnsetTokenIntentId ensures that no value is present for TokenIntentId, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

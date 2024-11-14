@@ -104,6 +104,7 @@ Class | Method | HTTP request | Description
 *ApplicationsApi* | [**RegenerateKey**](docs/ApplicationsApi.md#regeneratekey) | **Post** /applications/{id}/regenerate | 
 *ApplicationsApi* | [**Update**](docs/ApplicationsApi.md#update) | **Put** /applications/{id} | 
 *DetokenizeApi* | [**Detokenize**](docs/DetokenizeApi.md#detokenize) | **Post** /detokenize | 
+*EnrichmentsApi* | [**BankAccountVerify**](docs/EnrichmentsApi.md#bankaccountverify) | **Post** /enrichments/bank-account-verify | 
 *LogsApi* | [**Get**](docs/LogsApi.md#get) | **Get** /logs | 
 *LogsApi* | [**GetEntityTypes**](docs/LogsApi.md#getentitytypes) | **Get** /logs/entity-types | 
 *PermissionsApi* | [**Get**](docs/PermissionsApi.md#get) | **Get** /permissions | 
@@ -168,6 +169,7 @@ Class | Method | HTTP request | Description
  - [ApplicationTemplate](docs/ApplicationTemplate.md)
  - [AuthenticateThreeDSSessionRequest](docs/AuthenticateThreeDSSessionRequest.md)
  - [AuthorizeSessionRequest](docs/AuthorizeSessionRequest.md)
+ - [BankVerificationRequest](docs/BankVerificationRequest.md)
  - [BinDetails](docs/BinDetails.md)
  - [BinDetailsBank](docs/BinDetailsBank.md)
  - [BinDetailsCountry](docs/BinDetailsCountry.md)

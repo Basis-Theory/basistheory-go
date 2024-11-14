@@ -56,6 +56,8 @@ type APIClient struct {
 
 	DetokenizeApi *DetokenizeApiService
 
+	EnrichmentsApi *EnrichmentsApiService
+
 	LogsApi *LogsApiService
 
 	PermissionsApi *PermissionsApiService
@@ -99,6 +101,7 @@ func NewAPIClient(cfg *Configuration) *APIClient {
 	c.ApplicationTemplatesApi = (*ApplicationTemplatesApiService)(&c.common)
 	c.ApplicationsApi = (*ApplicationsApiService)(&c.common)
 	c.DetokenizeApi = (*DetokenizeApiService)(&c.common)
+	c.EnrichmentsApi = (*EnrichmentsApiService)(&c.common)
 	c.LogsApi = (*LogsApiService)(&c.common)
 	c.PermissionsApi = (*PermissionsApiService)(&c.common)
 	c.ProxiesApi = (*ProxiesApiService)(&c.common)

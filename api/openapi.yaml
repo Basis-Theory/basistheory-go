@@ -632,6 +632,38 @@ paths:
           description: Conflict
       tags:
       - Detokenize
+  /enrichments/bank-account-verify:
+    post:
+      operationId: Enrichments_BankAccountVerify
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BankVerificationRequest'
+        required: true
+      responses:
+        "200":
+          description: Success
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationProblemDetails'
+          description: Bad Request
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Unauthorized
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Forbidden
+      tags:
+      - Enrichments
   /logs:
     get:
       operationId: Logs_Get
@@ -3680,6 +3712,7 @@ components:
           data: ""
           name: name
           id: id
+        request_decoupled_challenge: true
         merchant_info:
           country_code: country_code
           acquirer_bin: acquirer_bin
@@ -3698,6 +3731,7 @@ components:
             pre_order_date: pre_order_date
         authentication_type: authentication_type
         authentication_category: authentication_category
+        decoupled_challenge_max_time: 0
         cardholder_info:
           account_type: account_type
           account_info:
@@ -3774,6 +3808,12 @@ components:
         challenge_preference:
           nullable: true
           type: string
+        request_decoupled_challenge:
+          type: boolean
+        decoupled_challenge_max_time:
+          format: int32
+          nullable: true
+          type: integer
         purchase_info:
           $ref: '#/components/schemas/ThreeDSPurchaseInfo'
         merchant_info:
@@ -3854,6 +3894,25 @@ components:
           type: array
       required:
       - nonce
+      type: object
+    BankVerificationRequest:
+      additionalProperties: false
+      example:
+        country_code: country_code
+        token_id: token_id
+        routing_number: routing_number
+      properties:
+        token_id:
+          minLength: 1
+          type: string
+        country_code:
+          nullable: true
+          type: string
+        routing_number:
+          nullable: true
+          type: string
+      required:
+      - token_id
       type: object
     BinDetails:
       additionalProperties: false
@@ -4478,6 +4537,7 @@ components:
     CreateThreeDSSessionRequest:
       additionalProperties: false
       example:
+        token_intent_id: token_intent_id
         device_info:
           sdk_application_id: sdk_application_id
           browser_accept_header: browser_accept_header
@@ -4500,13 +4560,23 @@ components:
           browser_tz: browser_tz
           browser_ip: browser_ip
           browser_user_agent: browser_user_agent
+        token_id: token_id
         pan: pan
         type: type
         device: device
       properties:
         pan:
+          deprecated: true
           maxLength: 36
-          minLength: 1
+          nullable: true
+          type: string
+        token_id:
+          maxLength: 36
+          nullable: true
+          type: string
+        token_intent_id:
+          maxLength: 36
+          nullable: true
           type: string
         type:
           nullable: true
@@ -4516,8 +4586,6 @@ components:
           type: string
         device_info:
           $ref: '#/components/schemas/ThreeDSDeviceInfo'
-      required:
-      - pan
       type: object
     CreateThreeDSSessionResponse:
       additionalProperties: false
@@ -4558,6 +4626,7 @@ components:
       additionalProperties: false
       example:
         fingerprint_expression: fingerprint_expression
+        token_intent_id: token_intent_id
         metadata:
           key: metadata
         expires_at: expires_at
@@ -4582,7 +4651,8 @@ components:
         type:
           nullable: true
           type: string
-        data: {}
+        data:
+          nullable: true
         privacy:
           $ref: '#/components/schemas/Privacy'
         metadata:
@@ -4613,8 +4683,9 @@ components:
           maxItems: 1
           nullable: true
           type: array
-      required:
-      - data
+        token_intent_id:
+          nullable: true
+          type: string
       type: object
     CursorPagination:
       additionalProperties: false
@@ -7295,22 +7366,14 @@ components:
         acs_signed_content: acs_signed_content
         authentication_value: authentication_value
         sdk_transaction_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-        authentication_status_reason: authentication_status_reason
-        threeds_version: threeds_version
-        acs_challenge_url: acs_challenge_url
         authentication_status_code: authentication_status_code
-        authentication_challenge_type: authentication_challenge_type
         ds_transaction_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
         pan_token_id: pan_token_id
         eci: eci
-        acs_transaction_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
         whitelist_status_source: whitelist_status_source
-        cardholder_info: cardholder_info
-        acs_reference_number: acs_reference_number
         acs_decoupled_authentication: acs_decoupled_authentication
-        challenge_attempts: challenge_attempts
+        token_id: token_id
         whitelist_status: whitelist_status
-        authentication_status: authentication_status
         challenge_cancel_reason: challenge_cancel_reason
         message_extensions:
         - critical: true
@@ -7323,8 +7386,25 @@ components:
           id: id
         acs_challenge_mandated: acs_challenge_mandated
         ds_reference_number: ds_reference_number
+        token_intent_id: token_intent_id
+        authentication_status_reason: authentication_status_reason
+        threeds_version: threeds_version
+        acs_challenge_url: acs_challenge_url
+        authentication_challenge_type: authentication_challenge_type
+        acs_transaction_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        cardholder_info: cardholder_info
+        acs_reference_number: acs_reference_number
+        challenge_attempts: challenge_attempts
+        authentication_status: authentication_status
       properties:
         pan_token_id:
+          deprecated: true
+          nullable: true
+          type: string
+        token_id:
+          nullable: true
+          type: string
+        token_intent_id:
           nullable: true
           type: string
         threeds_version:
@@ -7876,6 +7956,7 @@ components:
       additionalProperties: false
       example:
         tenant_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        token_intent_id: token_intent_id
         method:
           method_completion_indicator: method_completion_indicator
           method_url: method_url
@@ -7918,6 +7999,7 @@ components:
           browser_tz: browser_tz
           browser_ip: browser_ip
           browser_user_agent: browser_user_agent
+        token_id: token_id
         card_brand: card_brand
         modified_by: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
         id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
@@ -7930,22 +8012,14 @@ components:
           acs_signed_content: acs_signed_content
           authentication_value: authentication_value
           sdk_transaction_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-          authentication_status_reason: authentication_status_reason
-          threeds_version: threeds_version
-          acs_challenge_url: acs_challenge_url
           authentication_status_code: authentication_status_code
-          authentication_challenge_type: authentication_challenge_type
           ds_transaction_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           pan_token_id: pan_token_id
           eci: eci
-          acs_transaction_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           whitelist_status_source: whitelist_status_source
-          cardholder_info: cardholder_info
-          acs_reference_number: acs_reference_number
           acs_decoupled_authentication: acs_decoupled_authentication
-          challenge_attempts: challenge_attempts
+          token_id: token_id
           whitelist_status: whitelist_status
-          authentication_status: authentication_status
           challenge_cancel_reason: challenge_cancel_reason
           message_extensions:
           - critical: true
@@ -7958,6 +8032,16 @@ components:
             id: id
           acs_challenge_mandated: acs_challenge_mandated
           ds_reference_number: ds_reference_number
+          token_intent_id: token_intent_id
+          authentication_status_reason: authentication_status_reason
+          threeds_version: threeds_version
+          acs_challenge_url: acs_challenge_url
+          authentication_challenge_type: authentication_challenge_type
+          acs_transaction_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          cardholder_info: cardholder_info
+          acs_reference_number: acs_reference_number
+          challenge_attempts: challenge_attempts
+          authentication_status: authentication_status
       properties:
         id:
           format: uuid
@@ -7973,6 +8057,13 @@ components:
           pattern: "^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$"
           type: string
         pan_token_id:
+          deprecated: true
+          nullable: true
+          type: string
+        token_id:
+          nullable: true
+          type: string
+        token_intent_id:
           nullable: true
           type: string
         card_brand:

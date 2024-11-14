@@ -21,7 +21,7 @@ var _ MappedNullable = &CreateTokenRequest{}
 type CreateTokenRequest struct {
 	Id                    NullableString    `json:"id,omitempty"`
 	Type                  NullableString    `json:"type,omitempty"`
-	Data                  interface{}       `json:"data"`
+	Data                  interface{}       `json:"data,omitempty"`
 	Privacy               *Privacy          `json:"privacy,omitempty"`
 	Metadata              map[string]string `json:"metadata,omitempty"`
 	SearchIndexes         []string          `json:"search_indexes,omitempty"`
@@ -30,15 +30,15 @@ type CreateTokenRequest struct {
 	DeduplicateToken      NullableBool      `json:"deduplicate_token,omitempty"`
 	ExpiresAt             NullableString    `json:"expires_at,omitempty"`
 	Containers            []string          `json:"containers,omitempty"`
+	TokenIntentId         NullableString    `json:"token_intent_id,omitempty"`
 }
 
 // NewCreateTokenRequest instantiates a new CreateTokenRequest object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewCreateTokenRequest(data interface{}) *CreateTokenRequest {
+func NewCreateTokenRequest() *CreateTokenRequest {
 	this := CreateTokenRequest{}
-	this.Data = data
 	return &this
 }
 
@@ -136,18 +136,16 @@ func (o *CreateTokenRequest) UnsetType() {
 	o.Type.Unset()
 }
 
-// GetData returns the Data field value
-// If the value is explicit nil, the zero value for interface{} will be returned
+// GetData returns the Data field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *CreateTokenRequest) GetData() interface{} {
 	if o == nil {
 		var ret interface{}
 		return ret
 	}
-
 	return o.Data
 }
 
-// GetDataOk returns a tuple with the Data field value
+// GetDataOk returns a tuple with the Data field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *CreateTokenRequest) GetDataOk() (*interface{}, bool) {
@@ -157,7 +155,16 @@ func (o *CreateTokenRequest) GetDataOk() (*interface{}, bool) {
 	return &o.Data, true
 }
 
-// SetData sets field value
+// HasData returns a boolean if a field is not nil.
+func (o *CreateTokenRequest) HasData() bool {
+	if o != nil && !IsNil(o.Data) {
+		return true
+	}
+
+	return false
+}
+
+// SetData gets a reference to the given interface{} and assigns it to the Data field.
 func (o *CreateTokenRequest) SetData(v interface{}) {
 	o.Data = v
 }
@@ -455,6 +462,49 @@ func (o *CreateTokenRequest) SetContainers(v []string) {
 	o.Containers = v
 }
 
+// GetTokenIntentId returns the TokenIntentId field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *CreateTokenRequest) GetTokenIntentId() string {
+	if o == nil || IsNil(o.TokenIntentId.Get()) {
+		var ret string
+		return ret
+	}
+	return *o.TokenIntentId.Get()
+}
+
+// GetTokenIntentIdOk returns a tuple with the TokenIntentId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *CreateTokenRequest) GetTokenIntentIdOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.TokenIntentId.Get(), o.TokenIntentId.IsSet()
+}
+
+// HasTokenIntentId returns a boolean if a field is not nil.
+func (o *CreateTokenRequest) HasTokenIntentId() bool {
+	if o != nil && !IsNil(o.TokenIntentId) {
+		return true
+	}
+
+	return false
+}
+
+// SetTokenIntentId gets a reference to the given NullableString and assigns it to the TokenIntentId field.
+func (o *CreateTokenRequest) SetTokenIntentId(v string) {
+	o.TokenIntentId.Set(&v)
+}
+
+// SetTokenIntentIdNil sets the value for TokenIntentId to be an explicit nil
+func (o *CreateTokenRequest) SetTokenIntentIdNil() {
+	o.TokenIntentId.Set(nil)
+}
+
+// UnsetTokenIntentId ensures that no value is present for TokenIntentId, not even an explicit nil
+func (o *CreateTokenRequest) UnsetTokenIntentId() {
+	o.TokenIntentId.Unset()
+}
+
 func (o CreateTokenRequest) MarshalJSON() ([]byte, error) {
 	toSerialize, err := o.ToMap()
 	if err != nil {
@@ -497,6 +547,9 @@ func (o CreateTokenRequest) ToMap() (map[string]interface{}, error) {
 	}
 	if o.Containers != nil {
 		toSerialize["containers"] = o.Containers
+	}
+	if o.TokenIntentId.IsSet() {
+		toSerialize["token_intent_id"] = o.TokenIntentId.Get()
 	}
 	return toSerialize, nil
 }
