@@ -1,3 +1,13 @@
+# [7.0.0](https://github.com/Basis-Theory/basistheory-go/compare/v6.1.0...v7.0.0) (2024-11-14)
+
+
+* feat!: add token intents, enrichments api, 3ds changes and more (#85) ([7b6c136](https://github.com/Basis-Theory/basistheory-go/commit/7b6c136968f6521a78c1100a3dc903e1e3e8d6a3)), closes [#85](https://github.com/Basis-Theory/basistheory-go/issues/85)
+
+
+### BREAKING CHANGES
+
+* Can't pass Data to NewCreateTokenRequest call anymore, Data must be set using request.SetData
+
 # [6.1.0](https://github.com/Basis-Theory/basistheory-go/compare/v6.0.0...v6.1.0) (2024-10-17)
 
 
