@@ -1,5 +1,13 @@
 # Basis Theory Go SDK
 
+> [!CAUTION]
+> This SDK has been deprecated.
+>
+> Our new SDK can be found at https://github.com/Basis-Theory/go-sdk
+>
+> See our documentation site for more information. https://developers.basistheory.com/docs/sdks/server-side/go
+
+
 [![Release](https://github.com/Basis-Theory/basistheory-go/actions/workflows/release.yml/badge.svg)](https://github.com/Basis-Theory/basistheory-go/actions/workflows/release.yml)
 
 ## Getting Started
